@@ -41,7 +41,7 @@ var initialHead_pos = 0.0
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0}
 
 #---------In meters
-const hb_intensities = {"crouch_speed"= 0.05, "walk_speed" = 0.1, "sprint_speed" = 0.2}
+const hb_intensities = {"crouch_speed"= 0.2, "walk_speed" = 0.3, "sprint_speed" = 0.5}
 
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0

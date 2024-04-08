@@ -8,7 +8,7 @@ func enter(_msg := {}):
 
 func physics_update(delta: float) -> void:
 	player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
-	player.headBobbing_index += player.hb_intensities.get("crouch_speed") * delta
+	player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	
 	player.head.position.y = lerp(player.head.position.y, player.initialHead_pos- player.crouching_depth, delta * player.lerp_speed)
 	
