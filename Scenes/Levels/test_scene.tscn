@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bnbajbspn1eb" path="res://Resources/SkyBox/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="2_j80e5"]
 [ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://Resources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqn0k"]
-albedo_texture = ExtResource("3_5x6tt")
-uv1_triplanar = true
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ompr7"]
 albedo_texture = ExtResource("1_qatuk")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqn0k"]
+albedo_texture = ExtResource("3_5x6tt")
 uv1_triplanar = true
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1b7ml"]
@@ -29,32 +29,29 @@ fog_sky_affect = 0.37
 
 [node name="World" type="Node3D"]
 
-[node name="Character" parent="." instance=ExtResource("1_s20kc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
-
-[node name="Ground4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.393, 0.75518, 1.9869)
-use_collision = true
-size = Vector3(5, 1.27917, 2)
-material = SubResource("StandardMaterial3D_xqn0k")
-
-[node name="Ground3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.39318, 0.768429, -1.97433)
-use_collision = true
-size = Vector3(5, 1.27917, 2)
-material = SubResource("StandardMaterial3D_xqn0k")
-
-[node name="Ground2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45677, 2.1668, 0)
-use_collision = true
-size = Vector3(5, 1, 2)
-material = SubResource("StandardMaterial3D_xqn0k")
-
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(30, 1, 30)
 material = SubResource("StandardMaterial3D_ompr7")
+
+[node name="Platform" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
+
+[node name="Ground4" type="CSGBox3D" parent="Platform"]
+transform = Transform3D(-1, -0.000300607, -0.000428563, 0, 0.818681, -0.574248, 0.00052348, -0.574248, -0.818681, 3.92725, 2.55383, 7.01529)
+use_collision = true
+size = Vector3(5, 1.279, 15)
+material = SubResource("StandardMaterial3D_xqn0k")
+
+[node name="Ground2" type="CSGBox3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.54696, 1.05875, 0.0822635)
+use_collision = true
+size = Vector3(5, 1, 2)
+material = SubResource("StandardMaterial3D_xqn0k")
+
+[node name="Character" parent="." instance=ExtResource("1_s20kc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
 
 [node name="Environment" type="Node3D" parent="."]
 
