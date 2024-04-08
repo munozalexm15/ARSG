@@ -16,8 +16,10 @@ height = 1.2
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_yciub")
 cameraNode = NodePath("Head")
+bobbingNode = NodePath("Head/eyes")
 standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
+standingRaycastNode = NodePath("StandingRaycast")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
@@ -42,12 +44,17 @@ script = ExtResource("7_nbd32")
 shape = SubResource("CapsuleShape3D_37yn0")
 
 [node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.398957, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="eyes" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/eyes"]
+
+[node name="StandingRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
 
 [connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]

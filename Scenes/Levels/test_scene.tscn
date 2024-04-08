@@ -1,8 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=10 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://Resources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
 [ext_resource type="Texture2D" uid="uid://bnbajbspn1eb" path="res://Resources/SkyBox/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="2_j80e5"]
+[ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://Resources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqn0k"]
+albedo_texture = ExtResource("3_5x6tt")
+uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ompr7"]
 albedo_texture = ExtResource("1_qatuk")
@@ -26,6 +31,24 @@ fog_sky_affect = 0.37
 
 [node name="Character" parent="." instance=ExtResource("1_s20kc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
+
+[node name="Ground4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.393, 0.75518, 1.9869)
+use_collision = true
+size = Vector3(5, 1.27917, 2)
+material = SubResource("StandardMaterial3D_xqn0k")
+
+[node name="Ground3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.39318, 0.768429, -1.97433)
+use_collision = true
+size = Vector3(5, 1.27917, 2)
+material = SubResource("StandardMaterial3D_xqn0k")
+
+[node name="Ground2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45677, 2.1668, 0)
+use_collision = true
+size = Vector3(5, 1, 2)
+material = SubResource("StandardMaterial3D_xqn0k")
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

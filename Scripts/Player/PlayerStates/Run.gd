@@ -3,8 +3,13 @@ extends PlayerState
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 	player.curr_speed = player.run_speed
+	
+	
 
 func physics_update(delta: float):
+	player.headBobbing_curr_intensity = player.hb_intensities.get("sprint_speed")
+	player.headBobbing_index += player.hb_intensities.get("sprint_speed") * delta
+	
 	if player.direction != Vector3.ZERO:
 		player.velocity.x = player.direction.x * player.curr_speed
 		player.velocity.z = player.direction.z * player.curr_speed
