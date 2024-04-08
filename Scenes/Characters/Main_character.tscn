@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1ndfa7nd5f1l"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
+[ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Walk.gd" id="4_c7knn"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Crouch.gd" id="7_nbd32"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
+height = 1.2
+
+[node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_yciub")
+cameraNode = NodePath("Head")
+standing_collisionNode = NodePath("Standing_collisionShape")
+crouching_collisionNode = NodePath("Crouching_collisionShape")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_p6bay")
+initial_state = NodePath("Air")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_0ggrl")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("4_c7knn")
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("5_xejyo")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("6_an03r")
+
+[node name="Crouch" type="Node" parent="StateMachine"]
+script = ExtResource("7_nbd32")
+
+[node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_37yn0")
+
+[node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.398957, 0)
+shape = SubResource("CapsuleShape3D_rgde6")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]
