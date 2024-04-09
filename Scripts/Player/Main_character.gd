@@ -46,7 +46,7 @@ var initialHands_pos = 0.0
 
 var lerpHandsPosition = 0.0
 var newDirection = 0
-var distanceCheck = 0.3
+var distanceCheck = 1
 
 #--- Head bobbing
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0}
@@ -102,7 +102,7 @@ func _physics_process(delta):
 	
 	
 	#Check for frontal collisions with a wall
-	#_checkCollisionWithWall()
+	_checkCollisionWithWall()
 	
 	move_and_slide()
 
@@ -124,11 +124,8 @@ func _checkCollisionWithWall():
 		var coll_point = result.position
 		var hit_Distance = origin.distance_to(position)
 		lerpHandsPosition = 1 - (hit_Distance / distanceCheck)
+		lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)
+		print(arms.transform.basis.get_euler())
+		#arms.transform = arms.transform.rotated(Vector3.UP, deg_to_rad(90))
 	else:
 		lerpHandsPosition = 0
-	
-	lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)
-	var a = Quaternion(transform.basis)
-	var b = Quaternion(0, 90, 0, 0)
-	var c = a.slerp(b.normalized(), lerpHandsPosition)
-	arms.transform.basis = Basis(c)
