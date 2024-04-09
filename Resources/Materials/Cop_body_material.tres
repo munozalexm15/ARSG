@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://crppxdh1wbds8"]
+
+[ext_resource type="Texture2D" uid="uid://bhs34wb2i3am0" path="res://Resources/Textures/CharacterTextures/GermanPoliceOfficer_Body256.jpg" id="1_ypntf"]
+
+[resource]
+albedo_texture = ExtResource("1_ypntf")

@@ -1,9 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=20 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://Resources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
 [ext_resource type="Texture2D" uid="uid://bnbajbspn1eb" path="res://Resources/SkyBox/kloofendal_48d_partly_cloudy_puresky_4k.exr" id="2_j80e5"]
 [ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://Resources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
+[ext_resource type="Shader" path="res://Resources/Shaders/psx_lit.gdshader" id="3_ij7c6"]
+[ext_resource type="Texture2D" uid="uid://c2cd55gkpoti7" path="res://Resources/Textures/Prototype Textures/Red/texture_01.png" id="4_lx04n"]
+[ext_resource type="Shader" path="res://Resources/Shaders/psx_dither.gdshader" id="5_apkuc"]
+[ext_resource type="Shader" path="res://Resources/Shaders/psx_fade.gdshader" id="6_27bo6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r8bh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a6pwe"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_4r8bh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpn1e"]
+render_priority = 0
+shader = ExtResource("3_ij7c6")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/albedo = ExtResource("4_lx04n")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lq147"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ompr7"]
 albedo_texture = ExtResource("1_qatuk")
@@ -12,6 +38,17 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqn0k"]
 albedo_texture = ExtResource("3_5x6tt")
 uv1_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3gl1"]
+shader = ExtResource("6_27bo6")
+shader_parameter/alpha = 1
+shader_parameter/fadeToWhite = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jv1dv"]
+shader = ExtResource("5_apkuc")
+shader_parameter/color_depth = 5
+shader_parameter/dithering = true
+shader_parameter/resolution_scale = 3
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1b7ml"]
 panorama = ExtResource("2_j80e5")
@@ -29,6 +66,17 @@ fog_sky_affect = 0.37
 
 [node name="World" type="Node3D"]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.484035, 6.5674)
+mesh = SubResource("BoxMesh_a6pwe")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_gpn1e")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_lq147")
+
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
@@ -38,19 +86,41 @@ material = SubResource("StandardMaterial3D_ompr7")
 [node name="Platform" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
 
-[node name="Ground4" type="CSGBox3D" parent="Platform"]
-transform = Transform3D(-1, -0.000300607, -0.000428563, 0, 0.818681, -0.574248, 0.00052348, -0.574248, -0.818681, 3.92725, 2.55383, 7.01529)
-use_collision = true
-size = Vector3(5, 1.279, 15)
-material = SubResource("StandardMaterial3D_xqn0k")
-
 [node name="Ground2" type="CSGBox3D" parent="Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.54696, 1.05875, 0.0822635)
 use_collision = true
 size = Vector3(5, 1, 2)
 material = SubResource("StandardMaterial3D_xqn0k")
 
-[node name="Character" parent="." instance=ExtResource("1_s20kc")]
+[node name="FadeShader" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_o3gl1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="FadeShader"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="DitheringShader" type="SubViewportContainer" parent="FadeShader/SubViewport"]
+material = SubResource("ShaderMaterial_jv1dv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="FadeShader/SubViewport/DitheringShader"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Character" parent="FadeShader/SubViewport/DitheringShader/SubViewport" instance=ExtResource("1_s20kc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
 
 [node name="Environment" type="Node3D" parent="."]

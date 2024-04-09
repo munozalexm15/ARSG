@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1ndfa7nd5f1l"]
+[gd_scene load_steps=15 format=3 uid="uid://b1ndfa7nd5f1l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -7,11 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Crouch.gd" id="7_nbd32"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
-height = 1.2
+[ext_resource type="PackedScene" uid="uid://b4ujkypjkxc1a" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -38,34 +34,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_p7pfv"]
-resource_name = "soft_landing"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.0523599, 0, -0.0349066), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_i4awl"]
@@ -96,6 +64,34 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_p7pfv"]
+resource_name = "soft_landing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0523599, 0, -0.0349066), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
 _data = {
 "RESET": SubResource("Animation_p700l"),
@@ -103,13 +99,35 @@ _data = {
 "soft_landing": SubResource("Animation_p7pfv")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
+height = 1.2
+
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyes")
+armsNode = NodePath("Head/eyes/arms")
 standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("Head/eyes/AnimationPlayer")
+cameraNode = NodePath("Head/eyes/Camera3D")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="eyes" type="Node3D" parent="Head"]
+
+[node name="arms" parent="Head/eyes" instance=ExtResource("8_jvk7e")]
+transform = Transform3D(0.0173648, 0, 0.0984808, 0, 0.1, 0, -0.0984808, 0, 0.0173648, 0, -0.35586, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/eyes"]
+libraries = {
+"": SubResource("AnimationLibrary_sri1h")
+}
+
+[node name="Camera3D" type="Camera3D" parent="Head/eyes"]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
@@ -136,18 +154,6 @@ shape = SubResource("CapsuleShape3D_37yn0")
 [node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
-
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="eyes" type="Node3D" parent="Head"]
-
-[node name="Camera3D" type="Camera3D" parent="Head/eyes"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/eyes"]
-libraries = {
-"": SubResource("AnimationLibrary_sri1h")
-}
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
