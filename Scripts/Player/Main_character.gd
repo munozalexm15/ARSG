@@ -122,10 +122,20 @@ func _checkCollisionWithWall():
 	var result = space_state.intersect_ray(query)
 	if result.has("position"):
 		var coll_point = result.position
-		var hit_Distance = origin.distance_to(position)
+		var hit_Distance = origin.distance_to(result.position)
 		lerpHandsPosition = 1 - (hit_Distance / distanceCheck)
 		lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)
-		print(arms.transform.basis.get_euler())
-		#arms.transform = arms.transform.rotated(Vector3.UP, deg_to_rad(90))
+		
 	else:
-		lerpHandsPosition = 0
+		if lerpHandsPosition > 0:
+			lerpHandsPosition -= 0.05
+
+	arms.rotation.z = lerp_angle(
+	deg_to_rad(0),
+	deg_to_rad(-45.0), 
+	lerpHandsPosition)
+	
+	arms.rotation.x = lerp_angle(
+	deg_to_rad(0),
+	deg_to_rad(-45.0), 
+	lerpHandsPosition)

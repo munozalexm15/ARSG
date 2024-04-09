@@ -7,7 +7,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#animationPlayer.play("Idle_Pistol_OneHand")+ç
+	#animationPlayer.play("Idle_Pistol_OneHand")
 	pass
 
 

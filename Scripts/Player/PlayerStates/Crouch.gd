@@ -27,6 +27,7 @@ func physics_update(delta: float) -> void:
 	player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	
 	player.eyes.position.y = lerp(player.eyes.position.y, player.initialHead_pos- player.crouching_depth, delta * player.lerp_speed)
+	player.arms.position.y = lerp(player.arms.position.y, player.initialHands_pos- player.crouching_depth / 8, delta * player.lerp_speed)
 	
 	if player.direction != Vector3.ZERO:
 		player.velocity.x = player.direction.x * player.curr_speed
@@ -45,10 +46,7 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and !player.standingRaycast.is_colliding():
 		state_machine.transition_to("Air", {"jump" = true})
 	
-	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and Input.is_action_just_pressed("Sprint"):
-		state_machine.transition_to("Run")
-	
-	if !Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding() and player.input_direction != Vector2.ZERO:
+	if (!Input.is_action_pressed("Crouch") or Input.is_action_just_pressed("Sprint")) and !player.standingRaycast.is_colliding() and player.input_direction != Vector2.ZERO:
 		player.crouching_CollisionShape.disabled = true
 		player.standing_CollisionShape.disabled = false
 		state_machine.transition_to("Walk")
