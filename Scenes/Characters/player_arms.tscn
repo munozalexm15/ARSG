@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b4ujkypjkxc1a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
-[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://Resources/Textures/CharacterTextures/PlayerArms.png" id="1_vtcbq"]
+[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="1_vtcbq"]
 [ext_resource type="PackedScene" uid="uid://tn2dxliqujf7" path="res://Scenes/Guns/USP.tscn" id="3_vwdql"]
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -329,6 +329,7 @@ transform = Transform3D(0.995884, 0, 0.0906326, 0, 1, 0, -0.0906326, 0, 0.995884
 
 [node name="Armature_001" type="Node3D" parent="Player_Arms"]
 transform = Transform3D(0, 0, 0.293129, 0, 0.293129, 0, -0.293129, 0, 0, 0, 0, 0.582399)
+visible = false
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Player_Arms/Armature_001"]
 bones/0/name = "UpperArm.R"

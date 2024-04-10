@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://y88s07t2q45c"
+path="res://.godot/imported/cop.obj-8461c47b512d60177309f6da650c9f3b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cop.obj-8461c47b512d60177309f6da650c9f3b.mesh"]
+
+source_file="res://GameResources/Meshes/PlayerModel (Cop)/cop.obj"
+dest_files=["res://.godot/imported/cop.obj-8461c47b512d60177309f6da650c9f3b.mesh", "res://.godot/imported/cop.obj-8461c47b512d60177309f6da650c9f3b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

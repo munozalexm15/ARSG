@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://tn2dxliqujf7"]
+[gd_scene load_steps=18 format=3 uid="uid://bdgpgu6lmpwks"]
 
-[ext_resource type="Texture2D" uid="uid://ci7shwalilgfw" path="res://GameResources/Textures/Guns/USP/USP_Text.jpg" id="1_jjjcs"]
-[ext_resource type="Texture2D" uid="uid://euxa0y6g15rq" path="res://GameResources/Textures/Guns/USP/USP_mag_Text.jpg" id="2_jywnd"]
+[ext_resource type="Texture2D" uid="uid://ci7shwalilgfw" path="res://GameResources/Textures/Guns/USP/USP_Text.jpg" id="1_68rv3"]
+[ext_resource type="Script" path="res://Scripts/Guns/Gun_Behavior.gd" id="1_alw1y"]
+[ext_resource type="Texture2D" uid="uid://euxa0y6g15rq" path="res://GameResources/Textures/Guns/USP/USP_mag_Text.jpg" id="2_pmcju"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vuwis"]
 resource_name = "Material.020"
 cull_mode = 2
-albedo_texture = ExtResource("1_jjjcs")
+albedo_texture = ExtResource("1_68rv3")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_stu40"]
@@ -76,7 +77,7 @@ shadow_mesh = SubResource("ArrayMesh_myqpe")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0xlk"]
 resource_name = "Material.026"
 cull_mode = 2
-albedo_texture = ExtResource("1_jjjcs")
+albedo_texture = ExtResource("1_68rv3")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t4bcj"]
@@ -116,7 +117,7 @@ shadow_mesh = SubResource("ArrayMesh_t4bcj")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxlcc"]
 resource_name = "Material.027"
 cull_mode = 2
-albedo_texture = ExtResource("2_jywnd")
+albedo_texture = ExtResource("2_pmcju")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_apiuf"]
@@ -165,6 +166,7 @@ _data = {
 }
 
 [node name="Weapon" type="Node3D"]
+script = ExtResource("1_alw1y")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.098445, 1.45042, 0)

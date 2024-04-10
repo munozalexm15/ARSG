@@ -130,7 +130,6 @@ func _checkCollisionWithWall():
 		lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)
 		isColliding = true
 		
-		
 	else:
 		isColliding = false
 		if lerpHandsPosition > 0:
@@ -145,5 +144,3 @@ func _checkCollisionWithWall():
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
-
-	print(arms.rotation)

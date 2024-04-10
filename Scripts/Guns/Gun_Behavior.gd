@@ -1,17 +1,26 @@
 extends Node3D
 
-var min_sway = Vector2(-20.0,-20.0)
-var max_sway = Vector2(20.0,20.0)
-var sway_speed_position = 0.07
-var sway_speed_rotation = 0.1
-var sway_amount_position = 0.1
-var sway_amount_rotation = 30.0
+@export var WEAPON_TYPE : Weapons
+
+@onready var weapon_body = $Body
+@onready var weapon_slide = $Slide
+@onready var weapon_trigger_hammer = $Trigger_Hammer
+@onready var weapon_mag = $Mag
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	load_weapon()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func load_weapon():
+	weapon_body = WEAPON_TYPE.body
+	weapon_slide = WEAPON_TYPE.slide
+	weapon_trigger_hammer = WEAPON_TYPE.trigger_hammer
+	weapon_mag = WEAPON_TYPE.mag
+	
+	position = WEAPON_TYPE.position
+	rotation_degrees = WEAPON_TYPE.rotation
