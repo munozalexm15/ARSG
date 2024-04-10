@@ -11,16 +11,17 @@ extends Node3D
 func _ready():
 	load_weapon()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 func load_weapon():
-	weapon_body = WEAPON_TYPE.body
-	weapon_slide = WEAPON_TYPE.slide
-	weapon_trigger_hammer = WEAPON_TYPE.trigger_hammer
-	weapon_mag = WEAPON_TYPE.mag
+	#el problema de que no carguen creo que es que es un Mesh en el resource y aqui es un meshInstance3d
+	print(WEAPON_TYPE.name)
+	weapon_body.mesh = WEAPON_TYPE.body
+	weapon_slide.mesh = WEAPON_TYPE.slide
+	weapon_trigger_hammer.mesh = WEAPON_TYPE.trigger
+	weapon_mag.mesh = WEAPON_TYPE.mag
 	
 	position = WEAPON_TYPE.position
 	rotation_degrees = WEAPON_TYPE.rotation

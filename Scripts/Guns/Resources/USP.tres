@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=6 format=3 uid="uid://c3s4yli2lblho"]
+
+[ext_resource type="ArrayMesh" uid="uid://den641w2ahsd" path="res://GameResources/Meshes/Guns/USP/USP_body.tres" id="1_85cdp"]
+[ext_resource type="Script" path="res://Scripts/Guns/Weapons_Resource.gd" id="1_lg18l"]
+[ext_resource type="ArrayMesh" uid="uid://c0jumtbxc2qxf" path="res://GameResources/Meshes/Guns/USP/USP_Mag.tres" id="2_pn74r"]
+[ext_resource type="ArrayMesh" uid="uid://chifalihkbp0i" path="res://GameResources/Meshes/Guns/USP/USP_Slide.tres" id="4_d00e5"]
+[ext_resource type="ArrayMesh" uid="uid://btuprycsjeta" path="res://GameResources/Meshes/Guns/USP/USP_Trigger.tres" id="5_37mm0"]
+
+[resource]
+script = ExtResource("1_lg18l")
+name = &"USP"
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+body = ExtResource("1_85cdp")
+slide = ExtResource("4_d00e5")
+trigger = ExtResource("5_37mm0")
+mag = ExtResource("2_pn74r")
