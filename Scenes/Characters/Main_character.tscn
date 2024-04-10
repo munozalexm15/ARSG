@@ -111,7 +111,7 @@ armsNode = NodePath("Head/eyes/arms")
 standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
-animationNode = NodePath("Head/eyes/AnimationPlayer")
+animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyes/Camera3D")
 
 [node name="Head" type="Node3D" parent="."]
@@ -120,15 +120,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="eyes" type="Node3D" parent="Head"]
 
 [node name="arms" parent="Head/eyes" instance=ExtResource("8_jvk7e")]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.44457, 0)
-animationNode = NodePath("../AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/eyes"]
-libraries = {
-"": SubResource("AnimationLibrary_sri1h")
-}
+transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.464191, 0.0169582)
+playerNode = NodePath("../../..")
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyes"]
+fov = 60.0
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
@@ -148,6 +144,12 @@ script = ExtResource("6_an03r")
 
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource("7_nbd32")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Head/eyes")
+libraries = {
+"": SubResource("AnimationLibrary_sri1h")
+}
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

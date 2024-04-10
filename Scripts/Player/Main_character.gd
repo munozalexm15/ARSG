@@ -47,6 +47,7 @@ var initialHands_pos = 0.0
 var lerpHandsPosition = 0.0
 var newDirection = 0
 var distanceCheck = 1
+var isColliding = false
 
 #--- Head bobbing
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0}
@@ -72,6 +73,8 @@ func _input(event):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		
+		
 		
 func _physics_process(delta):
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
@@ -125,8 +128,11 @@ func _checkCollisionWithWall():
 		var hit_Distance = origin.distance_to(result.position)
 		lerpHandsPosition = 1 - (hit_Distance / distanceCheck)
 		lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)
+		isColliding = true
+		
 		
 	else:
+		isColliding = false
 		if lerpHandsPosition > 0:
 			lerpHandsPosition -= 0.05
 
@@ -139,3 +145,5 @@ func _checkCollisionWithWall():
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
+
+	print(arms.rotation)

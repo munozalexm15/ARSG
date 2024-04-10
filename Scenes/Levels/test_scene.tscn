@@ -9,11 +9,11 @@
 [ext_resource type="Shader" path="res://Resources/Shaders/psx_dither.gdshader" id="5_apkuc"]
 [ext_resource type="Shader" path="res://Resources/Shaders/psx_fade.gdshader" id="6_27bo6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r8bh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5apve"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_a6pwe"]
 lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_4r8bh")
+material = SubResource("StandardMaterial3D_5apve")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gpn1e"]
 render_priority = 0
@@ -48,7 +48,7 @@ shader_parameter/fadeToWhite = false
 shader = ExtResource("5_apkuc")
 shader_parameter/color_depth = 5
 shader_parameter/dithering = true
-shader_parameter/resolution_scale = 3
+shader_parameter/resolution_scale = 2
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1b7ml"]
 panorama = ExtResource("2_j80e5")
