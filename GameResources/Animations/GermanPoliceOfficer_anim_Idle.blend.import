@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bt56hcivpqlpy"
-path="res://.godot/imported/GermanPoliceOfficer_anim_Idle.blend-b3c4b04045ecff9079386bacfc745e9b.scn"
+path="res://.godot/imported/GermanPoliceOfficer_anim_Idle.blend-ef3a697838d6a21292f0d55f07b69a23.scn"
 
 [deps]
 
-source_file="res://Resources/Animations/GermanPoliceOfficer_anim_Idle.blend"
-dest_files=["res://.godot/imported/GermanPoliceOfficer_anim_Idle.blend-b3c4b04045ecff9079386bacfc745e9b.scn"]
+source_file="res://GameResources/Animations/GermanPoliceOfficer_anim_Idle.blend"
+dest_files=["res://.godot/imported/GermanPoliceOfficer_anim_Idle.blend-ef3a697838d6a21292f0d55f07b69a23.scn"]
 
 [params]
 

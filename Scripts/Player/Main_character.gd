@@ -39,6 +39,7 @@ const jump_force = 4.5
 var lerp_air_speed = 3
 
 #---OTHER
+var state
 const mouse_sensibility = 0.4
 var crouching_depth = 0.8
 var initialHead_pos = 0.0
@@ -110,7 +111,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_state_machine_transitioned(state_name, old_state):
-	print("Last state: " , old_state , "   ---   New state: " , state_name)
+	state = state_name
+	#print("Last state: " , old_state , "   ---   New state: " , state_name)
 
 func _checkCollisionWithWall():
 	var space_state = get_world_3d().direct_space_state

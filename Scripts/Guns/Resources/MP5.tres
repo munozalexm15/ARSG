@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://drls2hr2bdp5v"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Weapons_Resource.gd" id="1_kqnbp"]
+[ext_resource type="ArrayMesh" uid="uid://ck6ld8r56w1f8" path="res://GameResources/Meshes/Guns/MP5/MP5_bullet.tres" id="1_xvn5a"]
+
+[resource]
+script = ExtResource("1_kqnbp")
+name = &"MP5"
+bulletType = ExtResource("1_xvn5a")

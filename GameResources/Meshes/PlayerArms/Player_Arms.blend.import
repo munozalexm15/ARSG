@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cqkqw32tyox3t"
-path="res://.godot/imported/Player_Arms.blend-b2f15a80dbf87b0acb292b28e3ae4267.scn"
+path="res://.godot/imported/Player_Arms.blend-b81340f3c5acbe27446e65539e802b71.scn"
 
 [deps]
 
-source_file="res://Resources/Meshes/PlayerArms/Player_Arms.blend"
-dest_files=["res://.godot/imported/Player_Arms.blend-b2f15a80dbf87b0acb292b28e3ae4267.scn"]
+source_file="res://GameResources/Meshes/PlayerArms/Player_Arms.blend"
+dest_files=["res://.godot/imported/Player_Arms.blend-b81340f3c5acbe27446e65539e802b71.scn"]
 
 [params]
 

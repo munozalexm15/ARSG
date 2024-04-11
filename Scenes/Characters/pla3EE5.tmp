@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4ujkypjkxc1a"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
+[ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_vwdql"]
+
+[sub_resource type="Animation" id="Animation_6d0bv"]
+resource_name = "HideWeapon"
+length = 0.3
+
+[sub_resource type="Animation" id="Animation_c7y05"]
+resource_name = "Idle"
+length = 0.3
+
+[sub_resource type="Animation" id="Animation_bsjly"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_yj86q"]
+resource_name = "Run"
+length = 0.3
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igvyo"]
+_data = {
+"HideWeapon": SubResource("Animation_6d0bv"),
+"Idle": SubResource("Animation_c7y05"),
+"RESET": SubResource("Animation_bsjly"),
+"Run": SubResource("Animation_yj86q")
+}
+
+[node name="arms" type="Node3D"]
+script = ExtResource("1_fm3lv")
+animationNode = NodePath("AnimationPlayer")
+playerNode = null
+weapon_sway_amount = null
+weapon_rotation_amount = null
+invert_weapon_sway = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_igvyo")
+}
+blend_times = [&"Run", &"Idle", 0.2, &"Run", &"HideWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"HideWeapon", 0.2, &"HideWeapon", &"Idle", 0.2]
+
+[node name="WeaponHolder" type="Node3D" parent="."]
+
+[node name="USP2" parent="WeaponHolder" instance=ExtResource("3_vwdql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0303242, -0.0783105, 0)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

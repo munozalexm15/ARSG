@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cgp0xso8bnoo8"
-path="res://.godot/imported/USP.blend-6f3a542bb5cd99c2dbbffc16129c80db.scn"
+path="res://.godot/imported/USP.blend-077ae5db44899475434ee4f8274fcbe4.scn"
 
 [deps]
 
-source_file="res://Resources/Meshes/Guns/USP.blend"
-dest_files=["res://.godot/imported/USP.blend-6f3a542bb5cd99c2dbbffc16129c80db.scn"]
+source_file="res://GameResources/Meshes/Guns/USP.blend"
+dest_files=["res://.godot/imported/USP.blend-077ae5db44899475434ee4f8274fcbe4.scn"]
 
 [params]
 
@@ -37,7 +37,7 @@ blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
 blender/nodes/modifiers=1
-blender/meshes/colors=false
+blender/meshes/colors=true
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/tangents=true

@@ -1,55 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4ujkypjkxc1a"]
+[gd_scene load_steps=8 format=3 uid="uid://b4ujkypjkxc1a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
+[ext_resource type="PackedScene" uid="uid://dtt6181hvgoee" path="res://Scenes/Guns/MP5.tscn" id="3_2hwxk"]
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_vwdql"]
-
-[sub_resource type="Animation" id="Animation_6d0bv"]
-resource_name = "HideWeapon"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -0.701, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.87623, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
-length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("Player_Arms:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("Player_Arms:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -57,6 +29,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player_Arms:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_bsjly"]
@@ -64,19 +48,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("Player_Arms:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("Player_Arms:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,64 +69,86 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player_Arms:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_yj86q"]
 resource_name = "Run"
-length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("Player_Arms:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("Player_Arms:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.349066, 0, -0.349066)]
+"values": [Vector3(-0.349066, 0.0261799, -0.349066)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player_Arms:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igvyo"]
 _data = {
-"HideWeapon": SubResource("Animation_6d0bv"),
 "Idle": SubResource("Animation_c7y05"),
 "RESET": SubResource("Animation_bsjly"),
 "Run": SubResource("Animation_yj86q")
 }
 
-[sub_resource type="Curve" id="Curve_4qe7d"]
-min_value = -1.0
-_data = [Vector2(0, 0.494506), 0.0, 0.0, 0, 0, Vector2(0.125, -0.274725), 0.0, 0.0, 0, 0, Vector2(0.411458, 0.362637), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="arms" type="Node3D"]
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
+sway_left = Vector3(0, 1.6, 0)
+sway_right = Vector3(0, 1.4, 0)
+sway_normal = Vector3(0, 1.5, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Run", &"Idle", 0.2, &"Run", &"HideWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"HideWeapon", 0.2, &"HideWeapon", &"Idle", 0.2]
+blend_times = [&"Idle", &"Run", 0.2, &"Run", &"Idle", 0.2]
 
-[node name="WeaponHolder" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
+[node name="Player_Arms" type="Node3D" parent="."]
 
-[node name="USP2" parent="WeaponHolder" instance=ExtResource("3_vwdql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-recoil_position_z = SubResource("Curve_4qe7d")
-lerp_speed = 30.0
+[node name="Weapons" type="Node3D" parent="Player_Arms"]
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="USP" parent="Player_Arms/Weapons" instance=ExtResource("3_vwdql")]
+visible = false
+
+[node name="mp5" parent="Player_Arms/Weapons" instance=ExtResource("3_2hwxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.08024, -0.853751, 1.13122)
+visible = false
+WEAPON_TYPE = null

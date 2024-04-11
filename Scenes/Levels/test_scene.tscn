@@ -57,10 +57,8 @@ panorama = ExtResource("8_1ndyf")
 sky_material = SubResource("PanoramaSkyMaterial_loofa")
 
 [sub_resource type="Environment" id="Environment_80335"]
-background_mode = 2
+background_energy_multiplier = 16.0
 sky = SubResource("Sky_03k1s")
-tonemap_mode = 2
-glow_enabled = true
 fog_light_color = Color(0.552941, 0.568627, 0.376471, 1)
 fog_sky_affect = 0.37
 
@@ -130,4 +128,9 @@ environment = SubResource("Environment_80335")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.63124, 0.774265, -0.0452627, -0.234267, 0.245975, 0.94054, 0.739361, -0.583103, 0.336655, -0.736377, 4.67972, -0.410247)
-shadow_enabled = true
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)

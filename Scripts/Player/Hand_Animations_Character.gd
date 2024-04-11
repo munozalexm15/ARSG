@@ -6,30 +6,95 @@ extends Node3D
 @export var playerNode := NodePath()
 @onready var player : Player = get_node(playerNode)
 
-var mouse_Movement
-var sway_threshold = 5
-var sway_lerp = 5
+@onready var weaponHolder = $WeaponHolder
 
-@export var sway_left : Vector3
-@export var sway_right : Vector3
-@export var sway_normal : Vector3
+var actual_weapon_index = 0
+var isSwappingWeapon = false
+
+var cam_rotation_amount : float = 0.01
+
+var weapon_rotation_amount : float = 0.01
+var weapon_sway_amount : float = 5
+var invert_weapon_sway : bool = false
+
+var mouse_input : Vector2
+
+var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	weaponHolder.get_child(actual_weapon_index).visible = true
 	animationPlayer.play("Idle")
+	default_weaponHolder_pos = weaponHolder.position
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_Movement = -event.relative.x
+		mouse_input = event.relative
 
 func _process(delta):
-	if mouse_Movement != null and !player.isColliding:
-		if mouse_Movement > sway_threshold:
-			rotation = rotation.lerp(sway_left, sway_lerp * delta)
-		elif mouse_Movement < - sway_threshold:
-			rotation = rotation.lerp(sway_right, sway_lerp * delta)
-		else:
-			rotation = rotation.lerp(sway_normal, sway_lerp * delta)
-
+	mouse_swap_weapon_logic()
+	swap_weapon()
+	#cam_tilt(player.input_direction.x, delta)
+	weapon_tilt(player.input_direction.x, delta)
+	weapon_sway(delta)
+	
 func _physics_process(delta):
 	pass
+	
+func cam_tilt(input_x, delta):
+	if player.camera:
+		player.camera.rotation.z = lerp(player.camera.rotation.z, -input_x * cam_rotation_amount, 10 * delta)
+
+func weapon_tilt(input_x, delta):
+	if weaponHolder:
+		weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, -input_x * weapon_rotation_amount * 10, 10 * delta)
+
+func weapon_sway(delta):
+	mouse_input = lerp(mouse_input,Vector2.ZERO,10*delta)
+	weaponHolder.rotation.x = lerp(weaponHolder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
+	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
+
+func mouse_swap_weapon_logic():
+	if Input.is_action_just_pressed("Next Weapon") and not isSwappingWeapon:
+		isSwappingWeapon = true
+		if actual_weapon_index < weaponHolder.get_child_count() -1:
+			actual_weapon_index += 1
+		else:
+			actual_weapon_index = 0
+		
+		animationPlayer.play("HideWeapon")
+		
+	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
+		isSwappingWeapon = true
+		if actual_weapon_index >= 0:
+			actual_weapon_index -= 1
+		else:
+			actual_weapon_index = get_child_count() -1
+		
+		animationPlayer.play("HideWeapon")
+
+func swap_weapon():
+	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
+		if actual_weapon_index != 0:
+			isSwappingWeapon = true
+			actual_weapon_index = 0
+			animationPlayer.play("HideWeapon")
+		
+	if Input.is_action_just_pressed("Secondary weapon") and not isSwappingWeapon:
+		if actual_weapon_index != 1:
+			isSwappingWeapon = true
+			actual_weapon_index = 1
+			animationPlayer.play("HideWeapon")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if (anim_name == "HideWeapon"):
+		for x in weaponHolder.get_child_count():
+			weaponHolder.get_child(x).visible = false
+		weaponHolder.get_child(actual_weapon_index).visible = true
+		isSwappingWeapon = false
+		if player.state != "Run":
+			animationPlayer.play("Idle")
+		elif player.state == "Run":
+			animationPlayer.play("Run")

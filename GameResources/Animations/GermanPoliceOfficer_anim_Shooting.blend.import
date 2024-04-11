@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2wpys4eyc7ra"
-path="res://.godot/imported/GermanPoliceOfficer_anim_Shooting.blend-bfb1dd470138ba024c90981599bba943.scn"
+path="res://.godot/imported/GermanPoliceOfficer_anim_Shooting.blend-91a99965684d81f14b2ee801f1228c00.scn"
 
 [deps]
 
-source_file="res://Resources/Animations/GermanPoliceOfficer_anim_Shooting.blend"
-dest_files=["res://.godot/imported/GermanPoliceOfficer_anim_Shooting.blend-bfb1dd470138ba024c90981599bba943.scn"]
+source_file="res://GameResources/Animations/GermanPoliceOfficer_anim_Shooting.blend"
+dest_files=["res://.godot/imported/GermanPoliceOfficer_anim_Shooting.blend-91a99965684d81f14b2ee801f1228c00.scn"]
 
 [params]
 

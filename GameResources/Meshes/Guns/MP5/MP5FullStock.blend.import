@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cej7ovyxia4io"
-path="res://.godot/imported/GermanPoliceOfficer_anim_T_Pose.blend-b27e313d3abdfc4691511d41e9c70f33.scn"
+uid="uid://dridfms2evupj"
+path="res://.godot/imported/MP5FullStock.blend-6ee90895c8e182f16fb8070b6c92bbd8.scn"
 
 [deps]
 
-source_file="res://GameResources/Animations/GermanPoliceOfficer_anim_T_Pose.blend"
-dest_files=["res://.godot/imported/GermanPoliceOfficer_anim_T_Pose.blend-b27e313d3abdfc4691511d41e9c70f33.scn"]
+source_file="res://GameResources/Meshes/Guns/MP5/MP5FullStock.blend"
+dest_files=["res://.godot/imported/MP5FullStock.blend-6ee90895c8e182f16fb8070b6c92bbd8.scn"]
 
 [params]
 
