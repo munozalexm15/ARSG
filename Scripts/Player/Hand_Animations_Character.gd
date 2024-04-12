@@ -10,9 +10,9 @@ extends Node3D
 
 var actual_weapon_index = 0
 var isSwappingWeapon = false
+var isReloading = false
 
 var cam_rotation_amount : float = 0.01
-
 var weapon_rotation_amount : float = 0.01
 var weapon_sway_amount : float = 5
 var invert_weapon_sway : bool = false
@@ -87,14 +87,26 @@ func swap_weapon():
 			actual_weapon_index = 1
 			animationPlayer.play("HideWeapon")
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if (anim_name == "HideWeapon"):
 		for x in weaponHolder.get_child_count():
 			weaponHolder.get_child(x).visible = false
 		weaponHolder.get_child(actual_weapon_index).visible = true
 		isSwappingWeapon = false
-		if player.state != "Run":
+		if player.state != "Run" and not isReloading:
 			animationPlayer.play("Idle")
-		elif player.state == "Run":
+		elif player.state == "Run" and not isReloading:
 			animationPlayer.play("Run")
+
+func _on_usp_reload():
+	var actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	animationPlayer.play("Reload")
+	isReloading = true
+	await get_tree().create_timer(actualWeapon.WeaponData.reloadTime).timeout
+	if player.state != "Run":
+		animationPlayer.play("Idle")
+	if player.state == "Run":
+		animationPlayer.play("Run")
+	isReloading = false
+	actualWeapon.WeaponData.bulletsInMag = actualWeapon.WeaponData.magSize
+	

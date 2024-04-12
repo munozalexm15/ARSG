@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ouai1kf4b73w"]
+
+[ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="1_je5qk"]
+
+[resource]
+resource_name = "Material.019"
+cull_mode = 2
+albedo_texture = ExtResource("1_je5qk")
+roughness = 0.5

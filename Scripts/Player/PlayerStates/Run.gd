@@ -3,10 +3,12 @@ extends PlayerState
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 	player.curr_speed = player.run_speed
-	player.arms.animationPlayer.play("Run")
+	if not player.arms.isReloading:
+		player.arms.animationPlayer.play("Run")
 	
 
 func physics_update(delta: float):
+	
 	player.headBobbing_curr_intensity = player.hb_intensities.get("sprint_speed")
 	player.headBobbing_index += player.hb_speeds.get("sprint_speed") * delta
 	
@@ -30,4 +32,5 @@ func physics_update(delta: float):
 		state_machine.transition_to("Crouch")
 
 func exit():
-	player.arms.animationPlayer.play("Idle")
+	if not player.arms.isReloading:
+		player.arms.animationPlayer.play("Idle")

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Weapons" load_steps=3 format=3 uid="uid://c3s4yli2lblho"]
-
-[ext_resource type="ArrayMesh" uid="uid://81hx7v1rj7tp" path="res://GameResources/Meshes/Guns/USP/USP_Bullet.res" id="1_enndd"]
-[ext_resource type="Script" path="res://Scripts/Guns/Weapons_Resource.gd" id="1_lg18l"]
-
-[resource]
-script = ExtResource("1_lg18l")
-name = &"USP"
-bulletType = ExtResource("1_enndd")
