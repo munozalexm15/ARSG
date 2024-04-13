@@ -165,7 +165,7 @@ animationNode = NodePath("AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"HideSecondaryWeapon", &"Idle", 0.2]
+blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"HideSecondaryWeapon", &"Reload", 0.2, &"HideSecondaryWeapon", &"Run", 0.2, &"HideSecondaryWeapon", &"Idle", 0.2]
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
