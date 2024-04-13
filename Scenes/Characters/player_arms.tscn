@@ -4,6 +4,34 @@
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_vwdql"]
 [ext_resource type="PackedScene" uid="uid://dtt6181hvgoee" path="res://Scenes/Guns/MP5.tscn" id="3_yu8bd"]
 
+[sub_resource type="Animation" id="Animation_6d0bv"]
+resource_name = "HideSecondaryWeapon"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -0.701, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.87623, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
 length = 0.3
@@ -115,34 +143,6 @@ tracks/1/keys = {
 "values": [Vector3(-0.349066, 0, -0.349066)]
 }
 
-[sub_resource type="Animation" id="Animation_6d0bv"]
-resource_name = "HideSecondaryWeapon"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -0.701, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.87623, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igvyo"]
 _data = {
 "HideSecondaryWeapon": SubResource("Animation_6d0bv"),
@@ -165,17 +165,19 @@ animationNode = NodePath("AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"HideSecondaryWeapon", &"Reload", 0.2, &"HideSecondaryWeapon", &"Run", 0.2, &"HideSecondaryWeapon", &"Idle", 0.2]
+blend_times = [&"HideSecondaryWeapon", &"Idle", 0.2, &"HideSecondaryWeapon", &"Run", 0.2, &"HideSecondaryWeapon", &"Reload", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"HideSecondaryWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2]
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
 [node name="USP" parent="WeaponHolder" instance=ExtResource("3_vwdql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+handsNode = NodePath("../..")
 recoil_position_z = SubResource("Curve_4qe7d")
 lerp_speed = 30.0
 
 [node name="mp5" parent="WeaponHolder" instance=ExtResource("3_yu8bd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16016, -0.921192, 1.25305)
+handsNode = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

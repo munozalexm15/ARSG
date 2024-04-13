@@ -75,8 +75,6 @@ func _input(event):
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
-		
-		
 func _physics_process(delta):
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	
@@ -84,7 +82,6 @@ func _physics_process(delta):
 	
 	if !Input.is_action_pressed("Crouch") and !standingRaycast.is_colliding():
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
-		
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
 	if is_on_floor() and input_direction != Vector2.ZERO:

@@ -4,6 +4,9 @@ signal reload()
 
 @export var WeaponData : Weapon
 
+@export var handsNode := NodePath()
+@onready var hands : Node3D = get_node(handsNode)
+
 @onready var animPlayer = $AnimationPlayer
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
@@ -70,6 +73,7 @@ func apply_recoil():
 	current_time = 0
 
 func shoot():
+	hands.player.eyes.recoilFire()
 	WeaponData.bulletsInMag -= 1
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")

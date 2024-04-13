@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1ndfa7nd5f1l"]
+[gd_scene load_steps=16 format=3 uid="uid://b1ndfa7nd5f1l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
+[ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Walk.gd" id="4_c7knn"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
@@ -118,6 +119,10 @@ cameraNode = NodePath("Head/eyesHolder/Camera3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="eyesHolder" type="Node3D" parent="Head"]
+script = ExtResource("2_wsffb")
+recoil = Vector3(1, 1, 1)
+snappiness = 2.0
+returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder"]
 
