@@ -3,6 +3,7 @@ class_name Weapon extends Resource
 @export var magSize : int
 @export var bulletsInMag: int
 @export var reloadTime: float
+@export var isAutomatic: bool
 @export var accuracity : float
 @export var cadency : float
 

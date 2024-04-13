@@ -9,6 +9,7 @@ extends Node3D
 @onready var weaponHolder = $WeaponHolder
 
 var actual_weapon_index = 0
+var actualWeapon
 var isSwappingWeapon = false
 var isReloading = false
 
@@ -26,18 +27,26 @@ func _ready():
 	weaponHolder.get_child(actual_weapon_index).visible = true
 	animationPlayer.play("Idle")
 	default_weaponHolder_pos = weaponHolder.position
+	actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	loadWeapon(actual_weapon_index)
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
+	
+	swap_weapon()
+	mouse_swap_weapon_logic()
+	
+	if Input.is_action_pressed("Reload") and actualWeapon.WeaponData.bulletsInMag < actualWeapon.WeaponData.magSize:
+		animationPlayer.play("Reload")
+		isReloading = true
 
 func _process(delta):
-	mouse_swap_weapon_logic()
-	swap_weapon()
 	#cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
+	reload_listener()
 	
 func _physics_process(delta):
 	pass
@@ -62,8 +71,9 @@ func mouse_swap_weapon_logic():
 			actual_weapon_index += 1
 		else:
 			actual_weapon_index = 0
-		
-		animationPlayer.play("HideWeapon")
+			
+		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		animationPlayer.play("HideSecondaryWeapon")
 		
 	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
 		isSwappingWeapon = true
@@ -71,42 +81,52 @@ func mouse_swap_weapon_logic():
 			actual_weapon_index -= 1
 		else:
 			actual_weapon_index = get_child_count() -1
-		
-		animationPlayer.play("HideWeapon")
+			
+		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		animationPlayer.play("HideSecondaryWeapon")
 
 func swap_weapon():
 	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
 		if actual_weapon_index != 0:
 			isSwappingWeapon = true
 			actual_weapon_index = 0
-			animationPlayer.play("HideWeapon")
+			actualWeapon = weaponHolder.get_child(actual_weapon_index)
+			animationPlayer.play("HideSecondaryWeapon")
 		
 	if Input.is_action_just_pressed("Secondary weapon") and not isSwappingWeapon:
 		if actual_weapon_index != 1:
 			isSwappingWeapon = true
 			actual_weapon_index = 1
-			animationPlayer.play("HideWeapon")
+			actualWeapon = weaponHolder.get_child(actual_weapon_index)
+			animationPlayer.play("HideSecondaryWeapon")
 
 func _on_animation_player_animation_finished(anim_name):
-	if (anim_name == "HideWeapon"):
-		for x in weaponHolder.get_child_count():
-			weaponHolder.get_child(x).visible = false
-		weaponHolder.get_child(actual_weapon_index).visible = true
+	if (anim_name == "Reload"):
+		await get_tree().create_timer(actualWeapon.WeaponData.reloadTime).timeout
+		isReloading = false
+		actualWeapon.WeaponData.bulletsInMag = actualWeapon.WeaponData.magSize
+		if player.state != "Run":
+			animationPlayer.play("Idle")
+		if player.state == "Run":
+			animationPlayer.play("Run")
+	
+	if (anim_name == "HideSecondaryWeapon"):
+		loadWeapon(actual_weapon_index)
 		isSwappingWeapon = false
 		if player.state != "Run" and not isReloading:
 			animationPlayer.play("Idle")
 		elif player.state == "Run" and not isReloading:
 			animationPlayer.play("Run")
-
-func _on_usp_reload():
-	var actualWeapon = weaponHolder.get_child(actual_weapon_index)
-	animationPlayer.play("Reload")
-	isReloading = true
-	await get_tree().create_timer(actualWeapon.WeaponData.reloadTime).timeout
-	if player.state != "Run":
-		animationPlayer.play("Idle")
-	if player.state == "Run":
-		animationPlayer.play("Run")
-	isReloading = false
-	actualWeapon.WeaponData.bulletsInMag = actualWeapon.WeaponData.magSize
 	
+func loadWeapon(index):
+	for x in weaponHolder.get_child_count():
+		weaponHolder.get_child(x).process_mode = Node.PROCESS_MODE_DISABLED
+		weaponHolder.get_child(x).visible = false
+	weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
+	weaponHolder.get_child(index).visible = true
+	
+
+func reload_listener():
+	if actualWeapon.WeaponData.bulletsInMag <= 0 and not isReloading:
+		animationPlayer.play("Reload")
+		isReloading = true

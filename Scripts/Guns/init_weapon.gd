@@ -8,9 +8,9 @@ signal reload()
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
 @onready var muzzle = $Muzzle
-@onready var slideSpawn = $SlideSpawnPos
 @export var bullet_type: PackedScene
-@export var shell_type : PackedScene
+@onready var bullet_case_particles : CPUParticles3D = $CPUParticles3D
+var time_to_shoot = 0
 
 #HandsRecoil
 @export var recoil_rotation_x : Curve
@@ -31,7 +31,7 @@ func _ready():
 	WeaponData.bulletsInMag = WeaponData.magSize
 
 func _input(event):
-	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0:
+	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
 		apply_recoil()
 		if WeaponData.bulletsInMag > 0:
 			shoot()
@@ -40,6 +40,18 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if Input.is_action_pressed("Fire") and WeaponData.bulletsInMag > 0 and WeaponData.isAutomatic and time_to_shoot <= 0:
+		apply_recoil()
+		if WeaponData.bulletsInMag > 0:
+			shoot()
+		if WeaponData.bulletsInMag <= 0:
+			reload.emit()
+		time_to_shoot = WeaponData.cadency
+	
+	if time_to_shoot > 0:
+		time_to_shoot -= 1
+	
 	if current_time < 1:
 		current_time += delta
 		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
@@ -62,9 +74,11 @@ func shoot():
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
 	handsAnimPlayer.play("RESET")
-	handsAnimPlayer.play("Pistol_Shoot")
+	if WeaponData.name == "USP":
+		handsAnimPlayer.play("Pistol_Shoot")
+	elif WeaponData.name == "MP5":
+		handsAnimPlayer.play("SMG_Shot")
 	spawnBullet()
-
 
 func spawnBullet():
 	var level_root = get_tree().get_root()
@@ -73,11 +87,5 @@ func spawnBullet():
 	var bullet : RigidBody3D = bullet_type.instantiate()
 	bullet.transform = muzzle.global_transform
 	bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+	bullet_case_particles.emitting = true
 	level_root.add_child(bullet)
-	
-	#Spawn shell
-	var shell : RigidBody3D = shell_type.instantiate()
-	shell.transform = slideSpawn.global_transform
-	shell.linear_velocity = slideSpawn.global_transform.basis.y * 10
-	level_root.add_child(shell)
-
