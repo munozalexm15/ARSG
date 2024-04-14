@@ -5,6 +5,9 @@
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="2_7shut"]
 [ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://Scenes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_gtqrx"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://Scenes/Guns/Bullets/9MM/9MMCase.tres" id="4_73il8"]
+[ext_resource type="Curve" uid="uid://bfygc4tql0q44" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_X.tres" id="4_xwwqb"]
+[ext_resource type="Curve" uid="uid://dokukyuqosg8s" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_Z.tres" id="5_65ymy"]
+[ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
 [ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="6_oc4s7"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 
@@ -18,21 +21,6 @@ isAutomatic = true
 accuracity = 0.0
 cadency = 10.0
 recoil = Vector3(0.75, 0.1, 0.1)
-
-[sub_resource type="Curve" id="Curve_mfnyl"]
-min_value = -1.0
-_data = [Vector2(0.00520834, 0.0769231), 0.0, 0.0, 0, 0, Vector2(0.109375, 0.538462), 0.0, 0.0, 0, 0, Vector2(0.255208, -0.252747), 0.0, 0.0, 0, 0, Vector2(0.494792, 0.142857), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_50t7j"]
-min_value = -1.0
-_data = [Vector2(0, 0.428571), 0.0, 0.0, 0, 0, Vector2(0.0833333, -0.516483), 0.0, 0.0, 0, 0, Vector2(0.177083, 0.252747), 0.0, 0.0, 0, 0, Vector2(0.260417, -0.230769), 0.0, 0.0, 0, 0, Vector2(0.395833, -0.010989), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_pflxc"]
-min_value = -1.0
-_data = [Vector2(0, -0.384615), 0.0, 0.0, 0, 0, Vector2(0.135417, -1), 0.0, 0.0, 0, 0, Vector2(0.296875, -1), 0.0, 0.0, 0, 0, Vector2(0.53125, -1), 0.0, 0.0, 0, 0]
-point_count = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgus4"]
 transparency = 1
@@ -1423,9 +1411,9 @@ _data = {
 script = ExtResource("1_q6gp1")
 WeaponData = SubResource("Resource_vcmvo")
 bullet_type = ExtResource("3_gtqrx")
-recoil_rotation_x = SubResource("Curve_mfnyl")
-recoil_rotation_z = SubResource("Curve_50t7j")
-recoil_position_z = SubResource("Curve_pflxc")
+recoil_rotation_x = ExtResource("4_xwwqb")
+recoil_rotation_z = ExtResource("5_65ymy")
+recoil_position_z = ExtResource("6_dna7i")
 recoil_amplitude = Vector3(-1, -1, -1)
 lerp_speed = 5.0
 

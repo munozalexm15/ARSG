@@ -53,7 +53,6 @@ func _input(event):
 
 func _process(delta):
 	#cam_tilt(player.input_direction.x, delta)
-	print(animationPlayer.current_animation)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
 	reload_listener()

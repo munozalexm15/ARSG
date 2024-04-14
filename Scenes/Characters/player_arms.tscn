@@ -161,7 +161,7 @@ point_count = 3
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
 initial_position = Vector3(0, -1.166, 0)
-ads_position = Vector3(-0.91, -0.656, -1.26)
+ads_position = Vector3(0, -0.6, -1.26)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

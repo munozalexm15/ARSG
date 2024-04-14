@@ -37,7 +37,7 @@ func _ready():
 	WeaponData.bulletsInMag = WeaponData.magSize
 
 func _input(event):
-	if Input.is_action_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
+	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
 		print(hands.player.isColliding)
 		apply_recoil()
 		if WeaponData.bulletsInMag > 0:
@@ -45,7 +45,7 @@ func _input(event):
 		if WeaponData.bulletsInMag <= 0:
 			reload.emit()
 		
-	if Input.is_action_just_released("Fire") and WeaponData.isAutomatic:
+	if Input.is_action_just_pressed("Fire") and WeaponData.isAutomatic:
 		handsAnimPlayer.play("SMG_ReleaseShot")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
