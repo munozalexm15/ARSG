@@ -51,6 +51,9 @@ func _input(event):
 		print("recarga")
 		animationPlayer.play("Reload")
 		isReloading = true
+	
+	if Input.is_action_pressed("Interact") and weaponHolder.get_child_count() > 1:
+		drop_weapon(actualWeapon.weaponData.name)
 
 
 func _process(delta):
@@ -127,14 +130,18 @@ func _on_animation_player_animation_finished(anim_name):
 		if isReloading == true:
 			isReloading = false
 			isSwappingWeapon = false
+			
 			#Check reserve ammo is greater than the required amount
 			if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
 				actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
 				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
 			#if not, give the remaining reserve ammo to the mag
+			
 			else:
 				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
 				actualWeapon.weaponData.reserveAmmo = 0
+			
+			player.hud.AmmoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 			
 			if player.state != "Run":
 				animationPlayer.play("Idle")
@@ -185,27 +192,53 @@ func _on_animation_player_animation_changed(old_name, new_name):
 
 #If weapon enters the pickup range
 func _on_pickup_range_body_entered(body):
+	if body.isPickupReady:
+		var weapon_equipped =null
+		for x in weaponHolder.get_child_count():
+			if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
+				weaponHolder.get_child(x).name = body.weaponData.name
+				weapon_equipped = weaponHolder.get_child(x)
+		
+		if weapon_equipped:
+			weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
+			body.queue_free()
+		
+		elif not weapon_equipped and weaponHolder.get_child_count() < 2:
+			var spawnedWeaponScene = load(body.weaponData.weaponScene)
+			var spawnedWeapon = spawnedWeaponScene.instantiate()
+			spawnedWeapon.position = body.weaponData.weaponSpawnPosition
+			spawnedWeapon.handsNode = self.get_path()
+			weaponHolder.add_child(spawnedWeapon)
+			body.queue_free()
+			
+			isSwappingWeapon = true
+			actual_weapon_index = 1
+			actualWeapon = weaponHolder.get_child(actual_weapon_index)
+			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+			animationPlayer.play("SwapWeapon")
 
-	var weapon_equipped =null
+func drop_weapon(name):
+	var weapon_Ref = null
 	for x in weaponHolder.get_child_count():
-		if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
-			weaponHolder.get_child(x).name = body.weaponData.name
-			weapon_equipped = weaponHolder.get_child(x)
+		if weaponHolder.get_child(x).weaponData.name == name:
+			weapon_Ref = weaponHolder.get_child(x)
 	
-	if weapon_equipped:
-		weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
-		body.queue_free()
-	
-	elif not weapon_equipped and weaponHolder.get_child_count() < 2:
-		var spawnedWeapon = body.weaponData.weaponScene.instantiate()
-		spawnedWeapon.position = body.weaponData.weaponSpawnPosition
-		spawnedWeapon.handsNode = self.get_path()
-		weaponHolder.add_child(spawnedWeapon)
-		body.queue_free()
+	if weapon_Ref != null:
+		print(weapon_Ref.weaponData.weaponPickupScene)
+		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
+		var spawnedWeapon = weapon_to_spawn.instantiate()
+		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
+		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+		spawnedWeapon.set_global_transform(weaponHolder.get_global_transform())
+		var world = get_tree().get_root().get_child(0)
+		world.add_child(spawnedWeapon)
+		weaponHolder.remove_child(weapon_Ref)
 		
 		isSwappingWeapon = true
-		actual_weapon_index = 1
+		actual_weapon_index = 0
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
 	
+	
+

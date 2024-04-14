@@ -1,22 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8rr8x0gextkk"]
+[gd_scene load_steps=17 format=3 uid="uid://b8rr8x0gextkk"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_6typg"]
-[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="2_aynya"]
-[ext_resource type="PackedScene" uid="uid://dtt6181hvgoee" path="res://Scenes/Guns/MP5.tscn" id="3_ad5px"]
+[ext_resource type="Resource" uid="uid://de4sja81p47ur" path="res://Scripts/Guns/Resources/MP5_Pickup.tres" id="2_wn00y"]
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="9_yav0t"]
-
-[sub_resource type="Resource" id="Resource_6sbnx"]
-script = ExtResource("2_aynya")
-name = &"MP5"
-magSize = 30
-bulletsInMag = 5
-reserveAmmo = 0
-reloadTime = 0.0
-isAutomatic = false
-cadency = 0.0
-recoil = Vector3(0, 0, 0)
-weaponScene = ExtResource("3_ad5px")
-weaponSpawnPosition = Vector3(2.16, -0.921, 1.253)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
 resource_name = "Material.039"
@@ -206,7 +192,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_6typg")
-weaponData = SubResource("Resource_6sbnx")
+weaponData = ExtResource("2_wn00y")
 
 [node name="Trigger_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -0.770542, -0.158274)
