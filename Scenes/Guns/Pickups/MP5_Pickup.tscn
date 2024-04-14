@@ -13,10 +13,10 @@ bulletsInMag = 5
 reserveAmmo = 0
 reloadTime = 0.0
 isAutomatic = false
-accuracity = 0.0
 cadency = 0.0
 recoil = Vector3(0, 0, 0)
 weaponScene = ExtResource("3_ad5px")
+weaponSpawnPosition = Vector3(2.16, -0.921, 1.253)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
 resource_name = "Material.039"

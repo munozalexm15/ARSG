@@ -3,15 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
 [ext_resource type="Resource" uid="uid://b4cqjfw42oy3m" path="res://Scripts/Guns/Resources/MP5_Resource.tres" id="2_65qhb"]
-[ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://Scenes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_gtqrx"]
-[ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://Scenes/Guns/Bullets/9MM/9MMCase.tres" id="4_73il8"]
+[ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_0aq88"]
+[ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="4_73il8"]
 [ext_resource type="Curve" uid="uid://bfygc4tql0q44" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_X.tres" id="4_xwwqb"]
 [ext_resource type="Curve" uid="uid://dokukyuqosg8s" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_Z.tres" id="5_65ymy"]
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
 [ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="6_oc4s7"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgus4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64xml"]
 transparency = 1
 albedo_texture = ExtResource("7_r6skm")
 emission_enabled = true
@@ -25,7 +25,7 @@ particles_anim_loop = false
 proximity_fade_distance = 28.45
 
 [sub_resource type="QuadMesh" id="QuadMesh_wc5y2"]
-material = SubResource("StandardMaterial3D_rgus4")
+material = SubResource("StandardMaterial3D_64xml")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
@@ -761,6 +761,9 @@ tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, 0.119423, -0.00398971, -0.0601019, 0.991015)
 
+[sub_resource type="Animation" id="Animation_n3i12"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_dbsy1"]
 resource_name = "USP_Idle"
 length = 7.5
@@ -1385,9 +1388,6 @@ tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, -0.186934, -0.0137009, 0.0700523, 0.979776)
 
-[sub_resource type="Animation" id="Animation_n3i12"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nl6u"]
 _data = {
 "MP5_Shot": SubResource("Animation_r5ylj"),
@@ -1399,12 +1399,11 @@ _data = {
 [node name="MP5" type="Node3D"]
 script = ExtResource("1_q6gp1")
 weaponData = ExtResource("2_65qhb")
-handsNode = NodePath("Player_Arms")
-bullet_type = ExtResource("3_gtqrx")
+bullet_type = ExtResource("3_0aq88")
 recoil_rotation_x = ExtResource("4_xwwqb")
 recoil_rotation_z = ExtResource("5_65ymy")
 recoil_position_z = ExtResource("6_dna7i")
-recoil_amplitude = Vector3(-1, -1, -1)
+recoil_amplitude = Vector3(-1, -1, 1)
 lerp_speed = 5.0
 
 [node name="Muzzle" type="Node3D" parent="."]

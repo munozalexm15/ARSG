@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b5k0vb48uadrv"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_rfvcw"]
+
+[resource]
+script = ExtResource("1_rfvcw")
+name = &"M14"
+magSize = 8
+bulletsInMag = 8
+reserveAmmo = 80
+reloadTime = 2.0
+isAutomatic = false
+cadency = 0.0
+recoil = Vector3(0.1, 0.4, 0.2)
+weaponSpawnPosition = Vector3(0.779639, -0.723751, 1.29897)

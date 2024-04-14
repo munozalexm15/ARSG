@@ -10,6 +10,6 @@ bulletsInMag = 8
 reserveAmmo = 80
 reloadTime = 1.5
 isAutomatic = false
-accuracity = 0.0
 cadency = 10.0
 recoil = Vector3(0.1, 0.1, 0.1)
+weaponSpawnPosition = Vector3(0, 0.132, 0.253)

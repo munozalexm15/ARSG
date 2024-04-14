@@ -78,7 +78,7 @@ func apply_recoil():
 
 func shoot():
 	#get recoil script from child node and apply some to the weapon
-	if Input.is_action_pressed("ADS"):
+	if Input.is_action_pressed("ADS") :
 		hands.player.eyes.get_child(0).recoilFire(true)
 	else:
 		hands.player.eyes.get_child(0).recoilFire()

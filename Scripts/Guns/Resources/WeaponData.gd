@@ -6,8 +6,8 @@ class_name Weapon extends Resource
 @export var reserveAmmo : int
 @export var reloadTime: float
 @export var isAutomatic: bool
-@export var accuracity : float
 @export var cadency : float
 @export var recoil: Vector3
 #used for pickup weapons, so we can add to the weaponSelector
 @export var weaponScene : PackedScene
+@export var weaponSpawnPosition : Vector3

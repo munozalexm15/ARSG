@@ -43,8 +43,9 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
 	
-	swap_weapon()
-	mouse_swap_weapon_logic()
+	if weaponHolder.get_child_count() > 1:
+		swap_weapon()
+		mouse_swap_weapon_logic()
 	
 	if Input.is_action_pressed("Reload") and actualWeapon.weaponData.bulletsInMag < actualWeapon.weaponData.magSize and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
 		print("recarga")
@@ -58,15 +59,12 @@ func _process(delta):
 	weapon_sway(delta)
 	reload_listener()
 		
-	if Input.is_action_pressed("ADS"):
+	if Input.is_action_pressed("ADS") and not isReloading:
 		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
 		camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
 	else:
 		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(initial_position, ads_lerp * delta)
 		camera.fov = lerp(camera.fov, fovList["Default"], ads_lerp * delta)
-	
-func _physics_process(delta):
-	pass
 	
 func cam_tilt(input_x, delta):
 	if player.camera:
@@ -187,12 +185,27 @@ func _on_animation_player_animation_changed(old_name, new_name):
 
 #If weapon enters the pickup range
 func _on_pickup_range_body_entered(body):
-	print(body.weaponData)
-	var weapon_equipped = weaponHolder.find_child(body.weaponData.name)
+
+	var weapon_equipped =null
+	for x in weaponHolder.get_child_count():
+		if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
+			weaponHolder.get_child(x).name = body.weaponData.name
+			weapon_equipped = weaponHolder.get_child(x)
+	
 	if weapon_equipped:
 		weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
-		print(weapon_equipped.weaponData.reserveAmmo)
 		body.queue_free()
-	else:
-		weaponHolder.add_child(body.weaponScene.WeaponScene)
+	
+	elif not weapon_equipped and weaponHolder.get_child_count() < 2:
+		var spawnedWeapon = body.weaponData.weaponScene.instantiate()
+		spawnedWeapon.position = body.weaponData.weaponSpawnPosition
+		spawnedWeapon.handsNode = self.get_path()
+		weaponHolder.add_child(spawnedWeapon)
+		body.queue_free()
+		
+		isSwappingWeapon = true
+		actual_weapon_index = 1
+		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+		animationPlayer.play("SwapWeapon")
 	

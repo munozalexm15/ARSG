@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4ujkypjkxc1a"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ujkypjkxc1a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
-[ext_resource type="PackedScene" uid="uid://ny8x12admrv7" path="res://Scenes/Guns/M14.tscn" id="2_ahx0d"]
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_vwdql"]
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -172,13 +171,8 @@ blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Swa
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
-[node name="M14" parent="WeaponHolder" instance=ExtResource("2_ahx0d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779639, -0.793294, 1.29897)
-handsNode = NodePath("../..")
-
 [node name="USP" parent="WeaponHolder" instance=ExtResource("3_vwdql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132059, 0.253247)
-visible = true
 handsNode = NodePath("../..")
 recoil_position_z = SubResource("Curve_4qe7d")
 lerp_speed = 30.0
