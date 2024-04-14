@@ -46,7 +46,8 @@ func _input(event):
 	swap_weapon()
 	mouse_swap_weapon_logic()
 	
-	if Input.is_action_pressed("Reload") and actualWeapon.WeaponData.bulletsInMag < actualWeapon.WeaponData.magSize and not isReloading:
+	if Input.is_action_pressed("Reload") and actualWeapon.weaponData.bulletsInMag < actualWeapon.weaponData.magSize and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
+		print("recarga")
 		animationPlayer.play("Reload")
 		isReloading = true
 
@@ -89,8 +90,8 @@ func mouse_swap_weapon_logic():
 			actual_weapon_index = 0
 			
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
-		player.eyes.get_child(0).setRecoil(actualWeapon.WeaponData.recoil)
-		animationPlayer.play("HideSecondaryWeapon")
+		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+		animationPlayer.play("SwapWeapon")
 		
 	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
 		isSwappingWeapon = true
@@ -100,8 +101,8 @@ func mouse_swap_weapon_logic():
 			actual_weapon_index = get_child_count() -1
 			
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
-		player.eyes.get_child(0).setRecoil(actualWeapon.WeaponData.recoil)
-		animationPlayer.play("HideSecondaryWeapon")
+		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+		animationPlayer.play("SwapWeapon")
 
 func swap_weapon():
 	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
@@ -109,31 +110,40 @@ func swap_weapon():
 			isSwappingWeapon = true
 			actual_weapon_index = 0
 			actualWeapon = weaponHolder.get_child(actual_weapon_index)
-			player.eyes.get_child(0).setRecoil(actualWeapon.WeaponData.recoil)
-			animationPlayer.play("HideSecondaryWeapon")
+			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+			animationPlayer.play("SwapWeapon")
 		
 	if Input.is_action_just_pressed("Secondary weapon") and not isSwappingWeapon:
 		if actual_weapon_index != 1:
 			isSwappingWeapon = true
 			actual_weapon_index = 1
 			actualWeapon = weaponHolder.get_child(actual_weapon_index)
-			player.eyes.get_child(0).setRecoil(actualWeapon.WeaponData.recoil)
-			animationPlayer.play("HideSecondaryWeapon")
+			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+			animationPlayer.play("SwapWeapon")
 
 func _on_animation_player_animation_finished(anim_name):
 	if (anim_name == "Reload"):
-		await get_tree().create_timer(actualWeapon.WeaponData.reloadTime).timeout
+		var ammoLeft = actualWeapon.weaponData.bulletsInMag
+		await get_tree().create_timer(actualWeapon.weaponData.reloadTime).timeout
 		#if its true still it means the animation hasn't been changed
 		if isReloading == true:
 			isReloading = false
 			isSwappingWeapon = false
-			actualWeapon.WeaponData.bulletsInMag = actualWeapon.WeaponData.magSize
+			#Check reserve ammo is greater than the required amount
+			if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
+				actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
+				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
+			#if not, give the remaining reserve ammo to the mag
+			else:
+				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
+				actualWeapon.weaponData.reserveAmmo = 0
+			
 			if player.state != "Run":
 				animationPlayer.play("Idle")
 			if player.state == "Run":
 				animationPlayer.play("Run")
 	
-	if (anim_name == "HideSecondaryWeapon"):
+	if (anim_name == "SwapWeapon"):
 		loadWeapon(actual_weapon_index)
 		isSwappingWeapon = false
 		if player.state != "Run" and not isReloading:
@@ -152,13 +162,13 @@ func loadWeapon(index):
 	
 
 func reload_listener():
-	if actualWeapon.WeaponData.bulletsInMag <= 0 and not isReloading:
+	if actualWeapon.weaponData.bulletsInMag <= 0 and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
 		animationPlayer.play("Reload")
 		isReloading = true
 
 
 func _on_animation_player_animation_started(anim_name):
-	if anim_name == "HideSecondaryWeapon":
+	if anim_name == "SwapWeapon":
 		isSwappingWeapon = true
 
 	#cancel weapon switching if player runs, crouch, etc.
@@ -172,5 +182,17 @@ func _on_animation_player_animation_started(anim_name):
 func _on_animation_player_animation_changed(old_name, new_name):
 	if old_name == "Reload" and new_name != "Reload":
 		isReloading = false
-	if new_name == "HideSecondaryWeapon":
+	if new_name == "SwapWeapon":
 		isSwappingWeapon = true
+
+#If weapon enters the pickup range
+func _on_pickup_range_body_entered(body):
+	print(body.weaponData)
+	var weapon_equipped = weaponHolder.find_child(body.weaponData.name)
+	if weapon_equipped:
+		weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
+		print(weapon_equipped.weaponData.reserveAmmo)
+		body.queue_free()
+	else:
+		weaponHolder.add_child(body.weaponScene.WeaponScene)
+	

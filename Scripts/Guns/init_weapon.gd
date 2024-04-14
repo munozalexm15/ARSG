@@ -2,7 +2,7 @@ extends Node3D
 
 signal reload()
 
-@export var WeaponData : Weapon
+@export var weaponData : Weapon
 
 @export var handsNode := NodePath()
 @onready var hands : Node3D = get_node(handsNode)
@@ -34,30 +34,27 @@ var current_time : float
 func _ready():
 	current_time = 1
 	target_rot.y = rotation.y
-	WeaponData.bulletsInMag = WeaponData.magSize
+	weaponData.bulletsInMag = weaponData.magSize
 
 func _input(event):
-	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
-		print(hands.player.isColliding)
+	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic:
 		apply_recoil()
-		if WeaponData.bulletsInMag > 0:
+		if weaponData.bulletsInMag > 0:
 			shoot()
-		if WeaponData.bulletsInMag <= 0:
+		if weaponData.bulletsInMag <= 0:
 			reload.emit()
-		
-	if Input.is_action_just_pressed("Fire") and WeaponData.isAutomatic:
-		handsAnimPlayer.play("SMG_ReleaseShot")
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	if Input.is_action_pressed("Fire") and WeaponData.bulletsInMag > 0 and WeaponData.isAutomatic and time_to_shoot <= 0:
+	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0:
 		apply_recoil()
-		if WeaponData.bulletsInMag > 0:
+		if weaponData.bulletsInMag > 0:
 			shoot()
-		if WeaponData.bulletsInMag <= 0:
+		if weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo > 0:
 			reload.emit()
-		time_to_shoot = WeaponData.cadency
+		time_to_shoot = weaponData.cadency
 	
 	if time_to_shoot > 0:
 		time_to_shoot -= 1
@@ -85,14 +82,11 @@ func shoot():
 		hands.player.eyes.get_child(0).recoilFire(true)
 	else:
 		hands.player.eyes.get_child(0).recoilFire()
-	WeaponData.bulletsInMag -= 1
+	weaponData.bulletsInMag -= 1
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
 	handsAnimPlayer.play("RESET")
-	if WeaponData.name == "USP":
-		handsAnimPlayer.play("Pistol_Shoot")
-	elif WeaponData.name == "MP5":
-		handsAnimPlayer.play("SMG_Shot")
+	handsAnimPlayer.play(weaponData.name + "_Shot")
 	spawnBullet()
 
 func spawnBullet():

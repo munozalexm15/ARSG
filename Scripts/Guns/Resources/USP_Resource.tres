@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://cvsyripni1r7v"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_5asoi"]
+
+[resource]
+script = ExtResource("1_5asoi")
+name = &"USP"
+magSize = 8
+bulletsInMag = 8
+reserveAmmo = 80
+reloadTime = 1.5
+isAutomatic = false
+accuracity = 0.0
+cadency = 10.0
+recoil = Vector3(0.1, 0.1, 0.1)

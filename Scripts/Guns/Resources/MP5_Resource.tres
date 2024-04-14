@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b4cqjfw42oy3m"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_j3i85"]
+
+[resource]
+script = ExtResource("1_j3i85")
+name = &"MP5"
+magSize = 30
+bulletsInMag = 30
+reserveAmmo = 180
+reloadTime = 2.5
+isAutomatic = true
+accuracity = 0.0
+cadency = 10.0
+recoil = Vector3(0.4, 1, 0.1)

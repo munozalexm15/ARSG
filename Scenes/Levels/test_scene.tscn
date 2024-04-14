@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=22 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://GameResources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
 [ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://GameResources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_ij7c6"]
+[ext_resource type="PackedScene" uid="uid://b8rr8x0gextkk" path="res://Scenes/Guns/Pickups/MP5_Pickup.tscn" id="4_88412"]
 [ext_resource type="Texture2D" uid="uid://c2cd55gkpoti7" path="res://GameResources/Textures/Prototype Textures/Red/texture_01.png" id="4_lx04n"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_dither.gdshader" id="5_apkuc"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_27bo6"]
@@ -71,18 +72,26 @@ script = ExtResource("1_rw0mx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.484035, 6.5674)
+layers = 3
 mesh = SubResource("BoxMesh_a6pwe")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_gpn1e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_lq147")
 
+[node name="mp5" parent="." instance=ExtResource("4_88412")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09051, 6.28971)
+
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
+collision_layer = 3
+collision_mask = 3
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_ompr7")
 
