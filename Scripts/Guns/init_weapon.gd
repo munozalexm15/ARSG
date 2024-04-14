@@ -29,6 +29,7 @@ var target_pos: Vector3
 var current_time : float
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_time = 1
@@ -36,13 +37,16 @@ func _ready():
 	WeaponData.bulletsInMag = WeaponData.magSize
 
 func _input(event):
-	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
+	if Input.is_action_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
 		print(hands.player.isColliding)
 		apply_recoil()
 		if WeaponData.bulletsInMag > 0:
 			shoot()
 		if WeaponData.bulletsInMag <= 0:
 			reload.emit()
+		
+	if Input.is_action_just_released("Fire") and WeaponData.isAutomatic:
+		handsAnimPlayer.play("SMG_ReleaseShot")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -77,7 +81,10 @@ func apply_recoil():
 
 func shoot():
 	#get recoil script from child node and apply some to the weapon
-	hands.player.eyes.get_child(0).recoilFire()
+	if Input.is_action_pressed("ADS"):
+		hands.player.eyes.get_child(0).recoilFire(true)
+	else:
+		hands.player.eyes.get_child(0).recoilFire()
 	WeaponData.bulletsInMag -= 1
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
@@ -99,6 +106,7 @@ func spawnBullet():
 	muzzle_flash_particles.emitting = true
 	level_root.add_child(bullet)
 	muzzle_flash_light.show()
+	
 	await get_tree().create_timer(0.05).timeout
 	muzzle_flash_light.hide()
 	

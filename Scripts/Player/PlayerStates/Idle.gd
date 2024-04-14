@@ -22,6 +22,3 @@ func update(delta: float):
 	
 	if Input.is_action_pressed("Crouch"):
 		state_machine.transition_to("Crouch")
-
-	if Input.is_action_just_pressed("Sprint"):
-		state_machine.transition_to("Run")

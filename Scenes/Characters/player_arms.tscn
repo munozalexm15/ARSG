@@ -10,26 +10,26 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(-1.415, -2.826, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 1.87623, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.87623, 0)]
+"values": [Vector3(0, -0.701, 0), Vector3(-1.415, -2.826, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -38,26 +38,26 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.03, -1.166, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bsjly"]
@@ -65,26 +65,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.03, -0.701, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3bcrb"]
@@ -93,26 +93,26 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -3.436, 0)]
+"values": [Vector3(0, 0, 0), Vector3(1.71391, 0, 1.50098)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.71391, 0, 1.50098)]
+"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -3.436, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yj86q"]
@@ -121,26 +121,26 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WeaponHolder:position")
+tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0)]
+"values": [Vector3(-0.349066, 0, -0.349066)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WeaponHolder:rotation")
+tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.349066, 0, -0.349066)]
+"values": [Vector3(-0.03, -1.166, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igvyo"]
@@ -160,12 +160,14 @@ point_count = 3
 [node name="arms" type="Node3D"]
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
+initial_position = Vector3(0, -1.166, 0)
+ads_position = Vector3(-0.91, -0.656, -1.26)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"HideSecondaryWeapon", &"Idle", 0.2, &"HideSecondaryWeapon", &"Run", 0.2, &"HideSecondaryWeapon", &"Reload", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"HideSecondaryWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2]
+blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"HideSecondaryWeapon", 0.2, &"Reload", &"Run", 0.2, &"Idle", &"HideSecondaryWeapon", 0.2, &"Idle", &"Run", 0.2, &"HideSecondaryWeapon", &"Reload", 0.2, &"HideSecondaryWeapon", &"Idle", 0.2, &"HideSecondaryWeapon", &"Run", 0.2, &"Run", &"Idle", 0.2, &"Run", &"HideSecondaryWeapon", 0.2]
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
@@ -175,7 +177,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16016, -0.921192, 1.25305)
 handsNode = NodePath("../..")
 
 [node name="USP" parent="WeaponHolder" instance=ExtResource("3_vwdql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132059, 0.253247)
 handsNode = NodePath("../..")
 recoil_position_z = SubResource("Curve_4qe7d")
 lerp_speed = 30.0

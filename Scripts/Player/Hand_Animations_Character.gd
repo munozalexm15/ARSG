@@ -3,8 +3,16 @@ extends Node3D
 @export var animationNode := NodePath()
 @onready var animationPlayer : AnimationPlayer = get_node(animationNode)
 
+@export var cameraNode := NodePath()
+@onready var camera : Camera3D = get_node(cameraNode)
+
 @export var playerNode := NodePath()
 @onready var player : Player = get_node(playerNode)
+
+@export var initial_position : Vector3
+@export var ads_position : Vector3
+var ads_lerp = 20
+var fovList = {"Default": 75.0, "ADS": 50.0}
 
 @onready var weaponHolder = $WeaponHolder
 
@@ -42,11 +50,20 @@ func _input(event):
 		animationPlayer.play("Reload")
 		isReloading = true
 
+
 func _process(delta):
 	#cam_tilt(player.input_direction.x, delta)
+	print(animationPlayer.current_animation)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
 	reload_listener()
+		
+	if Input.is_action_pressed("ADS"):
+		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
+		camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
+	else:
+		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(initial_position, ads_lerp * delta)
+		camera.fov = lerp(camera.fov, fovList["Default"], ads_lerp * delta)
 	
 func _physics_process(delta):
 	pass

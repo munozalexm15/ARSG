@@ -133,6 +133,8 @@ returnSpeed = 10.0
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.19, -0.041)
 cameraNode = NodePath("../Camera3D")
 playerNode = NodePath("../../../..")
+initial_position = Vector3(0, -0.19, -0.041)
+ads_position = Vector3(-0.17, -0.075, -0.041)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
