@@ -4,6 +4,11 @@ extends PlayerState
 func enter(_msg := {}):
 	player.velocity = Vector3.ZERO
 	player.direction = Vector3.ZERO
+	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
+
+func _physics_update(delta):
+	
+	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
 func update(delta: float):
 	if not player.is_on_floor():

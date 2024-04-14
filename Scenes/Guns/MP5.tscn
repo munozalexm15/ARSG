@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=38 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://Scenes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_gtqrx"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://Scenes/Guns/Bullets/9MM/9MMCase.tres" id="4_73il8"]
 [ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="6_oc4s7"]
+[ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 
 [sub_resource type="Resource" id="Resource_vcmvo"]
 script = ExtResource("2_7shut")
@@ -16,6 +17,7 @@ reloadTime = 2.5
 isAutomatic = true
 accuracity = 0.0
 cadency = 10.0
+recoil = Vector3(0.75, 0.1, 0.1)
 
 [sub_resource type="Curve" id="Curve_mfnyl"]
 min_value = -1.0
@@ -31,6 +33,23 @@ point_count = 5
 min_value = -1.0
 _data = [Vector2(0, -0.384615), 0.0, 0.0, 0, 0, Vector2(0.135417, -1), 0.0, 0.0, 0, 0, Vector2(0.260417, -0.538462), 0.0, 0.0, 0, 0, Vector2(0.46875, -1), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgus4"]
+transparency = 1
+albedo_texture = ExtResource("7_r6skm")
+emission_enabled = true
+emission = Color(0.901961, 0.482353, 0, 1)
+emission_energy_multiplier = 16.0
+backlight = Color(0.482353, 0.223529, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 28.45
+
+[sub_resource type="QuadMesh" id="QuadMesh_wc5y2"]
+material = SubResource("StandardMaterial3D_rgus4")
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
 resource_name = "Material.039"
@@ -1413,21 +1432,49 @@ lerp_speed = 5.0
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.08786, 1.86323, -0.0707574)
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
+transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
+emitting = false
+amount = 1
+lifetime = 0.05
+one_shot = true
+randomness = 1.0
+local_coords = true
+draw_order = 1
+mesh = SubResource("QuadMesh_wc5y2")
+emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+angle_min = -28.8
+angle_max = 14.4
+
+[node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
+visible = false
+light_color = Color(0.721569, 0.321569, 0, 1)
+light_energy = 0.5
+light_specular = 0.25
+distance_fade_begin = 2.0
+distance_fade_length = 2.0
+omni_range = 1.0
+
+[node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, -0.73976, 2.15795, 0.626036)
 emitting = false
 amount = 1
+lifetime = 0.5
 one_shot = true
-speed_scale = 17.0
+speed_scale = 10.0
 explosiveness = 0.13
 local_coords = true
 mesh = ExtResource("4_73il8")
 emission_shape = 5
 emission_points = PackedVector3Array(0.5, -0.265, 0.945)
 emission_normals = PackedVector3Array()
-direction = Vector3(5, 3, 3)
-spread = 9.0
-initial_velocity_max = 10.0
+direction = Vector3(4.145, 2.605, 6.98)
+spread = 10.8
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
 
 [node name="Trigger_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -7, 0)

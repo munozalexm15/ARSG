@@ -2,9 +2,10 @@ extends PlayerState
 
 func enter(_msg := {}):
 	player.curr_speed = player.walk_speed
+	player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
+	
 
 func physics_update(delta: float) -> void:
-	player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
 	player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta
 
 	if player.direction != Vector3.ZERO:

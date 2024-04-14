@@ -6,6 +6,7 @@ class_name Weapon extends Resource
 @export var isAutomatic: bool
 @export var accuracity : float
 @export var cadency : float
+@export var recoil: Vector3
 
 
 # Called when the node enters the scene tree for the first time.

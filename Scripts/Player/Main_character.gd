@@ -51,10 +51,10 @@ var distanceCheck = 1
 var isColliding = false
 
 #--- Head bobbing
-const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0}
+const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0, "idle_speed"= 10.0}
 
 #---------In meters
-const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.02}
+const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.02, "idle_speed" = 0.005}
 
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0
@@ -80,7 +80,7 @@ func _physics_process(delta):
 	
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
-	if !Input.is_action_pressed("Crouch") and !standingRaycast.is_colliding():
+	if (!Input.is_action_pressed("Crouch") or !is_on_floor()) and !standingRaycast.is_colliding():
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
@@ -88,12 +88,15 @@ func _physics_process(delta):
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
+
 		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
 		
 		arms.position.y = lerp(arms.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
 		arms.position.x = lerp(arms.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
-	else:
+	
+	elif is_on_floor() and input_direction == Vector2.ZERO:
+		
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_air_speed)
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta * lerp_speed)
@@ -143,3 +146,4 @@ func _checkCollisionWithWall():
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
+

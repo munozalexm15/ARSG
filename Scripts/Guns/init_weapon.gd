@@ -12,7 +12,9 @@ signal reload()
 
 @onready var muzzle = $Muzzle
 @export var bullet_type: PackedScene
-@onready var bullet_case_particles : CPUParticles3D = $CPUParticles3D
+@onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
+@onready var muzzle_flash_particles :CPUParticles3D = $Muzzle/MuzzleFlash
+@onready var muzzle_flash_light : OmniLight3D = $Muzzle/MuzzleFlashLight
 var time_to_shoot = 0
 
 #HandsRecoil
@@ -35,6 +37,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("Fire") and WeaponData.bulletsInMag > 0 and not WeaponData.isAutomatic:
+		print(hands.player.isColliding)
 		apply_recoil()
 		if WeaponData.bulletsInMag > 0:
 			shoot()
@@ -73,7 +76,8 @@ func apply_recoil():
 	current_time = 0
 
 func shoot():
-	hands.player.eyes.recoilFire()
+	#get recoil script from child node and apply some to the weapon
+	hands.player.eyes.get_child(0).recoilFire()
 	WeaponData.bulletsInMag -= 1
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
@@ -92,4 +96,9 @@ func spawnBullet():
 	bullet.transform = muzzle.global_transform
 	bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 	bullet_case_particles.emitting = true
+	muzzle_flash_particles.emitting = true
 	level_root.add_child(bullet)
+	muzzle_flash_light.show()
+	await get_tree().create_timer(0.05).timeout
+	muzzle_flash_light.hide()
+	

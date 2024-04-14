@@ -15,7 +15,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RecoilNode/Camera3D:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RecoilNode/Camera3D:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -43,7 +43,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RecoilNode/Camera3D:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -55,7 +55,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RecoilNode/Camera3D:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,7 +71,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RecoilNode/Camera3D:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +83,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("RecoilNode/Camera3D:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,29 +108,27 @@ height = 1.2
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
-armsNode = NodePath("Head/eyesHolder/RecoilNode/arms")
+armsNode = NodePath("Head/eyesHolder/arms")
 standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
-cameraNode = NodePath("Head/eyesHolder/RecoilNode/Camera3D")
+cameraNode = NodePath("Head/eyesHolder/Camera3D")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="eyesHolder" type="Node3D" parent="Head"]
-
-[node name="RecoilNode" type="Node3D" parent="Head/eyesHolder"]
 script = ExtResource("2_wsffb")
-recoil = Vector3(0.1, 0.2, 0.1)
+recoil = Vector3(1, 1, 1)
 snappiness = 2.0
 returnSpeed = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/RecoilNode"]
+[node name="Camera3D" type="Camera3D" parent="Head/eyesHolder"]
 
-[node name="arms" parent="Head/eyesHolder/RecoilNode" instance=ExtResource("8_jvk7e")]
+[node name="arms" parent="Head/eyesHolder" instance=ExtResource("8_jvk7e")]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.34579, -0.0412798)
-playerNode = NodePath("../../../..")
+playerNode = NodePath("../../..")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")

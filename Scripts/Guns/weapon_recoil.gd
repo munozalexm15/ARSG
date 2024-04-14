@@ -9,6 +9,7 @@ var beforeShootRotation : Vector3
 @export var recoil : Vector3
 @export var aimRecoil : Vector3
 
+
 # Settings
 @export var snappiness : float
 @export var returnSpeed : float
@@ -19,9 +20,7 @@ func _process(delta):
 	currentRotation = lerp(currentRotation, targetRotation, snappiness * delta)
 	
 	# Set rotation
-	
 	rotation = currentRotation
-	
 	# Camera z axis tilt fix, ignored if tilt intentionals
 	# I have no idea why it tilts if recoil.z is set to 0
 	if recoil.z == 0 and aimRecoil.z == 0:
