@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="1_jw7po"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_krcch"]
-[ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="1_weofg"]
 [ext_resource type="ArrayMesh" uid="uid://b6fbka4hyo5se" path="res://GameResources/Meshes/Guns/Bullets/7,62MM/7-62Shell.tres" id="1_xcyaf"]
 [ext_resource type="Resource" uid="uid://b5k0vb48uadrv" path="res://Scripts/Guns/Resources/M14_Resource.tres" id="2_esjv3"]
 [ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_mae6q"]
@@ -10,10 +9,11 @@
 [ext_resource type="Curve" uid="uid://cl0o76t4ei4cx" path="res://GameResources/Curves/M14/M14_RecoilRotation_X.tres" id="4_b1x5c"]
 [ext_resource type="Curve" uid="uid://b51mua5a4bbot" path="res://GameResources/Curves/M14/M14_RecoilRotation_Z.tres" id="5_gm6px"]
 [ext_resource type="Curve" uid="uid://juwb2jsv7aw5" path="res://GameResources/Curves/M14/M14_RecoilPosition_Z.tres" id="6_p6h6b"]
+[ext_resource type="Texture2D" uid="uid://bsmd3gsn2r3wo" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash4.png" id="7_4k1d0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgus4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phyb4"]
 transparency = 1
-albedo_texture = ExtResource("1_weofg")
+albedo_texture = ExtResource("7_4k1d0")
 emission_enabled = true
 emission = Color(0.901961, 0.482353, 0, 1)
 emission_energy_multiplier = 16.0
@@ -24,8 +24,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 proximity_fade_distance = 28.45
 
-[sub_resource type="QuadMesh" id="QuadMesh_h4r2d"]
-material = SubResource("StandardMaterial3D_rgus4")
+[sub_resource type="QuadMesh" id="QuadMesh_130cd"]
+material = SubResource("StandardMaterial3D_phyb4")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]
@@ -1757,7 +1757,7 @@ one_shot = true
 randomness = 1.0
 local_coords = true
 draw_order = 1
-mesh = SubResource("QuadMesh_h4r2d")
+mesh = SubResource("QuadMesh_130cd")
 emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
 direction = Vector3(0, 0, 0)
 spread = 0.0
@@ -1766,13 +1766,14 @@ angle_min = -28.8
 angle_max = 14.4
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176085, -0.257801, 0)
 visible = false
 light_color = Color(0.721569, 0.321569, 0, 1)
-light_energy = 0.5
+light_energy = 2.36
 light_specular = 0.25
 distance_fade_begin = 2.0
 distance_fade_length = 2.0
-omni_range = 1.0
+omni_range = 3.284
 
 [node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(0.140592, 0, -1.99505, -1.99505, -8.74228e-08, -0.140592, -8.72065e-08, 2, -6.14548e-09, 0.968752, 2.53431, 0.307323)

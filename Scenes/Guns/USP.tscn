@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="5_33s3y"]
 [ext_resource type="Texture2D" uid="uid://euxa0y6g15rq" path="res://GameResources/Textures/Guns/USP/USP_mag_Text.jpg" id="5_ercxw"]
 [ext_resource type="Curve" uid="uid://fwdnoc44jwlo" path="res://GameResources/Curves/USP/USP_RecoilRotation_Z.tres" id="5_u081t"]
+[ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="7_xc76o"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_wl0c4"]
-[ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="9_x3vm0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke6bd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ygkl"]
 transparency = 1
-albedo_texture = ExtResource("9_x3vm0")
+albedo_texture = ExtResource("7_xc76o")
 emission_enabled = true
 emission = Color(0.901961, 0.482353, 0, 1)
 emission_energy_multiplier = 16.0
@@ -25,8 +25,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 proximity_fade_distance = 28.45
 
-[sub_resource type="QuadMesh" id="QuadMesh_gehq1"]
-material = SubResource("StandardMaterial3D_ke6bd")
+[sub_resource type="QuadMesh" id="QuadMesh_ehmb7"]
+material = SubResource("StandardMaterial3D_6ygkl")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
@@ -1413,7 +1413,7 @@ one_shot = true
 randomness = 1.0
 local_coords = true
 draw_order = 1
-mesh = SubResource("QuadMesh_gehq1")
+mesh = SubResource("QuadMesh_ehmb7")
 emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
 direction = Vector3(0, 0, 0)
 spread = 0.0
