@@ -9,12 +9,11 @@ func enter(_msg := {}):
 func _input(event):
 	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding():
 		state_machine.transition_to("Walk")
-	
-func update(delta):
-	if Input.is_action_just_pressed("Fire"):
-		state_machine.transition_to("Walk")
 
 func physics_update(delta: float):
+	if Input.is_action_just_pressed("Fire"):
+		state_machine.transition_to("Walk")
+		
 	player.headBobbing_curr_intensity = player.hb_intensities.get("sprint_speed")
 	player.headBobbing_index += player.hb_speeds.get("sprint_speed") * delta
 	

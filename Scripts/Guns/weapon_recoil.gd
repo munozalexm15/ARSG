@@ -9,7 +9,6 @@ var beforeShootRotation : Vector3
 @export var recoil : Vector3
 @export var aimRecoil : Vector3
 
-
 # Settings
 @export var snappiness : float
 @export var returnSpeed : float

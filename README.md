@@ -3,8 +3,7 @@
 
 
 ###GUN PLAY
- - Create "Aiming" state for player (slower speed, less bobbing / sway, etc.)
- - Add interaction with weapons (grab other guns if pressing certain key)
+ - Add interaction with weapons (grab other guns if pressing certain key) 
  
 ##WEAPON LIST
  - Shotgun
@@ -20,12 +19,10 @@
 
 ###UI / HUD
  - Menu
- - Crosshair
- - Show ammo
  - Show player state (crouched, running, standing -> like COD1)
  - Show Health(maybe?)
  
 ###OTHER:
  - Clean weapon / hands code (maybe state machine)
- - Make pickup variations of M14 and USP
+ - Make pickup variations of M14 and USP [ X ]
  - Preload all possible pickup weapons on scene start, so it doesn't lag when picking up ones -> You could have a pool of created objects and store them somewhere, hidden with process and physics process disabled and instead of instantiating a new object, take one object out of the pool and set it up. When you want to destroy it, don't free it, just store it in the pool 

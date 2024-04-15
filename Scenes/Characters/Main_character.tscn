@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://b1ndfa7nd5f1l"]
+[gd_scene load_steps=19 format=3 uid="uid://b1ndfa7nd5f1l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
-[ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="2_840lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
@@ -10,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Crouch.gd" id="7_nbd32"]
 [ext_resource type="PackedScene" uid="uid://b4ujkypjkxc1a" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
+[ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="11_qxtnj"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -109,6 +109,8 @@ height = 1.2
 [sub_resource type="BoxShape3D" id="BoxShape3D_g26tn"]
 size = Vector3(1.69897, 2.14111, 1.72363)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 2
@@ -120,9 +122,7 @@ crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/Camera3D")
-hudNode = NodePath("Control")
-
-[node name="Control" parent="." instance=ExtResource("2_840lv")]
+hudNode = NodePath("UI/CenterContainer")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -185,6 +185,75 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180908, 0)
 shape = SubResource("BoxShape3D_g26tn")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="WeaponName" type="RichTextLabel" parent="UI"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = 534.0
+offset_right = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+text = "NAME
+"
+
+[node name="Ammo indicator" type="RichTextLabel" parent="UI"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -193.0
+offset_top = 563.0
+offset_right = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+text = "31/180"
+
+[node name="CenterContainer" type="CenterContainer" parent="UI" node_paths=PackedStringArray("reticle_lines", "player_controller")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_qxtnj")
+reticle_lines = [NodePath("Top"), NodePath("Right"), NodePath("Down"), NodePath("Left")]
+player_controller = NodePath("../..")
+
+[node name="Top" type="Line2D" parent="UI/CenterContainer"]
+material = SubResource("ShaderMaterial_hh3ed")
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="UI/CenterContainer"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="Down" type="Line2D" parent="UI/CenterContainer"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="UI/CenterContainer"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
 
 [connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]
 [connection signal="body_entered" from="PickupRange" to="Head/eyesHolder/armsHolder/arms" method="_on_pickup_range_body_entered"]

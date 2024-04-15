@@ -23,7 +23,7 @@ extends CharacterBody3D
 @onready var camera : Camera3D = get_node(cameraNode)
 
 @export var hudNode := NodePath()
-@onready var hud : CanvasLayer = get_node(hudNode)
+@onready var hud : Control = get_node(hudNode)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 

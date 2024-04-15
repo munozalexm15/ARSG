@@ -186,6 +186,7 @@ func _on_pickup_range_body_entered(body):
 			
 			isSwappingWeapon = true
 			actual_weapon_index = 1
+			loadWeapon(actual_weapon_index)
 			actualWeapon = weaponHolder.get_child(actual_weapon_index)
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")

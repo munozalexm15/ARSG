@@ -5,7 +5,14 @@ func enter(_msg := {}):
 	player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
 
 func physics_update(delta: float) -> void:
-	player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta
+	if not Input.is_action_pressed("ADS"):
+		player.curr_speed = player.walk_speed
+		player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
+		player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta
+	else:
+		player.curr_speed = player.crouch_speed
+		player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
+		player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	
 	if player.direction != Vector3.ZERO:
 		player.velocity.x = player.direction.x * player.curr_speed
@@ -23,7 +30,7 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump"):
 		state_machine.transition_to("Air", {jump = true})
 	
-	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and Input.is_action_pressed("Sprint") and not Input.is_action_pressed("ADS"):
+	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and Input.is_action_just_pressed("Sprint") and not Input.is_action_pressed("ADS"):
 		state_machine.transition_to("Run")
 	
 	if Input.is_action_just_pressed("Crouch"):
