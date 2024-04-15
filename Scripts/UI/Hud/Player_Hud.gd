@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var weaponName = $VBoxContainer/WeaponName
-@onready var ammoCounter = $"VBoxContainer/Ammo indicator"
+@onready var weaponName = $Control/VBoxContainer/WeaponName
+@onready var ammoCounter = $Control/"VBoxContainer/Ammo indicator"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

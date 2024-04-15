@@ -2,11 +2,11 @@
 ## TODO:
 
 ###BUGS:
- - When crouching, if sprinting the state machine transitions to walk and then to run, but the camera position still is as crouched
+ - If players start reloading both guns, if it switches weapons fast enough the ammo mag stacks
 
 ###GUN PLAY
- - Add limitations (disable shooting if changing weapon, etc.)
  - Create "Aiming" state for player (slower speed, less bobbing / sway, etc.)
+ 
 ##WEAPON LIST
  - Shotgun
  - AR
@@ -22,8 +22,9 @@
 ###UI / HUD
  - Menu
  - Show ammo
+ - Show player state (crouched, running, standing -> like COD1)
  - Show Health(maybe?)
  
 ###OTHER:
  - Clean weapon / hands code
- - Make pickup variations of MP5 and USP
+ - Make pickup variations of M14 and USP

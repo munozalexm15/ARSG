@@ -1,7 +1,5 @@
 extends Node3D
 
-signal reload()
-
 @export var weaponData : Weapon
 
 @export var handsNode := NodePath()
@@ -28,8 +26,6 @@ var target_rot: Vector3
 var target_pos: Vector3
 var current_time : float
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_time = 1
@@ -37,23 +33,19 @@ func _ready():
 	weaponData.bulletsInMag = weaponData.magSize
 
 func _input(event):
-	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic:
+	
+	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and not hands.isSwappingWeapon:
 		apply_recoil()
 		if weaponData.bulletsInMag > 0:
 			shoot()
-		if weaponData.bulletsInMag <= 0:
-			reload.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0:
+	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and not hands.isSwappingWeapon:
 		apply_recoil()
 		if weaponData.bulletsInMag > 0:
 			shoot()
-		if weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo > 0:
-			reload.emit()
 		time_to_shoot = weaponData.cadency
 	
 	if time_to_shoot > 0:
@@ -83,6 +75,7 @@ func shoot():
 	else:
 		hands.player.eyes.get_child(0).recoilFire()
 	weaponData.bulletsInMag -= 1
+
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
 	handsAnimPlayer.play("RESET")

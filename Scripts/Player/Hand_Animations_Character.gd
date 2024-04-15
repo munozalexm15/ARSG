@@ -48,7 +48,6 @@ func _input(event):
 		mouse_swap_weapon_logic()
 	
 	if Input.is_action_pressed("Reload") and actualWeapon.weaponData.bulletsInMag < actualWeapon.weaponData.magSize and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
-		print("recarga")
 		animationPlayer.play("Reload")
 		isReloading = true
 	
@@ -57,6 +56,8 @@ func _input(event):
 
 
 func _process(delta):
+	player.hud.weaponName.text = actualWeapon.weaponData.name
+	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	#cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
@@ -89,9 +90,8 @@ func mouse_swap_weapon_logic():
 			actual_weapon_index += 1
 		else:
 			actual_weapon_index = 0
-			
-		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+		
 		animationPlayer.play("SwapWeapon")
 		
 	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
@@ -101,16 +101,14 @@ func mouse_swap_weapon_logic():
 		else:
 			actual_weapon_index = get_child_count() -1
 			
-		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
-
+	
 func swap_weapon():
 	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
 		if actual_weapon_index != 0:
 			isSwappingWeapon = true
 			actual_weapon_index = 0
-			actualWeapon = weaponHolder.get_child(actual_weapon_index)
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")
 		
@@ -118,9 +116,15 @@ func swap_weapon():
 		if actual_weapon_index != 1:
 			isSwappingWeapon = true
 			actual_weapon_index = 1
-			actualWeapon = weaponHolder.get_child(actual_weapon_index)
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")
+
+func loadWeapon(index):
+	for x in weaponHolder.get_child_count():
+		weaponHolder.get_child(x).process_mode = Node.PROCESS_MODE_DISABLED
+		weaponHolder.get_child(x).visible = false
+	weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
+	weaponHolder.get_child(index).visible = true
 
 func _on_animation_player_animation_finished(anim_name):
 	if (anim_name == "Reload"):
@@ -140,8 +144,7 @@ func _on_animation_player_animation_finished(anim_name):
 			else:
 				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
 				actualWeapon.weaponData.reserveAmmo = 0
-			
-			player.hud.AmmoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
+		
 			
 			if player.state != "Run":
 				animationPlayer.play("Idle")
@@ -149,46 +152,31 @@ func _on_animation_player_animation_finished(anim_name):
 				animationPlayer.play("Run")
 	
 	if (anim_name == "SwapWeapon"):
+		
 		loadWeapon(actual_weapon_index)
+		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		isSwappingWeapon = false
 		if player.state != "Run" and not isReloading:
 			animationPlayer.play("Idle")
 		elif player.state == "Run" and not isReloading:
 			animationPlayer.play("Run")
-	
-
-	
-func loadWeapon(index):
-	for x in weaponHolder.get_child_count():
-		weaponHolder.get_child(x).process_mode = Node.PROCESS_MODE_DISABLED
-		weaponHolder.get_child(x).visible = false
-	weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
-	weaponHolder.get_child(index).visible = true
-	
 
 func reload_listener():
 	if actualWeapon.weaponData.bulletsInMag <= 0 and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
 		animationPlayer.play("Reload")
 		isReloading = true
 
-
 func _on_animation_player_animation_started(anim_name):
-	if anim_name == "SwapWeapon":
-		isSwappingWeapon = true
-
 	#cancel weapon switching if player runs, crouch, etc.
-	
 	if (anim_name == "Run" or anim_name == "Idle") and isSwappingWeapon:
+		if actual_weapon_index == 0:
+			actual_weapon_index = 1
+		else:
+			actual_weapon_index = 0
+			
 		isSwappingWeapon = false
 	if anim_name != "Reload" and isReloading:
 		isReloading = false
-
-#reload cancelling
-func _on_animation_player_animation_changed(old_name, new_name):
-	if old_name == "Reload" and new_name != "Reload":
-		isReloading = false
-	if new_name == "SwapWeapon":
-		isSwappingWeapon = true
 
 #If weapon enters the pickup range
 func _on_pickup_range_body_entered(body):
@@ -224,7 +212,6 @@ func drop_weapon(name):
 			weapon_Ref = weaponHolder.get_child(x)
 	
 	if weapon_Ref != null:
-		print(weapon_Ref.weaponData.weaponPickupScene)
 		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
 		var spawnedWeapon = weapon_to_spawn.instantiate()
 		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
@@ -239,6 +226,3 @@ func drop_weapon(name):
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
-	
-	
-

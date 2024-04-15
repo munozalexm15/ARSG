@@ -6,6 +6,8 @@ var slide_vector = Vector2.ZERO
 
 var slide_multiplier = 10.0
 
+var canRun = false
+
 func enter(_msg := {}):
 	player.curr_speed = player.crouch_speed
 	player.crouching_CollisionShape.disabled = false
@@ -20,7 +22,6 @@ func physics_update(delta: float) -> void:
 		slide_timer -= delta
 		player.direction = player.transform.basis * Vector3(slide_vector.x, 0, slide_vector.y).normalized()
 		if slide_timer <= 0:
-			print("DONE")
 			player.curr_speed = player.crouch_speed
 		
 	player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
@@ -46,9 +47,10 @@ func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and !player.standingRaycast.is_colliding():
 		state_machine.transition_to("Air", {"jump" = true})
 	
-	if (!Input.is_action_pressed("Crouch") or Input.is_action_just_pressed("Sprint")) and !player.standingRaycast.is_colliding() and player.input_direction != Vector2.ZERO:
+	if (!Input.is_action_pressed("Crouch")) and !player.standingRaycast.is_colliding() and player.input_direction != Vector2.ZERO:
 		player.crouching_CollisionShape.disabled = true
 		player.standing_CollisionShape.disabled = false
+
 		state_machine.transition_to("Walk")
 		
 	elif !Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding() and player.input_direction == Vector2.ZERO:
@@ -57,3 +59,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Idle")
 	
 	player.move_and_slide()
+
+func exit():
+	player.crouching_CollisionShape.disabled = true
+	player.standing_CollisionShape.disabled = false
