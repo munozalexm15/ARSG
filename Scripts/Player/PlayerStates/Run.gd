@@ -7,7 +7,7 @@ func enter(_msg := {}):
 		player.arms.animationPlayer.play("Run")
 
 func _input(event):
-	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch"):
+	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding():
 		state_machine.transition_to("Walk")
 	
 func update(delta):
