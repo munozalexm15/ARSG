@@ -12,4 +12,6 @@ reloadTime = 2.0
 isAutomatic = false
 cadency = 0.0
 recoil = Vector3(0.1, 0.4, 0.2)
+weaponScene = ""
+weaponPickupScene = ""
 weaponSpawnPosition = Vector3(0.779639, -0.723751, 1.29897)

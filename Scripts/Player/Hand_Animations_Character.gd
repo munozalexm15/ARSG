@@ -15,12 +15,14 @@ var ads_lerp = 20
 var fovList = {"Default": 75.0, "ADS": 50.0}
 
 @onready var weaponHolder = $WeaponHolder
+@onready var reloadTimer : Timer = $ReloadTimer
 
 var actual_weapon_index = 0
 var actualWeapon
 var actual_animation = ""
 var isSwappingWeapon = false
 var isReloading = false
+
 
 var cam_rotation_amount : float = 0.01
 var weapon_rotation_amount : float = 0.01
@@ -37,6 +39,7 @@ func _ready():
 	animationPlayer.play("Idle")
 	default_weaponHolder_pos = weaponHolder.position
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 	loadWeapon(actual_weapon_index)
 
 func _input(event):
@@ -128,33 +131,13 @@ func loadWeapon(index):
 
 func _on_animation_player_animation_finished(anim_name):
 	if (anim_name == "Reload"):
-		var ammoLeft = actualWeapon.weaponData.bulletsInMag
-		await get_tree().create_timer(actualWeapon.weaponData.reloadTime).timeout
-		#if its true still it means the animation hasn't been changed
-		if isReloading == true:
-			isReloading = false
-			isSwappingWeapon = false
-			
-			#Check reserve ammo is greater than the required amount
-			if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
-				actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
-				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
-			#if not, give the remaining reserve ammo to the mag
-			
-			else:
-				actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
-				actualWeapon.weaponData.reserveAmmo = 0
-		
-			
-			if player.state != "Run":
-				animationPlayer.play("Idle")
-			if player.state == "Run":
-				animationPlayer.play("Run")
+		reloadTimer.start()
 	
 	if (anim_name == "SwapWeapon"):
-		
 		loadWeapon(actual_weapon_index)
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
+		
 		isSwappingWeapon = false
 		if player.state != "Run" and not isReloading:
 			animationPlayer.play("Idle")
@@ -173,10 +156,12 @@ func _on_animation_player_animation_started(anim_name):
 			actual_weapon_index = 1
 		else:
 			actual_weapon_index = 0
-			
 		isSwappingWeapon = false
+		
 	if anim_name != "Reload" and isReloading:
 		isReloading = false
+		reloadTimer.stop()
+		reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 
 #If weapon enters the pickup range
 func _on_pickup_range_body_entered(body):
@@ -226,3 +211,26 @@ func drop_weapon(name):
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
+
+
+func _on_reload_timer_timeout():
+	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
+	var ammoLeft = actualWeapon.weaponData.bulletsInMag
+	if isReloading == true:
+		isReloading = false
+		isSwappingWeapon = false
+		
+		#Check reserve ammo is greater than the required amount
+		if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
+			actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
+			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
+		
+		#if not, give the remaining reserve ammo to the mag
+		else:
+			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
+			actualWeapon.weaponData.reserveAmmo = 0
+	
+		if player.state != "Run":
+			animationPlayer.play("Idle")
+		if player.state == "Run":
+			animationPlayer.play("Run")

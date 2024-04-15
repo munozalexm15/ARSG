@@ -1,11 +1,10 @@
 "# ARSG" 
 ## TODO:
 
-###BUGS:
- - If players start reloading both guns, if it switches weapons fast enough the ammo mag stacks
 
 ###GUN PLAY
  - Create "Aiming" state for player (slower speed, less bobbing / sway, etc.)
+ - Add interaction with weapons (grab other guns if pressing certain key)
  
 ##WEAPON LIST
  - Shotgun
@@ -15,7 +14,7 @@
 
 ###WEAPON FEEL
  - Bullet impact decals
- - Camera zoom when shooting
+ - Camera shake when shooting
  - Add clipping gun prevention
  - Tweak states transitions (IE: Players cancel the swap weapon action if they start running)
 
@@ -26,5 +25,6 @@
  - Show Health(maybe?)
  
 ###OTHER:
- - Clean weapon / hands code
+ - Clean weapon / hands code (maybe state machine)
  - Make pickup variations of M14 and USP
+ - Preload all possible pickup weapons on scene start, so it doesn't lag when picking up ones -> You could have a pool of created objects and store them somewhere, hidden with process and physics process disabled and instead of instantiating a new object, take one object out of the pool and set it up. When you want to destroy it, don't free it, just store it in the pool 
