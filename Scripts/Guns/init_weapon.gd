@@ -42,6 +42,9 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
+		weaponData.isAutomatic = !weaponData.isAutomatic
+	
 	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and not hands.isSwappingWeapon:
 		apply_recoil()
 		if weaponData.bulletsInMag > 0 and not hands.isReloading:

@@ -5,6 +5,7 @@ class_name Weapon extends Resource
 @export var bulletsInMag: int
 @export var reserveAmmo : int
 @export var reloadTime: float
+@export var allowsFireSelection : bool
 @export var isAutomatic: bool
 @export var cadency : float
 @export var recoil: Vector3

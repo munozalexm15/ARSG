@@ -5,7 +5,12 @@
  - Add interaction with weapons (grab other guns if pressing certain key) 
  - Bullet impact decals
  - Add clipping gun prevention
+ - Add weapon fire selector (only some weapons, like MP5)
  
+### MECHANICS
+ - Add ammo boxes (refills actual weapon or both)
+ - Add healing items
+
 ## WEAPON LIST
  - Shotgun
  - AR
@@ -18,6 +23,7 @@
 ### UI / HUD
  - Menu
  - Show player state (crouched, running, standing -> like COD1)
+ - Show weapon fire mode
  - Show Health(maybe?)
  
 ### OTHER:

@@ -9,6 +9,7 @@ magSize = 30
 bulletsInMag = 30
 reserveAmmo = 180
 reloadTime = 2.5
+allowsFireSelection = true
 isAutomatic = true
 cadency = 8.0
 recoil = Vector3(0.4, 0.4, 0.1)

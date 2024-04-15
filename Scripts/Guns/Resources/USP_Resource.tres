@@ -9,6 +9,7 @@ magSize = 8
 bulletsInMag = 8
 reserveAmmo = 80
 reloadTime = 1.5
+fireMode = Array[String](["Semi"])
 isAutomatic = false
 cadency = 10.0
 recoil = Vector3(0.1, 0.1, 0.1)
