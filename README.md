@@ -20,6 +20,7 @@
 
 ###UI / HUD
  - Menu
+ - Crosshair
  - Show ammo
  - Show player state (crouched, running, standing -> like COD1)
  - Show Health(maybe?)
