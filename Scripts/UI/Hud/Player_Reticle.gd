@@ -8,9 +8,9 @@ extends CenterContainer
 @export var reticle_lines : Array[Line2D]
 @export var player_controller : CharacterBody3D
 
-@onready var weaponName = $"../WeaponName"
-@onready var ammoCounter = $"../Ammo indicator"
-@onready var weaponFireMode = $"../FireMode"
+@onready var weaponName = $"../HBoxContainer/VBoxContainer/WeaponName"
+@onready var ammoCounter = $"../HBoxContainer/VBoxContainer/Ammo indicator"
+@onready var weaponFireMode = $"../HBoxContainer/FireMode"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

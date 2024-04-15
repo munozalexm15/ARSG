@@ -2,7 +2,6 @@
 ## TODO:
 
 ### GUN PLAY
- - Add interaction with weapons (grab other guns if pressing certain key) 
  - Bullet impact decals
  - Add clipping gun prevention
  

@@ -1,6 +1,7 @@
+class_name Interactable
 extends RigidBody3D
 
-@export var weaponData : Weapon
+@export var weaponData : WeaponData
 
 var isPickupReady = false
 

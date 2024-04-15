@@ -1,6 +1,7 @@
+class_name Weapon
 extends Node3D
 
-@export var weaponData : Weapon
+@export var weaponData : WeaponData
 
 @export var handsNode := NodePath()
 @onready var hands : Node3D = get_node(handsNode)
@@ -32,24 +33,21 @@ func _ready():
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
 
-func _input(event):
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
+		weaponData.isAutomatic = !weaponData.isAutomatic
 	
 	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and not hands.isSwappingWeapon:
 		apply_recoil()
 		if weaponData.bulletsInMag > 0 and not hands.isReloading:
 			shoot()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
-		weaponData.isAutomatic = !weaponData.isAutomatic
 	
 	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and not hands.isSwappingWeapon:
 		apply_recoil()
 		if weaponData.bulletsInMag > 0 and not hands.isReloading:
 			shoot()
-		time_to_shoot = weaponData.cadency
+		time_to_shoot = weaponData.cadency * delta
 	
 	if time_to_shoot > 0:
 		time_to_shoot -= 1

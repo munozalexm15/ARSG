@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Interaction_Handler.gd" id="3_1c2ms"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Walk.gd" id="4_c7knn"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
@@ -106,9 +107,6 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 height = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g26tn"]
-size = Vector3(1.69897, 2.14111, 1.72363)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
 
 [node name="Character" type="CharacterBody3D"]
@@ -138,8 +136,15 @@ returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 
+[node name="InteractRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 9
+script = ExtResource("3_1c2ms")
+
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.19, -0.041)
+rayNode = NodePath("../InteractRay")
 cameraNode = NodePath("../Camera3D")
 playerNode = NodePath("../../../..")
 
@@ -178,14 +183,6 @@ shape = SubResource("CapsuleShape3D_rgde6")
 [node name="StandingRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
 
-[node name="PickupRange" type="Area3D" parent="."]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.180908, 0)
-shape = SubResource("BoxShape3D_g26tn")
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -195,54 +192,64 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="WeaponName" type="RichTextLabel" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.811
+anchor_top = 0.787
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -193.0
-offset_top = 534.0
-offset_right = -127.0
-offset_bottom = -86.0
+anchor_bottom = 0.907
+offset_left = -0.272034
+offset_top = 0.0239563
+offset_bottom = 0.263977
 grow_horizontal = 0
-grow_vertical = 2
+grow_vertical = 0
+
+[node name="FireMode" type="RichTextLabel" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/normal_font_size = 25
 text = "NAME
 "
 
-[node name="FireMode" type="RichTextLabel" parent="UI"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -269.0
-offset_top = 562.0
-offset_right = -200.0
-offset_bottom = -15.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="WeaponName" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
+theme_override_font_sizes/normal_font_size = 25
 text = "NAME
 "
 
-[node name="Ammo indicator" type="RichTextLabel" parent="UI"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -193.0
-offset_top = 563.0
-offset_right = -116.0
-offset_bottom = -54.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Ammo indicator" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 25
 text = "31/180"
+
+[node name="CenterContainer2" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.578
+anchor_right = 0.5
+anchor_bottom = 0.578
+offset_left = -9.0
+offset_top = -23.544
+offset_right = 10.0
+offset_bottom = 23.456
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI/CenterContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "d"
 
 [node name="CenterContainer" type="CenterContainer" parent="UI" node_paths=PackedStringArray("reticle_lines", "player_controller")]
 layout_mode = 1
@@ -274,8 +281,5 @@ width = 2.0
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.448078, 0)
-
+[connection signal="swap_weapon" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_swap_weapon"]
 [connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]
-[connection signal="body_entered" from="PickupRange" to="Head/eyesHolder/armsHolder/arms" method="_on_pickup_range_body_entered"]

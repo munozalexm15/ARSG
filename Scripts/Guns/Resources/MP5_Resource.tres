@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b4cqjfw42oy3m"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b4cqjfw42oy3m"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_j3i85"]
 
@@ -11,7 +11,7 @@ reserveAmmo = 180
 reloadTime = 2.5
 allowsFireSelection = true
 isAutomatic = true
-cadency = 8.0
+cadency = 400.0
 recoil = Vector3(0.4, 0.4, 0.1)
 weaponScene = ""
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"

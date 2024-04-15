@@ -3,6 +3,9 @@ extends Node3D
 @export var animationNode := NodePath()
 @onready var animationPlayer : AnimationPlayer = get_node(animationNode)
 
+@export var rayNode := NodePath()
+@onready var interactorRay : RayCast3D = get_node(rayNode)
+
 @export var cameraNode := NodePath()
 @onready var camera : Camera3D = get_node(cameraNode)
 
@@ -35,6 +38,7 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
 	animationPlayer.play("Idle")
 	default_weaponHolder_pos = weaponHolder.position
@@ -50,15 +54,12 @@ func _input(event):
 		swap_weapon()
 		mouse_swap_weapon_logic()
 	
+func _physics_process(delta):
+	
 	if Input.is_action_pressed("Reload") and actualWeapon.weaponData.bulletsInMag < actualWeapon.weaponData.magSize and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
 		animationPlayer.play("Reload")
 		isReloading = true
 	
-	if Input.is_action_pressed("Interact") and weaponHolder.get_child_count() > 1:
-		drop_weapon(actualWeapon.weaponData.name)
-
-
-func _process(delta):
 	player.hud.weaponFireMode.text = "Auto" if actualWeapon.weaponData.isAutomatic else "Semi"
 	player.hud.weaponName.text = actualWeapon.weaponData.name
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
@@ -162,36 +163,6 @@ func _on_animation_player_animation_started(anim_name):
 	if anim_name != "Reload" and isReloading:
 		isReloading = false
 		reloadTimer.stop()
-		reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
-
-#If weapon enters the pickup range
-func _on_pickup_range_body_entered(body):
-	if body.isPickupReady:
-		var weapon_equipped =null
-		for x in weaponHolder.get_child_count():
-			if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
-				weaponHolder.get_child(x).name = body.weaponData.name
-				weapon_equipped = weaponHolder.get_child(x)
-		
-		if weapon_equipped:
-			weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
-			body.queue_free()
-		
-		elif not weapon_equipped and weaponHolder.get_child_count() < 2:
-			var spawnedWeaponScene = load(body.weaponData.weaponScene)
-			var spawnedWeapon = spawnedWeaponScene.instantiate()
-			spawnedWeapon.position = body.weaponData.weaponSpawnPosition
-			spawnedWeapon.handsNode = self.get_path()
-			weaponHolder.add_child(spawnedWeapon)
-			body.queue_free()
-			
-			isSwappingWeapon = true
-			actual_weapon_index = 1
-			loadWeapon(actual_weapon_index)
-			actualWeapon = weaponHolder.get_child(actual_weapon_index)
-			actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
-			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-			animationPlayer.play("SwapWeapon")
 
 func drop_weapon(name):
 	var weapon_Ref = null
@@ -218,6 +189,7 @@ func drop_weapon(name):
 
 
 func _on_reload_timer_timeout():
+	reloadTimer.stop()
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 	var ammoLeft = actualWeapon.weaponData.bulletsInMag
 	if isReloading == true:
@@ -238,3 +210,35 @@ func _on_reload_timer_timeout():
 			animationPlayer.play("Idle")
 		if player.state == "Run":
 			animationPlayer.play("Run")
+
+
+func _on_interact_ray_swap_weapon(body):
+	if body.isPickupReady:
+		var weapon_equipped = null
+		for x in weaponHolder.get_child_count():
+			if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
+				weaponHolder.get_child(x).name = body.weaponData.name
+				weapon_equipped = weaponHolder.get_child(x)
+		
+		if not weapon_equipped and weaponHolder.get_child_count() == 2:
+			drop_weapon(actualWeapon.weaponData.name)
+		
+		if weapon_equipped:
+			weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
+			body.queue_free()
+		
+		elif not weapon_equipped and weaponHolder.get_child_count() < 2:
+			var spawnedWeaponScene = load(body.weaponData.weaponScene)
+			var spawnedWeapon = spawnedWeaponScene.instantiate()
+			spawnedWeapon.position = body.weaponData.weaponSpawnPosition
+			spawnedWeapon.handsNode = self.get_path()
+			weaponHolder.add_child(spawnedWeapon)
+			body.queue_free()
+			
+			isSwappingWeapon = true
+			actual_weapon_index = 1
+			loadWeapon(actual_weapon_index)
+			actualWeapon = weaponHolder.get_child(actual_weapon_index)
+			actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
+			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+			animationPlayer.play("SwapWeapon")

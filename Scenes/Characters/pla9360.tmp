@@ -154,6 +154,7 @@ _data = {
 [node name="arms" type="Node3D"]
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
+rayNode = NodePath("InteractRay")
 initial_position = Vector3(0, -1.166, 0)
 ads_position = Vector3(0, -0.6, -1.26)
 
@@ -164,6 +165,10 @@ libraries = {
 blend_times = [&"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="InteractRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)
+target_position = Vector3(8, 0, 0)
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
