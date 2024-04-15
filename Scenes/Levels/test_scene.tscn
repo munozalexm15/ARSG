@@ -61,7 +61,7 @@ panorama = ExtResource("8_1ndyf")
 sky_material = SubResource("PanoramaSkyMaterial_loofa")
 
 [sub_resource type="Environment" id="Environment_80335"]
-background_energy_multiplier = 0.0
+background_energy_multiplier = 16.0
 sky = SubResource("Sky_03k1s")
 ssao_radius = 4.7
 ssao_intensity = 3.33

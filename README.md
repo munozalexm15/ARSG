@@ -11,9 +11,11 @@
  - Add healing items
 
 ## WEAPON LIST
- - Shotgun
- - AR
+ - Shotguns
+ - ARs
  - Silenced weapons
+ - Grenades
+ - Rocket launcher / Grenade Launcher
  - Weapon variations
 
 ### Movement feedback
@@ -22,7 +24,6 @@
 ### UI / HUD
  - Menu
  - Show player state (crouched, running, standing -> like COD1)
- - Show weapon fire mode
  - Show Health(maybe?)
  
 ### OTHER:
