@@ -188,6 +188,7 @@ func _on_pickup_range_body_entered(body):
 			actual_weapon_index = 1
 			loadWeapon(actual_weapon_index)
 			actualWeapon = weaponHolder.get_child(actual_weapon_index)
+			actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")
 
@@ -202,6 +203,7 @@ func drop_weapon(name):
 		var spawnedWeapon = weapon_to_spawn.instantiate()
 		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
 		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+		print(spawnedWeapon.weaponData.bulletsInMag)
 		spawnedWeapon.set_global_transform(weaponHolder.get_global_transform())
 		var world = get_tree().get_root().get_child(0)
 		world.add_child(spawnedWeapon)

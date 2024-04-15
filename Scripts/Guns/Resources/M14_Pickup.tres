@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://dut7j1qco7vmk"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_w1rw5"]
+
+[resource]
+script = ExtResource("1_w1rw5")
+name = &"M14"
+magSize = 8
+bulletsInMag = 2
+reserveAmmo = 16
+reloadTime = 0.0
+isAutomatic = false
+cadency = 0.0
+recoil = Vector3(0, 0, 0)
+weaponScene = "res://Scenes/Guns/M14.tscn"
+weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
+weaponSpawnPosition = Vector3(0.779639, -0.723751, 1.29897)

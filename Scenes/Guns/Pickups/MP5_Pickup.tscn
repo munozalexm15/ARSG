@@ -184,13 +184,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dys0e")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p0ab0"]
-size = Vector3(7.08746, 0.48746, 2.73975)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tal62"]
+size = Vector3(6.80903, 0.850087, 2.70722)
 
 [node name="MP5" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
 collision_layer = 8
 collision_mask = 9
+gravity_scale = 2.0
 script = ExtResource("1_6typg")
 weaponData = ExtResource("2_wn00y")
 
@@ -215,5 +216,5 @@ mesh = SubResource("ArrayMesh_4y7hn")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0493805, 0.0497077, -0.157212)
-shape = SubResource("BoxShape3D_p0ab0")
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0481417, 0.0560458, -0.157212)
+shape = SubResource("BoxShape3D_tal62")

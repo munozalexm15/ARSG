@@ -12,4 +12,6 @@ reloadTime = 1.5
 isAutomatic = false
 cadency = 10.0
 recoil = Vector3(0.1, 0.1, 0.1)
+weaponScene = "res://Scenes/Guns/USP.tscn"
+weaponPickupScene = "res://Scenes/Guns/Pickups/USP_Pickup.tscn"
 weaponSpawnPosition = Vector3(0, 0.132, 0.253)

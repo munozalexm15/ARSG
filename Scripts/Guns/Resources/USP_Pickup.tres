@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b4bkukrp71fwe"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_frity"]
+
+[resource]
+script = ExtResource("1_frity")
+name = &"USP"
+magSize = 8
+bulletsInMag = 8
+reserveAmmo = 80
+reloadTime = 0.0
+isAutomatic = false
+cadency = 10.0
+recoil = Vector3(0, 0, 0)
+weaponScene = "res://Scenes/Guns/USP.tscn"
+weaponPickupScene = "res://Scenes/Guns/Pickups/USP_Pickup.tscn"
+weaponSpawnPosition = Vector3(0, 0.132, 0.253)
