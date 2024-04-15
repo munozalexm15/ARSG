@@ -59,6 +59,7 @@ func _input(event):
 
 
 func _process(delta):
+	player.hud.weaponFireMode.text = "Auto" if actualWeapon.weaponData.isAutomatic else "Semi"
 	player.hud.weaponName.text = actualWeapon.weaponData.name
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	#cam_tilt(player.input_direction.x, delta)

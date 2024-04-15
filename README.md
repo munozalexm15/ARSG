@@ -5,7 +5,6 @@
  - Add interaction with weapons (grab other guns if pressing certain key) 
  - Bullet impact decals
  - Add clipping gun prevention
- - Add weapon fire selector (only some weapons, like MP5)
  
 ### MECHANICS
  - Add ammo boxes (refills actual weapon or both)

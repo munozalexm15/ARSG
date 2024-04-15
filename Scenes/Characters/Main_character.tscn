@@ -203,7 +203,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -193.0
 offset_top = 534.0
-offset_right = -5.0
+offset_right = -127.0
+offset_bottom = -86.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+text = "NAME
+"
+
+[node name="FireMode" type="RichTextLabel" parent="UI"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -269.0
+offset_top = 562.0
+offset_right = -200.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_vertical = 3
@@ -219,7 +237,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -193.0
 offset_top = 563.0
-offset_right = -5.0
+offset_right = -116.0
+offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_vertical = 3
