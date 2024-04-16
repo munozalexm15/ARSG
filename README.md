@@ -4,7 +4,9 @@
 ### GUN PLAY
  - Bullet impact decals
  - Add clipping gun prevention
- - Weapon ammo sharing based of the caliber -> WIP
+ - Weapon ammo sharing based of the caliber -> WIP, it only remais: 
+	- When switching between two weapons with same caliber, don't reduce / randomize the ammo reserve
+	- Change that if two same weapons with same caliber swap weapons, the new weapon keeps the other weapons ammo reserve
 
 ### MECHANICS
  - Add ammo boxes (refills actual weapon or both)

@@ -149,6 +149,8 @@ cameraNode = NodePath("../Camera3D")
 playerNode = NodePath("../../../..")
 
 [node name="InteractTimer" type="Timer" parent="Head/eyesHolder/armsHolder"]
+wait_time = 0.2
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")

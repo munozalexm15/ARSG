@@ -175,12 +175,11 @@ func drop_weapon(name):
 	if weapon_Ref != null:
 		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
 		var spawnedWeapon = weapon_to_spawn.instantiate()
-		
+		var ammoLeft = weapon_Ref.weaponData.reserveAmmo
 		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
 		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 		#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
 		if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
-			print("misma arma, vaciando cargador")
 			spawnedWeapon.weaponData.reserveAmmo = 0
 			
 		spawnedWeapon.isAlreadyGrabbed = true
@@ -193,7 +192,6 @@ func drop_weapon(name):
 		isSwappingWeapon = true
 		actual_weapon_index = 0
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
-		
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
 

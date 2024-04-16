@@ -51,7 +51,6 @@ func _physics_process(delta):
 			
 			#grab weapon (different weapon)
 			if Input.is_action_just_pressed("Interact") and not isInHolder:
-				print("grab gun")
 				InteractTimer.start()
 			
 			if Input.is_action_just_released("Interact") and not isInHolder:
