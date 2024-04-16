@@ -166,6 +166,7 @@ func _on_animation_player_animation_started(anim_name):
 		reloadTimer.stop()
 
 func drop_weapon(name):
+	
 	var weapon_Ref = null
 	for x in weaponHolder.get_child_count():
 		if weaponHolder.get_child(x).weaponData.name == name:
@@ -174,17 +175,25 @@ func drop_weapon(name):
 	if weapon_Ref != null:
 		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
 		var spawnedWeapon = weapon_to_spawn.instantiate()
+		
 		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
 		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+		#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
+		if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
+			print("misma arma, vaciando cargador")
+			spawnedWeapon.weaponData.reserveAmmo = 0
+			
 		spawnedWeapon.isAlreadyGrabbed = true
 		spawnedWeapon.set_global_transform(weaponHolder.get_global_transform())
 		var world = get_tree().get_root().get_child(0)
 		world.add_child(spawnedWeapon)
+
 		weaponHolder.remove_child(weapon_Ref)
 		
 		isSwappingWeapon = true
 		actual_weapon_index = 0
 		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 		animationPlayer.play("SwapWeapon")
 
@@ -218,28 +227,50 @@ func _on_reload_timer_timeout():
 			animationPlayer.play("Run")
 
 
-func _on_interact_ray_swap_weapon(body):
+func _on_interact_ray_swap_weapon(body, isSwapping):
 	if body.isPickupReady:
 		var weapon_equipped = null
+		var weapon_with_same_caliber = null
 		for x in weaponHolder.get_child_count():
 			if weaponHolder.get_child(x).weaponData.name == body.weaponData.name:
 				weaponHolder.get_child(x).name = body.weaponData.name
 				weapon_equipped = weaponHolder.get_child(x)
-		
-		if not weapon_equipped and weaponHolder.get_child_count() == 2:
-			
+			if weaponHolder.get_child(x).weaponData.weaponCaliber == body.weaponData.weaponCaliber:
+				weapon_with_same_caliber = weaponHolder.get_child(x)
+				
+		#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
+		if not weapon_equipped and not weapon_with_same_caliber and weaponHolder.get_child_count() == 2:
 			drop_weapon(actualWeapon.weaponData.name)
 		
-		if weapon_equipped:
-			var randomMagAmmo = randf_range(0, body.weaponData.magSize)
+		#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it
+		if weapon_equipped and weapon_with_same_caliber:
+			var randomReserveAmmo = randf_range(body.weaponData.magSize, body.weaponData.reserveAmmo / 2)
 			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
 			for x in weaponHolder.get_child_count():
 				if weaponHolder.get_child(x) != weapon_equipped and weaponHolder.get_child(x).weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
-					weaponHolder.get_child(x).weaponData.reserveAmmo += randomMagAmmo
-			weapon_equipped.weaponData.reserveAmmo += randomMagAmmo
+					weaponHolder.get_child(x).weaponData.reserveAmmo += randomReserveAmmo
+			weapon_equipped.weaponData.reserveAmmo += randomReserveAmmo
 			body.queue_free()
 		
-		elif not weapon_equipped and weaponHolder.get_child_count() < 2:
+		#if there is no weapon equipped but one or 2 weapons have same caliber -> add ammo to them, but don't destroy weapon
+		if not weapon_equipped and weapon_with_same_caliber and not isSwapping:
+			var randomReserveAmmo = randf_range(body.weaponData.reserveAmmo / 4, body.weaponData.reserveAmmo)
+			body.weaponData.reserveAmmo = 0
+			for x in weaponHolder.get_child_count():
+				if weaponHolder.get_child(x).weaponData.weaponCaliber == body.weaponData.weaponCaliber:
+					weaponHolder.get_child(x).weaponData.reserveAmmo += randomReserveAmmo
+		
+		#same as up but if wanting to swap weapons
+		if not weapon_equipped and weapon_with_same_caliber and isSwapping:
+			var randomReserveAmmo = randf_range(body.weaponData.reserveAmmo / 4, body.weaponData.reserveAmmo)
+			body.weaponData.reserveAmmo = 0
+			for x in weaponHolder.get_child_count():
+				if weaponHolder.get_child(x).weaponData.weaponCaliber == body.weaponData.weaponCaliber:
+					weaponHolder.get_child(x).weaponData.reserveAmmo += randomReserveAmmo
+			drop_weapon(actualWeapon.weaponData.name)
+		
+		#if it is not equipped and player only has 1 weapon (SHOULD NOT HAPPEN):
+		if not weapon_equipped and weaponHolder.get_child_count() < 2:
 			var spawnedWeaponScene = load(body.weaponData.weaponScene)
 			var spawnedWeapon = spawnedWeaponScene.instantiate()
 			spawnedWeapon.position = body.weaponData.weaponSpawnPosition
@@ -262,4 +293,9 @@ func _on_interact_ray_swap_weapon(body):
 				actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
 				actualWeapon.weaponData.reserveAmmo = body.weaponData.reserveAmmo
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+			
+			#if both weapons have the same caliber, add more ammo to both reserve
+			if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
+				weaponHolder.get_child(1).weaponData.reserveAmmo += weaponHolder.get_child(0).weaponData.reserveAmmo
+				weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
 			animationPlayer.play("SwapWeapon")

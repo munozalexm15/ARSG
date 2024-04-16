@@ -148,6 +148,8 @@ rayNode = NodePath("../InteractRay")
 cameraNode = NodePath("../Camera3D")
 playerNode = NodePath("../../../..")
 
+[node name="InteractTimer" type="Timer" parent="Head/eyesHolder/armsHolder"]
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
 initial_state = NodePath("Air")
@@ -297,4 +299,5 @@ points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
 
 [connection signal="swap_weapon" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_swap_weapon"]
+[connection signal="timeout" from="Head/eyesHolder/armsHolder/InteractTimer" to="Head/eyesHolder/armsHolder/InteractRay" method="_on_interact_timer_timeout"]
 [connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]

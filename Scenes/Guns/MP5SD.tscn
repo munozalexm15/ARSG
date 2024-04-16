@@ -8,7 +8,7 @@
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_b0e8s"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_g0bhy"]
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="9_01yev"]
-[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://Resources/Textures/CharacterTextures/PlayerArms.png" id="10_24blr"]
+[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="10_24blr"]
 
 [sub_resource type="PointMesh" id="PointMesh_qmc4c"]
 

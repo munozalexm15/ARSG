@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://cgs4amjoorek2"]
 
-[ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://Resources/Textures/Guns/USP/9mm.jpg" id="1_pivo7"]
+[ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="1_pivo7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vusb"]
 resource_name = "Material.001"
