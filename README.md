@@ -4,6 +4,7 @@
 ### GUN PLAY
  - Bullet impact decals
  - Add clipping gun prevention
+ - Weapon ammo sharing based of the caliber -> if they have the same ammo type, allow to hold to switch weapon or press to pickup ammo of that type. 
  
 ### MECHANICS
  - Add ammo boxes (refills actual weapon or both)

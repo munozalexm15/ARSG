@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://be8la3upo8waj"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_pwfdn"]
+
+[resource]
+script = ExtResource("1_pwfdn")
+name = &"MP5SD"
+magSize = 30
+bulletsInMag = 5
+reserveAmmo = 0
+reloadTime = 0.0
+allowsFireSelection = true
+isAutomatic = false
+cadency = 0.0
+recoil = Vector3(0, 0, 0)
+weaponScene = "res://Scenes/Guns/MP5SD.tscn"
+weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
+weaponSpawnPosition = Vector3(2.16, -0.921, 1.253)

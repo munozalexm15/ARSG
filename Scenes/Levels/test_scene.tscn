@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=25 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://GameResources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
@@ -12,6 +12,7 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_dither.gdshader" id="5_apkuc"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_27bo6"]
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="8_1ndyf"]
+[ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="13_5ftpj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5apve"]
 
@@ -72,14 +73,17 @@ fog_sky_affect = 0.37
 [node name="World" type="Node3D"]
 script = ExtResource("1_rw0mx")
 
+[node name="MP5SD" parent="." instance=ExtResource("13_5ftpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46131, 1.07519, 6.33771)
+
 [node name="mp5" parent="." instance=ExtResource("4_88412")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44651, 1.09051, 6.28971)
 
-[node name="M14" parent="." instance=ExtResource("4_3w8de")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06324, 6.27708)
+[node name="USP" parent="." instance=ExtResource("4_8okts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86985, 1.06324, 6.31163)
 
-[node name="USP" parent="M14" instance=ExtResource("4_8okts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15453, 0, 0.0345483)
+[node name="M14" parent="." instance=ExtResource("4_3w8de")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10184, 1.06324, 6.27708)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.484035, 6.5674)
