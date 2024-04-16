@@ -193,7 +193,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f0u24")
 
-[node name="MP5" type="RigidBody3D"]
+[node name="MP5SD" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
 collision_layer = 8
 collision_mask = 9

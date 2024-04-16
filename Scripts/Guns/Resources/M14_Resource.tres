@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b5k0vb48uadrv"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b5k0vb48uadrv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_rfvcw"]
 
@@ -8,8 +8,9 @@ name = &"M14"
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 80
+weaponCaliber = "7,62MM"
 reloadTime = 2.0
-fireMode = Array[String](["Semi"])
+allowsFireSelection = false
 isAutomatic = false
 cadency = 0.0
 recoil = Vector3(1, 0.2, 0.1)

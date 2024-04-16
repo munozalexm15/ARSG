@@ -10,7 +10,8 @@ extends CenterContainer
 
 @onready var weaponName = $"../HBoxContainer/VBoxContainer/WeaponName"
 @onready var ammoCounter = $"../HBoxContainer/VBoxContainer/Ammo indicator"
-@onready var weaponFireMode = $"../HBoxContainer/FireMode"
+@onready var weaponFireMode = $"../HBoxContainer/VBoxContainer2/FireMode"
+@onready var weaponCaliber = $"../HBoxContainer/VBoxContainer2/WeaponCaliber"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

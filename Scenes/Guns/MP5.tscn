@@ -8,7 +8,7 @@
 [ext_resource type="Curve" uid="uid://bfygc4tql0q44" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_X.tres" id="4_xwwqb"]
 [ext_resource type="Curve" uid="uid://dokukyuqosg8s" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_Z.tres" id="5_65ymy"]
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
-[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://GameResources/Textures/CharacterTextures/PlayerArms.png" id="6_oc4s7"]
+[ext_resource type="Texture2D" uid="uid://dh16bf0kqv8vn" path="res://Resources/Textures/CharacterTextures/PlayerArms.png" id="6_oc4s7"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yitt4"]

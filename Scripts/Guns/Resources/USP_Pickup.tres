@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b4bkukrp71fwe"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b4bkukrp71fwe"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_frity"]
 
@@ -8,8 +8,9 @@ name = &"USP"
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 80
+weaponCaliber = ".45 ACP"
 reloadTime = 0.0
-fireMode = Array[String](["Semi"])
+allowsFireSelection = false
 isAutomatic = false
 cadency = 10.0
 recoil = Vector3(0, 0, 0)

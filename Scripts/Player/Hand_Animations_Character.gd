@@ -62,6 +62,7 @@ func _physics_process(delta):
 	
 	player.hud.weaponFireMode.text = "Auto" if actualWeapon.weaponData.isAutomatic else "Semi"
 	player.hud.weaponName.text = actualWeapon.weaponData.name
+	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	#cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
@@ -200,7 +201,12 @@ func _on_reload_timer_timeout():
 		if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
 			actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
 			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
-		
+			
+			#If both weapons share the same caliber, subtract to both weapons the reserve ammo
+			for x in weaponHolder.get_child_count():
+				if weaponHolder.get_child(x) != actualWeapon and weaponHolder.get_child(x).weaponData.weaponCaliber == actualWeapon.weaponData.weaponCaliber:
+					weaponHolder.get_child(x).weaponData.reserveAmmo -=  actualWeapon.weaponData.magSize - ammoLeft
+	
 		#if not, give the remaining reserve ammo to the mag
 		else:
 			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmmo
@@ -224,7 +230,13 @@ func _on_interact_ray_swap_weapon(body):
 			drop_weapon(actualWeapon.weaponData.name)
 		
 		if weapon_equipped:
-			weapon_equipped.weaponData.reserveAmmo += body.weaponData.bulletsInMag
+			var randomMagAmmo = randf_range(0, body.weaponData.magSize)
+			
+			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
+			for x in weaponHolder.get_child_count():
+				if weaponHolder.get_child(x) != weapon_equipped and weaponHolder.get_child(x).weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
+					weaponHolder.get_child(x).weaponData.reserveAmmo += randomMagAmmo
+			weapon_equipped.weaponData.reserveAmmo += randomMagAmmo
 			body.queue_free()
 		
 		elif not weapon_equipped and weaponHolder.get_child_count() < 2:
@@ -239,6 +251,9 @@ func _on_interact_ray_swap_weapon(body):
 			actual_weapon_index = 1
 			loadWeapon(actual_weapon_index)
 			actualWeapon = weaponHolder.get_child(actual_weapon_index)
-			actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
+			
+			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
+			var randomMagAmmo = randf_range(0, body.weaponData.magSize)
+			actualWeapon.weaponData.bulletsInMag = randomMagAmmo
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")

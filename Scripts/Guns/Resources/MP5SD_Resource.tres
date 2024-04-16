@@ -8,6 +8,7 @@ name = &"MP5SD"
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 180
+weaponCaliber = "9MM"
 reloadTime = 2.5
 allowsFireSelection = true
 isAutomatic = true
