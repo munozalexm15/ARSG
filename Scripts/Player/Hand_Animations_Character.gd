@@ -176,7 +176,7 @@ func drop_weapon(name):
 		var spawnedWeapon = weapon_to_spawn.instantiate()
 		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
 		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
-		print(spawnedWeapon.weaponData.bulletsInMag)
+		spawnedWeapon.isAlreadyGrabbed = true
 		spawnedWeapon.set_global_transform(weaponHolder.get_global_transform())
 		var world = get_tree().get_root().get_child(0)
 		world.add_child(spawnedWeapon)
@@ -227,11 +227,11 @@ func _on_interact_ray_swap_weapon(body):
 				weapon_equipped = weaponHolder.get_child(x)
 		
 		if not weapon_equipped and weaponHolder.get_child_count() == 2:
+			
 			drop_weapon(actualWeapon.weaponData.name)
 		
 		if weapon_equipped:
 			var randomMagAmmo = randf_range(0, body.weaponData.magSize)
-			
 			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
 			for x in weaponHolder.get_child_count():
 				if weaponHolder.get_child(x) != weapon_equipped and weaponHolder.get_child(x).weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
@@ -254,6 +254,12 @@ func _on_interact_ray_swap_weapon(body):
 			
 			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
 			var randomMagAmmo = randf_range(0, body.weaponData.magSize)
-			actualWeapon.weaponData.bulletsInMag = randomMagAmmo
+			var randomReserveAmmo = randf_range(body.weaponData.reserveAmmo / 3, body.weaponData.reserveAmmo)
+			if (not body.isAlreadyGrabbed):
+				actualWeapon.weaponData.bulletsInMag = randomMagAmmo
+				actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
+			else:
+				actualWeapon.weaponData.bulletsInMag = body.weaponData.bulletsInMag
+				actualWeapon.weaponData.reserveAmmo = body.weaponData.reserveAmmo
 			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 			animationPlayer.play("SwapWeapon")
