@@ -1,6 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://f3b2byxfofl5"]
-
-[ext_resource type="Texture2D" uid="uid://dv0mvhd5mb2mv" path="res://Resources/Textures/CharacterTextures/GermanPoliceOfficer_Face128.jpg" id="1_hrkv6"]
-
-[resource]
-albedo_texture = ExtResource("1_hrkv6")
