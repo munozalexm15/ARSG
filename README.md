@@ -4,6 +4,7 @@
 ### GUN PLAY
  - Bullet impact decals
  - Add clipping gun prevention
+ - Fix player starter weapons ammo is saved even after swapping
  - Weapon ammo sharing based of the caliber -> Done, think if it is best to load weapon on switch or make it that the ammo is stored in the one that's dropped
 
 ### MECHANICS
