@@ -5,8 +5,8 @@
  - Bullet impact decals
  - Add clipping gun prevention
  - Weapon ammo sharing based of the caliber -> WIP, it only remais: 
-	- When switching between two weapons with same caliber, don't reduce / randomize the ammo reserve
 	- Change that if two same weapons with same caliber swap weapons, the new weapon keeps the other weapons ammo reserve
+	- Change that if you pickup ammo for a weapon with same caliber and then swap that weapon for the one with 0 bullets put it back to 0
 
 ### MECHANICS
  - Add ammo boxes (refills actual weapon or both)

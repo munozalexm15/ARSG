@@ -244,17 +244,20 @@ func _on_interact_ray_swap_weapon(body, isSwapping):
 		#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it
 		if weapon_equipped and weapon_with_same_caliber and not isSwapping:
 			var randomReserveAmmo = randf_range(body.weaponData.magSize, body.weaponData.reserveAmmo / 2)
+			
 			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
 			if weapon_with_same_caliber != weapon_equipped and weapon_with_same_caliber.weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
 				weapon_with_same_caliber += randomReserveAmmo
+			print("hola")
 			weapon_equipped.weaponData.reserveAmmo += randomReserveAmmo
 			body.queue_free()
 		
 		#if there is no weapon equipped but one or 2 weapons have same caliber -> add ammo to them, but don't destroy weapon
 		if not weapon_equipped and weapon_with_same_caliber:
-			weapon_with_same_caliber.weaponData.reserveAmmo += body.weaponData.reserveAmmo
-			body.weaponData.reserveAmmo = 0
-		
+			if not body.isAlreadyGrabbed:
+				weapon_with_same_caliber.weaponData.reserveAmmo += body.weaponData.reserveAmmo
+				body.weaponData.reserveAmmo = 0
+			
 			if isSwapping:
 				drop_weapon(actualWeapon.weaponData.name)
 		
@@ -294,6 +297,6 @@ func _on_interact_ray_swap_weapon(body, isSwapping):
 			#if both weapons have the same caliber, add more ammo to both reserve
 			if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
 				print("aqui")
-				weaponHolder.get_child(1).weaponData.reserveAmmo += weaponHolder.get_child(0).weaponData.reserveAmmo
-				weaponHolder.get_child(0).weaponData.reserveAmmo += weaponHolder.get_child(1).weaponData.reserveAmmo
+				weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
+				weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
 			animationPlayer.play("SwapWeapon")
