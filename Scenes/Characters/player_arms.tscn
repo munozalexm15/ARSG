@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4ujkypjkxc1a"]
+[gd_scene load_steps=10 format=3 uid="uid://b4ujkypjkxc1a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
+[ext_resource type="PackedScene" uid="uid://ny8x12admrv7" path="res://Scenes/Guns/M14.tscn" id="2_dtqwn"]
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_m0em1"]
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -161,15 +162,15 @@ ads_position = Vector3(0, -0.6, -1.26)
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2]
+blend_times = [&"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
-[node name="USP2" parent="WeaponHolder" instance=ExtResource("3_m0em1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.276891, 0, 0.232197)
+[node name="M14" parent="WeaponHolder" instance=ExtResource("2_dtqwn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78, -0.724, 1.299)
 handsNode = NodePath("../..")
 
 [node name="USP" parent="WeaponHolder" instance=ExtResource("3_m0em1")]
