@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Control
 
 @export var dot_radius : float = 1.0
 @export var dot_color : Color = Color.WHITE
@@ -8,31 +8,29 @@ extends CenterContainer
 @export var reticle_lines : Array[Line2D]
 @export var player_controller : CharacterBody3D
 
-@onready var weaponName = $"../HBoxContainer/VBoxContainer/WeaponName"
-@onready var ammoCounter = $"../HBoxContainer/VBoxContainer/Ammo indicator"
-@onready var weaponFireMode = $"../HBoxContainer/VBoxContainer2/FireMode"
-@onready var weaponCaliber = $"../HBoxContainer/VBoxContainer2/WeaponCaliber"
+@onready var weaponName = $PanelContainer/HBoxContainer/VBoxContainer/WeaponName
+@onready var ammoCounter = $"PanelContainer/HBoxContainer/VBoxContainer/Ammo indicator"
+@onready var weaponFireMode = $PanelContainer/HBoxContainer/VBoxContainer2/FireMode
+@onready var weaponCaliber = $PanelContainer/HBoxContainer/VBoxContainer2/WeaponCaliber
+@onready var crosshair = $CenterContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	queue_redraw()
+	crosshair.queue_redraw()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("ADS"):
-		queue_redraw()
+		crosshair.queue_redraw()
 		for x in reticle_lines.size():
 			reticle_lines[x].visible = false
 	else:
-		queue_redraw()
+		crosshair.queue_redraw()
 		for x in reticle_lines.size():
 			reticle_lines[x].visible = true
 		adjust_reticle_size()
 	
-func _draw():
-	if not Input.is_action_pressed("ADS"):
-		draw_circle(Vector2(0,0), dot_radius, dot_color)
 
 func adjust_reticle_size():
 	var player_velocity = player_controller.get_real_velocity()

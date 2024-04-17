@@ -120,7 +120,7 @@ crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/Camera3D")
-hudNode = NodePath("UI/CenterContainer")
+hudNode = NodePath("UI")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -187,7 +187,7 @@ shape = SubResource("CapsuleShape3D_rgde6")
 [node name="StandingRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("reticle_lines", "player_controller")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -195,27 +195,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("11_qxtnj")
+reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Right"), NodePath("CenterContainer/Down"), NodePath("CenterContainer/Left")]
+player_controller = NodePath("..")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.764
-anchor_top = 0.787
-anchor_right = 0.963
-anchor_bottom = 0.91
-offset_left = -65.1281
-offset_top = 0.0239563
-offset_right = -0.376099
-offset_bottom = 0.320007
-grow_horizontal = 0
-grow_vertical = 0
+anchor_left = 0.771
+anchor_top = 0.049
+anchor_right = 0.985
+anchor_bottom = 0.196
+offset_left = -0.192017
+offset_top = 0.247999
+offset_right = 0.279907
+offset_bottom = -0.00800323
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="FireMode" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer2"]
+[node name="FireMode" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -224,7 +228,7 @@ theme_override_font_sizes/normal_font_size = 25
 text = "NAME
 "
 
-[node name="WeaponCaliber" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer2"]
+[node name="WeaponCaliber" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -233,19 +237,19 @@ theme_override_font_sizes/normal_font_size = 25
 text = "NAME
 "
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="WeaponName" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer"]
+[node name="WeaponName" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 25
 text = "NAME
 "
 
-[node name="Ammo indicator" type="RichTextLabel" parent="UI/HBoxContainer/VBoxContainer"]
+[node name="Ammo indicator" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 25
@@ -254,14 +258,14 @@ text = "31/180"
 [node name="CenterContainer2" type="CenterContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.578
-anchor_right = 0.5
-anchor_bottom = 0.578
-offset_left = -9.0
-offset_top = -23.544
-offset_right = 10.0
-offset_bottom = 23.456
+anchor_left = 0.502
+anchor_top = 0.623
+anchor_right = 0.502
+anchor_bottom = 0.623
+offset_left = -11.304
+offset_top = -20.704
+offset_right = 10.696
+offset_bottom = 21.296
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -270,7 +274,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "d"
 
-[node name="CenterContainer" type="CenterContainer" parent="UI" node_paths=PackedStringArray("reticle_lines", "player_controller")]
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -279,9 +283,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("11_qxtnj")
-reticle_lines = [NodePath("Top"), NodePath("Right"), NodePath("Down"), NodePath("Left")]
-player_controller = NodePath("../..")
 
 [node name="Top" type="Line2D" parent="UI/CenterContainer"]
 material = SubResource("ShaderMaterial_hh3ed")

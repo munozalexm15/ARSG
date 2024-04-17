@@ -58,12 +58,12 @@ shader_parameter/resolution_scale = 2
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_loofa"]
 panorama = ExtResource("8_1ndyf")
 
-[sub_resource type="Sky" id="Sky_03k1s"]
+[sub_resource type="Sky" id="Sky_1y8jk"]
 sky_material = SubResource("PanoramaSkyMaterial_loofa")
 
 [sub_resource type="Environment" id="Environment_80335"]
 background_energy_multiplier = 16.0
-sky = SubResource("Sky_03k1s")
+sky = SubResource("Sky_1y8jk")
 ssao_radius = 4.7
 ssao_intensity = 3.33
 ssao_horizon = 0.0

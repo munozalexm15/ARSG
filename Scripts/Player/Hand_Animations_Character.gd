@@ -248,7 +248,6 @@ func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
 			for x in weaponHolder.get_child_count():
 				if weaponHolder.get_child(x) != weapon_equipped and weaponHolder.get_child(x).weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
 					if pickupWeapon.isAlreadyGrabbed:
-						print("a")
 						weaponHolder.get_child(x).weaponData.reserveAmmo += pickupWeapon.weaponData.reserveAmmo
 					else:
 						weaponHolder.get_child(x).weaponData.reserveAmmo += randomReserveAmmo

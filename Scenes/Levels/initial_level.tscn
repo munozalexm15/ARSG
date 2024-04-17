@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://dt0rs4bad2jg6"]
+
+[ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
+[ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="3_18ica"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_j0mor"]
+[ext_resource type="Texture2D" uid="uid://dejqf5b8ss5bk" path="res://GameResources/Meshes/City/roadDirt_pavement_concrete.png" id="3_tp1hl"]
+[ext_resource type="Texture2D" uid="uid://pco2trkn4aie" path="res://GameResources/Meshes/City/wallB_metal_wall.png" id="4_j0jsy"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
+panorama = ExtResource("1_4v70f")
+
+[sub_resource type="Sky" id="Sky_03k1s"]
+sky_material = SubResource("PanoramaSkyMaterial_5bswf")
+
+[sub_resource type="Environment" id="Environment_8f8v4"]
+background_mode = 2
+sky = SubResource("Sky_03k1s")
+ambient_light_source = 3
+ssao_radius = 4.7
+ssao_intensity = 3.33
+ssao_horizon = 0.0
+fog_light_color = Color(0.552941, 0.568627, 0.376471, 1)
+fog_sky_affect = 0.37
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ain5v"]
+render_priority = 0
+shader = ExtResource("3_j0mor")
+shader_parameter/jitter = 0.1
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(0.1, 0.1)
+shader_parameter/albedo = ExtResource("3_tp1hl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6nhl"]
+render_priority = 0
+shader = ExtResource("3_j0mor")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(0.5, 1)
+shader_parameter/albedo = ExtResource("4_j0jsy")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_8f8v4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.63124, 0.774265, -0.0452627, -0.234267, 0.245975, 0.94054, 0.739361, -0.583103, 0.336655, -0.736377, 4.67972, -0.410247)
+light_energy = 0.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_layer = 11
+collision_mask = 11
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48819, 0, -1.88147)
+size = Vector3(18, 1, 18)
+material = SubResource("ShaderMaterial_ain5v")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.744828, 2.37841, -7.08215)
+size = Vector3(12.1499, 3.46765, 1)
+material = SubResource("ShaderMaterial_t6nhl")
+
+[node name="Character" parent="." instance=ExtResource("3_18ica")]
+transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, 0.0704326, 1.12478, -0.0875039)
