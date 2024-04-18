@@ -44,6 +44,7 @@ func _ready():
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 	loadWeapon(actual_weapon_index)
+	
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -59,10 +60,14 @@ func _physics_process(delta):
 		animationPlayer.play("Reload")
 		isReloading = true
 	
+	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
+	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
+	
 	player.hud.weaponFireMode.text = "Auto" if actualWeapon.weaponData.isAutomatic else "Semi"
 	player.hud.weaponName.text = actualWeapon.weaponData.name
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
+	
 	#cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
@@ -99,15 +104,22 @@ func mouse_swap_weapon_logic():
 		
 		animationPlayer.play("SwapWeapon")
 		
+		
 	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
 		isSwappingWeapon = true
-		if actual_weapon_index >= 0:
-			actual_weapon_index -= 1
+		if actual_weapon_index < weaponHolder.get_child_count() -1:
+			actual_weapon_index += 1
 		else:
-			actual_weapon_index = get_child_count() -1
-			
+			actual_weapon_index = 0
 		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+		
 		animationPlayer.play("SwapWeapon")
+		if actual_weapon_index == 0:
+			player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+		#backwards
+		else:
+			player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
+	
 	
 func swap_weapon():
 	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
@@ -145,6 +157,12 @@ func _on_animation_player_animation_finished(anim_name):
 			animationPlayer.play("Idle")
 		elif player.state == "Run" and not isReloading:
 			animationPlayer.play("Run")
+		
+		if actual_weapon_index == 0:
+			player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+		#backwards
+		else:
+			player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
 
 func reload_listener():
 	if actualWeapon.weaponData.bulletsInMag <= 0 and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:

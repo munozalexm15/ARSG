@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1ndfa7nd5f1l"]
+[gd_scene load_steps=18 format=3 uid="uid://b1ndfa7nd5f1l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Crouch.gd" id="7_nbd32"]
 [ext_resource type="PackedScene" uid="uid://b4ujkypjkxc1a" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
-[ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="11_qxtnj"]
+[ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -107,8 +107,6 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 height = 1.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
-
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 2
 collision_mask = 2
@@ -152,6 +150,9 @@ playerNode = NodePath("../../../..")
 wait_time = 0.2
 one_shot = true
 
+[node name="UI" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("11_l81ke")]
+player_controller = NodePath("..")
+
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
 initial_state = NodePath("Air")
@@ -186,120 +187,6 @@ shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 2, 0)
-
-[node name="UI" type="Control" parent="." node_paths=PackedStringArray("reticle_lines", "player_controller")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("11_qxtnj")
-reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Right"), NodePath("CenterContainer/Down"), NodePath("CenterContainer/Left")]
-player_controller = NodePath("..")
-
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.771
-anchor_top = 0.049
-anchor_right = 0.985
-anchor_bottom = 0.196
-offset_left = -0.192017
-offset_top = 0.247999
-offset_right = 0.279907
-offset_bottom = -0.00800323
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="FireMode" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
-theme_override_font_sizes/normal_font_size = 25
-text = "NAME
-"
-
-[node name="WeaponCaliber" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.3
-theme_override_font_sizes/normal_font_size = 25
-text = "NAME
-"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-
-[node name="WeaponName" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 25
-text = "NAME
-"
-
-[node name="Ammo indicator" type="RichTextLabel" parent="UI/PanelContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 25
-text = "31/180"
-
-[node name="CenterContainer2" type="CenterContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.502
-anchor_top = 0.623
-anchor_right = 0.502
-anchor_bottom = 0.623
-offset_left = -11.304
-offset_top = -20.704
-offset_right = 10.696
-offset_bottom = 21.296
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Label" type="Label" parent="UI/CenterContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "d"
-
-[node name="CenterContainer" type="CenterContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Top" type="Line2D" parent="UI/CenterContainer"]
-material = SubResource("ShaderMaterial_hh3ed")
-points = PackedVector2Array(0, -5, 0, -15)
-width = 2.0
-
-[node name="Right" type="Line2D" parent="UI/CenterContainer"]
-points = PackedVector2Array(5, 0, 15, 0)
-width = 2.0
-
-[node name="Down" type="Line2D" parent="UI/CenterContainer"]
-points = PackedVector2Array(0, 5, 0, 15)
-width = 2.0
-
-[node name="Left" type="Line2D" parent="UI/CenterContainer"]
-points = PackedVector2Array(-5, 0, -15, 0)
-width = 2.0
 
 [connection signal="swap_weapon" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_swap_weapon"]
 [connection signal="timeout" from="Head/eyesHolder/armsHolder/InteractTimer" to="Head/eyesHolder/armsHolder/InteractRay" method="_on_interact_timer_timeout"]

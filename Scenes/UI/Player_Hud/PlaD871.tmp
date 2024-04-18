@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=8 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -6,66 +6,86 @@
 
 [sub_resource type="Animation" id="Animation_vpx5b"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../MainWeaponImage:top_level")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PrimaryWeaponImage:top_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_igp6k"]
 resource_name = "swap_gun"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PrimaryWeaponImage:size")
+tracks/0/path = NodePath("../MainWeaponImage:top_level")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PrimaryWeaponImage:top_level")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PrimaryWeaponImage:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(300, 150), Vector2(100, 50)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SecondaryWeaponImage:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SecondaryWeaponImage:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(100, 50), Vector2(300, 150)]
-}
-
-[sub_resource type="Animation" id="Animation_ok5ee"]
-resource_name = "swap_gun_backwards"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PrimaryWeaponImage:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(100, 50), Vector2(300, 150)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SecondaryWeaponImage:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(300, 150), Vector2(100, 50)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ros"]
 _data = {
 "RESET": SubResource("Animation_vpx5b"),
-"swap_gun": SubResource("Animation_igp6k"),
-"swap_gun_backwards": SubResource("Animation_ok5ee")
+"swap_gun": SubResource("Animation_igp6k")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
@@ -85,8 +105,6 @@ reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Righ
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-speed_scale = 4.0
-blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -194,10 +212,10 @@ width = 2.0
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.087
-anchor_bottom = 0.077
-offset_right = 99.776
-offset_bottom = 50.104
+anchor_right = 0.26
+anchor_bottom = 0.231
+offset_right = 300.0
+offset_bottom = 150.0
 size_flags_horizontal = 0
 size_flags_vertical = 2
 texture = ExtResource("3_o1pwj")
@@ -208,10 +226,10 @@ stretch_mode = 4
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.26
-anchor_bottom = 0.231
-offset_right = -199.52
-offset_bottom = -99.688
+anchor_right = 0.087
+anchor_bottom = 0.077
+offset_right = 100.0
+offset_bottom = 50.0
 size_flags_vertical = 0
 texture = ExtResource("2_37f7l")
 expand_mode = 1

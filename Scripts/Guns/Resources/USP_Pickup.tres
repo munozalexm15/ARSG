@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://b4bkukrp71fwe"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://b4bkukrp71fwe"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_frity"]
+[ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_njil8"]
 
 [resource]
 script = ExtResource("1_frity")
@@ -17,3 +18,4 @@ recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/USP.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/USP_Pickup.tscn"
 weaponSpawnPosition = Vector3(0, 0.132, 0.253)
+weaponImage = ExtResource("2_njil8")

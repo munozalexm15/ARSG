@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://d32y604kn4ny4"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://d32y604kn4ny4"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_8lpsg"]
+[ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_l5w2m"]
 
 [resource]
 script = ExtResource("1_8lpsg")
@@ -17,3 +18,4 @@ recoil = Vector3(0.4, 0.4, 0.1)
 weaponScene = "res://Scenes/Guns/MP5SD.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.16, -0.921, 1.253)
+weaponImage = ExtResource("2_l5w2m")

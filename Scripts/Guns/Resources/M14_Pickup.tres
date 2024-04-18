@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3 uid="uid://dut7j1qco7vmk"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://dut7j1qco7vmk"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_w1rw5"]
+[ext_resource type="Texture2D" uid="uid://dae3hkw8ofmjj" path="res://GameResources/Textures/GunsIcons/M14_Icon.png" id="2_o0uwa"]
 
 [resource]
 script = ExtResource("1_w1rw5")
@@ -17,3 +18,4 @@ recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/M14.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
 weaponSpawnPosition = Vector3(0.779639, -0.723751, 1.29897)
+weaponImage = ExtResource("2_o0uwa")

@@ -14,10 +14,15 @@ extends Control
 @onready var weaponCaliber = $PanelContainer/HBoxContainer/VBoxContainer2/WeaponCaliber
 @onready var crosshair = $CenterContainer
 
+@onready var primaryWeaponIcon : TextureRect = $PrimaryWeaponImage
+@onready var secondaryWeaponIcon : TextureRect= $SecondaryWeaponImage
+
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	crosshair.queue_redraw()
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
