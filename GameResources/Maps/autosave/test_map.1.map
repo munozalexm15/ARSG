@@ -1,0 +1,78 @@
+// Game: ARGS
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( -128 -80 -16 ) ( -128 -79 -16 ) ( -128 -80 -15 ) grass_grass 0 0 0 1 1
+( -128 -80 -16 ) ( -128 -80 -15 ) ( -127 -80 -16 ) grass_grass 0 0 0 1 1
+( -128 -80 -16 ) ( -127 -80 -16 ) ( -128 -79 -16 ) grass_grass 0 0 0 1 1
+( -32 48 0 ) ( -32 49 0 ) ( -31 48 0 ) grass_grass 0 0 0 1 1
+( -32 48 0 ) ( -31 48 0 ) ( -32 48 1 ) grass_grass 0 0 0 1 1
+( -32 48 0 ) ( -32 48 1 ) ( -32 49 0 ) grass_grass 0 0 0 1 1
+}
+// brush 1
+{
+( 32 -80 -16 ) ( 32 -79 -16 ) ( 32 -80 -15 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 32 -80 -16 ) ( 32 -80 -15 ) ( 33 -80 -16 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 32 -80 -16 ) ( 33 -80 -16 ) ( 32 -79 -16 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 64 48 0 ) ( 64 49 0 ) ( 65 48 0 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 64 48 0 ) ( 65 48 0 ) ( 64 48 1 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 64 48 0 ) ( 64 48 1 ) ( 64 49 0 ) roadAsphalt_center_asphalt 0 0 0 1 1
+}
+// brush 2
+{
+( 0 -80 -16 ) ( 0 -79 -16 ) ( 0 -80 -15 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 0 -80 -16 ) ( 0 -80 -15 ) ( 1 -80 -16 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 0 -80 -16 ) ( 1 -80 -16 ) ( 0 -79 -16 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 32 48 0 ) ( 32 49 0 ) ( 33 48 0 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 32 48 0 ) ( 33 48 0 ) ( 32 48 1 ) roadAsphalt_center_asphalt 0 0 0 1 1
+( 32 48 0 ) ( 32 48 1 ) ( 32 49 0 ) roadAsphalt_center_asphalt 0 0 0 1 1
+}
+// brush 3
+{
+( -32 -80 -16 ) ( -32 -79 -16 ) ( -32 -80 -15 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -32 -80 -16 ) ( -32 -80 -15 ) ( -31 -80 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -32 -80 -16 ) ( -31 -80 -16 ) ( -32 -79 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 48 0 ) ( 0 49 0 ) ( 1 48 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 48 0 ) ( 1 48 0 ) ( 0 48 1 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 48 0 ) ( 0 48 1 ) ( 0 49 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+}
+// brush 4
+{
+( 64 -80 -16 ) ( 64 -79 -16 ) ( 64 -80 -15 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -80 -16 ) ( 64 -80 -15 ) ( 65 -80 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -80 -16 ) ( 65 -80 -16 ) ( 64 -79 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 48 0 ) ( 96 49 0 ) ( 97 48 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 48 0 ) ( 97 48 0 ) ( 96 48 1 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 48 0 ) ( 96 48 1 ) ( 96 49 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+}
+// brush 5
+{
+( -32 -208 -16 ) ( -32 -207 -16 ) ( -32 -208 -15 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -32 -208 -16 ) ( -32 -208 -15 ) ( -31 -208 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -32 -208 -16 ) ( -31 -208 -16 ) ( -32 -207 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 -80 0 ) ( 0 -79 0 ) ( 1 -80 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 -80 0 ) ( 1 -80 0 ) ( 0 -80 1 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 0 -80 0 ) ( 0 -80 1 ) ( 0 -79 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+}
+// brush 6
+{
+( 64 -208 -16 ) ( 64 -207 -16 ) ( 64 -208 -15 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -208 -16 ) ( 64 -208 -15 ) ( 65 -208 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -208 -16 ) ( 65 -208 -16 ) ( 64 -207 -16 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 -80 0 ) ( 96 -79 0 ) ( 97 -80 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 -80 0 ) ( 97 -80 0 ) ( 96 -80 1 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 96 -80 0 ) ( 96 -80 1 ) ( 96 -79 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+}
+// brush 7
+{
+( 0 -208 -16 ) ( 0 -207 -16 ) ( 0 -208 -15 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+( 0 -208 -16 ) ( 0 -208 -15 ) ( 1 -208 -16 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+( 0 -208 -16 ) ( 1 -208 -16 ) ( 0 -207 -16 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+( 64 -80 0 ) ( 64 -79 0 ) ( 65 -80 0 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+( 64 -80 0 ) ( 65 -80 0 ) ( 64 -80 1 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+( 64 -80 0 ) ( 64 -80 1 ) ( 64 -79 0 ) roadAsphalt_corner_asphalt 0 0 0 1 1
+}
+}

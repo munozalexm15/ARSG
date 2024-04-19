@@ -112,7 +112,7 @@ func _physics_process(delta):
 	
 	#Check for frontal collisions with a wall
 	_checkCollisionWithWall()
-	
+	leaning(delta)
 	move_and_slide()
 
 func _on_state_machine_transitioned(state_name, old_state):
@@ -152,3 +152,11 @@ func _checkCollisionWithWall():
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
 
+func leaning(delta):
+	if Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right"):
+		rotation_degrees.z = lerp(rotation_degrees.z, 15.0, delta * 5)
+	elif  !Input.is_action_pressed("Lean Left") and Input.is_action_pressed("Lean Right"):
+		rotation_degrees.z = lerp(rotation_degrees.z, -15.0, delta * 5)
+	elif (Input.is_action_pressed("Lean Left") and Input.is_action_pressed("Lean Right")) or (!Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right")):
+		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
+	

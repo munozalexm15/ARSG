@@ -1,0 +1,53 @@
+// Game: ARGS
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+// brush 0
+{
+( -64 -64 0 ) ( -208 -64 -144 ) ( -208 64 -144 ) roadAsphalt_corner_tiles 16 32 0 1 1
+( -64 -64 0 ) ( 64 -80 -144 ) ( -208 -64 -144 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -64 -64 0 ) ( 64 -64 0 ) ( 64 -80 -144 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -80 -144 ) ( 64 48 -144 ) ( -208 64 -144 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -64 64 0 ) ( 64 64 0 ) ( 64 -64 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( -208 64 -144 ) ( 64 64 0 ) ( -64 64 0 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 48 -144 ) ( 64 64 0 ) ( -208 64 -144 ) roadAsphalt_corner_tiles 0 0 0 1 1
+( 64 -64 0 ) ( 64 64 0 ) ( 64 48 -144 ) roadAsphalt_corner_tiles 16 16 0 1 1
+}
+// brush 1
+{
+( -208 -80 -160 ) ( -208 -79 -160 ) ( -208 -80 -159 ) wall_typeA_concrete 0 0 0 1 1
+( -208 -80 -160 ) ( -208 -80 -159 ) ( -207 -80 -160 ) wall_typeA_concrete 0 0 0 1 1
+( -208 -80 -160 ) ( -207 -80 -160 ) ( -208 -79 -160 ) wall_typeA_concrete 0 0 0 1 1
+( -192 64 -144 ) ( -192 65 -144 ) ( -191 64 -144 ) wall_typeA_concrete 0 0 0 1 1
+( -192 64 -144 ) ( -191 64 -144 ) ( -192 64 -143 ) wall_typeA_concrete 0 0 0 1 1
+( -192 64 -144 ) ( -192 64 -143 ) ( -192 65 -144 ) wall_typeA_concrete 0 0 0 1 1
+}
+// brush 2
+{
+( -336 -384 -176 ) ( -336 -376 -176 ) ( -336 -384 -175 ) wallA_garage_concrete 0 0 0 1 1
+( -336 -384 -176 ) ( -336 -384 -175 ) ( -335 -384 -176 ) wallA_garage_concrete 0 0 0 1 1
+( -336 -384 -176 ) ( -335 -384 -176 ) ( -336 -376 -176 ) wallA_garage_concrete 0 0 0 1 1
+( -192 1152 -160 ) ( -192 1160 -160 ) ( -191 1152 -160 ) wallA_garage_concrete 0 0 0 1 1
+( -192 1152 -160 ) ( -191 1152 -160 ) ( -192 1152 -159 ) wallA_garage_concrete 0 0 0 1 1
+( -192 1152 -160 ) ( -192 1152 -159 ) ( -192 1160 -160 ) wallA_garage_concrete 0 0 0 1 1
+}
+// brush 3
+{
+( -208 64 -160 ) ( -208 66 -160 ) ( -208 64 -152 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -208 64 -160 ) ( -208 64 -152 ) ( -207 64 -160 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -208 64 -160 ) ( -207 64 -160 ) ( -208 66 -160 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -192 640 -32 ) ( -192 642 -32 ) ( -191 640 -32 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -192 640 -32 ) ( -191 640 -32 ) ( -192 640 -24 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -192 640 -32 ) ( -192 640 -24 ) ( -192 642 -32 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+}
+// brush 4
+{
+( -352 64 -160 ) ( -352 66 -160 ) ( -352 64 -152 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -352 64 -160 ) ( -352 64 -152 ) ( -351 64 -160 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -352 64 -160 ) ( -351 64 -160 ) ( -352 66 -160 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -336 640 -32 ) ( -336 642 -32 ) ( -335 640 -32 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -336 640 -32 ) ( -335 640 -32 ) ( -336 640 -24 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+( -336 640 -32 ) ( -336 640 -24 ) ( -336 642 -32 ) wallA_roofSlantDetailed_concrete 0 0 0 1 1
+}
+}

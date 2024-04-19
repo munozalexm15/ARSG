@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c2cd55gkpoti7" path="res://GameResources/Textures/Prototype Textures/Red/texture_01.png" id="4_lx04n"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_dither.gdshader" id="5_apkuc"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_27bo6"]
-[ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="8_1ndyf"]
 [ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="13_5ftpj"]
+[ext_resource type="Texture2D" uid="uid://d3ox6jgcviu3q" path="res://GameResources/SkyBox/kloppenheim_02_puresky_4k.exr" id="13_yaia3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5apve"]
 
@@ -55,15 +55,17 @@ shader_parameter/color_depth = 5
 shader_parameter/dithering = true
 shader_parameter/resolution_scale = 2
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_loofa"]
-panorama = ExtResource("8_1ndyf")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nuxu3"]
+panorama = ExtResource("13_yaia3")
 
-[sub_resource type="Sky" id="Sky_1y8jk"]
-sky_material = SubResource("PanoramaSkyMaterial_loofa")
+[sub_resource type="Sky" id="Sky_wfdj2"]
+sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 
 [sub_resource type="Environment" id="Environment_80335"]
-background_energy_multiplier = 16.0
-sky = SubResource("Sky_1y8jk")
+background_mode = 2
+background_energy_multiplier = 0.2
+sky = SubResource("Sky_wfdj2")
+ambient_light_source = 3
 ssao_radius = 4.7
 ssao_intensity = 3.33
 ssao_horizon = 0.0

@@ -266,7 +266,6 @@ _data = {
 resource_name = "HandMaterial"
 cull_mode = 2
 albedo_texture = ExtResource("5_33s3y")
-roughness = 0.0
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ocrc2"]
