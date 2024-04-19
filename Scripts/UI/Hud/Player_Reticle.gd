@@ -8,14 +8,13 @@ extends Control
 @export var reticle_lines : Array[Line2D]
 @export var player_controller : CharacterBody3D
 
-@onready var weaponName = $PanelContainer/HBoxContainer/VBoxContainer/WeaponName
-@onready var ammoCounter = $"PanelContainer/HBoxContainer/VBoxContainer/Ammo indicator"
-@onready var weaponFireMode = $PanelContainer/HBoxContainer/VBoxContainer2/FireMode
-@onready var weaponCaliber = $PanelContainer/HBoxContainer/VBoxContainer2/WeaponCaliber
+@onready var ammoCounter = $PanelContainer/HBoxContainer/VBoxContainer2/AmmoIndicator
+@onready var weaponFireMode = $PanelContainer/HBoxContainer/VBoxContainer/FireMode
+@onready var weaponCaliber = $PanelContainer/HBoxContainer/VBoxContainer/WeaponCaliber
 @onready var crosshair = $CenterContainer
 
-@onready var primaryWeaponIcon : TextureRect = $PrimaryWeaponImage
-@onready var secondaryWeaponIcon : TextureRect= $SecondaryWeaponImage
+@onready var primaryWeaponIcon : TextureRect = $VBoxContainer/PrimaryWeaponImage
+@onready var secondaryWeaponIcon : TextureRect= $VBoxContainer/SecondaryWeaponImage
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 

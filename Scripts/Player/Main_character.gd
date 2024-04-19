@@ -68,6 +68,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
+	hud.animationPlayer.play("swap_gun")
 
 func _input(event):
 	#If mouse is moving
