@@ -134,7 +134,6 @@ returnSpeed = 10.0
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121948, -0.0191351, 0.035057)
-visible = false
 shadow_enabled = true
 distance_fade_enabled = true
 spot_range = 10.0

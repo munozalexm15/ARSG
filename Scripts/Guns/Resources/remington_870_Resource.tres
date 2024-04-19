@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://djpuiinpxuhnt"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_xd4rt"]
+[ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_06jwl"]
+
+[resource]
+script = ExtResource("1_xd4rt")
+name = &"Remington870"
+magSize = 8
+bulletsInMag = 8
+reserveAmmo = 16
+weaponCaliber = "Cal. 12"
+reloadTime = 4.0
+allowsFireSelection = false
+isAutomatic = false
+cadency = 600.0
+recoil = Vector3(3, 1, 2)
+weaponScene = "res://GameResources/Meshes/Guns/Remington870/Remington870.blend"
+weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn"
+weaponSpawnPosition = Vector3(-3.01663, 0.615581, 0.814555)
+weaponImage = ExtResource("2_06jwl")
