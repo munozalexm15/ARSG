@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=15 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
+[ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 
 [sub_resource type="Animation" id="Animation_vpx5b"]
@@ -238,6 +239,26 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fd5yr"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_2gpvy"]
+font_size = 30
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ruw7"]
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wbprd"]
+font_size = 20
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_glh50"]
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
 
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
@@ -281,9 +302,10 @@ size_flags_stretch_ratio = 0.5
 [node name="AmmoIndicator" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "31/180
 "
+label_settings = SubResource("LabelSettings_2gpvy")
 horizontal_alignment = 2
 uppercase = true
 
@@ -297,6 +319,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "aaa"
+label_settings = SubResource("LabelSettings_5ruw7")
 horizontal_alignment = 2
 uppercase = true
 
@@ -304,27 +327,64 @@ uppercase = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "aaa"
+label_settings = SubResource("LabelSettings_wbprd")
 horizontal_alignment = 2
 uppercase = true
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.502
-anchor_top = 0.623
-anchor_right = 0.502
-anchor_bottom = 0.623
-offset_left = -11.304
-offset_top = -20.704
-offset_right = 10.696
-offset_bottom = 21.296
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -202.0
+offset_top = -227.0
+offset_right = 202.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="CenterContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2"]
+layout_mode = 2
+
+[node name="PickupAmmoContainer2" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer2/HBoxContainer/PickupAmmoContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "d"
+text = "Press 'interact'"
+label_settings = SubResource("LabelSettings_glh50")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="GrabAmmoIcon" type="TextureRect" parent="CenterContainer2/HBoxContainer/PickupAmmoContainer2"]
+layout_mode = 2
+texture = ExtResource("2_rrjfu")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="PickupWeaponContainer" type="VBoxContainer" parent="CenterContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer2/HBoxContainer/PickupWeaponContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hold 'Interact'
+"
+label_settings = SubResource("LabelSettings_glh50")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="GrabWeaponIcon" type="TextureRect" parent="CenterContainer2/HBoxContainer/PickupWeaponContainer"]
+layout_mode = 2
+texture = ExtResource("3_o1pwj")
+expand_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

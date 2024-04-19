@@ -1,6 +1,7 @@
 extends RayCast3D
 
-@onready var label = $"../../../../UI/CenterContainer2/Label"
+@export var hudNode := NodePath()
+@onready var hud : HUD = get_node(hudNode)
 @onready var InteractTimer : Timer = $"../InteractTimer"
 
 @onready var arms = $"../arms"
@@ -14,7 +15,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	label.text = ""
+	hud.marginContainer.visible = false
+	hud.pickupAmmoContainer.visible = false
+	hud.pickupWeaponContainer.visible = false
 	if is_colliding():
 		var interactable = get_collider()
 		var isInHolder = false
@@ -33,13 +36,20 @@ func _physics_process(delta):
 			# si no tiene un arma que no es del mismo calibre ni está equipada
 			
 			if isHoldingWeaponWithSameCaliber and not isInHolder:
-				label.text = "Press 'Interact' to pickup ammo\n Hold 'Interact to swap for " + interactable.weaponData.name
+				var weaponImage : TextureRect = hud.pickupWeaponContainer.get_child(1)
+				weaponImage.texture = interactable.weaponData.weaponImage
+				if interactable.weaponData.reserveAmmo > 0:
+					hud.marginContainer.visible = true
+					hud.pickupAmmoContainer.visible = true
+				hud.pickupWeaponContainer.visible = true
 			
 			elif isInHolder:
-				label.text = "Press 'Interact' to pickup ammo"
+				hud.pickupAmmoContainer.visible = true
 
 			elif not isInHolder and not isHoldingWeaponWithSameCaliber:
-				label.text = "Hold 'Interact' to swap for "  + interactable.weaponData.name
+				var weaponImage : TextureRect = hud.pickupWeaponContainer.get_child(1)
+				weaponImage.texture = interactable.weaponData.weaponImage
+				hud.pickupWeaponContainer.visible = true
 				
 			#grab ammo
 			if Input.is_action_just_pressed("Interact") and isInHolder:

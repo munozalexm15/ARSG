@@ -1,3 +1,4 @@
+class_name HUD
 extends Control
 
 @export var dot_radius : float = 1.0
@@ -15,6 +16,10 @@ extends Control
 
 @onready var primaryWeaponIcon : TextureRect = $VBoxContainer/PrimaryWeaponImage
 @onready var secondaryWeaponIcon : TextureRect= $VBoxContainer/SecondaryWeaponImage
+
+@onready var pickupAmmoContainer : VBoxContainer = $CenterContainer2/HBoxContainer/PickupAmmoContainer2
+@onready var marginContainer : MarginContainer = $CenterContainer2/HBoxContainer/MarginContainer
+@onready var pickupWeaponContainer : VBoxContainer = $CenterContainer2/HBoxContainer/PickupWeaponContainer
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 
