@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_xd4rt")
 name = &"Remington870"
+weaponType = "Shotgun"
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 16

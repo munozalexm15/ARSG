@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_5asoi")
 name = &"USP"
+weaponType = "Pistol"
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 80

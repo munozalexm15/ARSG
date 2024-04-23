@@ -26,7 +26,7 @@ var actual_animation = ""
 var isSwappingWeapon = false
 var isReloading = false
 
-var cam_rotation_amount : float = 0.01
+var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01
 var weapon_sway_amount : float = 5
 var invert_weapon_sway : bool = false
@@ -68,7 +68,7 @@ func _physics_process(delta):
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
-	#cam_tilt(player.input_direction.x, delta)
+	cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
 	reload_listener()

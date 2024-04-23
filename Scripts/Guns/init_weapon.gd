@@ -85,16 +85,24 @@ func shoot():
 
 func spawnBullet():
 	var level_root = get_tree().get_root()
-	
-	#Spawn bullet
-	var bullet : RigidBody3D = bullet_type.instantiate()
-	bullet.transform = muzzle.global_transform
-	bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+	if weaponData.weaponType == "Shotgun":
+		for x in range(8):
+			var bullet : RigidBody3D = bullet_type.instantiate()
+			bullet.transform = muzzle.global_transform
+			bullet.linear_velocity = muzzle.global_transform.basis.x * 500
+			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
+			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
+			
+			level_root.add_child(bullet)
+	else:
+		var bullet : RigidBody3D = bullet_type.instantiate()
+		bullet.transform = muzzle.global_transform
+		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+		level_root.add_child(bullet)
+
 	bullet_case_particles.emitting = true
 	muzzle_flash_particles.emitting = true
-	level_root.add_child(bullet)
 	muzzle_flash_light.show()
 	
 	await get_tree().create_timer(0.05).timeout
 	muzzle_flash_light.hide()
-	

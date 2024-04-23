@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_pwfdn")
 name = &"MP5SD"
+weaponType = "SMG"
 magSize = 30
 bulletsInMag = 5
 reserveAmmo = 180

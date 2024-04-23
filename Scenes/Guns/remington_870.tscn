@@ -1714,7 +1714,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10.7823, 0.536058, 0.309935)
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
-transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0, 0)
+transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0.10217, 0)
 emitting = false
 amount = 1
 lifetime = 0.05

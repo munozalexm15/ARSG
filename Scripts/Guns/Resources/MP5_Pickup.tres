@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_krkma")
 name = &"MP5"
+weaponType = "SMG"
 magSize = 30
 bulletsInMag = 5
 reserveAmmo = 180

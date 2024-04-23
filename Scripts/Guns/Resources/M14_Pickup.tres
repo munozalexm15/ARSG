@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_w1rw5")
 name = &"M14"
+weaponType = "Rifle"
 magSize = 8
 bulletsInMag = 2
 reserveAmmo = 16
