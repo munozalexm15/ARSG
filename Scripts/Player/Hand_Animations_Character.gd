@@ -1,3 +1,4 @@
+class_name Arms
 extends Node3D
 
 @export var animationNode := NodePath()
@@ -19,6 +20,7 @@ var fovList = {"Default": 75.0, "ADS": 50.0}
 
 @onready var weaponHolder = $WeaponHolder
 @onready var reloadTimer : Timer = $ReloadTimer
+@onready var state_machine: StateMachine = $StateMachine
 
 var actual_weapon_index = 0
 var actualWeapon
@@ -39,27 +41,17 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 func _ready():
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
-	animationPlayer.play("Idle")
 	default_weaponHolder_pos = weaponHolder.position
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
-	loadWeapon(actual_weapon_index)
 	
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
 	
-	if weaponHolder.get_child_count() > 1:
-		swap_weapon()
-		mouse_swap_weapon_logic()
-	
 func _physics_process(delta):
-	
-	if Input.is_action_pressed("Reload") and actualWeapon.weaponData.bulletsInMag < actualWeapon.weaponData.magSize and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
-		animationPlayer.play("Reload")
-		isReloading = true
-	
+	print(state_machine.state.name)
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
 	
@@ -71,14 +63,6 @@ func _physics_process(delta):
 	cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
-	reload_listener()
-		
-	if Input.is_action_pressed("ADS") and not isReloading:
-		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
-		camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
-	else:
-		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(initial_position, ads_lerp * delta)
-		camera.fov = lerp(camera.fov, fovList["Default"], ads_lerp * delta)
 	
 func cam_tilt(input_x, delta):
 	if player.camera:
@@ -93,220 +77,6 @@ func weapon_sway(delta):
 	weaponHolder.rotation.x = lerp(weaponHolder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
-func mouse_swap_weapon_logic():
-	if Input.is_action_just_pressed("Next Weapon") and not isSwappingWeapon:
-		isSwappingWeapon = true
-		if actual_weapon_index < weaponHolder.get_child_count() -1:
-			actual_weapon_index += 1
-		else:
-			actual_weapon_index = 0
-		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-		
-		animationPlayer.play("SwapWeapon")
-		
-		
-	if Input.is_action_just_pressed("Previous Weapon") and not isSwappingWeapon:
-		isSwappingWeapon = true
-		if actual_weapon_index < weaponHolder.get_child_count() -1:
-			actual_weapon_index += 1
-		else:
-			actual_weapon_index = 0
-		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-		
-		animationPlayer.play("SwapWeapon")
-		
-	
-	
-func swap_weapon():
-	if Input.is_action_just_pressed("Primary weapon") and not isSwappingWeapon:
-		if actual_weapon_index != 0:
-			isSwappingWeapon = true
-			actual_weapon_index = 0
-			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-			animationPlayer.play("SwapWeapon")
-		
-	if Input.is_action_just_pressed("Secondary weapon") and not isSwappingWeapon:
-		if actual_weapon_index != 1:
-			isSwappingWeapon = true
-			actual_weapon_index = 1
-			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-			animationPlayer.play("SwapWeapon")
-
-func loadWeapon(index):
-	for x in weaponHolder.get_child_count():
-		weaponHolder.get_child(x).process_mode = Node.PROCESS_MODE_DISABLED
-		weaponHolder.get_child(x).visible = false
-	weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
-	weaponHolder.get_child(index).visible = true
-
-func _on_animation_player_animation_finished(anim_name):
-	if (anim_name == "Reload"):
-		reloadTimer.start()
-	
-	if (anim_name == "SwapWeapon"):
-		loadWeapon(actual_weapon_index)
-		actualWeapon = weaponHolder.get_child(actual_weapon_index)
-		reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
-		
-		isSwappingWeapon = false
-		if player.state != "Run" and not isReloading:
-			animationPlayer.play("Idle")
-		elif player.state == "Run" and not isReloading:
-			animationPlayer.play("Run")
-		
-		if actual_weapon_index == 0:
-			player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
-		#backwards
-		else:
-			player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
-
-func reload_listener():
-	if actualWeapon.weaponData.bulletsInMag <= 0 and actualWeapon.weaponData.reserveAmmo > 0 and not isReloading:
-		animationPlayer.play("Reload")
-		isReloading = true
-
-func _on_animation_player_animation_started(anim_name):
-	#cancel weapon switching if player runs, crouch, etc.
-	if (anim_name == "Run" or anim_name == "Idle") and isSwappingWeapon:
-		if actual_weapon_index == 0:
-			actual_weapon_index = 1
-		else:
-			actual_weapon_index = 0
-		isSwappingWeapon = false
-		
-	if anim_name != "Reload" and isReloading:
-		isReloading = false
-		reloadTimer.stop()
-
-func drop_weapon(name):
-	
-	var weapon_Ref = null
-	for x in weaponHolder.get_child_count():
-		if weaponHolder.get_child(x).weaponData.name == name:
-			weapon_Ref = weaponHolder.get_child(x)
-	
-	if weapon_Ref != null:
-		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
-		var spawnedWeapon = weapon_to_spawn.instantiate()
-		
-		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
-		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
-
-		#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
-		if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
-			spawnedWeapon.weaponData.reserveAmmo = 0
-		
-		spawnedWeapon.isAlreadyGrabbed = true
-		spawnedWeapon.set_global_transform(weaponHolder.get_global_transform())
-		var world = get_tree().get_root().get_child(0)
-		world.add_child(spawnedWeapon)
-
-		weaponHolder.remove_child(weapon_Ref)
-		
-		isSwappingWeapon = true
-		actual_weapon_index = 0
-		actualWeapon = weaponHolder.get_child(actual_weapon_index)
-		
-		player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-		animationPlayer.play("SwapWeapon")
-
-
-func _on_reload_timer_timeout():
-	reloadTimer.stop()
-	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
-	var ammoLeft = actualWeapon.weaponData.bulletsInMag
-	if isReloading == true:
-		isReloading = false
-		isSwappingWeapon = false
-		
-		#Check reserve ammo is greater than the required amount
-		if (actualWeapon.weaponData.magSize - ammoLeft) <= actualWeapon.weaponData.reserveAmmo:
-			actualWeapon.weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
-			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.magSize - ammoLeft
-			
-			#If both weapons share the same caliber, subtract to both weapons the reserve ammo
-			for x in weaponHolder.get_child_count():
-				if weaponHolder.get_child(x) != actualWeapon and weaponHolder.get_child(x).weaponData.weaponCaliber == actualWeapon.weaponData.weaponCaliber:
-					weaponHolder.get_child(x).weaponData.reserveAmmo -= actualWeapon.weaponData.magSize - ammoLeft
-	
-		#if not, give the remaining reserve ammo to the mag
-		else:
-			actualWeapon.weaponData.bulletsInMag += actualWeapon.weaponData.reserveAmm
-			actualWeapon.weaponData.reserveAmmo = 0
-	
-		if player.state != "Run":
-			animationPlayer.play("Idle")
-		if player.state == "Run":
-			animationPlayer.play("Run")
-
 
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
-	if pickupWeapon.isPickupReady:
-		var weapon_equipped = null
-		var weapon_with_same_caliber = null
-		for x in weaponHolder.get_child_count():
-			if weaponHolder.get_child(x).weaponData.name == pickupWeapon.weaponData.name:
-				weaponHolder.get_child(x).name = pickupWeapon.weaponData.name
-				weapon_equipped = weaponHolder.get_child(x)
-			if weaponHolder.get_child(x).weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
-				weapon_with_same_caliber = weaponHolder.get_child(x)
-				
-		#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
-		if not weapon_equipped and not weapon_with_same_caliber and weaponHolder.get_child_count() == 2:
-			drop_weapon(actualWeapon.weaponData.name)
-		
-		#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it
-		if weapon_equipped and weapon_with_same_caliber and not isSwapping:
-			var randomReserveAmmo = randf_range(pickupWeapon.weaponData.magSize, pickupWeapon.weaponData.reserveAmmo / 2)
-			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-			for x in weaponHolder.get_child_count():
-				if weaponHolder.get_child(x) != weapon_equipped and weaponHolder.get_child(x).weaponData.weaponCaliber == weapon_equipped.weaponData.weaponCaliber:
-					if pickupWeapon.isAlreadyGrabbed:
-						weaponHolder.get_child(x).weaponData.reserveAmmo += pickupWeapon.weaponData.reserveAmmo
-					else:
-						weaponHolder.get_child(x).weaponData.reserveAmmo += randomReserveAmmo
-			
-			weapon_equipped.weaponData.reserveAmmo += randomReserveAmmo
-			pickupWeapon.queue_free()
-		
-		#if there is no weapon equipped but one or 2 weapons have same caliber -> add ammo to them, but don't destroy weapon
-		if not weapon_equipped and weapon_with_same_caliber:
-			
-			weapon_with_same_caliber.weaponData.reserveAmmo += pickupWeapon.weaponData.reserveAmmo
-			pickupWeapon.isAlreadyGrabbed = true
-			pickupWeapon.weaponData.reserveAmmo = 0
-			if isSwapping:
-				drop_weapon(actualWeapon.weaponData.name)
-				
-		#weapon switching
-		if not weapon_equipped and weaponHolder.get_child_count() < 2:
-			var spawnedWeaponScene = load(pickupWeapon.weaponData.weaponScene)
-			var spawnedWeapon = spawnedWeaponScene.instantiate()
-			spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
-			spawnedWeapon.handsNode = self.get_path()
-			weaponHolder.add_child(spawnedWeapon)
-			pickupWeapon.queue_free()
-			
-			isSwappingWeapon = true
-			actual_weapon_index = 1
-			loadWeapon(actual_weapon_index)
-			actualWeapon = weaponHolder.get_child(actual_weapon_index)
-			
-			#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-			var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-			var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
-			
-			if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
-				actualWeapon.weaponData.bulletsInMag = randomMagAmmo
-				actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
-			elif isSwappingWeapon and pickupWeapon.isAlreadyGrabbed:
-				actualWeapon.weaponData.bulletsInMag = pickupWeapon.weaponData.bulletsInMag
-				actualWeapon.weaponData.reserveAmmo = pickupWeapon.weaponData.reserveAmmo
-			
-			player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
-			
-			#if both weapons have the same caliber, add more ammo to both reserve
-			if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
-				weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
-				weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
-			animationPlayer.play("SwapWeapon")
+	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
