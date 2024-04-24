@@ -7,7 +7,7 @@ func enter(_msg := {}):
 	loadWeapon(arms.actual_weapon_index)
 	arms.animationPlayer.play("SwapWeapon")
 
-func _physics_update(delta):
+func physics_update(delta):
 	pass
 
 func drop_weapon(name):
@@ -16,33 +16,36 @@ func drop_weapon(name):
 		if arms.weaponHolder.get_child(x).weaponData.name == name:
 			weapon_Ref = arms.weaponHolder.get_child(x)
 	
-	if weapon_Ref != null:
-		var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
-		var spawnedWeapon = weapon_to_spawn.instantiate()
+	if weapon_Ref == null:
+		return
 		
-		spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
-		spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+	var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
+	var spawnedWeapon = weapon_to_spawn.instantiate()
+	
+	spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
+	spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
-		#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
-		if arms.weaponHolder.get_child(0).weaponData.weaponCaliber == arms.weaponHolder.get_child(1).weaponData.weaponCaliber:
-			spawnedWeapon.weaponData.reserveAmmo = 0
-		
-		spawnedWeapon.isAlreadyGrabbed = true
-		spawnedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
-		var world = get_tree().get_root().get_child(0)
-		world.add_child(spawnedWeapon)
+	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
+	if arms.weaponHolder.get_child(0).weaponData.weaponCaliber == arms.weaponHolder.get_child(1).weaponData.weaponCaliber:
+		spawnedWeapon.weaponData.reserveAmmo = 0
+	
+	spawnedWeapon.isAlreadyGrabbed = true
+	spawnedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
+	var world = get_tree().get_root().get_child(0)
+	world.add_child(spawnedWeapon)
 
-		arms.weaponHolder.remove_child(weapon_Ref)
-		
-		arms.actual_weapon_index = 0
-		arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
-		
-		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	arms.weaponHolder.remove_child(weapon_Ref)
+	
+	arms.actual_weapon_index = 0
+	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
+	
+	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name != "SwapWeapon":
 		return
 	
+	print(arms.actual_weapon_index)
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
@@ -54,7 +57,9 @@ func _on_animation_player_animation_finished(anim_name):
 		arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
 	else:
 		arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+	
 	state_machine.transition_to("Idle")
+	print(arms.actualWeapon.weaponData.name)
 	#elif arms.player.state == "Run":
 		#arms.animationPlayer.play("Run")
 
@@ -65,12 +70,3 @@ func loadWeapon(index):
 
 	arms.weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
 	arms.weaponHolder.get_child(index).visible = true
-
-
-func _on_animation_player_animation_started(anim_name):
-	if (anim_name == "Run" or anim_name == "Idle"):
-		if arms.actual_weapon_index == 0:
-			arms.actual_weapon_index = 1
-		else:
-			arms.actual_weapon_index = 0
-		state_machine.transition_to("Idle")

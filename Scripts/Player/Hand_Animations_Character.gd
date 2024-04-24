@@ -51,7 +51,6 @@ func _input(event):
 		mouse_input = event.relative
 	
 func _physics_process(delta):
-	print(state_machine.state.name)
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
 	
@@ -79,4 +78,9 @@ func weapon_sway(delta):
 
 
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
-	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
+	pass
+	#state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
+
+
+func _on_state_machine_transitioned(state_name, old_state):
+	pass

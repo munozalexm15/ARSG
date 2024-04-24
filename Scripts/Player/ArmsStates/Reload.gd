@@ -4,7 +4,7 @@ extends ArmsState
 func enter(_msg := {}):
 	arms.animationPlayer.play("Reload")
 
-func _physics_update(delta):
+func physics_update(delta):
 	mouse_swap_weapon_logic()
 	swap_weapon()
 
@@ -12,6 +12,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if (anim_name != "Reload"):
 		return
 	
+
 	arms.reloadTimer.start()
 
 func _on_animation_player_animation_started(anim_name):
@@ -19,7 +20,8 @@ func _on_animation_player_animation_started(anim_name):
 		return
 	
 	arms.reloadTimer.stop()
-	state_machine.transition_to("Idle")
+	
+	
 
 func mouse_swap_weapon_logic():
 	if not Input.is_action_pressed("Next Weapon") or not Input.is_action_pressed("Previous Weapon"):
@@ -79,4 +81,4 @@ func _on_reload_timer_timeout():
 		arms.actualWeapon.weaponData.bulletsInMag += arms.actualWeapon.weaponData.reserveAmm
 		arms.actualWeapon.weaponData.reserveAmmo = 0
 	
-		state_machine.transition_to("Idle")
+	state_machine.transition_to("Idle")

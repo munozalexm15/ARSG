@@ -4,10 +4,10 @@ func enter(_msg := {}):
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
+	
 	arms.animationPlayer.play("Idle")
 
-func _physics_update(delta):
-	
+func physics_update(delta):
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		state_machine.transition_to("Reload")
 
@@ -55,7 +55,6 @@ func replace_weapon(pickupWeapon, isSwapping):
 	
 	#if there is no weapon equipped but one or 2 weapons have same caliber -> add ammo to them, but don't destroy weapon
 	if not weapon_equipped and weapon_with_same_caliber:
-		
 		weapon_with_same_caliber.weaponData.reserveAmmo += pickupWeapon.weaponData.reserveAmmo
 		pickupWeapon.isAlreadyGrabbed = true
 		pickupWeapon.weaponData.reserveAmmo = 0
@@ -97,18 +96,18 @@ func replace_weapon(pickupWeapon, isSwapping):
 
 func mouse_swap_weapon_logic():
 	if Input.is_action_just_pressed("Next Weapon"):
-		if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
-			arms.actual_weapon_index += 1
-		else:
-			arms.actual_weapon_index = 0
+		print(arms.actual_weapon_index)
+		arms.actual_weapon_index = (arms.actual_weapon_index + 1) % arms.weaponHolder.get_child_count()
+		print(arms.actual_weapon_index)
+		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
 		
 	if Input.is_action_just_pressed("Previous Weapon"):
-		if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
-			arms.actual_weapon_index += 1
-		else:
-			arms.actual_weapon_index = 0
+		print(arms.actual_weapon_index)
+		arms.actual_weapon_index = (arms.actual_weapon_index - 1) % arms.weaponHolder.get_child_count()
+		print(arms.actual_weapon_index)
+		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
 	
