@@ -188,6 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
 [node name="Remington870" parent="WeaponHolder" instance=ExtResource("2_1ah71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38965, 0.546, 0.815)
+visible = false
 handsNode = NodePath("../..")
 recoil_amplitude = Vector3(2, 1, 1)
 

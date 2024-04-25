@@ -25,7 +25,7 @@ func replace_weapon(pickupWeapon, isSwapping):
 			arms.weaponHolder.get_child(x).name = pickupWeapon.weaponData.name
 			weapon_equipped = arms.weaponHolder.get_child(x)
 		if arms.weaponHolder.get_child(x).weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
-			arms.weapon_with_same_caliber = arms.weaponHolder.get_child(x)
+			weapon_with_same_caliber = arms.weaponHolder.get_child(x)
 			
 	#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
 	if not weapon_equipped and not weapon_with_same_caliber and arms.weaponHolder.get_child_count() == 2:
@@ -58,7 +58,7 @@ func replace_weapon(pickupWeapon, isSwapping):
 		var spawnedWeaponScene = load(pickupWeapon.weaponData.weaponScene)
 		var spawnedWeapon = spawnedWeaponScene.instantiate()
 		spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
-		spawnedWeapon.handsNode = self.get_path()
+		spawnedWeapon.handsNode = arms.get_path()
 		arms.weaponHolder.add_child(spawnedWeapon)
 		pickupWeapon.queue_free()
 		
