@@ -25,8 +25,6 @@ var fovList = {"Default": 75.0, "ADS": 50.0}
 var actual_weapon_index = 0
 var actualWeapon
 var actual_animation = ""
-var isSwappingWeapon = false
-var isReloading = false
 
 var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01
@@ -85,9 +83,7 @@ func weapon_sway(delta):
 
 
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
-	pass
-	#state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
-
+	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
 
 func _on_state_machine_transitioned(state_name, old_state):
 	pass

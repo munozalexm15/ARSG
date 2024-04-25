@@ -38,14 +38,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
 		weaponData.isAutomatic = !weaponData.isAutomatic
 	
-	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and not hands.isSwappingWeapon:
+	if hands.state_machine.state.name == "Reload":
+		return
+	
+	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and not hands.state_machine.state.name == "SwappingWeapon":
 		apply_recoil()
-		if weaponData.bulletsInMag > 0 and not hands.isReloading:
+		if weaponData.bulletsInMag > 0:
 			shoot()
 	
-	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and not hands.isSwappingWeapon:
+	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and not hands.state_machine.state.name == "SwappingWeapon":
 		apply_recoil()
-		if weaponData.bulletsInMag > 0 and not hands.isReloading:
+		if weaponData.bulletsInMag > 0:
 			shoot()
 		time_to_shoot = weaponData.cadency * delta
 	

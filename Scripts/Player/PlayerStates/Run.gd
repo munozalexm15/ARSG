@@ -3,7 +3,6 @@ extends PlayerState
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 	player.curr_speed = player.run_speed
-	print(player.arms.state_machine.state.name)
 	if not player.arms.state_machine.state.name == "Reload":
 		player.arms.animationPlayer.play("Run")
 
@@ -38,5 +37,5 @@ func physics_update(delta: float):
 		state_machine.transition_to("Crouch")
 
 func exit():
-	if not player.arms.isReloading:
+	if not player.arms.state_machine.state.name == "Reload":
 		player.arms.animationPlayer.play("Idle")

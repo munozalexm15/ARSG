@@ -4,7 +4,7 @@ func enter(_msg := {}):
 	if _msg.has("drop_weapon"):
 		drop_weapon(_msg.get("drop_weapon"))
 
-	loadWeapon(arms.actual_weapon_index)
+	
 	arms.animationPlayer.play("SwapWeapon")
 
 func physics_update(delta):
@@ -45,7 +45,6 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name != "SwapWeapon":
 		return
 	
-	print(arms.actual_weapon_index)
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
@@ -59,7 +58,6 @@ func _on_animation_player_animation_finished(anim_name):
 		arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
 	
 	state_machine.transition_to("Idle")
-	print(arms.actualWeapon.weaponData.name)
 	#elif arms.player.state == "Run":
 		#arms.animationPlayer.play("Run")
 

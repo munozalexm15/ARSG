@@ -19,8 +19,6 @@ func _on_animation_player_animation_started(anim_name):
 		return
 	
 	arms.reloadTimer.stop()
-	
-	
 
 func mouse_swap_weapon_logic():
 	if not Input.is_action_pressed("Next Weapon") or not Input.is_action_pressed("Previous Weapon"):
@@ -77,7 +75,7 @@ func _on_reload_timer_timeout():
 
 	#if not, give the remaining reserve ammo to the mag
 	else:
-		arms.actualWeapon.weaponData.bulletsInMag += arms.actualWeapon.weaponData.reserveAmm
+		arms.actualWeapon.weaponData.bulletsInMag += arms.actualWeapon.weaponData.reserveAmmo
 		arms.actualWeapon.weaponData.reserveAmmo = 0
 	
 	state_machine.transition_to("Idle")
