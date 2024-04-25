@@ -59,6 +59,13 @@ func _physics_process(delta):
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
+	if Input.is_action_pressed("ADS"):
+		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
+		camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
+	else:
+		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(initial_position, ads_lerp * delta)
+		camera.fov = lerp(camera.fov, fovList["Default"], ads_lerp * delta)
+	
 	cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)

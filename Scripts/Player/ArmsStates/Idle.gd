@@ -10,13 +10,6 @@ func enter(_msg := {}):
 func physics_update(delta):
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		state_machine.transition_to("Reload")
-
-	if Input.is_action_pressed("ADS"):
-		arms.weaponHolder.transform.origin = arms.weaponHolder.transform.origin.lerp(arms.ads_position, arms.ads_lerp * delta)
-		arms.camera.fov = lerp(arms.camera.fov, arms.fovList["ADS"], arms.ads_lerp * delta)
-	else:
-		arms.weaponHolder.transform.origin = arms.weaponHolder.transform.origin.lerp(arms.initial_position, arms.ads_lerp * delta)
-		arms.camera.fov = lerp(arms.camera.fov, arms.fovList["Default"], arms.ads_lerp * delta)
 	
 	mouse_swap_weapon_logic()
 	swap_weapon()

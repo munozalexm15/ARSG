@@ -51,7 +51,6 @@ func physics_update(delta: float) -> void:
 		
 		player.crouching_CollisionShape.disabled = true
 		player.standing_CollisionShape.disabled = false
-
 		state_machine.transition_to("Walk")
 		
 	elif !Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding() and player.input_direction == Vector2.ZERO:
