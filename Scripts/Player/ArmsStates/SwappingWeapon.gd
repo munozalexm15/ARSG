@@ -43,6 +43,7 @@ func drop_weapon(name, pickupWeapon, isSwapping):
 	spawnedWeapon = spawnedWeaponScene.instantiate()
 	spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
 	spawnedWeapon.handsNode = arms.get_path()
+	
 	arms.weaponHolder.add_child(spawnedWeapon)
 	pickupWeapon.queue_free()
 	
@@ -77,11 +78,6 @@ func _on_animation_player_animation_finished(anim_name):
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
-	
-	if arms.actual_weapon_index == 0:
-		arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
-	else:
-		arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
 	
 	state_machine.transition_to("Idle")
 	#elif arms.player.state == "Run":

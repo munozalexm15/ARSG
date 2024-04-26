@@ -4,6 +4,11 @@ func enter(_msg := {}):
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
+	if arms.actual_weapon_index == 0:
+		arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
+	else:
+		arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+	
 	arms.animationPlayer.play("Idle")
 
 func physics_update(delta):
@@ -59,7 +64,6 @@ func replace_weapon(pickupWeapon, isSwapping):
 
 func mouse_swap_weapon_logic():
 	if Input.is_action_just_pressed("Next Weapon"):
-		print(arms.actual_weapon_index)
 		arms.actual_weapon_index = (arms.actual_weapon_index + 1) % arms.weaponHolder.get_child_count()
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
@@ -73,15 +77,13 @@ func mouse_swap_weapon_logic():
 	
 	
 func swap_weapon():
-	if Input.is_action_just_pressed("Primary weapon"):
-		if arms.actual_weapon_index != 0:
-			arms.actual_weapon_index = 0
-			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	if Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0:
+		arms.actual_weapon_index = 0
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
-	if Input.is_action_just_pressed("Secondary weapon"):
-		if arms.actual_weapon_index != 1:
-			arms.actual_weapon_index = 1
-			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
+		arms.actual_weapon_index = 1
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
 
 func reload_listener():
