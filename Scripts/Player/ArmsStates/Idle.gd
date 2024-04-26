@@ -29,8 +29,9 @@ func replace_weapon(pickupWeapon, isSwapping):
 			
 	#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
 	if not weapon_equipped and not weapon_with_same_caliber and arms.weaponHolder.get_child_count() == 2:
-		state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name})
-	
+		state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name, pickup_weapon = pickupWeapon, is_swapping_weapon = isSwapping})
+		return
+		
 	#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it
 	if weapon_equipped and weapon_with_same_caliber and not isSwapping:
 		var randomReserveAmmo = randf_range(pickupWeapon.weaponData.magSize, pickupWeapon.weaponData.reserveAmmo / 2)
@@ -44,6 +45,7 @@ func replace_weapon(pickupWeapon, isSwapping):
 		
 		weapon_equipped.weaponData.reserveAmmo += randomReserveAmmo
 		pickupWeapon.queue_free()
+		return
 	
 	#if there is no weapon equipped but one or 2 weapons have same caliber -> add ammo to them, but don't destroy weapon
 	if not weapon_equipped and weapon_with_same_caliber:
@@ -51,43 +53,13 @@ func replace_weapon(pickupWeapon, isSwapping):
 		pickupWeapon.isAlreadyGrabbed = true
 		pickupWeapon.weaponData.reserveAmmo = 0
 		if isSwapping:
-			state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name})
-			
-	#weapon switching
-	if not weapon_equipped and arms.weaponHolder.get_child_count() < 2:
-		var spawnedWeaponScene = load(pickupWeapon.weaponData.weaponScene)
-		var spawnedWeapon = spawnedWeaponScene.instantiate()
-		spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
-		spawnedWeapon.handsNode = arms.get_path()
-		arms.weaponHolder.add_child(spawnedWeapon)
-		pickupWeapon.queue_free()
-		
-		arms.actual_weapon_index = 1
-		
-		arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
-		
-		#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-		var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-		var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
-		
-		if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
-			arms.actualWeapon.weaponData.bulletsInMag = randomMagAmmo
-			arms.actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
-		elif pickupWeapon.isAlreadyGrabbed:
-			arms.actualWeapon.weaponData.bulletsInMag = pickupWeapon.weaponData.bulletsInMag
-			arms.actualWeapon.weaponData.reserveAmmo = pickupWeapon.weaponData.reserveAmmo
-		
-		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
-		
-		#if both weapons have the same caliber, add more ammo to both reserve
-		if arms.actualWeapon.weaponData.weaponCaliber == arms.weaponHolder.get_child(0).weaponData.weaponCaliber:
-			arms.weaponHolder.get_child(1).weaponData.reserveAmmo = arms.weaponHolder.get_child(0).weaponData.reserveAmmo
-			arms.weaponHolder.get_child(0).weaponData.reserveAmmo = arms.weaponHolder.get_child(1).weaponData.reserveAmmo
-		state_machine.transition_to("SwappingWeapon")
+			state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name, pickup_weapon = pickupWeapon, is_swapping_weapon = isSwapping})
+			return
 
 
 func mouse_swap_weapon_logic():
 	if Input.is_action_just_pressed("Next Weapon"):
+		print(arms.actual_weapon_index)
 		arms.actual_weapon_index = (arms.actual_weapon_index + 1) % arms.weaponHolder.get_child_count()
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)

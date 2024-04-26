@@ -49,6 +49,7 @@ func _input(event):
 		mouse_input = event.relative
 	
 func _physics_process(delta):
+	print(state_machine.state.name)
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
 	
