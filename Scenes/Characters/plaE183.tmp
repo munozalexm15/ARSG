@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=16 format=3 uid="uid://b4ujkypjkxc1a"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="PackedScene" uid="uid://c6vbtles2oskv" path="res://Scenes/Guns/remington_870.tscn" id="2_1ah71"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
+[ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Aiming.gd" id="3_ahnsr"]
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="3_m0em1"]
+[ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Shooting.gd" id="4_tdo0j"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Reload.gd" id="5_3e6c2"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
@@ -18,10 +20,10 @@ tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.87623, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,10 +32,10 @@ tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.415, -0.701, 0), Vector3(-0.03, -1.166, 0)]
+"values": [Vector3(-0.03, -1.166, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bsjly"]
@@ -166,13 +168,19 @@ ads_position = Vector3(0, -0.6, -1.26)
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2]
+blend_times = [&"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_eenh5")
 initial_state = NodePath("SwappingWeapon")
+
+[node name="Aiming" type="Node" parent="StateMachine"]
+script = ExtResource("3_ahnsr")
+
+[node name="Shooting" type="Node" parent="StateMachine"]
+script = ExtResource("4_tdo0j")
 
 [node name="Reload" type="Node" parent="StateMachine"]
 script = ExtResource("5_3e6c2")
@@ -188,13 +196,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
 [node name="Remington870" parent="WeaponHolder" instance=ExtResource("2_1ah71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38965, 0.546, 0.815)
-visible = false
 handsNode = NodePath("../..")
 recoil_amplitude = Vector3(2, 1, 1)
 
 [node name="USP" parent="WeaponHolder" instance=ExtResource("3_m0em1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.276891, 0, 0.232197)
-visible = false
 handsNode = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
@@ -202,5 +208,6 @@ handsNode = NodePath("../..")
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SwappingWeapon" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="animation_started" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_started"]
+[connection signal="animation_started" from="AnimationPlayer" to="StateMachine/SwappingWeapon" method="_on_animation_player_animation_started"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="StateMachine/Reload" method="_on_reload_timer_timeout"]
-[connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]

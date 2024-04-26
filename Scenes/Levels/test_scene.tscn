@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://GameResources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
-[ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
+[ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
 [ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://GameResources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_ij7c6"]
 [ext_resource type="PackedScene" uid="uid://cskqdhschvvf8" path="res://Scenes/Guns/Pickups/M14_Pickup.tscn" id="4_3w8de"]
