@@ -4,12 +4,14 @@ func enter(_msg := {}):
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
-	if arms.actual_weapon_index == 0:
-		arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
-	else:
-		arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+	if not _msg.has("replace_weapon") and not _msg.has("isSwappingValue"):
+		if arms.actual_weapon_index == 0:
+			arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
+		else:
+			arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+		
+		arms.animationPlayer.play("Idle")
 	
-	arms.animationPlayer.play("Idle")
 
 func physics_update(delta):
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:

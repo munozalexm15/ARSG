@@ -3,7 +3,7 @@ extends ArmsState
 func enter(_msg := {}):
 	if _msg.has("drop_weapon"):
 		drop_weapon(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
-	
+
 	arms.animationPlayer.play("SwapWeapon")
 
 func physics_update(delta):
