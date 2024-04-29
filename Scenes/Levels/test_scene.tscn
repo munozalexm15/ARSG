@@ -64,7 +64,9 @@ sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 [sub_resource type="Environment" id="Environment_80335"]
 background_mode = 2
 sky = SubResource("Sky_wfdj2")
-ambient_light_source = 3
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
 ssao_radius = 4.7
 ssao_intensity = 3.33
 ssao_horizon = 0.0

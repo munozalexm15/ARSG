@@ -39,6 +39,8 @@ func _physics_process(delta):
 		weaponData.isAutomatic = !weaponData.isAutomatic
 	
 	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+		if weaponData.weaponType == "Shotgun" and animPlayer.is_playing():
+			return
 		apply_recoil()
 		if weaponData.bulletsInMag > 0:
 			shoot()

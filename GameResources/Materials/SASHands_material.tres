@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://fbndaf23pxhe"]
+
+[ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="1_uhcst"]
+
+[resource]
+resource_name = "HandMaterial"
+cull_mode = 2
+albedo_texture = ExtResource("1_uhcst")
+texture_filter = 2
