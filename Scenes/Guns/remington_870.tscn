@@ -1750,7 +1750,7 @@ initial_velocity_max = 10.0
 angular_velocity_max = 12.9
 
 [node name="Player_Arms" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.61631, 0.0543545, -0.0451959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90171, -0.0900539, 0.000820845)
 
 [node name="Armature_001" type="Node3D" parent="Player_Arms"]
 transform = Transform3D(0, 0, 0.293129, 0, 0.293129, 0, -0.293129, 0, 0, 0, 0, 0.582399)
@@ -2077,3 +2077,4 @@ skin = SubResource("Skin_roqsb")
 libraries = {
 "": SubResource("AnimationLibrary_rj501")
 }
+speed_scale = 0.7
