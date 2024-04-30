@@ -9,6 +9,9 @@ func enter(msg := {}) -> void:
 	
 
 func physics_update(delta: float) -> void:
+	if player.arms.animationPlayer.current_animation == null:
+		player.arms.animationPlayer.play("Idle")
+		
 	if player.direction:
 		player.velocity.x = player.direction.x * player.curr_speed
 		player.velocity.z = player.direction.z * player.curr_speed
