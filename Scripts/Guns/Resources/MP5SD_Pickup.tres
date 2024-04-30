@@ -18,5 +18,5 @@ cadency = 0.0
 recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/MP5SD.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
-weaponSpawnPosition = Vector3(2.16, -0.921, 1.253)
+weaponSpawnPosition = Vector3(2.56794, -0.979786, 1.25379)
 weaponImage = ExtResource("2_6dacs")

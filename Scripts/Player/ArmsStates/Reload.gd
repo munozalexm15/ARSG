@@ -84,7 +84,7 @@ func reload_bullet_by_bullet():
 	await get_tree().create_timer(bullet_reload_time).timeout
 	arms.actualWeapon.weaponData.bulletsInMag += 1
 	arms.actualWeapon.weaponData.reserveAmmo -= 1
-	
+	arms.player.animationPlayer.play("reload")
 	for x in arms.weaponHolder.get_child_count():
 		if arms.weaponHolder.get_child(x) != arms.actualWeapon and arms.weaponHolder.get_child(x).weaponData.weaponCaliber == arms.actualWeapon.weaponData.weaponCaliber:
 			arms.weaponHolder.get_child(x).weaponData.reserveAmmo -= 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=19 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -95,10 +95,27 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_oeq1r"]
+resource_name = "reload"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(-0.00174533, 0, -0.0436332), Vector3(-0.00116355, 0, -0.0116355)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
 _data = {
 "RESET": SubResource("Animation_p700l"),
 "hard_landing": SubResource("Animation_i4awl"),
+"reload": SubResource("Animation_oeq1r"),
 "soft_landing": SubResource("Animation_p7pfv")
 }
 
@@ -133,6 +150,7 @@ snappiness = 2.0
 returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)
