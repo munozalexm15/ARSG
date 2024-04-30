@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c6vbtles2oskv"]
+[gd_scene load_steps=34 format=3 uid="uid://c6vbtles2oskv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_p6qro"]
 [ext_resource type="Resource" uid="uid://djpuiinpxuhnt" path="res://Scripts/Guns/Resources/remington_870_Resource.tres" id="2_u3ci8"]
@@ -1489,9 +1489,13 @@ tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = PackedFloat32Array(0, 1, -0.186897, 0.00602862, -0.0296693, 0.981913)
 
+[sub_resource type="Animation" id="Animation_k6fwh"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0d8s1"]
 _data = {
 "MP5_Shot": SubResource("Animation_begpg"),
+"RESET": SubResource("Animation_k6fwh"),
 "Remington870_Shot": SubResource("Animation_hsruq"),
 "USP_Idle": SubResource("Animation_vsrje"),
 "USP_Shot": SubResource("Animation_sqh1f")
@@ -2007,6 +2011,7 @@ skin = SubResource("Skin_7w1rt")
 libraries = {
 "": SubResource("AnimationLibrary_0d8s1")
 }
+speed_scale = 0.7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

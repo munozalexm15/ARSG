@@ -712,6 +712,9 @@ tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, 0.119423, -0.00398971, -0.0601019, 0.991015)
 
+[sub_resource type="Animation" id="Animation_o4qwr"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_2tqaa"]
 resource_name = "USP_Idle"
 length = 7.5
@@ -1336,9 +1339,6 @@ tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, -0.186934, -0.0137009, 0.0700523, 0.979776)
 
-[sub_resource type="Animation" id="Animation_o4qwr"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hmqnq"]
 _data = {
 "MP5_Shot": SubResource("Animation_ef2pn"),
@@ -1405,22 +1405,22 @@ initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 
 [node name="Trigger_002" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -7, 0)
+transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -6.86563, 0)
 mesh = SubResource("ArrayMesh_u7xm0")
 skeleton = NodePath("")
 
 [node name="MP5Magazene" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -7, 0)
+transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -6.86563, 0)
 mesh = SubResource("ArrayMesh_oypem")
 skeleton = NodePath("")
 
 [node name="MP5FullStock" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -7, 0)
+transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -6.86563, 0)
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
 
 [node name="MP5BodyFull" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -7, 0)
+transform = Transform3D(1, 0, 0, 0, -3.57628e-07, -1, 0, 1, -3.57628e-07, 0, -6.86563, 0)
 mesh = SubResource("ArrayMesh_4y7hn")
 skeleton = NodePath("")
 
