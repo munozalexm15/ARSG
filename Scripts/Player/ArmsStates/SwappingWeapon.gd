@@ -7,7 +7,8 @@ func enter(_msg := {}):
 	arms.animationPlayer.play("SwapWeapon")
 
 func physics_update(delta):
-	pass
+	swap_weapon()
+	mouse_swap_weapon_logic()
 
 func drop_weapon(name, pickupWeapon, isSwapping):
 	var weapon_Ref = null
@@ -82,6 +83,35 @@ func _on_animation_player_animation_finished(anim_name):
 	state_machine.transition_to("Idle")
 	#elif arms.player.state == "Run":
 		#arms.animationPlayer.play("Run")
+
+func mouse_swap_weapon_logic():
+	if Input.is_action_just_pressed("Next Weapon"):
+		arms.actual_weapon_index = (arms.actual_weapon_index + 1) % arms.weaponHolder.get_child_count()
+		
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		state_machine.transition_to("SwappingWeapon")
+		return
+		
+	if Input.is_action_just_pressed("Previous Weapon"):
+		arms.actual_weapon_index = (arms.actual_weapon_index - 1) % arms.weaponHolder.get_child_count()
+		
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		state_machine.transition_to("SwappingWeapon")
+		return
+	
+	
+func swap_weapon():
+	if Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0:
+		arms.actual_weapon_index = 0
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		state_machine.transition_to("SwappingWeapon")
+		return
+		
+	if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
+		arms.actual_weapon_index = 1
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		state_machine.transition_to("SwappingWeapon")
+		return
 
 func loadWeapon(index):
 	for x in arms.weaponHolder.get_child_count():

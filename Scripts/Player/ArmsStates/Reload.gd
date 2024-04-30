@@ -15,6 +15,8 @@ func physics_update(delta):
 func _on_animation_player_animation_finished(anim_name):
 	if (anim_name != "Reload"):
 		return
+	
+	arms.actualWeapon.hide()
 	if arms.actualWeapon.weaponData.weaponType == "Shotgun" or arms.actualWeapon.weaponData.weaponType == "Revolver":
 		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 		reload_bullet_by_bullet()
@@ -70,6 +72,7 @@ func _on_reload_timer_timeout():
 	
 	ammo_behavior()
 	state_machine.transition_to("Idle")
+	
 
 func reload_bullet_by_bullet():
 	if arms.actualWeapon.weaponData.bulletsInMag == arms.actualWeapon.weaponData.magSize:

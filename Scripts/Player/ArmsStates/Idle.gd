@@ -10,10 +10,17 @@ func enter(_msg := {}):
 		else:
 			arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
 		
-		arms.animationPlayer.play("Idle")
-	
+		if state_machine.old_state.name == "Reload" and Input.is_action_pressed("Sprint"):
+			arms.animationPlayer.play("Run")
+		else:
+			arms.animationPlayer.play("Idle")
+		
+		await get_tree().create_timer(0.05).timeout
+		arms.actualWeapon.show()
 
 func physics_update(delta):
+	
+		
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		state_machine.transition_to("Reload")
 	
@@ -70,12 +77,14 @@ func mouse_swap_weapon_logic():
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		return
 		
 	if Input.is_action_just_pressed("Previous Weapon"):
 		arms.actual_weapon_index = (arms.actual_weapon_index - 1) % arms.weaponHolder.get_child_count()
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		return
 	
 	
 func swap_weapon():
@@ -83,10 +92,13 @@ func swap_weapon():
 		arms.actual_weapon_index = 0
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		return
+		
 	if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
 		arms.actual_weapon_index = 1
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		return
 
 func reload_listener():
 	if arms.actualWeapon.weaponData.bulletsInMag <= 0 and arms.actualWeapon.weaponData.reserveAmmo > 0:

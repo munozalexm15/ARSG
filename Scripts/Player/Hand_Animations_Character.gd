@@ -42,7 +42,6 @@ func _ready():
 	default_weaponHolder_pos = weaponHolder.position
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
-	
 
 func _input(event):
 	if event is InputEventMouseMotion:
