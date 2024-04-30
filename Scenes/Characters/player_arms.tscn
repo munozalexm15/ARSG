@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(3.23759, 2.62498, 2.62672)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -166,7 +166,7 @@ ads_position = Vector3(0, -0.6, -1.26)
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2]
+blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -184,10 +184,10 @@ script = ExtResource("6_fugjo")
 script = ExtResource("7_uihv3")
 
 [node name="WeaponHolder" type="Node3D" parent="."]
-transform = Transform3D(0.733457, 0.469364, -0.491668, -0.490157, 0.866349, 0.0958458, 0.470942, 0.170695, 0.865492, -0.03, -0.701, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
 [node name="M14" parent="WeaponHolder" instance=ExtResource("6_68wx8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779639, -0.723751, 1.29897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.779639, -0.81377, 1.29897)
 handsNode = NodePath("../..")
 
 [node name="Remington870" parent="WeaponHolder" instance=ExtResource("2_1ah71")]

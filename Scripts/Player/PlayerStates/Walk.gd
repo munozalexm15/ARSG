@@ -3,6 +3,8 @@ extends PlayerState
 func enter(_msg := {}):
 	player.curr_speed = player.walk_speed
 	player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
+	if player.arms.animationPlayer.assigned_animation != "Idle" and player.arms.state_machine.state.name == "Idle":
+		player.arms.animationPlayer.play("Idle")
 
 func physics_update(delta: float) -> void:
 	if not Input.is_action_pressed("ADS"):

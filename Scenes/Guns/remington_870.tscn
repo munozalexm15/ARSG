@@ -511,6 +511,9 @@ tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = PackedFloat32Array(0, 1, -0.186897, 0.00602862, -0.0296693, 0.981913)
 
+[sub_resource type="Animation" id="Animation_k6fwh"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_hsruq"]
 resource_name = "Remington870_Shot"
 length = 0.666667
@@ -1488,9 +1491,6 @@ tracks/45/path = NodePath("Armature_001/Skeleton3D:Thumb3.R")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
 tracks/45/keys = PackedFloat32Array(0, 1, -0.186897, 0.00602862, -0.0296693, 0.981913)
-
-[sub_resource type="Animation" id="Animation_k6fwh"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0d8s1"]
 _data = {

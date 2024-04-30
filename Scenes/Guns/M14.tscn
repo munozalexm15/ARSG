@@ -1769,21 +1769,20 @@ distance_fade_length = 2.0
 omni_range = 3.284
 
 [node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
-transform = Transform3D(0.140592, 0, -1.99505, -1.99505, -8.74228e-08, -0.140592, -8.72065e-08, 2, -6.14548e-09, 0.968752, 2.53431, 0.307323)
+transform = Transform3D(0.140592, 6.51351e-16, -1.99505, -1.69829, 1.04952, -0.119679, 1.04692, 1.7025, 0.0737769, 0.968752, 2.53431, -0.037005)
 emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-speed_scale = 10.0
+speed_scale = 2.0
 explosiveness = 0.13
 local_coords = true
 mesh = ExtResource("1_xcyaf")
 emission_colors = PackedColorArray(0, 0, 0, 1)
-direction = Vector3(4.405, 5.93, -3.09)
-spread = 10.8
+direction = Vector3(3.92, 1.555, -1.47)
+spread = 5.0
 initial_velocity_min = 10.0
 initial_velocity_max = 20.0
-angle_min = -720.0
 angle_max = 720.0
 
 [node name="Tac_M14_Body" type="MeshInstance3D" parent="."]
@@ -1811,7 +1810,6 @@ root_node = NodePath("../Bullet_Case_Particles")
 libraries = {
 "": SubResource("AnimationLibrary_23jkx")
 }
-speed_scale = 4.0
 
 [node name="Player_Arms" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95054, 1.63155, -0.869969)

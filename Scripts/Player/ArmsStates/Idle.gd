@@ -20,6 +20,9 @@ func enter(_msg := {}):
 
 func physics_update(delta):
 	
+	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
+		print("si")
+		state_machine.transition_to("Idle")
 		
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		state_machine.transition_to("Reload")
