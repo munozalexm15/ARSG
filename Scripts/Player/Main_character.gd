@@ -5,7 +5,7 @@ extends CharacterBody3D
 @onready var eyes : Node3D = get_node(bobbingNode)
 
 @export var armsNode := NodePath()
-@onready var arms : Node3D = get_node(armsNode)
+@onready var arms : Arms = get_node(armsNode)
 
 @export var standing_collisionNode := NodePath()
 @onready var standing_CollisionShape : CollisionShape3D = get_node(standing_collisionNode)
@@ -160,3 +160,17 @@ func leaning(delta):
 	elif (Input.is_action_pressed("Lean Left") and Input.is_action_pressed("Lean Right")) or (!Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right")):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
 	
+
+##play swap weapon hands animation and show weapon
+func _on_enter_firing_range_area_body_entered(body):
+	arms.animationPlayer.play("SwapWeapon")
+	await get_tree().create_timer(0.1).timeout
+	hud.visible = true
+	arms.weaponHolder.show()
+
+
+func _on_exit_firing_range_area_body_entered(body):
+	arms.animationPlayer.play("SwapWeapon")
+	hud.visible = false
+	await get_tree().create_timer(0.05).timeout
+	arms.weaponHolder.hide()

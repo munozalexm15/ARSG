@@ -35,7 +35,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
 	if hands.state_machine.state.name != "Reload":
 		if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
 			weaponData.isAutomatic = !weaponData.isAutomatic

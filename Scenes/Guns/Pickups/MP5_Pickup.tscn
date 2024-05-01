@@ -9,6 +9,7 @@ resource_name = "Material.039"
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_igqvi"]
 _surfaces = [{
@@ -47,6 +48,7 @@ resource_name = "Material.037"
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c8a3w"]
 _surfaces = [{
@@ -87,6 +89,7 @@ resource_name = "Material.036"
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_44k66"]
 _surfaces = [{
@@ -127,6 +130,7 @@ resource_name = "Material.035"
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dys0e"]
 _surfaces = [{
