@@ -4,6 +4,8 @@
 ### GUN PLAY
  - Bullet impact decals
  - Add clipping gun prevention
+ - Add weapon prevention in the muzzle of the weapon, not the camera
+	- Make weapon prevention get closer to player, not rotate downwards
 
 ### MECHANICS
  - Add ammo boxes (refills actual weapon or both)
