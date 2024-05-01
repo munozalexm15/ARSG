@@ -126,3 +126,7 @@ FireSelection={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_4="Weapons"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

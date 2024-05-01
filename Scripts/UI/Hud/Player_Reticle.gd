@@ -23,6 +23,8 @@ extends Control
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 
+@onready var fpsCounter : Label = $FPSCOUNTER
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	crosshair.queue_redraw()
@@ -30,6 +32,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	fpsCounter.set_text("FPS %d" % Engine.get_frames_per_second())
 	if Input.is_action_pressed("ADS"):
 		crosshair.queue_redraw()
 		for x in reticle_lines.size():

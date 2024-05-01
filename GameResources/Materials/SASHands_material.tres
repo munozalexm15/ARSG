@@ -6,4 +6,5 @@
 resource_name = "HandMaterial"
 cull_mode = 2
 albedo_texture = ExtResource("1_uhcst")
-texture_filter = 2
+texture_filter = 0
+texture_repeat = false

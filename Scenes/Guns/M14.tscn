@@ -33,18 +33,21 @@ resource_name = "Material.046"
 cull_mode = 2
 albedo_texture = ExtResource("1_jw7po")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e6ht"]
 resource_name = "Material.047"
 cull_mode = 2
 albedo_texture = ExtResource("1_jw7po")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4k6e"]
 resource_name = "Material.048"
 cull_mode = 2
 albedo_texture = ExtResource("1_jw7po")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_flhou"]
 _surfaces = [{
@@ -129,6 +132,7 @@ resource_name = "Material.049"
 cull_mode = 2
 albedo_texture = ExtResource("1_jw7po")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4f075"]
 _surfaces = [{
@@ -199,6 +203,7 @@ resource_name = "Material.050"
 cull_mode = 2
 albedo_texture = ExtResource("1_jw7po")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xecq7"]
 _surfaces = [{

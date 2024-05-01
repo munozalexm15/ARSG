@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsctvo84j6kal"]
+
+[ext_resource type="Texture2D" uid="uid://bfj0cowt08ml1" path="res://GameResources/Textures/Other/MP5SD-Background.png" id="1_er2xl"]
+[ext_resource type="Script" path="res://Scripts/UI/Main_menu/Main_menu_UI.gd" id="1_ovpyu"]
+[ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="2_qmg4r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lfdko"]
+font = ExtResource("2_qmg4r")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnm7t"]
+font = ExtResource("2_qmg4r")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_bjjbw"]
+font = ExtResource("2_qmg4r")
+font_size = 64
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovpyu")
+
+[node name="bg-mp5" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_er2xl")
+expand_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.265
+anchor_right = 0.357
+anchor_bottom = 0.801
+offset_left = 0.0319977
+offset_top = 0.279984
+offset_right = -0.264038
+offset_bottom = -0.0480347
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "CAMPAIGN"
+label_settings = SubResource("LabelSettings_lfdko")
+
+[node name="Label3" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "MULTIPLAYER
+"
+label_settings = SubResource("LabelSettings_qnm7t")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "ZOMBIES
+"
+label_settings = SubResource("LabelSettings_bjjbw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

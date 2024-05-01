@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="3_iloig"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(9.95392, 0.850087, 1.85597)
+size = Vector3(7.86256, 0.850087, 1.5326)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]
 resource_name = "Material.046"
@@ -182,20 +182,20 @@ script = ExtResource("1_pm5w7")
 weaponData = ExtResource("2_m37c8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00652985, 0.0320693, -0.1524)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00667555, 0.0342362, -0.1524)
 shape = SubResource("BoxShape3D_r5oi5")
 
 [node name="Tac_M14_Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0637027, -0.147253)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.0637027, -0.147253)
 mesh = SubResource("ArrayMesh_gmc2m")
 skeleton = NodePath("")
 
 [node name="Tac_M14_Magazene" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.0221511, 0.0120879, -0.151159)
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, -0.0221511, 0.0120879, -0.151159)
 mesh = SubResource("ArrayMesh_m3haw")
 skeleton = NodePath("")
 
 [node name="Tac_M14_Slide" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0637027, -0.147253)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0.0637027, -0.147253)
 mesh = SubResource("ArrayMesh_3wm3j")
 skeleton = NodePath("")

@@ -1,48 +1,24 @@
-[gd_scene load_steps=25 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=20 format=3 uid="uid://owusm7y23nwy"]
 
-[ext_resource type="Texture2D" uid="uid://dbf2ewaai3438" path="res://GameResources/Textures/Prototype Textures/Purple/texture_09.png" id="1_qatuk"]
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
-[ext_resource type="Texture2D" uid="uid://cvkb3ebp38yf1" path="res://GameResources/Textures/Prototype Textures/Orange/texture_09.png" id="3_5x6tt"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_ij7c6"]
+[ext_resource type="PackedScene" uid="uid://c1f33xw1dqdug" path="res://Scenes/Meshes/ShootingRange/shooting_range_table.tscn" id="2_dl2m0"]
 [ext_resource type="PackedScene" uid="uid://cskqdhschvvf8" path="res://Scenes/Guns/Pickups/M14_Pickup.tscn" id="4_3w8de"]
 [ext_resource type="PackedScene" uid="uid://chtobts3s5rpy" path="res://Scenes/Guns/Pickups/USP_Pickup.tscn" id="4_8okts"]
 [ext_resource type="PackedScene" uid="uid://b8rr8x0gextkk" path="res://Scenes/Guns/Pickups/MP5_Pickup.tscn" id="4_88412"]
-[ext_resource type="Texture2D" uid="uid://c2cd55gkpoti7" path="res://GameResources/Textures/Prototype Textures/Red/texture_01.png" id="4_lx04n"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_dither.gdshader" id="5_apkuc"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_27bo6"]
 [ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="13_5ftpj"]
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="13_kgnbm"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5apve"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_a6pwe"]
-lightmap_size_hint = Vector2i(14, 21)
-material = SubResource("StandardMaterial3D_5apve")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpn1e"]
-render_priority = 0
-shader = ExtResource("3_ij7c6")
-shader_parameter/jitter = 0.5
-shader_parameter/jitter_z_coordinate = true
-shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = true
-shader_parameter/alpha_scissor = 1.0
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/emission_color = Color(1, 1, 1, 1)
-shader_parameter/texture_size = Vector2(1, 1)
-shader_parameter/albedo = ExtResource("4_lx04n")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lq147"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[ext_resource type="PackedScene" uid="uid://17iqvw1y3t11" path="res://Scenes/Meshes/ShootingRange/shooting_range_wall_doorway.tscn" id="14_c34fx"]
+[ext_resource type="PackedScene" uid="uid://c3fpgvqhqlcq4" path="res://Scenes/Meshes/ShootingRange/shooting_range_wall.tscn" id="15_5nb2a"]
+[ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="18_e6v55"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ompr7"]
-albedo_texture = ExtResource("1_qatuk")
+albedo_texture = ExtResource("18_e6v55")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
 uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqn0k"]
-albedo_texture = ExtResource("3_5x6tt")
-uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o3gl1"]
 shader = ExtResource("6_27bo6")
@@ -64,7 +40,6 @@ sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 [sub_resource type="Environment" id="Environment_80335"]
 background_mode = 2
 sky = SubResource("Sky_wfdj2")
-ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
 ssao_radius = 4.7
@@ -76,11 +51,20 @@ fog_sky_affect = 0.37
 [node name="World" type="Node3D"]
 script = ExtResource("1_rw0mx")
 
+[node name="Prop_GunTable5" parent="." instance=ExtResource("2_dl2m0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9834, 0, -9.02862)
+
+[node name="Prop_GunTable4" parent="." instance=ExtResource("2_dl2m0")]
+transform = Transform3D(1.01, 0, 0, 0, 1, 0, 0, 0, 1, -2.88188, 0, -9.02862)
+
+[node name="Prop_GunTable3" parent="." instance=ExtResource("2_dl2m0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056504, 0, -9.02687)
+
 [node name="MP5SD2" parent="." instance=ExtResource("13_5ftpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.92262, 1.06555, 7.08706)
 
 [node name="MP5SD" parent="." instance=ExtResource("13_5ftpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46131, 1.07519, 6.33771)
+transform = Transform3D(1, 0, 0, 0, -0.00438073, 0.99999, 0, -0.99999, -0.00438073, -3.63386, 1.19715, -8.92983)
 
 [node name="mp5" parent="." instance=ExtResource("4_88412")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44651, 1.09051, 6.28971)
@@ -91,38 +75,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86985, 1.06324, 6.31163)
 [node name="M14" parent="." instance=ExtResource("4_3w8de")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10184, 1.06324, 6.27708)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.484035, 6.5674)
-layers = 3
-mesh = SubResource("BoxMesh_a6pwe")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("ShaderMaterial_gpn1e")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_lq147")
-
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
-collision_layer = 3
-collision_mask = 3
+collision_layer = 11
+collision_mask = 11
 size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_ompr7")
-
-[node name="Platform" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0901942, 1.10805, -0.0822635)
-
-[node name="Ground2" type="CSGBox3D" parent="Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.54696, 1.05875, 0.0822635)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(5, 1, 2)
-material = SubResource("StandardMaterial3D_xqn0k")
 
 [node name="FadeShader" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_o3gl1")
@@ -153,7 +112,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Character" parent="FadeShader/SubViewport/DitheringShader/SubViewport" instance=ExtResource("1_s20kc")]
-transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, 0.0704326, 1.12478, -0.0875039)
+transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, 0.0704326, 0.886398, -4.77002)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -168,3 +127,56 @@ light_volumetric_fog_energy = 0.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
+
+[node name="Walls" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.996, 0, -3.327)
+
+[node name="Wall_Doorway" parent="Walls" instance=ExtResource("14_c34fx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.996, 0, 2.38419e-07)
+
+[node name="Wall2" parent="Walls" instance=ExtResource("15_5nb2a")]
+
+[node name="Wall3" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 1.486)
+
+[node name="Wall10" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 1.48603)
+
+[node name="Wall11" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 4.48479)
+
+[node name="Wall12" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 7.48)
+
+[node name="Wall13" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 10.4727)
+
+[node name="Wall14" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 13.4745)
+
+[node name="Wall15" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 16.4759)
+
+[node name="Wall16" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.50936, 0, 19.474)
+
+[node name="Wall4" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 4.47427)
+
+[node name="Wall5" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 7.4696)
+
+[node name="Wall6" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 10.4693)
+
+[node name="Wall7" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 13.4658)
+
+[node name="Wall8" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 16.4628)
+
+[node name="Wall9" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 19.4717)
+
+[node name="Wall" parent="Walls" instance=ExtResource("15_5nb2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.989, 0, 4.76837e-07)

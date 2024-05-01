@@ -185,7 +185,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dys0e")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0xwa"]
-size = Vector3(6.80903, 0.850087, 2.70722)
+size = Vector3(5.76659, 0.850087, 2.22568)
 
 [node name="MP5" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
@@ -197,25 +197,25 @@ script = ExtResource("1_6typg")
 weaponData = ExtResource("2_wn00y")
 
 [node name="Trigger_002" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -0.770542, -0.158274)
+transform = Transform3D(0.08, 0, 0, 0, -3.49691e-09, -0.08, 0, 0.08, -3.49691e-09, 0, -0.630468, -0.158274)
 mesh = SubResource("ArrayMesh_u7xm0")
 skeleton = NodePath("")
 
 [node name="MP5Magazene" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -0.770542, -0.158274)
+transform = Transform3D(0.08, 0, 0, 0, -3.49691e-09, -0.08, 0, 0.08, -3.49691e-09, 0, -0.630468, -0.158274)
 mesh = SubResource("ArrayMesh_oypem")
 skeleton = NodePath("")
 
 [node name="MP5FullStock" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -0.770542, -0.158274)
+transform = Transform3D(0.08, 0, 0, 0, -3.49691e-09, -0.08, 0, 0.08, -3.49691e-09, 0, -0.630468, -0.158274)
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
 
 [node name="MP5BodyFull" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, -0.770542, -0.158274)
+transform = Transform3D(0.08, 0, 0, 0, -3.49691e-09, -0.08, 0, 0.08, -3.49691e-09, 0, -0.630468, -0.158274)
 mesh = SubResource("ArrayMesh_4y7hn")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0481417, 0.0560458, -0.157212)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0427713, 0.0319688, -0.157212)
 shape = SubResource("BoxShape3D_s0xwa")

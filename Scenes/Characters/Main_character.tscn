@@ -120,8 +120,11 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
+radius = 0.413713
+height = 1.64871
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
+radius = 0.411381
 height = 1.2
 
 [node name="Character" type="CharacterBody3D"]
@@ -138,7 +141,7 @@ cameraNode = NodePath("Head/eyesHolder/armsHolder/Camera3D")
 hudNode = NodePath("UI")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696685, 0)
 
 [node name="eyesHolder" type="Node3D" parent="Head"]
 
@@ -200,7 +203,7 @@ libraries = {
 shape = SubResource("CapsuleShape3D_37yn0")
 
 [node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225244, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]

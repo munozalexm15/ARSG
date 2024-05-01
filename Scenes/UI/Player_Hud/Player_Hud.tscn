@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=16 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -261,6 +261,13 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_mp7e6"]
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_offset = Vector2(2, 2)
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -276,7 +283,7 @@ reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Righ
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -442,3 +449,16 @@ size_flags_vertical = 3
 texture = ExtResource("3_o1pwj")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="FPSCOUNTER" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.086
+anchor_right = 0.161
+anchor_bottom = 0.173
+offset_left = -0.120003
+offset_top = 0.271999
+offset_right = -0.472015
+offset_bottom = -0.104004
+label_settings = SubResource("LabelSettings_mp7e6")

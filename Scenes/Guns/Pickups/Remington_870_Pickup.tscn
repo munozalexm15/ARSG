@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bwlvmcb515vv2" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="3_5prvp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(9.95392, 0.850087, 1.85597)
+size = Vector3(7.17067, 0.850087, 1.28882)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erm2y"]
 resource_name = "Material.121"
@@ -13,6 +13,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_5prvp")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ik6on"]
 _surfaces = [{
@@ -52,6 +53,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_5prvp")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qvm50"]
 _surfaces = [{
@@ -134,20 +136,20 @@ script = ExtResource("1_xrrxs")
 weaponData = ExtResource("2_kv4wo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00652985, 0.0320693, -0.1524)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0109758, 0.0604266, -0.1524)
 shape = SubResource("BoxShape3D_r5oi5")
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.087465, 0.0781233, -0.148936)
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, -0.087465, 0.0781233, -0.148936)
 mesh = SubResource("ArrayMesh_folid")
 skeleton = NodePath("")
 
 [node name="Pump_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, 0.0821121, 0.084991, -0.150257)
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, 0.0821121, 0.084991, -0.150257)
 mesh = SubResource("ArrayMesh_mnk4m")
 skeleton = NodePath("")
 
 [node name="Trigger" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.15328, 0.0676318, -0.148936)
+transform = Transform3D(0.15, 0, 0, 0, -6.55671e-09, -0.15, 0, 0.15, -6.55671e-09, -0.15328, 0.0676318, -0.148936)
 mesh = SubResource("ArrayMesh_v2068")
 skeleton = NodePath("")

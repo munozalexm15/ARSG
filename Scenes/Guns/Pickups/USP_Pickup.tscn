@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://euxa0y6g15rq" path="res://GameResources/Textures/Guns/USP/USP_mag_Text.jpg" id="4_88jnb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n7b8l"]
-size = Vector3(2.18093, 0.850087, 1.5032)
+size = Vector3(2.46007, 0.850087, 1.56937)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
 resource_name = "Material.020"
@@ -161,29 +161,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
 collision_layer = 8
 collision_mask = 9
 gravity_scale = 2.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0, -1)
 script = ExtResource("1_opts2")
 weaponData = ExtResource("2_jv77i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0348079, 0.0184987, -0.161911)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0208304, 0.00536302, -0.161911)
 shape = SubResource("BoxShape3D_n7b8l")
 
 [node name="USPBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0970591, 0, 0, 0, 0.0964176, 0, 0, 0, 0.105238, -0.0384433, 0.051561, -0.158694)
+transform = Transform3D(0.08, 0, 0, 0, 0.083, 0, 0, 0, 0.093, -0.0358222, 0.0318266, -0.158694)
 mesh = SubResource("ArrayMesh_nhoa1")
 skeleton = NodePath("")
 
 [node name="USPSlide" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0970591, 0, 0, 0, 0.0964176, 0, 0, 0, 0.105238, -0.0289461, -0.0882853, -0.158694)
+transform = Transform3D(0.08, 0, 0, 0, 0.083, 0, 0, 0, 0.093, -0.0289461, -0.0882853, -0.158694)
 mesh = SubResource("ArrayMesh_1r18r")
 skeleton = NodePath("")
 
 [node name="USPTrigger&Hammer" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0970591, 0, 0, 0, -4.6001e-09, -0.0964176, 0, 0.105238, -4.21455e-09, 0.0454283, -0.0482085, -0.158694)
+transform = Transform3D(0.08, 0, 0, 0, -3.62805e-09, -0.093, 0, 0.083, -4.06516e-09, 0.0342674, -0.0612711, -0.158694)
 mesh = SubResource("ArrayMesh_fd774")
 skeleton = NodePath("")
 
 [node name="USPMag" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0970591, 0, 0, 0, 0.0964176, 0, 0, 0, 0.105238, -0.0288888, -0.0882853, -0.158694)
+transform = Transform3D(0.08, 0, 0, 0, 0.083, 0, 0, 0, 0.093, -0.0288888, -0.0882853, -0.158694)
 mesh = SubResource("ArrayMesh_ug8jr")
 skeleton = NodePath("")
