@@ -162,15 +162,3 @@ func leaning(delta):
 	
 
 ##play swap weapon hands animation and show weapon
-func _on_enter_firing_range_area_body_entered(body):
-	arms.animationPlayer.play("SwapWeapon")
-	await get_tree().create_timer(0.1).timeout
-	hud.visible = true
-	arms.weaponHolder.show()
-
-
-func _on_exit_firing_range_area_body_entered(body):
-	arms.animationPlayer.play("SwapWeapon")
-	hud.visible = false
-	await get_tree().create_timer(0.05).timeout
-	arms.weaponHolder.hide()

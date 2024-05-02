@@ -81,9 +81,8 @@ func weapon_sway(delta):
 	weaponHolder.rotation.x = lerp(weaponHolder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
-
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
 	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
 
-func _on_state_machine_transitioned(state_name, old_state):
+func _on_weapon_holder_visibility_changed():
 	pass

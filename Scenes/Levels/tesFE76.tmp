@@ -1717,7 +1717,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04102, 1.06769)
 shape = SubResource("CylinderShape3D_gu7xe")
 
 [node name="enter_firing_range_area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.7486)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.1214)
 collision_layer = 0
 collision_mask = 2
 priority = 1
