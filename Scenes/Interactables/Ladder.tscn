@@ -76,11 +76,11 @@ shadow_mesh = SubResource("ArrayMesh_t4mxy")
 [node name="Ladder" type="Node3D"]
 
 [node name="Prop_Ladder" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 4.01426, -0.0441745, -6.81249)
+transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1wd57")
 skeleton = NodePath("")
 
 [node name="Prop_LadderCap" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 4.494, 0.021, -6.812)
+transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gdgr5")
 skeleton = NodePath("")

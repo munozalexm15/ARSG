@@ -7,7 +7,6 @@ resource_name = "WeaponBench"
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_dle5b")
-roughness = 0.5
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ngjkw"]

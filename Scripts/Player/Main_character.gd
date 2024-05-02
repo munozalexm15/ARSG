@@ -151,6 +151,11 @@ func _checkCollisionWithWall():
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
+	
+	arms.position.z = lerp_angle(
+	deg_to_rad(0),
+	deg_to_rad(15.0), 
+	lerpHandsPosition)
 
 func leaning(delta):
 	if Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right"):
