@@ -6,7 +6,7 @@
 resource_name = "WoodWall"
 cull_mode = 2
 albedo_texture = ExtResource("1_lk6d7")
-roughness = 0.5
+roughness = 0.0
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1cji8"]

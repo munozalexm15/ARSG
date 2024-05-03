@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cduqe"]
-radius = 0.0005
-height = 0.001
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
+radius = 0.0147636
+height = 0.0410797
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
 resource_name = "Material.001"
@@ -47,12 +47,17 @@ shadow_mesh = SubResource("ArrayMesh_ye3jn")
 
 [node name="RigidBody3D" type="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+collision_layer = 5
+collision_mask = 5
+continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_jb3pr")
 meshNode = NodePath("9MM_001")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 2.27374e-13, 0, -2.27374e-13, 0.999999, 0.00306476, 0.00838715, -0.00949968)
-shape = SubResource("CapsuleShape3D_cduqe")
+transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
+shape = SubResource("CapsuleShape3D_rtfty")
 
 [node name="9MM_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, -2.11758e-22, 0, 0, -8.74228e-09, -0.2, -2.11758e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
@@ -62,4 +67,5 @@ skeleton = NodePath("")
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-1, -16.7396, -1, 2, 33.4791, 2)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
