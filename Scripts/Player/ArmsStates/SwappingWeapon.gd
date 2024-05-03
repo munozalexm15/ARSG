@@ -80,6 +80,8 @@ func _on_animation_player_animation_finished(anim_name):
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
 	
+	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	
 	state_machine.transition_to("Idle")
 	#elif arms.player.state == "Run":
 		#arms.animationPlayer.play("Run")

@@ -2,6 +2,7 @@ extends ArmsState
 
 var bullet_reload_time : float
 var wantsToShoot = false
+
 func enter(_msg := {}):
 	arms.animationPlayer.play("Reload")
 
@@ -79,12 +80,18 @@ func reload_bullet_by_bullet():
 		_on_reload_timer_timeout()
 		return
 	
+	
+	
 	if wantsToShoot:
 		wantsToShoot = false
 		state_machine.transition_to("Idle")
 		return
 	
 	await get_tree().create_timer(bullet_reload_time).timeout
+	if arms.actualWeapon.weaponData.reserveAmmo == 0 or arms.actualWeapon.weaponData.weaponType != "Shotgun":
+		state_machine.transition_to("Idle")
+		return
+	
 	arms.actualWeapon.weaponData.bulletsInMag += 1
 	arms.actualWeapon.weaponData.reserveAmmo -= 1
 	arms.player.animationPlayer.play("reload")

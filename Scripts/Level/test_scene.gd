@@ -33,4 +33,3 @@ func _on_exit_firing_range_area_body_entered(body):
 	await get_tree().create_timer(0.2).timeout
 	player.hud.visible = false
 	player.arms.weaponHolder.visible = false
-	

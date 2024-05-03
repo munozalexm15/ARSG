@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=19 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
 [ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
 
 [sub_resource type="Animation" id="Animation_vpx5b"]
 length = 0.001
@@ -58,26 +59,62 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("VBoxContainer/PrimaryWeaponImage:modulate")
+tracks/4/path = NodePath("CenterContainer:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("VBoxContainer/SecondaryWeaponImage:modulate")
+tracks/5/path = NodePath("CenterContainer/Top:width")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [2.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CenterContainer/Right:width")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CenterContainer/Down:width")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CenterContainer/Left:width")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
 }
 
 [sub_resource type="Animation" id="Animation_j2nk0"]
@@ -140,7 +177,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0.478431), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -152,7 +189,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.478431)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431)]
 }
 
 [sub_resource type="Animation" id="Animation_ok5ee"]
@@ -215,7 +252,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.478431)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.478431)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -227,12 +264,76 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0.478431), Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g1nth"]
+resource_name = "hitmarker"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/Top:width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 4.0, 2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterContainer/Right:width")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 4.0, 2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/Down:width")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 4.0, 2.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/Left:width")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 4.0, 2.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ros"]
 _data = {
 "RESET": SubResource("Animation_vpx5b"),
+"hitmarker": SubResource("Animation_g1nth"),
 "swap_gun": SubResource("Animation_j2nk0"),
 "swap_gun_backwards": SubResource("Animation_ok5ee")
 }
@@ -261,6 +362,9 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh3ed"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnugk"]
+shader = ExtResource("4_4onwq")
+
 [sub_resource type="LabelSettings" id="LabelSettings_mp7e6"]
 font_size = 32
 outline_size = 3
@@ -283,7 +387,7 @@ reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Righ
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
+blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -431,8 +535,9 @@ offset_bottom = 4.0
 grow_horizontal = 0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
+material = SubResource("ShaderMaterial_jnugk")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -441,7 +546,6 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3

@@ -7,6 +7,7 @@
 script = ExtResource("1_j3i85")
 name = &"MP5"
 weaponType = "SMG"
+damage = 1.5
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 180
@@ -15,7 +16,7 @@ reloadTime = 2.5
 allowsFireSelection = true
 isAutomatic = true
 cadency = 400.0
-recoil = Vector3(0.4, 0.4, 0.1)
+recoil = Vector3(0.2, 0.3, 0.1)
 weaponScene = ""
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.57922, -1.04679, 1.24629)

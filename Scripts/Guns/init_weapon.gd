@@ -35,6 +35,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+
 	if hands.state_machine.state.name != "Reload":
 		if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
 			weaponData.isAutomatic = !weaponData.isAutomatic
@@ -74,7 +75,7 @@ func apply_recoil():
 
 func shoot():
 	#get recoil script from child node and apply some to the weapon
-	if Input.is_action_pressed("ADS") :
+	if Input.is_action_pressed("ADS"):
 		hands.player.eyes.get_child(0).recoilFire(true)
 	else:
 		hands.player.eyes.get_child(0).recoilFire()
@@ -96,12 +97,14 @@ func spawnBullet():
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
 			bullet.damage = weaponData.damage
+			bullet.hitmark.connect(show_hitmarker)
 			level_root.add_child(bullet)
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
 		bullet.transform = muzzle.global_transform
 		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 		bullet.damage = weaponData.damage
+		bullet.hitmark.connect(show_hitmarker)
 		level_root.add_child(bullet)
 
 	bullet_case_particles.emitting = true
@@ -110,3 +113,8 @@ func spawnBullet():
 	
 	await get_tree().create_timer(0.05).timeout
 	muzzle_flash_light.hide()
+
+func show_hitmarker():
+	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
+		hands.player.hud.animationPlayer.play("RESET")
+	hands.player.hud.animationPlayer.play("hitmarker")

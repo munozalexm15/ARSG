@@ -7,6 +7,7 @@
 script = ExtResource("1_xd4rt")
 name = &"Remington870"
 weaponType = "Shotgun"
+damage = 1.33
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 16
@@ -15,7 +16,7 @@ reloadTime = 4.0
 allowsFireSelection = false
 isAutomatic = false
 cadency = 600.0
-recoil = Vector3(0.4, 0.4, 0.54)
+recoil = Vector3(1, 1, 1)
 weaponScene = "res://Scenes/Guns/remington_870.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn"
 weaponSpawnPosition = Vector3(-3.38965, 0.546, 0.815)

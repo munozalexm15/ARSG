@@ -130,6 +130,10 @@ func _checkCollisionWithWall():
 	query.exclude = [self]
 	
 	var result = space_state.intersect_ray(query)
+
+	if result and result.collider.is_in_group("WeaponCollisionException"):
+		return
+		
 	if result.has("position"):
 		var coll_point = result.position
 		var hit_Distance = origin.distance_to(result.position)
@@ -167,3 +171,4 @@ func leaning(delta):
 	
 
 ##play swap weapon hands animation and show weapon
+

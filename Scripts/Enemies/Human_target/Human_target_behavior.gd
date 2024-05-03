@@ -1,6 +1,8 @@
 extends StaticBody3D
 class_name Target
 
+signal hitmark
+
 @export var targetData : HumanTargetData
 
 @onready var animationPlayer: AnimationPlayer = $"../../../AnimationPlayer"
@@ -16,8 +18,6 @@ func _process(delta):
 	if targetData.actualHealth <= 0 and not isDowned:
 		animationPlayer.play("Down")
 		isDowned = true
-		
-
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Down":
