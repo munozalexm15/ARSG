@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://djpuiinpxuhnt"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_xd4rt"]
-[ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_06jwl"]
+[ext_resource type="Texture2D" uid="uid://d2seclicr8qag" path="res://GameResources/Textures/GunsIcons/Remington870_Icon.png" id="2_3uapj"]
 
 [resource]
 script = ExtResource("1_xd4rt")
@@ -14,10 +14,11 @@ reserveAmmo = 16
 weaponCaliber = "Cal. 12"
 reloadTime = 4.0
 allowsFireSelection = false
+fireModes = [&"Semi"]
 isAutomatic = false
 cadency = 600.0
 recoil = Vector3(1, 1, 1)
 weaponScene = "res://Scenes/Guns/remington_870.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn"
 weaponSpawnPosition = Vector3(-3.38965, 0.546, 0.815)
-weaponImage = ExtResource("2_06jwl")
+weaponImage = ExtResource("2_3uapj")

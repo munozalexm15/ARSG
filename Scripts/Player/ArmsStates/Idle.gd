@@ -105,4 +105,6 @@ func swap_weapon():
 
 func reload_listener():
 	if arms.actualWeapon.weaponData.bulletsInMag <= 0 and arms.actualWeapon.weaponData.reserveAmmo > 0:
+		arms.actualWeapon.isBurstActive = false
+		arms.actualWeapon.burstBullet = 0
 		state_machine.transition_to("Reload")

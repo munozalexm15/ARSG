@@ -27,8 +27,12 @@ var target_rot: Vector3
 var target_pos: Vector3
 var current_time : float
 
+var isBurstActive: bool = false
+var burstBullet : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	weaponData.selectedFireMode = weaponData.fireModes[0]
 	current_time = 1
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
@@ -38,23 +42,40 @@ func _physics_process(delta):
 
 	if hands.state_machine.state.name != "Reload":
 		if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
-			weaponData.isAutomatic = !weaponData.isAutomatic
+			if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
+				weaponData.selectedFireMode = weaponData.fireModes[0]
+				weaponData.selectedFireModeIndex = 0
+			else:
+				weaponData.selectedFireModeIndex +=1
+				weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
 		
-		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and not weaponData.isAutomatic and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if weaponData.weaponType == "Shotgun" and animPlayer.is_playing():
 				return
 			apply_recoil()
 			if weaponData.bulletsInMag > 0:
 				shoot()
 	
-	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.isAutomatic and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 		apply_recoil()
 		if weaponData.bulletsInMag > 0:
 			shoot()
 		time_to_shoot = weaponData.cadency * delta
 	
+	if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+		isBurstActive = true
+		apply_recoil()
+		if weaponData.bulletsInMag > 0:
+			shoot()
+			burstBullet += 1
+		time_to_shoot = weaponData.cadency * delta
+		
 	if time_to_shoot > 0:
 		time_to_shoot -= 1
+	
+	if burstBullet == 3 and isBurstActive:
+		isBurstActive = false
+		burstBullet = 0
 	
 	if current_time < 1:
 		current_time += delta

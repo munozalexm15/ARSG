@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://d32y604kn4ny4"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_8lpsg"]
-[ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_l5w2m"]
+[ext_resource type="Texture2D" uid="uid://dsnba6qhhfa3c" path="res://GameResources/Textures/GunsIcons/MP5SD_Icon.png" id="2_uuyt4"]
 
 [resource]
 script = ExtResource("1_8lpsg")
@@ -14,10 +14,11 @@ reserveAmmo = 180
 weaponCaliber = "9MM"
 reloadTime = 2.5
 allowsFireSelection = true
+fireModes = [&"Auto", &"Burst", &"Semi"]
 isAutomatic = true
 cadency = 400.0
 recoil = Vector3(0.15, 0.2, 0.2)
 weaponScene = "res://Scenes/Guns/MP5SD.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.56794, -0.979786, 1.25379)
-weaponImage = ExtResource("2_l5w2m")
+weaponImage = ExtResource("2_uuyt4")

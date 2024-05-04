@@ -14,6 +14,7 @@ reserveAmmo = 180
 weaponCaliber = "9MM"
 reloadTime = 2.5
 allowsFireSelection = true
+fireModes = [&"Auto", &"Burst", &"Semi"]
 isAutomatic = true
 cadency = 400.0
 recoil = Vector3(0.2, 0.3, 0.1)

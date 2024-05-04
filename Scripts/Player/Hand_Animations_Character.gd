@@ -52,7 +52,7 @@ func _physics_process(delta):
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
 	
-	player.hud.weaponFireMode.text = "Auto" if actualWeapon.weaponData.isAutomatic else "Semi"
+	player.hud.weaponFireMode.text = actualWeapon.weaponData.selectedFireMode
 	
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)

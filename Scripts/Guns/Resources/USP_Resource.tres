@@ -14,6 +14,7 @@ reserveAmmo = 80
 weaponCaliber = ".45 ACP"
 reloadTime = 1.5
 allowsFireSelection = false
+fireModes = [&"Semi"]
 isAutomatic = false
 cadency = 10.0
 recoil = Vector3(0.1, 0.2, 0.1)

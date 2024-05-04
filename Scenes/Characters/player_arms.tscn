@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://c6vbtles2oskv" path="res://Scenes/Guns/remington_870.tscn" id="2_1ah71"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Reload.gd" id="5_3e6c2"]
-[ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="6_ejofs"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
+[ext_resource type="PackedScene" uid="uid://duonirwf385bc" path="res://Scenes/Guns/M16A2.tscn" id="6_p2qyi"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -166,7 +166,7 @@ ads_position = Vector3(0, -0.6, -1.26)
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2]
+blend_times = [&"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -186,8 +186,8 @@ script = ExtResource("7_uihv3")
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
-[node name="USP" parent="WeaponHolder" instance=ExtResource("6_ejofs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132, 0.253)
+[node name="M16A2" parent="WeaponHolder" instance=ExtResource("6_p2qyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13842, -1.03361, 1.24179)
 handsNode = NodePath("../..")
 
 [node name="Remington870" parent="WeaponHolder" instance=ExtResource("2_1ah71")]

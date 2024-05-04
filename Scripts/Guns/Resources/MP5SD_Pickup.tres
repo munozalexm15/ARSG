@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://be8la3upo8waj"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_pwfdn"]
-[ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_6dacs"]
+[ext_resource type="Texture2D" uid="uid://dsnba6qhhfa3c" path="res://GameResources/Textures/GunsIcons/MP5SD_Icon.png" id="2_f0ne1"]
 
 [resource]
 script = ExtResource("1_pwfdn")
 name = &"MP5SD"
 weaponType = "SMG"
+damage = 0.0
 magSize = 30
 bulletsInMag = 5
 reserveAmmo = 180
@@ -19,4 +20,4 @@ recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/MP5SD.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.56794, -0.979786, 1.25379)
-weaponImage = ExtResource("2_6dacs")
+weaponImage = ExtResource("2_f0ne1")

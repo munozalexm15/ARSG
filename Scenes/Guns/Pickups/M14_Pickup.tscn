@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="3_iloig"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(7.86256, 0.850087, 1.5326)
+size = Vector3(8.82239, 0.850087, 2.0539)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]
 resource_name = "Material.046"
