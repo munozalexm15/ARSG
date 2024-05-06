@@ -164,7 +164,9 @@ ads_position = Vector3(0, -0.6, -1.26)
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.566974, 1.03582, 0.100783)
-visible = false
+distance_fade_enabled = true
+spot_range = 17.7806
+spot_angle = 34.1279
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
