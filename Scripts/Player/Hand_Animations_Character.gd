@@ -21,6 +21,7 @@ var fovList = {"Default": 75.0, "ADS": 50.0}
 @onready var weaponHolder = $WeaponHolder
 @onready var reloadTimer : Timer = $ReloadTimer
 @onready var state_machine: StateMachine = $StateMachine
+@onready var flashlight : SpotLight3D = $Flashlight
 
 var actual_weapon_index = 0
 var actualWeapon
@@ -48,6 +49,9 @@ func _input(event):
 		mouse_input = event.relative
 	
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("Flashlight"):
+		flashlight.visible = !flashlight.visible
 
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
@@ -84,5 +88,10 @@ func weapon_sway(delta):
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
 	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
 
-func _on_weapon_holder_visibility_changed():
-	pass
+func _on_interact_ray_pickup_ammo(ammoBox):
+	for x in weaponHolder.get_child_count():
+		if weaponHolder.get_child(x).weaponData.weaponType == ammoBox.ammoData.ammoType and weaponHolder.get_child(x).weaponData.reserveAmmo < weaponHolder.get_child(x).weaponData.magSize * 4:
+			weaponHolder.get_child(x).weaponData.reserveAmmo += ammoBox.ammoData.resupplyQuantity
+			ammoBox.ammoData.numberUses -= 1
+			if ammoBox.ammoData.numberUses == 0:
+				ammoBox.queue_free()

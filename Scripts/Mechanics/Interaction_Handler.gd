@@ -7,6 +7,8 @@ extends RayCast3D
 @onready var arms = $"../arms"
 signal swap_weapon(weapon, isSwapping)
 
+signal pickup_ammo(ammoBox)
+
 var WeaponInteractable
 
 # Called when the node enters the scene tree for the first time.
@@ -66,6 +68,12 @@ func _physics_process(delta):
 			if Input.is_action_just_released("Interact") and not isInHolder:
 				if not InteractTimer.is_stopped():
 					InteractTimer.stop()
+		
+		if interactable is Ammo:
+			if hud.player_controller.arms.actualWeapon.weaponData.weaponType == interactable.ammoData.ammoType:
+				hud.pickupAmmoContainer.visible = true
+				if Input.is_action_just_pressed("Interact"):
+					pickup_ammo.emit(interactable)
 
 func _on_interact_timer_timeout():
 	swap_weapon.emit(WeaponInteractable, true)

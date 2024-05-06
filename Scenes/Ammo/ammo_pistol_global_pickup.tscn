@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://c55fkgbvbibt1"]
+
+[ext_resource type="Texture2D" uid="uid://ssr8v72fckql" path="res://GameResources/Textures/ShootingRange/AmmoSheet.png" id="1_ajeaf"]
+[ext_resource type="Script" path="res://Scenes/Ammo/ammo_pistol_resource.gd" id="1_nfywj"]
+[ext_resource type="Resource" uid="uid://17tm55n20kta" path="res://Scripts/Ammo/pistol_ammo_Resource.tres" id="2_y1gsv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_620nl"]
+size = Vector3(0.203873, 0.0852051, 0.166183)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8421u"]
+resource_name = "Ammo_Pistol"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_ajeaf")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_e57pc"]
+_surfaces = [{
+"aabb": AABB(-10, -6.9187, -8.80981, 20, 13.8374, 8.80982),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0, 7, 0, 1, 0, 3, 0, 7, 0, 5, 0, 1, 0),
+"name": "Ammo_Pistol",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(254, 255, 0, 0, 254, 255, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 254, 255, 254, 255, 254, 255, 0, 0, 254, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qr8a2"]
+resource_name = "shootingrange_Cube_098"
+_surfaces = [{
+"aabb": AABB(-10, -6.9187, -8.80981, 20, 13.8374, 8.80982),
+"attribute_data": PackedByteArray(62, 61, 35, 84, 62, 61, 88, 1, 88, 77, 114, 17, 62, 61, 114, 17, 62, 61, 114, 17, 62, 61, 114, 17, 62, 61, 216, 58, 62, 61, 216, 58, 88, 77, 189, 42, 62, 61, 189, 42, 62, 61, 189, 42, 62, 61, 189, 42, 175, 24, 35, 84, 175, 24, 88, 1, 148, 8, 114, 17, 175, 24, 114, 17, 175, 24, 114, 17, 175, 24, 114, 17, 175, 24, 216, 58, 175, 24, 216, 58, 148, 8, 189, 42, 175, 24, 189, 42, 175, 24, 189, 42, 175, 24, 189, 42),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(2, 0, 11, 0, 5, 0, 2, 0, 8, 0, 11, 0, 7, 0, 22, 0, 10, 0, 7, 0, 19, 0, 22, 0, 20, 0, 17, 0, 23, 0, 20, 0, 14, 0, 17, 0, 13, 0, 4, 0, 16, 0, 13, 0, 1, 0, 4, 0, 6, 0, 12, 0, 18, 0, 6, 0, 0, 0, 12, 0, 21, 0, 3, 0, 9, 0, 21, 0, 15, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_8421u"),
+"name": "Ammo_Pistol",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(254, 255, 0, 0, 254, 255, 255, 127, 254, 255, 0, 0, 254, 255, 255, 191, 254, 255, 0, 0, 254, 255, 255, 255, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 255, 191, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 254, 255, 254, 255, 255, 127, 254, 255, 254, 255, 254, 255, 255, 191, 254, 255, 254, 255, 254, 255, 255, 255, 254, 255, 254, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 255, 191, 254, 255, 254, 255, 0, 0, 255, 255, 0, 0, 0, 0, 254, 255, 255, 127, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 254, 255, 255, 127, 0, 0, 255, 255, 254, 255, 255, 191, 0, 0, 255, 255, 254, 255, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 255, 127, 255, 255, 0, 0, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 191, 255, 127, 255, 127, 255, 255, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 127, 255, 255, 0, 0, 255, 127, 255, 63, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 63, 255, 127, 255, 127, 255, 255, 255, 255, 255, 127, 255, 63, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 63, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_e57pc")
+
+[node name="Pistol_Ammo_Pickup" type="RigidBody3D"]
+script = ExtResource("1_nfywj")
+ammoData = ExtResource("2_y1gsv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00128937, 0.0447998, -0.00385284)
+shape = SubResource("BoxShape3D_620nl")
+
+[node name="Prop_Ammo_Pistol" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
+mesh = SubResource("ArrayMesh_qr8a2")
+skeleton = NodePath("")

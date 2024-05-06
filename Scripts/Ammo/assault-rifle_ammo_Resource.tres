@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AmmoData" load_steps=2 format=3 uid="uid://brdwti5jl1elq"]
+
+[ext_resource type="Script" path="res://Scripts/Ammo/ammo_Resource.gd" id="1_s148l"]
+
+[resource]
+script = ExtResource("1_s148l")
+ammoType = "AR"
+caliberTypes = []
+resupplyQuantity = 30
+numberUses = 15

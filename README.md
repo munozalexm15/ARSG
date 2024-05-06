@@ -7,8 +7,9 @@
 	- Make weapon prevention get closer to player, not rotate downwards
 
 ### MECHANICS
- - Add ammo boxes (refills actual weapon or both)
+ - Add super ammo boxes (refills ammo of all weapons)
  - Add healing items
+ - Climb ladders
 
 ## WEAPON LIST
  - Grenades
