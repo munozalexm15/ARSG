@@ -33,6 +33,9 @@ func physics_update(delta: float):
 	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and (Input.is_action_just_released("Sprint") or Input.is_action_just_pressed("Fire")):
 		state_machine.transition_to("Walk")
 	
+	if player.input_direction.x == 0 and player.input_direction.y == 0:
+		state_machine.transition_to("Idle")
+	
 	if Input.is_action_pressed("Crouch"):
 		state_machine.transition_to("Crouch")
 

@@ -1357,7 +1357,7 @@ bullet_type = ExtResource("3_0aq88")
 recoil_rotation_x = ExtResource("4_a8kcd")
 recoil_rotation_z = ExtResource("5_65ymy")
 recoil_position_z = ExtResource("6_dna7i")
-recoil_amplitude = Vector3(-1.05, 0.4, -1.025)
+recoil_amplitude = Vector3(-1.05, 0.4, 1)
 lerp_speed = 20.0
 
 [node name="Muzzle" type="Node3D" parent="."]

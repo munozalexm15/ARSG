@@ -597,6 +597,9 @@ tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, -0.282973, 0.264382, -0.302247, 0.87102)
 
+[sub_resource type="Animation" id="Animation_7o5te"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_trayg"]
 resource_name = "USP_Idle"
 length = 7.5
@@ -1220,9 +1223,6 @@ tracks/43/path = NodePath("Armature_001/Skeleton3D:Thumb3.L")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, -0.186934, -0.0137009, 0.0700523, 0.979776)
-
-[sub_resource type="Animation" id="Animation_7o5te"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hnptm"]
 _data = {
