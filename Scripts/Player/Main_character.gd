@@ -25,6 +25,9 @@ extends CharacterBody3D
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
+@onready var state_machine : StateMachine = $StateMachine
+
+var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 #---MOVEMENT
@@ -52,7 +55,7 @@ var lerpHandsPosition = 0.0
 var newDirection = 0
 var distanceCheck = 1
 var isColliding = false
-
+var isClimbing = false
 #--- Head bobbing
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0, "idle_speed"= 10.0}
 
@@ -80,7 +83,6 @@ func _input(event):
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
 func _physics_process(delta):
-	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
@@ -114,6 +116,15 @@ func _physics_process(delta):
 	_checkCollisionWithWall()
 	leaning(delta)
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Ladder" and !isClimbing and !is_on_floor():
+			isClimbing = true
+			if state != "Climb":
+				state_machine.transition_to("Climb")
+	
+	if  get_slide_collision_count() == 0:
+		isClimbing = false
 
 func _on_state_machine_transitioned(state_name, old_state):
 	state = state_name
@@ -168,7 +179,6 @@ func leaning(delta):
 		rotation_degrees.z = lerp(rotation_degrees.z, -15.0, delta * 5)
 	elif (Input.is_action_pressed("Lean Left") and Input.is_action_pressed("Lean Right")) or (!Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right")):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
-	
 
 ##play swap weapon hands animation and show weapon
 

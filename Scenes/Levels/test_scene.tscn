@@ -6056,7 +6056,7 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_s04g6")
 
 [node name="Ladder" parent="." instance=ExtResource("33_unv74")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.21, 0, -1, 0, -4.37114e-08, -3.99338, -0.0329304, -6.38745)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.99338, -0.0329304, -6.38745)
 
 [node name="Weapons" type="Node3D" parent="."]
 

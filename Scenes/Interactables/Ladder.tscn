@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb0wl83267cnj"]
+[gd_scene load_steps=8 format=3 uid="uid://bb0wl83267cnj"]
 
 [ext_resource type="Texture2D" uid="uid://qx1p4h7uqegy" path="res://GameResources/Textures/ShootingRange/Trims.png" id="1_w2asm"]
 
@@ -73,7 +73,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_t4mxy")
 
-[node name="Ladder" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffym6"]
+size = Vector3(0.161438, 3.05534, 0.714958)
+
+[node name="Ladder" type="RigidBody3D"]
+collision_layer = 3
+collision_mask = 3
+mass = 100.0
+gravity_scale = 0.0
 
 [node name="Prop_Ladder" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 0, 0, 0)
@@ -84,3 +91,7 @@ skeleton = NodePath("")
 transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gdgr5")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00564575, 1.61912, 0.0501442)
+shape = SubResource("BoxShape3D_ffym6")

@@ -5,10 +5,11 @@ func enter(_msg := {}):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
 	if not _msg.has("replace_weapon") and not _msg.has("isSwappingValue"):
-		if arms.actual_weapon_index == 0:
-			arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
-		else:
-			arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
+		if state_machine.old_state.name != "Reload":
+			if arms.actual_weapon_index == 0:
+				arms.player.hud.animationPlayer.play("swap_gun", -1, 4.0, false)
+			else:
+				arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
 		
 		if state_machine.old_state.name == "Reload" and Input.is_action_pressed("Sprint"):
 			arms.animationPlayer.play("Run")
