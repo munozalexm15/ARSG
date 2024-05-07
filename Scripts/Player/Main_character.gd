@@ -88,7 +88,6 @@ func _physics_process(delta):
 	
 	if (!Input.is_action_pressed("Crouch") or !is_on_floor()) and !standingRaycast.is_colliding():
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
-		
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
 	if is_on_floor() and input_direction != Vector2.ZERO:
@@ -110,7 +109,6 @@ func _physics_process(delta):
 		
 		arms.position.y = lerp(arms.position.y, 0.0, delta * lerp_speed)
 		arms.position.x = lerp(arms.position.x, 0.0, delta * lerp_speed)
-	
 	
 	#Check for frontal collisions with a wall
 	_checkCollisionWithWall()

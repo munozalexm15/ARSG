@@ -7,10 +7,9 @@ func enter(msg := {}) -> void:
 	if msg.has("jump"):
 		player.velocity.y = player.jump_force
 	
-	if msg.has("backwards"):
-		player.velocity = Vector3.BACK
-		player.direction = Vector3.BACK
-	
+	if msg.has("climb"):
+		#(player.velocity += Vector3(0, player.jump_force * 4, 0)
+		pass
 
 func physics_update(delta: float) -> void:
 	if player.arms.animationPlayer.current_animation == null:

@@ -13,7 +13,7 @@ func _physics_update(delta):
 
 func update(delta: float):
 	if !player.isClimbing and !player.is_on_floor():
-		state_machine.transition_to("Air",  {"jump" = true})
+		state_machine.transition_to("Air", {"climb" = true})
 	
 	if player.is_on_floor():
 		state_machine.transition_to("Idle")

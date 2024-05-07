@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://duonirwf385bc"]
+[gd_scene load_steps=31 format=3 uid="uid://duonirwf385bc"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_h8exn"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="2_op75h"]
@@ -6,18 +6,32 @@
 [ext_resource type="Curve" uid="uid://do6v0lwquhiif" path="res://GameResources/Curves/M16A2/M16A2_RecoilRotation_X.tres" id="5_p75kq"]
 [ext_resource type="Curve" uid="uid://y5aeldb2gono" path="res://GameResources/Curves/M16A2/M16A2_RecoilRotation_Z.tres" id="6_xk5y8"]
 [ext_resource type="Curve" uid="uid://2iovqmbntbs5" path="res://GameResources/Curves/M16A2/M16A2_RecoilPosition_Z.tres" id="7_83xgf"]
+[ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_f3vye"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_w8equ"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="9_4n0lo"]
 [ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="10_q2xg1"]
 
-[sub_resource type="PointMesh" id="PointMesh_qmc4c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yitt4"]
+transparency = 1
+albedo_texture = ExtResource("7_f3vye")
+emission_enabled = true
+emission = Color(0.901961, 0.482353, 0, 1)
+emission_energy_multiplier = 16.0
+backlight = Color(0.482353, 0.223529, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+proximity_fade_distance = 28.45
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ucej"]
+material = SubResource("StandardMaterial3D_yitt4")
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3x50"]
 resource_name = "Material.005"
-transparency = 4
-cull_mode = 2
 albedo_texture = ExtResource("9_4n0lo")
-roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tyglq"]
 _surfaces = [{
@@ -59,6 +73,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("9_4n0lo")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j01ed"]
 _surfaces = [{
@@ -1243,7 +1258,7 @@ recoil_amplitude = Vector3(-1.05, 0.4, -1)
 lerp_speed = 20.0
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.47515, 1.96304, -0.00969291)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.52665, 1.86323, 0.0748265)
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
@@ -1254,7 +1269,7 @@ one_shot = true
 randomness = 1.0
 local_coords = true
 draw_order = 1
-mesh = SubResource("PointMesh_qmc4c")
+mesh = SubResource("QuadMesh_5ucej")
 emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
 direction = Vector3(0, 0, 0)
 spread = 0.0
@@ -1263,9 +1278,10 @@ angle_min = -28.8
 angle_max = 14.4
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0986032, -0.119779, -0.0733068)
 visible = false
-light_color = Color(0.705882, 0.298039, 0.0313726, 1)
-light_energy = 0.0
+light_color = Color(0.721569, 0.321569, 0, 1)
+light_energy = 0.5
 light_specular = 0.25
 distance_fade_begin = 2.0
 distance_fade_length = 2.0

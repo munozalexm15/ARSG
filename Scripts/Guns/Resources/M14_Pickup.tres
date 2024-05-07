@@ -7,13 +7,16 @@
 script = ExtResource("1_w1rw5")
 name = &"M14"
 weaponType = "Rifle"
+damage = 0.0
 magSize = 8
 bulletsInMag = 2
 reserveAmmo = 16
 weaponCaliber = "7,62MM"
 reloadTime = 0.0
 allowsFireSelection = false
-isAutomatic = false
+fireModes = []
+selectedFireMode = &""
+selectedFireModeIndex = 0
 cadency = 0.0
 recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/M14.tscn"

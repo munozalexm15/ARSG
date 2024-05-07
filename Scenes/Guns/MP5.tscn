@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 [ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="10_1r3ac"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yitt4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafp2"]
 transparency = 1
 albedo_texture = ExtResource("7_r6skm")
 emission_enabled = true
@@ -25,7 +25,7 @@ particles_anim_loop = false
 proximity_fade_distance = 28.45
 
 [sub_resource type="QuadMesh" id="QuadMesh_7wysp"]
-material = SubResource("StandardMaterial3D_yitt4")
+material = SubResource("StandardMaterial3D_qafp2")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]

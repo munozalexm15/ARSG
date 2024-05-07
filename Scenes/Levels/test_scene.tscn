@@ -5016,6 +5016,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_21"]
+shadow_enabled = true
 spot_range = 8.54389
 
 [node name="floor_22" type="MeshInstance3D" parent="Ceiling"]
@@ -5024,6 +5025,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_22"]
+shadow_enabled = true
 spot_range = 8.54389
 
 [node name="floor_6" type="MeshInstance3D" parent="Ceiling"]
@@ -5080,6 +5082,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_24"]
+shadow_enabled = true
 spot_range = 8.54389
 
 [node name="floor_20" type="MeshInstance3D" parent="Ceiling"]
@@ -5128,6 +5131,8 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_32"]
+light_size = 0.02
+shadow_enabled = true
 spot_range = 8.54389
 
 [node name="floor_33" type="MeshInstance3D" parent="Ceiling"]
@@ -5136,6 +5141,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_33"]
+shadow_enabled = true
 spot_range = 8.54389
 
 [node name="floor_34" type="MeshInstance3D" parent="Ceiling"]
@@ -5184,6 +5190,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_42"]
+shadow_enabled = true
 spot_range = 6.31979
 
 [node name="floor_43" type="MeshInstance3D" parent="Ceiling"]
@@ -5192,6 +5199,7 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_43"]
+shadow_enabled = true
 spot_range = 6.93485
 
 [node name="floor_44" type="MeshInstance3D" parent="Ceiling"]
@@ -5266,6 +5274,7 @@ skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_52"]
 transform = Transform3D(1, 0, 0, 0, 0.973299, 0.22954, 0, -0.22954, 0.973299, 0, 0, 0)
+shadow_enabled = true
 spot_range = 6.05436
 
 [node name="floor_53" type="MeshInstance3D" parent="Ceiling"]
@@ -5274,8 +5283,9 @@ mesh = SubResource("ArrayMesh_8n8gl")
 skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Ceiling/floor_53"]
-transform = Transform3D(1, 0, 0, 0, 0.956106, 0.293023, 0, -0.293023, 0.956106, 0, 0, 0)
-spot_range = 6.7558
+transform = Transform3D(1, 0, 0, 0, 0.956105, 0.293023, 0, -0.293023, 0.956105, 0, 0, 0)
+shadow_enabled = true
+spot_range = 6.17112
 
 [node name="Walls" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.996, 0, -3.327)
@@ -5372,7 +5382,8 @@ skeleton = NodePath("")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Walls/Wall21/Prop_Light4"]
 transform = Transform3D(1, 3.34301e-22, -1.46128e-29, 0, -4.37114e-08, -1, -3.34301e-22, 1, -4.37114e-08, 0, 0, 0)
-spot_range = 4.50822
+spot_range = 3.20502
+spot_angle = 63.3431
 
 [node name="Wall22" parent="Walls" instance=ExtResource("15_5nb2a")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.50936, 0, 1.48603)
