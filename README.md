@@ -1,4 +1,28 @@
-"# ARSG" 
+# ARSG
+
+##CAMPAIGN MECHANICS
+The campaign will have 4 chapters, each one player will control a soldier of the same family (great grandfather, grandfather, father, son) and the objective of the players will be to complete each campaign.
+If they die, the campaign continues but in the next chapter, with the next family member. 
+Depending of the player choices, each chapter will have different results.
+
+
+
+## GAME HISTORY (if I get to do it)
+4 main chapters -> 
+
+### THE GREAT WAR
+ First world war, russian pov
+
+### A GREAT PATRIOTIC WAR
+ Second world war, beginning in the operation barbarossa, russian pov
+ 
+### PROXY WAR
+ Cold war, russian forming part of a militia pov
+ 
+### THE WAR THAT ENDED ALL
+ Third world war, russian civilian (depending if all the other protagonist of each chapter survive, the game will have an ending or another)
+
+
 ## TODO:
 
 ### GUN PLAY
