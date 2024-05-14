@@ -80,8 +80,6 @@ func reload_bullet_by_bullet():
 		_on_reload_timer_timeout()
 		return
 	
-	
-	
 	if wantsToShoot:
 		wantsToShoot = false
 		state_machine.transition_to("Idle")

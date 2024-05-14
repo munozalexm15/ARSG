@@ -32,6 +32,8 @@ var current_time : float
 var isBurstActive: bool = false
 var burstBullet : int = 0
 
+var isBoltReloaded : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initial_recoil_amplitude = recoil_amplitude
@@ -53,7 +55,7 @@ func _physics_process(delta):
 				weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
 		
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			if weaponData.weaponType == "Shotgun" and animPlayer.is_playing():
+			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
 				return
 			apply_recoil()
 			if weaponData.bulletsInMag > 0:
@@ -91,8 +93,6 @@ func _physics_process(delta):
 		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
 		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
 		
-		
-
 func apply_recoil():
 	if Input.is_action_pressed("ADS"):
 		recoil_amplitude.y *= -0.2 if randf() > 0.5 else 0.2
@@ -117,6 +117,7 @@ func shoot():
 	animPlayer.play("Shoot")
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
+	
 	spawnBullet()
 
 func spawnBullet():
@@ -150,3 +151,15 @@ func show_hitmarker():
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
 		hands.player.hud.animationPlayer.play("RESET")
 	hands.player.hud.animationPlayer.play("hitmarker")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == weaponData.name + "_Shot" and weaponData.isBoltAction:
+		handsAnimPlayer.play(weaponData.name + "_Bolt")
+	
+	if anim_name == weaponData.name + "_Bolt" and isBoltReloaded == false:
+		isBoltReloaded =  true
+		handsAnimPlayer.play(weaponData.name + "_Bolt", -1, -1, true)
+	
+	elif anim_name == weaponData.name + "_Bolt" and isBoltReloaded == true:
+		isBoltReloaded =  false

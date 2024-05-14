@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://o43pyk7ph22q"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_tx0qn"]
+[ext_resource type="Texture2D" uid="uid://d2seclicr8qag" path="res://GameResources/Textures/GunsIcons/Remington870_Icon.png" id="2_ufxln"]
+
+[resource]
+script = ExtResource("1_tx0qn")
+name = &"Remington700"
+weaponType = "Sniper"
+damage = 10.0
+magSize = 5
+bulletsInMag = 5
+reserveAmmo = 20
+weaponCaliber = "7MM"
+reloadTime = 4.0
+allowsFireSelection = false
+fireModes = [&"Semi"]
+selectedFireMode = &""
+selectedFireModeIndex = 0
+isBoltAction = true
+cadency = 600.0
+recoil = Vector3(1, 1, 1)
+weaponScene = ""
+weaponPickupScene = ""
+weaponSpawnPosition = Vector3(-1.28682, 0.825404, 0.63225)
+weaponImage = ExtResource("2_ufxln")
