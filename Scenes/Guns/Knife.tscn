@@ -2601,6 +2601,7 @@ skin = SubResource("Skin_yy5ou")
 libraries = {
 "": SubResource("AnimationLibrary_bbuwt")
 }
+speed_scale = 2.0
 
 [node name="knife" type="Node3D" parent="HandKnife"]
 transform = Transform3D(-0.111047, 0.381309, 0.0476613, 0.090665, 0.0742086, -0.382456, -0.373428, -0.0953738, -0.10703, 2.86043, 0.963312, -0.895645)

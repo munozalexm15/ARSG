@@ -17,8 +17,9 @@ func _process(delta):
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Knife_Shot" and hands.meleeAttack:
-		await get_tree().create_timer(0.5).timeout
 		hands.animationPlayer.play("SwapWeapon")
+		await get_tree().create_timer(0.5).timeout
+		
 		hands.weaponHolder.visible = true
 		visible = false
 		hands.meleeAttack = false

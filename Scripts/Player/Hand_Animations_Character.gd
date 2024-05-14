@@ -119,4 +119,5 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "SwapWeapon" and meleeAttack:
 		weaponHolder.visible = false
 		knife.visible = true
-		knife.animationPlayer.play("Knife_Shot")
+		if !knife.animationPlayer.is_playing():
+			knife.animationPlayer.play("Knife_Shot")
