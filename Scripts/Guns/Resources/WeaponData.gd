@@ -13,6 +13,7 @@ class_name WeaponData extends Resource
 @export var selectedFireMode: StringName
 @export var selectedFireModeIndex: int
 @export var isBoltAction : bool
+@export var reloadsWithMagazine : bool
 @export var cadency : float
 @export var recoil: Vector3
 #used for pickup weapons, so we can add to the weaponSelector

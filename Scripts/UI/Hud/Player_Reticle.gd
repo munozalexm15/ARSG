@@ -21,7 +21,10 @@ extends Control
 @onready var marginContainer : MarginContainer = $CenterContainer2/HBoxContainer/MarginContainer
 @onready var pickupWeaponContainer : VBoxContainer = $CenterContainer2/HBoxContainer/PickupWeaponContainer
 
+@onready var sniperSight : TextureRect = $PrecisionSightContainer/TextureRect
+
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var aimAnimationPlayer : AnimationPlayer = $PrecisionSightContainer/AnimationPlayerSniper
 
 @onready var fpsCounter : Label = $FPSCOUNTER
 

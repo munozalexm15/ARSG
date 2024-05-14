@@ -1,120 +1,35 @@
-[gd_scene load_steps=19 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=24 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
 [ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
+[ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
 
-[sub_resource type="Animation" id="Animation_vpx5b"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_44682"]
+resource_name = "Aim"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/PrimaryWeaponImage:size")
+tracks/0/path = NodePath("PrecisionSightContainer/TextureRect:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(300, 150)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/PrimaryWeaponImage:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(848, 56)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/SecondaryWeaponImage:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(123, 105)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VBoxContainer/SecondaryWeaponImage:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(940, 56)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CenterContainer:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CenterContainer/Top:width")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CenterContainer/Right:width")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("CenterContainer/Down:width")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("CenterContainer/Left:width")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
+
+[sub_resource type="Animation" id="Animation_1ou1t"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2dtn"]
+_data = {
+"Aim": SubResource("Animation_44682"),
+"RESET": SubResource("Animation_1ou1t")
 }
 
 [sub_resource type="Animation" id="Animation_g1nth"]
@@ -330,9 +245,29 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_i8fjr"]
+resource_name = "Aim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PrecisionSightContainer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235)]
+}
+
+[sub_resource type="Animation" id="Animation_b6msj"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ros"]
 _data = {
-"RESET": SubResource("Animation_vpx5b"),
+"Aim": SubResource("Animation_i8fjr"),
+"RESET": SubResource("Animation_b6msj"),
 "hitmarker": SubResource("Animation_g1nth"),
 "swap_gun": SubResource("Animation_j2nk0"),
 "swap_gun_backwards": SubResource("Animation_ok5ee")
@@ -382,6 +317,25 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_tmuf1")
 reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Right"), NodePath("CenterContainer/Down"), NodePath("CenterContainer/Left")]
+
+[node name="PrecisionSightContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayerSniper" type="AnimationPlayer" parent="PrecisionSightContainer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_n2dtn")
+}
+
+[node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("6_0y6oq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

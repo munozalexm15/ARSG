@@ -5,6 +5,9 @@ func enter(_msg := {}):
 		drop_weapon(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
 
 	arms.animationPlayer.play("SwapWeapon")
+	
+	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
+		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 
 func physics_update(delta):
 	swap_weapon()

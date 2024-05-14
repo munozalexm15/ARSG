@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bwlvmcb515vv2" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="3_5prvp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(9.16844, 0.850087, 1.28882)
+size = Vector3(9.0783, 0.850087, 1.5993)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erm2y"]
 resource_name = "Material.121"

@@ -18,6 +18,7 @@ fireModes = [&"Burst", &"Semi"]
 selectedFireMode = &""
 selectedFireModeIndex = 0
 isBoltAction = false
+reloadsWithMagazine = true
 cadency = 400.0
 recoil = Vector3(0.15, 0.2, 0.2)
 weaponScene = "res://Scenes/Guns/M16A2.tscn"

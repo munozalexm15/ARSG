@@ -18,7 +18,7 @@ func _on_animation_player_animation_finished(anim_name):
 		return
 	
 	arms.actualWeapon.hide()
-	if arms.actualWeapon.weaponData.weaponType == "Shotgun" or arms.actualWeapon.weaponData.weaponType == "Revolver":
+	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
 		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 		reload_bullet_by_bullet()
 	else:
@@ -86,7 +86,7 @@ func reload_bullet_by_bullet():
 		return
 	
 	await get_tree().create_timer(bullet_reload_time).timeout
-	if arms.actualWeapon.weaponData.reserveAmmo == 0 or arms.actualWeapon.weaponData.weaponType != "Shotgun":
+	if arms.actualWeapon.weaponData.reserveAmmo == 0:
 		state_machine.transition_to("Idle")
 		return
 	

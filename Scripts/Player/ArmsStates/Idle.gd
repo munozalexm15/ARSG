@@ -18,6 +18,9 @@ func enter(_msg := {}):
 		
 		await get_tree().create_timer(0.05).timeout
 		arms.actualWeapon.show()
+		
+		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
+			arms.player.hud.aimAnimationPlayer.play("Aim")
 
 func physics_update(delta):
 	
