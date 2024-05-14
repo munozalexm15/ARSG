@@ -16,7 +16,7 @@ extends Node3D
 @export var initial_position : Vector3
 @export var ads_position : Vector3
 var ads_lerp = 20
-var fovList = {"Default": 75.0, "ADS": 50.0}
+var fovList = {"Default": 75.0, "ADS": 50.0, "Sniper": 25.0}
 
 @onready var weaponHolder = $WeaponHolder
 @onready var reloadTimer : Timer = $ReloadTimer
@@ -62,8 +62,12 @@ func _physics_process(delta):
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
 	if Input.is_action_pressed("ADS"):
-		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
-		camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
+		if actualWeapon.weaponData.weaponType == "Sniper":
+			weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
+			camera.fov = lerp(camera.fov, fovList["Sniper"], ads_lerp * delta)
+		else:
+			weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)
+			camera.fov = lerp(camera.fov, fovList["ADS"], ads_lerp * delta)
 	else:
 		weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(initial_position, ads_lerp * delta)
 		camera.fov = lerp(camera.fov, fovList["Default"], ads_lerp * delta)

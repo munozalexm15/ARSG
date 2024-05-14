@@ -17,6 +17,7 @@ allowsFireSelection = false
 fireModes = [&"Semi"]
 selectedFireMode = &""
 selectedFireModeIndex = 0
+isBoltAction = false
 cadency = 600.0
 recoil = Vector3(1, 1, 1)
 weaponScene = "res://Scenes/Guns/remington_870.tscn"
