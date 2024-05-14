@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=15 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
+[ext_resource type="PackedScene" uid="uid://be1jjcfhbiig7" path="res://Scenes/Guns/Knife.tscn" id="2_woo6u"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Reload.gd" id="5_3e6c2"]
 [ext_resource type="PackedScene" uid="uid://ckuru1wposqw7" path="res://Scenes/Guns/remington_700.tscn" id="6_ftata"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
@@ -161,6 +162,10 @@ script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
 initial_position = Vector3(0, -1.166, 0)
 ads_position = Vector3(0, -0.6, -1.26)
+
+[node name="Knife" parent="." instance=ExtResource("2_woo6u")]
+transform = Transform3D(0.997582, 0, -0.0694954, 0, 1, 0, 0.0694954, 0, 0.997582, -0.28115, 0.0500054, -0.369313)
+handsNode = NodePath("..")
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.566974, 1.03582, 0.100783)

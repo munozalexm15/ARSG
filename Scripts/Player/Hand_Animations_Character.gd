@@ -22,10 +22,12 @@ var fovList = {"Default": 75.0, "ADS": 50.0, "Sniper": 25.0}
 @onready var reloadTimer : Timer = $ReloadTimer
 @onready var state_machine: StateMachine = $StateMachine
 @onready var flashlight : SpotLight3D = $Flashlight
+@onready var knife : Node3D = $Knife
 
 var actual_weapon_index = 0
 var actualWeapon
 var actual_animation = ""
+var meleeAttack = false
 
 var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01
@@ -79,6 +81,11 @@ func _physics_process(delta):
 	if Input.is_action_just_released("ADS") and actualWeapon.weaponData.weaponType == "Sniper":
 		player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 	
+	if Input.is_action_just_pressed("Melee"):
+		animationPlayer.play("SwapWeapon")
+		meleeAttack = true
+		
+	
 	cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
 	weapon_sway(delta)
@@ -106,3 +113,10 @@ func _on_interact_ray_pickup_ammo(ammoBox):
 			ammoBox.ammoData.numberUses -= 1
 			if ammoBox.ammoData.numberUses == 0:
 				ammoBox.queue_free()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "SwapWeapon" and meleeAttack:
+		weaponHolder.visible = false
+		knife.visible = true
+		knife.animationPlayer.play("Knife_Shot")
