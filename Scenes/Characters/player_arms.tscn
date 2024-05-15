@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=16 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckuru1wposqw7" path="res://Scenes/Guns/remington_700.tscn" id="6_ftata"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="PackedScene" uid="uid://duonirwf385bc" path="res://Scenes/Guns/M16A2.tscn" id="7_dg34u"]
+[ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
 
 [sub_resource type="Animation" id="Animation_c7y05"]
@@ -179,7 +180,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2]
+blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -196,6 +197,9 @@ script = ExtResource("6_fugjo")
 [node name="SwappingWeapon" type="Node" parent="StateMachine"]
 script = ExtResource("7_uihv3")
 
+[node name="Melee" type="Node" parent="StateMachine"]
+script = ExtResource("7_mq3cw")
+
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
@@ -208,9 +212,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13842, -1.00681, 1.24179)
 handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="endedMelee" from="Knife" to="StateMachine/Melee" method="_on_knife_ended_melee"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SwappingWeapon" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Melee" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="animation_started" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_started"]
 [connection signal="timeout" from="ReloadTimer" to="StateMachine/Reload" method="_on_reload_timer_timeout"]

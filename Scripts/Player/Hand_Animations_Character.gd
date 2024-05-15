@@ -81,10 +81,9 @@ func _physics_process(delta):
 	if Input.is_action_just_released("ADS") and actualWeapon.weaponData.weaponType == "Sniper":
 		player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 	
-	if Input.is_action_just_pressed("Melee"):
+	if Input.is_action_just_pressed("Melee") and state_machine.state.name != "Melee":
 		animationPlayer.play("SwapWeapon")
-		meleeAttack = true
-		
+		state_machine.transition_to("Melee")
 	
 	cam_tilt(player.input_direction.x, delta)
 	weapon_tilt(player.input_direction.x, delta)
@@ -113,11 +112,3 @@ func _on_interact_ray_pickup_ammo(ammoBox):
 			ammoBox.ammoData.numberUses -= 1
 			if ammoBox.ammoData.numberUses == 0:
 				ammoBox.queue_free()
-
-
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "SwapWeapon" and meleeAttack:
-		weaponHolder.visible = false
-		knife.visible = true
-		if !knife.animationPlayer.is_playing():
-			knife.animationPlayer.play("Knife_Shot")

@@ -79,6 +79,9 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name != "SwapWeapon":
 		return
 	
+	if anim_name == "SwapWeapon" and state_machine.state.name == "Melee":
+		return
+	
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime

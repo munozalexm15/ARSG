@@ -154,7 +154,6 @@ snappiness = 4.0
 returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)

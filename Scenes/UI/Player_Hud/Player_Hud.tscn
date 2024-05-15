@@ -32,6 +32,25 @@ _data = {
 "RESET": SubResource("Animation_1ou1t")
 }
 
+[sub_resource type="Animation" id="Animation_i8fjr"]
+resource_name = "Aim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PrecisionSightContainer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235)]
+}
+
+[sub_resource type="Animation" id="Animation_b6msj"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_g1nth"]
 resource_name = "hitmarker"
 tracks/0/type = "value"
@@ -245,25 +264,6 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 0.478431), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_i8fjr"]
-resource_name = "Aim"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PrecisionSightContainer/TextureRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235)]
-}
-
-[sub_resource type="Animation" id="Animation_b6msj"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ros"]
 _data = {
 "Aim": SubResource("Animation_i8fjr"),
@@ -341,7 +341,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
