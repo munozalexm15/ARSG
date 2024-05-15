@@ -1,4 +1,5 @@
 extends Node3D
+class_name Knife
 
 @onready var animationPlayer : AnimationPlayer = $HandKnife/Player_Arms/AnimationPlayer
 
@@ -18,3 +19,6 @@ func _process(delta):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Knife_Shot":
 		endedMelee.emit()
+
+func _on_area_3d_body_entered(body):
+	print(body)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://be1jjcfhbiig7"]
+[gd_scene load_steps=20 format=3 uid="uid://be1jjcfhbiig7"]
 
 [ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="1_hdvaq"]
 [ext_resource type="Script" path="res://Scripts/Guns/knife_behaviour.gd" id="1_pxdwu"]
@@ -1212,7 +1212,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(2.86043, 0.963312, -0.895645)]
+"values": [Vector3(3.7307, 0.181617, 1.03192)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -2269,6 +2269,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_f2yph")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3520"]
+size = Vector3(1.20264, 2.952, 1)
+
 [node name="Knife" type="Node3D"]
 script = ExtResource("1_pxdwu")
 
@@ -2604,7 +2607,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="knife" type="Node3D" parent="HandKnife"]
-transform = Transform3D(-0.111048, 0.381309, 0.0476612, 0.0906653, 0.0742089, -0.382456, -0.373428, -0.0953744, -0.107031, 2.86043, 0.963312, -0.895645)
+transform = Transform3D(-0.111048, 0.381309, 0.0476612, 0.0906653, 0.0742089, -0.382456, -0.373428, -0.0953744, -0.107031, 3.7307, 0.181617, 1.03192)
 visible = false
 
 [node name="Cylinder" type="MeshInstance3D" parent="HandKnife/knife"]
@@ -2612,4 +2615,13 @@ transform = Transform3D(0.706198, 0.707981, 0.00687931, -0.708007, 0.706112, 0.0
 mesh = SubResource("ArrayMesh_5sc10")
 skeleton = NodePath("")
 
+[node name="Area3D" type="Area3D" parent="HandKnife/knife"]
+collision_layer = 17
+collision_mask = 17
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandKnife/knife/Area3D"]
+transform = Transform3D(0.632456, -0.764931, -0.121984, 0.756366, 0.643831, -0.115726, 0.167062, -0.0190755, 0.985763, -0.598231, 0.710967, 0.0267141)
+shape = SubResource("BoxShape3D_g3520")
+
 [connection signal="animation_finished" from="HandKnife/Player_Arms/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="HandKnife/knife/Area3D" to="." method="_on_area_3d_body_entered"]
