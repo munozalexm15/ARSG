@@ -40,6 +40,7 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	knife.set_process(false)
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
 	default_weaponHolder_pos = weaponHolder.position
@@ -51,7 +52,6 @@ func _input(event):
 		mouse_input = event.relative
 	
 func _physics_process(delta):
-	
 	if Input.is_action_just_pressed("Flashlight"):
 		flashlight.visible = !flashlight.visible
 
@@ -82,6 +82,7 @@ func _physics_process(delta):
 		player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 	
 	if Input.is_action_just_pressed("Melee") and state_machine.state.name != "Melee":
+		knife.set_process(true)
 		animationPlayer.play("SwapWeapon")
 		state_machine.transition_to("Melee")
 	

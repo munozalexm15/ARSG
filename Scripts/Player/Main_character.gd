@@ -111,7 +111,8 @@ func _physics_process(delta):
 		arms.position.x = lerp(arms.position.x, 0.0, delta * lerp_speed)
 	
 	#Check for frontal collisions with a wall
-	_checkCollisionWithWall()
+	if arms.state_machine.state.name != "Melee":
+		_checkCollisionWithWall()
 	leaning(delta)
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -159,7 +160,7 @@ func _checkCollisionWithWall():
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
 	lerpHandsPosition)
-	
+
 	arms.rotation.x = lerp_angle(
 	deg_to_rad(0),
 	deg_to_rad(-45.0), 
