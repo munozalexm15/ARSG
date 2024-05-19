@@ -873,6 +873,18 @@ tracks/48/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("../knife/Area3D/CollisionShape3D:disabled")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(0.05, 0.75, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_c10og"]
 resource_name = "M16A2_Shot"
@@ -2287,15 +2299,15 @@ bones/0/name = "UpperArm.R"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0, -1, 1.42109e-14, 1, 0, 3.37246e-07, -3.37246e-07, -1.42109e-14, 1, -0.0521166, 4.80825e-07, -5.65962e-07)
 bones/0/enabled = true
-bones/0/position = Vector3(-0.0520716, 0.00330055, 0.00114828)
-bones/0/rotation = Quaternion(0.299504, 0.177221, 0.824845, 0.445558)
+bones/0/position = Vector3(-0.0520716, 0.00318752, 0.00176235)
+bones/0/rotation = Quaternion(0.310034, 0.0941966, 0.842104, 0.431123)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "LowArm.R"
 bones/1/parent = 0
 bones/1/rest = Transform3D(0.999924, 0.0107292, -0.00611128, -0.010778, 0.99991, -0.0080062, 0.00602483, 0.00807145, 0.999949, 1.27898e-13, 5.10981, -7.40634e-08)
 bones/1/enabled = true
 bones/1/position = Vector3(1.27898e-13, 5.10981, -7.40634e-08)
-bones/1/rotation = Quaternion(0.503437, -0.00716035, 0.128424, 0.854405)
+bones/1/rotation = Quaternion(0.480799, -0.00728106, 0.114631, 0.869275)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Wrist.R"
 bones/2/parent = 1
@@ -2441,22 +2453,22 @@ bones/22/name = "UpperArm.L"
 bones/22/parent = -1
 bones/22/rest = Transform3D(0, 1, 0, -1, 0, 3.37246e-07, 3.37246e-07, 0, 1, 4.05212, -6.55671e-07, 5.67114e-07)
 bones/22/enabled = true
-bones/22/position = Vector3(4.05207, -0.00329964, -0.00114774)
-bones/22/rotation = Quaternion(0.346627, -0.195491, -0.787149, 0.471201)
+bones/22/position = Vector3(4.05207, -0.00318659, -0.00176169)
+bones/22/rotation = Quaternion(0.385516, -0.155686, -0.799332, 0.433828)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "LowArm.L"
 bones/23/parent = 22
 bones/23/rest = Transform3D(0.999924, -0.0107292, 0.00611128, 0.010778, 0.99991, -0.0080062, -0.00602483, 0.00807145, 0.999949, 6.39488e-14, 5.10981, -4.39946e-08)
 bones/23/enabled = true
 bones/23/position = Vector3(6.39488e-14, 5.10981, -4.39946e-08)
-bones/23/rotation = Quaternion(0.145244, -0.200809, -0.173198, 0.953196)
+bones/23/rotation = Quaternion(0.110525, -0.232401, -0.168888, 0.951447)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "Wrist.L"
 bones/24/parent = 23
 bones/24/rest = Transform3D(0.998912, 0.0451412, -0.0117099, -0.0448533, 0.99871, 0.0237865, 0.0127685, -0.0232354, 0.999648, 0, 4.50457, -2.50002e-08)
 bones/24/enabled = true
 bones/24/position = Vector3(0, 4.50457, -2.50002e-08)
-bones/24/rotation = Quaternion(-0.0192466, 0.129612, -0.0272787, 0.991003)
+bones/24/rotation = Quaternion(-0.0237944, 0.131117, -0.0428547, 0.990154)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "Little1.L"
 bones/25/parent = 24
@@ -2491,7 +2503,7 @@ bones/29/parent = 24
 bones/29/rest = Transform3D(0.992478, -0.122037, 0.00967711, 0.120529, 0.987929, 0.0973078, -0.0214355, -0.0954095, 0.995207, -8.3819e-08, 2.35405, -3.96103e-08)
 bones/29/enabled = true
 bones/29/position = Vector3(-8.3819e-08, 2.35405, -3.96103e-08)
-bones/29/rotation = Quaternion(-0.000619596, 0.0149502, 0.0305629, 0.999421)
+bones/29/rotation = Quaternion(-0.000619589, 0.0149502, 0.0305629, 0.999421)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/name = "Ring2.L"
 bones/30/parent = 29
@@ -2519,7 +2531,7 @@ bones/33/parent = 24
 bones/33/rest = Transform3D(0.991778, -0.126989, 0.0158067, 0.127742, 0.989791, -0.0632089, -0.00761848, 0.0647084, 0.997875, -8.3819e-08, 2.35405, -3.96103e-08)
 bones/33/enabled = true
 bones/33/position = Vector3(-8.3819e-08, 2.35405, -3.96103e-08)
-bones/33/rotation = Quaternion(0.0678157, 0.0160681, 0.0955544, 0.992982)
+bones/33/rotation = Quaternion(0.0678157, 0.0160681, 0.0955545, 0.992982)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "Middle2.L"
 bones/34/parent = 33
@@ -2619,12 +2631,13 @@ collision_layer = 17
 collision_mask = 17
 mass = 0.01
 gravity_scale = 0.0
-max_contacts_reported = 1
+max_contacts_reported = 3
 contact_monitor = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HandKnife/knife/Area3D"]
 transform = Transform3D(0.632456, -0.764931, -0.121981, 0.756364, 0.643831, -0.115726, 0.167061, -0.0190744, 0.985773, -0.724493, 0.791651, 0.0031147)
 shape = SubResource("BoxShape3D_g3520")
+disabled = true
 
 [connection signal="animation_finished" from="HandKnife/Player_Arms/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="HandKnife/knife/Area3D" to="." method="_on_area_3d_body_entered"]

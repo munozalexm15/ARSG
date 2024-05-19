@@ -13,7 +13,8 @@ func _input(event):
 func physics_update(delta: float):
 	if Input.is_action_just_pressed("Fire"):
 		state_machine.transition_to("Walk")
-		
+
+
 	player.headBobbing_curr_intensity = player.hb_intensities.get("sprint_speed")
 	player.headBobbing_index += player.hb_speeds.get("sprint_speed") * delta
 	
@@ -30,8 +31,9 @@ func physics_update(delta: float):
 	if Input.is_action_just_pressed("Jump"):
 		state_machine.transition_to("Air", {jump = true})
 
-	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and (Input.is_action_just_released("Sprint") or Input.is_action_just_pressed("Fire")):
-		state_machine.transition_to("Walk")
+	if player.arms.state_machine.state.name != "Melee":
+		if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and (Input.is_action_just_released("Sprint") or Input.is_action_just_pressed("Fire")):
+			state_machine.transition_to("Walk")
 	
 	if player.input_direction.x == 0 and player.input_direction.y == 0:
 		state_machine.transition_to("Idle")

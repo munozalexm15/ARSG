@@ -83,7 +83,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Melee") and state_machine.state.name != "Melee":
 		knife.set_process(true)
-		animationPlayer.play("SwapWeapon")
+		animationPlayer.play("ShowKnife")
 		state_machine.transition_to("Melee")
 	
 	cam_tilt(player.input_direction.x, delta)

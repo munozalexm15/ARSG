@@ -113,6 +113,8 @@ func _physics_process(delta):
 	#Check for frontal collisions with a wall
 	if arms.state_machine.state.name != "Melee":
 		_checkCollisionWithWall()
+	else:
+		arms.position.z = 0
 	leaning(delta)
 	move_and_slide()
 	for i in get_slide_collision_count():

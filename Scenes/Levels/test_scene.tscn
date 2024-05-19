@@ -2612,8 +2612,6 @@ sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 background_energy_multiplier = 0.0
 sky = SubResource("Sky_wfdj2")
 tonemap_mode = 1
-fog_sky_affect = 0.37
-volumetric_fog_density = 0.2652
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjsru"]
 resource_name = "floor_2"
@@ -5654,6 +5652,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52616, 0, -13.5992)
 transform = Transform3D(1, 0, 0, 0, 1, -2.27374e-13, 0, 2.27374e-13, 1, -4.40352, 1.14063, -52.7509)
 
 [node name="StaticBody3D" parent="Firing Range/Human_target4/Prop_Target_Pole2/Prop_Target_Human" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.875439)
 targetData = SubResource("Resource_gvoct")
 
 [node name="CollisionShape3D" parent="Firing Range/Human_target4/Prop_Target_Pole2/Prop_Target_Human/StaticBody3D" index="0"]
