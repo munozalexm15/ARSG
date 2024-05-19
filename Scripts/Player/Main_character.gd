@@ -170,7 +170,7 @@ func _checkCollisionWithWall():
 	
 	arms.position.z = lerp_angle(
 	deg_to_rad(0),
-	deg_to_rad(15.0), 
+	deg_to_rad(25.0), 
 	lerpHandsPosition)
 
 func leaning(delta):
