@@ -233,7 +233,7 @@ script = ExtResource("7_mq3cw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
 [node name="Remington870" parent="WeaponHolder" instance=ExtResource("6_ftata")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28682, 0.749306, 0.532162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72999, 0.749306, 0.532162)
 handsNode = NodePath("../..")
 
 [node name="M16A2" parent="WeaponHolder" instance=ExtResource("7_dg34u")]

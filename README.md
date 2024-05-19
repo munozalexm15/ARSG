@@ -31,7 +31,7 @@ Depending of the player choices, each chapter will have different results.
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons)
  - Add healing items
- - Climb ladders
+ - Climb ladders (tbd)
 
 ## WEAPON LIST
  - Grenades

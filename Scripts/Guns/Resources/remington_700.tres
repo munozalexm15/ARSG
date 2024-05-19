@@ -23,5 +23,5 @@ cadency = 600.0
 recoil = Vector3(1, 1, 1)
 weaponScene = "res://Scenes/Guns/remington_700.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn"
-weaponSpawnPosition = Vector3(-1.28682, 0.825404, 0.63225)
+weaponSpawnPosition = Vector3(-1.72999, 0.749306, 0.532162)
 weaponImage = ExtResource("2_ufxln")

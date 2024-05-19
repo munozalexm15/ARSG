@@ -18,9 +18,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1, 8.28211),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.784314)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.780392)]
 }
 
 [sub_resource type="Animation" id="Animation_1ou1t"]
@@ -333,7 +333,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 
@@ -489,7 +489,7 @@ offset_bottom = 4.0
 grow_horizontal = 0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.478431)
+modulate = Color(1, 1, 1, 0.895686)
 texture_filter = 1
 material = SubResource("ShaderMaterial_jnugk")
 layout_mode = 2
@@ -500,6 +500,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0.582745)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3

@@ -140,12 +140,17 @@ func spawnBullet():
 		bullet.hitmark.connect(show_hitmarker)
 		level_root.add_child(bullet)
 
-	bullet_case_particles.emitting = true
 	muzzle_flash_particles.emitting = true
 	muzzle_flash_light.show()
 	
 	await get_tree().create_timer(0.05).timeout
+	
 	muzzle_flash_light.hide()
+	
+	if weaponData.weaponType == "Sniper":
+		await get_tree().create_timer(0.6).timeout
+	
+	bullet_case_particles.emitting = true
 
 func show_hitmarker():
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
