@@ -86,6 +86,10 @@ func _input(event):
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
 func _physics_process(delta):
+	if health < 100:
+		
+		updateHealth()
+	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
@@ -186,3 +190,7 @@ func leaning(delta):
 
 ##play swap weapon hands animation and show weapon
 
+func updateHealth():
+	await get_tree().create_timer(3).timeout
+	health += 0.01
+	hud.healthBar.value = health

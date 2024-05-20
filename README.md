@@ -27,11 +27,11 @@ Depending of the player choices, each chapter will have different results.
 
 ### GUN PLAY
  - Bullet impact decals
- - Bullet particles on impact //CLASE
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 
- - Add health system //falta mecanica curarse - Hud done
+ - Add health system //falta mecanica curarse - Hud done 
+ - Pensar en como equilibrar el tema de la salud para multiplayer -> Hacer que todos los jugadores tengan un botiquin y si no lo usan lo dropean al morir
  - Add healing items
  - Climb ladders (tbd)
 
@@ -42,7 +42,6 @@ Depending of the player choices, each chapter will have different results.
 ### UI / HUD
  - Menu
  - Show player state (crouched, running, standing -> like COD1)
- - Show Health(maybe?)
  
 ### OTHER:
  - Preload all possible pickup weapons on scene start, so it doesn't lag when picking up ones (pool maybe)

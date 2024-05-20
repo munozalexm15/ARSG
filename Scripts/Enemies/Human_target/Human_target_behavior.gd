@@ -6,6 +6,7 @@ signal hitmark
 @export var targetData : HumanTargetData
 
 @onready var animationPlayer: AnimationPlayer = $"../../../AnimationPlayer"
+@onready var headArea: Area3D = $"../HeadArea"
 # Called when the node enters the scene tree for the first time.
 var isDowned
 func _ready():
@@ -27,3 +28,8 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Up":
 		isDowned = false
 		targetData.actualHealth = targetData.health
+
+
+func _on_head_area_body_entered(body):
+	if body is Bullet:
+		targetData.actualHealth -= body.damage

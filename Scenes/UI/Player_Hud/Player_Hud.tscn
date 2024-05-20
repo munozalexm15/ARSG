@@ -354,7 +354,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -540,11 +540,11 @@ label_settings = SubResource("LabelSettings_mp7e6")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.027
-anchor_top = 0.114
+anchor_top = 0.134
 anchor_right = 0.247
 anchor_bottom = 0.157
 offset_left = -0.104
-offset_top = -27.872
+offset_top = -40.832
 offset_right = 0.455994
 offset_bottom = 0.264
 theme_override_styles/panel = SubResource("StyleBoxEmpty_my8jo")
