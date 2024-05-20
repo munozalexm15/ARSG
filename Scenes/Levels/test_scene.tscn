@@ -2033,6 +2033,8 @@ sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 background_energy_multiplier = 0.2
 sky = SubResource("Sky_wfdj2")
 tonemap_mode = 1
+glow_enabled = true
+glow_bloom = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjsru"]
 resource_name = "floor_2"

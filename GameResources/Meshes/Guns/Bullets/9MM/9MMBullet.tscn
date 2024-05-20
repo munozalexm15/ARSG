@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://deq0ph2t36sew"]
+[gd_scene load_steps=11 format=3 uid="uid://deq0ph2t36sew"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
+[ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_5uih7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
 radius = 0.0147636
@@ -12,6 +13,9 @@ resource_name = "Material.001"
 cull_mode = 2
 albedo_texture = ExtResource("2_vh7rm")
 roughness = 0.5
+emission = Color(0.670588, 0.419608, 0, 1)
+emission_energy_multiplier = 5.15
+emission_texture = ExtResource("3_5uih7")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ye3jn"]
 _surfaces = [{
@@ -45,6 +49,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ye3jn")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf6i6"]
+emission_enabled = true
+emission = Color(0.74902, 0.631373, 0, 1)
+emission_energy_multiplier = 8.85
+refraction_scale = -1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_ka03k"]
+material = SubResource("StandardMaterial3D_vf6i6")
+radius = 0.015
+height = 0.07
+
+[sub_resource type="Gradient" id="Gradient_twl08"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="RigidBody3D" type="RigidBody3D"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
 collision_layer = 5
@@ -67,5 +85,24 @@ skeleton = NodePath("")
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-1, -16.7396, -1, 2, 33.4791, 2)
 
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 3
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.48
+mesh = SubResource("SphereMesh_ka03k")
+direction = Vector3(0, 0, 0)
+spread = 96.79
+gravity = Vector3(-0.245, 0.16, 0.62)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+tangential_accel_min = -100.0
+tangential_accel_max = -100.0
+damping_min = 93.84
+damping_max = 102.42
+color_ramp = SubResource("Gradient_twl08")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
+[connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]

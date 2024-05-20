@@ -30,8 +30,8 @@ Depending of the player choices, each chapter will have different results.
  - Bullet particles on impact //CLASE
 
 ### MECHANICS
- - Add super ammo boxes (refills ammo of all weapons) //CLASE
- - Add health system //CLASE
+ - Add super ammo boxes (refills ammo of all weapons) 
+ - Add health system //falta mecanica curarse - Hud done
  - Add healing items
  - Climb ladders (tbd)
 

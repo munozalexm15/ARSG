@@ -7,7 +7,7 @@ extends Control
 @export var reticle_speed : float = 0.25
 @export var retoile_distance : float = 2.0
 @export var reticle_lines : Array[Line2D]
-@export var player_controller : CharacterBody3D
+@export var player_controller : Player
 
 @onready var ammoCounter = $PanelContainer/HBoxContainer/VBoxContainer2/AmmoIndicator
 @onready var weaponFireMode = $PanelContainer/HBoxContainer/VBoxContainer/FireMode
@@ -28,9 +28,12 @@ extends Control
 
 @onready var fpsCounter : Label = $FPSCOUNTER
 
+@onready var healthBar : ProgressBar = $PanelContainer2/VBoxContainer/ProgressBar
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	crosshair.queue_redraw()
+	healthBar.value = player_controller.health 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,7 +54,6 @@ func adjust_reticle_size():
 	var origin = Vector3(0,0,0)
 	var pos =Vector2(0,0)
 	var speed = origin.distance_to(player_velocity)
-	
 	
 	#top and bottom
 	reticle_lines[0].position = lerp(reticle_lines[0].position, pos + Vector2(0, -speed * retoile_distance), reticle_speed)

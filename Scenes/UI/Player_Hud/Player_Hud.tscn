@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=27 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 8.28211),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.780392)]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.45098)]
 }
 
 [sub_resource type="Animation" id="Animation_1ou1t"]
@@ -308,6 +308,18 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
 shadow_offset = Vector2(2, 2)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my8jo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbdy5"]
+bg_color = Color(0.443137, 0.113725, 0, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nisik"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_bottom_right = 8
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -511,6 +523,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="FPSCOUNTER" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
@@ -522,3 +535,32 @@ offset_top = 0.271999
 offset_right = -0.472015
 offset_bottom = -0.104004
 label_settings = SubResource("LabelSettings_mp7e6")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027
+anchor_top = 0.114
+anchor_right = 0.247
+anchor_bottom = 0.157
+offset_left = -0.104
+offset_top = -27.872
+offset_right = 0.455994
+offset_bottom = 0.264
+theme_override_styles/panel = SubResource("StyleBoxEmpty_my8jo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "HEALTH"
+label_settings = SubResource("LabelSettings_2gpvy")
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_cbdy5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nisik")
+value = 75.0
+show_percentage = false

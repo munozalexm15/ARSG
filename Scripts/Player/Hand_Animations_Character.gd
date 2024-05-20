@@ -63,7 +63,6 @@ func _physics_process(delta):
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
-	
 	if Input.is_action_pressed("ADS"):
 		if actualWeapon.weaponData.weaponType == "Sniper":
 			weaponHolder.transform.origin = weaponHolder.transform.origin.lerp(ads_position, ads_lerp * delta)

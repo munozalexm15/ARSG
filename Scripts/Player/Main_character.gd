@@ -67,11 +67,14 @@ var headBobbing_index = 0.0
 var headBobbing_vector = Vector2.ZERO
 var headBobbing_curr_intensity = 0.0
 
+var health: float = 75
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
+	
 
 func _input(event):
 	#If mouse is moving
