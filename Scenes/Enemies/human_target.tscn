@@ -142,7 +142,7 @@ data = PackedVector3Array(10.557, 0, -117.993, -13.8935, 0, -124.056, 13.8921, 0
 backface_collision = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p4esa"]
-size = Vector3(30.3202, 4.86902, 33.7695)
+size = Vector3(30.3202, 1.25234, 33.7695)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2lr8m"]
 _surfaces = [{
@@ -208,7 +208,7 @@ shape = SubResource("ConcavePolygonShape3D_yglcp")
 collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Prop_Target_Pole2/Prop_Target_Human/HeadArea"]
-transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-14, 0, 1.77636e-14, 1, -0.374151, 4.47926, -132.448)
+transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-14, 0, 1.77636e-14, 1, -0.374151, -0.520682, -132.448)
 shape = SubResource("BoxShape3D_p4esa")
 
 [node name="Prop_Target_SpringBox" type="MeshInstance3D" parent="."]

@@ -7,7 +7,7 @@
 script = ExtResource("1_fq7rl")
 name = &"M16A2"
 weaponType = "AR"
-damage = 3.4
+damage = 3.38
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 90
