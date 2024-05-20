@@ -60,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.003064
 shape = SubResource("CapsuleShape3D_rtfty")
 
 [node name="9MM_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, -2.11758e-22, 0, 0, -8.74228e-09, -0.2, -2.11758e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
+transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
 mesh = SubResource("ArrayMesh_58l50")
 skeleton = NodePath("")
 

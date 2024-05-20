@@ -27,9 +27,11 @@ Depending of the player choices, each chapter will have different results.
 
 ### GUN PLAY
  - Bullet impact decals
+ - Bullet particles on impact //CLASE
 
 ### MECHANICS
- - Add super ammo boxes (refills ammo of all weapons)
+ - Add super ammo boxes (refills ammo of all weapons) //CLASE
+ - Add health system //CLASE
  - Add healing items
  - Climb ladders (tbd)
 

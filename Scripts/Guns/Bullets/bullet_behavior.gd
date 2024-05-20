@@ -7,6 +7,7 @@ signal hitmark
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode)
 var damage : float
+var distanceTraveled: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	distanceTraveled += 1
 	pass
 
 func _on_visibility_notifier_screen_exited():

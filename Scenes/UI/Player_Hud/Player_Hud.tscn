@@ -53,6 +53,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_g1nth"]
 resource_name = "hitmarker"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -60,7 +61,7 @@ tracks/0/path = NodePath("CenterContainer:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 0.785398, 0.0]
@@ -72,7 +73,7 @@ tracks/1/path = NodePath("CenterContainer/Top:width")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [2.0, 4.0, 2.0]
@@ -84,7 +85,7 @@ tracks/2/path = NodePath("CenterContainer/Right:width")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [2.0, 4.0, 2.0]
@@ -96,7 +97,7 @@ tracks/3/path = NodePath("CenterContainer/Down:width")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [2.0, 4.0, 2.0]
@@ -108,7 +109,7 @@ tracks/4/path = NodePath("CenterContainer/Left:width")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [2.0, 4.0, 2.0]
@@ -333,7 +334,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(0, 0, 0, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 
@@ -341,7 +342,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
+blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -489,7 +490,7 @@ offset_bottom = 4.0
 grow_horizontal = 0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.895686)
+modulate = Color(1, 1, 1, 0.791372)
 texture_filter = 1
 material = SubResource("ShaderMaterial_jnugk")
 layout_mode = 2
@@ -500,7 +501,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.582745)
+modulate = Color(1, 1, 1, 0.687059)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3

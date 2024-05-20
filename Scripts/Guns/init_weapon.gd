@@ -44,7 +44,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-
+	print(rotation)
 	if hands.state_machine.state.name != "Reload":
 		if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
 			if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
@@ -126,7 +126,7 @@ func spawnBullet():
 		for x in range(8):
 			var bullet : Bullet = bullet_type.instantiate()
 			bullet.transform = muzzle.global_transform
-			bullet.linear_velocity = muzzle.global_transform.basis.x * 500
+			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
 			bullet.damage = weaponData.damage
