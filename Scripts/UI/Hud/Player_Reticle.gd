@@ -30,6 +30,10 @@ extends Control
 
 @onready var healthBar : ProgressBar = $PanelContainer2/VBoxContainer/ProgressBar
 
+@onready var interactContainer :VBoxContainer = $CenterContainer2/HBoxContainer/InteractContainer
+@onready var pointsContainer: PanelContainer = $PointsContainer
+@onready var pointsLabel : Label = $PointsContainer/HBoxContainer/PointsLabel
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	crosshair.queue_redraw()

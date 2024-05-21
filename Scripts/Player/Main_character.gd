@@ -194,3 +194,7 @@ func updateHealth():
 	await get_tree().create_timer(3).timeout
 	health += 0.01
 	hud.healthBar.value = health
+
+
+func _on_interact_ray_button_pressed():
+	hud.pointsLabel.text = str(int(hud.pointsLabel.text) + 1)

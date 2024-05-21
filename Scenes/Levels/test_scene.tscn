@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=218 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://m4elvbbai5jh" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/button_off.png" id="17_qmcyl"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="18_e6v55"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="19_fsiqc"]
+[ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="38_gl6ba"]
 [ext_resource type="PackedScene" uid="uid://cpexpuinj1378" path="res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn" id="40_g4ke6"]
@@ -3342,6 +3343,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056504, 0, -9.02687)
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -3.99647, 0, -12.5059)
 mesh = SubResource("ArrayMesh_nnhqo")
 skeleton = NodePath("")
+
+[node name="Button_Interactable" parent="Firing Range" instance=ExtResource("32_odvjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6316, 1.09012, -8.95421)
 
 [node name="exit_firing_range_area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65968)

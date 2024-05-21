@@ -9,6 +9,8 @@ signal swap_weapon(weapon, isSwapping)
 
 signal pickup_ammo(ammoBox)
 
+signal button_pressed
+
 var WeaponInteractable
 
 # Called when the node enters the scene tree for the first time.
@@ -20,11 +22,16 @@ func _physics_process(delta):
 	hud.marginContainer.visible = false
 	hud.pickupAmmoContainer.visible = false
 	hud.pickupWeaponContainer.visible = false
+	hud.interactContainer.visible = false
 	if is_colliding():
 		var interactable = get_collider()
 		var isInHolder = false
 		var isHoldingWeaponWithSameCaliber = false
-		
+		if interactable is Interactable_Button:
+			hud.interactContainer.visible = true
+			if Input.is_action_just_pressed("Interact"):
+				button_pressed.emit()
+				
 		if interactable is Interactable:
 			WeaponInteractable = interactable
 			for x in arms.weaponHolder.get_child_count():
