@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://deq0ph2t36sew"]
+[gd_scene load_steps=12 format=3 uid="uid://deq0ph2t36sew"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
+[ext_resource type="PackedScene" uid="uid://b1rrnrcreuabo" path="res://Scenes/Bullets/bullet_decal.tscn" id="2_wvaat"]
 [ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_5uih7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
@@ -64,6 +65,7 @@ height = 0.07
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="RigidBody3D" type="RigidBody3D"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 5
 collision_mask = 5
 continuous_cd = true
@@ -71,6 +73,7 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_jb3pr")
 meshNode = NodePath("9MM_001")
+decal = ExtResource("2_wvaat")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
@@ -86,9 +89,12 @@ aabb = AABB(-1, -16.7396, -1, 2, 33.4791, 2)
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 emitting = false
-amount = 3
-lifetime = 0.1
+amount = 5
+lifetime = 0.05
 one_shot = true
+explosiveness = 0.22
+randomness = 1.0
+lifetime_randomness = 0.13
 mesh = SubResource("SphereMesh_ka03k")
 direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0.62)

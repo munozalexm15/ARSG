@@ -129,8 +129,8 @@ radius = 0.411381
 height = 1.2
 
 [node name="Character" type="CharacterBody3D"]
-collision_layer = 18
-collision_mask = 18
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
 armsNode = NodePath("Head/eyesHolder/armsHolder/arms")

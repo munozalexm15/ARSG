@@ -3,8 +3,6 @@ extends ArmsState
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
-	print(arms.player.state_machine.state.name + " , player state: "+ arms.state_machine.state.name)
-	
 	if arms.player.state_machine.state.name == "Run":
 		arms.player.state_machine.transition_to("Walk")
 		arms.animationPlayer.play("ShowKnife")

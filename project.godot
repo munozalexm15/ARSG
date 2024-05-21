@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/Levels/test_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
-[editor_plugins]
-
-enabled=PackedStringArray()
-
 [filesystem]
 
 import/fbx/enabled=false
@@ -141,7 +137,6 @@ Melee={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Bullets"
 3d_physics/layer_4="Weapons"
-3d_physics/layer_5="Knife"
 
 [rendering]
 
