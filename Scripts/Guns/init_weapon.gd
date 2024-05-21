@@ -123,7 +123,9 @@ func spawnBullet():
 	var level_root = get_tree().get_root()
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
+			
 			var bullet : Bullet = bullet_type.instantiate()
+			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
@@ -131,13 +133,20 @@ func spawnBullet():
 			bullet.damage = weaponData.damage
 			bullet.hitmark.connect(show_hitmarker)
 			bullet.playerDamaged.connect(update_health)
+			bullet.kill.connect(update_score)
 			level_root.add_child(bullet)
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
+		bullet.instigator = hands.player
 		bullet.transform = muzzle.global_transform
 		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 		bullet.damage = weaponData.damage
+		#if player gets damaged
+		bullet.playerDamaged.connect(update_health)
+		#Hitmarker in hud
 		bullet.hitmark.connect(show_hitmarker)
+		#For when player kills somebody (atm just for update hud points)
+		bullet.kill.connect(update_score)
 		level_root.add_child(bullet)
 
 	muzzle_flash_particles.emitting = true
@@ -156,6 +165,9 @@ func show_hitmarker():
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
 		hands.player.hud.animationPlayer.play("RESET")
 	hands.player.hud.animationPlayer.play("hitmarker")
+
+func update_score():
+	hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + 1)
 
 func update_health():
 	hands.player.hud.healthBar.value = hands.player.health

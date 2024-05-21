@@ -197,4 +197,4 @@ func updateHealth():
 
 
 func _on_interact_ray_button_pressed():
-	hud.pointsLabel.text = str(int(hud.pointsLabel.text) + 1)
+	print("MBOF")

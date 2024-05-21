@@ -4,13 +4,19 @@ extends RigidBody3D
 signal hitmark
 signal playerDamaged
 
+signal kill
+
 @onready var impactParticle: CPUParticles3D = $CPUParticles3D
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode)
+
+var instigator: CharacterBody3D
+
 var damage : float
 var distanceTraveled: float = 0
 var decal_instance : Decal
+
 @export var decal : PackedScene
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +27,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	distanceTraveled += 0.005
 	pass
 
@@ -36,6 +41,9 @@ func _on_body_entered(body: Node3D):
 	
 	if body is Target and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
+		if body.targetData.actualHealth <= 0:
+			kill.emit()
+		
 		hitmark.emit()
 		impactParticle.emitting = true
 	
