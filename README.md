@@ -26,7 +26,8 @@ Depending of the player choices, each chapter will have different results.
 ## TODO:
 
 ### GUN PLAY
- - Bullet impact decals
+ - Bullet impact decals (WIP)
+ - Weapon barrel smoke after firing 
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 
