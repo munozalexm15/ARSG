@@ -23,5 +23,5 @@ cadency = 0.0
 recoil = Vector3(1, 0.2, 0.1)
 weaponScene = "res://Scenes/Guns/M14.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
-weaponSpawnPosition = Vector3(1.48018, -0.802744, 1.27714)
+weaponSpawnPosition = Vector3(1.59931, -0.812206, 1.27714)
 weaponImage = ExtResource("2_u2a02")

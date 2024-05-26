@@ -6,7 +6,7 @@ signal playerDamaged
 
 signal kill
 
-@onready var impactParticle: CPUParticles3D = $CPUParticles3D
+@onready var impactParticle: GPUParticles3D = $CPUParticles3D
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode)

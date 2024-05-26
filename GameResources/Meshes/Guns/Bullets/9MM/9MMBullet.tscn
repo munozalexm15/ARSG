@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://deq0ph2t36sew"]
+[gd_scene load_steps=14 format=3 uid="uid://deq0ph2t36sew"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
@@ -50,19 +50,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ye3jn")
 
+[sub_resource type="Gradient" id="Gradient_twl08"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cbybl"]
+gradient = SubResource("Gradient_twl08")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_roi0e"]
+angle_min = -581.1
+angle_max = -366.3
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+angular_velocity_min = -44.31
+angular_velocity_max = 4.85
+gravity = Vector3(0, 0, 0.62)
+tangential_accel_min = -100.0
+tangential_accel_max = -100.0
+damping_min = 93.84
+damping_max = 102.42
+scale_over_velocity_max = 2.75
+color_ramp = SubResource("GradientTexture1D_cbybl")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf6i6"]
 emission_enabled = true
-emission = Color(0.74902, 0.631373, 0, 1)
+emission = Color(0.988235, 0.917647, 0.741176, 1)
 emission_energy_multiplier = 8.85
 refraction_scale = -1.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="SphereMesh" id="SphereMesh_ka03k"]
 material = SubResource("StandardMaterial3D_vf6i6")
-radius = 0.015
-height = 0.07
-
-[sub_resource type="Gradient" id="Gradient_twl08"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+radius = 0.005
+height = 0.1
+is_hemisphere = true
 
 [node name="RigidBody3D" type="RigidBody3D"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -87,24 +111,18 @@ skeleton = NodePath("")
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-1, -16.7396, -1, 2, 33.4791, 2)
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.48231e-21, 0, 1, -0.352483, -1.54075e-08, 1.37313e-21)
 emitting = false
 amount = 5
 lifetime = 0.05
 one_shot = true
 explosiveness = 0.22
-randomness = 1.0
-lifetime_randomness = 0.13
-mesh = SubResource("SphereMesh_ka03k")
-direction = Vector3(0, 0, 0)
-gravity = Vector3(0, 0, 0.62)
-initial_velocity_min = 2.0
-initial_velocity_max = 4.0
-tangential_accel_min = -100.0
-tangential_accel_max = -100.0
-damping_min = 93.84
-damping_max = 102.42
-color_ramp = SubResource("Gradient_twl08")
+fixed_fps = 0
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_roi0e")
+draw_pass_1 = SubResource("SphereMesh_ka03k")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
