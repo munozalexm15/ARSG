@@ -10,6 +10,7 @@ extends Node3D
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
 @onready var muzzle = $Muzzle
+@onready var muzzleSmoke : Trail3D = $Muzzle/MuzzleSmoke
 @export var bullet_type: PackedScene
 @onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
 @onready var muzzle_flash_particles :CPUParticles3D = $Muzzle/MuzzleFlash
@@ -34,8 +35,12 @@ var burstBullet : int = 0
 
 var isBoltReloaded : bool = false
 
+var removeSmokeMuzzle : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if muzzleSmoke:
+		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
 	weaponData.selectedFireMode = weaponData.fireModes[0]
 	current_time = 1
@@ -91,6 +96,16 @@ func _physics_process(delta):
 		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
 		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
 		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+	
+	if Input.is_action_just_released("Fire") and muzzleSmoke:
+		muzzleSmoke.base_width = 0.5
+		await get_tree().create_timer(3).timeout
+		removeSmokeMuzzle = true
+	
+	if removeSmokeMuzzle and muzzleSmoke.base_width > 0:
+		muzzleSmoke.base_width -= 0.01
+		if muzzleSmoke.base_width <= 0:
+			removeSmokeMuzzle = false
 		
 func apply_recoil():
 	if Input.is_action_pressed("ADS"):

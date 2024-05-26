@@ -60,7 +60,7 @@ var isClimbing = false
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0, "idle_speed"= 10.0}
 
 #---------In meters
-const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.02, "idle_speed" = 0.005}
+const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.04, "idle_speed" = 0.005}
 
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0

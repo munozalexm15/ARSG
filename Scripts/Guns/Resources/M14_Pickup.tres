@@ -7,7 +7,7 @@
 script = ExtResource("1_w1rw5")
 name = &"M14"
 weaponType = "Rifle"
-damage = 0.0
+damage = 3.5
 magSize = 8
 bulletsInMag = 2
 reserveAmmo = 16
@@ -23,5 +23,5 @@ cadency = 0.0
 recoil = Vector3(0, 0, 0)
 weaponScene = "res://Scenes/Guns/M14.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
-weaponSpawnPosition = Vector3(0.779639, -0.723751, 1.29897)
+weaponSpawnPosition = Vector3(1.42224, -0.812206, 1.27714)
 weaponImage = ExtResource("2_o0uwa")
