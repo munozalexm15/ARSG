@@ -23,6 +23,7 @@ func _process(delta):
 		hud.NPCNameLabel.text = npcData.name
 		hud.NPCRoleLabel.text = npcData.role
 		
+		
 		hud.NPCNameLabel.visible = true
 		hud.NPCRoleLabel.visible = true
 		

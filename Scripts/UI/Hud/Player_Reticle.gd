@@ -38,6 +38,7 @@ extends Control
 @onready var timerContainer : HBoxContainer = $ObjectiveContainer/VBoxContainer/TimerContainer
 @onready var timeLabel : Label = $ObjectiveContainer/VBoxContainer/TimerContainer/TimeLabel
 
+@onready var InfoAnimationPlayer: AnimationPlayer = $InformationContainer/InformationAnimPlayer
 @onready var NPCNameLabel : Label = $InformationContainer/VBoxContainer/Name
 @onready var NPCRoleLabel : Label = $InformationContainer/VBoxContainer/Role
 
