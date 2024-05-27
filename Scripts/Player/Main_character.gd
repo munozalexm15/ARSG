@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
+
+signal challenge
+
 @export var bobbingNode := NodePath()
 @onready var eyes : Node3D = get_node(bobbingNode)
 
@@ -197,4 +200,6 @@ func updateHealth():
 
 
 func _on_interact_ray_button_pressed():
-	print("MBOF")
+	hud.pointsContainer.visible = true
+	hud.timerContainer.visible = true
+	challenge.emit()

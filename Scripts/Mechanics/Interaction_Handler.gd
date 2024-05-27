@@ -30,6 +30,8 @@ func _physics_process(delta):
 		if interactable is Interactable_Button:
 			hud.interactContainer.visible = true
 			if Input.is_action_just_pressed("Interact"):
+				hud.pointsLabel.text = "0"
+				hud.timeLabel.text = "60"
 				button_pressed.emit()
 				
 		if interactable is Interactable:

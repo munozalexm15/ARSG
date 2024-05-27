@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=33 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -342,6 +342,8 @@ corner_radius_bottom_right = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tln0s"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_y0upa"]
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -613,7 +615,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_nisik")
 value = 75.0
 show_percentage = false
 
-[node name="PointsContainer" type="PanelContainer" parent="."]
+[node name="ObjectiveContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029
@@ -626,16 +628,63 @@ offset_right = 0.447998
 offset_bottom = 0.199997
 theme_override_styles/panel = SubResource("StyleBoxEmpty_tln0s")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PointsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ObjectiveContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PointsContainer/HBoxContainer"]
+[node name="PointsContainer" type="HBoxContainer" parent="ObjectiveContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ObjectiveContainer/VBoxContainer/PointsContainer"]
 layout_mode = 2
 text = "POINTS: "
 label_settings = SubResource("LabelSettings_5ruw7")
 
-[node name="PointsLabel" type="Label" parent="PointsContainer/HBoxContainer"]
+[node name="PointsLabel" type="Label" parent="ObjectiveContainer/VBoxContainer/PointsContainer"]
 layout_mode = 2
 text = "0
 "
 label_settings = SubResource("LabelSettings_5ruw7")
+
+[node name="TimerContainer" type="HBoxContainer" parent="ObjectiveContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ObjectiveContainer/VBoxContainer/TimerContainer"]
+layout_mode = 2
+text = "TIME: "
+label_settings = SubResource("LabelSettings_5ruw7")
+
+[node name="TimeLabel" type="Label" parent="ObjectiveContainer/VBoxContainer/TimerContainer"]
+layout_mode = 2
+text = "60"
+label_settings = SubResource("LabelSettings_5ruw7")
+
+[node name="InformationContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.586
+anchor_top = 0.5
+anchor_right = 0.586
+anchor_bottom = 0.5
+offset_left = -68.072
+offset_top = -27.0
+offset_right = 131.928
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InformationContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="InformationContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+text = "SGT. peeposad"
+label_settings = SubResource("LabelSettings_y0upa")
+autowrap_mode = 2
+
+[node name="Role" type="Label" parent="InformationContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "aaaaaaa"
+label_settings = SubResource("LabelSettings_y0upa")
+autowrap_mode = 2

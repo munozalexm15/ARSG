@@ -31,13 +31,26 @@ extends Control
 @onready var healthBar : ProgressBar = $PanelContainer2/VBoxContainer/ProgressBar
 
 @onready var interactContainer :VBoxContainer = $CenterContainer2/HBoxContainer/InteractContainer
-@onready var pointsContainer: PanelContainer = $PointsContainer
-@onready var pointsLabel : Label = $PointsContainer/HBoxContainer/PointsLabel
+
+@onready var pointsContainer: HBoxContainer = $ObjectiveContainer/VBoxContainer/PointsContainer
+@onready var pointsLabel : Label = $ObjectiveContainer/VBoxContainer/PointsContainer/PointsLabel
+
+@onready var timerContainer : HBoxContainer = $ObjectiveContainer/VBoxContainer/TimerContainer
+@onready var timeLabel : Label = $ObjectiveContainer/VBoxContainer/TimerContainer/TimeLabel
+
+@onready var NPCNameLabel : Label = $InformationContainer/VBoxContainer/Name
+@onready var NPCRoleLabel : Label = $InformationContainer/VBoxContainer/Role
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	crosshair.queue_redraw()
 	healthBar.value = player_controller.health 
+	NPCNameLabel.visible = false
+	NPCRoleLabel.visible = false
+	pointsContainer.visible = false
+	timerContainer.visible = false
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

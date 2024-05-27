@@ -184,7 +184,8 @@ func show_hitmarker():
 	hands.player.hud.animationPlayer.play("hitmarker")
 
 func update_score():
-	hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + 1)
+	if hands.player.hud.timerContainer.visible == true:
+		hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + 1)
 
 func update_health():
 	hands.player.hud.healthBar.value = hands.player.health

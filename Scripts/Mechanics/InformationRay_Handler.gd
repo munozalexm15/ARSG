@@ -15,6 +15,18 @@ func _process(delta):
 	if is_colliding():
 		var collision = get_collider()
 		if not (collision is FiringRange_NPC):
+			hud.NPCNameLabel.visible = false
+			hud.NPCRoleLabel.visible = false
 			return
 		npcData = collision.npcData
-		print(npcData.name)
+		
+		hud.NPCNameLabel.text = npcData.name
+		hud.NPCRoleLabel.text = npcData.role
+		
+		hud.NPCNameLabel.visible = true
+		hud.NPCRoleLabel.visible = true
+		
+
+	else:
+		hud.NPCNameLabel.visible = false
+		hud.NPCRoleLabel.visible = false
