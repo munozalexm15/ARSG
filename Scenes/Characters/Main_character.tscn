@@ -182,7 +182,7 @@ script = ExtResource("3_1c2ms")
 hudNode = NodePath("../../../../UI")
 
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
-transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, -0.193333, -0.041)
+transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0, -0.193333, -0.041)
 rayNode = NodePath("../InteractRay")
 cameraNode = NodePath("../Camera3D")
 playerNode = NodePath("../../../..")

@@ -25,3 +25,4 @@ weaponScene = "res://Scenes/Guns/USP.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/USP_Pickup.tscn"
 weaponSpawnPosition = Vector3(0, 0.132, 0.253)
 weaponImage = ExtResource("2_mcem4")
+idle_sway_adjustment = 0.0

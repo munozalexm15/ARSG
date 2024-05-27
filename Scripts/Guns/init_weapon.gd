@@ -9,6 +9,18 @@ extends Node3D
 @onready var animPlayer = $AnimationPlayer
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
+#idle weapon sway variables
+@export var sway_noise : NoiseTexture2D
+@export var sway_speed : float = 1.2
+
+var random_sway_x
+var random_sway_y
+var random_sway_amount : float
+var idle_sway_adjustment
+var idle_sway_rotation_strength
+var time : float = 0
+
+#Weapon parts
 @onready var muzzle = $Muzzle
 @onready var muzzleSmoke : Trail3D = $Muzzle/MuzzleSmoke
 @export var bullet_type: PackedScene
@@ -30,13 +42,14 @@ var target_rot: Vector3
 var target_pos: Vector3
 var current_time : float
 
+#WeaponChecks
 var isBurstActive: bool = false
 var burstBullet : int = 0
 
 var isBoltReloaded : bool = false
-
 var removeSmokeMuzzle : bool = false
 
+var mouse_movement
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if muzzleSmoke:
@@ -46,6 +59,11 @@ func _ready():
 	current_time = 1
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
+	
+	
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_movement = event.relative
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -98,6 +116,7 @@ func _physics_process(delta):
 		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
 	
 	if Input.is_action_just_released("Fire") and weaponData.bulletsInMag > 0 and muzzleSmoke:
+		muzzleSmoke.segments = 20
 		muzzleSmoke.emit = true
 		muzzleSmoke.base_width = 0.5
 		await get_tree().create_timer(1).timeout
@@ -106,7 +125,7 @@ func _physics_process(delta):
 	if removeSmokeMuzzle and muzzleSmoke.base_width > 0:
 		muzzleSmoke.base_width -= 0.01
 		if muzzleSmoke.base_width <= 0:
-			muzzleSmoke.emit = false
+			muzzleSmoke.segments = 0
 			removeSmokeMuzzle = false
 		
 func apply_recoil():

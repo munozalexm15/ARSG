@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=43 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -11,6 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_3ahf2"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_cj2rk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lqpy4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_thksc"]
+width = 227
+height = 207
+noise = SubResource("FastNoiseLite_lqpy4")
 
 [sub_resource type="Gradient" id="Gradient_axtnq"]
 colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
@@ -1365,6 +1372,7 @@ _data = {
 [node name="MP5" type="Node3D"]
 script = ExtResource("1_q6gp1")
 weaponData = ExtResource("2_65qhb")
+sway_noise = SubResource("NoiseTexture2D_thksc")
 bullet_type = ExtResource("3_0aq88")
 recoil_rotation_x = ExtResource("4_a8kcd")
 recoil_rotation_z = ExtResource("5_65ymy")
@@ -1382,7 +1390,6 @@ script = ExtResource("9_3ahf2")
 lifetime = 0.4
 width_profile = SubResource("Curve_gxmk4")
 smoothing_iterations = 3
-axis = 2
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://ckuru1wposqw7"]
+[gd_scene load_steps=52 format=3 uid="uid://ckuru1wposqw7"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_e5vrk"]
 [ext_resource type="Resource" uid="uid://o43pyk7ph22q" path="res://Scripts/Guns/Resources/remington_700.tres" id="2_feco5"]
@@ -11,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cqewmldprbatp" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash3.png" id="9_hrudy"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_kgge4"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="11_syn6u"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8qxma"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6hcff"]
+noise = SubResource("FastNoiseLite_8qxma")
 
 [sub_resource type="Curve" id="Curve_phgla"]
 min_value = -1.0
@@ -1854,6 +1859,7 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01973, 0, 0)
 script = ExtResource("1_e5vrk")
 weaponData = ExtResource("2_feco5")
+sway_noise = SubResource("NoiseTexture2D_6hcff")
 bullet_type = ExtResource("3_yq4lo")
 recoil_rotation_x = SubResource("Curve_phgla")
 recoil_rotation_z = SubResource("Curve_3i4cf")

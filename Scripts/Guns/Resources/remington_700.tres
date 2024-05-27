@@ -25,3 +25,6 @@ weaponScene = "res://Scenes/Guns/remington_700.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn"
 weaponSpawnPosition = Vector3(-1.72999, 0.749306, 0.532162)
 weaponImage = ExtResource("2_ufxln")
+idle_sway_adjustment = 10.0
+idle_sway_rotation_strenght = 300.0
+random_sway_amount = 5.0
