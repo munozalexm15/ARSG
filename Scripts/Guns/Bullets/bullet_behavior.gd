@@ -1,10 +1,10 @@
 class_name Bullet
 extends RigidBody3D
 
-signal hitmark
+signal hitmark(hitPoints)
 signal playerDamaged
 
-signal kill
+signal kill(points)
 
 @onready var impactParticle: GPUParticles3D = $CPUParticles3D
 @onready var collider : CollisionShape3D = $CollisionShape3D
@@ -41,10 +41,11 @@ func _on_body_entered(body: Node3D):
 	
 	if body is Target and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
-		if body.targetData.actualHealth <= 0:
-			kill.emit()
+		hitmark.emit(1)
 		
-		hitmark.emit()
+		if body.targetData.actualHealth <= 0:
+			kill.emit(10)
+		
 		impactParticle.emitting = true
 	
 	if body is Player:

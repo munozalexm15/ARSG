@@ -7,6 +7,8 @@ signal hitmark
 
 @onready var animationPlayer: AnimationPlayer = $"../../../AnimationPlayer"
 @onready var headArea: Area3D = $"../HeadArea"
+
+var isHeadshot : bool = false
 # Called when the node enters the scene tree for the first time.
 var isDowned
 func _ready():
@@ -24,6 +26,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Down":
 		await get_tree().create_timer(targetData.downTime).timeout
 		animationPlayer.play("Up")
+		isHeadshot = false
 	
 	if anim_name == "Up":
 		isDowned = false
