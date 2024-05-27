@@ -35,7 +35,6 @@ func _on_visibility_notifier_screen_exited():
 
 func _on_body_entered(body: Node3D):
 	mesh.visible = false
-	freeze = true
 	
 	spawn_decal(body)
 	

@@ -2048,7 +2048,7 @@ shader_parameter/fadeToWhite = false
 shader = ExtResource("5_apkuc")
 shader_parameter/color_depth = 5
 shader_parameter/dithering = false
-shader_parameter/resolution_scale = 1
+shader_parameter/resolution_scale = 2
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nuxu3"]
 panorama = ExtResource("13_kgnbm")

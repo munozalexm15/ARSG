@@ -140,7 +140,6 @@ func spawnBullet():
 	var level_root = get_tree().get_root()
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
-			
 			var bullet : Bullet = bullet_type.instantiate()
 			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
@@ -166,6 +165,7 @@ func spawnBullet():
 		bullet.hitmark.connect(hit_update_score)
 		#For when player kills somebody (atm just for update hud points)
 		bullet.kill.connect(kill_update_score)
+		
 		level_root.add_child(bullet)
 
 	muzzle_flash_particles.emitting = true
