@@ -99,7 +99,7 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_released("Fire") and muzzleSmoke:
 		muzzleSmoke.base_width = 0.5
-		await get_tree().create_timer(3).timeout
+		await get_tree().create_timer(1).timeout
 		removeSmokeMuzzle = true
 	
 	if removeSmokeMuzzle and muzzleSmoke.base_width > 0:

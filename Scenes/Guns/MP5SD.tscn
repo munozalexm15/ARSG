@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://dfmvrv13nrc7e"]
+[gd_scene load_steps=42 format=3 uid="uid://dfmvrv13nrc7e"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_3jexa"]
 [ext_resource type="Resource" uid="uid://d32y604kn4ny4" path="res://Scripts/Guns/Resources/MP5SD_Resource.tres" id="2_o1pe0"]
 [ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_vu4ie"]
 [ext_resource type="Curve" uid="uid://cbsgajp2koxd" path="res://GameResources/Curves/MP5SD/MP5SD_RecoilRotation_Z.tres" id="4_onism"]
 [ext_resource type="Curve" uid="uid://crxni3e4tv4fw" path="res://GameResources/Curves/MP5SD/MP5SD_RecoilPosition_Z.tres" id="5_qej72"]
+[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="6_e386r"]
 [ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="8_5ahk1"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_g0bhy"]
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="9_01yev"]
@@ -13,6 +14,24 @@
 min_value = -1.0
 _data = [Vector2(0, 0.164835), 0.0, 0.0, 0, 0, Vector2(0.0677083, -0.032967), 0.0, 0.0, 0, 0, Vector2(0.145833, 0.142857), 0.0, 0.0, 0, 0, Vector2(0.2397, 0.0757343), 0.0, 0.0, 0, 0]
 point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_v3g8u"]
+colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yi5eq"]
+gradient = SubResource("Gradient_v3g8u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rs5qf"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture1D_yi5eq")
+
+[sub_resource type="Curve" id="Curve_rnwp4"]
+_data = [Vector2(0, 0.0366615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="PointMesh" id="PointMesh_qmc4c"]
 
@@ -1671,6 +1690,15 @@ lerp_speed = 20.0
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.08786, 1.86323, -0.0707574)
+
+[node name="MuzzleSmoke" type="MeshInstance3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707575, 1.86323)
+material_override = SubResource("StandardMaterial3D_rs5qf")
+script = ExtResource("6_e386r")
+lifetime = 0.4
+width_profile = SubResource("Curve_rnwp4")
+smoothing_iterations = 3
+axis = 2
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)

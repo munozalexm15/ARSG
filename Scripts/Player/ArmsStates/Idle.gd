@@ -11,7 +11,7 @@ func enter(_msg := {}):
 			else:
 				arms.player.hud.animationPlayer.play("swap_gun_backwards", -1, 4.0, false)
 		
-		if state_machine.old_state.name == "Reload" and Input.is_action_pressed("Sprint"):
+		if (state_machine.old_state.name == "Reload" or state_machine.old_state.name == "SwappingWeapon") and Input.is_action_pressed("Sprint"):
 			arms.animationPlayer.play("Run")
 		else:
 			arms.animationPlayer.play("Idle")

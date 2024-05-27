@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ckuru1wposqw7"]
+[gd_scene load_steps=51 format=3 uid="uid://ckuru1wposqw7"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_e5vrk"]
 [ext_resource type="Resource" uid="uid://o43pyk7ph22q" path="res://Scripts/Guns/Resources/remington_700.tres" id="2_feco5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://77e8srjpcfei" path="res://GameResources/Textures/Guns/Remington700/ScopeText.jpg" id="8_6uq8l"]
 [ext_resource type="Texture2D" uid="uid://cqewmldprbatp" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash3.png" id="9_hrudy"]
 [ext_resource type="Texture2D" uid="uid://b8ly5jaesco37" path="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS.png" id="9_iaor8"]
+[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_kgge4"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="11_syn6u"]
 
 [sub_resource type="Curve" id="Curve_phgla"]
@@ -1809,6 +1810,24 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="Gradient" id="Gradient_8pbt2"]
+colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g2jff"]
+gradient = SubResource("Gradient_8pbt2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbufn"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture1D_g2jff")
+
+[sub_resource type="Curve" id="Curve_gmwum"]
+_data = [Vector2(0, 0.0366615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ygkl"]
 transparency = 1
 albedo_texture = ExtResource("9_hrudy")
@@ -2212,6 +2231,15 @@ skin = SubResource("Skin_7fyt6")
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9.88367, 0.440015, 0.546852)
+
+[node name="MuzzleSmoke" type="MeshInstance3D" parent="Muzzle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707574, 1.86323)
+material_override = SubResource("StandardMaterial3D_wbufn")
+script = ExtResource("9_kgge4")
+lifetime = 0.4
+width_profile = SubResource("Curve_gmwum")
+smoothing_iterations = 3
+axis = 2
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0.10217, 0)
