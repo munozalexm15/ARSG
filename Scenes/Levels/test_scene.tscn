@@ -1,8 +1,9 @@
-[gd_scene load_steps=218 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=221 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
+[ext_resource type="Texture2D" uid="uid://bn8nbv07bsm7q" path="res://GameResources/Textures/Other/ground_explosion-1.png" id="2_177eg"]
 [ext_resource type="PackedScene" uid="uid://c1f33xw1dqdug" path="res://Scenes/Meshes/ShootingRange/shooting_range_table.tscn" id="2_dl2m0"]
 [ext_resource type="Texture2D" uid="uid://ssr8v72fckql" path="res://GameResources/Textures/ShootingRange/AmmoSheet.png" id="2_eyqnt"]
 [ext_resource type="Texture2D" uid="uid://bly8iwtl1p6cx" path="res://GameResources/Textures/ShootingRange/WireFence.png" id="2_j4dm8"]
@@ -43,6 +44,7 @@
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="19_fsiqc"]
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
+[ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="38_gl6ba"]
 [ext_resource type="PackedScene" uid="uid://cpexpuinj1378" path="res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn" id="40_g4ke6"]
 [ext_resource type="PackedScene" uid="uid://bcepmrcqbhkaf" path="res://Scenes/Ammo/assault_rifle_ammo_pickup.tscn" id="41_nllwm"]
@@ -140,7 +142,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("7_hixh1")
 roughness = 0.5
-texture_filter = 2
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_175up"]
 _surfaces = [{
@@ -1871,6 +1873,24 @@ shadow_mesh = SubResource("ArrayMesh_d4135")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3ry47"]
 data = PackedVector3Array(-0.77, -0.03, 0, 0, -0.03, -1.87, -0.77, -0.03, -1.87, -0.77, -0.03, 0, 0, -0.03, 0, 0, -0.03, -1.87, 0, 0.03, 0, -0.77, 0.03, -1.87, 0, 0.03, -1.87, 0, 0.03, 0, -0.77, 0.03, 0, -0.77, 0.03, -1.87, -0.77, -0.03, 0, 0, 0.03, 0, 0, -0.03, 0, -0.77, -0.03, 0, -0.77, 0.03, 0, 0, 0.03, 0, 0, -0.03, 0, 0, 0.03, -1.87, 0, -0.03, -1.87, 0, -0.03, 0, 0, 0.03, 0, 0, 0.03, -1.87)
 
+[sub_resource type="ArrayMesh" id="ArrayMesh_xmvvt"]
+resource_name = "Modular Retro FPS Kit (source file)_door_wide_1_002"
+_surfaces = [{
+"aabb": AABB(-0.77, -0.0300001, -1.87, 0.77, 0.0600101, 1.87001),
+"attribute_data": PackedByteArray(70, 46, 255, 123, 70, 46, 255, 255, 70, 46, 0, 0, 70, 46, 255, 131, 70, 46, 255, 255, 70, 46, 0, 0, 255, 255, 255, 123, 255, 255, 255, 255, 39, 38, 255, 255, 255, 255, 0, 0, 39, 38, 0, 0, 255, 255, 255, 131, 255, 255, 255, 255, 216, 57, 255, 255, 255, 255, 0, 0, 216, 57, 0, 0),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(4, 0, 14, 0, 5, 0, 4, 0, 12, 0, 14, 0, 7, 0, 2, 0, 9, 0, 7, 0, 1, 0, 2, 0, 3, 0, 6, 0, 11, 0, 3, 0, 0, 0, 6, 0, 13, 0, 10, 0, 15, 0, 13, 0, 8, 0, 10, 0),
+"material": SubResource("StandardMaterial3D_2p48i"),
+"name": "door_1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 244, 255, 254, 255, 255, 127, 0, 0, 244, 255, 254, 255, 255, 191, 0, 0, 243, 255, 0, 0, 255, 191, 0, 0, 0, 0, 254, 255, 255, 127, 0, 0, 0, 0, 254, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 244, 255, 254, 255, 255, 127, 255, 255, 244, 255, 254, 255, 255, 191, 255, 255, 244, 255, 254, 255, 84, 213, 255, 255, 243, 255, 0, 0, 255, 191, 255, 255, 243, 255, 0, 0, 84, 213, 255, 255, 0, 0, 254, 255, 255, 127, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 84, 213, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 84, 213, 255, 127, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 255, 255, 0, 0, 255, 127, 0, 0, 255, 127, 255, 127, 255, 255, 255, 255, 255, 127, 170, 170, 84, 85, 255, 255, 255, 127, 170, 170, 84, 85, 255, 127, 255, 255, 0, 0, 255, 127, 170, 170, 84, 85, 0, 0, 255, 127, 170, 170, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_d4135")
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_2ovev"]
 _surfaces = [{
 "aabb": AABB(-1, -0.0500001, -2, 2.00001, 0.1, 2.00001),
@@ -2194,6 +2214,13 @@ size = Vector3(2, 2, 1.24323)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89218e-05, 0.000199556, 1.43051e-06)
 script = ExtResource("1_rw0mx")
 
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(0.999992, -0.00163365, -0.00366876, -0.00163884, -0.999998, -0.00141359, -0.00366645, 0.00141959, -0.999992, -1.56528, -0.195082, -11.5127)
+size = Vector3(7.46509, 1, 3.72119)
+texture_albedo = ExtResource("2_177eg")
+upper_fade = 1e-05
+lower_fade = 1e-05
+
 [node name="ObstacleCourse" type="Node3D" parent="."]
 
 [node name="Storage" type="Node3D" parent="."]
@@ -2245,8 +2272,18 @@ transform = Transform3D(0.00288321, -0.00950008, 0.00119816, 0.00393685, 3.54557
 mesh = SubResource("ArrayMesh_24xkn")
 skeleton = NodePath("")
 
+[node name="Sandbag_Pile_05" type="MeshInstance3D" parent="Storage"]
+transform = Transform3D(-0.00297264, 0.00946754, -0.00123658, -0.000222631, -0.00136351, -0.00990411, -0.00954535, -0.0029166, 0.000616092, 3.87489, -0.0104922, -10.605)
+mesh = SubResource("ArrayMesh_24xkn")
+skeleton = NodePath("")
+
 [node name="Prop_Pallet" type="MeshInstance3D" parent="Storage"]
 transform = Transform3D(0.01, 0, 0, 0, 0.00945234, -0.00326393, 0, 0.00326393, 0.00945234, 2.56335, 0.751988, -3.63545)
+mesh = SubResource("ArrayMesh_tmxxm")
+skeleton = NodePath("")
+
+[node name="Prop_Pallet2" type="MeshInstance3D" parent="Storage"]
+transform = Transform3D(0.01, 0, 0, 0, 0.00519594, 0.00854413, 0, -0.00854413, 0.00519594, -0.117932, 0.437709, -15.132)
 mesh = SubResource("ArrayMesh_tmxxm")
 skeleton = NodePath("")
 
@@ -2841,6 +2878,7 @@ spot_angle = 27.8181
 transform = Transform3D(1.545, 0, 0, 0, -6.75341e-08, -1.545, 0, 1.545, -6.75341e-08, -0.0230758, -0.0591679, -1.81294)
 
 [node name="Cone" type="MeshInstance3D" parent="Ceiling/floor_53/ps1VolumetricLight"]
+transform = Transform3D(1, 0, 0, 0, 1, -4.23516e-22, 0, 4.23516e-22, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0clo8")
 skeleton = NodePath("")
 
@@ -3347,6 +3385,9 @@ skeleton = NodePath("")
 [node name="Button_Interactable" parent="Firing Range" instance=ExtResource("32_odvjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6316, 1.09012, -8.95421)
 
+[node name="Character" parent="Firing Range" instance=ExtResource("34_fcn2x")]
+transform = Transform3D(-0.47738, 0, -0.148687, 0, 0.5, 0, 0.148687, 0, -0.47738, 1.9809, 3.03332, -5.56589)
+
 [node name="exit_firing_range_area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65968)
 collision_layer = 0
@@ -3535,6 +3576,18 @@ collision_mask = 11
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Outside/door_wide_1_001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3ry47")
 
+[node name="door_wide_1_002" type="MeshInstance3D" parent="Outside"]
+transform = Transform3D(-1.75634e-07, 1, -8.85801e-15, -1.3, -7.54979e-08, -1.48613e-07, -8.0376e-08, -4.88122e-08, 0.900825, 2.08426, -0.533712, -2.43958)
+mesh = SubResource("ArrayMesh_xmvvt")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Outside/door_wide_1_002"]
+collision_layer = 11
+collision_mask = 11
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Outside/door_wide_1_002/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3ry47")
+
 [node name="doorway_slim_1" type="MeshInstance3D" parent="Outside"]
 transform = Transform3D(6.72545e-08, -1.00088, -4.3427e-15, 1.12834, -3.55583e-15, -7.28584e-08, -3.28284e-15, 4.8855e-08, 1.00103, 1.96533, -0.024086, -9.59321e-08)
 mesh = SubResource("ArrayMesh_cvx8h")
@@ -3642,7 +3695,7 @@ light_volumetric_fog_energy = 0.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0329304, -0.645105)
 
 [node name="wall_small_1" type="MeshInstance3D" parent="Upper floor"]
-transform = Transform3D(1.1277, 0, 0, 0, 0, -1, 0, 1, 0, -3.39057, 3.0357, -5.20715)
+transform = Transform3D(1.128, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -3.39057, 3.0357, -5.20715)
 mesh = SubResource("ArrayMesh_bflhk")
 skeleton = NodePath("")
 
@@ -3666,7 +3719,7 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_1iko5")
 
 [node name="wall_small_2" type="MeshInstance3D" parent="Upper floor"]
-transform = Transform3D(1.1277, 0, 0, 0, 0, -1, 0, 1, 0, -1.13545, 3.0357, -5.20715)
+transform = Transform3D(1.128, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, -1.13545, 3.0357, -5.20715)
 mesh = SubResource("ArrayMesh_bflhk")
 skeleton = NodePath("")
 
@@ -3688,7 +3741,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_0bugt")
 
 [node name="wall_small_3" type="MeshInstance3D" parent="Upper floor"]
-transform = Transform3D(1.1277, 0, 0, 0, 0, -1, 0, 1, 0, 1.11683, 3.0357, -5.20715)
+transform = Transform3D(1.128, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, 1.11683, 3.0357, -5.20715)
 mesh = SubResource("ArrayMesh_bflhk")
 skeleton = NodePath("")
 
@@ -3712,7 +3765,7 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_vm6de")
 
 [node name="wall_small_4" type="MeshInstance3D" parent="Upper floor"]
-transform = Transform3D(1.1277, 0, 0, 0, 0, -1, 0, 1, 0, 3.37836, 3.0357, -5.20715)
+transform = Transform3D(1.128, 0, 0, 0, -4.37114e-08, -2, 0, 1, -8.74228e-08, 3.37836, 3.0357, -5.20715)
 mesh = SubResource("ArrayMesh_bflhk")
 skeleton = NodePath("")
 

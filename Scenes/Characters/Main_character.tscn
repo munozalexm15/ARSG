@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=21 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Interaction_Handler.gd" id="3_1c2ms"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/InformationRay_Handler.gd" id="3_lt84g"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Walk.gd" id="4_c7knn"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
@@ -154,6 +155,12 @@ snappiness = 4.0
 returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+
+[node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
+target_position = Vector3(0, 0, -30)
+collision_mask = 33
+script = ExtResource("3_lt84g")
+hudNode = NodePath("../../../../UI")
 
 [node name="InteractRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)

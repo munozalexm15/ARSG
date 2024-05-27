@@ -97,7 +97,8 @@ func _physics_process(delta):
 		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
 		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
 	
-	if Input.is_action_just_released("Fire") and muzzleSmoke:
+	if Input.is_action_just_released("Fire") and weaponData.bulletsInMag > 0 and muzzleSmoke:
+		muzzleSmoke.emit = true
 		muzzleSmoke.base_width = 0.5
 		await get_tree().create_timer(1).timeout
 		removeSmokeMuzzle = true
@@ -105,6 +106,7 @@ func _physics_process(delta):
 	if removeSmokeMuzzle and muzzleSmoke.base_width > 0:
 		muzzleSmoke.base_width -= 0.01
 		if muzzleSmoke.base_width <= 0:
+			muzzleSmoke.emit = false
 			removeSmokeMuzzle = false
 		
 func apply_recoil():

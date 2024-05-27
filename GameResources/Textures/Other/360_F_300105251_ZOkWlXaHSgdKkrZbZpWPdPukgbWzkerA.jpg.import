@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cegxuwq60y1sb"
-path="res://.godot/imported/PlayerArmsTAC-OPS-2.png-97bbd1df0226d093ca9e15bbcbd4aa72.ctex"
+uid="uid://l12gdamtqdvh"
+path="res://.godot/imported/360_F_300105251_ZOkWlXaHSgdKkrZbZpWPdPukgbWzkerA.jpg-7abf7a2887c4d3b715978f0d873e6f0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GameResources/Textures/CharacterTextures/PlayerArmsTAC-OPS-2.png"
-dest_files=["res://.godot/imported/PlayerArmsTAC-OPS-2.png-97bbd1df0226d093ca9e15bbcbd4aa72.ctex"]
+source_file="res://GameResources/Textures/Other/360_F_300105251_ZOkWlXaHSgdKkrZbZpWPdPukgbWzkerA.jpg"
+dest_files=["res://.godot/imported/360_F_300105251_ZOkWlXaHSgdKkrZbZpWPdPukgbWzkerA.jpg-7abf7a2887c4d3b715978f0d873e6f0f.ctex"]
 
 [params]
 

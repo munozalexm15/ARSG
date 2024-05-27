@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv0mvhd5mb2mv"
-path.s3tc="res://.godot/imported/GermanPoliceOfficer_Face128.jpg-f206075e2065897a4b7f3dfc0b0e0be3.s3tc.ctex"
+uid="uid://bjeg8140ksm3n"
+path.s3tc="res://.godot/imported/PlayerArmsTAC-OPS-Urban.png-b9d5f1d638db459bd103ee3bd1269787.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Textures/CharacterTextures/GermanPoliceOfficer_Face128.jpg"
-dest_files=["res://.godot/imported/GermanPoliceOfficer_Face128.jpg-f206075e2065897a4b7f3dfc0b0e0be3.s3tc.ctex"]
+source_file="res://GameResources/Textures/CharacterTextures/Arms/PlayerArmsTAC-OPS-Urban.png"
+dest_files=["res://.godot/imported/PlayerArmsTAC-OPS-Urban.png-b9d5f1d638db459bd103ee3bd1269787.s3tc.ctex"]
 
 [params]
 
