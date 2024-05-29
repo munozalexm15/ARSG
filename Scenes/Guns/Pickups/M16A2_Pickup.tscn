@@ -13,6 +13,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_b51de"]
 _surfaces = [{
@@ -54,6 +55,7 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")
 roughness = 0.5
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tp0ms"]
 _surfaces = [{
