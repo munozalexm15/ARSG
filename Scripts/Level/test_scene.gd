@@ -3,7 +3,6 @@ extends Node3D
 @onready var player : Player = $FadeShader/SubViewport/DitheringShader/SubViewport/Character
 
 var startCountdown : bool = false
-
 var timeLeft : Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
