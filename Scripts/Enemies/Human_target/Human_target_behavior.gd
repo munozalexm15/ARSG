@@ -36,5 +36,5 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_head_area_body_entered(body):
 	if body is Bullet:
 		targetData.actualHealth -= body.damage
-		if targetData.actualHealth < 0:
+		if targetData.actualHealth < 0 and body.instigator.hud.timerContainer.visible:
 			body.instigator.hud.pointsLabel.text = str(int(body.instigator.hud.pointsLabel.text) + 15)

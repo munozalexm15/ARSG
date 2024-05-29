@@ -96,7 +96,11 @@ func _physics_process(delta):
 			shoot()
 			burstBullet += 1
 		time_to_shoot = weaponData.cadency * delta
-		
+	
+	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
+		if not hands.player.animationPlayer.is_playing():
+			hands.player.animationPlayer.play("out_ammo")
+	
 	if time_to_shoot > 0:
 		time_to_shoot -= 1
 	
