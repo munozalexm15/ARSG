@@ -10,6 +10,7 @@ signal kill(points)
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode)
+@onready var trail : Trail3D = $Trail3D
 
 var instigator: CharacterBody3D
 
@@ -34,6 +35,7 @@ func _on_visibility_notifier_screen_exited():
 	queue_free()
 
 func _on_body_entered(body: Node3D):
+	trail.base_width = 0
 	mesh.visible = false
 	
 	spawn_decal(body)
