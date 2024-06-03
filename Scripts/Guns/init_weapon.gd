@@ -67,15 +67,15 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if hands.state_machine.state.name != "Reload":
-		if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
-			if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
-				weaponData.selectedFireMode = weaponData.fireModes[0]
-				weaponData.selectedFireModeIndex = 0
-			else:
-				weaponData.selectedFireModeIndex +=1
-				weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
-		
+	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
+		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
+			weaponData.selectedFireMode = weaponData.fireModes[0]
+			weaponData.selectedFireModeIndex = 0
+		else:
+			weaponData.selectedFireModeIndex +=1
+			weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
+	
+	if hands.state_machine.state.name != "Reload" and not hands.player.seeing_ally:
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
 				return
@@ -97,9 +97,9 @@ func _physics_process(delta):
 				burstBullet += 1
 			time_to_shoot = weaponData.cadency * delta
 	
-	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
-		if not hands.player.animationPlayer.is_playing():
-			hands.player.animationPlayer.play("out_ammo")
+		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
+			if not hands.player.animationPlayer.is_playing():
+				hands.player.animationPlayer.play("out_ammo")
 	
 	if time_to_shoot > 0:
 		time_to_shoot -= 1

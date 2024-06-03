@@ -72,12 +72,13 @@ var headBobbing_curr_intensity = 0.0
 
 var health: float = 75
 
+var seeing_ally : bool = false
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
-	
 
 func _input(event):
 	#If mouse is moving
@@ -90,7 +91,6 @@ func _input(event):
 		
 func _physics_process(delta):
 	if health < 100:
-		
 		updateHealth()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
