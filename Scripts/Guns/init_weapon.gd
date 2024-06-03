@@ -83,19 +83,19 @@ func _physics_process(delta):
 			if weaponData.bulletsInMag > 0:
 				shoot()
 	
-	if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-		apply_recoil()
-		if weaponData.bulletsInMag > 0:
-			shoot()
-		time_to_shoot = weaponData.cadency * delta
-	
-	if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-		isBurstActive = true
-		apply_recoil()
-		if weaponData.bulletsInMag > 0:
-			shoot()
-			burstBullet += 1
-		time_to_shoot = weaponData.cadency * delta
+		if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+			apply_recoil()
+			if weaponData.bulletsInMag > 0:
+				shoot()
+			time_to_shoot = weaponData.cadency * delta
+		
+		if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
+			isBurstActive = true
+			apply_recoil()
+			if weaponData.bulletsInMag > 0:
+				shoot()
+				burstBullet += 1
+			time_to_shoot = weaponData.cadency * delta
 	
 	if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
 		if not hands.player.animationPlayer.is_playing():

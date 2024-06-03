@@ -11,7 +11,7 @@ func _ready():
 	timeLeft.autostart = false
 	timeLeft.wait_time = 60
 	add_child(timeLeft)
-
+ 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

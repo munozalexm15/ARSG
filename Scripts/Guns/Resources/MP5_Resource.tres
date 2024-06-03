@@ -25,6 +25,3 @@ weaponScene = ""
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.57922, -1.04679, 1.24629)
 weaponImage = ExtResource("2_v0td2")
-idle_sway_adjustment = 10.0
-idle_sway_rotation_strenght = 300.0
-random_sway_amount = 5.0
