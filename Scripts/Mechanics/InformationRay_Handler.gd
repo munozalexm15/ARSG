@@ -36,9 +36,9 @@ func _process(delta):
 		if collision is Target and collision.targetData.actualHealth > 0 and collision.targetData.actualHealth != collision.targetData.health:
 			collision.healthBar.visible = true
 			lastEnemy = collision
-			
-		elif collision != Target and lastEnemy:
+		elif lastEnemy and collision != Target:
 			lastEnemy.healthBar.visible = false
+			#lastEnemy.tween_healthBar_visibility()
 
 	else:
 		hud.NPCNameLabel.visible = false

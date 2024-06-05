@@ -47,6 +47,12 @@ func tween_health():
 	create_tween().tween_property(healthBar, "value", targetData.actualHealth, 0.2)
 
 func tween_healthBar_visibility():
-	await get_tree().create_timer(2).timeout
-	create_tween().tween_property(healthBar, "modulate:a", 0, 0.2)
-	pass
+	var fade_tween: Tween = get_tree().create_tween()
+	fade_tween.tween_interval(2.0)
+	fade_tween.tween_property(healthBar, "modulate:a", 0, 0.2)
+	fade_tween.play()
+	
+	await fade_tween.finished
+	
+	healthBar.visible = false
+	healthBar.modulate.a = 255
