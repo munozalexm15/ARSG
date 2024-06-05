@@ -7,6 +7,8 @@ extends RayCast3D
 
 var npcData : NPCData
 
+var lastEnemy: Target
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,24 +18,30 @@ func _ready():
 func _process(delta):
 	if is_colliding():
 		var collision = get_collider()
-		if not (collision is FiringRange_NPC):
+		
+		if collision is FiringRange_NPC:
+			npcData = collision.npcData
+			player.seeing_ally = true
+			
+			hud.NPCNameLabel.text = npcData.name
+			hud.NPCRoleLabel.text = npcData.role
+			
+			hud.NPCNameLabel.visible = true
+			hud.NPCRoleLabel.visible = true
+		else:
 			hud.NPCNameLabel.visible = false
 			hud.NPCRoleLabel.visible = false
 			player.seeing_ally = false
-			return
 		
-		npcData = collision.npcData
-		player.seeing_ally = true
-		
-		hud.NPCNameLabel.text = npcData.name
-		hud.NPCRoleLabel.text = npcData.role
-		
-		
-		hud.NPCNameLabel.visible = true
-		hud.NPCRoleLabel.visible = true
-		
+		if collision is Target:
+			collision.healthBar.visible = true
+			lastEnemy = collision
+			
+		elif collision != Target and lastEnemy:
+			lastEnemy.healthBar.visible = false
 
 	else:
 		hud.NPCNameLabel.visible = false
 		hud.NPCRoleLabel.visible = false
 		player.seeing_ally = false
+		
