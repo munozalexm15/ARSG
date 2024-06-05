@@ -105,7 +105,7 @@ func weapon_sway(delta):
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
 	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
 
-func _on_interact_ray_pickup_ammo(ammoBox):
+func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):
 	for x in weaponHolder.get_child_count():
 		if weaponHolder.get_child(x).weaponData.weaponType == ammoBox.ammoData.ammoType and weaponHolder.get_child(x).weaponData.reserveAmmo < weaponHolder.get_child(x).weaponData.magSize * 4:
 			weaponHolder.get_child(x).weaponData.reserveAmmo += ammoBox.ammoData.resupplyQuantity

@@ -2032,8 +2032,8 @@ shader_parameter/fadeToWhite = false
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jv1dv"]
 shader = ExtResource("5_apkuc")
 shader_parameter/color_depth = 5
-shader_parameter/dithering = false
-shader_parameter/resolution_scale = 2
+shader_parameter/dithering = true
+shader_parameter/resolution_scale = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjsru"]
 resource_name = "floor_2"

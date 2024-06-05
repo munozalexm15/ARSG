@@ -53,6 +53,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_g1nth"]
 resource_name = "hitmarker"
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -433,7 +434,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 
@@ -441,7 +442,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -586,22 +587,22 @@ grow_vertical = 2
 [node name="Top" type="Line2D" parent="CenterContainer"]
 material = SubResource("ShaderMaterial_hh3ed")
 points = PackedVector2Array(0, -5, 0, -15)
-width = 3.0
+width = 2.0
 width_curve = SubResource("Curve_4c33f")
 
 [node name="Right" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(5, 0, 15, 0)
-width = 3.0
+width = 2.0
 width_curve = SubResource("Curve_4oh58")
 
 [node name="Down" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(0, 5, 0, 15)
-width = 3.0
+width = 2.0
 width_curve = SubResource("Curve_pa8m0")
 
 [node name="Left" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(-5, 0, -15, 0)
-width = 3.0
+width = 2.0
 width_curve = SubResource("Curve_4vi1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -615,7 +616,6 @@ offset_bottom = 4.0
 grow_horizontal = 0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.791372)
 texture_filter = 1
 material = SubResource("ShaderMaterial_jnugk")
 layout_mode = 2
@@ -626,7 +626,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.687059)
+modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3

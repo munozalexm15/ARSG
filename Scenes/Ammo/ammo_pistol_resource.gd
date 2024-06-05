@@ -1,3 +1,5 @@
-class_name Ammo extends Node3D
+class_name Ammo extends RigidBody3D
 
 @export var ammoData : AmmoData
+
+

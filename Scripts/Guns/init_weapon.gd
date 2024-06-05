@@ -3,6 +3,10 @@ extends Node3D
 
 @export var weaponData : WeaponData
 
+@onready var fire_sound : AudioStreamPlayer3D = $ASP_ShotShound
+@onready var reload_sound : AudioStreamPlayer3D = $ASP_ReloadSound
+
+
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
 
@@ -156,7 +160,8 @@ func shoot():
 	animPlayer.play("Shoot")
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
-	
+	if fire_sound:
+		SFXHandler.play_sfx(fire_sound.stream, self)
 	spawnBullet()
 
 func spawnBullet():

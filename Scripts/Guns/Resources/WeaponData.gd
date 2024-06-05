@@ -28,3 +28,4 @@ class_name WeaponData extends Resource
 @export var weaponPickupScene : String
 @export var weaponSpawnPosition : Vector3
 @export var weaponImage : Texture
+
