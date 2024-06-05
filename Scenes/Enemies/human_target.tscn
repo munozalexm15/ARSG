@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://clkowbb2gf8i1"]
+[gd_scene load_steps=21 format=3 uid="uid://clkowbb2gf8i1"]
 
 [ext_resource type="Texture2D" uid="uid://tvbkhxjjaytf" path="res://GameResources/Textures/ShootingRange/Targets.png" id="1_qoj6r"]
 [ext_resource type="Script" path="res://Scripts/Enemies/Human_target/Human_target_behavior.gd" id="2_tvxde"]
@@ -178,6 +178,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2lr8m")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bltj"]
+bg_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6ha6"]
+bg_color = Color(0.780392, 0.109804, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kfpn8"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Human_target" type="Node3D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -215,6 +226,24 @@ shape = SubResource("BoxShape3D_p4esa")
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_5ewq0")
 skeleton = NodePath("")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(90, 4)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+texture_filter = 1
+offset_right = 100.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5bltj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y6ha6")
+max_value = 10.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0513792, 2.138, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_kfpn8")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="Prop_Target_Pole2/Prop_Target_Human/StaticBody3D" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Prop_Target_Pole2/Prop_Target_Human/HeadArea" to="Prop_Target_Pole2/Prop_Target_Human/StaticBody3D" method="_on_head_area_body_entered"]

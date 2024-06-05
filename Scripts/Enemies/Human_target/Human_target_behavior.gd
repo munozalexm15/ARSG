@@ -8,16 +8,22 @@ signal hitmark
 @onready var animationPlayer: AnimationPlayer = $"../../../AnimationPlayer"
 @onready var headArea: Area3D = $"../HeadArea"
 
+@onready var healthBar : ProgressBar = $"../../../SubViewport/ProgressBar"
+
 var isHeadshot : bool = false
 # Called when the node enters the scene tree for the first time.
 var isDowned
 func _ready():
 	isDowned = false
-	pass # Replace with function body.
-
+	healthBar.value = targetData.actualHealth
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if targetData.actualHealth == targetData.health or targetData.actualHealth <= 0:
+		healthBar.visible = false
+	else:
+		healthBar.visible = true
+	
 	if targetData.actualHealth <= 0 and not isDowned:
 		animationPlayer.play("Down")
 		isDowned = true
