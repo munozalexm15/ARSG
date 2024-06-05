@@ -173,11 +173,11 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2lr8m")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bltj"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.54902, 0.0941176, 0, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6ha6"]
-bg_color = Color(0.780392, 0.109804, 0, 1)
+bg_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kfpn8"]

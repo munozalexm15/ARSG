@@ -33,7 +33,7 @@ func _process(delta):
 			hud.NPCRoleLabel.visible = false
 			player.seeing_ally = false
 		
-		if collision is Target:
+		if collision is Target and collision.targetData.actualHealth > 0 and collision.targetData.actualHealth != collision.targetData.health:
 			collision.healthBar.visible = true
 			lastEnemy = collision
 			

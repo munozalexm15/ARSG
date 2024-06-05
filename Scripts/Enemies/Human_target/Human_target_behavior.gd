@@ -39,7 +39,9 @@ func _on_head_area_body_entered(body):
 		targetData.actualHealth -= body.damage
 		if targetData.actualHealth < 0 and body.instigator.hud.timerContainer.visible:
 			body.instigator.hud.pointsLabel.text = str(int(body.instigator.hud.pointsLabel.text) + 15)
-			
+		
+		tween_health()
+		
 func tween_health():
 	create_tween().tween_property(healthBar, "value", targetData.actualHealth, 0.2)
 

@@ -192,7 +192,6 @@ func leaning(delta):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
 
 ##play swap weapon hands animation and show weapon
-
 func updateHealth():
 	await get_tree().create_timer(3).timeout
 	health += 0.01

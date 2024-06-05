@@ -31,14 +31,12 @@ func _input(event):
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-
 func _on_enter_firing_range_area_body_entered(body):
 	if not player.arms.weaponHolder.visible:
 		player.arms.animationPlayer.play("SwapWeapon")
 		await get_tree().create_timer(0.2).timeout
 		player.hud.visible = true
 		player.arms.weaponHolder.visible = true
-
 
 func _on_exit_firing_range_area_body_entered(body):
 	player.arms.animationPlayer.play("SwapWeapon")

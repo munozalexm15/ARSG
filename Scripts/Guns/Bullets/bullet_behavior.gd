@@ -46,7 +46,7 @@ func _on_body_entered(body: Node3D):
 	
 	if body is Target and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
-		body.healthBar.value = body.targetData.actualHealth
+		
 		body.tween_health()
 		hitmark.emit(1)
 		
