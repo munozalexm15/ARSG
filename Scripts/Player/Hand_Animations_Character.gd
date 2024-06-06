@@ -43,6 +43,7 @@ func _ready():
 	knife.set_process(false)
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
+	weaponHolder.get_child(actual_weapon_index).being_used = true
 	default_weaponHolder_pos = weaponHolder.position
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime

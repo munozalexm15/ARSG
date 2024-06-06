@@ -52,6 +52,7 @@ var burstBullet : int = 0
 
 var isBoltReloaded : bool = false
 var removeSmokeMuzzle : bool = false
+var being_used : bool = false
 
 var mouse_movement
 # Called when the node enters the scene tree for the first time.
@@ -71,6 +72,9 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if not being_used:
+		return
+		
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
 		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
 			weaponData.selectedFireMode = weaponData.fireModes[0]

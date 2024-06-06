@@ -4,9 +4,8 @@ var bullet_reload_time : float
 var wantsToShoot = false
 
 func enter(_msg := {}):
+	wantsToShoot = false
 	arms.animationPlayer.play("Reload")
-	if arms.actualWeapon.reload_sound:
-		arms.actualWeapon.reload_sound.play()
 
 func physics_update(delta):
 	mouse_swap_weapon_logic()
@@ -20,11 +19,14 @@ func _on_animation_player_animation_finished(anim_name):
 		return
 	
 	arms.actualWeapon.hide()
+	
 	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
 		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 		reload_bullet_by_bullet()
 	else:
 		arms.reloadTimer.start()
+		if arms.actualWeapon.reload_sound:
+			arms.actualWeapon.reload_sound.play()
 
 func _on_animation_player_animation_started(anim_name):
 	if anim_name == "Reload":
@@ -77,6 +79,7 @@ func _on_reload_timer_timeout():
 		arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
 	
 	ammo_behavior()
+	arms.actualWeapon.reload_sound.play()
 	state_machine.transition_to("Idle")
 	
 
@@ -87,12 +90,14 @@ func reload_bullet_by_bullet():
 	
 	if wantsToShoot:
 		wantsToShoot = false
+		arms.actualWeapon.reload_sound.play()
 		state_machine.transition_to("Idle")
 		return
 	
 	await get_tree().create_timer(bullet_reload_time).timeout
+	arms.actualWeapon.reload_sound.play()
 	if arms.actualWeapon.weaponData.reserveAmmo == 0:
-		state_machine.transition_to("Idle")
+		state_machine.transition_to("Idle", {"play_reload": false})
 		return
 	
 	arms.actualWeapon.weaponData.bulletsInMag += 1
@@ -121,5 +126,5 @@ func ammo_behavior():
 		arms.actualWeapon.weaponData.reserveAmmo = 0
 	
 func exit():
-	if arms.actualWeapon.reload_sound.playing:
+	if arms.actualWeapon.reload_sound.playing and arms.actualWeapon.reload_sound:
 		arms.actualWeapon.reload_sound.stop()

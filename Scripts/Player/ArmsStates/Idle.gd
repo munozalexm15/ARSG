@@ -1,6 +1,9 @@
 extends ArmsState
 
 func enter(_msg := {}):
+	if arms.actualWeapon.weaponData.weaponType == "Shotgun" and arms.state_machine.old_state.name == "Reload" and not _msg.has("play_reload"):
+		arms.actualWeapon.reload_sound.play()
+	
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	

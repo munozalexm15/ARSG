@@ -123,8 +123,8 @@ func swap_weapon():
 
 func loadWeapon(index):
 	for x in arms.weaponHolder.get_child_count():
-		arms.weaponHolder.get_child(x).process_mode = Node.PROCESS_MODE_DISABLED
+		arms.weaponHolder.get_child(x).being_used = false
 		arms.weaponHolder.get_child(x).visible = false
 
-	arms.weaponHolder.get_child(index).process_mode = Node.PROCESS_MODE_ALWAYS
+	arms.weaponHolder.get_child(index).being_used = true
 	arms.weaponHolder.get_child(index).visible = true
