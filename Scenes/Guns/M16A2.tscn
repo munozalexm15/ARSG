@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://duonirwf385bc"]
+[gd_scene load_steps=37 format=3 uid="uid://duonirwf385bc"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_h8exn"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="2_op75h"]
@@ -11,6 +11,8 @@
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_w8equ"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="9_4n0lo"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_od8q0"]
+[ext_resource type="AudioStream" uid="uid://dy2h0m7wk3ffa" path="res://GameResources/Sounds/Weapons/M16A2/m16a2_full_rel.mp3" id="12_uk2r1"]
+[ext_resource type="AudioStream" uid="uid://by2hnticagi2e" path="res://GameResources/Sounds/Weapons/M16A2/m16a2_shot.mp3" id="13_88m2l"]
 
 [sub_resource type="Gradient" id="Gradient_sj7ij"]
 colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
@@ -1670,3 +1672,11 @@ skin = SubResource("Skin_4ef0c")
 libraries = {
 "": SubResource("AnimationLibrary_hnptm")
 }
+
+[node name="ASP_ReloadSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403824, 1.76149, 0)
+stream = ExtResource("12_uk2r1")
+
+[node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
+stream = ExtResource("13_88m2l")

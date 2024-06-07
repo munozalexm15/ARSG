@@ -52,7 +52,7 @@ func drop_weapon(name, pickupWeapon, isSwapping):
 	pickupWeapon.queue_free()
 	
 	arms.actual_weapon_index = 1
-	
+	loadWeapon(1)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
 	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag

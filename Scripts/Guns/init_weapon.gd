@@ -195,6 +195,7 @@ func spawnBullet():
 		bullet.playerDamaged.connect(update_health)
 		#Hitmarker in hud
 		bullet.hitmark.connect(hit_update_score)
+		bullet.hitmark.connect(show_hitmarker)
 		#For when player kills somebody (atm just for update hud points)
 		bullet.kill.connect(kill_update_score)
 		
