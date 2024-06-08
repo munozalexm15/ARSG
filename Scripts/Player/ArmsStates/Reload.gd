@@ -6,6 +6,7 @@ var wantsToShoot = false
 func enter(_msg := {}):
 	wantsToShoot = false
 	arms.animationPlayer.play("Reload")
+	arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
 
 func physics_update(delta):
 	mouse_swap_weapon_logic()

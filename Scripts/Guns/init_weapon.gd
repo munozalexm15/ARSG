@@ -31,6 +31,8 @@ var time : float = 0
 @onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
 @onready var muzzle_flash_particles :CPUParticles3D = $Muzzle/MuzzleFlash
 @onready var muzzle_flash_light : OmniLight3D = $Muzzle/MuzzleFlashLight
+@onready var fire_selection_sound : AudioStreamPlayer3D = $ASP_FireSelectionSound
+@onready var no_ammo_sound : AudioStreamPlayer3D = $ASP_NoAmmoSound
 var time_to_shoot = 0
 
 #HandsRecoil
@@ -40,6 +42,7 @@ var time_to_shoot = 0
 @export var recoil_amplitude = Vector3(1,1,1)
 @export var lerp_speed : float = 1
 
+#WeaponRecoil
 var initial_recoil_amplitude: Vector3 
 
 var target_rot: Vector3
@@ -60,11 +63,11 @@ func _ready():
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
+	
 	weaponData.selectedFireMode = weaponData.fireModes[0]
 	current_time = 1
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
-	
 	
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -75,14 +78,15 @@ func _physics_process(delta):
 	if not being_used:
 		return
 		
-	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection:
+	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection and hands.state_machine.state.name != "Reload":
+		fire_selection_sound.play()
 		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
 			weaponData.selectedFireMode = weaponData.fireModes[0]
 			weaponData.selectedFireModeIndex = 0
 		else:
 			weaponData.selectedFireModeIndex +=1
 			weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
-	
+		
 	if hands.state_machine.state.name != "Reload" and not hands.player.seeing_ally:
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
@@ -108,6 +112,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
 			if not hands.player.animationPlayer.is_playing():
 				hands.player.animationPlayer.play("out_ammo")
+				no_ammo_sound.play()
 	
 	if time_to_shoot > 0:
 		time_to_shoot -= 1

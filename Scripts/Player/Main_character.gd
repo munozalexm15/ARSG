@@ -29,6 +29,7 @@ signal challenge
 @onready var hud : HUD = get_node(hudNode)
 
 @onready var state_machine : StateMachine = $StateMachine
+@onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")

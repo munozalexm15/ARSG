@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c6vbtles2oskv"]
+[gd_scene load_steps=42 format=3 uid="uid://c6vbtles2oskv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_p6qro"]
 [ext_resource type="Resource" uid="uid://djpuiinpxuhnt" path="res://Scripts/Guns/Resources/remington_870_Resource.tres" id="2_u3ci8"]
@@ -13,6 +13,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="10_n2m2m"]
 [ext_resource type="AudioStream" uid="uid://bldjuc58i7typ" path="res://GameResources/Sounds/Weapons/Remington870/r870_reload.mp3" id="12_2w3sp"]
 [ext_resource type="AudioStream" uid="uid://dfr2dr06t0onh" path="res://GameResources/Sounds/Weapons/Remington870/r870_shot.mp3" id="13_fubij"]
+[ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="14_nfkrh"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_idpua"]
 resource_name = "Player_Arms_Cube_002"
@@ -2116,3 +2117,10 @@ stream = ExtResource("12_2w3sp")
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
 stream = ExtResource("13_fubij")
+
+[node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+
+[node name="ASP_NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+stream = ExtResource("14_nfkrh")

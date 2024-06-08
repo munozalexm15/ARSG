@@ -1,4 +1,4 @@
-[gd_scene load_steps=224 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=232 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://m4elvbbai5jh" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/button_off.png" id="17_qmcyl"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="18_e6v55"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="19_fsiqc"]
+[ext_resource type="Texture2D" uid="uid://fvubcqdjwydd" path="res://GameResources/Textures/ShootingRange/WoodDivider_01.png" id="24_kqq1o"]
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
@@ -883,6 +884,88 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_udb8g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj8ao"]
+resource_name = "Trims"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("3_ahske")
+roughness = 0.0
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aml44"]
+_surfaces = [{
+"aabb": AABB(-136.278, -5.31176, -5.61921, 272.556, 10.6235, 11.2384),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 2, 0, 7, 0, 3, 0, 2, 0, 6, 0, 7, 0, 6, 0, 5, 0, 7, 0, 6, 0, 4, 0, 5, 0, 4, 0, 1, 0, 5, 0, 4, 0, 0, 0, 1, 0),
+"name": "Trims",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 0, 0, 0, 0, 255, 255, 254, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 254, 255, 255, 255, 0, 0, 255, 255, 254, 255, 254, 255, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mf7gs"]
+resource_name = "shootingrange_Cube_023"
+_surfaces = [{
+"aabb": AABB(-136.278, -5.31176, -5.61921, 272.556, 10.6235, 11.2384),
+"attribute_data": PackedByteArray(64, 222, 0, 0, 132, 232, 0, 0, 64, 222, 255, 255, 132, 232, 255, 255, 58, 232, 0, 0, 132, 232, 0, 0, 58, 232, 255, 255, 132, 232, 255, 255, 64, 222, 0, 0, 246, 221, 0, 0, 64, 222, 255, 255, 246, 221, 255, 255, 58, 232, 0, 0, 246, 221, 0, 0, 58, 232, 255, 255, 246, 221, 255, 255),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray(0, 0, 6, 0, 2, 0, 0, 0, 4, 0, 6, 0, 5, 0, 15, 0, 7, 0, 5, 0, 13, 0, 15, 0, 12, 0, 10, 0, 14, 0, 12, 0, 8, 0, 10, 0, 9, 0, 3, 0, 11, 0, 9, 0, 1, 0, 3, 0),
+"material": SubResource("StandardMaterial3D_mj8ao"),
+"name": "Trims",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 0, 0, 255, 255, 0, 0, 254, 255, 0, 0, 84, 213, 255, 255, 254, 255, 0, 0, 255, 255, 255, 255, 254, 255, 0, 0, 84, 213, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 84, 213, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 84, 213, 0, 0, 254, 255, 255, 255, 255, 191, 0, 0, 254, 255, 255, 255, 84, 213, 255, 255, 254, 255, 254, 255, 255, 191, 255, 255, 254, 255, 254, 255, 84, 213, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 84, 213, 255, 255, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 84, 213, 255, 63, 255, 191, 84, 213, 170, 42, 255, 63, 255, 191, 84, 213, 170, 42, 255, 63, 255, 191, 84, 85, 84, 85, 255, 63, 255, 191, 84, 85, 84, 85, 255, 127, 255, 127, 84, 213, 170, 42, 255, 127, 255, 127, 84, 213, 170, 42, 255, 127, 255, 127, 84, 85, 84, 85, 255, 127, 255, 127, 84, 85, 84, 85)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_aml44")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgvr5"]
+resource_name = "WoodWall"
+cull_mode = 2
+albedo_texture = ExtResource("24_kqq1o")
+roughness = 0.0
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gqwm2"]
+_surfaces = [{
+"aabb": AABB(-150, -2.00001, -300, 300, 2.00001, 300),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 3, 0, 1, 0, 0, 0, 2, 0, 3, 0, 4, 0, 7, 0, 6, 0, 4, 0, 5, 0, 7, 0, 3, 0, 6, 0, 7, 0, 3, 0, 2, 0, 6, 0, 0, 0, 5, 0, 4, 0, 0, 0, 1, 0, 5, 0, 1, 0, 7, 0, 5, 0, 1, 0, 3, 0, 7, 0, 2, 0, 4, 0, 6, 0, 2, 0, 0, 0, 4, 0),
+"name": "WoodWall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 255, 255, 0, 0, 255, 255, 254, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_l472y"]
+resource_name = "shootingrange_Plane"
+_surfaces = [{
+"aabb": AABB(-150, -2.00001, -300, 300, 2.00001, 300),
+"attribute_data": PackedByteArray(255, 127, 254, 255, 0, 0, 255, 255, 255, 127, 74, 254, 254, 255, 254, 255, 255, 127, 255, 255, 255, 127, 74, 254, 255, 127, 255, 255, 0, 0, 0, 0, 254, 255, 74, 254, 254, 255, 255, 255, 255, 127, 0, 0, 254, 255, 74, 254, 255, 127, 74, 254, 255, 127, 255, 255, 255, 127, 254, 255, 254, 255, 74, 254, 255, 255, 255, 255, 255, 127, 254, 255, 255, 127, 74, 254, 255, 127, 0, 0, 254, 255, 255, 255, 254, 255, 74, 254, 255, 255, 0, 0, 254, 255, 255, 255),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray(1, 0, 10, 0, 4, 0, 1, 0, 7, 0, 10, 0, 13, 0, 22, 0, 19, 0, 13, 0, 16, 0, 22, 0, 9, 0, 18, 0, 21, 0, 9, 0, 6, 0, 18, 0, 0, 0, 15, 0, 12, 0, 0, 0, 3, 0, 15, 0, 5, 0, 23, 0, 17, 0, 5, 0, 11, 0, 23, 0, 8, 0, 14, 0, 20, 0, 8, 0, 2, 0, 14, 0),
+"material": SubResource("StandardMaterial3D_kgvr5"),
+"name": "WoodWall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 254, 255, 255, 255, 255, 127, 0, 0, 254, 255, 255, 255, 255, 191, 0, 0, 254, 255, 255, 255, 255, 255, 255, 255, 254, 255, 255, 255, 255, 127, 255, 255, 254, 255, 255, 255, 255, 191, 255, 255, 254, 255, 255, 255, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 255, 191, 0, 0, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 0, 0, 255, 255, 255, 127, 0, 0, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 0, 0, 255, 255, 255, 127, 255, 255, 0, 0, 255, 255, 255, 191, 255, 255, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 255, 127, 255, 255, 255, 255, 255, 127, 255, 63, 255, 127, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 0, 0, 255, 255, 255, 127, 255, 255, 255, 127, 255, 63, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 127, 0, 0, 255, 127, 255, 255, 0, 0, 255, 127, 255, 63, 255, 127, 255, 127, 255, 255, 0, 0, 255, 127, 255, 127, 0, 0, 255, 255, 255, 127, 0, 0, 255, 127, 255, 63, 255, 127, 255, 255, 255, 127, 0, 0, 255, 127, 255, 127, 0, 0)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_gqwm2")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jiy5p"]
+points = PackedVector3Array(-150, -2.00001, -300, -150, 0, -300, 150, -2.00001, -300, -150, -2.00001, 0, -150, -0.000195861, 0, 150, 0, -300, 150, -2.00001, 0, 150, -0.000195861, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egaou"]
 resource_name = "Concrete"
@@ -2408,6 +2491,16 @@ transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 5.55836, 2.53803, -24.7105)
 mesh = SubResource("ArrayMesh_bpphv")
 skeleton = NodePath("")
 
+[node name="wall_24" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(0.00911052, -0.999959, 0, 0, 0, -1, 0.999959, 0.00911052, 0, 4.51565, 2.53803, -24.4701)
+mesh = SubResource("ArrayMesh_bpphv")
+skeleton = NodePath("")
+
+[node name="wall_25" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(0.00911052, -0.999959, 0, 0, 0, -1, 0.999959, 0.00911052, 0, 4.51565, 4.46426, -24.4701)
+mesh = SubResource("ArrayMesh_bpphv")
+skeleton = NodePath("")
+
 [node name="wall_10" type="MeshInstance3D" parent="Ceiling"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.58508, 2.53803, -24.7105)
 mesh = SubResource("ArrayMesh_bpphv")
@@ -2425,6 +2518,16 @@ skeleton = NodePath("")
 
 [node name="wall_13" type="MeshInstance3D" parent="Ceiling"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -4.40311, 2.53803, -24.7105)
+mesh = SubResource("ArrayMesh_bpphv")
+skeleton = NodePath("")
+
+[node name="wall_22" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(0.0100006, 0.99995, 0, 0, 0, -1, -0.99995, 0.0100006, 0, -4.68428, 2.53803, -24.4998)
+mesh = SubResource("ArrayMesh_bpphv")
+skeleton = NodePath("")
+
+[node name="wall_23" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(0.0100006, 0.99995, 0, 0, 0, -1, -0.99995, 0.0100006, 0, -4.68428, 4.53664, -24.4998)
 mesh = SubResource("ArrayMesh_bpphv")
 skeleton = NodePath("")
 
@@ -2939,6 +3042,37 @@ skeleton = NodePath("")
 
 [node name="Wall4" parent="Walls" instance=ExtResource("15_5nb2a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 4.47427)
+
+[node name="Wall10" type="Node3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -4.56062, 0, 4.17099)
+
+[node name="WallSupport_Horizontal_3x5" type="MeshInstance3D" parent="Walls/Wall10"]
+transform = Transform3D(0.01, 4.96308e-24, 0, 0, -2.18557e-10, -0.01, -2.48154e-23, 0.005, -4.37114e-10, 0.139983, 0.0567417, 0.00288901)
+mesh = SubResource("ArrayMesh_mf7gs")
+skeleton = NodePath("")
+
+[node name="WallSupport_Horizontal_3x6" type="MeshInstance3D" parent="Walls/Wall10"]
+transform = Transform3D(5.55112e-17, -2.18557e-10, -0.01, -0.011, -2.18557e-10, 0, -4.80825e-10, 0.005, -4.37114e-10, 1.4462, 1.50231, -0.0020208)
+mesh = SubResource("ArrayMesh_mf7gs")
+skeleton = NodePath("")
+
+[node name="WallSupport_Horizontal_3x3" type="MeshInstance3D" parent="Walls/Wall10"]
+transform = Transform3D(0.01, 4.96308e-24, 0, 0, -2.18557e-10, -0.01, -1.98523e-23, 0.005, -4.37114e-10, 0.139983, 2.94666, -0.00175633)
+mesh = SubResource("ArrayMesh_mf7gs")
+skeleton = NodePath("")
+
+[node name="Wall" type="MeshInstance3D" parent="Walls/Wall10"]
+transform = Transform3D(0.01, -1.65436e-24, -4.37114e-10, -4.37114e-10, 2.77556e-17, -0.01, 0, 0.01, 2.77556e-17, 0.000686646, 0, 0.00415152)
+mesh = SubResource("ArrayMesh_l472y")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall10/Wall"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall10/Wall/StaticBody3D"]
+transform = Transform3D(1, 0, 1.59579e-37, 6.31089e-30, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_jiy5p")
 
 [node name="Wall5" parent="Walls" instance=ExtResource("15_5nb2a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.489, 0, 7.4696)

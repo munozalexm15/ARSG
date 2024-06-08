@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dldfeavhyt2ys"]
+[gd_scene load_steps=43 format=3 uid="uid://dldfeavhyt2ys"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_koqv4"]
 [ext_resource type="Resource" uid="uid://cvsyripni1r7v" path="res://Scripts/Guns/Resources/USP_Resource.tres" id="2_qxifq"]
@@ -14,6 +14,7 @@
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_opi1n"]
 [ext_resource type="AudioStream" uid="uid://cc0fmokfdnplo" path="res://GameResources/Sounds/Weapons/USP/usp_full_rel.mp3" id="13_l8eeq"]
 [ext_resource type="AudioStream" uid="uid://vcnr2sucnjp8" path="res://GameResources/Sounds/Weapons/USP/usp_shot.mp3" id="14_lxxsu"]
+[ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="15_uvv5f"]
 
 [sub_resource type="Gradient" id="Gradient_7262n"]
 colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
@@ -1521,3 +1522,10 @@ stream = ExtResource("13_l8eeq")
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
 stream = ExtResource("14_lxxsu")
+
+[node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+
+[node name="ASP_NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+stream = ExtResource("15_uvv5f")
