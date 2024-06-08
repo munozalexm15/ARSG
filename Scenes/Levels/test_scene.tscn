@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=246 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -42,6 +42,11 @@
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="18_e6v55"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="19_fsiqc"]
 [ext_resource type="Texture2D" uid="uid://fvubcqdjwydd" path="res://GameResources/Textures/ShootingRange/WoodDivider_01.png" id="24_kqq1o"]
+[ext_resource type="AudioStream" uid="uid://b2cb6gt44gehh" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-021.ogg" id="26_hsjgv"]
+[ext_resource type="AudioStream" uid="uid://db1d8hactoupa" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-020.ogg" id="27_ta88y"]
+[ext_resource type="AudioStream" uid="uid://dxlgsa6f7gvcg" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-014.ogg" id="28_8psla"]
+[ext_resource type="AudioStream" uid="uid://bd4b2j6ig23b0" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-012.ogg" id="29_ceocv"]
+[ext_resource type="AudioStream" uid="uid://ccrkscqgwbp1q" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-010.ogg" id="30_fu7km"]
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
@@ -970,6 +975,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gqwm2")
+
+[sub_resource type="Resource" id="Resource_nwnyq"]
+script = ExtResource("43_ag4ww")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("26_hsjgv"), ExtResource("27_ta88y"), ExtResource("28_8psla"), ExtResource("29_ceocv"), ExtResource("30_fu7km")])
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jiy5p"]
 points = PackedVector3Array(-150, -2.00001, -300, -150, 0, -300, 150, -2.00001, -300, -150, -2.00001, 0, -150, -0.000195861, 0, 150, 0, -300, 150, -2.00001, 0, 150, -0.000195861, 0)
@@ -2120,14 +2129,14 @@ walk_sound = Array[AudioStreamOggVorbis]([ExtResource("44_3nrx2"), ExtResource("
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o3gl1"]
 shader = ExtResource("6_27bo6")
-shader_parameter/alpha = 1
+shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jv1dv"]
 shader = ExtResource("5_apkuc")
 shader_parameter/color_depth = 5
 shader_parameter/dithering = true
-shader_parameter/resolution_scale = 1
+shader_parameter/resolution_scale = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjsru"]
 resource_name = "floor_2"
@@ -3078,8 +3087,10 @@ mesh = SubResource("ArrayMesh_l472y")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Walls/Wall10/Wall"]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 67
+collision_mask = 67
+script = ExtResource("42_fej2f")
+groundData = SubResource("Resource_nwnyq")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls/Wall10/Wall/StaticBody3D"]
 transform = Transform3D(1, 0, 1.59579e-37, 6.31089e-30, 1, 0, 0, 0, 1, 0, 0, 0)

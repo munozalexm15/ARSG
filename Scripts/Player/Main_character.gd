@@ -113,10 +113,10 @@ func _physics_process(delta):
 		
 		var pos = Vector3.ZERO
 		pos.y = sin(delta * headBobbing_index) * headBobbing_curr_intensity
-		
+		print(headBobbing_vector.y)
 		var lowpos = headBobbing_curr_intensity - 0.05
 		
-		if groundCheck_Raycast.is_colliding() and -lowpos < headBobbing_vector.y:
+		if groundCheck_Raycast.is_colliding() and headBobbing_vector.y < -0.99 and not ASP_Footsteps.playing:
 			var collision : GroundData = groundCheck_Raycast.get_collider().groundData
 			var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
 			ASP_Footsteps.stream = sound

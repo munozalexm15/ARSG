@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://o43pyk7ph22q"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_tx0qn"]
-[ext_resource type="Texture2D" uid="uid://d2seclicr8qag" path="res://GameResources/Textures/GunsIcons/Remington870_Icon.png" id="2_ufxln"]
+[ext_resource type="Texture2D" uid="uid://dpb5tqecug6g1" path="res://GameResources/Textures/GunsIcons/Remington700_Icon.png" id="2_wgb6c"]
 
 [resource]
 script = ExtResource("1_tx0qn")
@@ -24,7 +24,4 @@ recoil = Vector3(1, 1, 1)
 weaponScene = "res://Scenes/Guns/remington_700.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn"
 weaponSpawnPosition = Vector3(-1.72999, 0.749306, 0.532162)
-weaponImage = ExtResource("2_ufxln")
-idle_sway_adjustment = 10.0
-idle_sway_rotation_strenght = 300.0
-random_sway_amount = 5.0
+weaponImage = ExtResource("2_wgb6c")
