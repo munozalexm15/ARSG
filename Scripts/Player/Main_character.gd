@@ -4,6 +4,8 @@ extends CharacterBody3D
 
 signal challenge
 
+signal step
+
 @export var bobbingNode := NodePath()
 @onready var eyes : Node3D = get_node(bobbingNode)
 
@@ -30,6 +32,7 @@ signal challenge
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
+@onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -91,6 +94,8 @@ func _input(event):
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
 func _physics_process(delta):
+	
+		
 	if health < 100:
 		updateHealth()
 	
@@ -105,7 +110,18 @@ func _physics_process(delta):
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
-
+		
+		var pos = Vector3.ZERO
+		pos.y = sin(delta * headBobbing_index) * headBobbing_curr_intensity
+		
+		var lowpos = headBobbing_curr_intensity - 0.05
+		
+		if groundCheck_Raycast.is_colliding() and -lowpos < headBobbing_vector.y:
+			var collision : GroundData = groundCheck_Raycast.get_collider().groundData
+			var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
+			ASP_Footsteps.stream = sound
+			ASP_Footsteps.play()
+		
 		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
 		

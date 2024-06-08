@@ -265,6 +265,8 @@ target_position = Vector3(0, 1, 0)
 [node name="GroundCheckRaycast" type="RayCast3D" parent="."]
 collision_mask = 64
 
+[node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
+
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]
 [connection signal="swap_weapon" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_swap_weapon"]

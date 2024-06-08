@@ -147,6 +147,7 @@ Melee={
 3d_physics/layer_4="Weapons"
 3d_physics/layer_5="Knife"
 3d_physics/layer_6="NPC"
+3d_physics/layer_7="Ground"
 
 [rendering]
 

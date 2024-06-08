@@ -1,7 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3fpgvqhqlcq4"]
+[gd_scene load_steps=23 format=3 uid="uid://c3fpgvqhqlcq4"]
 
 [ext_resource type="Texture2D" uid="uid://qx1p4h7uqegy" path="res://GameResources/Textures/ShootingRange/Trims.png" id="1_abxag"]
 [ext_resource type="Texture2D" uid="uid://fvubcqdjwydd" path="res://GameResources/Textures/ShootingRange/WoodDivider_01.png" id="1_iyvnj"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="1_mtgao"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="2_ewj66"]
+[ext_resource type="AudioStream" uid="uid://b2cb6gt44gehh" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-021.ogg" id="3_q8b47"]
+[ext_resource type="AudioStream" uid="uid://db1d8hactoupa" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-020.ogg" id="4_skguv"]
+[ext_resource type="AudioStream" uid="uid://dxlgsa6f7gvcg" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-014.ogg" id="5_rl68b"]
+[ext_resource type="AudioStream" uid="uid://bd4b2j6ig23b0" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-012.ogg" id="6_cdofl"]
+[ext_resource type="AudioStream" uid="uid://ccrkscqgwbp1q" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-010.ogg" id="7_mr7il"]
+
+[sub_resource type="Resource" id="Resource_a3gwy"]
+script = ExtResource("2_ewj66")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("3_q8b47"), ExtResource("4_skguv"), ExtResource("5_rl68b"), ExtResource("6_cdofl"), ExtResource("7_mr7il")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj8ao"]
 resource_name = "Trims"
@@ -157,6 +168,8 @@ shadow_mesh = SubResource("ArrayMesh_gqwm2")
 points = PackedVector3Array(-150, -2.00001, -300, -150, 0, -300, 150, -2.00001, -300, -150, -2.00001, 0, -150, -0.000195861, 0, 150, 0, -300, 150, -2.00001, 0, 150, -0.000195861, 0)
 
 [node name="WallNode" type="Node3D"]
+script = ExtResource("1_mtgao")
+groundData = SubResource("Resource_a3gwy")
 
 [node name="WallSupport_Triple_3x3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0100125, 0, 0, 0, 0, -0.0100125, 0, 0.0100125, 0, 0.000160351, 0, -0.0761921)

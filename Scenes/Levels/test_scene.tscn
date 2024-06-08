@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=240 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -49,8 +49,15 @@
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="38_gl6ba"]
 [ext_resource type="PackedScene" uid="uid://cpexpuinj1378" path="res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn" id="40_g4ke6"]
 [ext_resource type="PackedScene" uid="uid://bcepmrcqbhkaf" path="res://Scenes/Ammo/assault_rifle_ammo_pickup.tscn" id="41_nllwm"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="42_fej2f"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="43_ag4ww"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="44_3nrx2"]
 [ext_resource type="Environment" uid="uid://txq00spbvkr1" path="res://Scenes/Levels/firing_range_env.tres" id="44_gf7k1"]
+[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="45_31cjs"]
 [ext_resource type="PackedScene" uid="uid://c4vdoc3p2jdi6" path="res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn" id="45_pbpig"]
+[ext_resource type="AudioStream" uid="uid://43k8ahya2ukn" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-003.ogg" id="46_yyqle"]
+[ext_resource type="AudioStream" uid="uid://bshq3q1bdppqa" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-004.ogg" id="47_ibd1r"]
+[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="48_dutlt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qjc7"]
 resource_name = "Material"
@@ -2107,6 +2114,10 @@ uv1_scale = Vector3(0.3, 0.3, 0.3)
 uv1_triplanar = true
 texture_filter = 0
 
+[sub_resource type="Resource" id="Resource_e552c"]
+script = ExtResource("43_ag4ww")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("44_3nrx2"), ExtResource("45_31cjs"), ExtResource("46_yyqle"), ExtResource("47_ibd1r"), ExtResource("48_dutlt")])
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o3gl1"]
 shader = ExtResource("6_27bo6")
 shader_parameter/alpha = 1
@@ -3062,7 +3073,7 @@ mesh = SubResource("ArrayMesh_mf7gs")
 skeleton = NodePath("")
 
 [node name="Wall" type="MeshInstance3D" parent="Walls/Wall10"]
-transform = Transform3D(0.01, -1.65436e-24, -4.37114e-10, -4.37114e-10, 2.77556e-17, -0.01, 0, 0.01, 2.77556e-17, 0.000686646, 0, 0.00415152)
+transform = Transform3D(0.01, -3.30872e-24, -4.37114e-10, -4.37114e-10, 2.77556e-17, -0.01, 0, 0.01, 2.77556e-17, 0.000686646, 0, 0.00415152)
 mesh = SubResource("ArrayMesh_l472y")
 skeleton = NodePath("")
 
@@ -3786,10 +3797,12 @@ skeleton = NodePath("")
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55921, -0.5, -10.2369)
 use_collision = true
-collision_layer = 11
-collision_mask = 11
+collision_layer = 75
+collision_mask = 75
 size = Vector3(15.3021, 1, 29.5261)
 material = SubResource("StandardMaterial3D_ompr7")
+script = ExtResource("42_fej2f")
+groundData = SubResource("Resource_e552c")
 
 [node name="FadeShader" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_o3gl1")
