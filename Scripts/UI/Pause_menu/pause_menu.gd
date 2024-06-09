@@ -21,12 +21,13 @@ func _input(event):
 		hide()
 	
 	if Input.is_action_just_pressed("Pause"):
+		animationPlayer.play("OpenMenu", -1, -1, true)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_viewport().set_input_as_handled()
+		await animationPlayer.animation_finished
 		if get_tree().paused:
 			get_tree().paused = false
 			hide()
-		
 
 func _on_ui_mouse_exited():
 	if isMultiplayer:
