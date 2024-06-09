@@ -30,6 +30,7 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
+
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
@@ -67,7 +68,7 @@ var isClimbing = false
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0, "idle_speed"= 10.0}
 
 #---------In meters
-const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.04, "idle_speed" = 0.005}
+const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.06, "idle_speed" = 0.005}
 
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0
@@ -84,7 +85,7 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 
-func _input(event):
+func _input(event : InputEvent):
 	#If mouse is moving
 	if event is InputEventMouseMotion:
 		#rotate player x axis ONLY
@@ -92,10 +93,8 @@ func _input(event):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-		
 func _physics_process(delta):
 	
-		
 	if health < 100:
 		updateHealth()
 	
@@ -110,13 +109,8 @@ func _physics_process(delta):
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
-		
-		var pos = Vector3.ZERO
-		pos.y = sin(delta * headBobbing_index) * headBobbing_curr_intensity
-		print(headBobbing_vector.y)
-		var lowpos = headBobbing_curr_intensity - 0.05
-		
-		if groundCheck_Raycast.is_colliding() and headBobbing_vector.y < -0.99 and not ASP_Footsteps.playing:
+
+		if groundCheck_Raycast.is_colliding() and headBobbing_vector.y < -0.98 and not ASP_Footsteps.playing:
 			var collision : GroundData = groundCheck_Raycast.get_collider().groundData
 			var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
 			ASP_Footsteps.stream = sound

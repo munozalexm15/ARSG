@@ -1,4 +1,4 @@
-[gd_scene load_steps=246 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=247 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -63,6 +63,7 @@
 [ext_resource type="AudioStream" uid="uid://43k8ahya2ukn" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-003.ogg" id="46_yyqle"]
 [ext_resource type="AudioStream" uid="uid://bshq3q1bdppqa" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-004.ogg" id="47_ibd1r"]
 [ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="48_dutlt"]
+[ext_resource type="PackedScene" uid="uid://jkwqpcqg8ct" path="res://Scenes/UI/Pause_Menu/pause_menu.tscn" id="64_lkiga"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qjc7"]
 resource_name = "Material"
@@ -2292,8 +2293,10 @@ data = PackedVector3Array(-1, -1, -0.01, 1, 1, -0.01, -1, 1, -0.01, -1, -1, -0.0
 size = Vector3(2, 2, 1.24323)
 
 [node name="World" type="Node3D"]
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89218e-05, 0.000199556, 1.43051e-06)
 script = ExtResource("1_rw0mx")
+pauseNode = NodePath("PauseMenu")
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(0.999992, -0.00163365, -0.00366876, -0.00163884, -0.999998, -0.00141359, -0.00366645, 0.00141959, -0.999992, -1.56528, -0.195082, -11.5127)
@@ -3982,6 +3985,8 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.461378, 0.0520949, -0.447964)
 shape = SubResource("BoxShape3D_i24ei")
+
+[node name="PauseMenu" parent="." instance=ExtResource("64_lkiga")]
 
 [connection signal="body_entered" from="exit_firing_range_area" to="." method="_on_exit_firing_range_area_body_entered"]
 [connection signal="body_entered" from="enter_firing_range_area" to="." method="_on_enter_firing_range_area_body_entered"]

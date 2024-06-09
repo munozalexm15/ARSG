@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=38 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -277,7 +277,7 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fd5yr"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2gpvy"]
+[sub_resource type="LabelSettings" id="LabelSettings_c7qgx"]
 font_size = 30
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -330,6 +330,11 @@ shadow_size = 2
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my8jo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2gpvy"]
+font_size = 30
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbdy5"]
 bg_color = Color(0.443137, 0.113725, 0, 1)
@@ -471,7 +476,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "31/180
 "
-label_settings = SubResource("LabelSettings_2gpvy")
+label_settings = SubResource("LabelSettings_c7qgx")
 horizontal_alignment = 2
 uppercase = true
 
@@ -723,15 +728,17 @@ label_settings = SubResource("LabelSettings_5ruw7")
 
 [node name="InformationContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.539
-anchor_top = 0.441
-anchor_right = 0.539
-anchor_bottom = 0.441
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = 607.0
 offset_top = 297.0
-offset_right = 807.0
+offset_right = 820.0
 offset_bottom = 354.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wtd2s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InformationContainer"]

@@ -2,6 +2,10 @@ extends Node3D
 
 @onready var player : Player = $FadeShader/SubViewport/DitheringShader/SubViewport/Character
 
+
+@export var pauseNode := NodePath()
+@onready var pauseMenu : Pause_Menu = get_node(pauseNode)
+
 var startCountdown : bool = false
 var timeLeft : Timer = Timer.new()
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +15,7 @@ func _ready():
 	timeLeft.autostart = false
 	timeLeft.wait_time = 60
 	add_child(timeLeft)
+	pauseMenu.visible = false
  
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +36,12 @@ func _input(event):
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
+	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
+		pauseMenu.show()
+		pauseMenu.animationPlayer.play("OpenMenu")
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		get_tree().paused = not get_tree().paused
+		
 func _on_enter_firing_range_area_body_entered(body):
 	if not player.arms.weaponHolder.visible:
 		player.arms.animationPlayer.play("SwapWeapon")
