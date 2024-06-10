@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dfldw6o1mhiuj"]
+
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_dither.gdshader" id="1_pdx4s"]
+
+[resource]
+shader = ExtResource("1_pdx4s")
+shader_parameter/color_depth = 5
+shader_parameter/dithering = true
+shader_parameter/resolution_scale = 1

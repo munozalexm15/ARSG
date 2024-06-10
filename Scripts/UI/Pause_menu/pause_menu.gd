@@ -13,10 +13,15 @@ var isMultiplayer : bool = false
 
 @onready var pauseMenu : VBoxContainer = $HBoxContainer2/MarginContainer/PauseMenu
 @onready var optionsNavigation : HBoxContainer = $VBoxContainer/MarginContainer/OptionsNavigation
-@onready var resolutionDropdown : OptionButton = $VBoxContainer/VisualOptions/VBoxContainer2/ResolutionList
-@onready var vsyncButton : CheckBox = $"VBoxContainer/VisualOptions/VBoxContainer2/Vsync-Checkbox"
-@onready var fullscrenButton : CheckBox = $"VBoxContainer/VisualOptions/VBoxContainer2/Fullscreen-Checkbox"
 
+#Visual options
+@onready var resolutionDropdown : OptionButton = $VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionList
+@onready var vsyncButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Vsync-Checkbox"
+@onready var fullscrenButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Fullscreen-Checkbox"
+@onready var resolutionScale_Slider : HSlider = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionScale-Slider"
+@onready var hasDitheringButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/HasDithering-Checkbox"
+
+@export var ditheringMaterial : ShaderMaterial
 
 var resolutions_dict : Dictionary = {"3040x2160" : Vector2i(3040, 2160),
 									  "2560x1440": Vector2i(2560, 1440),
@@ -37,16 +42,25 @@ func _ready():
 	loadDefaultSettings()
 
 func loadDefaultSettings():
+	#VSYNC
 	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
 		vsyncButton.button_pressed = false
 	else:
 		vsyncButton.button_pressed = true
 	
-	
+	#Fullscreen
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		fullscrenButton.button_pressed = false
 	else:
 		fullscrenButton.button_pressed = true
+	
+	#Dithering Filter
+	if ditheringMaterial.get_shader_parameter("dithering") == true:
+		hasDitheringButton.button_pressed = true
+	else:
+		hasDitheringButton.button_pressed = false
+	
+	resolutionScale_Slider.value = ditheringMaterial.get_shader_parameter("resolution_scale")
 
 func addResolutions():
 	var current_res : Vector2i = get_viewport().size
@@ -118,3 +132,18 @@ func _on_vsync_checkbox_pressed():
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+
+func _on_dithering_slider_value_changed(value):
+	ditheringMaterial.set_shader_parameter("resolution_scale", value)
+
+
+func _on_has_dithering_checkbox_toggled(toggled_on):
+	if ditheringMaterial.get_shader_parameter("dithering") == false:
+		ditheringMaterial.set_shader_parameter("dithering", true)
+	else:
+		ditheringMaterial.set_shader_parameter("dithering", false)
+
+
+func _on_color_depth_slider_value_changed(value):
+	ditheringMaterial.set_shader_parameter("color_depth", value)

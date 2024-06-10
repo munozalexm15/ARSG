@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=24 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="2_thhm6"]
 [ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="3_vk65q"]
+[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="4_214vs"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/vhs_shader.gdshader" id="4_awo0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4xwf8"]
@@ -40,6 +41,7 @@ shadow_offset = Vector2(3, 3)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2kpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jymd7"]
+line_spacing = 0.0
 font = ExtResource("2_thhm6")
 font_size = 20
 
@@ -577,6 +579,7 @@ size_flags_vertical = 3
 script = ExtResource("1_or8mf")
 button_hover_SFX = ExtResource("2_cschq")
 button_press_SFX = ExtResource("3_vk65q")
+ditheringMaterial = ExtResource("4_214vs")
 
 [node name="PanelContainer4" type="PanelContainer" parent="."]
 material = SubResource("ShaderMaterial_4xwf8")
@@ -595,10 +598,8 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_left = 1150.85
-offset_top = -649.296
-offset_right = 1153.15
-offset_bottom = -997.92
+offset_right = 1152.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -610,10 +611,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = -600.432
-offset_top = 1039.0
-offset_right = -9.45605
-offset_bottom = 324.256
+offset_left = 570.0
+offset_top = -338.0
+offset_right = 1722.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -626,10 +627,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 5.56799
-offset_top = 673.576
-offset_right = 14.7839
-offset_bottom = 324.304
+offset_left = 168.0
+offset_top = 1654.0
+offset_right = 1320.0
+offset_bottom = 2302.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -642,10 +643,10 @@ anchor_left = 0.043
 anchor_top = 0.08
 anchor_right = 0.447
 anchor_bottom = 0.991
-offset_left = -0.536003
-offset_top = 0.16
-offset_right = 0.0559692
-offset_bottom = -0.16803
+offset_left = 49.0
+offset_top = 52.0
+offset_right = 1445.82
+offset_bottom = 1822.66
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -766,44 +767,88 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2kpt")
 text = "CONTROLS"
 
-[node name="VisualOptions" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.95
+theme_override_constants/margin_right = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VisualOptions"]
+[node name="VisualOptions" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_stretch_ratio = 2.65
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VisualOptions"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VisualOptions/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
-text = "SCREEN RESOLUTION  "
+size_flags_vertical = 2
+text = "SCREEN RESOLUTION "
 label_settings = SubResource("LabelSettings_jymd7")
 
-[node name="Label2" type="Label" parent="VBoxContainer/VisualOptions/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "FULLSCREEN"
 label_settings = SubResource("LabelSettings_jymd7")
 
-[node name="Label3" type="Label" parent="VBoxContainer/VisualOptions/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "V-SYNC
+text = "V-SYNC"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="Label5" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "DITHERING
 "
 label_settings = SubResource("LabelSettings_jymd7")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VisualOptions"]
+[node name="Label4" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
+text = "RESOLUTION SCALE
+"
+label_settings = SubResource("LabelSettings_jymd7")
 
-[node name="ResolutionList" type="OptionButton" parent="VBoxContainer/VisualOptions/VBoxContainer2"]
+[node name="Label6" type="Label" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "COLOR DEPTH
+"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/VisualOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResolutionList" type="OptionButton" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Fullscreen-Checkbox" type="CheckBox" parent="VBoxContainer/VisualOptions/VBoxContainer2"]
+[node name="Fullscreen-Checkbox" type="CheckBox" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Vsync-Checkbox" type="CheckBox" parent="VBoxContainer/VisualOptions/VBoxContainer2"]
+[node name="Vsync-Checkbox" type="CheckBox" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
 layout_mode = 2
+
+[node name="HasDithering-Checkbox" type="CheckBox" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ResolutionScale-Slider" type="HSlider" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+
+[node name="ColorDepth-Slider" type="HSlider" parent="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+min_value = 1.0
+max_value = 8.0
+value = 5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -816,6 +861,9 @@ libraries = {
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_pressed"]
-[connection signal="item_selected" from="VBoxContainer/VisualOptions/VBoxContainer2/ResolutionList" to="." method="_on_resolution_list_item_selected"]
-[connection signal="pressed" from="VBoxContainer/VisualOptions/VBoxContainer2/Fullscreen-Checkbox" to="." method="_on_check_box_pressed"]
-[connection signal="pressed" from="VBoxContainer/VisualOptions/VBoxContainer2/Vsync-Checkbox" to="." method="_on_vsync_checkbox_pressed"]
+[connection signal="item_selected" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionList" to="." method="_on_resolution_list_item_selected"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Fullscreen-Checkbox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Vsync-Checkbox" to="." method="_on_vsync_checkbox_pressed"]
+[connection signal="toggled" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/HasDithering-Checkbox" to="." method="_on_has_dithering_checkbox_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionScale-Slider" to="." method="_on_dithering_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ColorDepth-Slider" to="." method="_on_color_depth_slider_value_changed"]

@@ -1678,15 +1678,19 @@ libraries = {
 [node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("12_dhwam")
+bus = &"Weapons"
 
 [node name="ASP_ReloadSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403824, 1.76149, 0)
 stream = ExtResource("12_uk2r1")
+bus = &"Weapons"
 
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
 stream = ExtResource("13_88m2l")
+bus = &"Weapons"
 
 [node name="ASP_NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("15_0riom")
+bus = &"Weapons"

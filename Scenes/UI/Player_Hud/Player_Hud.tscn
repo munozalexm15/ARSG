@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=37 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -30,22 +30,6 @@ length = 0.001
 _data = {
 "Aim": SubResource("Animation_44682"),
 "RESET": SubResource("Animation_1ou1t")
-}
-
-[sub_resource type="Animation" id="Animation_i8fjr"]
-resource_name = "Aim"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PrecisionSightContainer/TextureRect:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.588235)]
 }
 
 [sub_resource type="Animation" id="Animation_b6msj"]
@@ -268,7 +252,6 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ros"]
 _data = {
-"Aim": SubResource("Animation_i8fjr"),
 "RESET": SubResource("Animation_b6msj"),
 "hitmarker": SubResource("Animation_g1nth"),
 "swap_gun": SubResource("Animation_j2nk0"),
@@ -439,7 +422,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(0, 0, 0, 0.305882)
+self_modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 
@@ -447,7 +430,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
+blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -592,22 +575,22 @@ grow_vertical = 2
 [node name="Top" type="Line2D" parent="CenterContainer"]
 material = SubResource("ShaderMaterial_hh3ed")
 points = PackedVector2Array(0, -5, 0, -15)
-width = 2.0
+width = 3.0
 width_curve = SubResource("Curve_4c33f")
 
 [node name="Right" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(5, 0, 15, 0)
-width = 2.0
+width = 3.0
 width_curve = SubResource("Curve_4oh58")
 
 [node name="Down" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(0, 5, 0, 15)
-width = 2.0
+width = 3.0
 width_curve = SubResource("Curve_pa8m0")
 
 [node name="Left" type="Line2D" parent="CenterContainer"]
 points = PackedVector2Array(-5, 0, -15, 0)
-width = 2.0
+width = 3.0
 width_curve = SubResource("Curve_4vi1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -622,6 +605,7 @@ offset_bottom = 326.0
 grow_horizontal = 0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
 material = SubResource("ShaderMaterial_jnugk")
 layout_mode = 2
@@ -632,7 +616,6 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
-modulate = Color(1, 1, 1, 0.478431)
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3

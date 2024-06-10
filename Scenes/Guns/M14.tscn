@@ -1964,28 +1964,28 @@ bones/15/parent = 2
 bones/15/rest = Transform3D(0.992744, 0.118171, -0.0222628, -0.120077, 0.964252, -0.23622, -0.00644734, 0.237179, 0.971445, -3.7063e-08, 2.35404, -2.46413e-08)
 bones/15/enabled = true
 bones/15/position = Vector3(-3.7063e-08, 2.35404, -2.46413e-08)
-bones/15/rotation = Quaternion(0.119423, -0.00398967, -0.0601019, 0.991015)
+bones/15/rotation = Quaternion(0.118698, -0.00379174, -0.0593363, 0.991149)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "Index2.R"
 bones/16/parent = 15
 bones/16/rest = Transform3D(0.993577, -0.111486, -0.0193745, 0.113007, 0.968808, 0.220546, -0.00581748, -0.221319, 0.975184, 4.93601e-08, 3.61486, 1.88593e-08)
 bones/16/enabled = true
 bones/16/position = Vector3(4.93601e-08, 3.61486, 1.88593e-08)
-bones/16/rotation = Quaternion(-0.141117, -0.0273651, 0.0219742, 0.989371)
+bones/16/rotation = Quaternion(-0.140844, -0.0202276, 0.0344843, 0.989224)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "Index3.R"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0.996484, -0.083778, 3.00065e-05, 0.083778, 0.996484, -0.000711697, 2.97235e-05, 0.000711708, 1, 8.9407e-08, 1.16202, 2.51457e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(8.9407e-08, 1.16202, 2.51457e-08)
-bones/17/rotation = Quaternion(-0.0301812, -0.0195194, 0.00516806, 0.99934)
+bones/17/rotation = Quaternion(-0.0297193, -0.0138269, 0.0183939, 0.999293)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Index4.R"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0.99402, 0.109194, -0.00102973, -0.109198, 0.99398, -0.00891415, 5.01614e-05, 0.00897328, 0.99996, 2.49129e-07, 0.825303, 7.08969e-08)
 bones/18/enabled = true
 bones/18/position = Vector3(2.49129e-07, 0.825303, 7.08969e-08)
-bones/18/rotation = Quaternion(-0.0277963, -0.0166001, -0.0913701, 0.995291)
+bones/18/rotation = Quaternion(-0.0267883, -0.0110334, -0.078178, 0.996518)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "Thumb1.R"
 bones/19/parent = 2
@@ -2179,15 +2179,19 @@ libraries = {
 [node name="ASP_ReloadSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403824, 1.76149, 0)
 stream = ExtResource("12_jwejj")
+bus = &"Weapons"
 
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
 stream = ExtResource("13_q0dt5")
+bus = &"Weapons"
 emission_angle_enabled = true
 
 [node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+bus = &"Weapons"
 
 [node name="ASP_NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("14_2or4j")
+bus = &"Weapons"
