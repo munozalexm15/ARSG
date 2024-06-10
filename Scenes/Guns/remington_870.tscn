@@ -2113,14 +2113,18 @@ angular_velocity_max = 12.9
 [node name="ASP_ReloadSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.403824, 1.76149, 0)
 stream = ExtResource("12_2w3sp")
+bus = &"Weapons"
 
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
 stream = ExtResource("13_fubij")
+bus = &"Weapons"
 
 [node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
+bus = &"Weapons"
 
 [node name="ASP_NoAmmoSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("14_nfkrh")
+bus = &"Weapons"

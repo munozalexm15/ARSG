@@ -15,11 +15,12 @@ var isMultiplayer : bool = false
 @onready var optionsNavigation : HBoxContainer = $VBoxContainer/MarginContainer/OptionsNavigation
 
 #Visual options
-@onready var resolutionDropdown : OptionButton = $VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionList
-@onready var vsyncButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Vsync-Checkbox"
-@onready var fullscrenButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/Fullscreen-Checkbox"
-@onready var resolutionScale_Slider : HSlider = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/ResolutionScale-Slider"
-@onready var hasDitheringButton : CheckBox = $"VBoxContainer/MarginContainer2/VisualOptions/VBoxContainer2/HasDithering-Checkbox"
+@onready var visualOptionsContainer : HBoxContainer = $VBoxContainer/VisualOptionsContainer/VisualOptions
+@onready var resolutionDropdown : OptionButton = $VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/ResolutionList
+@onready var vsyncButton : CheckBox = $"VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/Vsync-Checkbox"
+@onready var fullscrenButton : CheckBox = $"VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/Fullscreen-Checkbox"
+@onready var resolutionScale_Slider : HSlider = $"VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/ResolutionScale-Slider"
+@onready var hasDitheringButton : CheckBox = $"VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/HasDithering-Checkbox"
 
 @export var ditheringMaterial : ShaderMaterial
 
@@ -38,6 +39,8 @@ func _ready():
 	isMultiplayer = false
 	optionsNavigation.set_process(false)
 	optionsNavigation.visible = false
+	visualOptionsContainer.visible = false
+	visualOptionsContainer.set_process(false)
 	addResolutions()
 	loadDefaultSettings()
 
@@ -73,7 +76,6 @@ func addResolutions():
 		
 		index+=1
 
-#-----------------------------Menu UI SIGNALS, ETC.
 func _input(event):
 	if isMultiplayer:
 		hide()
@@ -88,35 +90,42 @@ func hide_menu():
 	await animationPlayer.animation_finished
 	if get_tree().paused:
 		get_tree().paused = false
+		optionsNavigation.visible = false
+		optionsNavigation.set_process(false)
+		visualOptionsContainer.visible = false
+		visualOptionsContainer.set_process(false)
 		hide()
 
 func set_resolution_text():
 	var res_text = str(get_window().size.x) + "x" + str(get_window().size.y)
 	resolutionDropdown.text = res_text
 
+#-----------------------------Menu UI SIGNALS, ETC.--------------------------------
+
 func _on_button_2_pressed():
-	SFXHandler.play_sfx(button_press_SFX, self)
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
 	hide_menu()
 
 func _on_button_2_mouse_entered():
-	SFXHandler.play_sfx(button_hover_SFX, self)
-
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
 func _on_exit_button_pressed():
-	SFXHandler.play_sfx(button_press_SFX, self)
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
 	get_tree().quit()
 
 func _on_exit_button_mouse_entered():
-	SFXHandler.play_sfx(button_hover_SFX, self)
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
 func _on_settings_button_pressed():
 	optionsNavigation.visible = true
 	optionsNavigation.set_process(true)
+	visualOptionsContainer.visible = true
+	visualOptionsContainer.set_process(true)
 
+#VISUALS----------------------------------------------------------------------
 func _on_resolution_list_item_selected(index):
 	var size = resolutions_dict.get(resolutionDropdown.get_item_text(index))
 	get_window().size = size
-
 
 func _on_check_box_pressed():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
@@ -147,3 +156,28 @@ func _on_has_dithering_checkbox_toggled(toggled_on):
 
 func _on_color_depth_slider_value_changed(value):
 	ditheringMaterial.set_shader_parameter("color_depth", value)
+
+
+func _on_visuals_button_pressed():
+	pass
+
+#SOUND--------------------------------------------------------------------
+
+func _on_sound_button_pressed():
+	visualOptionsContainer.visible = false
+	visualOptionsContainer.set_process(false)
+
+func _on_effects_sounds_slider_value_changed(value):
+	pass
+
+
+func _on_environment_sounds_slider_value_changed(value):
+	pass
+
+
+func _on_weapon_sounds_slider_value_changed(value):
+	pass
+
+#CONTROLS----------------------------------------------------------------
+func _on_controls_button_pressed():
+	pass # Replace with function body.

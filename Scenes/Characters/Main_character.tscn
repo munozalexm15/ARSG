@@ -266,6 +266,7 @@ target_position = Vector3(0, 1, 0)
 collision_mask = 64
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
+bus = &"Environment"
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]

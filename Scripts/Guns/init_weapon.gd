@@ -170,7 +170,7 @@ func shoot():
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
 	if fire_sound:
-		SFXHandler.play_sfx(fire_sound.stream, self)
+		SFXHandler.play_sfx(fire_sound.stream, self, fire_sound.bus)
 	spawnBullet()
 
 func spawnBullet():
