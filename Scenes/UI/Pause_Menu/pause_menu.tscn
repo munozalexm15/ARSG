@@ -598,8 +598,10 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 1150.85
+offset_top = -649.296
+offset_right = 1153.15
+offset_bottom = -997.92
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -611,10 +613,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = 570.0
-offset_top = -338.0
-offset_right = 1722.0
-offset_bottom = 310.0
+offset_left = -600.432
+offset_top = 1039.0
+offset_right = -9.45605
+offset_bottom = 324.256
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -627,10 +629,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 168.0
-offset_top = 1654.0
-offset_right = 1320.0
-offset_bottom = 2302.0
+offset_left = 5.56799
+offset_top = 673.576
+offset_right = 14.7839
+offset_bottom = 324.304
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -643,10 +645,10 @@ anchor_left = 0.043
 anchor_top = 0.08
 anchor_right = 0.447
 anchor_bottom = 0.991
-offset_left = 49.0
-offset_top = 52.0
-offset_right = 3307.45
-offset_bottom = 4183.98
+offset_left = -0.536003
+offset_top = 0.16
+offset_right = 3723.32
+offset_bottom = 4722.47
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -890,17 +892,23 @@ size_flags_horizontal = 3
 [node name="WeaponSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="EnvironmentSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="EffectsSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-value = 100.0
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3

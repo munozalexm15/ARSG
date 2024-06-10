@@ -3,7 +3,7 @@ extends Node
 
 #custom method. 
 #It creates a new audioStreamPlayer every time is called, therefore it won't cut if it is started again.
-func play_sfx(sound: AudioStream, parent: Node, busLayout : StringName):
+func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 	var stream = AudioStreamPlayer3D.new()
 
 	stream.stream = sound

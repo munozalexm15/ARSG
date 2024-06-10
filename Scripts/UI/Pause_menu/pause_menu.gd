@@ -168,15 +168,18 @@ func _on_sound_button_pressed():
 	visualOptionsContainer.set_process(false)
 
 func _on_effects_sounds_slider_value_changed(value):
-	pass
+	var bus_index = AudioServer.get_bus_index("Effects")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 
 
 func _on_environment_sounds_slider_value_changed(value):
-	pass
+	var bus_index = AudioServer.get_bus_index("Environment")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 
 
 func _on_weapon_sounds_slider_value_changed(value):
-	pass
+	var bus_index = AudioServer.get_bus_index("Weapons")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 
 #CONTROLS----------------------------------------------------------------
 func _on_controls_button_pressed():
