@@ -439,7 +439,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0.305882)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 

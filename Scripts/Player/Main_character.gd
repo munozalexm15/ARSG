@@ -93,8 +93,8 @@ func _input(event : InputEvent):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		
 func _physics_process(delta):
-	
 	if health < 100:
 		updateHealth()
 	

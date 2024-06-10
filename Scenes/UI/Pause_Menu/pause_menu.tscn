@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=17 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
+[ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="2_thhm6"]
+[ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="3_vk65q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3yrb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gaxxy"]
 bg_color = Color(0, 0, 0, 0.784314)
@@ -18,19 +22,25 @@ font_size = 64
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko5ln"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fbn7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tomq"]
+
 [sub_resource type="Animation" id="Animation_ic50v"]
 resource_name = "OpenMenu"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer3:size")
+tracks/0/path = NodePath("PanelContainer3:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1152, 648), Vector2(1152, 648)]
+"values": [-1.0472, -1.0472]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -47,14 +57,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer3:rotation")
+tracks/2/path = NodePath("PanelContainer3:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.0472, -1.0472]
+"values": [Vector2(1152, 648), Vector2(1152, 648)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -194,14 +204,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PanelContainer3:size")
+tracks/0/path = NodePath("PanelContainer3:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1152, 648)]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -218,14 +228,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PanelContainer3:rotation")
+tracks/2/path = NodePath("PanelContainer3:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(1152, 648)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -381,18 +391,19 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_or8mf")
+button_hover_SFX = ExtResource("2_cschq")
+button_press_SFX = ExtResource("3_vk65q")
 
 [node name="PanelContainer3" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_m3yrb")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_left = 1150.85
-offset_top = -649.296
-offset_right = 1153.15
-offset_bottom = -997.92
+offset_right = 1152.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -404,10 +415,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = -600.432
-offset_top = 1039.0
-offset_right = -9.45605
-offset_bottom = 324.256
+offset_left = 570.0
+offset_top = -338.0
+offset_right = 1722.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -420,10 +431,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 5.56799
-offset_top = 673.576
-offset_right = 14.7839
-offset_bottom = 324.304
+offset_left = 168.0
+offset_top = 1654.0
+offset_right = 1320.0
+offset_bottom = 2302.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -436,10 +447,10 @@ anchor_left = 0.043
 anchor_top = 0.08
 anchor_right = 0.449
 anchor_bottom = 0.994
-offset_left = -0.536003
-offset_top = 0.159996
-offset_right = -0.248108
-offset_bottom = -0.112
+offset_left = 49.0
+offset_top = 52.0
+offset_right = 2855.56
+offset_bottom = 3605.36
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -457,12 +468,18 @@ theme_override_constants/margin_right = 30
 
 [node name="Button2" type="Button" parent="HBoxContainer2/HBoxContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 text = "EXIT"
 flat = true
 alignment = 0
@@ -472,3 +489,6 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_du6bb")
 }
+
+[connection signal="mouse_entered" from="HBoxContainer2/HBoxContainer/MarginContainer/Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer2/HBoxContainer/MarginContainer/Button2" to="." method="_on_button_2_pressed"]
