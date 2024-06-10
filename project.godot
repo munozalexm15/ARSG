@@ -21,8 +21,9 @@ SFXHandler="*res://Scripts/Sounds/SFX_Handler.gd"
 
 [display]
 
+window/size/mode=4
 window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
+window/stretch/aspect="keep_width"
 
 [editor_plugins]
 

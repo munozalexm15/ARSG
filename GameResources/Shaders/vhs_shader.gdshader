@@ -1,103 +1,90 @@
 shader_type canvas_item;
 
-#define iResolution 1.0 / SCREEN_PIXEL_SIZE
-#define iTime TIME
-#define fragColor COLOR
+#define time iTime
+#define resolution ( iResolution.xy )
+#define gl_FragCoord fragCoord
+#define gl_FragColor fragColor
 #define fragCoord FRAGCOORD
+#define fragColor COLOR
+#define iResolution 1.0/SCREEN_PIXEL_SIZE
+#define iTime TIME
 
+uniform float speed : hint_range(-20.0, 20.0, 0.1) = 8.0;
 uniform sampler2D iChannel0;
-uniform vec4 iMouse = vec4(0.);
 
-// The MIT License
-// Copyright © 2023 Gehtsiegarnixan
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-/*
-This is a small trial to generate a feature similar to the Color Range Selection in 
-Photoshop. The image shows the selected color from the image in the cursor, and then 
-blends between this color and its inverse using the generated grayscale mask.
-
-This shader has mouse controls that allow you to change the selected color using the 
-mouse. Additionally, you can change the range and fuzziness of the selection in the 
-global constants below, or set the target color directly.
-*/
-
-// how much deviation from the color is allowed that is still 100%
-#define RANGE 0.1
-
-// Softness of the fadout for the selected color
-#define FUZZINESS 0.3
-
-// Uncomment to use a specific color to isolate that may not be in the image
-//#define REFERENCE_COLOR vec3(0.961,0.980,0.957)
-
-// Generates a smooth mask of isolating a target color
-float colorRange(vec3 pixelColor, vec3 targetColor, float range, float fuzziness) {
-    // Calculate the Euclidean distance between pixelColor and targetColor
-    float distance = length(pixelColor - targetColor);
-
-    // Normalize the distance by the maximum possible distance
-    float normalizedDistance = distance / sqrt(3.0);
-
-    // Colors within Range become 1 and colors within Range+ Fuzziness fade to 0
-    return smoothstep(range + fuzziness, range, normalizedDistance);
+vec3 tex2D( sampler2D _tex, vec2 _p ){
+  vec3 col = texture( _tex, _p ).xyz;
+  if ( 0.5 < abs( _p.x - 0.5 ) ) {
+    col = vec3( 0.1 );
+  }
+  return col;
 }
 
-void fragment()
-{
-    // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = UV;
-
-    // Sample color Texture
-    vec3 imageColor = texture(iChannel0, uv).xyz;
-    
-    #ifdef REFERENCE_COLOR
-        // overwrite the reference color with a global constant
-        vec3 referenceColor = REFERENCE_COLOR;
-        
-    #else
-        // initilaize some variables 
-        vec2 sampleCoords;
-        vec2 cursor;
-        
-        // If the mouse was clicked, scale mouse coordinates to the 0-1 range of the screen
-        if (iMouse.x > 0.0) {
-
-            // set the sample position at mouse posiiton
-            sampleCoords = iMouse.xy / iResolution.xy;
-           
-        } else {
-            // If the mouse was not clicked, animate the direction vector
-            float myTime = iTime * 0.05;
-            sampleCoords = vec2(cos(myTime), sin(myTime))*0.2+0.5;        
-        }
-        
-        vec2 coords = fragCoord.xy / iResolution.xy;
-        
-        // Generate Mouse coursor, x = mouse color, y = mouse weight 
-        float mouseSize = 0.02;
-        float mouseDist = length((coords - sampleCoords) * vec2(iResolution.x/iResolution.y, 1.));
-        
-        float aa = fwidth(mouseDist); // cheap anti-aliasing factor
-        
-        // Mask for the outline and the white center of the sphere cursor
-        cursor.x = smoothstep(mouseSize*0.5 + aa, mouseSize*0.5 - aa, mouseDist);
-        cursor.y = smoothstep(mouseSize + aa, mouseSize - aa, mouseDist);
-
-        // sample the coordinates of the texture to find the reference color
-        vec3 referenceColor = texture(iChannel0, sampleCoords).xyz;       
-    #endif
-    
-    // Apply color range selection
-    float mask = colorRange(imageColor, referenceColor, RANGE, FUZZINESS);
-    
-    // Use mask to make make of color and it's inverse
-    vec3 color = mix(1.-referenceColor, referenceColor, mask);
-
-    #ifndef REFERENCE_COLOR
-        // Add mouse cursor
-        color = mix(color, cursor.x * referenceColor, cursor.y);
-    #endif
-    
-    // Output to screen
-    fragColor = vec4(color,1);
+float hash( vec2 _v ){
+  return fract( sin( dot( _v, vec2( 89.44, 19.36 ) ) ) * 22189.22 );
 }
+
+float iHash( vec2 _v, vec2 _r ){
+  float h00 = hash( vec2( floor( _v * _r + vec2( 0.0, 0.0 ) ) / _r ) );
+  float h10 = hash( vec2( floor( _v * _r + vec2( 1.0, 0.0 ) ) / _r ) );
+  float h01 = hash( vec2( floor( _v * _r + vec2( 0.0, 1.0 ) ) / _r ) );
+  float h11 = hash( vec2( floor( _v * _r + vec2( 1.0, 1.0 ) ) / _r ) );
+  vec2 ip = vec2( smoothstep( vec2( 0.0, 0.0 ), vec2( 1.0, 1.0 ), mod( _v*_r, 1. ) ) );
+  return ( h00 * ( 1. - ip.x ) + h10 * ip.x ) * ( 1. - ip.y ) + ( h01 * ( 1. - ip.x ) + h11 * ip.x ) * ip.y;
+}
+
+float noise( vec2 _v ){
+  float sum = 0.;
+  for( int i=1; i<9; i++ )
+  {
+    sum += iHash( _v + vec2( float(i) ), vec2( 2. * pow( 2., float( i ) ) ) ) / pow( 2., float( i ) );
+  }
+  return sum;
+}
+
+void fragment(){
+  vec2 uv = gl_FragCoord.xy / resolution;
+  vec2 uvn = uv;
+  vec3 col = vec3( 0.0 );
+
+  // tape wave
+  uvn.x += ( noise( vec2( uvn.y, time ) ) - 0.5 )* 0.005;
+  uvn.x += ( noise( vec2( uvn.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.01;
+
+  // tape crease
+  float tcPhase = clamp( ( sin( uvn.y * speed - time * PI * 1.2 ) - 0.92 ) * noise( vec2( time ) ), 0.0, 0.01 ) * 10.0;
+  float tcNoise = max( noise( vec2( uvn.y * 100.0, time * 10.0 ) ) - 0.5, 0.0 );
+  uvn.x = uvn.x - tcNoise * tcPhase;
+
+  // switching noise
+  float snPhase = smoothstep( 0.03, 0.0, uvn.y );
+  uvn.y += snPhase * 0.3;
+  uvn.x += snPhase * ( ( noise( vec2( uv.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.2 );
+    
+  col = tex2D( iChannel0, vec2(uvn.x, uvn.y) );
+  col *= 1.0 - tcPhase;
+  col = mix(
+    col,
+    col.yzx,
+    snPhase
+  );
+
+  // bloom
+  for( float x = -4.0; x < 2.5; x += 1.0 ){
+    col.xyz += vec3(
+      tex2D( iChannel0, uvn + vec2( x - 0.0, 0.0 ) * 7E-3 ).x,
+      tex2D( iChannel0, uvn + vec2( x - 2.0, 0.0 ) * 7E-3 ).y,
+      tex2D( iChannel0, uvn + vec2( x - 4.0, 0.0 ) * 7E-3 ).z
+    ) * 0.1;
+  }
+  col *= 0.6;
+
+  // ac beat
+  col *= 1.0 + clamp( noise( vec2( 0.0, uv.y + time * 0.2 ) ) * 0.6 - 0.25, 0.0, 0.1 );
+
+  gl_FragColor = vec4( col, 1.0 );
+  gl_FragColor = vec4( col, 1.0 - col.r );
+}
+
+#undef gl_FragCoord
+#undef gl_FragColor
