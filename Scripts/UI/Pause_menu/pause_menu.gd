@@ -45,14 +45,25 @@ var resolutions_dict : Dictionary = {"3040x2160" : Vector2i(3040, 2160),
 #Controls
 @onready var controlsOptionContainer : MarginContainer = $VBoxContainer/ControlsOptionsContainer
 
+var configData : ConfigFile
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	optionsMainContainer.visible = false
 	isMultiplayer = false
 	addResolutions()
-	loadDefaultSettings()
+	configData = ConfigFile.new()
+	var loadedData = configData.load("res://GameSettings.cfg")
+	if loadedData == OK:
+		loadDefaultSettings()
 
 func loadDefaultSettings():
+	#AUDIO
+	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponsSliderValue", 1)
+	
+	effectsSounds_Slider.value = configData.get_value("Audio", "EffectsSliderValue", 1)
+
+	environmentSounds_Slider.value = configData.get_value("Audio", "EnvironmentSliderValue", 1)
+	
 	#VSYNC
 	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
 		vsyncButton.button_pressed = false
@@ -70,20 +81,6 @@ func loadDefaultSettings():
 		hasDitheringButton.button_pressed = true
 	else:
 		hasDitheringButton.button_pressed = false
-	
-	#SOUND
-	var bus_index = AudioServer.get_bus_index("Weapons")
-	var bus_intensity = AudioServer.get_bus_volume_db(bus_index)
-	weaponSounds_Slider.value = bus_intensity
-	
-	bus_index = AudioServer.get_bus_index("Effects")
-	bus_intensity = AudioServer.get_bus_volume_db(bus_index)
-	effectsSounds_Slider.value = bus_intensity
-	
-	bus_index = AudioServer.get_bus_index("Environment")
-	bus_intensity = AudioServer.get_bus_volume_db(bus_index)
-	environmentSounds_Slider.value = bus_intensity
-	
 	
 	resolutionScale_Slider.value = ditheringMaterial.get_shader_parameter("resolution_scale")
 
@@ -161,36 +158,51 @@ func _on_settings_button_pressed():
 func _on_resolution_list_item_selected(index):
 	var size = resolutions_dict.get(resolutionDropdown.get_item_text(index))
 	get_window().size = size
+	configData.set_value("Video", "Resolution", size)
+	configData.save("res://GameSettings.cfg")
 
 func _on_check_box_pressed():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		set_resolution_text()
+		configData.set_value("Video", "isFullscreen", true)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		set_resolution_text()
+		configData.set_value("Video", "isFullscreen", false)
+
+	configData.save("res://GameSettings.cfg")
 
 
 func _on_vsync_checkbox_pressed():
 	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		configData.set_value("Video", "V-Sync", true)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-
+		configData.set_value("Video", "V-Sync", true)
+		
+	configData.save("res://GameSettings.cfg")
 
 func _on_dithering_slider_value_changed(value):
 	ditheringMaterial.set_shader_parameter("resolution_scale", value)
-
+	configData.set_value("Video", "ResolutionScale", value)
+	configData.save("res://GameSettings.cfg")
 
 func _on_has_dithering_checkbox_toggled(toggled_on):
 	if ditheringMaterial.get_shader_parameter("dithering") == false:
 		ditheringMaterial.set_shader_parameter("dithering", true)
+		configData.set_value("Video", "hasDithering", true)
 	else:
 		ditheringMaterial.set_shader_parameter("dithering", false)
-
+		configData.set_value("Video", "hasDithering", false)
+		
+	configData.save("res://GameSettings.cfg")
 
 func _on_color_depth_slider_value_changed(value):
 	ditheringMaterial.set_shader_parameter("color_depth", value)
+	configData.set_value("Video", "ColorDepth", value)
+	configData.save("res://GameSettings.cfg")
 
 
 func _on_visuals_button_pressed():
@@ -208,15 +220,20 @@ func _on_sound_button_pressed():
 func _on_effects_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Effects")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	configData.set_value("Audio", "EffectsSliderValue", value)
+	configData.save("res://GameSettings.cfg")
 
 func _on_environment_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Environment")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
-
+	configData.set_value("Audio", "EnvironmentSliderValue", value)
+	configData.save("res://GameSettings.cfg")
 
 func _on_weapon_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Weapons")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	configData.set_value("Audio", "WeaponsSliderValue", value)
+	configData.save("res://GameSettings.cfg")
 
 #CONTROLS----------------------------------------------------------------
 func _on_controls_button_pressed():

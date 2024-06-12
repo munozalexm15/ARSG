@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=31 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
@@ -36,9 +36,21 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x66wk"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66vfe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scell"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iehka"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wa4a1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nb6q5"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2kpt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uun5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m0q7x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jymd7"]
 line_spacing = 0.0
@@ -310,6 +322,33 @@ tracks/21/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.7, 1)
+}
+
+[sub_resource type="Animation" id="Animation_y24ej"]
+resource_name = "OpenOptions"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(500, -0.46, 0, 0.25, 0, 526, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
 }
 
 [sub_resource type="Animation" id="Animation_4dthm"]
@@ -604,33 +643,6 @@ tracks/23/keys = {
 [sub_resource type="Animation" id="Animation_b732t"]
 resource_name = "new_animation"
 
-[sub_resource type="Animation" id="Animation_y24ej"]
-resource_name = "OpenOptions"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:position:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(500, -0.46, 0, 0.25, 0, 526, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3)
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_du6bb"]
 _data = {
 "OpenMenu": SubResource("Animation_ic50v"),
@@ -671,10 +683,8 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_left = 1150.85
-offset_top = -649.296
-offset_right = 1153.15
-offset_bottom = -997.92
+offset_right = 1152.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -686,10 +696,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = -600.432
-offset_top = 1039.0
-offset_right = -9.45593
-offset_bottom = 324.256
+offset_left = 570.0
+offset_top = -338.0
+offset_right = 1722.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -702,10 +712,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 5.56799
-offset_top = 673.576
-offset_right = 14.7839
-offset_bottom = 324.304
+offset_left = 168.0
+offset_top = 1654.0
+offset_right = 1320.0
+offset_bottom = 2302.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -718,10 +728,10 @@ anchor_left = 0.042
 anchor_top = 0.068
 anchor_right = 0.448
 anchor_bottom = 0.981
-offset_left = 0.615997
-offset_top = 7.936
-offset_right = 468.616
-offset_bottom = 599.936
+offset_left = 49.0
+offset_top = 52.0
+offset_right = 2387.84
+offset_bottom = 3010.5
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -740,7 +750,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
-theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -792,16 +802,11 @@ flat = true
 alignment = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.44
-anchor_top = 0.211
-anchor_right = 0.44
-anchor_bottom = 0.211
-offset_left = 19.12
-offset_top = -2.72801
-offset_right = 641.12
-offset_bottom = 666.272
+layout_mode = 0
+offset_left = 526.0
+offset_top = 165.0
+offset_right = 1091.0
+offset_bottom = 834.0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -813,9 +818,15 @@ layout_mode = 2
 [node name="VisualsButton" type="Button" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x66wk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_66vfe")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_scell")
 text = "VISUAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
@@ -825,9 +836,15 @@ theme_override_constants/margin_right = 15
 [node name="SoundButton" type="Button" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_iehka")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wa4a1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nb6q5")
 text = "SOUND"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
@@ -837,9 +854,15 @@ theme_override_constants/margin_right = 15
 [node name="ControlsButton" type="Button" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2kpt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7uun5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m0q7x")
 text = "CONTROLS"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
@@ -973,23 +996,20 @@ size_flags_horizontal = 3
 [node name="WeaponSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 0.5
+max_value = 1.0
 step = 0.001
-value = 0.5
 
 [node name="EnvironmentSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 0.5
+max_value = 1.0
 step = 0.001
-value = 0.5
 
 [node name="EffectsSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 0.5
+max_value = 1.0
 step = 0.001
-value = 0.5
 
 [node name="ControlsOptionsContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

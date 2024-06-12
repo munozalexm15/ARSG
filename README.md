@@ -28,8 +28,8 @@
  - Rocket launcher / Grenade Launcher
  
 ### UI / HUD
- - Menu
  - Show player state (crouched, running, standing -> like COD1)
+ - If shooting, add a little of camera shake
  
 ### OTHER:
  - Preload all possible pickup weapons on scene start, so it doesn't lag when picking up ones (pool maybe)
