@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=25 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
@@ -300,6 +300,17 @@ tracks/20/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/21/type = "bezier"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON:modulate:a")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.7, 1)
+}
 
 [sub_resource type="Animation" id="Animation_4dthm"]
 length = 0.001
@@ -555,13 +566,75 @@ tracks/20/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("VBoxContainer:modulate")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/22/type = "bezier"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("VBoxContainer:position:x")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(526, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/23/type = "bezier"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON:modulate:a")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_b732t"]
 resource_name = "new_animation"
 
+[sub_resource type="Animation" id="Animation_y24ej"]
+resource_name = "OpenOptions"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(500, -0.46, 0, 0.25, 0, 526, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_du6bb"]
 _data = {
 "OpenMenu": SubResource("Animation_ic50v"),
+"OpenOptions": SubResource("Animation_y24ej"),
 "RESET": SubResource("Animation_4dthm"),
 "new_animation": SubResource("Animation_b732t")
 }
@@ -615,7 +688,7 @@ anchor_right = 1.503
 anchor_bottom = -0.022
 offset_left = -600.432
 offset_top = 1039.0
-offset_right = -9.45605
+offset_right = -9.45593
 offset_bottom = 324.256
 grow_horizontal = 2
 grow_vertical = 2
@@ -641,14 +714,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qqj7h")
 [node name="HBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.043
-anchor_top = 0.08
-anchor_right = 0.447
-anchor_bottom = 0.991
-offset_left = -0.536003
-offset_top = 0.16
-offset_right = 3723.32
-offset_bottom = 4722.47
+anchor_left = 0.042
+anchor_top = 0.068
+anchor_right = 0.448
+anchor_bottom = 0.981
+offset_left = 0.615997
+offset_top = 7.936
+offset_right = 468.616
+offset_bottom = 599.936
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -721,14 +794,14 @@ alignment = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.457
-anchor_top = 0.228
-anchor_right = 0.989
-anchor_bottom = 0.761
-offset_left = -0.463989
-offset_top = 0.255997
-offset_right = -0.328003
-offset_bottom = -310.128
+anchor_left = 0.44
+anchor_top = 0.211
+anchor_right = 0.44
+anchor_bottom = 0.211
+offset_left = 19.12
+offset_top = -2.72801
+offset_right = 641.12
+offset_bottom = 666.272
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -769,14 +842,19 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2kpt")
 text = "CONTROLS"
 
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="VisualOptionsContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 1.95
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 40
 
 [node name="VisualOptions" type="HBoxContainer" parent="VBoxContainer/VisualOptionsContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 size_flags_stretch_ratio = 2.65
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VisualOptionsContainer/VisualOptions"]
@@ -784,7 +862,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 text = "SCREEN RESOLUTION "
 label_settings = SubResource("LabelSettings_jymd7")
 
@@ -854,17 +932,20 @@ value = 5.0
 
 [node name="SoundOptionsContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 1.95
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 40
 
 [node name="VisualOptions" type="HBoxContainer" parent="VBoxContainer/SoundOptionsContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 size_flags_stretch_ratio = 2.65
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/SoundOptionsContainer/VisualOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 0.65
 
 [node name="WeaponSounds" type="Label" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer"]
@@ -892,23 +973,225 @@ size_flags_horizontal = 3
 [node name="WeaponSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 1.0
+max_value = 0.5
 step = 0.001
-value = 1.0
+value = 0.5
 
 [node name="EnvironmentSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 1.0
+max_value = 0.5
 step = 0.001
-value = 1.0
+value = 0.5
 
 [node name="EffectsSounds-Slider" type="HSlider" parent="VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 2
-max_value = 1.0
+max_value = 0.5
 step = 0.001
-value = 1.0
+value = 0.5
+
+[node name="ControlsOptionsContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 4.41
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+
+[node name="VisualOptions" type="HBoxContainer" parent="VBoxContainer/ControlsOptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 2.18
+
+[node name="WeaponSounds" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "MOVEMENT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds2" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "JUMP"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds5" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "SPRINT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds6" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "CROUCH"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds3" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "FIRE"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds4" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "AIM DOWN SIGHT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds7" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "SWAP WEAPON"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds8" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "PRIMARY WEAPON"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds9" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "SECONDARY WEAPON"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds10" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "LEANING"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds11" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "INTERACT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds12" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "MELEE"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds13" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "FLASHLIGHT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds14" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "FIREMODE"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds15" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "MENU"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="WeaponSounds" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "W/A/S/D"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds2" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "SPACEBAR"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds3" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "SHIFT"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds4" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "CONTROL"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds5" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "LEFT CLICK"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds6" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "RIGHT CLICK"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds7" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "MOUSE WHEEL UP / DOWN"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds8" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds9" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds10" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "	Q / E"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds11" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "F"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds12" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "V"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds13" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Z"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds14" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "X"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="WeaponSounds15" type="Label" parent="VBoxContainer/ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "ESCAPE"
+label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3

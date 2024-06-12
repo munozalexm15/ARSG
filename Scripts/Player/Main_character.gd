@@ -30,6 +30,9 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
+@export var pauseMenuNode := NodePath()
+@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
+
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
@@ -84,6 +87,7 @@ func _ready():
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
+	pauseMenu.visible = false
 
 func _input(event : InputEvent):
 	#If mouse is moving
@@ -94,6 +98,12 @@ func _input(event : InputEvent):
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
+	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
+		pauseMenu.show()
+		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		get_tree().paused = not get_tree().paused
+
 func _physics_process(delta):
 	if health < 100:
 		updateHealth()

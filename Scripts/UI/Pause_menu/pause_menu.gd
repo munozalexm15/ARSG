@@ -14,6 +14,8 @@ var isMultiplayer : bool = false
 @onready var pauseMenu : VBoxContainer = $HBoxContainer2/MarginContainer/PauseMenu
 @onready var optionsNavigation : HBoxContainer = $VBoxContainer/MarginContainer/OptionsNavigation
 
+@onready var optionsMainContainer : VBoxContainer = $VBoxContainer
+
 #Visual options
 @onready var visualOptionsContainer : HBoxContainer = $VBoxContainer/VisualOptionsContainer/VisualOptions
 @onready var resolutionDropdown : OptionButton = $VBoxContainer/VisualOptionsContainer/VisualOptions/VBoxContainer2/ResolutionList
@@ -34,13 +36,19 @@ var resolutions_dict : Dictionary = {"3040x2160" : Vector2i(3040, 2160),
 									  "1024x600" : Vector2i(1024, 600),
 									  "800x600" : Vector2i(800, 600)}
 
+#Sounds
+@onready var soundOptionsContainer : MarginContainer = $VBoxContainer/SoundOptionsContainer
+@onready var weaponSounds_Slider : HSlider = $"VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2/WeaponSounds-Slider"
+@onready var environmentSounds_Slider : HSlider = $"VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2/EnvironmentSounds-Slider"
+@onready var effectsSounds_Slider : HSlider = $"VBoxContainer/SoundOptionsContainer/VisualOptions/VBoxContainer2/EffectsSounds-Slider"
+
+#Controls
+@onready var controlsOptionContainer : MarginContainer = $VBoxContainer/ControlsOptionsContainer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	optionsMainContainer.visible = false
 	isMultiplayer = false
-	optionsNavigation.set_process(false)
-	optionsNavigation.visible = false
-	visualOptionsContainer.visible = false
-	visualOptionsContainer.set_process(false)
 	addResolutions()
 	loadDefaultSettings()
 
@@ -63,6 +71,20 @@ func loadDefaultSettings():
 	else:
 		hasDitheringButton.button_pressed = false
 	
+	#SOUND
+	var bus_index = AudioServer.get_bus_index("Weapons")
+	var bus_intensity = AudioServer.get_bus_volume_db(bus_index)
+	weaponSounds_Slider.value = bus_intensity
+	
+	bus_index = AudioServer.get_bus_index("Effects")
+	bus_intensity = AudioServer.get_bus_volume_db(bus_index)
+	effectsSounds_Slider.value = bus_intensity
+	
+	bus_index = AudioServer.get_bus_index("Environment")
+	bus_intensity = AudioServer.get_bus_volume_db(bus_index)
+	environmentSounds_Slider.value = bus_intensity
+	
+	
 	resolutionScale_Slider.value = ditheringMaterial.get_shader_parameter("resolution_scale")
 
 func addResolutions():
@@ -84,16 +106,16 @@ func _input(event):
 		hide_menu()
 	
 func hide_menu():
-	animationPlayer.play("OpenMenu", -1, -1, true)
+	if optionsMainContainer.visible:
+		animationPlayer.play("OpenOptions", -1, -2, true)
+		await animationPlayer.animation_finished
+	animationPlayer.play("OpenMenu", -1, -2, true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_viewport().set_input_as_handled()
 	await animationPlayer.animation_finished
+	optionsMainContainer.hide()
 	if get_tree().paused:
 		get_tree().paused = false
-		optionsNavigation.visible = false
-		optionsNavigation.set_process(false)
-		visualOptionsContainer.visible = false
-		visualOptionsContainer.set_process(false)
 		hide()
 
 func set_resolution_text():
@@ -116,11 +138,24 @@ func _on_exit_button_pressed():
 func _on_exit_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
+func _on_settings_button_mouse_entered():
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+	
 func _on_settings_button_pressed():
-	optionsNavigation.visible = true
-	optionsNavigation.set_process(true)
-	visualOptionsContainer.visible = true
-	visualOptionsContainer.set_process(true)
+	
+	if optionsMainContainer.visible:
+		animationPlayer.play("OpenOptions", -1, -1, true)
+		await animationPlayer.animation_finished
+		optionsMainContainer.hide()
+	
+	else:
+		optionsMainContainer.show()
+		optionsNavigation.show()
+		visualOptionsContainer.show()
+		soundOptionsContainer.hide()
+		controlsOptionContainer.hide()
+		animationPlayer.play("OpenOptions")
+		await animationPlayer.animation_finished
 
 #VISUALS----------------------------------------------------------------------
 func _on_resolution_list_item_selected(index):
@@ -159,18 +194,20 @@ func _on_color_depth_slider_value_changed(value):
 
 
 func _on_visuals_button_pressed():
-	pass
+	soundOptionsContainer.hide()
+	controlsOptionContainer.hide()
+	visualOptionsContainer.show()
 
 #SOUND--------------------------------------------------------------------
 
 func _on_sound_button_pressed():
-	visualOptionsContainer.visible = false
-	visualOptionsContainer.set_process(false)
+	visualOptionsContainer.hide()
+	controlsOptionContainer.hide()
+	soundOptionsContainer.show()
 
 func _on_effects_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Effects")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
-
 
 func _on_environment_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Environment")
@@ -183,4 +220,6 @@ func _on_weapon_sounds_slider_value_changed(value):
 
 #CONTROLS----------------------------------------------------------------
 func _on_controls_button_pressed():
-	pass # Replace with function body.
+	visualOptionsContainer.hide()
+	soundOptionsContainer.hide()
+	controlsOptionContainer.show()

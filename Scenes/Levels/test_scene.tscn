@@ -2290,7 +2290,6 @@ size = Vector3(2, 2, 1.24323)
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89218e-05, 0.000199556, 1.43051e-06)
 script = ExtResource("1_rw0mx")
-pauseNode = NodePath("PauseMenu")
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(0.999992, -0.00163365, -0.00366876, -0.00163884, -0.999998, -0.00141359, -0.00366645, 0.00141959, -0.999992, -1.56528, -0.195082, -11.5127)
@@ -3842,6 +3841,7 @@ render_target_update_mode = 4
 
 [node name="Character" parent="FadeShader/SubViewport/DitheringShader/SubViewport" instance=ExtResource("1_s20kc")]
 transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, -0.143859, 0.841377, -1.94879)
+pauseMenuNode = NodePath("../../../../../PauseMenu")
 
 [node name="Environment" type="Node3D" parent="."]
 
