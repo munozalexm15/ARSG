@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://byaijs7vtrgey"]
+[gd_scene load_steps=125 format=3 uid="uid://byaijs7vtrgey"]
 
 [ext_resource type="Script" path="res://Scripts/Level/main_menu.gd" id="1_lu74t"]
 [ext_resource type="Texture2D" uid="uid://bn8nbv07bsm7q" path="res://GameResources/Textures/Other/ground_explosion-1.png" id="2_wri21"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://c1f33xw1dqdug" path="res://Scenes/Meshes/ShootingRange/shooting_range_table.tscn" id="38_64fkk"]
 [ext_resource type="Texture2D" uid="uid://c4rcnr003lro0" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wooden_crate_3.png" id="39_1kl13"]
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="40_nsf7b"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/CameraShake_Handler.gd" id="40_riaoc"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="41_7odsu"]
 [ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="42_i4362"]
 [ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="43_pm5r6"]
@@ -1121,6 +1122,7 @@ process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89218e-05, 0.000199556, 1.43051e-06)
 script = ExtResource("1_lu74t")
 lightArray = [NodePath("Ceiling/floor_21"), NodePath("Ceiling/floor_33"), NodePath("Ceiling/floor_24"), NodePath("Ceiling/floor_22"), NodePath("Ceiling/floor_43"), NodePath("Ceiling/floor_32")]
+cameraNode = NodePath("FadeShader/SubViewport/DitheringShader/SubViewport/Camera3D")
 
 [node name="Decal" type="Decal" parent="."]
 transform = Transform3D(0.999992, -0.00163365, -0.00366876, -0.00163884, -0.999998, -0.00141359, -0.00366645, 0.00141959, -0.999992, -1.56528, -0.195082, -11.5127)
@@ -2102,6 +2104,8 @@ render_target_update_mode = 4
 transform = Transform3D(0.90175, 0, 0.432259, 0, 1, 0, -0.432259, 0, 0.90175, 3.80702, 1.27855, -8.48234)
 environment = SubResource("Environment_s6ddr")
 far = 50.0
+script = ExtResource("40_riaoc")
+randomStrength = 0.2
 
 [node name="Environment" type="Node3D" parent="."]
 
