@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=34 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
@@ -36,21 +36,27 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x66wk"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0p82"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66vfe"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_scell"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34gcf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iehka"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wa4a1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2o5gi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nb6q5"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xnjx"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2kpt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xt6r0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uun5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m0q7x"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqkb1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jymd7"]
 line_spacing = 0.0
@@ -683,8 +689,10 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 1150.85
+offset_top = -649.296
+offset_right = 1153.15
+offset_bottom = -997.92
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -696,10 +704,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = 570.0
-offset_top = -338.0
-offset_right = 1722.0
-offset_bottom = 310.0
+offset_left = -600.432
+offset_top = 1039.0
+offset_right = -9.45605
+offset_bottom = 324.256
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -712,10 +720,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 168.0
-offset_top = 1654.0
-offset_right = 1320.0
-offset_bottom = 2302.0
+offset_left = 5.56799
+offset_top = 673.576
+offset_right = 14.7839
+offset_bottom = 324.304
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -728,10 +736,10 @@ anchor_left = 0.042
 anchor_top = 0.068
 anchor_right = 0.448
 anchor_bottom = 0.981
-offset_left = 49.0
-offset_top = 52.0
-offset_right = 2387.84
-offset_bottom = 3010.5
+offset_left = 0.616001
+offset_top = 7.936
+offset_right = 2339.46
+offset_bottom = 2966.43
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -825,8 +833,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_x66wk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e0p82")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_66vfe")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_scell")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_34gcf")
 text = "VISUAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
@@ -843,8 +852,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_iehka")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wa4a1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2o5gi")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_nb6q5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1xnjx")
 text = "SOUND"
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer/OptionsNavigation"]
@@ -861,8 +871,9 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_t2kpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xt6r0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_7uun5")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_m0q7x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqkb1")
 text = "CONTROLS"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
