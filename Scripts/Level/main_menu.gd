@@ -5,6 +5,8 @@ extends Node3D
 @export var cameraNode : NodePath
 @onready var camera : Camera3D = get_node(cameraNode)
 
+@onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
+
 #PSX Cones Array
 var meshesArray : Array
 var spotLightArray : Array
@@ -16,7 +18,6 @@ func _ready():
 		var children = node.get_children()
 		
 		for child in children:
-			print(child.get_class())
 			if child is Node3D:
 				meshesArray.append(child)
 			if child is SpotLight3D:
@@ -27,6 +28,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		
@@ -37,7 +39,9 @@ func _process(delta):
 func lightError():
 	var randomTime = randi_range(5, 10)
 	await get_tree().create_timer(randomTime).timeout
+	camera.randomStrength = randf_range(0.05, 0.2)
 	camera.apply_camera_shake()
+	mortarSound.play()
 	
 	for i in range(3):
 		var randomLightOutTime = randf_range(0, 0.5)
@@ -51,5 +55,3 @@ func lightError():
 		light.visible = true
 	
 	lightError()
-	
-
