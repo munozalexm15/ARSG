@@ -6,7 +6,7 @@ extends Node3D
 @onready var camera : Camera3D = get_node(cameraNode)
 
 @onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
-
+@onready var lightBuzzSound : AudioStreamPlayer = $ASP_LightBuzzSound
 #PSX Cones Array
 var meshesArray : Array
 var spotLightArray : Array
@@ -55,3 +55,4 @@ func lightError():
 		light.visible = true
 	
 	lightError()
+	lightBuzzSound.play()

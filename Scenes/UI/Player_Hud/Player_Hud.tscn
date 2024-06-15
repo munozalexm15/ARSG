@@ -430,7 +430,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

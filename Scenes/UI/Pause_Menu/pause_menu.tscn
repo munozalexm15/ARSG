@@ -736,8 +736,8 @@ anchor_right = 0.448
 anchor_bottom = 0.981
 offset_left = 49.0
 offset_top = 52.0
-offset_right = 2855.56
-offset_bottom = 3602.12
+offset_right = 3323.27
+offset_bottom = 4193.74
 
 [node name="Label" type="Label" parent="HBoxContainer2"]
 layout_mode = 2
@@ -774,7 +774,7 @@ alignment = 0
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
-theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
@@ -826,6 +826,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.752941, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
@@ -845,6 +846,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.752941, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
@@ -864,6 +866,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.752941, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("2_thhm6")
@@ -1230,6 +1233,7 @@ libraries = {
 
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_button_2_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_pressed"]
