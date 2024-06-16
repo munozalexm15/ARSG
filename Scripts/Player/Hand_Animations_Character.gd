@@ -112,4 +112,5 @@ func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):
 			weaponHolder.get_child(x).weaponData.reserveAmmo += ammoBox.ammoData.resupplyQuantity
 			ammoBox.ammoData.numberUses -= 1
 			if ammoBox.ammoData.numberUses == 0:
+				
 				ammoBox.queue_free()

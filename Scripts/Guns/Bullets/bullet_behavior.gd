@@ -23,8 +23,6 @@ var decal_instance : Decal
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lock_rotation = true
-	if instigator is Player:
-		trail.set_process(false)
 	await get_tree().create_timer(5).timeout
 	queue_free()
 	#disable trail effect for players, it is intended to be only seen from enemies who shoot at you

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcepmrcqbhkaf"]
+[gd_scene load_steps=11 format=3 uid="uid://bcepmrcqbhkaf"]
 
 [ext_resource type="Script" path="res://Scenes/Ammo/ammo_pistol_resource.gd" id="1_tj8jk"]
 [ext_resource type="Resource" uid="uid://brdwti5jl1elq" path="res://Scripts/Ammo/assault-rifle_ammo_Resource.tres" id="2_vmrc0"]
@@ -47,6 +47,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_usp2p")
 
+[sub_resource type="Animation" id="Animation_hk4m7"]
+resource_name = "Pickup_anim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prop_Ammo_Rifle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(0.02, 0.02, 0.02), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7y2gr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prop_Ammo_Rifle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8qdp"]
+_data = {
+"Pickup_anim": SubResource("Animation_hk4m7"),
+"RESET": SubResource("Animation_7y2gr")
+}
+
 [node name="assault_rifle_ammo_pickup" type="RigidBody3D"]
 script = ExtResource("1_tj8jk")
 ammoData = ExtResource("2_vmrc0")
@@ -59,3 +96,8 @@ shape = SubResource("BoxShape3D_620nl")
 transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
 mesh = SubResource("ArrayMesh_74dgn")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w8qdp")
+}

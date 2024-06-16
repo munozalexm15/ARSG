@@ -1,17 +1,20 @@
 extends Control
 
-@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
-@onready var startContainer : CenterContainer = $StartContainer
-@onready var mainMenuContainer : VBoxContainer = $HBoxContainer
-
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	mainMenuContainer.visible = false
-	startContainer.visible = true
-	animationPlayer.play("Breathing_Anim")
 
+var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
+
+@onready var OptionsContainer = $SettingsMenu
+
+func _ready():
+	$AnimationPlayer.play("Fade_in")
+	OptionsContainer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("Jump"):
-		animationPlayer.play("Startup_Anim")
+	pass
+
+
+func _on_firing_range_play_pressed():
+	# get_tree().root.add_child(firingRange)
+	get_tree().change_scene_to_file("res://Scenes/Levels/test_scene.tscn")

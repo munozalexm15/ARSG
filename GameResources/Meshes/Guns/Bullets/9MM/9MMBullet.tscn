@@ -74,7 +74,6 @@ scale_over_velocity_max = 2.75
 color_ramp = SubResource("GradientTexture1D_cbybl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf6i6"]
-emission_enabled = true
 emission = Color(0.988235, 0.917647, 0.741176, 1)
 emission_energy_multiplier = 8.85
 refraction_scale = -1.0

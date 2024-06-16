@@ -7,12 +7,15 @@ extends Node3D
 
 @onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
 @onready var lightBuzzSound : AudioStreamPlayer = $ASP_LightBuzzSound
+@onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+
 #PSX Cones Array
 var meshesArray : Array
 var spotLightArray : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	animationPlayer.play("Fade_in")
 	for mesh in lightArray:
 		var node = get_node(mesh)
 		var children = node.get_children()
