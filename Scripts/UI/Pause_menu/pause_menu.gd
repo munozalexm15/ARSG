@@ -21,6 +21,7 @@ var isMultiplayer : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	isMultiplayer = false
+	optionsMainContainer.loadDefaultSettings()
 
 func _input(event):
 	if isMultiplayer:

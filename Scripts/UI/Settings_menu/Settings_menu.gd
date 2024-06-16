@@ -9,11 +9,13 @@ extends VBoxContainer
 
 #Visual options
 @onready var visualOptionsContainer : HBoxContainer = $VisualOptionsContainer/VisualOptions
+
 @onready var resolutionDropdown : OptionButton = $VisualOptionsContainer/VisualOptions/VBoxContainer2/ResolutionList
 @onready var vsyncButton : CheckBox = $"VisualOptionsContainer/VisualOptions/VBoxContainer2/Vsync-Checkbox"
 @onready var fullscrenButton : CheckBox = $"VisualOptionsContainer/VisualOptions/VBoxContainer2/Fullscreen-Checkbox"
 @onready var resolutionScale_Slider : HSlider =$"VisualOptionsContainer/VisualOptions/VBoxContainer2/ResolutionScale-Slider"
 @onready var hasDitheringButton : CheckBox = $"VisualOptionsContainer/VisualOptions/VBoxContainer2/HasDithering-Checkbox"
+@onready var colorDepth_Slider : HSlider = $"VisualOptionsContainer/VisualOptions/VBoxContainer2/ColorDepth-Slider"
 
 @export var ditheringMaterial : ShaderMaterial
 
@@ -43,14 +45,13 @@ func _ready():
 	optionsMainContainer.visible = false
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
-	if loadedData == OK:
-		loadDefaultSettings()
-		addResolutions()
+	
+	addResolutions()
 
 func loadDefaultSettings():
 	
 	#AUDIO
-	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponsSliderValue", 1)
+	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponSliderValue", 1)
 	effectsSounds_Slider.value = configData.get_value("Audio", "EffectsSliderValue", 1)
 	environmentSounds_Slider.value = configData.get_value("Audio", "EnvironmentSliderValue", 1)
 	
@@ -61,10 +62,16 @@ func loadDefaultSettings():
 		vsyncButton.button_pressed = true
 	
 	#Fullscreen
+	if configData.get_value("Video", "isFullscreen", true):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		fullscrenButton.button_pressed = false
 	else:
 		fullscrenButton.button_pressed = true
+	set_resolution_text()
 	
 	#Dithering Filter
 	if ditheringMaterial.get_shader_parameter("dithering") == true:
@@ -72,7 +79,13 @@ func loadDefaultSettings():
 	else:
 		hasDitheringButton.button_pressed = false
 	
-	resolutionScale_Slider.value = ditheringMaterial.get_shader_parameter("resolution_scale")
+	#resolution scale
+	resolutionScale_Slider.value = configData.get_value("Video", "ResolutionScale", 1.0)
+	ditheringMaterial.set_shader_parameter("resolution_scale", resolutionScale_Slider.value)
+	
+	#color depth 
+	colorDepth_Slider.value = configData.get_value("Video", "ColorDepth", 5.0)
+	ditheringMaterial.set_shader_parameter("color_depth", colorDepth_Slider.value)
 
 func addResolutions():
 	var current_res : Vector2i = get_viewport().size
@@ -133,6 +146,7 @@ func _on_fullscreen_checkbox_pressed():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		set_resolution_text()
 		configData.set_value("Video", "isFullscreen", false)
+	configData.save("res://GameSettings.cfg")
 
 
 func _on_vsync_checkbox_pressed():
@@ -188,7 +202,7 @@ func _on_environment_sounds_slider_value_changed(value):
 func _on_weapon_sounds_slider_value_changed(value):
 	var bus_index = AudioServer.get_bus_index("Weapons")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
-	configData.set_value("Audio", "WeaponsSliderValue", value)
+	configData.set_value("Audio", "WeaponSliderValue", value)
 	configData.save("res://GameSettings.cfg")
 
 #CONTROLS----------------------------------------------------------------

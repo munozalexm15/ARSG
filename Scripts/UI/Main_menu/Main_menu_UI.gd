@@ -7,6 +7,7 @@ var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
 @onready var optionsMainContainer = $SettingsMenu
 
 func _ready():
+	optionsMainContainer.loadDefaultSettings()
 	$AnimationPlayer.play("Fade_in")
 	optionsMainContainer.visible = false
 

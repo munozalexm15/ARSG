@@ -94,20 +94,6 @@ func _ready():
 	##WIP, this goes on the main menu once it is done
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
-	if loadedData != OK:
-		configData.set_value("Video", "Resolution", Vector2i(1920, 1080))
-		configData.set_value("Video", "isFullscreen", true)
-		configData.set_value("Video", "hasDithering", true)
-		configData.set_value("Video", "V-Sync", true)
-		configData.set_value("Video", "ColorDepth", 5)
-		configData.set_value("Video", "ResolutionScale", 2)
-		configData.set_value("Audio", "Weapons", 1)
-		configData.set_value("Audio", "WeaponSliderValue", 1)
-		configData.set_value("Audio", "Environment", 1)
-		configData.set_value("Audio", "EnvironmentSliderValue", 1)
-		configData.set_value("Audio", "Effects", 1)
-		configData.set_value("Audio", "EffectsSliderValue", 1)
-		configData.save("res://GameSettings.cfg")
 	
 	loadGameSettings()
 
@@ -123,7 +109,7 @@ func _input(event : InputEvent):
 	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
 		pauseMenu.show()
 		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
