@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=40 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
 [ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
+[ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="3_fvmmw"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
 [ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
@@ -262,21 +263,25 @@ _data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fd5yr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7qgx"]
+font = ExtResource("3_fvmmw")
 font_size = 30
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ruw7"]
+font = ExtResource("3_fvmmw")
 font_size = 25
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wbprd"]
+font = ExtResource("3_fvmmw")
 font_size = 20
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_glh50"]
+font = ExtResource("3_fvmmw")
 font_size = 25
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)

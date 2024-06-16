@@ -59,7 +59,6 @@ func add_point(_transform :Transform3D) -> void:
 func clear_points() -> void:
 	points.clear()
 
-
 func _prepare_geometry(point_prev :Point, point :Point, half_width :float, factor :float) -> Array:
 	var normal := Vector3()
 	

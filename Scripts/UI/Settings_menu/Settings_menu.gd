@@ -40,20 +40,18 @@ var configData : ConfigFile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	optionsMainContainer.visible = false
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
-	addResolutions()
 	if loadedData == OK:
 		loadDefaultSettings()
+		addResolutions()
 
 func loadDefaultSettings():
+	
 	#AUDIO
 	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponsSliderValue", 1)
-	
 	effectsSounds_Slider.value = configData.get_value("Audio", "EffectsSliderValue", 1)
-
 	environmentSounds_Slider.value = configData.get_value("Audio", "EnvironmentSliderValue", 1)
 	
 	#VSYNC

@@ -1,19 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsctvo84j6kal"]
+[gd_scene load_steps=25 format=3 uid="uid://dsctvo84j6kal"]
 
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="1_20gce"]
 [ext_resource type="Script" path="res://Scripts/UI/Main_menu/Main_menu_UI.gd" id="1_ffext"]
-[ext_resource type="Script" path="res://Scripts/UI/Settings_menu/Settings_menu.gd" id="3_0vngk"]
-[ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="4_ap0i8"]
-[ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="5_jfdcc"]
-[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="6_n76rt"]
+[ext_resource type="PackedScene" uid="uid://co3rj6o5p11p4" path="res://Scenes/UI/Settings_Menu/Settings_menu.tscn" id="3_xrmfw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w8fuj"]
 font = ExtResource("1_20gce")
-font_size = 96
+font_size = 120
 
 [sub_resource type="LabelSettings" id="LabelSettings_42box"]
 font = ExtResource("1_20gce")
-font_size = 38
+font_size = 64
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2puk2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8geak"]
 
@@ -120,6 +119,11 @@ text = "FORMATION"
 label_settings = SubResource("LabelSettings_42box")
 horizontal_alignment = 1
 
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2puk2")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -130,6 +134,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.686275, 0, 0.0235294, 1)
+theme_override_fonts/font = ExtResource("1_20gce")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8geak")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_u8n5h")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cimoq")
@@ -142,6 +148,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.686275, 0, 0.0235294, 1)
+theme_override_fonts/font = ExtResource("1_20gce")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8geak")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_u8n5h")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cimoq")
@@ -154,6 +162,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 0.996078)
 theme_override_colors/font_focus_color = Color(0.741176, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_20gce")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ppket")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_6u8hq")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_bsbb8")
@@ -166,6 +176,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(0.721569, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_20gce")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xbdpd")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_mtrqp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_omrur")
@@ -178,18 +190,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
+[node name="SettingsMenu" parent="." instance=ExtResource("3_xrmfw")]
+layout_mode = 2
+offset_bottom = 834.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_5hsvi")
 }
 
-[node name="SettingsMenu" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_0vngk")
-button_hover_SFX = ExtResource("4_ap0i8")
-button_press_SFX = ExtResource("5_jfdcc")
-ditheringMaterial = ExtResource("6_n76rt")
-
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/FiringRangePlay" to="." method="_on_firing_range_play_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

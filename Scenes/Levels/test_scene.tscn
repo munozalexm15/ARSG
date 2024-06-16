@@ -1,4 +1,4 @@
-[gd_scene load_steps=249 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=247 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -1548,12 +1548,6 @@ script = ExtResource("35_jo4qi")
 name = "Shafranov"
 role = "Sargeant"
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_gu7xe"]
-radius = 1.6
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6kcx1"]
-size = Vector3(7.84967, 1, 2.03589)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34dqe"]
 resource_name = "wall_5"
 cull_mode = 2
@@ -2149,8 +2143,8 @@ ssr_fade_in = 1.7569
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_read_sky_light = false
-glow_bloom = 1.0
-volumetric_fog_density = 0.0405
+glow_enabled = true
+glow_normalized = true
 adjustment_brightness = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjsru"]
@@ -2417,7 +2411,6 @@ transform = Transform3D(0.950451, 0, -0.310876, 0, 1, 0, 0.310876, 0, 0.950451, 
 transform = Transform3D(0.987086, 0, -0.160191, 0, 1, 0, 0.160191, 0, 0.987086, -2.08721, 0.405316, -6.47978)
 
 [node name="Pistol_Ammo" parent="Ammo" instance=ExtResource("12_6ivfo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="sniper_Ammo_Pickup" parent="Ammo" instance=ExtResource("12_y5r7t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48105, 0.391366, -6.60068)
@@ -3568,25 +3561,6 @@ bones/14/rotation = Quaternion(0.104506, 0.0487265, -0.00382462, 0.993322)
 [node name="StaticBody3D" parent="Firing Range/Character/Militia_Idle/Armature/Skeleton3D/PoliceOfficer" index="0"]
 npcData = SubResource("Resource_iuimw")
 
-[node name="exit_firing_range_area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65968)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="exit_firing_range_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04102, 1.06769)
-shape = SubResource("CylinderShape3D_gu7xe")
-
-[node name="enter_firing_range_area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.7486)
-collision_layer = 0
-collision_mask = 2
-priority = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enter_firing_range_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.334503, 1.04102, -1.39222)
-shape = SubResource("BoxShape3D_6kcx1")
-
 [node name="Outside" type="Node3D" parent="."]
 transform = Transform3D(0, 1, 7.27834e-08, -5.96046e-08, 0, -1.2211, -1, 5.96046e-08, 0, 0.0237119, 0, -1.28569)
 
@@ -4002,8 +3976,6 @@ shape = SubResource("BoxShape3D_i24ei")
 
 [node name="PauseMenu" parent="." instance=ExtResource("64_lkiga")]
 
-[connection signal="body_entered" from="exit_firing_range_area" to="." method="_on_exit_firing_range_area_body_entered"]
-[connection signal="body_entered" from="enter_firing_range_area" to="." method="_on_enter_firing_range_area_body_entered"]
 [connection signal="challenge" from="FadeShader/SubViewport/DitheringShader/SubViewport/Character" to="." method="_on_character_challenge"]
 
 [editable path="Firing Range/Prop_GunTable4"]

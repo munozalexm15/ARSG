@@ -5,12 +5,8 @@ extends Node3D
 var startCountdown : bool = false
 var timeLeft : Timer = Timer.new()
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.hud.visible = false
-	player.arms.weaponHolder.hide()
 	timeLeft.autostart = false
 	timeLeft.wait_time = 60
 	add_child(timeLeft)
@@ -32,20 +28,6 @@ func _input(event):
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-func _on_enter_firing_range_area_body_entered(body):
-	if not player.arms.weaponHolder.visible:
-		player.arms.animationPlayer.play("SwapWeapon")
-		await get_tree().create_timer(0.2).timeout
-		player.hud.visible = true
-		player.arms.weaponHolder.visible = true
-
-func _on_exit_firing_range_area_body_entered(body):
-	player.arms.animationPlayer.play("SwapWeapon")
-	await get_tree().create_timer(0.2).timeout
-	player.hud.visible = false
-	player.arms.weaponHolder.visible = false
-
 
 func _on_character_challenge():
 	startCountdown = true
