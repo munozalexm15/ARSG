@@ -53,12 +53,12 @@ func _on_settings_button_pressed():
 		await optionsMainContainer.animationPlayer.animation_finished
 		optionsMainContainer.hide()
 	else:
-		optionsMainContainer.animationPlayer.play("OpenOptions", -1, 2, false)
-		await optionsMainContainer.animationPlayer.animation_finished
 		optionsMainContainer.show()
-		optionsMainContainer.visualOptionsContainer.show()
 		optionsMainContainer.soundOptionsContainer.hide()
 		optionsMainContainer.controlsOptionContainer.hide()
+		optionsMainContainer.animationPlayer.play("OpenOptions", -1, 2, false)
+		await optionsMainContainer.animationPlayer.animation_finished
+		optionsMainContainer.visualOptionsContainer.show()
 
 func _on_continue_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")

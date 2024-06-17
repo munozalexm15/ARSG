@@ -132,8 +132,8 @@ size_flags_vertical = 4
 [node name="PlayButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.686275, 0, 0.0235294, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_20gce")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8geak")
@@ -146,8 +146,8 @@ text = "PLAY"
 [node name="FiringRangePlay" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.686275, 0, 0.0235294, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_20gce")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8geak")
@@ -160,8 +160,8 @@ text = "FIRING RANGE"
 [node name="OptionsButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 0.996078)
-theme_override_colors/font_focus_color = Color(0.741176, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_20gce")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ppket")
@@ -174,8 +174,8 @@ text = "SETTINGS"
 [node name="ExitButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(0.721569, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_20gce")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xbdpd")
@@ -199,5 +199,11 @@ libraries = {
 "": SubResource("AnimationLibrary_5hsvi")
 }
 
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/FiringRangePlay" to="." method="_on_firing_range_play_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/FiringRangePlay" to="." method="_on_firing_range_play_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

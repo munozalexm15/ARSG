@@ -4,6 +4,9 @@ extends Control
 
 var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
 
+@export var button_hover_SFX : AudioStreamOggVorbis
+@export var button_press_SFX : AudioStreamOggVorbis
+
 @onready var optionsMainContainer = $SettingsMenu
 
 func _ready():
@@ -23,14 +26,42 @@ func _on_firing_range_play_pressed():
 
 
 func _on_options_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+	
 	if optionsMainContainer.visible:
 		optionsMainContainer.animationPlayer.play("OpenOptions", -1, -2, true)
 		await optionsMainContainer.animationPlayer.animation_finished
 		optionsMainContainer.hide()
 	else:
-		optionsMainContainer.animationPlayer.play("OpenOptions", -1, 2, false)
-		await optionsMainContainer.animationPlayer.animation_finished
 		optionsMainContainer.show()
-		optionsMainContainer.visualOptionsContainer.show()
 		optionsMainContainer.soundOptionsContainer.hide()
 		optionsMainContainer.controlsOptionContainer.hide()
+		optionsMainContainer.animationPlayer.play("OpenOptions", -1, 2, false)
+		await optionsMainContainer.animationPlayer.animation_finished
+		
+		optionsMainContainer.visualOptionsContainer.show()
+		
+
+
+func _on_play_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+
+
+func _on_play_button_mouse_entered():
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+
+
+func _on_firing_range_play_mouse_entered():
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+
+
+func _on_options_button_mouse_entered():
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+
+
+func _on_exit_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+
+
+func _on_exit_button_mouse_entered():
+	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")

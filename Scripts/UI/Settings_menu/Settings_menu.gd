@@ -66,6 +66,8 @@ func loadDefaultSettings():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	get_window().size = configData.get_value("Video", "Resolution", Vector2i(1920, 1080))
 		
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		fullscrenButton.button_pressed = false
@@ -111,25 +113,6 @@ func set_resolution_text():
 	var res_text = str(get_window().size.x) + "x" + str(get_window().size.y)
 	resolutionDropdown.text = res_text
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_button_2_pressed():
-	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-	hide_menu()
-
-func _on_button_2_mouse_entered():
-	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
-
-func _on_exit_button_pressed():
-	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-	get_tree().quit()
-
-func _on_exit_button_mouse_entered():
-	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
-
 #VISUALS----------------------------------------------------------------------
 func _on_resolution_list_item_selected(index):
 	var size = resolutions_dict.get(resolutionDropdown.get_item_text(index))
@@ -142,10 +125,14 @@ func _on_fullscreen_checkbox_pressed():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		set_resolution_text()
 		configData.set_value("Video", "isFullscreen", true)
+		fullscrenButton.button_pressed = true
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		set_resolution_text()
 		configData.set_value("Video", "isFullscreen", false)
+		fullscrenButton.button_pressed = false
+	
+	configData.set_value("Video", "Resolution", get_window().size)
 	configData.save("res://GameSettings.cfg")
 
 
@@ -176,6 +163,8 @@ func _on_color_depth_slider_value_changed(value):
 
 
 func _on_visuals_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+	
 	soundOptionsContainer.hide()
 	controlsOptionContainer.hide()
 	visualOptionsContainer.show()
@@ -183,6 +172,8 @@ func _on_visuals_button_pressed():
 #SOUND--------------------------------------------------------------------
 
 func _on_sound_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+	
 	visualOptionsContainer.hide()
 	controlsOptionContainer.hide()
 	soundOptionsContainer.show()
@@ -207,6 +198,8 @@ func _on_weapon_sounds_slider_value_changed(value):
 
 #CONTROLS----------------------------------------------------------------
 func _on_controls_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+	
 	visualOptionsContainer.hide()
 	soundOptionsContainer.hide()
 	controlsOptionContainer.show()
