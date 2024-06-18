@@ -129,7 +129,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="PlayButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="HostButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
@@ -141,7 +141,23 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_u8n5h")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cimoq")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_l72yu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xrj2n")
-text = "PLAY"
+text = "HOST
+"
+
+[node name="JoinButton" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_20gce")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8geak")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u8n5h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cimoq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_l72yu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xrj2n")
+text = "JOIN
+"
 
 [node name="FiringRangePlay" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -199,8 +215,10 @@ libraries = {
 "": SubResource("AnimationLibrary_5hsvi")
 }
 
-[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HostButton" to="." method="_on_host_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/FiringRangePlay" to="." method="_on_firing_range_play_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/FiringRangePlay" to="." method="_on_firing_range_play_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]

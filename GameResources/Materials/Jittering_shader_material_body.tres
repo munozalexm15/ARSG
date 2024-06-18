@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://du6o2lg0t3yat"]
+
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="1_ryrrk"]
+[ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_6v662"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ryrrk")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.0
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("2_6v662")

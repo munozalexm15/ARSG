@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/loading_screen_Handler.gd" id="1_gos10"]
 [ext_resource type="Texture2D" uid="uid://bfj0cowt08ml1" path="res://GameResources/Textures/Other/MP5SD-Background.png" id="1_mjbp3"]
+[ext_resource type="Material" uid="uid://b4tt8dgju1tee" path="res://GameResources/Materials/loading_screen_shader.tres" id="2_b1phq"]
 [ext_resource type="Texture2D" uid="uid://ds2n1qwur7dco" path="res://GameResources/Textures/Other/loading_bar_bullet.png" id="2_u07hl"]
-[ext_resource type="Material" uid="uid://b4tt8dgju1tee" path="res://GameResources/Shaders/loading_screen_shader.tres" id="3_7r4yl"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_54ix5"]
 
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gos10")
-loadingShader = ExtResource("3_7r4yl")
+loadingShader = ExtResource("2_b1phq")
 
 [node name="background_color" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -42,7 +42,7 @@ texture = ExtResource("1_mjbp3")
 expand_mode = 2
 
 [node name="loading_bar" type="TextureRect" parent="."]
-material = ExtResource("3_7r4yl")
+material = ExtResource("2_b1phq")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

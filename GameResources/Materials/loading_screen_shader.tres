@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b4tt8dgju1tee"]
+
+[ext_resource type="Shader" path="res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader" id="1_ba0xi"]
+
+[resource]
+shader = ExtResource("1_ba0xi")
+shader_parameter/percentage = 0.0

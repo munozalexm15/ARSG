@@ -89,13 +89,10 @@ func _ready():
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
-	pauseMenu.visible = false
 	
 	##WIP, this goes on the main menu once it is done
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
-	
-	loadGameSettings()
 
 func _input(event : InputEvent):
 	#If mouse is moving
@@ -231,32 +228,3 @@ func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true
 	hud.timerContainer.visible = true
 	challenge.emit()
-
-func loadGameSettings():
-	get_window().size = configData.get_value("Video", "Resolution", Vector2i(1024, 768))
-	
-	if configData.get_value("Video", "isFullscreen", true) == true:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	
-	if configData.get_value("Video", "hasDithering", true) == true:
-		pauseMenu.ditheringMaterial.set_shader_parameter("dithering", true)
-	else:
-		pauseMenu.ditheringMaterial.set_shader_parameter("dithering", false)
-	
-	if configData.get_value("Video", "V-Sync", true) == true:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-	else:
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-	
-	pauseMenu.ditheringMaterial.set_shader_parameter("color_depth", configData.get_value("Video", "ColorDepth", true))
-	pauseMenu.ditheringMaterial.set_shader_parameter("resolution_scale", configData.get_value("Video", "ResolutionScale", true))
-	
-	
-	var bus_index = AudioServer.get_bus_index("Weapons")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(configData.get_value("Audio", "Weapons", 0.5)))
-	bus_index = AudioServer.get_bus_index("Environment")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(configData.get_value("Audio", "Environment", 0.5)))
-	bus_index = AudioServer.get_bus_index("Effects")
-	AudioServer.set_bus_volume_db(bus_index, linear_to_db(configData.get_value("Audio", "Effects", 0.5)))

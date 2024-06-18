@@ -1,4 +1,4 @@
-[gd_scene load_steps=247 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=245 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -49,7 +49,6 @@
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
-[ext_resource type="Script" path="res://Scripts/NPC/Resources/FiringRange_NPC_Resource.gd" id="35_jo4qi"]
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="38_gl6ba"]
 [ext_resource type="PackedScene" uid="uid://cpexpuinj1378" path="res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn" id="40_g4ke6"]
 [ext_resource type="PackedScene" uid="uid://bcepmrcqbhkaf" path="res://Scenes/Ammo/assault_rifle_ammo_pickup.tscn" id="41_nllwm"]
@@ -1543,11 +1542,6 @@ shadow_mesh = SubResource("ArrayMesh_akluc")
 [sub_resource type="BoxShape3D" id="BoxShape3D_nn0kg"]
 size = Vector3(1, 1, 1.50244)
 
-[sub_resource type="Resource" id="Resource_iuimw"]
-script = ExtResource("35_jo4qi")
-name = "Shafranov"
-role = "Sargeant"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34dqe"]
 resource_name = "wall_5"
 cull_mode = 2
@@ -2996,7 +2990,7 @@ spot_angle = 27.8181
 transform = Transform3D(1.545, 0, 0, 0, -6.75341e-08, -1.545, 0, 1.545, -6.75341e-08, -0.0230758, -0.0591679, -1.81294)
 
 [node name="Cone" type="MeshInstance3D" parent="Ceiling/floor_53/ps1VolumetricLight"]
-transform = Transform3D(1, 0, 0, 0, 1, -4.23516e-22, 0, 4.23516e-22, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -8.47033e-22, 0, 8.47033e-22, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_0clo8")
 skeleton = NodePath("")
 
@@ -3544,23 +3538,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6316, 1.09012, -8.95421)
 [node name="Character" parent="Firing Range" instance=ExtResource("34_fcn2x")]
 transform = Transform3D(-0.47738, 0, -0.148687, 0, 0.5, 0, 0.148687, 0, -0.47738, 1.9809, 3.03332, -5.56589)
 
-[node name="Skeleton3D" parent="Firing Range/Character/Militia_Idle/Armature" index="0"]
-bones/1/position = Vector3(0.00764114, 1.53731, 0.131876)
-bones/1/rotation = Quaternion(0.00342264, -0.241667, -0.0147367, 0.970241)
-bones/2/rotation = Quaternion(-0.0363976, 0.137868, 0.0198358, 0.989583)
-bones/4/rotation = Quaternion(0.00754139, 0.104806, -0.00603738, 0.994446)
-bones/5/rotation = Quaternion(0.970905, 0.0357593, 0.1839, -0.149147)
-bones/6/rotation = Quaternion(-0.252091, -0.0254068, -0.0651266, 0.965175)
-bones/8/rotation = Quaternion(0.970796, -0.126017, -0.182558, -0.0913682)
-bones/9/rotation = Quaternion(-0.126196, 0.00118242, -0.0811734, 0.988678)
-bones/11/rotation = Quaternion(0.990481, 0.0420824, -0.0513273, 0.120591)
-bones/12/rotation = Quaternion(0.181767, -0.048179, 0.00665105, 0.982138)
-bones/13/rotation = Quaternion(0.966573, 0.0102906, -0.254434, 0.0299091)
-bones/14/rotation = Quaternion(0.104506, 0.0487265, -0.00382462, 0.993322)
-
-[node name="StaticBody3D" parent="Firing Range/Character/Militia_Idle/Armature/Skeleton3D/PoliceOfficer" index="0"]
-npcData = SubResource("Resource_iuimw")
-
 [node name="Outside" type="Node3D" parent="."]
 transform = Transform3D(0, 1, 7.27834e-08, -5.96046e-08, 0, -1.2211, -1, 5.96046e-08, 0, 0.0237119, 0, -1.28569)
 
@@ -3979,4 +3956,3 @@ shape = SubResource("BoxShape3D_i24ei")
 [connection signal="challenge" from="FadeShader/SubViewport/DitheringShader/SubViewport/Character" to="." method="_on_character_challenge"]
 
 [editable path="Firing Range/Prop_GunTable4"]
-[editable path="Firing Range/Character"]

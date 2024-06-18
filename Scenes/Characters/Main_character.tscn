@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=27 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="14_u53b0"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -164,12 +165,31 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
-radius = 0.413713
-height = 1.64871
+radius = 0.256435
+height = 1.86314
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
-radius = 0.411381
+radius = 0.257403
 height = 1.2
+
+[sub_resource type="Gradient" id="Gradient_vy4d1"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2xaia"]
+gradient = SubResource("Gradient_vy4d1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqcvl"]
+render_priority = 0
+shader = ExtResource("14_u53b0")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = SubResource("GradientTexture1D_2xaia")
+
+[sub_resource type="SphereMesh" id="SphereMesh_o7hu8"]
+material = SubResource("ShaderMaterial_nqcvl")
+radius = 0.165
+height = 1.68
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 2
@@ -188,8 +208,10 @@ hudNode = NodePath("UI")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696685, 0)
 
 [node name="eyesHolder" type="Node3D" parent="Head"]
+process_mode = 1
 
 [node name="armsHolder" type="Node3D" parent="Head/eyesHolder"]
+process_mode = 1
 script = ExtResource("2_wsffb")
 recoil = Vector3(0.1, 0.2, 0.1)
 aimRecoil = Vector3(0.05, 0.1, 0.05)
@@ -197,6 +219,8 @@ snappiness = 4.0
 returnSpeed = 10.0
 
 [node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+process_mode = 1
+cull_mask = 1048573
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -256,7 +280,7 @@ libraries = {
 shape = SubResource("CapsuleShape3D_37yn0")
 
 [node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225244, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.331374, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]
@@ -267,6 +291,10 @@ collision_mask = 64
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
 bus = &"Environment"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("SphereMesh_o7hu8")
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]

@@ -16,12 +16,12 @@ var isMultiplayer : bool = false
 
 @onready var optionsMainContainer : SettingsMenu = $VBoxContainer
 
-@export var ditheringMaterial : ShaderMaterial
+@onready var ditheringMaterial : ShaderMaterial = GlobalData.ditheringShader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	isMultiplayer = false
-	optionsMainContainer.loadDefaultSettings()
+	visible = false
 
 func _input(event):
 	if isMultiplayer:

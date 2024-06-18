@@ -13,17 +13,6 @@ extends Node3D
 @onready var animPlayer = $AnimationPlayer
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
-#idle weapon sway variables
-@export var sway_noise : NoiseTexture2D
-@export var sway_speed : float = 1.2
-
-var random_sway_x
-var random_sway_y
-var random_sway_amount : float
-var idle_sway_adjustment
-var idle_sway_rotation_strength
-var time : float = 0
-
 #Weapon parts
 @onready var muzzle = $Muzzle
 @onready var muzzleSmoke : Trail3D = $Muzzle/MuzzleSmoke

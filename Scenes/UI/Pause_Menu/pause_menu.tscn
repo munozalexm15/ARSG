@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://jkwqpcqg8ct"]
+[gd_scene load_steps=21 format=3 uid="uid://jkwqpcqg8ct"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="2_thhm6"]
 [ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="3_vk65q"]
-[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="4_214vs"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/vhs_shader.gdshader" id="4_awo0g"]
 [ext_resource type="PackedScene" uid="uid://co3rj6o5p11p4" path="res://Scenes/UI/Settings_Menu/Settings_menu.tscn" id="7_6jlu2"]
 
@@ -642,7 +641,6 @@ size_flags_vertical = 3
 script = ExtResource("1_or8mf")
 button_hover_SFX = ExtResource("2_cschq")
 button_press_SFX = ExtResource("3_vk65q")
-ditheringMaterial = ExtResource("4_214vs")
 
 [node name="PanelContainer4" type="PanelContainer" parent="."]
 material = SubResource("ShaderMaterial_4xwf8")
@@ -708,8 +706,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 49.0
 offset_top = 52.0
-offset_right = 22897.0
-offset_bottom = 11749.0
+offset_right = 57713.0
+offset_bottom = 29573.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true

@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=14 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
-[ext_resource type="PackedScene" uid="uid://b1ndfa7nd5f1l" path="res://Scenes/Characters/Main_character.tscn" id="3_18ica"]
+[ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_j0mor"]
-[ext_resource type="Texture2D" uid="uid://dejqf5b8ss5bk" path="res://GameResources/Meshes/City/roadDirt_pavement_concrete.png" id="3_tp1hl"]
-[ext_resource type="Texture2D" uid="uid://pco2trkn4aie" path="res://GameResources/Meshes/City/wallB_metal_wall.png" id="4_j0jsy"]
+[ext_resource type="Texture2D" uid="uid://bqqud7nbmgrgw" path="res://GameResources/Textures/Prototype Textures/Light/texture_06.png" id="3_mw0oo"]
+[ext_resource type="Texture2D" uid="uid://bulrriphx43nc" path="res://GameResources/Textures/Prototype Textures/Red/texture_05.png" id="4_71fow"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
+[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
 panorama = ExtResource("1_4v70f")
@@ -28,12 +30,12 @@ shader = ExtResource("3_j0mor")
 shader_parameter/jitter = 0.1
 shader_parameter/jitter_z_coordinate = true
 shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = false
+shader_parameter/affine_texture_mapping = true
 shader_parameter/alpha_scissor = 1.0
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/emission_color = Color(1, 1, 1, 1)
-shader_parameter/texture_size = Vector2(0.1, 0.1)
-shader_parameter/albedo = ExtResource("3_tp1hl")
+shader_parameter/texture_size = Vector2(0.2, 0.2)
+shader_parameter/albedo = ExtResource("3_mw0oo")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t6nhl"]
 render_priority = 0
@@ -41,14 +43,20 @@ shader = ExtResource("3_j0mor")
 shader_parameter/jitter = 0.5
 shader_parameter/jitter_z_coordinate = true
 shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = false
+shader_parameter/affine_texture_mapping = true
 shader_parameter/alpha_scissor = 1.0
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
 shader_parameter/emission_color = Color(1, 1, 1, 1)
 shader_parameter/texture_size = Vector2(0.5, 1)
-shader_parameter/albedo = ExtResource("4_j0jsy")
+shader_parameter/albedo = ExtResource("4_71fow")
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
+shader = ExtResource("6_qbtv3")
+shader_parameter/alpha = 7
+shader_parameter/fadeToWhite = false
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_5qqm8")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -75,9 +83,34 @@ size = Vector3(18, 1, 18)
 material = SubResource("ShaderMaterial_ain5v")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.744828, 2.37841, -7.08215)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.754281, 2.37841, -7.11437)
 size = Vector3(12.1499, 3.46765, 1)
 material = SubResource("ShaderMaterial_t6nhl")
 
-[node name="Character" parent="." instance=ExtResource("3_18ica")]
-transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, 0.0704326, 1.12478, -0.0875039)
+[node name="FadeShader" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_prhnf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="FadeShader"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="DitheringShader" type="SubViewportContainer" parent="FadeShader/SubViewport"]
+material = ExtResource("7_gh3na")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="FadeShader/SubViewport/DitheringShader"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4

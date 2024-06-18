@@ -29,29 +29,9 @@ func _ready():
 				spotLightArray.append(child)
 	
 	lightError()
-	
-	#create configurationData upon loading main menu if it doesn't exist
-	var configData = ConfigFile.new()
-	var loadedData = configData.load("res://GameSettings.cfg")
-	if loadedData != OK:
-		configData.set_value("Video", "Resolution", Vector2i(1920, 1080))
-		configData.set_value("Video", "isFullscreen", true)
-		configData.set_value("Video", "hasDithering", true)
-		configData.set_value("Video", "V-Sync", true)
-		configData.set_value("Video", "ColorDepth", 5)
-		configData.set_value("Video", "ResolutionScale", 2)
-		configData.set_value("Audio", "Weapons", 1)
-		configData.set_value("Audio", "WeaponSliderValue", 1)
-		configData.set_value("Audio", "Environment", 1)
-		configData.set_value("Audio", "EnvironmentSliderValue", 1)
-		configData.set_value("Audio", "Effects", 1)
-		configData.set_value("Audio", "EffectsSliderValue", 1)
-		configData.save("res://GameSettings.cfg")
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		

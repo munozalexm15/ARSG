@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SFXHandler="*res://Scripts/Sounds/SFX_Handler.gd"
 LoadScreenHandler="*res://Scripts/LoadingScreen/loading_screen_singletons.gd"
+Lobby="*res://Scripts/Multiplayer/Lobby.gd"
+GlobalData="*res://Scripts/Global/global_data.gd"
 
 [display]
 
@@ -153,6 +155,8 @@ Pause={
 
 [layer_names]
 
+3d_render/layer_1="PlayerPOV"
+3d_render/layer_2="WorldPOV"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Bullets"

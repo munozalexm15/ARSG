@@ -9,14 +9,18 @@ var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
 
 @onready var optionsMainContainer = $SettingsMenu
 
+
 func _ready():
-	optionsMainContainer.loadDefaultSettings()
 	$AnimationPlayer.play("Fade_in")
 	optionsMainContainer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	
+	if Lobby.players.size() == 2:
+		LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+	
 
 
 func _on_firing_range_play_pressed():
@@ -42,26 +46,28 @@ func _on_options_button_pressed():
 		optionsMainContainer.visualOptionsContainer.show()
 		
 
-
-func _on_play_button_pressed():
-	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-
-
-func _on_play_button_mouse_entered():
+func _on_host_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
+func _on_host_button_pressed():
+	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
+	Lobby.create_game()
+	
+
+func _on_join_button_pressed():
+	Lobby.join_game()
+
+func _on_join_button_mouse_entered():
+	pass # Replace with function body.
 
 func _on_firing_range_play_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
-
 func _on_options_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
 
-
 func _on_exit_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-
 
 func _on_exit_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")

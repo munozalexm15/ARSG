@@ -7,7 +7,6 @@ func _ready():
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var progress = []
@@ -16,5 +15,9 @@ func _process(delta):
 	
 	if progress[0] == 1:
 		var packed_scene = ResourceLoader.load_threaded_get(LoadScreenHandler.next_scene)
-		get_tree().change_scene_to_packed(packed_scene)
 		loadingShader.set_shader_parameter("percentage", 0)
+		print("mapa cargado")
+		if multiplayer.is_server():
+			Lobby.load_game.rpc(packed_scene)
+		else:
+			Lobby.load_game(packed_scene)

@@ -48,47 +48,6 @@ func _ready():
 	
 	addResolutions()
 
-func loadDefaultSettings():
-	
-	#AUDIO
-	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponSliderValue", 1)
-	effectsSounds_Slider.value = configData.get_value("Audio", "EffectsSliderValue", 1)
-	environmentSounds_Slider.value = configData.get_value("Audio", "EnvironmentSliderValue", 1)
-	
-	#VSYNC
-	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
-		vsyncButton.button_pressed = false
-	else:
-		vsyncButton.button_pressed = true
-	
-	#Fullscreen
-	if configData.get_value("Video", "isFullscreen", true):
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	
-	get_window().size = configData.get_value("Video", "Resolution", Vector2i(1920, 1080))
-		
-	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
-		fullscrenButton.button_pressed = false
-	else:
-		fullscrenButton.button_pressed = true
-	set_resolution_text()
-	
-	#Dithering Filter
-	if ditheringMaterial.get_shader_parameter("dithering") == true:
-		hasDitheringButton.button_pressed = true
-	else:
-		hasDitheringButton.button_pressed = false
-	
-	#resolution scale
-	resolutionScale_Slider.value = configData.get_value("Video", "ResolutionScale", 1.0)
-	ditheringMaterial.set_shader_parameter("resolution_scale", resolutionScale_Slider.value)
-	
-	#color depth 
-	colorDepth_Slider.value = configData.get_value("Video", "ColorDepth", 5.0)
-	ditheringMaterial.set_shader_parameter("color_depth", colorDepth_Slider.value)
-
 func addResolutions():
 	var current_res : Vector2i = get_viewport().size
 	var index = 0
