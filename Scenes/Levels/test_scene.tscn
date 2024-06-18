@@ -3812,7 +3812,6 @@ render_target_update_mode = 4
 
 [node name="Character" parent="FadeShader/SubViewport/DitheringShader/SubViewport" instance=ExtResource("1_s20kc")]
 transform = Transform3D(1, -0.000281666, 8.04321e-05, 0.000281694, 1, -0.000346568, -8.03345e-05, 0.000346591, 1, -0.143859, 0.841377, -1.94879)
-pauseMenuNode = NodePath("../../../../../PauseMenu")
 
 [node name="Environment" type="Node3D" parent="."]
 

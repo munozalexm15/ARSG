@@ -32,8 +32,6 @@ func _process(delta):
 	pass
 
 func loadGameSettings():
-	
-	
 	if configData.get_value("Video", "isFullscreen", true) == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:

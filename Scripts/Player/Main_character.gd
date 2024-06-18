@@ -30,8 +30,8 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
-@export var pauseMenuNode := NodePath()
-@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
+#@export var pauseMenuNode := NodePath()
+#@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
 
 
 @onready var state_machine : StateMachine = $StateMachine
@@ -84,17 +84,27 @@ var health: float = 75
 
 var seeing_ally : bool = false
 
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if not is_multiplayer_authority():
+		return
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
+	camera.current = true
 	
 	##WIP, this goes on the main menu once it is done
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
 
 func _input(event : InputEvent):
+	if not is_multiplayer_authority():
+		return
+	
 	#If mouse is moving
 	if event is InputEventMouseMotion:
 		#rotate player x axis ONLY
@@ -103,13 +113,16 @@ func _input(event : InputEvent):
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 		
-	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
-		pauseMenu.show()
-		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().paused = not get_tree().paused
+	#if Input.is_action_just_pressed("Pause") and not get_tree().paused:
+		#pauseMenu.show()
+		#pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		#get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
+		
 	if health < 100:
 		updateHealth()
 	

@@ -1,10 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=9 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_lit.gdshader" id="3_j0mor"]
-[ext_resource type="Texture2D" uid="uid://bqqud7nbmgrgw" path="res://GameResources/Textures/Prototype Textures/Light/texture_06.png" id="3_mw0oo"]
-[ext_resource type="Texture2D" uid="uid://bulrriphx43nc" path="res://GameResources/Textures/Prototype Textures/Red/texture_05.png" id="4_71fow"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
 
@@ -23,32 +20,6 @@ ssao_intensity = 3.33
 ssao_horizon = 0.0
 fog_light_color = Color(0.552941, 0.568627, 0.376471, 1)
 fog_sky_affect = 0.37
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ain5v"]
-render_priority = 0
-shader = ExtResource("3_j0mor")
-shader_parameter/jitter = 0.1
-shader_parameter/jitter_z_coordinate = true
-shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = true
-shader_parameter/alpha_scissor = 1.0
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/emission_color = Color(1, 1, 1, 1)
-shader_parameter/texture_size = Vector2(0.2, 0.2)
-shader_parameter/albedo = ExtResource("3_mw0oo")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6nhl"]
-render_priority = 0
-shader = ExtResource("3_j0mor")
-shader_parameter/jitter = 0.5
-shader_parameter/jitter_z_coordinate = true
-shader_parameter/jitter_depth_independent = true
-shader_parameter/affine_texture_mapping = true
-shader_parameter/alpha_scissor = 1.0
-shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/emission_color = Color(1, 1, 1, 1)
-shader_parameter/texture_size = Vector2(0.5, 1)
-shader_parameter/albedo = ExtResource("4_71fow")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
 shader = ExtResource("6_qbtv3")
@@ -71,21 +42,6 @@ light_volumetric_fog_energy = 0.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-use_collision = true
-collision_layer = 11
-collision_mask = 11
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48819, 0, -1.88147)
-size = Vector3(18, 1, 18)
-material = SubResource("ShaderMaterial_ain5v")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.754281, 2.37841, -7.11437)
-size = Vector3(12.1499, 3.46765, 1)
-material = SubResource("ShaderMaterial_t6nhl")
 
 [node name="FadeShader" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_prhnf")
@@ -114,3 +70,16 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31238, -8.73713, 0.0794935)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(12.1213, 1, 11.793)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
+spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")

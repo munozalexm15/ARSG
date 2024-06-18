@@ -19,14 +19,14 @@ func start_game():
 func _process(delta):
 	pass
 
+
 func init_player(peer_id):
-	
-	var playerMenu : Pause_Menu = PauseScene.instantiate()
-	add_child(playerMenu)
-	
+	print(multiplayer.get_unique_id() , " ", "creando player")
+	#var playerMenu : Pause_Menu = PauseScene.instantiate()
+	#add_child(playerMenu)
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
-	players_node.add_child(player)
-	player.pauseMenu = playerMenu
+	players_node.call_deferred("add_child", player)
+	#player.pauseMenu = playerMenu
 	
 	

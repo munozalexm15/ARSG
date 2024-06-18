@@ -11,6 +11,8 @@ const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
+const player = preload("res://Scenes/Characters/Main_character.tscn")
+
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
 var players = {}
@@ -59,6 +61,7 @@ func remove_multiplayer_peer():
 
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
+# Multicast?
 @rpc("call_local", "reliable")
 func load_game(game_scene_path):
 	LoadScreenHandler.next_scene = game_scene_path
@@ -68,8 +71,9 @@ func load_game(game_scene_path):
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
-	print(multiplayer.get_unique_id())
+	$/root/Game.init_player(multiplayer.get_unique_id())
 	if multiplayer.is_server():
+		
 		players_loaded += 1
 		if players_loaded == players.size():
 			$/root/Game.start_game()
@@ -80,7 +84,6 @@ func player_loaded():
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
-
 
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):

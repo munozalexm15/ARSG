@@ -17,9 +17,7 @@
 ## TODO:
 
 ###MULTIPLAYER:
-- Player creates room -> loads level, becomes host
-- Client joins room -> ?? El problema es que no sabemos como cargar la escena del cliente haciendole saber que es un cliente, y no un servidor.
-Básicamente, el cliente tiene que irse a la escena del nivel.
+- Spawnear personajes en la escena
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 
