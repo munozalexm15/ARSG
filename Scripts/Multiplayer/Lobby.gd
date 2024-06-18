@@ -60,14 +60,15 @@ func remove_multiplayer_peer():
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
 @rpc("call_local", "reliable")
-func load_game(game_scene_path : PackedScene):
-	print(game_scene_path.resource_path)
-	get_tree().change_scene_to_packed(game_scene_path)
+func load_game(game_scene_path):
+	LoadScreenHandler.next_scene = game_scene_path
+	get_tree().change_scene_to_file("res://Scenes/Mechanics/loading_screen.tscn")
 
 
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
+	print(multiplayer.get_unique_id())
 	if multiplayer.is_server():
 		players_loaded += 1
 		if players_loaded == players.size():

@@ -18,8 +18,8 @@ func _ready():
 func _process(delta):
 	
 	if Lobby.players.size() == 2:
-		LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
-		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+		if multiplayer.is_server():
+			Lobby.load_game.rpc("res://Scenes/Levels/initial_level.tscn")
 	
 
 
