@@ -3952,6 +3952,4 @@ shape = SubResource("BoxShape3D_i24ei")
 
 [node name="PauseMenu" parent="." instance=ExtResource("64_lkiga")]
 
-[connection signal="challenge" from="FadeShader/SubViewport/DitheringShader/SubViewport/Character" to="." method="_on_character_challenge"]
-
 [editable path="Firing Range/Prop_GunTable4"]

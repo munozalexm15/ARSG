@@ -170,8 +170,9 @@ func shoot():
 	handsAnimPlayer.play(weaponData.name + "_Shot")
 	if fire_sound:
 		SFXHandler.play_sfx(fire_sound.stream, self, "Weapons")
-	spawnBullet()
+	spawnBullet.rpc()
 
+@rpc("any_peer", "call_local", "reliable")
 func spawnBullet():
 	var level_root = get_tree().get_root()
 	if weaponData.weaponType == "Shotgun":
@@ -204,7 +205,10 @@ func spawnBullet():
 		bullet.kill.connect(kill_update_score)
 		
 		level_root.add_child(bullet)
+		
+		show_muzzleFlash()
 
+func show_muzzleFlash():
 	muzzle_flash_particles.emitting = true
 	muzzle_flash_light.show()
 	

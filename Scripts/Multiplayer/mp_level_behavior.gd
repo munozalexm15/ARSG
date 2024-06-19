@@ -29,4 +29,3 @@ func init_player(peer_id):
 	players_node.add_child(player)
 	#player.pauseMenu = playerMenu
 	
-	
