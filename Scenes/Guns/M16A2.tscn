@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://duonirwf385bc"]
+[gd_scene load_steps=40 format=3 uid="uid://duonirwf385bc"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_h8exn"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="2_op75h"]
@@ -1264,6 +1264,14 @@ _data = {
 "USP_Shot": SubResource("Animation_6mr61")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o80mk"]
+properties/0/path = NodePath("M16:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("M16:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="M16A2" type="Node3D"]
 script = ExtResource("1_h8exn")
 weaponData = ExtResource("2_op75h")
@@ -1694,3 +1702,6 @@ bus = &"Weapons"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("15_0riom")
 bus = &"Weapons"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_o80mk")

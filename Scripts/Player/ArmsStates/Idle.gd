@@ -25,7 +25,7 @@ func enter(_msg := {}):
 		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 			arms.player.hud.aimAnimationPlayer.play("Aim")
 
-func physics_update(delta):
+func physics_update(_delta):
 	
 	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
 		state_machine.transition_to("Idle")

@@ -45,6 +45,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not is_multiplayer_authority():
+		return
+		
 	crosshair.queue_redraw()
 	healthBar.value = player_controller.health 
 	NPCNameLabel.visible = false
@@ -54,7 +57,10 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	if not is_multiplayer_authority():
+		return
+		
 	fpsCounter.set_text("FPS %d" % Engine.get_frames_per_second())
 	if Input.is_action_pressed("ADS"):
 		crosshair.queue_redraw()
@@ -68,6 +74,9 @@ func _process(delta):
 	
 
 func adjust_reticle_size():
+	if not is_multiplayer_authority():
+		return
+		
 	var player_velocity = player_controller.get_real_velocity()
 	var origin = Vector3(0,0,0)
 	var pos =Vector2(0,0)

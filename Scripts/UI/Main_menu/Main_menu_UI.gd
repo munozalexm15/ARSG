@@ -15,11 +15,9 @@ func _ready():
 	optionsMainContainer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	if Lobby.players.size() == 2:
-		if multiplayer.is_server():
-			Lobby.load_game.rpc("res://Scenes/Levels/initial_level.tscn")
+func _process(_delta):
+	if Network.players == 2:
+		pass
 	
 
 
@@ -51,11 +49,14 @@ func _on_host_button_mouse_entered():
 
 func _on_host_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-	Lobby.create_game()
-	
+	Network.host_server()
+	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func _on_join_button_pressed():
-	Lobby.join_game()
+	Network.join_server()
+	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func _on_join_button_mouse_entered():
 	pass # Replace with function body.

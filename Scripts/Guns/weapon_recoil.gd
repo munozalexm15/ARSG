@@ -14,6 +14,7 @@ var beforeShootRotation : Vector3
 @export var returnSpeed : float
 
 func _process(delta):
+	
 	# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, Vector3.ZERO , returnSpeed * delta)
 	currentRotation = lerp(currentRotation, targetRotation, snappiness * delta)

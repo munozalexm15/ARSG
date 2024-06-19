@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=28 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -191,6 +191,14 @@ material = SubResource("ShaderMaterial_nqcvl")
 radius = 0.165
 height = 1.68
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 0
 collision_mask = 3
@@ -295,6 +303,10 @@ bus = &"Environment"
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 2
 mesh = SubResource("SphereMesh_o7hu8")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 0.017
+replication_config = SubResource("SceneReplicationConfig_ycvks")
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]

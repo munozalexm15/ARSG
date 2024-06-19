@@ -12,7 +12,6 @@ func _ready():
 		loadGameSettings()
 	
 	if loadedData != OK:
-		var configData = ConfigFile.new()
 		configData.set_value("Video", "Resolution", Vector2i(1920, 1080))
 		configData.set_value("Video", "isFullscreen", true)
 		configData.set_value("Video", "hasDithering", true)
@@ -27,9 +26,6 @@ func _ready():
 		configData.set_value("Audio", "EffectsSliderValue", 1)
 		configData.save("res://GameSettings.cfg")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func loadGameSettings():
 	if configData.get_value("Video", "isFullscreen", true) == true:

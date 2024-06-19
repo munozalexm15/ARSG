@@ -12,9 +12,6 @@ func _ready():
 func apply_camera_shake():
 	shakeStrength = randomStrength
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func randomizeCamOffset() -> Vector2:
 	return Vector2(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength))

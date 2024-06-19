@@ -8,7 +8,7 @@ func enter(_msg := {}):
 	arms.animationPlayer.play("Reload")
 	arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
 
-func physics_update(delta):
+func physics_update(_delta):
 	mouse_swap_weapon_logic()
 	swap_weapon()
 	

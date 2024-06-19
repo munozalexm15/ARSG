@@ -10,23 +10,23 @@ var enet_peer = ENetMultiplayerPeer.new()
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Lobby.player_loaded.rpc_id(multiplayer.get_unique_id()) # Tell the server that this peer has loaded.
+	init_player(Network.unique_id)
+	Network.game = self
 
 func start_game():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 func init_player(peer_id):
-	print(multiplayer.get_unique_id() , " ", "creando player")
-	#var playerMenu : Pause_Menu = PauseScene.instantiate()
-	#add_child(playerMenu)
+	
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
-	players_node.call_deferred("add_child", player)
+	player.set_multiplayer_authority(peer_id)
+	players_node.add_child(player)
 	#player.pauseMenu = playerMenu
 	
 	

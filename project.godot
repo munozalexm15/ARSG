@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 SFXHandler="*res://Scripts/Sounds/SFX_Handler.gd"
 LoadScreenHandler="*res://Scripts/LoadingScreen/loading_screen_singletons.gd"
-Lobby="*res://Scripts/Multiplayer/Lobby.gd"
 GlobalData="*res://Scripts/Global/global_data.gd"
+Network="*res://Scripts/Multiplayer/Network.gd"
 
 [display]
 

@@ -49,6 +49,9 @@ var being_used : bool = false
 var mouse_movement
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not is_multiplayer_authority():
+		return
+		
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
@@ -59,11 +62,17 @@ func _ready():
 	weaponData.bulletsInMag = weaponData.magSize
 	
 func _input(event):
+	if not is_multiplayer_authority():
+		return
+		
 	if event is InputEventMouseMotion:
 		mouse_movement = event.relative
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
+		
 	if not being_used:
 		return
 		
@@ -208,7 +217,7 @@ func spawnBullet():
 	
 	bullet_case_particles.emitting = true
 
-func show_hitmarker(points):
+func show_hitmarker(_points):
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
 		hands.player.hud.animationPlayer.play("RESET")
 	hands.player.hud.animationPlayer.play("hitmarker")
@@ -222,6 +231,9 @@ func hit_update_score(points):
 		hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + points)
 
 func update_health():
+	if not is_multiplayer_authority():
+		return
+		
 	hands.player.hud.healthBar.value = hands.player.health
 
 func _on_animation_player_animation_finished(anim_name):

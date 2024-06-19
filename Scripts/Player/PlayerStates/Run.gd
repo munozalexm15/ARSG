@@ -6,7 +6,7 @@ func enter(_msg := {}):
 	if not player.arms.state_machine.state.name == "Reload":
 		player.arms.animationPlayer.play("Run")
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding():
 		state_machine.transition_to("Walk")
 

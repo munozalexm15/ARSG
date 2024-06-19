@@ -85,11 +85,10 @@ var health: float = 75
 var seeing_ally : bool = false
 
 func _enter_tree():
-	set_multiplayer_authority(str(name).to_int())
+	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	if not is_multiplayer_authority():
-		return
+	if not is_multiplayer_authority(): return
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
@@ -99,7 +98,7 @@ func _ready():
 	
 	##WIP, this goes on the main menu once it is done
 	configData = ConfigFile.new()
-	var loadedData = configData.load("res://GameSettings.cfg")
+	var _loadedData = configData.load("res://GameSettings.cfg")
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():
@@ -176,7 +175,7 @@ func _physics_process(delta):
 	if  get_slide_collision_count() == 0:
 		isClimbing = false
 
-func _on_state_machine_transitioned(state_name, old_state):
+func _on_state_machine_transitioned(state_name, _old_state):
 	state = state_name
 	#print("Last state: " , old_state , "   ---   New state: " , state_name)
 
@@ -196,7 +195,7 @@ func _checkCollisionWithWall():
 		return
 		
 	if result.has("position"):
-		var coll_point = result.position
+		var _coll_point = result.position
 		var hit_Distance = origin.distance_to(result.position)
 		lerpHandsPosition = 1 - (hit_Distance / distanceCheck)
 		lerpHandsPosition= clamp(lerpHandsPosition, 0, 1)

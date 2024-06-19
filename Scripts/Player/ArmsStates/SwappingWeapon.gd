@@ -1,6 +1,9 @@
 extends ArmsState
 
 func enter(_msg := {}):
+	if not is_multiplayer_authority():
+		return
+		
 	if _msg.has("drop_weapon"):
 		drop_weapon(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
 
@@ -9,11 +12,16 @@ func enter(_msg := {}):
 	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 
-func physics_update(delta):
+func physics_update(_delta):
+	if not is_multiplayer_authority():
+		return
+		
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
-func drop_weapon(name, pickupWeapon, isSwapping):
+func drop_weapon(_weaponName, pickupWeapon, isSwapping):
+	if not is_multiplayer_authority():
+		return
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
 		if arms.weaponHolder.get_child(x).weaponData.name == name:

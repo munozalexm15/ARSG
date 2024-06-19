@@ -23,7 +23,7 @@ func _ready():
 	isMultiplayer = false
 	visible = false
 
-func _input(event):
+func _input(_event):
 	if isMultiplayer:
 		hide()
 

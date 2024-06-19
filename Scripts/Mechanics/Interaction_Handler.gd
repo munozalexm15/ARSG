@@ -18,7 +18,10 @@ func _ready():
 	add_exception(owner)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
+	if not is_multiplayer_authority():
+		return
+		
 	hud.marginContainer.visible = false
 	hud.pickupAmmoContainer.visible = false
 	hud.pickupWeaponContainer.visible = false

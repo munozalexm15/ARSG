@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=18 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
@@ -9,6 +9,29 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
 [ext_resource type="PackedScene" uid="uid://duonirwf385bc" path="res://Scenes/Guns/M16A2.tscn" id="8_ajg4k"]
 [ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="9_rkt7h"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
+properties/0/path = NodePath("../Knife:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("../Knife:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("../Knife:visible")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("../Flashlight:visible")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("../Flashlight:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("../WeaponHolder:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("../WeaponHolder:position")
+properties/6/spawn = true
+properties/6/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
@@ -194,6 +217,10 @@ animationNode = NodePath("AnimationPlayer")
 initial_position = Vector3(0, -1.166, 0)
 ads_position = Vector3(0, -0.6, -1.26)
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../AnimationPlayer")
+replication_config = SubResource("SceneReplicationConfig_qg62j")
+
 [node name="Knife" parent="." instance=ExtResource("2_woo6u")]
 transform = Transform3D(0.997582, 0, -0.0694954, 0, 1, 0, 0.0694954, 0, 0.997582, -0.28115, -0.966909, -0.369313)
 visible = false
@@ -210,7 +237,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2]
+blend_times = [&"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

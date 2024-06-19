@@ -10,7 +10,3 @@ func _ready():
 	target.targetData = targetData
 	healthBar.value = targetData.actualHealth
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

@@ -44,7 +44,7 @@ var configData : ConfigFile
 func _ready():
 	optionsMainContainer.visible = false
 	configData = ConfigFile.new()
-	var loadedData = configData.load("res://GameSettings.cfg")
+	var _loadedData = configData.load("res://GameSettings.cfg")
 	
 	addResolutions()
 
@@ -59,7 +59,7 @@ func addResolutions():
 		
 		index+=1
 
-func _input(event):
+func _input(_event):
 	hide_menu()
 
 func hide_menu():
@@ -74,9 +74,9 @@ func set_resolution_text():
 
 #VISUALS----------------------------------------------------------------------
 func _on_resolution_list_item_selected(index):
-	var size = resolutions_dict.get(resolutionDropdown.get_item_text(index))
-	get_window().size = size
-	configData.set_value("Video", "Resolution", size)
+	var res_size = resolutions_dict.get(resolutionDropdown.get_item_text(index))
+	get_window().size = res_size
+	configData.set_value("Video", "Resolution", res_size)
 	configData.save("res://GameSettings.cfg")
 
 func _on_fullscreen_checkbox_pressed():
@@ -105,7 +105,7 @@ func _on_vsync_checkbox_pressed():
 		
 	configData.save("res://GameSettings.cfg")
 
-func _on_has_dithering_checkbox_toggled(toggled_on):
+func _on_has_dithering_checkbox_toggled(_toggled_on):
 	if ditheringMaterial.get_shader_parameter("dithering") == false:
 		ditheringMaterial.set_shader_parameter("dithering", true)
 		configData.set_value("Video", "hasDithering", true)

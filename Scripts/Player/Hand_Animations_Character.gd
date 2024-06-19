@@ -40,6 +40,8 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not is_multiplayer_authority():
+		return
 	knife.set_process(false)
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
@@ -49,10 +51,15 @@ func _ready():
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 
 func _input(event):
+	if not is_multiplayer_authority():
+		return
+		
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
 	
 func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
 	if Input.is_action_just_pressed("Flashlight"):
 		flashlight.visible = !flashlight.visible
 

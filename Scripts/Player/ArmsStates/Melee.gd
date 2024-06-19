@@ -11,10 +11,6 @@ func enter(_msg := {}):
 	arms.knife.collisionShape.disabled = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func physics_update(delta):
-	pass
-
 func _on_knife_ended_melee():
 	state_machine.transition_to("Idle", {"playHud" : true})
 	await get_tree().create_timer(0.1).timeout

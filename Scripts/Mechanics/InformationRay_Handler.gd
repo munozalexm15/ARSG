@@ -15,7 +15,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	if not is_multiplayer_authority():
+		return
+		
 	if is_colliding():
 		var collision = get_collider()
 		

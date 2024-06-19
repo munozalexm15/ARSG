@@ -9,8 +9,3 @@ var isAlreadyGrabbed = false
 func _ready():
 	await get_tree().create_timer(1).timeout
 	isPickupReady = true
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-

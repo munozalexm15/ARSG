@@ -11,7 +11,7 @@ func _physics_update(delta):
 	
 	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
-func update(delta: float):
+func update(_delta: float):
 	if !player.isClimbing and !player.is_on_floor():
 		state_machine.transition_to("Air", {"climb" = true})
 	

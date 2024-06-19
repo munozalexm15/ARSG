@@ -12,7 +12,7 @@ func _ready():
 	add_child(timeLeft)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if startCountdown:
 		timeLeft.start()
 		timeLeft.wait_time = 60
@@ -22,7 +22,7 @@ func _process(delta):
 	
 	player.hud.timeLabel.text = str(int(timeLeft.time_left))
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("Fullscreen"):
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

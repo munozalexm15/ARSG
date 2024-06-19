@@ -8,7 +8,7 @@ func _ready():
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var progress = []
 	ResourceLoader.load_threaded_get_status(LoadScreenHandler.next_scene, progress)
 	loadingShader.set_shader_parameter("percentage", progress[0])
