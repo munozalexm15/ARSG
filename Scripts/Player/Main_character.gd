@@ -87,6 +87,7 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
+	#si no es el que controla al player
 	if not is_multiplayer_authority(): return
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

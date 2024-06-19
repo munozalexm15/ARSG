@@ -17,7 +17,8 @@
 ## TODO:
 
 ###MULTIPLAYER:
-- Spawnear personajes en la escena
+- Hacer daño, respawns
+- Diferenciar de cuando es un mapa un jugador con un mapa multijugador
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 

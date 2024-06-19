@@ -208,8 +208,8 @@ properties/5/spawn = true
 properties/5/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
-collision_layer = 0
-collision_mask = 3
+collision_layer = 128
+collision_mask = 131
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
 armsNode = NodePath("Head/eyesHolder/armsHolder/arms")

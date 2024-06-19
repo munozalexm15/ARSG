@@ -164,6 +164,7 @@ Pause={
 3d_physics/layer_5="Knife"
 3d_physics/layer_6="NPC"
 3d_physics/layer_7="Ground"
+3d_physics/layer_8="OtherPlayers"
 
 [rendering]
 

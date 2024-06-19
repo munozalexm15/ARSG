@@ -49,8 +49,7 @@ var being_used : bool = false
 var mouse_movement
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not is_multiplayer_authority():
-		return
+	if not is_multiplayer_authority(): return
 		
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
