@@ -40,7 +40,7 @@ func _on_body_entered(body: Node3D):
 	trail.base_width = 0
 	mesh.visible = false
 	
-	spawn_decal(body)
+	#spawn_decal(body)
 	
 	if body is Target and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
@@ -57,11 +57,11 @@ func _on_body_entered(body: Node3D):
 		body.health -= damage
 		playerDamaged.emit()
 	
-	var fade_tween: Tween = get_tree().create_tween()
-	fade_tween.tween_interval(2.0)
-	fade_tween.tween_property(decal_instance, "modulate:a", 0, 1.5)
-	await fade_tween.finished
-	decal_instance.queue_free()
+	#var fade_tween: Tween = get_tree().create_tween()
+	#fade_tween.tween_interval(2.0)
+	#fade_tween.tween_property(decal_instance, "modulate:a", 0, 1.5)
+	#await fade_tween.finished
+	#decal_instance.queue_free()
 	queue_free()
 
 func spawn_decal(body : Node3D):

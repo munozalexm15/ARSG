@@ -8,6 +8,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 @export var PauseScene = preload("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
 
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
+@onready var bullets_node = $BulletsParent
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	init_player(Network.unique_id)

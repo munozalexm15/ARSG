@@ -174,7 +174,7 @@ func shoot():
 
 @rpc("any_peer", "call_local", "reliable")
 func spawnBullet():
-	var level_root = get_tree().get_root()
+	var level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Bullet = bullet_type.instantiate()
@@ -189,7 +189,7 @@ func spawnBullet():
 			bullet.playerDamaged.connect(update_health)
 			bullet.kill.connect(kill_update_score)
 			
-			level_root.add_child(bullet)
+			Network.game.bullets_node.add_child(bullet)
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
 		bullet.instigator = hands.player
@@ -204,9 +204,9 @@ func spawnBullet():
 		#For when player kills somebody (atm just for update hud points)
 		bullet.kill.connect(kill_update_score)
 		
-		level_root.add_child(bullet)
+		Network.game.bullets_node.add_child(bullet)
 		
-		show_muzzleFlash()
+	show_muzzleFlash()
 
 func show_muzzleFlash():
 	muzzle_flash_particles.emitting = true

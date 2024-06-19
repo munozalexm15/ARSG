@@ -82,5 +82,7 @@ size = Vector3(12.1213, 1, 11.793)
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn", "res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
 spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
+
+[node name="BulletsParent" type="Node3D" parent="."]
