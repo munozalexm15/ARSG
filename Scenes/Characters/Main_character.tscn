@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=27 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="14_u53b0"]
+[ext_resource type="Texture2D" uid="uid://bht3xnsodc7ok" path="res://GameResources/Textures/Crates/crate_1.png" id="15_72oqi"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -172,11 +173,6 @@ height = 1.86314
 radius = 0.257403
 height = 1.2
 
-[sub_resource type="Gradient" id="Gradient_vy4d1"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2xaia"]
-gradient = SubResource("Gradient_vy4d1")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nqcvl"]
 render_priority = 0
 shader = ExtResource("14_u53b0")
@@ -184,12 +180,12 @@ shader_parameter/affine_mapping = false
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = SubResource("GradientTexture1D_2xaia")
+shader_parameter/albedo = ExtResource("15_72oqi")
 
 [sub_resource type="SphereMesh" id="SphereMesh_o7hu8"]
 material = SubResource("ShaderMaterial_nqcvl")
-radius = 0.165
-height = 1.68
+radius = 0.17
+height = 1.35
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
 properties/0/path = NodePath(".:position")
@@ -198,6 +194,18 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("Head/eyesHolder:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Head/eyesHolder:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 0
@@ -301,7 +309,6 @@ collision_mask = 64
 bus = &"Environment"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 2
 mesh = SubResource("SphereMesh_o7hu8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

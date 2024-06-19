@@ -129,6 +129,8 @@ func _physics_process(delta):
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
 	if (!Input.is_action_pressed("Crouch") or !is_on_floor()) and !standingRaycast.is_colliding():
+		if not is_multiplayer_authority():
+			return
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	

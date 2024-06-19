@@ -13,6 +13,7 @@ sky_material = SubResource("PanoramaSkyMaterial_5bswf")
 
 [sub_resource type="Environment" id="Environment_8f8v4"]
 background_mode = 2
+background_energy_multiplier = 0.2
 sky = SubResource("Sky_03k1s")
 ambient_light_source = 3
 ssao_radius = 4.7
@@ -81,5 +82,5 @@ size = Vector3(12.1213, 1, 11.793)
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn", "res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn")
 spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")

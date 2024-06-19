@@ -46,6 +46,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
+		visible = false
 		return
 		
 	crosshair.queue_redraw()
