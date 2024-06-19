@@ -17,8 +17,10 @@
 ## TODO:
 
 ###MULTIPLAYER:
-- Hacer daño, respawns
-- Diferenciar de cuando es un mapa un jugador con un mapa multijugador
+- Morir (dropear arma, recogerla, etc.) y respawnear
+- Spawnpoints
+- Añadir modelo personaje pero que lo vea la camara de los otros jugadores
+- Diferenciar de cuando es un mapa un jugador con un mapa multijugadorc (arreglar campo de tiro)
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 

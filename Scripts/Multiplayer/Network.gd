@@ -30,7 +30,7 @@ func player_joined(id):
 	print(str(id) + " " +  "joined")
 	if id != 1:
 		game.init_player(id)
-	
+
 func player_left(_id):
 	pass
 

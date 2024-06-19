@@ -32,11 +32,10 @@ signal step
 #@export var pauseMenuNode := NodePath()
 #@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
 
-
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
-
+@onready var player_body : MeshInstance3D = $Body
 var configData : ConfigFile
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -88,8 +87,11 @@ func _enter_tree():
 
 func _ready():
 	#si no es el que controla al player
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): 
+		player_body.visible = true
+		return
 	
+	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y

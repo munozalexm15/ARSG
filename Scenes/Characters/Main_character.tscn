@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=26 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
+[ext_resource type="Texture2D" uid="uid://di3lh6pnj8ff8" path="res://GameResources/Textures/ShootingRange/Sandbags.png" id="2_6sjpf"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
@@ -13,15 +14,22 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="14_u53b0"]
-[ext_resource type="Texture2D" uid="uid://bht3xnsodc7ok" path="res://GameResources/Textures/Crates/crate_1.png" id="15_72oqi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x3f6"]
+albedo_texture = ExtResource("2_6sjpf")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_apcng"]
+material = SubResource("StandardMaterial3D_2x3f6")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.7
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,7 +41,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -61,7 +69,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +81,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,7 +98,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +110,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -118,7 +126,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,7 +142,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +154,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -172,20 +180,6 @@ height = 1.86314
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 radius = 0.257403
 height = 1.2
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqcvl"]
-render_priority = 0
-shader = ExtResource("14_u53b0")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("15_72oqi")
-
-[sub_resource type="SphereMesh" id="SphereMesh_o7hu8"]
-material = SubResource("ShaderMaterial_nqcvl")
-radius = 0.17
-height = 1.35
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
 properties/0/path = NodePath(".:position")
@@ -217,8 +211,11 @@ standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
-cameraNode = NodePath("Head/eyesHolder/armsHolder/Camera3D")
+cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 hudNode = NodePath("UI")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_apcng")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696685, 0)
@@ -234,9 +231,10 @@ aimRecoil = Vector3(0.05, 0.1, 0.05)
 snappiness = 4.0
 returnSpeed = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+[node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 process_mode = 1
-cull_mask = 1048573
+cull_mask = 1
+fov = 90.0
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -254,7 +252,7 @@ hudNode = NodePath("../../../../UI")
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
 transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0, -0.193333, -0.041)
 rayNode = NodePath("../InteractRay")
-cameraNode = NodePath("../Camera3D")
+cameraNode = NodePath("../PlayerPOV")
 playerNode = NodePath("../../../..")
 
 [node name="InteractTimer" type="Timer" parent="Head/eyesHolder/armsHolder"]
@@ -307,9 +305,6 @@ collision_mask = 64
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
 bus = &"Environment"
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_o7hu8")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_interval = 0.017
