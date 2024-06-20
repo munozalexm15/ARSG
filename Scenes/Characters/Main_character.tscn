@@ -200,6 +200,12 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath(".:time_to_respawn")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:can_respawn")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 128

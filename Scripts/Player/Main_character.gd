@@ -82,6 +82,9 @@ var health: float = 75
 
 var seeing_ally : bool = false
 
+var can_respawn = false
+var time_to_respawn = 3.0
+
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
@@ -239,6 +242,12 @@ func updateHealth():
 	health += 0.01
 	hud.healthBar.value = health
 
+@rpc("any_peer", "call_local")
+func die_respawn():
+	if not is_multiplayer_authority(): return
+	standing_CollisionShape.disabled = true
+	crouching_CollisionShape.disabled = true
+	queue_free()
 
 func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true
