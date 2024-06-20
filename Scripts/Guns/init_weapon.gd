@@ -10,6 +10,9 @@ extends Node3D
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
 
+@onready var leftArm = $Player_Arms/Armature_001/Skeleton3D/Cube_002
+@onready var rightArm  = $Player_Arms/Armature_001/Skeleton3D/Cube_001
+
 @onready var animPlayer = $AnimationPlayer
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
@@ -49,7 +52,10 @@ var being_used : bool = false
 var mouse_movement
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority(): 
+		leftArm.visible = false
+		rightArm.visible = false
+		return
 		
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0

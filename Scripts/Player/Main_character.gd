@@ -35,7 +35,8 @@ signal step
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
-@onready var player_body : MeshInstance3D = $Body
+@onready var player_body : Node3D = $player_standing_anims
+@onready var player_animations : AnimationPlayer = $player_standing_anims/AnimationPlayer
 var configData : ConfigFile
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -89,6 +90,7 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
+	player_animations.play("Player_Pistol_Idle")
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
 		player_body.visible = true
