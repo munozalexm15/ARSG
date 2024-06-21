@@ -1,6 +1,7 @@
 class_name PlayerSkeleton
 extends Node3D
 
+signal updatedPose
 
 @export var eyesHolderNode := NodePath()
 @onready var eyesHolder : Node3D = get_node(eyesHolderNode)
@@ -13,6 +14,7 @@ extends Node3D
 @onready var skeleton : Skeleton3D = $player_standing_anims/Armature/Skeleton3D
 @onready var LeftHandB_Attachment : BoneAttachment3D = $player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment
 
+var actualWeaponName = ""
 
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
@@ -26,21 +28,28 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	skeleton.eyesHolder = eyesHolder
-	animationPlayer.play("Player_Pistol_Idle")
-	var weaponHolding : WeaponSkeleton = LeftHandB_Attachment.get_child(0)
-	
-	#en adelante sera statemachine
-	if weaponHolding.weaponSkeletonData.weaponType == "Rifle":
-		animationPlayer.play("Player_Rifle_Idle")
-	
-	if weaponHolding.weaponSkeletonData.weaponType == "Pistol":
-		animationPlayer.play("Player_Pistol_Idle")
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+	skeleton.arms = arms
 
 func _on_arms_player_swapping_weapons():
-	var actualWeapon : WeaponData = arms.actualWeapon
-	LeftHandB_Attachment.add_child(arms.actualWeapon)
+	updatedPose.emit()
+	if not multiplayer.connected_to_server:
+		return
+	
+	actualWeaponName = arms.actualWeapon.weaponData.name
+	update_anim(arms.actualWeapon.weaponData.weaponType)
+	
+	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
+	var spawnedWeapon = actualWeapon.instantiate()
+	
+	for child in LeftHandB_Attachment.get_children():
+		LeftHandB_Attachment.remove_child(child)
+	
+	LeftHandB_Attachment.add_child(spawnedWeapon)
+	spawnedWeapon.position = LeftHandB_Attachment.position
+
+func update_anim(weapon):
+	if weapon == "AR":
+		animationPlayer.play("Player_Rifle_Idle")
+	
+	if weapon == "Pistol":
+		animationPlayer.play("Player_Pistol_Idle")

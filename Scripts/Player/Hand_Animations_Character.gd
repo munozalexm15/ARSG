@@ -49,7 +49,10 @@ func _ready():
 	weaponHolder.get_child(actual_weapon_index).visible = true
 	weaponHolder.get_child(actual_weapon_index).being_used = true
 	default_weaponHolder_pos = weaponHolder.position
+	
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	playerSwappingWeapons.emit()
+	
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 
 func _input(event):

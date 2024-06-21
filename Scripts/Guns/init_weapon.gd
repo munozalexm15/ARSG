@@ -6,7 +6,6 @@ extends Node3D
 @onready var fire_sound : AudioStreamPlayer3D = $ASP_ShotShound
 @onready var reload_sound : AudioStreamPlayer3D = $ASP_ReloadSound
 
-
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
 
@@ -177,7 +176,7 @@ func shoot():
 
 @rpc("any_peer", "call_local", "reliable")
 func spawnBullet():
-	var level_root = Network.game
+	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Bullet = bullet_type.instantiate()

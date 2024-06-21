@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=10 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
@@ -26,6 +26,10 @@ fog_sky_affect = 0.37
 shader = ExtResource("6_qbtv3")
 shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb8cs"]
+transparency = 1
+blend_mode = 1
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5qqm8")
@@ -78,6 +82,7 @@ use_collision = true
 collision_layer = 3
 collision_mask = 3
 size = Vector3(12.1213, 1, 11.793)
+material = SubResource("StandardMaterial3D_kb8cs")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
