@@ -35,8 +35,7 @@ signal step
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
-@onready var player_body : Node3D = $player_standing_anims
-@onready var player_animations : AnimationPlayer = $player_standing_anims/AnimationPlayer
+@onready var player_body : Node3D = $PlayerSkeleton
 var configData : ConfigFile
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")

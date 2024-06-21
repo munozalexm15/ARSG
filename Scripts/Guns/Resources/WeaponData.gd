@@ -29,3 +29,6 @@ class_name WeaponData extends Resource
 @export var weaponSpawnPosition : Vector3
 @export var weaponImage : Texture
 
+#Used for the external POV of the player
+@export var weaponExternalScene : PackedScene
+

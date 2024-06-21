@@ -1,5 +1,7 @@
 extends ArmsState
 
+signal swapWeapon
+
 func enter(_msg := {}):
 	if (arms.actualWeapon.weaponData.weaponType == "Shotgun" or arms.actualWeapon.weaponData.weaponType == "Sniper") and arms.state_machine.old_state.name == "Reload" and not _msg.has("play_reload"):
 		arms.actualWeapon.reload_sound.play()
@@ -53,6 +55,7 @@ func replace_weapon(pickupWeapon, isSwapping):
 	#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
 	if not weapon_equipped and not weapon_with_same_caliber and arms.weaponHolder.get_child_count() == 2:
 		state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name, pickup_weapon = pickupWeapon, is_swapping_weapon = isSwapping})
+		
 		return
 		
 	#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it
@@ -86,6 +89,7 @@ func mouse_swap_weapon_logic():
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 		
 	if Input.is_action_just_pressed("Previous Weapon"):
@@ -93,6 +97,7 @@ func mouse_swap_weapon_logic():
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 	
 	
@@ -101,12 +106,14 @@ func swap_weapon():
 		arms.actual_weapon_index = 0
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 		
 	if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
 		arms.actual_weapon_index = 1
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 
 func reload_listener():

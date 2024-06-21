@@ -3,11 +3,22 @@ extends Skeleton3D
 @onready var right_bone_index = find_bone("UpperArm.R")
 @onready var left_bone_index = find_bone("UpperArm.L")
 
+@onready var neck_bone_index = find_bone("Neck")
+@onready var chest_bone_index = find_bone("Chest")
+
 @onready var left_org_bone_rot: Quaternion = get_bone_pose_rotation(left_bone_index)
 @onready var right_org_bone_rot: Quaternion = get_bone_pose_rotation(right_bone_index)
 
-@onready var eyesHolder = $"../../../Head/eyesHolder"
+@onready var neck_org_bone_rot: Quaternion = get_bone_pose_rotation(neck_bone_index)
+@onready var chest_org_bone_rot: Quaternion = get_bone_pose_rotation(chest_bone_index)
 
+
+@onready var skeleton : PlayerSkeleton = $"../../.."
+var eyesHolder : Node3D = null
+
+var isLookingDown : bool = false
+
+#-------------Chest
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -15,8 +26,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotate_arms_bone(left_bone_index, left_org_bone_rot)
+	var leftBoneRotation : Quaternion = get_bone_pose_rotation(left_bone_index)
+	var rightBoneRotation : Quaternion = get_bone_pose_rotation(right_bone_index)
+	
+	var chestBoneRotation : Quaternion = get_bone_pose_rotation(chest_bone_index)
+
 	rotate_arms_bone(right_bone_index, right_org_bone_rot)
+	rotate_arms_bone(left_bone_index, left_org_bone_rot)
+
+	rotate_arms_bone(neck_bone_index, neck_org_bone_rot)
 
 func rotate_arms_bone(bone_index, org_bone_rot):
 	var bone_rotation: Quaternion = get_bone_pose_rotation(bone_index)
