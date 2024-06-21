@@ -2,6 +2,7 @@ extends PlayerState
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
+	player.player_body.animationPlayer.play("Player_Pistol_Idle")
 	player.velocity = Vector3.ZERO
 	player.direction = Vector3.ZERO
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")

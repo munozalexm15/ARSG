@@ -34,8 +34,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	rotate_arms_bone(right_bone_index, right_org_bone_rot)
-	rotate_arms_bone(left_bone_index, left_org_bone_rot)
+	rotate_arms_bone(chest_bone_index, chest_org_bone_rot)
 
 	rotate_arms_bone(neck_bone_index, neck_org_bone_rot)
 

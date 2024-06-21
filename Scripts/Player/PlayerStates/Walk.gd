@@ -8,6 +8,8 @@ func enter(_msg := {}):
 		player.arms.animationPlayer.play("Idle")
 
 func physics_update(delta: float) -> void:
+	print(player.direction)
+	
 	if not Input.is_action_pressed("ADS"):
 		player.curr_speed = player.walk_speed
 		player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
@@ -20,6 +22,10 @@ func physics_update(delta: float) -> void:
 	if player.direction != Vector3.ZERO:
 		player.velocity.x = player.direction.x * player.curr_speed
 		player.velocity.z = player.direction.z * player.curr_speed
+		if player.direction.x < 0:
+				player.player_body.animationPlayer.play("Player_Pistol_Forward_Walk")
+		if player.direction.x > 0:
+			player.player_body.animationPlayer.play("Player_Pistol_Backwards_Walk")
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.curr_speed)
 		player.velocity.z = move_toward(player.velocity.z, 0, player.curr_speed)
