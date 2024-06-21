@@ -36,7 +36,7 @@ func _on_arms_player_swapping_weapons():
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name
 	update_anim(arms.actualWeapon.weaponData.weaponType)
-	return
+	
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
 	var spawnedWeapon = actualWeapon.instantiate()
 	

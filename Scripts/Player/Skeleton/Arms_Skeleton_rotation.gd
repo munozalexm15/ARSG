@@ -56,6 +56,7 @@ func rotate_arms_bone(bone_index, org_bone_rot):
 
 func _on_player_skeleton_updated_pose(weaponName):
 	
+	
 	if weaponName == "AR":
 		set_bone_pose_position(left_bone_index, RifleArmPoseSkeleton.UpperLeftArm_position)
 		set_bone_pose_rotation(left_bone_index, RifleArmPoseSkeleton.UpperLeftArm_rotation)
