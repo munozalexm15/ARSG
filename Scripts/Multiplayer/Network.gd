@@ -27,7 +27,6 @@ func join_server():
 	unique_id = client.get_unique_id()
 
 func player_joined(id):
-	print(str(id) + " " +  "joined")
 	if id != 1:
 		game.init_player(id)
 	

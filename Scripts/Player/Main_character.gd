@@ -74,6 +74,7 @@ const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 2
 #---------In meters
 const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.06, "idle_speed" = 0.005}
 
+
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0
 var headBobbing_vector = Vector2.ZERO
@@ -90,10 +91,10 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	player_animations.play("Player_Pistol_Idle")
+	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
-		player_body.visible = true
+		arms.visible = false
 		return
 	
 	player_body.visible = false
@@ -118,6 +119,8 @@ func _input(event : InputEvent):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		
+		
 		
 	#if Input.is_action_just_pressed("Pause") and not get_tree().paused:
 		#pauseMenu.show()
