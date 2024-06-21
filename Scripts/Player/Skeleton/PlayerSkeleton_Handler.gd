@@ -1,7 +1,7 @@
 class_name PlayerSkeleton
 extends Node3D
 
-signal updatedPose
+signal updatedPose(weaponName)
 
 @export var eyesHolderNode := NodePath()
 @onready var eyesHolder : Node3D = get_node(eyesHolderNode)
@@ -13,7 +13,6 @@ signal updatedPose
 
 @onready var skeleton : Skeleton3D = $player_standing_anims/Armature/Skeleton3D
 @onready var LeftHandB_Attachment : BoneAttachment3D = $player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment
-
 var actualWeaponName = ""
 
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
@@ -31,13 +30,13 @@ func _ready():
 	skeleton.arms = arms
 
 func _on_arms_player_swapping_weapons():
-	updatedPose.emit()
+	
 	if not multiplayer.connected_to_server:
 		return
-	
+		
 	actualWeaponName = arms.actualWeapon.weaponData.name
 	update_anim(arms.actualWeapon.weaponData.weaponType)
-	
+	return
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
 	var spawnedWeapon = actualWeapon.instantiate()
 	
@@ -45,7 +44,7 @@ func _on_arms_player_swapping_weapons():
 		LeftHandB_Attachment.remove_child(child)
 	
 	LeftHandB_Attachment.add_child(spawnedWeapon)
-	spawnedWeapon.position = LeftHandB_Attachment.position
+	
 
 func update_anim(weapon):
 	if weapon == "AR":
@@ -53,3 +52,5 @@ func update_anim(weapon):
 	
 	if weapon == "Pistol":
 		animationPlayer.play("Player_Pistol_Idle")
+	
+	updatedPose.emit(weapon)

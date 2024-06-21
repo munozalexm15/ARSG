@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="SkeletonArmsPose" load_steps=2 format=3 uid="uid://spae8dieie47"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Skeleton/ArmsPose_Skeleton_Handler.gd" id="1_n7s8f"]
+
+[resource]
+script = ExtResource("1_n7s8f")
+UpperLeftArm_position = Vector3(0.354337, 0.395744, -0.0474422)
+UpperLeftArm_rotation = Quaternion(0.878625, 0.134877, 0.184145, 0.419425)
+UpperRightArm_position = Vector3(-0.354337, 0.395744, -0.0474423)
+UpperRightArm_rotation = Quaternion(0.933486, -0.247759, -0.241369, 0.094655)
+LowerLeftArm_position = Vector3(-2.98023e-08, 0.457499, -8.9407e-08)
+LowerLeftArm_rotation = Quaternion(-0.411782, -0.151244, -0.192691, 0.877742)
+LowerRightArm_position = Vector3(6.98492e-09, 0.457499, 6.33299e-08)
+LowerRightArm_rotation = Quaternion(-0.668087, 0.236448, -0.463256, 0.532114)
+LeftHand_position = Vector3(-1.49012e-07, 0.550123, -1.04308e-07)
+LeftHand_rotation = Quaternion(0.23363, -0.669762, -0.0429502, 0.703556)
+RightHand_position = Vector3(3.72529e-09, 0.550123, -6.70552e-08)
+RightHand_rotation = Quaternion(-0.0389693, -0.445237, 0.111466, 0.887593)
