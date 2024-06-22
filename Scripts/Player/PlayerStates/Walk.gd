@@ -10,6 +10,16 @@ func enter(_msg := {}):
 func physics_update(delta: float) -> void:
 	print(player.direction)
 	
+	#En un futuro estructurar mejor
+	if Input.is_action_pressed("Backwards"):
+		player.player_body.animationPlayer.play("Player_Pistol_Backwards_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Forward"):
+		player.player_body.animationPlayer.play("Player_Pistol_Forward_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Left"):
+		player.player_body.animationPlayer.play("Player_Pistol_Left_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Right"):
+		player.player_body.animationPlayer.play("Player_Pistol_Right_Aim_Walk", -1, 4, false)
+	
 	if not Input.is_action_pressed("ADS"):
 		player.curr_speed = player.walk_speed
 		player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
@@ -22,10 +32,6 @@ func physics_update(delta: float) -> void:
 	if player.direction != Vector3.ZERO:
 		player.velocity.x = player.direction.x * player.curr_speed
 		player.velocity.z = player.direction.z * player.curr_speed
-		if player.direction.x < 0:
-				player.player_body.animationPlayer.play("Player_Pistol_Forward_Walk")
-		if player.direction.x > 0:
-			player.player_body.animationPlayer.play("Player_Pistol_Backwards_Walk")
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.curr_speed)
 		player.velocity.z = move_toward(player.velocity.z, 0, player.curr_speed)

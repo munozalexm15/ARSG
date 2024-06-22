@@ -25,7 +25,7 @@ gradient = SubResource("Gradient_sj7ij")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15wy0"]
 transparency = 1
 blend_mode = 1
-cull_mode = 2
+cull_mode = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = SubResource("GradientTexture1D_0xrv8")
@@ -1271,6 +1271,12 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("M16:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("Muzzle:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Muzzle:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="M16A2" type="Node3D"]
 script = ExtResource("1_h8exn")
@@ -1290,8 +1296,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707575, 1.86323)
 material_override = SubResource("StandardMaterial3D_15wy0")
 script = ExtResource("7_n7yqf")
 lifetime = 0.4
+base_width = 0.3
 width_profile = SubResource("Curve_hlyn7")
 smoothing_iterations = 3
+smoothing_ratio = 0.5
 axis = 2
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]

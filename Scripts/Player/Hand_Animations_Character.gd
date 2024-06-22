@@ -126,7 +126,3 @@ func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):
 			if ammoBox.ammoData.numberUses == 0:
 				
 				ammoBox.queue_free()
-
-
-func _on_idle_swap_weapon():
-	playerSwappingWeapons.emit()

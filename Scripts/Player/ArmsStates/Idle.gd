@@ -89,7 +89,6 @@ func mouse_swap_weapon_logic():
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
-		swapWeapon.emit()
 		return
 		
 	if Input.is_action_just_pressed("Previous Weapon"):

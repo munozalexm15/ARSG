@@ -397,6 +397,7 @@ tracks/18/keys = PackedFloat32Array(0, 1, -0.11117, -0.340144, -0.0272108, 0.933
 [sub_resource type="Animation" id="Animation_5oeb6"]
 resource_name = "Player_Pistol_Backwards_Aim_Walk"
 length = 1.79167
+loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -1219,6 +1220,7 @@ tracks/18/keys = PackedFloat32Array(0, 1, 0.0352718, -0.452855, -0.0398647, 0.88
 [sub_resource type="Animation" id="Animation_58kb0"]
 resource_name = "Player_Pistol_Forward_Aim_Walk"
 length = 1.75
+loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -2315,6 +2317,7 @@ tracks/18/keys = PackedFloat32Array(0, 1, 0.125923, 0.00726122, 0.0115699, 0.991
 [sub_resource type="Animation" id="Animation_gg5f0"]
 resource_name = "Player_Pistol_Left_Aim_Walk"
 length = 1.33333
+loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -3000,6 +3003,7 @@ tracks/18/keys = PackedFloat32Array(0, 1, -0.11117, -0.340144, -0.027211, 0.9333
 [sub_resource type="Animation" id="Animation_bybrf"]
 resource_name = "Player_Pistol_Right_Aim_Walk"
 length = 1.79167
+loop_mode = 1
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -6893,6 +6897,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("player_standing_anims/Armature/Skeleton3D:animate_physical_bones")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("player_standing_anims/AnimationPlayer:speed_scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="PlayerSkeleton" type="Node3D"]
 script = ExtResource("1_6kdiw")
@@ -6957,7 +6964,7 @@ bones/7/parent = 6
 bones/7/rest = Transform3D(0.997113, -0.0161238, -0.0742046, 0.0229681, 0.995464, 0.0923271, 0.0723793, -0.0937648, 0.99296, 5.96046e-08, 0.457499, -5.7742e-08)
 bones/7/enabled = true
 bones/7/position = Vector3(5.96046e-08, 0.457499, -5.7742e-08)
-bones/7/rotation = Quaternion(-0.0466073, -0.0367124, 0.00979068, 0.99819)
+bones/7/rotation = Quaternion(-0.0466073, -0.0367124, 0.00979069, 0.99819)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "Hand.L"
 bones/8/parent = 7
@@ -6985,7 +6992,7 @@ bones/11/parent = 10
 bones/11/rest = Transform3D(0.997113, 0.0161238, 0.0742047, -0.0229681, 0.995464, 0.0923271, -0.0723794, -0.0937648, 0.99296, -7.45058e-09, 0.457499, -3.72529e-09)
 bones/11/enabled = true
 bones/11/position = Vector3(-7.45058e-09, 0.457499, -3.72529e-09)
-bones/11/rotation = Quaternion(-0.0466073, 0.0367125, -0.00979068, 0.99819)
+bones/11/rotation = Quaternion(-0.0466073, 0.0367125, -0.00979069, 0.99819)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Hand.R"
 bones/12/parent = 11
@@ -7064,7 +7071,7 @@ mesh = SubResource("ArrayMesh_4b5cp")
 skin = SubResource("Skin_04bhf")
 
 [node name="LeftHand_BAttachment" type="BoneAttachment3D" parent="player_standing_anims/Armature/Skeleton3D"]
-transform = Transform3D(0.959529, 0.198007, 0.200237, 0.200237, -0.979703, 0.00926043, 0.198006, 0.0312093, -0.979704, 0.706711, 1.39026, -0.07472)
+transform = Transform3D(0.95953, 0.198006, 0.200237, 0.200236, -0.979704, 0.0092605, 0.198006, 0.031209, -0.979704, 0.70671, 1.39027, -0.0747204)
 bone_name = "Hand.L_end"
 bone_idx = 9
 
@@ -7075,6 +7082,7 @@ process_thread_messages = 1
 libraries = {
 "": SubResource("AnimationLibrary_yoqce")
 }
+blend_times = [&"Player_Pistol_Idle", &"Player_Pistol_Backwards_Aim_Walk", 0.5, &"Player_Pistol_Idle", &"Player_Pistol_Forward_Aim_Walk", 0.5, &"Player_Pistol_Idle", &"Player_Pistol_Right_Aim_Walk", 0.5, &"Player_Pistol_Idle", &"Player_Pistol_Left_Aim_Walk", 0.5, &"Player_Pistol_Backwards_Aim_Walk", &"Player_Pistol_Idle", 0.5, &"Player_Pistol_Backwards_Aim_Walk", &"Player_Pistol_Forward_Aim_Walk", 0.5, &"Player_Pistol_Backwards_Aim_Walk", &"Player_Pistol_Right_Aim_Walk", 0.5, &"Player_Pistol_Backwards_Aim_Walk", &"Player_Pistol_Left_Aim_Walk", 0.5, &"Player_Pistol_Forward_Aim_Walk", &"Player_Pistol_Idle", 0.5, &"Player_Pistol_Forward_Aim_Walk", &"Player_Pistol_Backwards_Aim_Walk", 0.5, &"Player_Pistol_Forward_Aim_Walk", &"Player_Pistol_Right_Aim_Walk", 0.5, &"Player_Pistol_Forward_Aim_Walk", &"Player_Pistol_Left_Aim_Walk", 0.5, &"Player_Pistol_Right_Aim_Walk", &"Player_Pistol_Idle", 0.5, &"Player_Pistol_Right_Aim_Walk", &"Player_Pistol_Backwards_Aim_Walk", 0.5, &"Player_Pistol_Right_Aim_Walk", &"Player_Pistol_Forward_Aim_Walk", 0.5, &"Player_Pistol_Right_Aim_Walk", &"Player_Pistol_Left_Aim_Walk", 0.5, &"Player_Pistol_Left_Aim_Walk", &"Player_Pistol_Idle", 0.5, &"Player_Pistol_Left_Aim_Walk", &"Player_Pistol_Backwards_Aim_Walk", 0.5, &"Player_Pistol_Left_Aim_Walk", &"Player_Pistol_Forward_Aim_Walk", 0.5, &"Player_Pistol_Left_Aim_Walk", &"Player_Pistol_Right_Aim_Walk", 0.5]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://GameResources/Meshes/Guns/M16A2/M16_MP.tscn", "res://GameResources/Meshes/Guns/M16A2/USP_MP.tscn")

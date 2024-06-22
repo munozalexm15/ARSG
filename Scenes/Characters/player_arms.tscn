@@ -297,4 +297,3 @@ handsNode = NodePath("../..")
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
 [connection signal="animation_started" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_started"]
 [connection signal="timeout" from="ReloadTimer" to="StateMachine/Reload" method="_on_reload_timer_timeout"]
-[connection signal="swapWeapon" from="StateMachine/Idle" to="." method="_on_idle_swap_weapon"]

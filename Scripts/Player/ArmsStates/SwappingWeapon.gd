@@ -136,3 +136,6 @@ func loadWeapon(index):
 
 	arms.weaponHolder.get_child(index).being_used = true
 	arms.weaponHolder.get_child(index).visible = true
+
+func exit():
+	arms.playerSwappingWeapons.emit()
