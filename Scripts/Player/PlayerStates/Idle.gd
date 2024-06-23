@@ -1,5 +1,9 @@
 extends PlayerState
 
+var last_rotation_horizontal = 0.0
+
+@onready var eyesHolder : Node3D = $"../../Head/eyesHolder"
+
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 	player.player_body.animationPlayer.play("Player_Pistol_Idle")

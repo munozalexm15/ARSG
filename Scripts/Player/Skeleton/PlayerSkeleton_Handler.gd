@@ -45,7 +45,6 @@ func _on_arms_player_swapping_weapons():
 		LeftHandB_Attachment.remove_child(child)
 	
 	LeftHandB_Attachment.add_child(spawnedWeapon)
-	
 
 func update_anim(weapon):
 	if weapon == "AR":

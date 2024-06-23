@@ -11,14 +11,7 @@ func physics_update(delta: float) -> void:
 	print(player.direction)
 	
 	#En un futuro estructurar mejor
-	if Input.is_action_pressed("Backwards"):
-		player.player_body.animationPlayer.play("Player_Pistol_Backwards_Aim_Walk", -1, 4, false)
-	if Input.is_action_pressed("Forward"):
-		player.player_body.animationPlayer.play("Player_Pistol_Forward_Aim_Walk", -1, 4, false)
-	if Input.is_action_pressed("Left"):
-		player.player_body.animationPlayer.play("Player_Pistol_Left_Aim_Walk", -1, 4, false)
-	if Input.is_action_pressed("Right"):
-		player.player_body.animationPlayer.play("Player_Pistol_Right_Aim_Walk", -1, 4, false)
+	play_anim.rpc()
 	
 	if not Input.is_action_pressed("ADS"):
 		player.curr_speed = player.walk_speed
@@ -53,3 +46,17 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Crouch")
 	
 	player.move_and_slide()
+
+@rpc("call_local", "any_peer")
+func play_anim():
+	if Input.is_action_pressed("Backwards"):
+		player.player_body.animationPlayer.play("Player_Pistol_Backwards_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Forward"):
+		player.player_body.animationPlayer.play("Player_Pistol_Forward_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Left"):
+		player.player_body.animationPlayer.play("Player_Pistol_Left_Aim_Walk", -1, 4, false)
+	if Input.is_action_pressed("Right"):
+		player.player_body.animationPlayer.play("Player_Pistol_Right_Aim_Walk", -1, 4, false)
+		
+	if is_multiplayer_authority():
+		print(player.player_body.animationPlayer.current_animation)

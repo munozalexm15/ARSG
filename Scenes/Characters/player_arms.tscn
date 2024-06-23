@@ -258,7 +258,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2]
+blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
