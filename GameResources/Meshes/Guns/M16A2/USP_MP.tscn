@@ -7,9 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_3s5vi"]
 script = ExtResource("2_mg1fj")
-weaponHandsPosition = Vector3(-0.364297, -0.546202, 0.120646)
-weaponHandsRotation = Vector3(-58, -67.9, 84.2)
-weaponHandsScale = Vector3(0.2, 0.2, 0.2)
+LeftHandPosition = Vector3(-0.108106, 2.38745, 0.557172)
+LeftHandRotation = Vector3(1.43719, -2.01537, -1.36455)
+RightHandPosition = Vector3(-0.363096, 2.4252, 0.471117)
+RightHandRotation = Vector3(1.40147, -2.14365, -2.13711)
 weaponType = "Pistol"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
@@ -163,7 +164,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysu7l")
 
 [node name="USP_MP" type="Node3D"]
-transform = Transform3D(0.163948, -0.0589788, -0.0981971, 0.105441, 0.0107103, 0.16961, -0.0447583, -0.190806, 0.0398737, -0.365468, -0.538706, 0.116889)
+transform = Transform3D(0.146095, -0.034393, -0.132187, 0.134126, -0.000459789, 0.148358, -0.0258161, -0.19702, 0.0227291, -0.365468, -0.538706, 0.116889)
 script = ExtResource("1_inbo8")
 weaponSkeletonData = SubResource("Resource_3s5vi")
 

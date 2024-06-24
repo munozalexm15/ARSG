@@ -15,6 +15,12 @@ signal updatedPose(weaponName)
 @onready var LeftHandB_Attachment : BoneAttachment3D = $player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment
 var actualWeaponName = ""
 
+@onready var leftArmTarget: Node3D = $LeftArmTarget
+@onready var rightArmTarget : Node3D = $RightArmTarget
+
+@onready var leftArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/LeftArmIK3D
+@onready var rightArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/RightArmIK3D
+
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
 
@@ -28,6 +34,11 @@ var actualWeaponName = ""
 func _ready():
 	skeleton.eyesHolder = eyesHolder
 	skeleton.arms = arms
+	leftArmIKSkeleton.interpolation = 1
+	rightArmIKSkeleton.interpolation = 1
+	leftArmIKSkeleton.start()
+	
+	rightArmIKSkeleton.start()
 
 func _on_arms_player_swapping_weapons():
 	
@@ -35,22 +46,29 @@ func _on_arms_player_swapping_weapons():
 		return
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name
-	print(actualWeaponName)
 	update_anim(arms.actualWeapon.weaponData.weaponType)
 	
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
-	var spawnedWeapon = actualWeapon.instantiate()
+	var spawnedWeapon : WeaponSkeleton = actualWeapon.instantiate()
 	
 	for child in LeftHandB_Attachment.get_children():
 		LeftHandB_Attachment.remove_child(child)
 	
 	LeftHandB_Attachment.add_child(spawnedWeapon)
+	
+	leftArmTarget.position = spawnedWeapon.weaponSkeletonData.LeftHandPosition
+	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation
+	rightArmTarget.position = spawnedWeapon.weaponSkeletonData.RightHandPosition
+	rightArmTarget.rotation = spawnedWeapon.weaponSkeletonData.RightHandRotation
 
 func update_anim(weapon):
-	if weapon == "AR":
-		animationPlayer.play("Player_Rifle_Idle")
-	
-	if weapon == "Pistol":
-		animationPlayer.play("Player_Pistol_Idle")
-	
 	updatedPose.emit(weapon)
+	pass
+	
+	#if weapon == "AR":
+		#animationPlayer.play("Player_Rifle_Idle")
+	#
+	#if weapon == "Pistol":
+		#animationPlayer.play("Player_Pistol_Idle")
+	#
+	

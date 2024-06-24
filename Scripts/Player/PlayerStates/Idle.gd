@@ -1,6 +1,7 @@
 extends PlayerState
 
 var last_rotation_horizontal = 0.0
+var rotation_value = 0
 
 @onready var eyesHolder : Node3D = $"../../Head/eyesHolder"
 
@@ -12,10 +13,12 @@ func enter(_msg := {}):
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
 
 func _physics_update(delta):
-	
 	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
 func update(_delta: float):
+	if rotation_value != int(player.rotation.y):
+		rotation_value = int(player.rotation.y)
+	
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")
 		

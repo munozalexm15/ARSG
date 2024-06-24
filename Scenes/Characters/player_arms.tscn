@@ -32,27 +32,9 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("../WeaponHolder:position")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("../WeaponHolder/M16A2:position")
+properties/7/path = NodePath("../WeaponHolder:visible")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("../WeaponHolder/M16A2:rotation")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("../WeaponHolder/USP:position")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("../WeaponHolder/USP:rotation")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("../WeaponHolder/USP:visible")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("../WeaponHolder/M16A2:visible")
-properties/12/spawn = true
-properties/12/replication_mode = 1
-properties/13/path = NodePath("../WeaponHolder:visible")
-properties/13/spawn = true
-properties/13/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
@@ -258,7 +240,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2]
+blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

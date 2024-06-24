@@ -89,6 +89,7 @@ height = 0.1
 is_hemisphere = true
 
 [sub_resource type="Gradient" id="Gradient_klljm"]
+offsets = PackedFloat32Array(0.36019, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xnr1t"]
@@ -144,6 +145,7 @@ material_override = SubResource("StandardMaterial3D_4bi2d")
 script = ExtResource("5_gq6vk")
 distance = 0.5
 base_width = 0.05
+smoothing_ratio = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]

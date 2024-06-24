@@ -34,10 +34,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	rotate_arms_bone(chest_bone_index, chest_org_bone_rot)
+	#rotate_arms_bone(chest_bone_index, chest_org_bone_rot)
 
-	rotate_arms_bone(neck_bone_index, neck_org_bone_rot)
-
+	#rotate_arms_bone(neck_bone_index, neck_org_bone_rot)
+	pass
+	
 func rotate_arms_bone(bone_index, org_bone_rot):
 	var bone_rotation: Quaternion = get_bone_pose_rotation(bone_index)
 	var bone_parent_bones_rotation: Quaternion = get_bone_global_pose(bone_index).basis.get_rotation_quaternion() * bone_rotation.normalized().inverse()

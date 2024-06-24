@@ -6,9 +6,10 @@
 
 [sub_resource type="Resource" id="Resource_vqhod"]
 script = ExtResource("2_fv4o0")
-weaponHandsPosition = Vector3(0.292, -0.22, 0.22)
-weaponHandsRotation = Vector3(-46, -17.4, 99.1)
-weaponHandsScale = Vector3(0.2, 0.2, 0.2)
+LeftHandPosition = Vector3(-0.166796, 2.20281, 1.01709)
+LeftHandRotation = Vector3(0.225745, -2.66605, -1.76133)
+RightHandPosition = Vector3(-0.313677, 2.1651, 0.349487)
+RightHandRotation = Vector3(1.66227, 0, 0)
 weaponType = "Rifle"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3x50"]
@@ -92,7 +93,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_31rxg")
 
 [node name="M16_MP" type="Node3D"]
-transform = Transform3D(0.0122967, -0.19525, -0.0415462, 0.137183, -0.0219732, 0.143868, -0.145016, -0.0373427, 0.132574, 0.292, -0.22, 0.22)
+transform = Transform3D(0.0122967, -0.19525, -0.0415463, 0.0951717, -0.0308555, 0.173177, -0.175474, -0.0304176, 0.0910144, 0.292, -0.130085, 0.22)
 script = ExtResource("1_nwncj")
 weaponSkeletonData = SubResource("Resource_vqhod")
 

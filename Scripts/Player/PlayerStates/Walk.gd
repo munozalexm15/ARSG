@@ -8,10 +8,9 @@ func enter(_msg := {}):
 		player.arms.animationPlayer.play("Idle")
 
 func physics_update(delta: float) -> void:
-	print(player.direction)
 	
 	#En un futuro estructurar mejor
-	play_anim.rpc()
+	#play_anim.rpc()
 	
 	if not Input.is_action_pressed("ADS"):
 		player.curr_speed = player.walk_speed
@@ -57,6 +56,4 @@ func play_anim():
 		player.player_body.animationPlayer.play("Player_Pistol_Left_Aim_Walk", -1, 4, false)
 	if Input.is_action_pressed("Right"):
 		player.player_body.animationPlayer.play("Player_Pistol_Right_Aim_Walk", -1, 4, false)
-		
-	if is_multiplayer_authority():
-		print(player.player_body.animationPlayer.current_animation)
+

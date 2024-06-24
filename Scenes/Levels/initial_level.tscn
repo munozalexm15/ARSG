@@ -77,11 +77,11 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31238, -8.73713, 0.0794935)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -2.25446, -2.36454)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
-size = Vector3(12.1213, 1, 11.793)
+size = Vector3(42.1761, 1, 29.3068)
 material = SubResource("StandardMaterial3D_kb8cs")
 
 [node name="Camera3D" type="Camera3D" parent="."]
