@@ -1,7 +1,8 @@
-[gd_scene load_steps=58 format=3 uid="uid://chs5wra0urxdf"]
+[gd_scene load_steps=59 format=3 uid="uid://chs5wra0urxdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Skeleton/PlayerSkeleton_Handler.gd" id="1_6kdiw"]
 [ext_resource type="Script" path="res://Scripts/Player/Skeleton/Arms_Skeleton_rotation.gd" id="2_6l7x0"]
+[ext_resource type="PackedScene" uid="uid://bug4ld5k8jamt" path="res://GameResources/Meshes/Guns/USP/USP_MP.tscn" id="3_8aapq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2x01"]
 resource_name = "Body_"
@@ -6866,24 +6867,33 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("LeftArmShoulder:rotation")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath("RightArmShoulder/RightArmTarget:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("RightArmShoulder/RightArmTarget:rotation")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("LeftArmShoulder/LeftArmTarget:position")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("LeftArmShoulder/LeftArmTarget:rotation")
+properties/10/spawn = true
+properties/10/replication_mode = 1
 
 [node name="PlayerSkeleton" type="Node3D"]
 script = ExtResource("1_6kdiw")
-
-[node name="LookAt" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137876, 2.23221, 1.41629)
 
 [node name="RightArmShoulder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223677, 2.46262, -0.195128)
 
 [node name="RightArmTarget" type="Node3D" parent="RightArmShoulder"]
-transform = Transform3D(0.989836, -0.0129906, -0.14162, -0.137369, 0.170401, -0.975753, 0.0368078, 0.985289, 0.166885, -0.206238, -0.208278, 0.551716)
+transform = Transform3D(0.912467, -0.324817, -0.248795, -0.239399, 0.0692731, -0.968447, 0.331803, 0.943236, -0.0145515, -0.0825681, -0.0923407, 0.720319)
 
 [node name="LeftArmShoulder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.290629, 2.46024, 0.313666)
 
 [node name="LeftArmTarget" type="Node3D" parent="LeftArmShoulder"]
-transform = Transform3D(0.334321, -0.778021, -0.531896, -0.941153, -0.245897, -0.231875, 0.0496122, 0.578116, -0.814445, -0.488166, -0.104826, 0.792975)
+transform = Transform3D(0.905097, -0.281077, 0.319054, 0.383894, 0.217543, -0.897385, 0.182827, 0.934704, 0.304801, -0.459067, -0.0846012, 0.282929)
 
 [node name="player_standing_anims" type="Node3D" parent="."]
 
@@ -7054,9 +7064,12 @@ mesh = SubResource("ArrayMesh_13fds")
 skin = SubResource("Skin_b4bj1")
 
 [node name="LeftHand_BAttachment" type="BoneAttachment3D" parent="player_standing_anims/Armature/Skeleton3D"]
-transform = Transform3D(0.27148, 0.122974, -0.954555, -0.948246, -0.135556, -0.287148, -0.164707, 0.983108, 0.0798087, 0.59218, 2.4458, 0.971532)
+transform = Transform3D(0.638344, 0.56353, 0.524357, 0.435106, 0.297775, -0.849713, -0.634979, 0.770561, -0.0551119, 0.41657, 2.57288, 0.624231)
 bone_name = "Hand.L_end"
 bone_idx = 9
+
+[node name="USP_MP" parent="player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment" instance=ExtResource("3_8aapq")]
+transform = Transform3D(0.0271731, 0.0718352, -0.184666, 0.191794, 0.0372765, 0.042723, 0.0497633, -0.182894, -0.0638237, -0.0230892, -0.63917, -0.0061295)
 
 [node name="LeftArmIK3D" type="SkeletonIK3D" parent="player_standing_anims/Armature/Skeleton3D"]
 process_priority = 1
@@ -7083,7 +7096,7 @@ libraries = {
 }
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://GameResources/Meshes/Guns/M16A2/M16_MP.tscn", "res://GameResources/Meshes/Guns/M16A2/USP_MP.tscn")
+_spawnable_scenes = PackedStringArray("res://GameResources/Meshes/Guns/M16A2/M16_MP.tscn")
 spawn_path = NodePath("../player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

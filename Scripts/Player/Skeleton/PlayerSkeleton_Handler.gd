@@ -43,6 +43,7 @@ func _ready():
 	rightArmIKSkeleton.start()
 
 func _process(delta):
+	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x
 
 func _on_arms_player_swapping_weapons():
@@ -67,8 +68,6 @@ func _on_arms_player_swapping_weapons():
 	rightArmTarget.position = spawnedWeapon.weaponSkeletonData.RightHandPosition
 	rightArmTarget.rotation = spawnedWeapon.weaponSkeletonData.RightHandRotation
 	
-	
-
 func update_anim(weapon):
 	updatedPose.emit(weapon)
 	pass

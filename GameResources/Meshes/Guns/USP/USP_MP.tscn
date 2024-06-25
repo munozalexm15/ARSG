@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmp7laqr7gpal"]
+[gd_scene load_steps=17 format=3 uid="uid://bug4ld5k8jamt"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon_mp.gd" id="1_inbo8"]
 [ext_resource type="Texture2D" uid="uid://ci7shwalilgfw" path="res://GameResources/Textures/Guns/USP/USP_Text.jpg" id="2_bnvss"]
@@ -7,10 +7,10 @@
 
 [sub_resource type="Resource" id="Resource_3s5vi"]
 script = ExtResource("2_mg1fj")
-LeftHandPosition = Vector3(-0.108106, 2.38745, 0.557172)
-LeftHandRotation = Vector3(1.43719, -2.01537, -1.36455)
-RightHandPosition = Vector3(-0.363096, 2.4252, 0.471117)
-RightHandRotation = Vector3(1.40147, -2.14365, -2.13711)
+LeftHandPosition = Vector3(-0.459067, -0.0846012, 0.282929)
+LeftHandRotation = Vector3(1.11381, 0.808241, 1.05524)
+RightHandPosition = Vector3(-0.0825681, -0.0923407, 0.720319)
+RightHandRotation = Vector3(1.31892, -1.62922, -1.28913)
 weaponType = "Pistol"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
@@ -164,7 +164,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysu7l")
 
 [node name="USP_MP" type="Node3D"]
-transform = Transform3D(0.146095, -0.034393, -0.132187, 0.134126, -0.000459789, 0.148358, -0.0258161, -0.19702, 0.0227291, -0.365468, -0.538706, 0.116889)
+transform = Transform3D(0.0271732, 0.0718353, -0.184666, 0.191795, 0.0372765, 0.042723, 0.0497635, -0.182894, -0.0638237, -0.0230892, -0.63917, -0.0061295)
 script = ExtResource("1_inbo8")
 weaponSkeletonData = SubResource("Resource_3s5vi")
 
