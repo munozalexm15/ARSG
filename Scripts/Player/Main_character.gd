@@ -117,7 +117,7 @@ func _input(event : InputEvent):
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
-		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50  ))
+		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
 	
 		
 		

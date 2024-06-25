@@ -93,7 +93,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_3bcrb"]
 resource_name = "Reload"
-length = 0.2
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -101,10 +102,10 @@ tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.328122, -0.907571)]
+"values": [Vector3(0, 0, 0), Vector3(0, -1.37357, -0.907571)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -113,10 +114,10 @@ tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(1.2, -2, 1.219)]
+"values": [Vector3(-0.03, -0.701, 0), Vector3(-1.225, 1.84, 1.219)]
 }
 
 [sub_resource type="Animation" id="Animation_yj86q"]
@@ -240,7 +241,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2]
+blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

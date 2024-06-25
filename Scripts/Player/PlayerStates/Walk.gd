@@ -10,7 +10,7 @@ func enter(_msg := {}):
 func physics_update(delta: float) -> void:
 	
 	#En un futuro estructurar mejor
-	#play_anim.rpc()
+	play_anim.rpc()
 	
 	if not Input.is_action_pressed("ADS"):
 		player.curr_speed = player.walk_speed
@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Air", {jump = true})
 	
 	if player.arms.state_machine.state.name != "Melee":
-		if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor() and Input.is_action_just_pressed("Sprint") and not Input.is_action_pressed("ADS") :
+		if player.input_direction.y <= -0.7 and player.is_on_floor() and Input.is_action_just_pressed("Sprint") and not Input.is_action_pressed("ADS") :
 			state_machine.transition_to("Run")
 	
 	if Input.is_action_just_pressed("Crouch"):
@@ -48,12 +48,33 @@ func physics_update(delta: float) -> void:
 
 @rpc("call_local", "any_peer")
 func play_anim():
-	if Input.is_action_pressed("Backwards"):
-		player.player_body.animationPlayer.play("Player_Pistol_Backwards_Aim_Walk", -1, 4, false)
-	if Input.is_action_pressed("Forward"):
-		player.player_body.animationPlayer.play("Player_Pistol_Forward_Aim_Walk", -1, 4, false)
+	var walk_type = "Walk"
+	if Input.is_action_pressed("ADS"):
+		walk_type = "Aim"
+	
+	#Just backwards
+	if Input.is_action_pressed("Backwards") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
+		player.player_body.animationPlayer.play(walk_type + "_Backwards", -1, 1, false)
+	#Just forward
+	if Input.is_action_pressed("Forward") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
+		player.player_body.animationPlayer.play(walk_type + "_Forward", -1, 1, false)
+	
 	if Input.is_action_pressed("Left"):
-		player.player_body.animationPlayer.play("Player_Pistol_Left_Aim_Walk", -1, 4, false)
+		player.player_body.animationPlayer.play(walk_type + "_Left", -1, 1, false)
+	
 	if Input.is_action_pressed("Right"):
-		player.player_body.animationPlayer.play("Player_Pistol_Right_Aim_Walk", -1, 4, false)
+		player.player_body.animationPlayer.play(walk_type + "_Right", -1, 1, false)
+	
+	#Backwards left
+	if Input.is_action_pressed("Backwards") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
+		player.player_body.animationPlayer.play(walk_type + "_BackwardsLeft", -1, 1, false)
+	#Backwards right
+	elif Input.is_action_pressed("Backwards") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
+		player.player_body.animationPlayer.play(walk_type + "_BackwardsRight", -1, 1, false)
 
+	if Input.is_action_pressed("Forward") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
+		player.player_body.animationPlayer.play(walk_type + "_ForwardLeft", -1, 1, false)
+	
+	elif Input.is_action_pressed("Forward") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
+		player.player_body.animationPlayer.play(walk_type + "_ForwardRight", -1, 1, false)
+	

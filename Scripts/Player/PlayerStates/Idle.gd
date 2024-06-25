@@ -7,12 +7,22 @@ var rotation_value = 0
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
-	player.player_body.animationPlayer.play("Idle")
+	if player.state_machine.old_state.name == "Air":
+		player.player_body.animationPlayer.play("Air_Land", -1, 2, false)
+	else:
+		player.player_body.animationPlayer.play("Idle")
 	player.velocity = Vector3.ZERO
 	player.direction = Vector3.ZERO
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
 
 func _physics_update(delta):
+	if int(player.rotation.y) < rotation_value:
+		rotation_value = int(player.rotation.y)
+		player.player_body.animationPlayer.play("Idle_RotateRight")
+	else:
+		rotation_value = int(player.rotation.y)
+		player.player_body.animationPlayer.play("Idle_RotateLeft")
+	
 	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
 func update(_delta: float):

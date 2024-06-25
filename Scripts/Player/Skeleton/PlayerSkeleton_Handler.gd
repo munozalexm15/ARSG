@@ -11,7 +11,6 @@ signal updatedPose(weaponName)
 
 @onready var animationPlayer : AnimationPlayer = $PlayerModel/AnimationPlayer
 
-@onready var skeleton : Skeleton3D = $PlayerModel/Armature/Skeleton3D
 @onready var LeftHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/LeftHand_BAttachment
 var actualWeaponName = ""
 
@@ -36,32 +35,27 @@ var actualWeaponName = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	skeleton.eyesHolder = eyesHolder
-	skeleton.arms = arms
-	leftArmIKSkeleton.interpolation = 1
-	rightArmIKSkeleton.interpolation = 1
+	leftArmIKSkeleton.interpolation = 0.5
+	rightArmIKSkeleton.interpolation = 0.5
 	headIKSkeleton.interpolation = 1
 	leftArmIKSkeleton.start()
 	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
 
-func _process(delta):
+func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x
 	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x
 
 func _on_arms_player_swapping_weapons():
-	
 	if not multiplayer.connected_to_server:
 		return
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name
-	
 	update_anim(arms.actualWeapon.weaponData.weaponType)
-	
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
 	var spawnedWeapon : WeaponSkeleton = actualWeapon.instantiate()
-	
+	print(spawnedWeapon.weaponSkeletonData.weaponType)
 	for child in LeftHandB_Attachment.get_children():
 		LeftHandB_Attachment.remove_child(child)
 	
@@ -82,4 +76,7 @@ func update_anim(weapon):
 	#if weapon == "Pistol":
 		#animationPlayer.play("Player_Pistol_Idle")
 	#
-	
+
+func _on_animation_player_animation_finished(_anim_name):
+	if arms.player.state == "Idle":
+		animationPlayer.play("Idle")
