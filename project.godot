@@ -28,10 +28,6 @@ window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_rl_agents/plugin.cfg")
-
 [filesystem]
 
 import/fbx/enabled=false

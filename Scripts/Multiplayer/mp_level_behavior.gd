@@ -11,7 +11,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 @onready var bullets_node = $BulletsParent
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	init_player(Network.unique_id)
+	if is_multiplayer_authority():
+		init_player.rpc(Network.unique_id)
 	Network.game = self
 
 func start_game():
@@ -21,7 +22,7 @@ func start_game():
 func _process(_delta):
 	pass
 
-
+@rpc("any_peer", "call_local")
 func init_player(peer_id):
 	
 	var player : Player = PlayerScene.instantiate()

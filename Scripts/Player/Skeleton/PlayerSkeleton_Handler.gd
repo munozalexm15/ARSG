@@ -9,20 +9,22 @@ signal updatedPose(weaponName)
 @export var armsNode := NodePath()
 @onready var arms : Arms = get_node(armsNode)
 
-@onready var animationPlayer : AnimationPlayer = $player_standing_anims/AnimationPlayer
+@onready var animationPlayer : AnimationPlayer = $PlayerModel/AnimationPlayer
 
-@onready var skeleton : Skeleton3D = $player_standing_anims/Armature/Skeleton3D
-@onready var LeftHandB_Attachment : BoneAttachment3D = $player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment
+@onready var skeleton : Skeleton3D = $PlayerModel/Armature/Skeleton3D
+@onready var LeftHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/LeftHand_BAttachment
 var actualWeaponName = ""
 
 @onready var leftArmShoulder: Node3D = $LeftArmShoulder
 @onready var rightArmShoulder: Node3D = $RightArmShoulder
 
+@onready var headTarget : Node3D = $HeadTarget
 @onready var leftArmTarget: Node3D = $LeftArmShoulder/LeftArmTarget
 @onready var rightArmTarget : Node3D = $RightArmShoulder/RightArmTarget
 
-@onready var leftArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/LeftArmIK3D
-@onready var rightArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/RightArmIK3D
+@onready var headIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/HeadIK3D
+@onready var leftArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/LeftArmIK3D
+@onready var rightArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/RightArmIK3D
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
 
@@ -38,11 +40,13 @@ func _ready():
 	skeleton.arms = arms
 	leftArmIKSkeleton.interpolation = 1
 	rightArmIKSkeleton.interpolation = 1
+	headIKSkeleton.interpolation = 1
 	leftArmIKSkeleton.start()
-	
+	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
 
 func _process(delta):
+	headTarget.rotation.x = -arms.player.eyes.rotation.x
 	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x
 
