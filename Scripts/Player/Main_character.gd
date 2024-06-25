@@ -118,7 +118,7 @@ func _input(event : InputEvent):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50  ))
-		
+	
 		
 		
 	#if Input.is_action_just_pressed("Pause") and not get_tree().paused:

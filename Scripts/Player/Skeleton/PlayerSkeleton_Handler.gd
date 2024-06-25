@@ -15,12 +15,14 @@ signal updatedPose(weaponName)
 @onready var LeftHandB_Attachment : BoneAttachment3D = $player_standing_anims/Armature/Skeleton3D/LeftHand_BAttachment
 var actualWeaponName = ""
 
-@onready var leftArmTarget: Node3D = $LeftArmTarget
-@onready var rightArmTarget : Node3D = $RightArmTarget
+@onready var leftArmShoulder: Node3D = $LeftArmShoulder
+@onready var rightArmShoulder: Node3D = $RightArmShoulder
+
+@onready var leftArmTarget: Node3D = $LeftArmShoulder/LeftArmTarget
+@onready var rightArmTarget : Node3D = $RightArmShoulder/RightArmTarget
 
 @onready var leftArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/LeftArmIK3D
 @onready var rightArmIKSkeleton : SkeletonIK3D = $player_standing_anims/Armature/Skeleton3D/RightArmIK3D
-
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
 
@@ -40,12 +42,16 @@ func _ready():
 	
 	rightArmIKSkeleton.start()
 
+func _process(delta):
+	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x
+
 func _on_arms_player_swapping_weapons():
 	
 	if not multiplayer.connected_to_server:
 		return
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name
+	
 	update_anim(arms.actualWeapon.weaponData.weaponType)
 	
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
@@ -60,6 +66,8 @@ func _on_arms_player_swapping_weapons():
 	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation
 	rightArmTarget.position = spawnedWeapon.weaponSkeletonData.RightHandPosition
 	rightArmTarget.rotation = spawnedWeapon.weaponSkeletonData.RightHandRotation
+	
+	
 
 func update_anim(weapon):
 	updatedPose.emit(weapon)

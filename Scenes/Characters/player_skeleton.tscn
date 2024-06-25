@@ -6854,27 +6854,36 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("player_standing_anims/AnimationPlayer:speed_scale")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("RightArmTarget:position")
+properties/3/path = NodePath("RightArmShoulder:position")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("RightArmTarget:rotation")
+properties/4/path = NodePath("RightArmShoulder:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("LeftArmTarget:position")
+properties/5/path = NodePath("LeftArmShoulder:position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("LeftArmTarget:rotation")
+properties/6/path = NodePath("LeftArmShoulder:rotation")
 properties/6/spawn = true
 properties/6/replication_mode = 1
 
 [node name="PlayerSkeleton" type="Node3D"]
 script = ExtResource("1_6kdiw")
 
-[node name="RightArmTarget" type="Node3D" parent="."]
-transform = Transform3D(0.989836, -0.0129906, -0.14162, -0.142214, -0.0904167, -0.985698, 0, 0.995819, -0.0913452, -0.363096, 2.4252, 0.471117)
+[node name="LookAt" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137876, 2.23221, 1.41629)
 
-[node name="LeftArmTarget" type="Node3D" parent="."]
-transform = Transform3D(0.787712, -0.604192, -0.120259, -0.130385, 0.0272792, -0.991088, 0.602088, 0.796372, -0.0572892, -0.108106, 2.38745, 0.557172)
+[node name="RightArmShoulder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223677, 2.46262, -0.195128)
+
+[node name="RightArmTarget" type="Node3D" parent="RightArmShoulder"]
+transform = Transform3D(0.989836, -0.0129906, -0.14162, -0.137369, 0.170401, -0.975753, 0.0368078, 0.985289, 0.166885, -0.206238, -0.208278, 0.551716)
+
+[node name="LeftArmShoulder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.290629, 2.46024, 0.313666)
+
+[node name="LeftArmTarget" type="Node3D" parent="LeftArmShoulder"]
+transform = Transform3D(0.334321, -0.778021, -0.531896, -0.941153, -0.245897, -0.231875, 0.0496122, 0.578116, -0.814445, -0.488166, -0.104826, 0.792975)
 
 [node name="player_standing_anims" type="Node3D" parent="."]
 
@@ -6882,6 +6891,7 @@ transform = Transform3D(0.787712, -0.604192, -0.120259, -0.130385, 0.0272792, -0
 transform = Transform3D(0.586667, 0.0390111, -0.808888, -0.102902, 0.994334, -0.0266778, 0.803264, 0.0988876, 0.587357, -0.065135, -0.0794966, -0.163215)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="player_standing_anims/Armature"]
+transform = Transform3D(1, -7.45058e-09, 2.98023e-08, 0, 1, 3.72529e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0, 0)
 bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 2.79397e-09, 1.39698e-08, -2.79397e-09, 1, 7.45058e-09, -1.39698e-08, -7.45058e-09, 1, -7.33417e-09, 7.45058e-09, -1.39698e-08)
@@ -7039,11 +7049,12 @@ bones/21/scale = Vector3(1, 1, 1)
 script = ExtResource("2_6l7x0")
 
 [node name="PoliceOfficer" type="MeshInstance3D" parent="player_standing_anims/Armature/Skeleton3D"]
+transform = Transform3D(1, -7.45058e-09, 2.98023e-08, 0, 1, 3.72529e-09, -5.96046e-08, -7.45058e-09, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_13fds")
 skin = SubResource("Skin_b4bj1")
 
 [node name="LeftHand_BAttachment" type="BoneAttachment3D" parent="player_standing_anims/Armature/Skeleton3D"]
-transform = Transform3D(0.959176, 0.28243, -0.014585, -0.0393773, 0.0823054, -0.995827, -0.280052, 0.955748, 0.0900669, 0.357262, 2.54294, 0.596549)
+transform = Transform3D(0.27148, 0.122974, -0.954555, -0.948246, -0.135556, -0.287148, -0.164707, 0.983108, 0.0798087, 0.59218, 2.4458, 0.971532)
 bone_name = "Hand.L_end"
 bone_idx = 9
 
@@ -7051,15 +7062,22 @@ bone_idx = 9
 process_priority = 1
 root_bone = &"UpperArm.L"
 tip_bone = &"Hand.L"
-target_node = NodePath("../../../../LeftArmTarget")
+use_magnet = true
+magnet = Vector3(1, 0, 0)
+target_node = NodePath("../../../../LeftArmShoulder/LeftArmTarget")
 
 [node name="RightArmIK3D" type="SkeletonIK3D" parent="player_standing_anims/Armature/Skeleton3D"]
 process_priority = 1
 root_bone = &"UpperArm.R"
 tip_bone = &"Hand.R"
-target_node = NodePath("../../../../RightArmTarget")
+use_magnet = true
+magnet = Vector3(-4.55, 0, 0)
+target_node = NodePath("../../../../RightArmShoulder/RightArmTarget")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player_standing_anims"]
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 1
 libraries = {
 "": SubResource("AnimationLibrary_tof20")
 }
