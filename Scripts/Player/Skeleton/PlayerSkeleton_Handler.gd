@@ -12,14 +12,21 @@ signal updatedPose(weaponName)
 @onready var animationPlayer : AnimationPlayer = $PlayerModel/AnimationPlayer
 
 @onready var LeftHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/LeftHand_BAttachment
+@onready var RightHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/RightHand_BAttachment
 var actualWeaponName = ""
 
 @onready var leftArmShoulder: Node3D = $LeftArmShoulder
 @onready var rightArmShoulder: Node3D = $RightArmShoulder
 
+var leftShoulderHeight
+var rightShoulderHeight
+
 @onready var headTarget : Node3D = $HeadTarget
 @onready var leftArmTarget: Node3D = $LeftArmShoulder/LeftArmTarget
 @onready var rightArmTarget : Node3D = $RightArmShoulder/RightArmTarget
+
+var standingRightArmTargetPosition : Vector3
+var standingLeftArmTargetPosition : Vector3
 
 @onready var headIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/HeadIK3D
 @onready var leftArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/LeftArmIK3D
@@ -37,15 +44,20 @@ var actualWeaponName = ""
 func _ready():
 	leftArmIKSkeleton.interpolation = 0.5
 	rightArmIKSkeleton.interpolation = 0.5
-	headIKSkeleton.interpolation = 1
+	headIKSkeleton.interpolation = 0.5
 	leftArmIKSkeleton.start()
 	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
+	leftShoulderHeight = leftArmShoulder.position.y
+	rightShoulderHeight = rightArmShoulder.position.y
 
 func _process(_delta):
-	headTarget.rotation.x = -arms.player.eyes.rotation.x
-	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
-	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x
+	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
+	rightArmShoulder.rotation.x = (-arms.player.eyes.rotation.x / 2)
+	if RightHandB_Attachment.get_child_count() <= 0:
+		leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
+	else:
+		leftArmShoulder.rotation.x = 0
 
 func _on_arms_player_swapping_weapons():
 	if not multiplayer.connected_to_server:
@@ -55,11 +67,17 @@ func _on_arms_player_swapping_weapons():
 	update_anim(arms.actualWeapon.weaponData.weaponType)
 	var actualWeapon : PackedScene = arms.actualWeapon.weaponData.weaponExternalScene
 	var spawnedWeapon : WeaponSkeleton = actualWeapon.instantiate()
-	print(spawnedWeapon.weaponSkeletonData.weaponType)
+
 	for child in LeftHandB_Attachment.get_children():
 		LeftHandB_Attachment.remove_child(child)
 	
-	LeftHandB_Attachment.add_child(spawnedWeapon)
+	for child in RightHandB_Attachment.get_children():
+		RightHandB_Attachment.remove_child(child)
+
+	if spawnedWeapon.weaponSkeletonData.weaponType == "Pistol":
+		RightHandB_Attachment.add_child(spawnedWeapon)
+	else:
+		LeftHandB_Attachment.add_child(spawnedWeapon)
 	
 	leftArmTarget.position = spawnedWeapon.weaponSkeletonData.LeftHandPosition
 	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation

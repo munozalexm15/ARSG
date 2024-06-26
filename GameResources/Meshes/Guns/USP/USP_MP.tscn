@@ -7,11 +7,11 @@
 
 [sub_resource type="Resource" id="Resource_2baxt"]
 script = ExtResource("2_mg1fj")
-LeftHandPosition = Vector3(0.111753, -0.13031, -0.123397)
-LeftHandRotation = Vector3(45, 0, 0)
-RightHandPosition = Vector3(0.219146, 0, 1.06514)
-RightHandRotation = Vector3(0, 0, 0)
-weaponType = ""
+LeftHandPosition = Vector3(0.184093, -1.24415, 0.0128185)
+LeftHandRotation = Vector3(0.0283641, 1.01745, 1.55328)
+RightHandPosition = Vector3(0.301467, 0, 0.904424)
+RightHandRotation = Vector3(1.73252, 0, 0)
+weaponType = "Pistol"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
 resource_name = "Material.020"

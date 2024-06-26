@@ -91,19 +91,19 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
 				return
-			apply_recoil()
+			apply_recoil.rpc()
 			if weaponData.bulletsInMag > 0:
 				shoot()
 	
 		if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			apply_recoil()
+			apply_recoil.rpc()
 			if weaponData.bulletsInMag > 0:
 				shoot()
 			time_to_shoot = weaponData.cadency * delta
 		
 		if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			isBurstActive = true
-			apply_recoil()
+			apply_recoil.rpc()
 			if weaponData.bulletsInMag > 0:
 				shoot()
 				burstBullet += 1
@@ -145,7 +145,8 @@ func _physics_process(delta):
 		#if muzzleSmoke.base_width <= 0:
 			#muzzleSmoke.segments = 0
 			#removeSmokeMuzzle = false
-		
+
+@rpc("any_peer", "call_local", "reliable")
 func apply_recoil():
 	if Input.is_action_pressed("ADS"):
 		recoil_amplitude.y *= -0.2 if randf() > 0.5 else 0.2
@@ -157,6 +158,7 @@ func apply_recoil():
 	target_rot.x = recoil_rotation_x.sample(0) * -recoil_amplitude.x
 	target_pos.z = recoil_position_z.sample(0) * recoil_amplitude.z
 	current_time = 0
+
 
 func shoot():
 	#get recoil script from child node and apply some to the weapon

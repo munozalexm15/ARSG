@@ -1277,6 +1277,12 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("Muzzle:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath(".:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath(".:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
 
 [node name="M16A2" type="Node3D"]
 script = ExtResource("1_h8exn")
@@ -1713,3 +1719,7 @@ bus = &"Weapons"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_o80mk")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn")
+spawn_path = NodePath("../Muzzle")
