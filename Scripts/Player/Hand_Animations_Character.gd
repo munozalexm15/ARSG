@@ -54,6 +54,8 @@ func _ready():
 	playerSwappingWeapons.emit()
 	
 	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
+	for weapon in weaponHolder.get_children():
+		weapon.position = weapon.weaponData.weaponSpawnPosition
 
 func _input(event):
 	if not is_multiplayer_authority():

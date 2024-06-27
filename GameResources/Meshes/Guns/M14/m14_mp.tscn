@@ -247,3 +247,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.0695651, 0, -0.0185072, -0.0185072, -8.58126e-09, -0.0695651, -1.07266e-09, 0.0719848, -8.58126e-09, -0.105399, 1.39242, -0.0163241)
 mesh = SubResource("ArrayMesh_4ao6o")
 skeleton = NodePath("")
+
+[node name="RHand_Grip" type="Node3D" parent="."]
+transform = Transform3D(0.258819, 0.965927, 1.49012e-07, 1.78814e-07, 8.9407e-08, -1, -0.965926, 0.258819, 5.96046e-08, -0.920661, 0.93306, 0.0325562)

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://djpuiinpxuhnt"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://djpuiinpxuhnt"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_xd4rt"]
 [ext_resource type="Texture2D" uid="uid://d2seclicr8qag" path="res://GameResources/Textures/GunsIcons/Remington870_Icon.png" id="2_3uapj"]
+[ext_resource type="PackedScene" uid="uid://ca8gp043j8sgb" path="res://GameResources/Meshes/Guns/Remington870/R870_MP.tscn" id="2_o08oc"]
 
 [resource]
 script = ExtResource("1_xd4rt")
@@ -25,3 +26,4 @@ weaponScene = "res://Scenes/Guns/remington_870.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn"
 weaponSpawnPosition = Vector3(-3.38965, 0.546, 0.815)
 weaponImage = ExtResource("2_3uapj")
+weaponExternalScene = ExtResource("2_o08oc")

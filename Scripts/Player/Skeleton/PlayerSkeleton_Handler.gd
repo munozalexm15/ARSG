@@ -12,7 +12,7 @@ signal updatedPose(weaponName)
 @onready var animationPlayer : AnimationPlayer = $PlayerModel/AnimationPlayer
 
 @onready var LeftHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/LeftHand_BAttachment
-@onready var RightHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/RightHand_BAttachment
+
 var actualWeaponName = ""
 
 @onready var leftArmShoulder: Node3D = $LeftArmShoulder
@@ -54,10 +54,7 @@ func _ready():
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
 	rightArmShoulder.rotation.x = (-arms.player.eyes.rotation.x / 2)
-	if RightHandB_Attachment.get_child_count() <= 0:
-		leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
-	else:
-		leftArmShoulder.rotation.x = 0
+	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
 	if (LeftHandB_Attachment.get_child_count() > 0):
 		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
 
@@ -72,14 +69,8 @@ func _on_arms_player_swapping_weapons():
 
 	for child in LeftHandB_Attachment.get_children():
 		LeftHandB_Attachment.remove_child(child)
-	
-	for child in RightHandB_Attachment.get_children():
-		RightHandB_Attachment.remove_child(child)
 
-	if spawnedWeapon.weaponSkeletonData.weaponType == "Pistol":
-		RightHandB_Attachment.add_child(spawnedWeapon)
-	else:
-		LeftHandB_Attachment.add_child(spawnedWeapon)
+	LeftHandB_Attachment.add_child(spawnedWeapon)
 	
 	leftArmTarget.position = spawnedWeapon.weaponSkeletonData.LeftHandPosition
 	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation
