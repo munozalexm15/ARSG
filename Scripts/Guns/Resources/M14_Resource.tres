@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://b5k0vb48uadrv"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://b5k0vb48uadrv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_rfvcw"]
+[ext_resource type="PackedScene" uid="uid://2s6rhrwudj7o" path="res://GameResources/Meshes/Guns/M14/m14_mp.tscn" id="2_g3sfj"]
 [ext_resource type="Texture2D" uid="uid://dae3hkw8ofmjj" path="res://GameResources/Textures/GunsIcons/M14_Icon.png" id="2_u2a02"]
 
 [resource]
@@ -25,3 +26,4 @@ weaponScene = "res://Scenes/Guns/M14.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
 weaponSpawnPosition = Vector3(1.42224, -0.812206, 1.27714)
 weaponImage = ExtResource("2_u2a02")
+weaponExternalScene = ExtResource("2_g3sfj")

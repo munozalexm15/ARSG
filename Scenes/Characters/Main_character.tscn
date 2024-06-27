@@ -189,7 +189,7 @@ properties/4/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 properties/5/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
-properties/5/spawn = false
+properties/5/spawn = true
 properties/5/replication_mode = 1
 properties/6/path = NodePath(".:time_to_respawn")
 properties/6/spawn = true
@@ -249,7 +249,7 @@ script = ExtResource("3_1c2ms")
 hudNode = NodePath("../../../../UI")
 
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
-transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0, -0.19378, -0.041)
+transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.135596, -0.303364, 0.0546597)
 rayNode = NodePath("../InteractRay")
 cameraNode = NodePath("../PlayerPOV")
 playerNode = NodePath("../../../..")

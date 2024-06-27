@@ -43,7 +43,7 @@ var standingLeftArmTargetPosition : Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	leftArmIKSkeleton.interpolation = 0.5
-	rightArmIKSkeleton.interpolation = 0.5
+	rightArmIKSkeleton.interpolation = 1
 	headIKSkeleton.interpolation = 0.5
 	leftArmIKSkeleton.start()
 	headIKSkeleton.start()
@@ -58,6 +58,8 @@ func _process(_delta):
 		leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
 	else:
 		leftArmShoulder.rotation.x = 0
+	if (LeftHandB_Attachment.get_child_count() > 0):
+		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
 
 func _on_arms_player_swapping_weapons():
 	if not multiplayer.connected_to_server:

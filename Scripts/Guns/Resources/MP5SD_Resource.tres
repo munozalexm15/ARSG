@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://d32y604kn4ny4"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_8lpsg"]
-[ext_resource type="PackedScene" uid="uid://brocukvma6tr3" path="res://GameResources/Meshes/Guns/M16A2/M16_MP.tscn" id="2_dll0a"]
 [ext_resource type="Texture2D" uid="uid://dsnba6qhhfa3c" path="res://GameResources/Textures/GunsIcons/MP5SD_Icon.png" id="2_uuyt4"]
+[ext_resource type="PackedScene" uid="uid://c047bope111gi" path="res://GameResources/Meshes/Guns/MP5/MP5SD_MP.tscn" id="2_xrxq0"]
 
 [resource]
 script = ExtResource("1_8lpsg")
@@ -26,4 +26,4 @@ weaponScene = "res://Scenes/Guns/MP5SD.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.56794, -0.979786, 1.25379)
 weaponImage = ExtResource("2_uuyt4")
-weaponExternalScene = ExtResource("2_dll0a")
+weaponExternalScene = ExtResource("2_xrxq0")

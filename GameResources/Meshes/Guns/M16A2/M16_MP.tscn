@@ -1,10 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://brocukvma6tr3"]
+[gd_scene load_steps=11 format=3 uid="uid://brocukvma6tr3"]
 
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="1_ma5ja"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon_mp.gd" id="1_nwncj"]
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponSkeletonData.gd" id="2_fv4o0"]
-[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="4_2bm8n"]
-[ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="5_i76g6"]
 
 [sub_resource type="Resource" id="Resource_vqhod"]
 script = ExtResource("2_fv4o0")
@@ -94,51 +92,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_31rxg")
 
-[sub_resource type="Gradient" id="Gradient_jgngh"]
-colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_q5wis"]
-gradient = SubResource("Gradient_jgngh")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hi6r6"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture1D_q5wis")
-
-[sub_resource type="Curve" id="Curve_xrebh"]
-_data = [Vector2(0, 0.0366615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ygkl"]
-transparency = 1
-albedo_texture = ExtResource("5_i76g6")
-emission_enabled = true
-emission = Color(0.901961, 0.482353, 0, 1)
-emission_energy_multiplier = 16.0
-backlight = Color(0.482353, 0.223529, 0, 1)
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-proximity_fade_distance = 28.45
-
-[sub_resource type="QuadMesh" id="QuadMesh_pcwlk"]
-material = SubResource("StandardMaterial3D_6ygkl")
-size = Vector2(0.2, 0.2)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4r70x"]
-properties/0/path = NodePath("Muzzle/MuzzleFlash:emitting")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Muzzle/MuzzleFlashLight:visible")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [node name="M16_MP" type="Node3D"]
-transform = Transform3D(0.0122967, -0.19525, -0.0415463, 0.140086, -0.021214, 0.141159, -0.142214, -0.0377791, 0.135454, 0.292, -0.130085, 0.22)
+transform = Transform3D(0.022771, -0.195071, -0.0377954, 0.111588, -0.0189226, 0.164893, -0.164407, -0.0398616, 0.106684, 0.292, -0.130085, 0.22)
 script = ExtResource("1_nwncj")
 weaponSkeletonData = SubResource("Resource_vqhod")
 
@@ -151,46 +106,3 @@ skeleton = NodePath("")
 transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.378654, -0.0945971, 0)
 mesh = SubResource("ArrayMesh_guq61")
 skeleton = NodePath("")
-
-[node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(1, -2.68221e-07, 5.96046e-08, -2.98023e-08, 2.38419e-07, -1, 0, 0.999999, -2.98023e-08, 4.43742, 1.93606, -0.0232252)
-
-[node name="MuzzleSmoke" type="MeshInstance3D" parent="Muzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707574, 1.86323)
-material_override = SubResource("StandardMaterial3D_hi6r6")
-script = ExtResource("4_2bm8n")
-lifetime = 0.4
-width_profile = SubResource("Curve_xrebh")
-smoothing_iterations = 3
-axis = 2
-
-[node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
-transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
-emitting = false
-amount = 1
-lifetime = 0.05
-one_shot = true
-randomness = 1.0
-local_coords = true
-draw_order = 1
-mesh = SubResource("QuadMesh_pcwlk")
-emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-angle_min = -28.8
-angle_max = 14.4
-
-[node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
-transform = Transform3D(1, 4.76838e-08, 1.19209e-08, -4.76838e-08, 1, -3.57626e-08, -1.19209e-08, 3.57626e-08, 1, 0.02477, 1.19209e-07, 0)
-visible = false
-light_color = Color(0.721569, 0.321569, 0, 1)
-light_energy = 0.5
-light_size = 0.395
-light_specular = 0.25
-distance_fade_begin = 2.0
-distance_fade_length = 2.0
-omni_range = 1.0
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_4r70x")
