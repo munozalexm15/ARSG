@@ -67,6 +67,7 @@ func _input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
+	
 	if Input.is_action_just_pressed("Flashlight"):
 		flashlight.visible = !flashlight.visible
 

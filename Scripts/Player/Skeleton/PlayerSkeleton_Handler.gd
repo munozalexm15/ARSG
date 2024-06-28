@@ -22,7 +22,7 @@ var leftShoulderHeight
 var rightShoulderHeight
 
 @onready var headTarget : Node3D = $HeadTarget
-@onready var leftArmTarget: Node3D = $LeftArmShoulder/LeftArmTarget
+@onready var leftArmTarget: Player_Recoil = $LeftArmShoulder/LeftArmTarget
 @onready var rightArmTarget : Node3D = $RightArmShoulder/RightArmTarget
 
 var standingRightArmTargetPosition : Vector3
@@ -71,6 +71,8 @@ func _on_arms_player_swapping_weapons():
 		LeftHandB_Attachment.remove_child(child)
 
 	LeftHandB_Attachment.add_child(spawnedWeapon)
+	
+	leftArmTarget.originalHandPos = spawnedWeapon.weaponSkeletonData.LeftHandPosition
 	
 	leftArmTarget.position = spawnedWeapon.weaponSkeletonData.LeftHandPosition
 	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation

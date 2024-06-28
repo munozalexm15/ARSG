@@ -58,7 +58,7 @@ var lerp_air_speed = 3
 #---OTHER
 var state
 const mouse_sensibility = 0.4
-var crouching_depth = 0.8
+var crouching_depth = 0.4
 var initialHead_pos = 0.0
 var initialHands_pos = 0.0
 
@@ -93,7 +93,7 @@ func _ready():
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
-		arms.visible = false
+		
 		return
 	
 	player_body.visible = false
@@ -128,7 +128,9 @@ func _input(event : InputEvent):
 		#get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
+
 	if not is_multiplayer_authority():
+		arms.visible = false
 		return
 		
 	if health < 100:

@@ -39,7 +39,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.04, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -79,7 +79,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 0.258816, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_si43w"]
@@ -108,7 +108,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oeq1r"]
@@ -152,7 +152,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
@@ -179,16 +179,16 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("Head/eyesHolder:position")
+properties/2/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("Head/eyesHolder:rotation")
+properties/3/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath(".:time_to_respawn")
+properties/4/path = NodePath("Head/eyesHolder:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath(".:can_respawn")
+properties/5/path = NodePath("Head/eyesHolder:position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
 
@@ -225,9 +225,8 @@ snappiness = 4.0
 returnSpeed = 10.0
 
 [node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
-process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
-fov = 90.0
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -243,7 +242,7 @@ script = ExtResource("3_1c2ms")
 hudNode = NodePath("../../../../UI")
 
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
-transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.135596, -0.303364, 0.0546597)
+transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.135596, -0.27398, 0.0546597)
 rayNode = NodePath("../InteractRay")
 cameraNode = NodePath("../PlayerPOV")
 playerNode = NodePath("../../../..")
@@ -282,6 +281,11 @@ root_node = NodePath("../Head/eyesHolder")
 libraries = {
 "": SubResource("AnimationLibrary_sri1h")
 }
+next/hard_landing = &"RESET"
+next/out_ammo = &"RESET"
+next/reload = &"RESET"
+next/soft_landing = &"RESET"
+blend_times = [&"reload", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
@@ -300,7 +304,6 @@ collision_mask = 64
 bus = &"Environment"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 0.017
 replication_config = SubResource("SceneReplicationConfig_ycvks")
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
