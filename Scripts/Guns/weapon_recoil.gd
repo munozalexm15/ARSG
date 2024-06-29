@@ -13,8 +13,13 @@ var beforeShootRotation : Vector3
 @export var snappiness : float
 @export var returnSpeed : float
 
+#EL PROBLEMA ESTA EN EL RECOIL DE ESTE ARCHIVO
 func _process(delta):
-	
+	#recoilRotation.rpc(delta)
+	pass
+
+@rpc("any_peer", "call_local", "reliable")
+func recoilRotation(delta):
 	# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, Vector3.ZERO , returnSpeed * delta)
 	currentRotation = lerp(currentRotation, targetRotation, snappiness * delta)
@@ -25,6 +30,7 @@ func _process(delta):
 	# I have no idea why it tilts if recoil.z is set to 0
 	if recoil.z == 0 and aimRecoil.z == 0:
 		global_rotation.z = 0
+
 
 func recoilFire(isAiming : bool = false):
 	if isAiming:

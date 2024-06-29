@@ -22,7 +22,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 2
 properties/3/path = NodePath("../Flashlight:visible")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("../Flashlight:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
@@ -35,6 +35,12 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath("../WeaponHolder:visible")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath("../Flashlight:spot_range")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("../WeaponHolder/MP5:recoil_amplitude")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
@@ -241,7 +247,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2]
+blend_times = [&"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

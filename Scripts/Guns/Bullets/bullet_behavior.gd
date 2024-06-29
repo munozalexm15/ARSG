@@ -22,7 +22,6 @@ var decal_instance : Decal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	lock_rotation = true
 	await get_tree().create_timer(5).timeout
 	queue_free()
 	#disable trail effect for players, it is intended to be only seen from enemies who shoot at you
@@ -37,6 +36,7 @@ func _on_visibility_notifier_screen_exited():
 	queue_free()
 
 func _on_body_entered(body: Node3D):
+	print(multiplayer.get_unique_id(), " : bulletImpactPos : ",  global_position)
 	trail.base_width = 0
 	mesh.visible = false
 	

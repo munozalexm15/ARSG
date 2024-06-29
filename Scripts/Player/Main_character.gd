@@ -93,7 +93,7 @@ func _ready():
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
-		
+		#arms.visible = false
 		return
 	
 	player_body.visible = false
@@ -130,7 +130,6 @@ func _input(event : InputEvent):
 func _physics_process(delta):
 
 	if not is_multiplayer_authority():
-		arms.visible = false
 		return
 		
 	if health < 100:

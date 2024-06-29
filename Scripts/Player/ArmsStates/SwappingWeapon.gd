@@ -5,7 +5,7 @@ func enter(_msg := {}):
 		return
 		
 	if _msg.has("drop_weapon"):
-		drop_weapon(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
+		drop_weapon.rpc(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
 
 	arms.animationPlayer.play("SwapWeapon")
 	
@@ -19,12 +19,14 @@ func physics_update(_delta):
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
+@rpc("any_peer", "reliable", "call_local")
 func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	if not is_multiplayer_authority():
 		return
+	
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
-		if arms.weaponHolder.get_child(x).weaponData.name == name:
+		if arms.weaponHolder.get_child(x).weaponData.name == _weaponName:
 			weapon_Ref = arms.weaponHolder.get_child(x)
 	
 	if weapon_Ref == null:
@@ -32,6 +34,7 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 		
 	var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
 	var spawnedWeapon = weapon_to_spawn.instantiate()
+	
 	spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
 	spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
@@ -60,7 +63,7 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	pickupWeapon.queue_free()
 	
 	arms.actual_weapon_index = 1
-	loadWeapon(1)
+	loadWeapon.rpc(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
 	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
@@ -129,6 +132,7 @@ func swap_weapon():
 		state_machine.transition_to("SwappingWeapon")
 		return
 
+@rpc("any_peer", "call_local", "unreliable")
 func loadWeapon(index):
 	for x in arms.weaponHolder.get_child_count():
 		arms.weaponHolder.get_child(x).being_used = false

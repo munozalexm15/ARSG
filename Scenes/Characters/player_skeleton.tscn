@@ -7361,7 +7361,7 @@ mesh = SubResource("ArrayMesh_3x73f")
 skin = SubResource("Skin_4tfsw")
 
 [node name="LeftHand_BAttachment" type="BoneAttachment3D" parent="PlayerModel/Armature/Skeleton3D"]
-transform = Transform3D(0.298618, 0.00186, -0.95437, -0.896132, -0.343438, -0.281064, -0.32829, 0.939173, -0.10089, 0.43818, 2.21413, 1.05818)
+transform = Transform3D(0.298618, 0.00186103, -0.95437, -0.896132, -0.343437, -0.281065, -0.32829, 0.939174, -0.100889, 0.438181, 2.21413, 1.05818)
 bone_name = "Hand.L_end"
 bone_idx = 9
 
@@ -7405,10 +7405,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.290629, 2.46024, 0.313666)
 [node name="LeftArmTarget" type="Node3D" parent="LeftArmShoulder"]
 transform = Transform3D(0.265277, -0.932413, 0.245425, -0.93917, -0.307478, -0.153022, 0.218143, -0.189903, -0.957262, -0.215907, -0.24415, 0.612819)
 script = ExtResource("2_2qogm")
-recoil = Vector3(0, 0.1, 0.05)
+recoil = Vector3(0, 0.1, 0.2)
 aimRecoil = Vector3(0.2, 0.1, 0.1)
-snappiness = 10.0
-returnSpeed = 4.0
+snappiness = 15.0
+returnSpeed = 10.0
 
 [node name="RightArmShoulder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.223677, 2.46262, -0.195128)

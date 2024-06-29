@@ -92,13 +92,12 @@ func _physics_process(delta):
 			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
 				return
 			if weaponData.bulletsInMag > 0:
-				apply_recoil.rpc()
+				load_recoil.rpc()
 				shoot()
 	
 		if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			apply_recoil.rpc()
 			if weaponData.bulletsInMag > 0:
-				apply_recoil.rpc()
+				load_recoil.rpc()
 				shoot()
 			time_to_shoot = weaponData.cadency * delta
 		
@@ -106,7 +105,7 @@ func _physics_process(delta):
 			isBurstActive = true
 			
 			if weaponData.bulletsInMag > 0:
-				apply_recoil.rpc()
+				load_recoil.rpc()
 				shoot()
 				burstBullet += 1
 			time_to_shoot = weaponData.cadency * delta
@@ -122,17 +121,9 @@ func _physics_process(delta):
 	if burstBullet == 3 and isBurstActive:
 		isBurstActive = false
 		burstBullet = 0
-	
-	if current_time < 1:
-		current_time += delta
 		
-		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
-		rotation.z = lerp(rotation.z, target_rot.z, lerp_speed * delta)
-		rotation.x = lerp(rotation.x, target_rot.x, lerp_speed * delta)
-		
-		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
-		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
-		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+
+	apply_recoil.rpc(delta)
 	
 	# MUZZLE SMOKE : DISABLED ATM
 	#if Input.is_action_just_released("Fire") and weaponData.bulletsInMag > 0 and muzzleSmoke and not hands.player.seeing_ally:
@@ -149,7 +140,21 @@ func _physics_process(delta):
 			#removeSmokeMuzzle = false
 
 @rpc("any_peer", "call_local", "reliable")
-func apply_recoil():
+func apply_recoil(delta):
+	if current_time < 1:
+		current_time += delta
+		
+		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
+		rotation.z = lerp(rotation.z, target_rot.z, lerp_speed * delta)
+		rotation.x = lerp(rotation.x, target_rot.x, lerp_speed * delta)
+		
+		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
+		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
+		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+
+
+@rpc("authority", "call_local", "reliable")
+func load_recoil():
 	if Input.is_action_pressed("ADS"):
 		recoil_amplitude.y *= -0.2 if randf() > 0.5 else 0.2
 	else:
@@ -178,7 +183,7 @@ func shoot():
 		SFXHandler.play_sfx(fire_sound.stream, self, "Weapons")
 	spawnBullet.rpc()
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_local", "reliable")
 func spawnBullet():
 	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
@@ -189,6 +194,7 @@ func spawnBullet():
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
+			
 			bullet.damage = weaponData.damage
 			bullet.hitmark.connect(show_hitmarker)
 			bullet.hitmark.connect(hit_update_score)

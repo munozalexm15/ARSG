@@ -22,7 +22,6 @@ func _ready():
 	originalHandPos = leftArmNode.position
 
 func _process(delta):
-	print(leftArmNode.position)
 		# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, originalHandPos , returnSpeed * delta)
 	currentRotation = lerp(leftArmNode.position, targetRotation, snappiness * delta)

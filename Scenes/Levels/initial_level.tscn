@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=11 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
+[ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="5_h73xk"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
 
@@ -75,6 +76,41 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+
+[node name="M16A2" parent="." instance=ExtResource("5_h73xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -0.957273, -2.2013)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.30523, 0.952279, 0, -0.952279, 0.30523, 0, 0, 0, 1, 13.0552, -7.24468, 10.0583)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(42.1761, 1, 80.4601)
+material = SubResource("StandardMaterial3D_kb8cs")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.30523, 0.952279, 0, -0.952279, 0.30523, 0, 0, 0, 1, -26.7357, -7.24468, 10.0583)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(42.1761, 1, 80.4601)
+material = SubResource("StandardMaterial3D_kb8cs")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.0144741, -0.0451573, 0.998875, -0.952279, 0.30523, 0, -0.304887, -0.951207, -0.0474203, -19.8933, -7.24468, 10.9021)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(42.1761, 1, 80.4601)
+material = SubResource("StandardMaterial3D_kb8cs")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.0126167, -0.0393625, 0.999145, -0.952279, 0.30523, -9.30275e-10, -0.304969, -0.951465, -0.0413351, -19.8933, -7.24468, -16.4346)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(42.1761, 1, 80.4601)
+material = SubResource("StandardMaterial3D_kb8cs")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -2.25446, -2.36454)
