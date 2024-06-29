@@ -36,7 +36,6 @@ func _on_visibility_notifier_screen_exited():
 	queue_free()
 
 func _on_body_entered(body: Node3D):
-	print(multiplayer.get_unique_id(), " : bulletImpactPos : ",  global_position)
 	trail.base_width = 0
 	mesh.visible = false
 	

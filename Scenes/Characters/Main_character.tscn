@@ -197,6 +197,9 @@ properties/6/replication_mode = 1
 properties/7/path = NodePath("Head/eyesHolder:position")
 properties/7/spawn = true
 properties/7/replication_mode = 1
+properties/8/path = NodePath("Head/eyesHolder/armsHolder:recoil")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 128

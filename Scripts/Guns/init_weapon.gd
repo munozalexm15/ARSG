@@ -170,9 +170,9 @@ func load_recoil():
 func shoot():
 	#get recoil script from child node and apply some to the weapon
 	if Input.is_action_pressed("ADS"):
-		hands.player.eyes.get_child(0).recoilFire(true)
+		hands.player.eyes.get_child(0).recoilFire.rpc(true)
 	else:
-		hands.player.eyes.get_child(0).recoilFire()
+		hands.player.eyes.get_child(0).recoilFire.rpc(false)
 	weaponData.bulletsInMag -= 1
 
 	animPlayer.play("RESET")
