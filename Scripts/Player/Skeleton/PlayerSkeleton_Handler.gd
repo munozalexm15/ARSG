@@ -55,6 +55,8 @@ func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
 	rightArmShoulder.rotation.x = (-arms.player.eyes.rotation.x / 2)
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
+	
+	#Get main_Character "arms Holder" node
 	if (LeftHandB_Attachment.get_child_count() > 0):
 		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
 

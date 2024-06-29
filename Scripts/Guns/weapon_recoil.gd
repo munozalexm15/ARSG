@@ -17,6 +17,7 @@ func _process(delta):
 	recoilRotation(delta)
 
 func recoilRotation(delta):
+	
 	# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, Vector3.ZERO , returnSpeed * delta)
 	currentRotation = lerp(currentRotation, targetRotation, snappiness * delta)

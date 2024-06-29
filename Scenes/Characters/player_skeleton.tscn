@@ -7405,7 +7405,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.290629, 2.46024, 0.313666)
 [node name="LeftArmTarget" type="Node3D" parent="LeftArmShoulder"]
 transform = Transform3D(0.265277, -0.932413, 0.245425, -0.93917, -0.307478, -0.153022, 0.218143, -0.189903, -0.957262, -0.215907, -0.24415, 0.612819)
 script = ExtResource("2_2qogm")
-recoil = Vector3(0, 0.1, 0.2)
+recoil = Vector3(0, 0.1, 0.05)
 aimRecoil = Vector3(0.2, 0.1, 0.1)
 snappiness = 15.0
 returnSpeed = 10.0

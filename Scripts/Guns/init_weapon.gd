@@ -94,7 +94,7 @@ func _physics_process(delta):
 			if weaponData.bulletsInMag > 0:
 				load_recoil.rpc()
 				shoot()
-	
+
 		if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if weaponData.bulletsInMag > 0:
 				load_recoil.rpc()
@@ -103,7 +103,6 @@ func _physics_process(delta):
 		
 		if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			isBurstActive = true
-			
 			if weaponData.bulletsInMag > 0:
 				load_recoil.rpc()
 				shoot()
@@ -182,6 +181,7 @@ func shoot():
 	if fire_sound:
 		SFXHandler.play_sfx(fire_sound.stream, self, "Weapons")
 	spawnBullet.rpc()
+	
 
 @rpc("authority", "call_local", "reliable")
 func spawnBullet():
