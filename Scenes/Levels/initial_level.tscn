@@ -77,9 +77,6 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="M16A2" parent="." instance=ExtResource("5_h73xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -0.957273, -2.2013)
-
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(0.30523, 0.952279, 0, -0.952279, 0.30523, 0, 0, 0, 1, 13.0552, -7.24468, 10.0583)
 use_collision = true
@@ -123,7 +120,12 @@ material = SubResource("StandardMaterial3D_kb8cs")
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn", "res://Scenes/Guns/Pickups/M16A2_Pickup.tscn")
 spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="BulletsParent" type="Node3D" parent="."]
+
+[node name="InteractablesParent" type="Node3D" parent="."]
+
+[node name="M16A2" parent="InteractablesParent" instance=ExtResource("5_h73xk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -0.957273, -2.2013)

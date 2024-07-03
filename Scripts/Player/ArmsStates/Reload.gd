@@ -5,8 +5,16 @@ var wantsToShoot = false
 
 func enter(_msg := {}):
 	wantsToShoot = false
-	arms.animationPlayer.play("Reload")
+	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 	arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
+	
+	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
+		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
+		reload_bullet_by_bullet()
+	else:
+		arms.reloadTimer.start()
+		if arms.actualWeapon.reload_sound:
+			arms.actualWeapon.reload_sound.play()
 
 func physics_update(_delta):
 	mouse_swap_weapon_logic()
@@ -16,7 +24,7 @@ func physics_update(_delta):
 		wantsToShoot = true
 
 func _on_animation_player_animation_finished(anim_name):
-	if (anim_name != "Reload"):
+	if (anim_name != "MP5_Reload"):
 		return
 	
 	arms.actualWeapon.hide()

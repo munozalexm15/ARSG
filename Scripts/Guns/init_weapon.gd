@@ -77,7 +77,8 @@ func _physics_process(delta):
 		
 	if not being_used:
 		return
-		
+	
+	print(rotation)
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection and hands.state_machine.state.name != "Reload":
 		fire_selection_sound.play()
 		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
@@ -120,7 +121,6 @@ func _physics_process(delta):
 	if burstBullet == 3 and isBurstActive:
 		isBurstActive = false
 		burstBullet = 0
-		
 
 	apply_recoil.rpc(delta)
 	
@@ -155,14 +155,15 @@ func apply_recoil(delta):
 @rpc("authority", "call_local", "reliable")
 func load_recoil():
 	if Input.is_action_pressed("ADS"):
-		recoil_amplitude.y *= -0.2 if randf() > 0.5 else 0.2
+		recoil_amplitude.y *= -0.1 if randf() > 0.5 else 0.1
 	else:
 		recoil_amplitude = initial_recoil_amplitude
 		recoil_amplitude.y *= -1 if randf() > 0.5 else 1
-		
+	
 	target_rot.z = recoil_rotation_z.sample(0) * recoil_amplitude.y
 	target_rot.x = recoil_rotation_x.sample(0) * -recoil_amplitude.x
 	target_pos.z = recoil_position_z.sample(0) * recoil_amplitude.z
+	
 	current_time = 0
 
 

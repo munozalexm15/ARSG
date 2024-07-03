@@ -43,7 +43,7 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
-		return
+		return 
 	knife.set_process(false)
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true

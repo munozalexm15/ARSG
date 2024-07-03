@@ -7,7 +7,11 @@ var default_PORT = 55455
 var unique_id = -1
 var players = 0
 
-var game = null
+var game : MP_Map = null
+
+var gameInteractables = null
+
+var playerListNode = {}
 
 func _ready():
 	multiplayer.peer_connected.connect(player_joined)
@@ -27,8 +31,12 @@ func join_server():
 	unique_id = client.get_unique_id()
 
 func player_joined(id):
-	if id != 1:
-		game.init_player(id)
+	#if its the host -> ignore
+	if id == 1:
+		return
+	
+	game.init_player(id)
+	
 	
 
 func player_left(_id):

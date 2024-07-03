@@ -33,19 +33,18 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 		return
 		
 	var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
-	var spawnedWeapon = weapon_to_spawn.instantiate()
+	var droppedWeapon = weapon_to_spawn.instantiate()
 	
-	spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
-	spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+	droppedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
+	droppedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
 	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
 	if arms.weaponHolder.get_child(0).weaponData.weaponCaliber == arms.weaponHolder.get_child(1).weaponData.weaponCaliber:
-		spawnedWeapon.weaponData.reserveAmmo = 0
+		droppedWeapon.weaponData.reserveAmmo = 0
 	
-	spawnedWeapon.isAlreadyGrabbed = true
-	spawnedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
-	var world = get_tree().get_root().get_child(0)
-	world.add_child(spawnedWeapon)
+	droppedWeapon.isAlreadyGrabbed = true
+	droppedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
+	Network.game.interactables_node.add_child(droppedWeapon)
 	arms.weaponHolder.remove_child(weapon_Ref)
 	
 	arms.actual_weapon_index = 0
@@ -55,11 +54,11 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	
 	#weapon switching
 	var spawnedWeaponScene = load(pickupWeapon.weaponData.weaponScene)
-	spawnedWeapon = spawnedWeaponScene.instantiate()
-	spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
-	spawnedWeapon.handsNode = arms.get_path()
+	var newWeapon = spawnedWeaponScene.instantiate()
+	newWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
+	newWeapon.handsNode = arms.get_path()
 	
-	arms.weaponHolder.add_child(spawnedWeapon)
+	arms.weaponHolder.add_child(newWeapon)
 	pickupWeapon.queue_free()
 	
 	arms.actual_weapon_index = 1
