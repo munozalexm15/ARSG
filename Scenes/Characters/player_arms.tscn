@@ -49,10 +49,10 @@ tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.87623, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -61,10 +61,10 @@ tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.415, -0.701, 0), Vector3(-0.03, -1.166, 0)]
+"values": [Vector3(-0.03, -1.166, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bsjly"]
@@ -244,7 +244,7 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2]
+blend_times = [&"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -276,9 +276,7 @@ handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="endedMelee" from="Knife" to="StateMachine/Melee" method="_on_knife_ended_melee"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SwappingWeapon" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Melee" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
-[connection signal="animation_started" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_started"]
 [connection signal="timeout" from="ReloadTimer" to="StateMachine/Reload" method="_on_reload_timer_timeout"]

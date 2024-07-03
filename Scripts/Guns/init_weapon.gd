@@ -5,6 +5,7 @@ extends Node3D
 
 @onready var fire_sound : AudioStreamPlayer3D = $ASP_ShotShound
 @onready var reload_sound : AudioStreamPlayer3D = $ASP_ReloadSound
+@onready var full_reload_sound : AudioStreamPlayer3D = $ASP_FullReloadSound
 
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)

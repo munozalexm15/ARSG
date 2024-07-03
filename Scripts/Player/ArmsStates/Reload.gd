@@ -5,16 +5,23 @@ var wantsToShoot = false
 
 func enter(_msg := {}):
 	wantsToShoot = false
-	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
+	
 	arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
 	
 	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
 		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 		reload_bullet_by_bullet()
 	else:
-		arms.reloadTimer.start()
-		if arms.actualWeapon.reload_sound:
+		if arms.actualWeapon.weaponData.bulletsInMag > 0:
+			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 			arms.actualWeapon.reload_sound.play()
+			arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length() + 0.2
+		else:
+			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Full_Reload")
+			arms.actualWeapon.full_reload_sound.play()
+			arms.reloadTimer.wait_time = arms.actualWeapon.full_reload_sound.stream.get_length() + 0.2
+		
+		arms.reloadTimer.start()
 
 func physics_update(_delta):
 	mouse_swap_weapon_logic()
@@ -23,69 +30,50 @@ func physics_update(_delta):
 	if Input.is_action_just_pressed("Fire"):
 		wantsToShoot = true
 
-func _on_animation_player_animation_finished(anim_name):
-	if (anim_name != "MP5_Reload"):
-		return
-	
-	arms.actualWeapon.hide()
-	
-	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
-		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
-		reload_bullet_by_bullet()
-	else:
-		arms.reloadTimer.start()
-		if arms.actualWeapon.reload_sound:
-			arms.actualWeapon.reload_sound.play()
-
-func _on_animation_player_animation_started(anim_name):
-	if anim_name == "Reload":
-		return
-	
-	arms.reloadTimer.stop()
-
 func mouse_swap_weapon_logic():
-	if not Input.is_action_pressed("Next Weapon") or not Input.is_action_pressed("Previous Weapon"):
-		return
-	
-	if Input.is_action_just_pressed("Next Weapon"):
-		if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
-			arms.actual_weapon_index += 1
-		else:
-			arms.actual_weapon_index = 0
-		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	if Input.is_action_just_pressed("Next Weapon") or Input.is_action_just_pressed("Previous Weapon"):
 		
-	if Input.is_action_just_pressed("Previous Weapon"):
-		if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
-			arms.actual_weapon_index += 1
-		else:
-			arms.actual_weapon_index = 0
-		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		if Input.is_action_just_pressed("Next Weapon"):
+			if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
+				arms.actual_weapon_index += 1
+			else:
+				arms.actual_weapon_index = 0
+			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+			
+		if Input.is_action_just_pressed("Previous Weapon"):
+			if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
+				arms.actual_weapon_index += 1
+			else:
+				arms.actual_weapon_index = 0
+			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		
-	state_machine.transition_to("SwappingWeapon")
+		arms.actualWeapon.reload_sound.stop()
+		arms.actualWeapon.full_reload_sound.stop()
+		arms.reloadTimer.stop()
+		state_machine.transition_to("SwappingWeapon")
 	
 func swap_weapon():
-	if not Input.is_action_pressed("Primary weapon") or not Input.is_action_pressed("Secondary weapon"):
-		return
+	if (Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0) or (Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1):
 	
-	if Input.is_action_just_pressed("Primary weapon"):
-		if arms.actual_weapon_index != 0:
-			arms.actual_weapon_index = 0
-			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		if Input.is_action_just_pressed("Primary weapon"):
+			if arms.actual_weapon_index != 0:
+				arms.actual_weapon_index = 0
+				arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+			
+		if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
+			if arms.actual_weapon_index != 1:
+				arms.actual_weapon_index = 1
+				arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		
-	if Input.is_action_just_pressed("Secondary weapon"):
-		if arms.actual_weapon_index != 1:
-			arms.actual_weapon_index = 1
-			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
-
-	state_machine.transition_to("SwappingWeapon")
+		arms.actualWeapon.reload_sound.stop()
+		arms.actualWeapon.full_reload_sound.stop()
+		arms.reloadTimer.stop()
+		state_machine.transition_to("SwappingWeapon")
+		
 
 
 func _on_reload_timer_timeout():
 	arms.reloadTimer.stop()
-	if arms.actualWeapon.reload_sound:
-		arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
-	else:
-		arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
 	
 	ammo_behavior()
 	arms.actualWeapon.reload_sound.play()
