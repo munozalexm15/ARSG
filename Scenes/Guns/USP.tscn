@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dldfeavhyt2ys"]
+[gd_scene load_steps=48 format=3 uid="uid://dldfeavhyt2ys"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_koqv4"]
 [ext_resource type="Resource" uid="uid://cvsyripni1r7v" path="res://Scripts/Guns/Resources/USP_Resource.tres" id="2_qxifq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="7_o26y3"]
 [ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="7_xc76o"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_wl0c4"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="10_tn824"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_opi1n"]
 [ext_resource type="AudioStream" uid="uid://cc0fmokfdnplo" path="res://GameResources/Sounds/Weapons/USP/usp_full_rel.mp3" id="13_l8eeq"]
 [ext_resource type="AudioStream" uid="uid://vcnr2sucnjp8" path="res://GameResources/Sounds/Weapons/USP/usp_shot.mp3" id="14_lxxsu"]
@@ -51,6 +52,15 @@ proximity_fade_distance = 28.45
 material = SubResource("StandardMaterial3D_e1ttx")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shq4s"]
+render_priority = 0
+shader = ExtResource("10_tn824")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("3_ud7w0")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8yiee"]
 resource_name = "Material.020"
 cull_mode = 2
@@ -90,6 +100,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gwgx4")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybcml"]
+render_priority = 0
+shader = ExtResource("10_tn824")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("3_ud7w0")
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_sfxw6"]
 _surfaces = [{
 "aabb": AABB(-1.02429, 1.35688, -0.126696, 1.8698, 0.422389, 0.253403),
@@ -121,6 +140,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sfxw6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iddoq"]
+render_priority = 0
+shader = ExtResource("10_tn824")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("3_ud7w0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa23a"]
 resource_name = "Material.026"
@@ -162,6 +190,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6yjma")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jx32"]
+render_priority = 0
+shader = ExtResource("10_tn824")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
+shader_parameter/albedo = ExtResource("3_ud7w0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txk4c"]
 resource_name = "Material.027"
@@ -1162,21 +1199,25 @@ angular_velocity_max = 12.9
 
 [node name="USPBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.32504, 0.940598, 1)
+material_override = SubResource("ShaderMaterial_shq4s")
 mesh = SubResource("ArrayMesh_1y4ex")
 skeleton = NodePath("")
 
 [node name="USPSlide" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42289, -0.509825, 1)
+material_override = SubResource("ShaderMaterial_ybcml")
 mesh = SubResource("ArrayMesh_pii83")
 skeleton = NodePath("")
 
 [node name="USPTrigger&Hammer" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -3.61999e-06, -1, 0, 1, -3.61999e-06, 4.18917, -0.0941661, 1)
+material_override = SubResource("ShaderMaterial_iddoq")
 mesh = SubResource("ArrayMesh_gxb36")
 skeleton = NodePath("")
 
 [node name="USPMag" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42348, -0.509825, 1)
+material_override = SubResource("ShaderMaterial_1jx32")
 mesh = SubResource("ArrayMesh_g0djb")
 skeleton = NodePath("")
 
