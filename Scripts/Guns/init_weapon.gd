@@ -177,6 +177,11 @@ func shoot():
 
 	animPlayer.play("RESET")
 	animPlayer.play("Shoot")
+	
+	#Setting boltreloaded to true, to force players to play the bolt animation first and prevent reload spamming
+	if weaponData.isBoltAction:
+		isBoltReloaded = true
+		
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
 	if fire_sound:
@@ -253,14 +258,14 @@ func update_health():
 	
 	hands.player.hud.healthBar.value = hands.player.health
 
-
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == weaponData.name + "_Shot" and weaponData.isBoltAction:
+		isBoltReloaded = true
 		handsAnimPlayer.play(weaponData.name + "_Bolt")
+		handsAnimPlayer.assigned_animation = weaponData.name + "_Bolt"
 	
-	if anim_name == weaponData.name + "_Bolt" and isBoltReloaded == false:
-		isBoltReloaded =  true
+	if anim_name == weaponData.name + "_Bolt" and handsAnimPlayer.assigned_animation == weaponData.name + "_Bolt":
 		handsAnimPlayer.play(weaponData.name + "_Bolt", -1, -1, true)
-	
-	elif anim_name == weaponData.name + "_Bolt" and isBoltReloaded == true:
-		isBoltReloaded =  false
+		await handsAnimPlayer.animation_finished
+		handsAnimPlayer.assigned_animation = "RESET"
+		isBoltReloaded = false

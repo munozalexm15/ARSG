@@ -3,14 +3,10 @@ extends ArmsState
 func enter(_msg := {}):
 	if not is_multiplayer_authority():
 		return
-	
-	
-	
 	if _msg.has("drop_weapon"):
 		drop_weapon.rpc(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
 
 	arms.animationPlayer.play("SwapWeapon")
-	
 	
 	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
@@ -98,8 +94,8 @@ func _on_animation_player_animation_finished(anim_name):
 		return
 	
 	#RESET OTHER WEAPON ANIMATION IF IT IS RELOAD CANCELLING
-	
 	arms.actualWeapon.handsAnimPlayer.play("RESET")
+	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime

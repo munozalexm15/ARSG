@@ -8,8 +8,11 @@ func enter(_msg := {}):
 	
 	arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length()
 	
-	if !arms.actualWeapon.weaponData.reloadsWithMagazine:
-		bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
+	if arms.actualWeapon.weaponData.isBoltAction:
+		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt")
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
+		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload")
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
 		reload_bullet_by_bullet()
 	else:
 		if arms.actualWeapon.weaponData.bulletsInMag > 0:
@@ -48,7 +51,7 @@ func mouse_swap_weapon_logic():
 			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		
 		arms.actualWeapon.reload_sound.stop()
-		arms.actualWeapon.full_reload_sound.stop()
+		#arms.actualWeapon.full_reload_sound.stop()
 		arms.reloadTimer.stop()
 		state_machine.transition_to("SwappingWeapon")
 	
@@ -65,8 +68,11 @@ func swap_weapon():
 				arms.actual_weapon_index = 1
 				arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		
-		arms.actualWeapon.reload_sound.stop()
-		arms.actualWeapon.full_reload_sound.stop()
+		if not arms.actualWeapon.isBoltAction:
+			arms.actualWeapon.reload_sound.stop()
+			arms.actualWeapon.full_reload_sound.stop()
+		else:
+			arms.actualWeapon.reload_sound.stop()
 		arms.reloadTimer.stop()
 		state_machine.transition_to("SwappingWeapon")
 		
@@ -76,12 +82,16 @@ func _on_reload_timer_timeout():
 	arms.reloadTimer.stop()
 	
 	ammo_behavior()
-	arms.actualWeapon.reload_sound.play()
+	if not arms.actualWeapon.weaponData.isBoltAction:
+		arms.actualWeapon.reload_sound.play()
 	state_machine.transition_to("Idle")
 	
 
 func reload_bullet_by_bullet():
 	if arms.actualWeapon.weaponData.bulletsInMag == arms.actualWeapon.weaponData.magSize:
+		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
+		arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
 		_on_reload_timer_timeout()
 		return
 	
@@ -91,19 +101,25 @@ func reload_bullet_by_bullet():
 		state_machine.transition_to("Idle")
 		return
 	
-	await get_tree().create_timer(bullet_reload_time).timeout
-	arms.actualWeapon.reload_sound.play()
+	bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
+		
+	#Reproducir la animacion de 
+	
+	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
+	await arms.actualWeapon.handsAnimPlayer.animation_finished
+	
 	if arms.actualWeapon.weaponData.reserveAmmo == 0:
 		state_machine.transition_to("Idle", {"play_reload": false})
 		return
 	
 	arms.actualWeapon.weaponData.bulletsInMag += 1
 	arms.actualWeapon.weaponData.reserveAmmo -= 1
-	arms.player.animationPlayer.play("reload")
 	for x in arms.weaponHolder.get_child_count():
 		if arms.weaponHolder.get_child(x) != arms.actualWeapon and arms.weaponHolder.get_child(x).weaponData.weaponCaliber == arms.actualWeapon.weaponData.weaponCaliber:
 			arms.weaponHolder.get_child(x).weaponData.reserveAmmo -= 1
 	
+	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload", -1, -1, true)
+	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	reload_bullet_by_bullet()
 
 func ammo_behavior():

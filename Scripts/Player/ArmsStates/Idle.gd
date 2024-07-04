@@ -3,8 +3,6 @@ extends ArmsState
 signal swapWeapon
 
 func enter(_msg := {}):
-	if (arms.actualWeapon.weaponData.weaponType == "Shotgun" or arms.actualWeapon.weaponData.weaponType == "Sniper") and arms.state_machine.old_state.name == "Reload" and not _msg.has("play_reload"):
-		arms.actualWeapon.reload_sound.play()
 	
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
@@ -33,6 +31,8 @@ func physics_update(_delta):
 		state_machine.transition_to("Idle")
 		
 	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
+		if arms.actualWeapon.isBoltReloaded:
+			return
 		state_machine.transition_to("Reload")
 	
 	mouse_swap_weapon_logic()
