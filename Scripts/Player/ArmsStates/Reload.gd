@@ -95,6 +95,13 @@ func reload_bullet_by_bullet():
 		_on_reload_timer_timeout()
 		return
 	
+	if arms.actualWeapon.weaponData.reserveAmmo == 0:
+		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
+		arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
+		state_machine.transition_to("Idle", {"play_reload": false})
+		return
+	
 	if wantsToShoot:
 		wantsToShoot = false
 		arms.actualWeapon.reload_sound.play()
@@ -102,15 +109,9 @@ func reload_bullet_by_bullet():
 		return
 	
 	bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
-		
-	#Reproducir la animacion de 
 	
 	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 	await arms.actualWeapon.handsAnimPlayer.animation_finished
-	
-	if arms.actualWeapon.weaponData.reserveAmmo == 0:
-		state_machine.transition_to("Idle", {"play_reload": false})
-		return
 	
 	arms.actualWeapon.weaponData.bulletsInMag += 1
 	arms.actualWeapon.weaponData.reserveAmmo -= 1
@@ -118,8 +119,6 @@ func reload_bullet_by_bullet():
 		if arms.weaponHolder.get_child(x) != arms.actualWeapon and arms.weaponHolder.get_child(x).weaponData.weaponCaliber == arms.actualWeapon.weaponData.weaponCaliber:
 			arms.weaponHolder.get_child(x).weaponData.reserveAmmo -= 1
 	
-	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload", -1, -1, true)
-	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	reload_bullet_by_bullet()
 
 func ammo_behavior():
