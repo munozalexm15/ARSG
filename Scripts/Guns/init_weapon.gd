@@ -3,9 +3,14 @@ extends Node3D
 
 @export var weaponData : WeaponData
 
+#MAG WEAPONS (reload_sound it is also used in bolt weapons)
 @onready var fire_sound : AudioStreamPlayer3D = $ASP_ShotShound
 @onready var reload_sound : AudioStreamPlayer3D = $ASP_ReloadSound
-@onready var full_reload_sound : AudioStreamPlayer3D = $ASP_FullReloadSound
+var full_reload_sound : AudioStreamPlayer3D
+
+#Bolt action weapons, shotguns, etc.
+var bolt_back_sound : AudioStreamPlayer3D
+var bolt_forward_sound : AudioStreamPlayer3D
 
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
@@ -13,7 +18,6 @@ extends Node3D
 @onready var leftArm = $Player_Arms/Armature_001/Skeleton3D/Cube_002
 @onready var rightArm  = $Player_Arms/Armature_001/Skeleton3D/Cube_001
 
-@onready var animPlayer = $AnimationPlayer
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
 #Weapon parts
@@ -64,6 +68,12 @@ func _ready():
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
 	
+	if weaponData.weaponType == "Sniper" or weaponData.weaponType == "Shotgun":
+		bolt_back_sound = $ASP_BoltBackSound
+		bolt_forward_sound = $ASP_BoltForwardSound
+	else:
+		full_reload_sound = $ASP_FullReloadSound
+	
 func _input(event):
 	if not is_multiplayer_authority():
 		return
@@ -90,7 +100,7 @@ func _physics_process(delta):
 		
 	if hands.state_machine.state.name != "Reload" and not hands.player.seeing_ally:
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
+			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and handsAnimPlayer.is_playing():
 				return
 			if weaponData.bulletsInMag > 0:
 				load_recoil.rpc()
@@ -174,9 +184,6 @@ func shoot():
 	else:
 		hands.player.eyes.get_child(0).recoilFire.rpc(false)
 	weaponData.bulletsInMag -= 1
-
-	animPlayer.play("RESET")
-	animPlayer.play("Shoot")
 	
 	#Setting boltreloaded to true, to force players to play the bolt animation first and prevent reload spamming
 	if weaponData.isBoltAction:
@@ -267,5 +274,7 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == weaponData.name + "_Bolt" and handsAnimPlayer.assigned_animation == weaponData.name + "_Bolt":
 		handsAnimPlayer.play(weaponData.name + "_Bolt", -1, -1, true)
 		await handsAnimPlayer.animation_finished
+		handsAnimPlayer.play("RESET")
 		handsAnimPlayer.assigned_animation = "RESET"
+		
 		isBoltReloaded = false

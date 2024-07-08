@@ -58,7 +58,7 @@ var lerp_air_speed = 3
 #---OTHER
 var state
 const mouse_sensibility = 0.4
-var crouching_depth = 0.4
+var crouching_depth = 1
 var initialHead_pos = 0.0
 var initialHands_pos = 0.0
 

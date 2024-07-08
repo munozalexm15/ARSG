@@ -3,7 +3,7 @@ extends ArmsState
 signal swapWeapon
 
 func enter(_msg := {}):
-	
+	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
@@ -30,7 +30,7 @@ func physics_update(_delta):
 	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
 		state_machine.transition_to("Idle")
 		
-	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
+	if Input.is_action_just_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		if arms.actualWeapon.isBoltReloaded:
 			return
 		state_machine.transition_to("Reload")

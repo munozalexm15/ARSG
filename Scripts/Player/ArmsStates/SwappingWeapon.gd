@@ -10,8 +10,6 @@ func enter(_msg := {}):
 	
 	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
-	
-
 
 func physics_update(_delta):
 	if not is_multiplayer_authority():
@@ -62,6 +60,8 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	arms.weaponHolder.add_child(newWeapon)
 	pickupWeapon.queue_free()
 	
+	#as it is swapping weapons on pickup, set the current weapon to not being used
+	arms.actualWeapon.being_used = false
 	arms.actual_weapon_index = 1
 	loadWeapon.rpc(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
@@ -94,11 +94,12 @@ func _on_animation_player_animation_finished(anim_name):
 		return
 	
 	#RESET OTHER WEAPON ANIMATION IF IT IS RELOAD CANCELLING
+	arms.actualWeapon.being_used = false
 	arms.actualWeapon.handsAnimPlayer.play("RESET")
 	await arms.actualWeapon.handsAnimPlayer.animation_finished
+	
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
-	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
 	
 	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 	
@@ -146,3 +147,4 @@ func loadWeapon(index):
 
 func exit():
 	arms.playerSwappingWeapons.emit()
+	arms.actualWeapon.being_used = true

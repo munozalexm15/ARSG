@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=53 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -286,18 +286,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v3pjr")
-
-[sub_resource type="Animation" id="Animation_sr1kl"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_qrg0o"]
-resource_name = "Shoot"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tmfjp"]
-_data = {
-"RESET": SubResource("Animation_sr1kl"),
-"Shoot": SubResource("Animation_qrg0o")
-}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_goru4"]
 render_priority = 0
@@ -2094,11 +2082,6 @@ skeleton = NodePath("")
 material_override = SubResource("ShaderMaterial_o2nfb")
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_tmfjp")
-}
 
 [node name="Player_Arms" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91066, 1.45267, -0.499064)
