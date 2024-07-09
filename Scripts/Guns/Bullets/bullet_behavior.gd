@@ -9,7 +9,7 @@ signal kill(points)
 @onready var impactParticle: GPUParticles3D = $CPUParticles3D
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
-@onready var mesh : MeshInstance3D = get_node(meshNode)
+@onready var mesh : MeshInstance3D = get_node(meshNode) 
 @onready var trail : Trail3D = $Trail3D
 
 var instigator: CharacterBody3D

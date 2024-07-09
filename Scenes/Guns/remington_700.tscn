@@ -1961,7 +1961,7 @@ shadow_mesh = SubResource("ArrayMesh_2pvrd")
 [sub_resource type="Gradient" id="Gradient_8pbt2"]
 colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g2jff"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6nqc6"]
 gradient = SubResource("Gradient_8pbt2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbufn"]
@@ -1970,7 +1970,7 @@ blend_mode = 1
 cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture1D_g2jff")
+albedo_texture = SubResource("GradientTexture1D_6nqc6")
 
 [sub_resource type="Curve" id="Curve_gmwum"]
 _data = [Vector2(0, 0.0366615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -2432,7 +2432,6 @@ script = ExtResource("9_kgge4")
 lifetime = 0.4
 width_profile = SubResource("Curve_gmwum")
 smoothing_iterations = 3
-axis = 2
 
 [node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0.10217, 0)

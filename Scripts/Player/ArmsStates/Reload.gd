@@ -35,8 +35,18 @@ func physics_update(_delta):
 	mouse_swap_weapon_logic()
 	swap_weapon()
 	
-	if Input.is_action_just_pressed("Fire"):
+	if Input.is_action_just_pressed("Fire") and arms.actualWeapon.weaponData.isBoltAction:
 		wantsToShoot = true
+		if arms.actualWeapon.weaponData.weaponType == "Sniper":
+			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
+			arms.actualWeapon.bolt_forward_sound.play()
+			await arms.actualWeapon.handsAnimPlayer.animation_finished
+			arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
+		else:
+			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload", -1, -1, true)
+			await arms.actualWeapon.handsAnimPlayer.animation_finished
+		_on_reload_timer_timeout()
+		return
 
 func mouse_swap_weapon_logic():
 	if Input.is_action_just_pressed("Next Weapon") or Input.is_action_just_pressed("Previous Weapon"):
@@ -119,6 +129,9 @@ func reload_bullet_by_bullet():
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
 			arms.actualWeapon.bolt_forward_sound.play()
+			await arms.actualWeapon.handsAnimPlayer.animation_finished
+		else:
+			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload", -1, -1, true)
 			await arms.actualWeapon.handsAnimPlayer.animation_finished
 		arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
 		state_machine.transition_to("Idle", {"play_reload": false})

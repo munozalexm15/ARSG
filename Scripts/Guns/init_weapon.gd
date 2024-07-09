@@ -205,8 +205,8 @@ func spawnBullet():
 			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
-			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
-			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
+			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-40, 40)
+			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-40, 40)
 			
 			bullet.damage = weaponData.damage
 			bullet.hitmark.connect(show_hitmarker)
