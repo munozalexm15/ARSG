@@ -35,13 +35,21 @@ func _process(_delta):
 func _on_visibility_notifier_screen_exited():
 	queue_free()
 
-func _on_body_entered(body: Node3D):
+func spawn_decal(body : Node3D):
+	decal_instance = decal.instantiate()
+	get_tree().root.add_child(decal_instance)
+	decal_instance.global_position = position
+	decal_instance.look_at(decal_instance.transform.origin + body.global_position.normalized(), Vector3.UP)
+	decal_instance.rotate_object_local(Vector3(0,1,0), randf_range(0.0,360.0))
+
+
+func _on_area_3d_body_entered(body):
 	trail.base_width = 0
 	mesh.visible = false
 	
 	#spawn_decal(body)
 	
-	if body is Target and not body.isDowned:
+	if body is Target and body != self and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
 		
 		body.tween_health()
@@ -53,9 +61,8 @@ func _on_body_entered(body: Node3D):
 		impactParticle.emitting = true
 	
 	if body is Player:
+		print("a")
 		body.health -= damage
-
-		
 		playerDamaged.emit()
 		if body.health <= 0:
 			pass
@@ -67,10 +74,3 @@ func _on_body_entered(body: Node3D):
 	#await fade_tween.finished
 	#decal_instance.queue_free()
 	queue_free()
-
-func spawn_decal(body : Node3D):
-	decal_instance = decal.instantiate()
-	get_tree().root.add_child(decal_instance)
-	decal_instance.global_position = position
-	decal_instance.look_at(decal_instance.transform.origin + body.global_position.normalized(), Vector3.UP)
-	decal_instance.rotate_object_local(Vector3(0,1,0), randf_range(0.0,360.0))
