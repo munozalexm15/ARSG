@@ -1722,7 +1722,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 
 [node name="Weapon" type="Node3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.378654, -0.0945971, 0)
+transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, -0.378654, -0.0945971, 0)
 
 [node name="M16" type="MeshInstance3D" parent="Weapon"]
 material_override = SubResource("ShaderMaterial_oy6o5")
@@ -2063,7 +2063,6 @@ mesh = SubResource("ArrayMesh_7ym66")
 skin = SubResource("Skin_4ef0c")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_qhq1r")
 mesh = SubResource("ArrayMesh_aneya")
 skin = SubResource("Skin_4ef0c")

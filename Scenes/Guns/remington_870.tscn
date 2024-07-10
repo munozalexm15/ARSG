@@ -2937,7 +2937,6 @@ mesh = SubResource("ArrayMesh_us444")
 skin = SubResource("Skin_mtpij")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_j0hl0")
 skin = SubResource("Skin_mtpij")
 

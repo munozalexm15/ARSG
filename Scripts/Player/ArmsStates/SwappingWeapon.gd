@@ -18,11 +18,12 @@ func physics_update(_delta):
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
-@rpc("any_peer", "reliable", "call_local")
+@rpc("authority", "reliable", "call_local")
 func drop_weapon(_weaponName, pickupWeapon, isSwapping):
+	
 	if not is_multiplayer_authority():
 		return
-	
+		
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
 		if arms.weaponHolder.get_child(x).weaponData.name == _weaponName:
@@ -61,7 +62,6 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	pickupWeapon.queue_free()
 	
 	#as it is swapping weapons on pickup, set the current weapon to not being used
-	arms.actualWeapon.being_used = false
 	arms.actual_weapon_index = 1
 	loadWeapon.rpc(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)

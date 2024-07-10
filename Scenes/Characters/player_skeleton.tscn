@@ -1,7 +1,16 @@
-[gd_scene load_steps=60 format=3 uid="uid://chs5wra0urxdf"]
+[gd_scene load_steps=62 format=3 uid="uid://chs5wra0urxdf"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Skeleton/PlayerSkeleton_Handler.gd" id="1_6kdiw"]
 [ext_resource type="Script" path="res://Scripts/Player/player_recoil_mp.gd" id="2_2qogm"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="2_hd56v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c7ol"]
+render_priority = 0
+shader = ExtResource("2_hd56v")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2g01c"]
 resource_name = "Body_"
@@ -7357,6 +7366,7 @@ bones/21/rotation = Quaternion(-9.31323e-09, -2.65427e-08, 2.79397e-09, 1)
 bones/21/scale = Vector3(1, 1, 1)
 
 [node name="PoliceOfficer" type="MeshInstance3D" parent="PlayerModel/Armature/Skeleton3D"]
+material_override = SubResource("ShaderMaterial_8c7ol")
 mesh = SubResource("ArrayMesh_3x73f")
 skin = SubResource("Skin_4tfsw")
 

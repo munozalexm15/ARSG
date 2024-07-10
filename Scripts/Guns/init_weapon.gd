@@ -58,7 +58,9 @@ var mouse_movement
 func _ready():
 	if not is_multiplayer_authority(): 
 		return
-		
+	
+	print(weaponData.name , " : " , being_used)
+	
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
@@ -85,7 +87,8 @@ func _input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-		
+	
+	
 	if not being_used:
 		return
 	

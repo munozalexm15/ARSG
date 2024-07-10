@@ -3,6 +3,9 @@ extends ArmsState
 signal swapWeapon
 
 func enter(_msg := {}):
+	if not is_multiplayer_authority():
+		return
+	
 	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
@@ -40,7 +43,7 @@ func physics_update(_delta):
 	reload_listener()
 
 func replace_weapon(pickupWeapon, isSwapping):
-	if not pickupWeapon.isPickupReady:
+	if not pickupWeapon.isPickupReady or not pickupWeapon is Interactable:
 		return
 	
 	var weapon_equipped = null
@@ -55,7 +58,6 @@ func replace_weapon(pickupWeapon, isSwapping):
 	#if the weapon is not equipped (which means it can't give ammo) and there is no other in inventory with same caliber -> swap weapon
 	if not weapon_equipped and not weapon_with_same_caliber and arms.weaponHolder.get_child_count() == 2:
 		state_machine.transition_to("SwappingWeapon", {drop_weapon = arms.actualWeapon.weaponData.name, pickup_weapon = pickupWeapon, is_swapping_weapon = isSwapping})
-		
 		return
 		
 	#If player has some sort of weapon with the same name and caliber, add ammo to it and destroy it

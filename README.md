@@ -1,5 +1,10 @@
 # ARSG
 
+#LORE / GAME TYPE
+
+- La idea es hacer un roguelike un jugador / cooperativo de disparos en primera persona, en los cuales los jugadores iran avanzando entre las diferentes gran guerras (cada nivel es una batalla famosa
+que se elige de manera aleatoria de esa guerra) hasta llegar al boss final, que es el dios de la guerra (y lo matan, claro)
+
 # CONTROLS:
 - WASD: Movement
 - Left click: Shoot
@@ -18,9 +23,8 @@
 
 ###MULTIPLAYER:
 - Morir (dropear arma, recogerla, etc.) y respawnear
-- Spawnpoints
-- Añadir modelo personaje pero que lo vea la camara de los otros jugadores
-- Diferenciar de cuando es un mapa un jugador con un mapa multijugadorc (arreglar campo de tiro)
+- Spawnpoints 
+- arreglar campo de tiro
 
 ### MECHANICS
  - Add super ammo boxes (refills ammo of all weapons) 

@@ -58,7 +58,8 @@ func _on_body_entered(body: Node3D):
 		
 		playerDamaged.emit()
 		if body.health <= 0:
-			body.die_respawn.rpc()
+			pass
+			#body.die_respawn.rpc()
 	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)
