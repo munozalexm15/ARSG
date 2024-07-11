@@ -61,7 +61,6 @@ func _on_area_3d_body_entered(body):
 		impactParticle.emitting = true
 	
 	if body is Player:
-		print("a")
 		body.health -= damage
 		playerDamaged.emit()
 		if body.health <= 0:

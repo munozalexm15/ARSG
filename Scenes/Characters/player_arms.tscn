@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
 [ext_resource type="PackedScene" uid="uid://ny8x12admrv7" path="res://Scenes/Guns/M14.tscn" id="8_e0678"]
-[ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="9_jiqkn"]
+[ext_resource type="PackedScene" uid="uid://c6vbtles2oskv" path="res://Scenes/Guns/remington_870.tscn" id="8_iths8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
 properties/0/path = NodePath("../Knife:position")
@@ -38,6 +38,9 @@ properties/7/replication_mode = 1
 properties/8/path = NodePath("../Flashlight:spot_range")
 properties/8/spawn = true
 properties/8/replication_mode = 1
+properties/9/path = NodePath("../ReloadTimer:wait_time")
+properties/9/spawn = true
+properties/9/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
@@ -269,11 +272,12 @@ script = ExtResource("7_mq3cw")
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
-[node name="M14" parent="WeaponHolder" instance=ExtResource("8_e0678")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.701, 0)
+[node name="Remington870" parent="WeaponHolder" instance=ExtResource("8_iths8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98973, 0.701, 0)
 handsNode = NodePath("../..")
 
-[node name="USP" parent="WeaponHolder" instance=ExtResource("9_jiqkn")]
+[node name="M14" parent="WeaponHolder" instance=ExtResource("8_e0678")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.701, 0)
 handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

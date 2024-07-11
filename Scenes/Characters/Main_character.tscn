@@ -200,6 +200,21 @@ properties/7/replication_mode = 1
 properties/8/path = NodePath("Head/eyesHolder/armsHolder:recoil")
 properties/8/spawn = true
 properties/8/replication_mode = 1
+properties/9/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:enabled")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:position")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:rotation")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:wait_time")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot")
+properties/13/spawn = true
+properties/13/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 128

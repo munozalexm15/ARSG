@@ -120,6 +120,7 @@ func weapon_sway(delta):
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
 func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
+	print(player.multiplayer.get_unique_id())
 	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
 
 func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):

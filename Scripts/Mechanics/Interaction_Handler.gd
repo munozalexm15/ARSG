@@ -19,14 +19,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	if not is_multiplayer_authority():
-		return
-		
+	
 	hud.marginContainer.visible = false
 	hud.pickupAmmoContainer.visible = false
 	hud.pickupWeaponContainer.visible = false
 	hud.interactContainer.visible = false
 	if is_colliding():
+		
 		var interactable = get_collider()
 		var isInHolder = false
 		var isHoldingWeaponWithSameCaliber = false
@@ -90,4 +89,3 @@ func _physics_process(_delta):
 func _on_interact_timer_timeout():
 	swap_weapon.emit(WeaponInteractable, true)
 	InteractTimer.stop()
-

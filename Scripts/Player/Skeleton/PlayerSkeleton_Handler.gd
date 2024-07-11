@@ -61,7 +61,7 @@ func _process(_delta):
 		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
 
 func _on_arms_player_swapping_weapons():
-	if not multiplayer.connected_to_server:
+	if not is_multiplayer_authority():
 		return
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name

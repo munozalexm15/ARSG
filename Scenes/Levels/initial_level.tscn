@@ -120,7 +120,7 @@ material = SubResource("StandardMaterial3D_kb8cs")
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn", "res://Scenes/Guns/Pickups/M16A2_Pickup.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
 spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="BulletsParent" type="Node3D" parent="."]

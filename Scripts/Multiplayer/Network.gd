@@ -36,8 +36,6 @@ func player_joined(id):
 		return
 	
 	game.init_player(id)
-	
-	
 
 func player_left(_id):
 	pass

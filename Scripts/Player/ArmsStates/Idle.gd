@@ -42,6 +42,7 @@ func physics_update(_delta):
 	swap_weapon()
 	reload_listener()
 
+
 func replace_weapon(pickupWeapon, isSwapping):
 	if not pickupWeapon.isPickupReady or not pickupWeapon is Interactable:
 		return

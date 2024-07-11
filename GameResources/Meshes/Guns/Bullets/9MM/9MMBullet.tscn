@@ -104,7 +104,7 @@ vertex_color_use_as_albedo = true
 albedo_texture = SubResource("GradientTexture1D_xnr1t")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
-radius = 0.0658387
+radius = 0.0658385
 height = 0.131677
 
 [node name="RigidBody3D" type="RigidBody3D"]

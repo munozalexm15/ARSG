@@ -17,11 +17,8 @@ func physics_update(_delta):
 		
 	swap_weapon()
 	mouse_swap_weapon_logic()
-	
+
 func drop_weapon(_weaponName, pickupWeapon, isSwapping):
-	if not is_multiplayer_authority():
-		return
-		
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
 		if arms.weaponHolder.get_child(x).weaponData.name == _weaponName:
@@ -81,7 +78,8 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	if arms.actualWeapon.weaponData.weaponCaliber == arms.weaponHolder.get_child(0).weaponData.weaponCaliber:
 		arms.weaponHolder.get_child(1).weaponData.reserveAmmo = arms.weaponHolder.get_child(0).weaponData.reserveAmmo
 		arms.weaponHolder.get_child(0).weaponData.reserveAmmo = arms.weaponHolder.get_child(1).weaponData.reserveAmmo
-
+	
+	Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), arms.weaponHolder)
 	state_machine.transition_to("Idle")
 
 func _on_animation_player_animation_finished(anim_name):
@@ -142,6 +140,11 @@ func loadWeapon(index):
 	arms.weaponHolder.get_child(index).being_used = true
 	arms.weaponHolder.get_child(index).visible = true
 
+func replace_weapon_content(weapon : Node3D):
+	for child : Node in weapon.get_children():
+		child.queue_free()
+
 func exit():
 	arms.playerSwappingWeapons.emit()
-	arms.actualWeapon.being_used = true
+	if is_multiplayer_authority():
+		arms.actualWeapon.being_used = true
