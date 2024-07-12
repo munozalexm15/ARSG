@@ -77,6 +77,8 @@ func _process(_delta):
 				await get_tree().create_timer(0.3).timeout
 				if Input.is_action_pressed("Interact"):
 					on_pickup_weapon(weaponInteractable.weaponData.weaponScene, true)
+					deleteWeaponFromMap.rpc()
+					
 			
 			if Input.is_action_just_released("Interact") and not isInHolder:
 				if not InteractTimer.is_stopped():
@@ -88,10 +90,16 @@ func _process(_delta):
 				if Input.is_action_just_pressed("Interact"):
 					pickup_ammo.emit(interactable)
 
-@rpc("any_peer", "reliable", "call_local")
+
 func on_pickup_weapon(newWeaponStringScene : String, isInHolder : bool):
 	arms._on_interact_ray_swap_weapon(newWeaponStringScene, isInHolder)
 
+@rpc("any_peer", "reliable", "call_local")
+func deleteWeaponFromMap():
+	for weapon : WeaponInteractable in Network.game.interactables_node.get_children():
+		if weapon == weaponInteractable:
+			weapon.queue_free()
+	
 func _on_interact_timer_timeout():
 	swap_weapon.emit(weaponInteractable, true)
 	InteractTimer.stop()
