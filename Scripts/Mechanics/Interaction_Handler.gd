@@ -90,7 +90,7 @@ func _process(_delta):
 
 @rpc("any_peer", "reliable", "call_local")
 func on_pickup_weapon(newWeaponStringScene : String, isInHolder : bool):
-	arms._on_interact_ray_swap_weapon.rpc(newWeaponStringScene, isInHolder)
+	arms._on_interact_ray_swap_weapon(newWeaponStringScene, isInHolder)
 
 func _on_interact_timer_timeout():
 	swap_weapon.emit(weaponInteractable, true)

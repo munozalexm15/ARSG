@@ -121,11 +121,12 @@ func weapon_sway(delta):
 	weaponHolder.rotation.x = lerp(weaponHolder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
-@rpc("any_peer", "reliable", "call_local")
+
 func _on_interact_ray_swap_weapon(pickupWeaponScene : String, isSwapping : bool):
 	print("going to swap weapon with authority :" , get_multiplayer_authority())
-	drop_weapon(pickupWeaponScene, isSwapping)
+	drop_weapon.rpc(pickupWeaponScene, isSwapping)
 
+@rpc("authority", "call_local", "reliable")
 func drop_weapon(pickupWeaponScene, isSwapping):
 	var weapon_to_spawn = load(actualWeapon.weaponData.weaponPickupScene)
 	var droppedWeapon = weapon_to_spawn.instantiate()
@@ -149,7 +150,8 @@ func drop_weapon(pickupWeaponScene, isSwapping):
 	
 	#weapon switching
 	var spawnedWeaponScene = load(pickupWeaponScene)
-	var newWeapon = spawnedWeaponScene.instantiate()
+	var newWeapon : Weapon = spawnedWeaponScene.instantiate()
+	newWeapon.set_multiplayer_authority(get_multiplayer_authority())
 	newWeapon.position = newWeapon.weaponData.weaponSpawnPosition
 	newWeapon.handsNode = get_path()
 	
