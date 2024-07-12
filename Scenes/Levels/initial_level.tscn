@@ -1,10 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=22 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="5_h73xk"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="7_6kr1g"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
+[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="8_7en35"]
+[ext_resource type="AudioStream" uid="uid://bbhjrostu8o1y" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-015.ogg" id="9_mw3g2"]
+[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="10_6m5hg"]
+[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="11_i4lfl"]
+[ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="12_x57sp"]
+[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="13_clg16"]
+[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="14_a7fxl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
 panorama = ExtResource("1_4v70f")
@@ -31,6 +41,10 @@ shader_parameter/fadeToWhite = false
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb8cs"]
 transparency = 1
 blend_mode = 1
+
+[sub_resource type="Resource" id="Resource_udwen"]
+script = ExtResource("6_kndw7")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("7_6kr1g"), ExtResource("8_7en35"), ExtResource("9_mw3g2"), ExtResource("10_6m5hg"), ExtResource("11_i4lfl"), ExtResource("12_x57sp"), ExtResource("13_clg16"), ExtResource("14_a7fxl")])
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5qqm8")
@@ -112,10 +126,12 @@ material = SubResource("StandardMaterial3D_kb8cs")
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -2.25446, -2.36454)
 use_collision = true
-collision_layer = 3
-collision_mask = 3
+collision_layer = 67
+collision_mask = 67
 size = Vector3(42.1761, 1, 29.3068)
 material = SubResource("StandardMaterial3D_kb8cs")
+script = ExtResource("5_4lg0s")
+groundData = SubResource("Resource_udwen")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

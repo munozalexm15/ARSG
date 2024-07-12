@@ -254,7 +254,7 @@ cull_mask = 1
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
-collision_mask = 161
+collision_mask = 33
 script = ExtResource("3_lt84g")
 hudNode = NodePath("../../../../UI")
 
@@ -309,7 +309,7 @@ next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"reload", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2]
+blend_times = [&"reload", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

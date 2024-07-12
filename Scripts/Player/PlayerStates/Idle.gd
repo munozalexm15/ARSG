@@ -7,6 +7,9 @@ var rotation_value = 0
 
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
+	if not is_multiplayer_authority():
+		return
+	
 	if player.state_machine.old_state.name == "Air":
 		player.player_body.animationPlayer.play("Air_Land", -1, 2, false)
 	else:
@@ -15,19 +18,20 @@ func enter(_msg := {}):
 	player.direction = Vector3.ZERO
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
 
-func _physics_update(delta):
-	if int(player.rotation.y) < rotation_value:
-		rotation_value = int(player.rotation.y)
-		player.player_body.animationPlayer.play("Idle_RotateRight")
-	else:
-		rotation_value = int(player.rotation.y)
-		player.player_body.animationPlayer.play("Idle_RotateLeft")
-	
+func physics_update(delta):
+	if not is_multiplayer_authority():
+		return
 	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
 func update(_delta: float):
-	if rotation_value != int(player.rotation.y):
+	if not is_multiplayer_authority():
+		return
+	if int(player.rotation.y) < rotation_value:
 		rotation_value = int(player.rotation.y)
+		player.player_body.animationPlayer.play("Idle_TurnRight", -1, 2.0, false)
+	elif int(player.rotation.y) > rotation_value:
+		rotation_value = int(player.rotation.y)
+		player.player_body.animationPlayer.play("Idle_TurnLeft", -1, 2.0, false)
 	
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")

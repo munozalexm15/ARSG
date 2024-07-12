@@ -22,12 +22,12 @@ func _process(_delta):
 	if is_colliding():
 		var collision = get_collider()
 		
-		if collision is FiringRange_NPC:
-			npcData = collision.npcData
+		if collision is Player:
+			hud.ally_indicator(Color.LAWN_GREEN)
 			player.seeing_ally = true
 			
-			hud.NPCNameLabel.text = npcData.name
-			hud.NPCRoleLabel.text = npcData.role
+			hud.NPCNameLabel.text = collision.name
+			hud.NPCRoleLabel.text = "Health: " + str(collision.health)
 			
 			hud.NPCNameLabel.visible = true
 			hud.NPCRoleLabel.visible = true
@@ -35,6 +35,7 @@ func _process(_delta):
 			hud.NPCNameLabel.visible = false
 			hud.NPCRoleLabel.visible = false
 			player.seeing_ally = false
+			hud.ally_indicator(Color.WHITE)
 		
 		if collision is Target and collision.targetData.actualHealth > 0 and collision.targetData.actualHealth != collision.targetData.health:
 			collision.healthBar.visible = true
@@ -47,4 +48,4 @@ func _process(_delta):
 		hud.NPCNameLabel.visible = false
 		hud.NPCRoleLabel.visible = false
 		player.seeing_ally = false
-		
+		hud.ally_indicator(Color.WHITE)

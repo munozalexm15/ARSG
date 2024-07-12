@@ -128,7 +128,6 @@ func _input(event : InputEvent):
 		#get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
-
 	if not is_multiplayer_authority():
 		return
 		
@@ -175,7 +174,10 @@ func _physics_process(delta):
 		_checkCollisionWithWall()
 	else:
 		arms.position.z = 0
-	leaning(delta)
+
+#leaning ---------------------- WIP
+	#leaning(delta)
+	
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

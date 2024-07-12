@@ -89,3 +89,17 @@ func adjust_reticle_size():
 	#left and right
 	reticle_lines[1].position = lerp(reticle_lines[1].position, pos + Vector2(speed * retoile_distance, 0), reticle_speed)
 	reticle_lines[3].position = lerp(reticle_lines[3].position, pos + Vector2(-speed * retoile_distance, 0), reticle_speed)
+
+func ally_indicator(sight_color : Color):
+	if not is_multiplayer_authority():
+		return
+
+	if reticle_lines[0].default_color == sight_color:
+		return
+
+	reticle_lines[0].default_color = sight_color
+	reticle_lines[2].default_color = sight_color
+	#left and right
+	reticle_lines[1].default_color = sight_color
+	reticle_lines[3].default_color = sight_color
+	

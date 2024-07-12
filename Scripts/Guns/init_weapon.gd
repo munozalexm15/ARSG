@@ -96,7 +96,7 @@ func _physics_process(delta):
 		else:
 			weaponData.selectedFireModeIndex +=1
 			weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
-		
+
 	if hands.state_machine.state.name != "Reload" and not hands.player.seeing_ally:
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and handsAnimPlayer.is_playing():
