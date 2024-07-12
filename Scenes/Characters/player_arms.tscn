@@ -277,7 +277,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98973, 0.701, 0)
 handsNode = NodePath("../..")
 
 [node name="M14" parent="WeaponHolder" instance=ExtResource("8_e0678")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.701, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42224, -0.812206, 1.27714)
 handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

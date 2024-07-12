@@ -59,7 +59,6 @@ var mouse_movement
 func _ready():
 	if not is_multiplayer_authority():
 		return
-	print(weaponData.name , " authority is : " , get_multiplayer_authority())
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude

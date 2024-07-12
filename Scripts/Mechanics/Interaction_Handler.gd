@@ -76,7 +76,7 @@ func _process(_delta):
 			if Input.is_action_just_pressed("Interact") and not isInHolder:
 				await get_tree().create_timer(0.3).timeout
 				if Input.is_action_pressed("Interact"):
-					on_pickup_weapon(weaponInteractable.weaponData.weaponScene, true)
+					on_pickup_weapon(arms.actualWeapon.weaponData.name, weaponInteractable.weaponData.weaponScene, true)
 					deleteWeaponFromMap.rpc()
 					
 			
@@ -91,8 +91,8 @@ func _process(_delta):
 					pickup_ammo.emit(interactable)
 
 
-func on_pickup_weapon(newWeaponStringScene : String, isInHolder : bool):
-	arms._on_interact_ray_swap_weapon(newWeaponStringScene, isInHolder)
+func on_pickup_weapon(actualWeaponName, newWeaponStringScene : String, isInHolder : bool):
+	arms._on_interact_ray_swap_weapon(actualWeaponName, newWeaponStringScene, isInHolder)
 
 @rpc("any_peer", "reliable", "call_local")
 func deleteWeaponFromMap():

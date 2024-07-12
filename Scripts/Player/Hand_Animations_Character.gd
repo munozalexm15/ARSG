@@ -122,17 +122,25 @@ func weapon_sway(delta):
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
 
-func _on_interact_ray_swap_weapon(pickupWeaponScene : String, isSwapping : bool):
-	print("going to swap weapon with authority :" , get_multiplayer_authority())
-	drop_weapon.rpc(pickupWeaponScene, isSwapping)
+func _on_interact_ray_swap_weapon(actualWeaponName, pickupWeaponScene : String, isSwapping : bool):
+	drop_weapon.rpc(actualWeaponName, pickupWeaponScene, isSwapping)
 
 @rpc("authority", "call_local", "reliable")
-func drop_weapon(pickupWeaponScene, isSwapping):
-	var weapon_to_spawn = load(actualWeapon.weaponData.weaponPickupScene)
-	var droppedWeapon = weapon_to_spawn.instantiate()
+func drop_weapon(actualWeaponName, pickupWeaponScene, isSwapping):
 	
-	droppedWeapon.weaponData.reserveAmmo = actualWeapon.weaponData.reserveAmmo
-	droppedWeapon.weaponData.bulletsInMag = actualWeapon.weaponData.bulletsInMag
+	var weapon_Ref = null
+	for x in weaponHolder.get_child_count():
+		if weaponHolder.get_child(x).weaponData.name == actualWeaponName:
+			weapon_Ref = weaponHolder.get_child(x)
+	
+	if weapon_Ref == null:
+		return
+	
+	var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
+	var droppedWeapon : WeaponInteractable = weapon_to_spawn.instantiate()
+	
+	droppedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
+	droppedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
 	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
 	if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
@@ -140,8 +148,9 @@ func drop_weapon(pickupWeaponScene, isSwapping):
 	
 	droppedWeapon.isAlreadyGrabbed = true
 	droppedWeapon.set_global_transform(weaponHolder.get_global_transform())
+	print("Going to drop : ", droppedWeapon.weaponData.name)
 	Network.game.interactables_node.add_child(droppedWeapon)
-	weaponHolder.remove_child(actualWeapon)
+	weaponHolder.remove_child(weapon_Ref)
 	
 	actual_weapon_index = 0
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
