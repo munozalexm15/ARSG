@@ -27,7 +27,7 @@ var fovList = {"Default": 75.0, "ADS": 50.0, "Sniper": 25.0}
 @onready var knife : Node3D = $Knife
 
 var actual_weapon_index = 0
-var actualWeapon
+var actualWeapon : Weapon
 var actual_animation = ""
 var meleeAttack = false
 
@@ -43,7 +43,9 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
+		actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		return 
+		
 	knife.set_process(false)
 	interactorRay.add_exception(owner)
 	weaponHolder.get_child(actual_weapon_index).visible = true
@@ -119,9 +121,77 @@ func weapon_sway(delta):
 	weaponHolder.rotation.x = lerp(weaponHolder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
 	weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
-func _on_interact_ray_swap_weapon(pickupWeapon, isSwapping):
-	print(player.multiplayer.get_unique_id())
-	state_machine.transition_to("Idle", {"replace_weapon" = pickupWeapon, "isSwappingValue" = isSwapping})
+@rpc("any_peer", "reliable", "call_local")
+func _on_interact_ray_swap_weapon(pickupWeaponScene : String, isSwapping : bool):
+	print("going to swap weapon with authority :" , get_multiplayer_authority())
+	drop_weapon(pickupWeaponScene, isSwapping)
+
+func drop_weapon(pickupWeaponScene, isSwapping):
+	var weapon_to_spawn = load(actualWeapon.weaponData.weaponPickupScene)
+	var droppedWeapon = weapon_to_spawn.instantiate()
+	
+	droppedWeapon.weaponData.reserveAmmo = actualWeapon.weaponData.reserveAmmo
+	droppedWeapon.weaponData.bulletsInMag = actualWeapon.weaponData.bulletsInMag
+
+	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
+	if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
+		droppedWeapon.weaponData.reserveAmmo = 0
+	
+	droppedWeapon.isAlreadyGrabbed = true
+	droppedWeapon.set_global_transform(weaponHolder.get_global_transform())
+	Network.game.interactables_node.add_child(droppedWeapon)
+	weaponHolder.remove_child(actualWeapon)
+	
+	actual_weapon_index = 0
+	actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	
+	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+	
+	#weapon switching
+	var spawnedWeaponScene = load(pickupWeaponScene)
+	var newWeapon = spawnedWeaponScene.instantiate()
+	newWeapon.position = newWeapon.weaponData.weaponSpawnPosition
+	newWeapon.handsNode = get_path()
+	
+	weaponHolder.add_child(newWeapon)
+
+	#delete pickup weapon -> find in the game the dropped weapon (with an id?) and remove it locally in each client
+	#pickupWeapon.queue_free()
+	
+	#as it is swapping weapons on pickup, set the current weapon to not being used
+	actual_weapon_index = 1
+	loadWeapon(actual_weapon_index)
+	actualWeapon = weaponHolder.get_child(actual_weapon_index)
+	
+	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
+	#var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
+	#var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
+	#
+	#if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
+		#actualWeapon.weaponData.bulletsInMag = randomMagAmmo
+		#actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
+	#elif pickupWeapon.isAlreadyGrabbed:
+		#actualWeapon.weaponData.bulletsInMag = pickupWeapon.weaponData.bulletsInMag
+		#actualWeapon.weaponData.reserveAmmo = pickupWeapon.weaponData.reserveAmmo
+	#
+	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
+	
+	#if both weapons have the same caliber, add more ammo to both reserve
+	if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
+		weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
+		weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
+	
+	#Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), weaponHolder)
+	state_machine.transition_to("Idle")
+
+
+func loadWeapon(index):
+	for x in weaponHolder.get_child_count():
+		weaponHolder.get_child(x).being_used = false
+		weaponHolder.get_child(x).visible = false
+
+	weaponHolder.get_child(index).being_used = true
+	weaponHolder.get_child(index).visible = true
 
 func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):
 	for x in weaponHolder.get_child_count():

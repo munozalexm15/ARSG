@@ -1,4 +1,4 @@
-class_name Interactable
+class_name WeaponInteractable
 extends RigidBody3D
 
 @export var weaponData : WeaponData

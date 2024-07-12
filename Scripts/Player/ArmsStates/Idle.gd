@@ -8,7 +8,8 @@ func enter(_msg := {}):
 	
 	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
-		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
+		pass
+		#replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
 	if (not _msg.has("replace_weapon") and not _msg.has("isSwappingValue")):
 		if state_machine.old_state.name != "Reload" and not _msg.has("playHud"):
@@ -29,7 +30,6 @@ func enter(_msg := {}):
 			arms.player.hud.aimAnimationPlayer.play("Aim")
 
 func physics_update(_delta):
-	
 	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
 		state_machine.transition_to("Idle")
 		
@@ -42,9 +42,8 @@ func physics_update(_delta):
 	swap_weapon()
 	reload_listener()
 
-
 func replace_weapon(pickupWeapon, isSwapping):
-	if not pickupWeapon.isPickupReady or not pickupWeapon is Interactable:
+	if not pickupWeapon.isPickupReady:
 		return
 	
 	var weapon_equipped = null
@@ -119,6 +118,8 @@ func swap_weapon():
 		return
 
 func reload_listener():
+	if not arms.actualWeapon:
+		return
 	if arms.actualWeapon.weaponData.bulletsInMag <= 0 and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		arms.actualWeapon.isBurstActive = false
 		arms.actualWeapon.burstBullet = 0

@@ -11,14 +11,14 @@ signal pickup_ammo(ammoBox)
 
 signal button_pressed
 
-var WeaponInteractable
+var weaponInteractable : WeaponInteractable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_exception(owner)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
+func _process(_delta):
 	
 	hud.marginContainer.visible = false
 	hud.pickupAmmoContainer.visible = false
@@ -36,8 +36,8 @@ func _physics_process(_delta):
 				hud.timeLabel.text = "60"
 				button_pressed.emit()
 				
-		if interactable is Interactable:
-			WeaponInteractable = interactable
+		if interactable is WeaponInteractable:
+			weaponInteractable = interactable
 			for x in arms.weaponHolder.get_child_count():
 				if interactable.weaponData.name == arms.weaponHolder.get_child(x).weaponData.name:
 					isInHolder = true
@@ -74,7 +74,9 @@ func _physics_process(_delta):
 			
 			#grab weapon (different weapon)
 			if Input.is_action_just_pressed("Interact") and not isInHolder:
-				InteractTimer.start()
+				await get_tree().create_timer(0.3).timeout
+				if Input.is_action_pressed("Interact"):
+					on_pickup_weapon(weaponInteractable.weaponData.weaponScene, true)
 			
 			if Input.is_action_just_released("Interact") and not isInHolder:
 				if not InteractTimer.is_stopped():
@@ -86,6 +88,10 @@ func _physics_process(_delta):
 				if Input.is_action_just_pressed("Interact"):
 					pickup_ammo.emit(interactable)
 
+@rpc("any_peer", "reliable", "call_local")
+func on_pickup_weapon(newWeaponStringScene : String, isInHolder : bool):
+	arms._on_interact_ray_swap_weapon.rpc(newWeaponStringScene, isInHolder)
+
 func _on_interact_timer_timeout():
-	swap_weapon.emit(WeaponInteractable, true)
+	swap_weapon.emit(weaponInteractable, true)
 	InteractTimer.stop()

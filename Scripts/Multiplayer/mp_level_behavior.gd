@@ -35,17 +35,6 @@ func init_player(peer_id):
 	players_node.add_child(player)
 	#player.pauseMenu = playerMenu
 
-@rpc("any_peer", "call_local", "reliable")
-func update_players_equipment(player_id : int, NewWeaponHolder : Node3D):
-	print("new weapon Holder weapons")
-	for player in players_node.get_children():
-		for weapon : Weapon in NewWeaponHolder.get_children():
-			print(player.multiplayer.get_unique_id() , " : ", weapon.weaponData.name)
-	
-	#for player in players_node.get_children():
-		#if player.name == str(player_id):
-			#player.arms.weaponHolder.replace_by(NewWeaponHolder)
-
 func replace_weapon_content(weapon : Node3D):
 	for child : Node in weapon.get_children():
 		child.queue_free()
