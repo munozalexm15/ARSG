@@ -193,7 +193,7 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, isSwapping):
 		weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
 	
 	#Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), weaponHolder)
-	state_machine.transition_to("Idle")
+	state_machine.transition_to("SwappingWeapon")
 
 
 func loadWeapon(index):
