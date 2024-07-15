@@ -9,6 +9,8 @@ func enter(_msg := {}):
 		state_machine.transition_to("Idle")
 		return
 	
+	player_model_reload()
+	
 	wantsToShoot = false
 	
 	if arms.actualWeapon.weaponData.isBoltAction:
@@ -92,6 +94,8 @@ func swap_weapon():
 		state_machine.transition_to("SwappingWeapon")
 		
 
+func player_model_reload():
+	pass
 
 func _on_reload_timer_timeout():
 	arms.reloadTimer.stop()

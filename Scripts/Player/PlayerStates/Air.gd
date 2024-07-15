@@ -5,8 +5,7 @@ var falling_velocity = 0.0
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
 	if msg.has("jump"):
-		player.player_body.animationPlayer.play("Idle_Jump", -1, 2, false)
-		
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_Jump")
 		player.velocity.y = player.jump_force
 		
 		if not player.player_body.animationPlayer.is_connected("animation_finished", body_animation_ended):

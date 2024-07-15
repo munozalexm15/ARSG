@@ -11,9 +11,9 @@ func enter(_msg := {}):
 		return
 	
 	if player.state_machine.old_state.name == "Air":
-		player.player_body.animationPlayer.play("Air_Land", -1, 2, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Air_Land")
 	else:
-		player.player_body.animationPlayer.play("Idle")
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle")
 	player.velocity = Vector3.ZERO
 	player.direction = Vector3.ZERO
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
@@ -28,10 +28,10 @@ func update(_delta: float):
 		return
 	if int(player.rotation.y) < rotation_value:
 		rotation_value = int(player.rotation.y)
-		player.player_body.animationPlayer.play("Idle_TurnRight", -1, 2.0, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnRight")
 	elif int(player.rotation.y) > rotation_value:
 		rotation_value = int(player.rotation.y)
-		player.player_body.animationPlayer.play("Idle_TurnLeft", -1, 2.0, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnLeft")
 	
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")

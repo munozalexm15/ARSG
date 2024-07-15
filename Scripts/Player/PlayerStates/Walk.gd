@@ -8,7 +8,6 @@ func enter(_msg := {}):
 		player.arms.animationPlayer.play("Idle")
 
 func physics_update(delta: float) -> void:
-	
 	#En un futuro estructurar mejor
 	play_anim.rpc()
 	
@@ -54,27 +53,25 @@ func play_anim():
 	
 	#Just backwards
 	if Input.is_action_pressed("Backwards") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_Backwards", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Backwards")
 	#Just forward
 	if Input.is_action_pressed("Forward") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_Forward", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Forward")
 	
 	if Input.is_action_pressed("Left"):
-		player.player_body.animationPlayer.play(walk_type + "_Left", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Left")
 	
 	if Input.is_action_pressed("Right"):
-		player.player_body.animationPlayer.play(walk_type + "_Right", -1, 1, false)
-	
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Right")
+		
 	#Backwards left
 	if Input.is_action_pressed("Backwards") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_BackwardsLeft", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_BackwardsLeft")
 	#Backwards right
 	elif Input.is_action_pressed("Backwards") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
-		player.player_body.animationPlayer.play(walk_type + "_BackwardsRight", -1, 1, false)
-
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_BackwardsRight")
 	if Input.is_action_pressed("Forward") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_ForwardLeft", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_ForwardLeft")
 	
 	elif Input.is_action_pressed("Forward") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
-		player.player_body.animationPlayer.play(walk_type + "_ForwardRight", -1, 1, false)
-	
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_ForwardRight")

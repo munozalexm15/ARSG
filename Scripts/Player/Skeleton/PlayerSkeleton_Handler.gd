@@ -9,6 +9,7 @@ signal updatedPose(weaponName)
 @export var armsNode := NodePath()
 @onready var arms : Arms = get_node(armsNode)
 
+@onready var animationTree : AnimationTree = $AnimationTree
 @onready var animationPlayer : AnimationPlayer = $PlayerModel/AnimationPlayer
 
 @onready var LeftHandB_Attachment : BoneAttachment3D = $PlayerModel/Armature/Skeleton3D/LeftHand_BAttachment
@@ -93,5 +94,7 @@ func update_anim(weapon):
 	#
 
 func _on_animation_player_animation_finished(_anim_name):
+	if LeftHandB_Attachment.override_pose == true:
+		LeftHandB_Attachment.override_pose = false
 	if arms.player.state == "Idle":
 		animationPlayer.play("Idle")

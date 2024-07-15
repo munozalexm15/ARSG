@@ -7,12 +7,13 @@ var slide_vector = Vector2.ZERO
 var slide_multiplier = 10.0
 
 var canRun = false
-
+var rotation_value
 func enter(_msg := {}):
 	player.player_body.animationPlayer.play("Crouch_Idle", -1, 1, false)
 	player.curr_speed = player.crouch_speed
 	player.crouching_CollisionShape.disabled = false
 	player.standing_CollisionShape.disabled = true
+	rotation_value = player.rotation.y
 	player.curr_speed = player.crouch_speed
 
 #Slide Mechanic
@@ -48,7 +49,13 @@ func physics_update(delta: float) -> void:
 	if Vector2.ZERO == player.input_direction:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.curr_speed)
 		player.velocity.z = move_toward(player.velocity.z, 0.0, player.curr_speed)
-		player.player_body.animationPlayer.play("Crouch_Idle", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Crouch_Idle")
+		if int(player.rotation.y) < rotation_value:
+			rotation_value = int(player.rotation.y)
+			player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnRight")
+		elif int(player.rotation.y) > rotation_value:
+			rotation_value = int(player.rotation.y)
+			player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnLeft")
 		
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")
@@ -78,27 +85,26 @@ func play_anim():
 	var walk_type = "Crouch"
 	#Just backwards
 	if Input.is_action_pressed("Backwards") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_Backwards", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Backwards")
 	#Just forward
 	if Input.is_action_pressed("Forward") and (not Input.is_action_pressed("Left") or not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_Forward", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Forward")
 	
 	if Input.is_action_pressed("Left"):
-		player.player_body.animationPlayer.play(walk_type + "_Left", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Left")
 	
 	if Input.is_action_pressed("Right"):
-		player.player_body.animationPlayer.play(walk_type + "_Right", -1, 1, false)
-	
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_Right")
+		
 	#Backwards left
 	if Input.is_action_pressed("Backwards") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_BackwardsLeft", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_BackwardsLeft")
 	#Backwards right
 	elif Input.is_action_pressed("Backwards") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
-		player.player_body.animationPlayer.play(walk_type + "_BackwardsRight", -1, 1, false)
-
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_BackwardsRight")
 	if Input.is_action_pressed("Forward") and Input.is_action_pressed("Left") and (not Input.is_action_pressed("Right")):
-		player.player_body.animationPlayer.play(walk_type + "_ForwardLeft", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_ForwardLeft")
 	
 	elif Input.is_action_pressed("Forward") and Input.is_action_pressed("Right") and (not Input.is_action_pressed("Left")):
-		player.player_body.animationPlayer.play(walk_type + "_ForwardRight", -1, 1, false)
+		player.player_body.animationTree.set("parameters/Movement/transition_request", walk_type + "_ForwardRight")
 	
