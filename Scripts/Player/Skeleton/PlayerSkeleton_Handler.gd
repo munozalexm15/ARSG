@@ -32,6 +32,7 @@ var standingLeftArmTargetPosition : Vector3
 @onready var headIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/HeadIK3D
 @onready var leftArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/LeftArmIK3D
 @onready var rightArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/RightArmIK3D
+@onready var chestIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/ChestIK3D
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
 
@@ -49,6 +50,7 @@ func _ready():
 	leftArmIKSkeleton.start()
 	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
+	chestIKSkeleton.start()
 	leftShoulderHeight = leftArmShoulder.position.y
 	rightShoulderHeight = rightArmShoulder.position.y
 
@@ -84,17 +86,16 @@ func _on_arms_player_swapping_weapons():
 	
 func update_anim(weapon):
 	updatedPose.emit(weapon)
-	pass
-	
-	#if weapon == "AR":
-		#animationPlayer.play("Player_Rifle_Idle")
-	#
-	#if weapon == "Pistol":
-		#animationPlayer.play("Player_Pistol_Idle")
-	#
 
 func _on_animation_player_animation_finished(_anim_name):
 	if LeftHandB_Attachment.override_pose == true:
 		LeftHandB_Attachment.override_pose = false
 	if arms.player.state == "Idle":
 		animationPlayer.play("Idle")
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	
+	if anim_name == "Reload_SMG":
+		leftArmIKSkeleton.interpolation = 0.5
+		rightArmIKSkeleton.interpolation = 1

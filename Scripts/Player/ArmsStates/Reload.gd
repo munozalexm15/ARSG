@@ -9,7 +9,7 @@ func enter(_msg := {}):
 		state_machine.transition_to("Idle")
 		return
 	
-	player_model_reload()
+	player_model_reload.rpc()
 	
 	wantsToShoot = false
 	
@@ -94,8 +94,11 @@ func swap_weapon():
 		state_machine.transition_to("SwappingWeapon")
 		
 
+@rpc("any_peer", "call_local")
 func player_model_reload():
-	pass
+	arms.player.player_body.rightArmIKSkeleton.interpolation = 0
+	arms.player.player_body.leftArmIKSkeleton.interpolation = 0.4
+	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", "SMG_Reload")
 
 func _on_reload_timer_timeout():
 	arms.reloadTimer.stop()

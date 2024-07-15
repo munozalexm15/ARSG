@@ -6,9 +6,9 @@
 
 [sub_resource type="Resource" id="Resource_j61f6"]
 script = ExtResource("2_aygev")
-LeftHandPosition = Vector3(-0.237766, -0.142793, 0.841202)
+LeftHandPosition = Vector3(-0.237766, -0.142793, 0.641202)
 LeftHandRotation = Vector3(0.313527, -2.55563, -1.75029)
-RightHandPosition = Vector3(-0.104877, -0.388381, 0.861225)
+RightHandPosition = Vector3(-0.00487702, -0.388381, 0.561225)
 RightHandRotation = Vector3(1.15361, -1.67437, -1.66555)
 weaponType = "Rifle"
 
@@ -163,7 +163,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dys0e")
 
 [node name="MP5_MP" type="Node3D"]
-transform = Transform3D(0.0375526, -0.186706, -0.061079, 0.11599, -0.0291137, 0.160308, -0.158543, -0.0655228, 0.102814, 0.209945, -0.17259, 0.40567)
+transform = Transform3D(0.0120228, -0.187803, -0.0677166, 0.107844, -0.0509797, 0.160533, -0.168003, -0.0461644, 0.0982025, 0.275597, -0.175602, 0.423028)
 script = ExtResource("1_p5dxc")
 weaponSkeletonData = SubResource("Resource_j61f6")
 

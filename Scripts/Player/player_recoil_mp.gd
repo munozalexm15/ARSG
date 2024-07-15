@@ -1,8 +1,12 @@
 class_name Player_Recoil
 extends Node3D
 
-@onready var leftArmNode = $"."
-@onready var rightArmNode = $"../../RightArmShoulder/RightArmTarget"
+@export var targetNodePath := NodePath()
+@onready var targetNode : Node3D = get_node(targetNodePath)
+
+@export var skeletonNodePath := NodePath()
+@onready var skeleton : PlayerSkeleton = get_node(skeletonNodePath)
+@export var RecoilMultiplier : int
 # Rotations
 var currentRotation : Vector3
 var targetRotation : Vector3
@@ -18,10 +22,10 @@ var originalHandRot : Vector3
 @export var snappiness : float
 @export var returnSpeed : float
 
-@onready var skeleton : PlayerSkeleton = $"../.."
+
 
 func _ready():
-	originalHandPos = leftArmNode.position
+	originalHandPos = targetNode.position
 	originalHandRot = rotation
 
 func _process(delta):
@@ -29,11 +33,10 @@ func _process(delta):
 		return
 		# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, originalHandPos , returnSpeed * delta)
-	currentRotation = lerp(leftArmNode.position, targetRotation, snappiness * delta)
+	currentRotation = lerp(targetNode.position, targetRotation, snappiness * delta)
 	
 	# Set rotation
-	position = currentRotation
-	rotation.x = skeleton.arms.player.eyes.get_child(0).targetRotation.x * 4
+	rotation.x = skeleton.arms.player.eyes.get_child(0).targetRotation.x * RecoilMultiplier
 	# Camera z axis tilt fix, ignored if tilt intentionals
 	# I have no idea why it tilts if recoil.z is set to 0
 	if recoil.z == 0 and aimRecoil.z == 0:
