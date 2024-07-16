@@ -9,8 +9,6 @@ func enter(_msg := {}):
 		state_machine.transition_to("Idle")
 		return
 	
-	player_model_reload.rpc()
-	
 	wantsToShoot = false
 	
 	if arms.actualWeapon.weaponData.isBoltAction:
@@ -23,10 +21,12 @@ func enter(_msg := {}):
 		reload_bullet_by_bullet()
 	else:
 		if arms.actualWeapon.weaponData.bulletsInMag > 0:
+			player_model_reload.rpc("Mag_Reload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 			arms.actualWeapon.reload_sound.play()
 			arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length() + 0.2
 		else:
+			player_model_reload.rpc("Full_MagReload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Full_Reload")
 			arms.actualWeapon.full_reload_sound.play()
 			arms.reloadTimer.wait_time = arms.actualWeapon.full_reload_sound.stream.get_length() + 0.2
@@ -95,10 +95,11 @@ func swap_weapon():
 		
 
 @rpc("any_peer", "call_local")
-func player_model_reload():
+func player_model_reload(animationName : String, speed : float):
 	arms.player.player_body.rightArmIKSkeleton.interpolation = 0
 	arms.player.player_body.leftArmIKSkeleton.interpolation = 0.4
-	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", "SMG_Reload")
+	arms.player.player_body.animationTree.set("parameters/ReloadsTimeScale/scale", speed)
+	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", animationName)
 
 func _on_reload_timer_timeout():
 	arms.reloadTimer.stop()
@@ -143,6 +144,11 @@ func reload_bullet_by_bullet():
 		arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
 		state_machine.transition_to("Idle", {"play_reload": false})
 		return
+	
+	if arms.actualWeapon.weaponData.weaponType == "Sniper":
+		player_model_reload.rpc("Sniper_Reload", 2.0)
+	else:
+		player_model_reload.rpc("Shotgun_Reload", 2.0)
 	
 	bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 	

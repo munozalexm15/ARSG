@@ -4,9 +4,10 @@ extends Node3D
 @export var targetNodePath := NodePath()
 @onready var targetNode : Node3D = get_node(targetNodePath)
 
+@export var multiplierValue : int
+
 @export var skeletonNodePath := NodePath()
 @onready var skeleton : PlayerSkeleton = get_node(skeletonNodePath)
-@export var RecoilMultiplier : int
 # Rotations
 var currentRotation : Vector3
 var targetRotation : Vector3
@@ -36,7 +37,8 @@ func _process(delta):
 	currentRotation = lerp(targetNode.position, targetRotation, snappiness * delta)
 	
 	# Set rotation
-	rotation.x = skeleton.arms.player.eyes.get_child(0).targetRotation.x * RecoilMultiplier
+	position = currentRotation
+	rotation.x = skeleton.arms.player.eyes.get_child(0).targetRotation.x * multiplierValue
 	# Camera z axis tilt fix, ignored if tilt intentionals
 	# I have no idea why it tilts if recoil.z is set to 0
 	if recoil.z == 0 and aimRecoil.z == 0:

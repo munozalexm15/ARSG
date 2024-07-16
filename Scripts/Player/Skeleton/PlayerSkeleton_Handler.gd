@@ -94,8 +94,10 @@ func _on_animation_player_animation_finished(_anim_name):
 		animationPlayer.play("Idle")
 
 
-func _on_animation_tree_animation_finished(anim_name):
+func _on_animation_tree_animation_finished(anim_name : String):
 	
-	if anim_name == "Reload_SMG":
+	var animType: Array = anim_name.split("_")
+	
+	if animType[0] == "Reload":
 		leftArmIKSkeleton.interpolation = 0.5
 		rightArmIKSkeleton.interpolation = 1
