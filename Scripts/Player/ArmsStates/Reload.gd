@@ -11,6 +11,7 @@ func enter(_msg := {}):
 	
 	wantsToShoot = false
 	
+	#Shotguns / Snipers (bullet by bullet reloads)
 	if arms.actualWeapon.weaponData.isBoltAction:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt")
@@ -19,14 +20,22 @@ func enter(_msg := {}):
 		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload")
 		await arms.actualWeapon.handsAnimPlayer.animation_finished
 		reload_bullet_by_bullet()
+	
+	#SMG / AR / Pistols (or anything with a magazine)
 	else:
 		if arms.actualWeapon.weaponData.bulletsInMag > 0:
-			player_model_reload.rpc("Mag_Reload", 1.0)
+			if arms.actualWeapon.weaponData.weaponType  != "Pistol":
+				player_model_reload.rpc("Mag_Reload", 1.0)
+			else:
+				player_model_reload.rpc("Pistol_Reload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 			arms.actualWeapon.reload_sound.play()
 			arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length() + 0.2
 		else:
-			player_model_reload.rpc("Full_MagReload", 1.0)
+			if arms.actualWeapon.weaponData.weaponType  != "Pistol":
+				player_model_reload.rpc("Full_MagReload", 1.0)
+			else:
+				player_model_reload.rpc("Full_PistolReload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Full_Reload")
 			arms.actualWeapon.full_reload_sound.play()
 			arms.reloadTimer.wait_time = arms.actualWeapon.full_reload_sound.stream.get_length() + 0.2

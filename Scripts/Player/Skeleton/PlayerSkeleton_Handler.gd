@@ -19,15 +19,17 @@ var actualWeaponName = ""
 @onready var leftArmShoulder: Node3D = $LeftArmShoulder
 @onready var rightArmShoulder: Node3D = $RightArmShoulder
 
-var leftShoulderHeight
-var rightShoulderHeight
+#ADS positions to lerp-----------------------
+@export var leftArmADSPosition : Vector3
+@export var rightArmADSPosition : Vector3
+
+var originalLeftArmPosition : Vector3
+var originalRightArmPosition : Vector3
+#--------------------------------------
 
 @onready var headTarget : Node3D = $HeadTarget
 @onready var leftArmTarget: Player_Recoil = $LeftArmShoulder/LeftArmTarget
 @onready var rightArmTarget : Node3D = $RightArmShoulder/RightArmTarget
-
-var standingRightArmTargetPosition : Vector3
-var standingLeftArmTargetPosition : Vector3
 
 @onready var headIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/HeadIK3D
 @onready var leftArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/LeftArmIK3D
@@ -51,15 +53,21 @@ func _ready():
 	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
 	chestIKSkeleton.start()
-	leftShoulderHeight = leftArmShoulder.position.y
-	rightShoulderHeight = rightArmShoulder.position.y
+	originalLeftArmPosition = leftArmTarget.position
+	originalRightArmPosition = rightArmTarget.position
 
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
-	rightArmShoulder.rotation.x = (-arms.player.eyes.rotation.x / 2)
+	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
 	
-	#Get main_Character "arms Holder" node
+	if Input.is_action_pressed("ADS") and arms.state_machine.state.name != "Reload":
+		leftArmTarget.originalHandPos.x = leftArmADSPosition.x + + abs(arms.player.eyes.rotation.x / 2) * -1
+		leftArmTarget.originalHandPos.y = leftArmADSPosition.y + abs(arms.player.eyes.rotation.x / 2) * -1
+	else:
+		leftArmTarget.originalHandPos = originalLeftArmPosition
+	
+	#Get main_Character "arms Holder" node -- Make it a signal for better performance
 	if (LeftHandB_Attachment.get_child_count() > 0):
 		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
 
@@ -83,6 +91,8 @@ func _on_arms_player_swapping_weapons():
 	leftArmTarget.rotation = spawnedWeapon.weaponSkeletonData.LeftHandRotation
 	rightArmTarget.position = spawnedWeapon.weaponSkeletonData.RightHandPosition
 	rightArmTarget.rotation = spawnedWeapon.weaponSkeletonData.RightHandRotation
+	originalLeftArmPosition = leftArmTarget.position
+	originalRightArmPosition = rightArmTarget.position
 	
 func update_anim(weapon):
 	updatedPose.emit(weapon)

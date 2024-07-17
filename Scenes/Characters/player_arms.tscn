@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
 [ext_resource type="PackedScene" uid="uid://c6vbtles2oskv" path="res://Scenes/Guns/remington_870.tscn" id="8_iths8"]
-[ext_resource type="PackedScene" uid="uid://ckuru1wposqw7" path="res://Scenes/Guns/remington_700.tscn" id="9_tt4m3"]
+[ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="9_xki88"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
 properties/0/path = NodePath("../Knife:position")
@@ -248,7 +248,7 @@ libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
 speed_scale = 2.0
-blend_times = [&"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2]
+blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -276,8 +276,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.98973, 0.701, 0)
 handsNode = NodePath("../..")
 
-[node name="Remington700" parent="WeaponHolder" instance=ExtResource("9_tt4m3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72999, 0.749306, 0.532162)
+[node name="USP" parent="WeaponHolder" instance=ExtResource("9_xki88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132, 0.253)
 handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
