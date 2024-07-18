@@ -39,7 +39,8 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	
 	droppedWeapon.isAlreadyGrabbed = true
 	droppedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
-	Network.game.interactables_node.add_child(droppedWeapon)
+	if arms.weaponHolder.get_child_count() > 1:
+		Network.game.interactables_node.add_child(droppedWeapon)
 	arms.weaponHolder.remove_child(weapon_Ref)
 	
 	arms.actual_weapon_index = 0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=26 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Player_Stats.gd" id="2_ae4m0"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
 [ext_resource type="PackedScene" uid="uid://chs5wra0urxdf" path="res://Scenes/Characters/player_skeleton.tscn" id="2_wc48o"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
@@ -14,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
+
+[sub_resource type="Resource" id="Resource_w2eju"]
+script = ExtResource("2_ae4m0")
+hasDoubleWeapon = true
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -228,6 +233,7 @@ standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 hudNode = NodePath("UI")
+playerData = SubResource("Resource_w2eju")
 
 [node name="PlayerSkeleton" parent="." instance=ExtResource("2_wc48o")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -0.758191, 0.0942096)
@@ -309,7 +315,7 @@ next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
+blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

@@ -58,6 +58,7 @@ func _ready():
 
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
+	
 	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
 	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
 	

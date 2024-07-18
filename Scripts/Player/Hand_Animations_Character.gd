@@ -72,9 +72,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Flashlight"):
 		flashlight.visible = !flashlight.visible
-
+	
+	
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
-	player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
+	if weaponHolder.get_child_count() > 1:
+		player.hud.secondaryWeaponIcon.texture = weaponHolder.get_child(1).weaponData.weaponImage
 	
 	player.hud.weaponFireMode.text = actualWeapon.weaponData.selectedFireMode
 	
@@ -143,14 +145,17 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, isSwapping):
 	droppedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
 	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
-	if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
-		droppedWeapon.weaponData.reserveAmmo = 0
+	if weaponHolder.get_child_count() != 1:
+		if weaponHolder.get_child(0).weaponData.weaponCaliber == weaponHolder.get_child(1).weaponData.weaponCaliber:
+			droppedWeapon.weaponData.reserveAmmo = 0
 	
-	droppedWeapon.isAlreadyGrabbed = true
-	droppedWeapon.set_global_transform(weaponHolder.get_global_transform())
-	print("Going to drop : ", droppedWeapon.weaponData.name)
-	Network.game.interactables_node.add_child(droppedWeapon)
-	weaponHolder.remove_child(weapon_Ref)
+		droppedWeapon.isAlreadyGrabbed = true
+		droppedWeapon.set_global_transform(weaponHolder.get_global_transform())
+		print("Going to drop : ", droppedWeapon.weaponData.name)
+		Network.game.interactables_node.add_child(droppedWeapon)
+	
+	if weaponHolder.get_child_count() != 1:
+		weaponHolder.remove_child(weapon_Ref)
 	
 	actual_weapon_index = 0
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)

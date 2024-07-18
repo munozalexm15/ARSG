@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponSkeletonData" load_steps=2 format=3 uid="uid://bcrqeb0poxlib"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponSkeletonData.gd" id="1_8hwxf"]
+
+[resource]
+script = ExtResource("1_8hwxf")
+LeftHandPosition = Vector3(-0.116, -0.244, -0.187)
+LeftHandRotation = Vector3(0.427, 1.935, -2.46)
+RightHandPosition = Vector3(0.001, -0.2, 0.804)
+RightHandRotation = Vector3(1.733, 0, 0)
+weaponType = "Pistol"

@@ -29,6 +29,8 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
+@export var playerData : PlayerData
+
 #@export var pauseMenuNode := NodePath()
 #@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
 

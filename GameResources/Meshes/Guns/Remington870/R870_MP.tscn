@@ -153,4 +153,4 @@ mesh = SubResource("ArrayMesh_c4lbc")
 skeleton = NodePath("")
 
 [node name="RHand_Grip" type="Node3D" parent="."]
-transform = Transform3D(0.258819, 0.965926, -8.9407e-08, -1.49012e-07, -2.98023e-08, -1, -0.965926, 0.258819, 2.71946e-07, 3.73903, 0.172698, 0.429029)
+transform = Transform3D(0.258819, 0.965923, 4.17233e-07, -1.06543e-06, 5.96046e-07, -0.999999, -0.965923, 0.258818, -5.43892e-07, 3.15756, -0.143907, 0.416856)
