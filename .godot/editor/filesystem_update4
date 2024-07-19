@@ -1,0 +1,16 @@
+res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader
+res://GameResources/Shaders/psx_dither.gdshader
+res://GameResources/Shaders/psx_jitter.gdshader
+res://GameResources/Shaders/hud_weapon_color.gdshader
+res://GameResources/Shaders/vhs_shader.gdshader
+res://Scripts/Mechanics/Ground_Handler.gd
+res://Scripts/Guns/Resources/M16A2_Resource.tres
+res://GameResources/Shaders/psx_fade.gdshader
+res://GameResources/Materials/Retro-LightCone.tres
+res://GameResources/Materials/Jittering_shader_material_face.tres
+res://GameResources/Shaders/psx_lit.gdshader
+res://GameResources/Shaders/blur_shader.gdshader
+res://GameResources/Shaders/psx_unlit.gdshader
+res://Scenes/Interactables/Item_Pickup.tscn
+res://Scripts/Interactables/Item_Pickup.gd
+res://Scripts/Interactables/Pickup_Data.gd

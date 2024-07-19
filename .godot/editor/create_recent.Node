@@ -1,0 +1,14 @@
+AnimationPlayer
+Node
+BoneAttachment3D
+SkeletonIK3D
+Node3D
+AnimationTree
+MultiplayerSpawner
+Area3D
+MultiplayerSynchronizer
+Arms
+Marker3D
+MeshInstance3D
+PanelContainer
+Container
