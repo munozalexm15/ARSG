@@ -151,7 +151,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, isSwapping):
 	
 		droppedWeapon.isAlreadyGrabbed = true
 		droppedWeapon.set_global_transform(weaponHolder.get_global_transform())
-		print("Going to drop : ", droppedWeapon.weaponData.name)
 		Network.game.interactables_node.add_child(droppedWeapon)
 	
 	if weaponHolder.get_child_count() != 1:

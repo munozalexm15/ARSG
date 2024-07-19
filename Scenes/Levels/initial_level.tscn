@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=22 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
-[ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="5_h73xk"]
 [ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
 [ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="7_6kr1g"]
@@ -15,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="12_x57sp"]
 [ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="13_clg16"]
 [ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="14_a7fxl"]
-[ext_resource type="PackedScene" uid="uid://b8rr8x0gextkk" path="res://Scenes/Guns/Pickups/MP5_Pickup.tscn" id="16_shce6"]
+[ext_resource type="PackedScene" uid="uid://ctgbbjxlb5sel" path="res://Scenes/Interactables/Chest.tscn" id="15_6frre"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
 panorama = ExtResource("1_4v70f")
@@ -144,8 +143,5 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="InteractablesParent" type="Node3D" parent="."]
 
-[node name="M16A2" parent="InteractablesParent" instance=ExtResource("5_h73xk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14626, -0.957273, -2.2013)
-
-[node name="MP5" parent="InteractablesParent" instance=ExtResource("16_shce6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.57382, -0.65636, -2.24162)
+[node name="Node3D" parent="InteractablesParent" instance=ExtResource("15_6frre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.01496)

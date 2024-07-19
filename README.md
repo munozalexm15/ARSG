@@ -72,6 +72,7 @@ NOTA: Para avanzar hacia el siguiente nivel, hay que conseguir cumplir el objeti
 - Fuerza imparable: No andaras lento en zonas de fango
 - Oculto en las sombras: No serás visible en las zonas con poca visibilidad
 - Sangre de muerto: Puedes fingir tu muerte en cualquier momento
+- Vuelve a tirar: Los cofres ya abiertos pueden volver a abrirse
 
 ### MECHANICS
  - Fix health system

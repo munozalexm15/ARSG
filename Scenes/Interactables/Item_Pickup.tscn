@@ -1,11 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7p7rhykkacvx"]
+[gd_scene load_steps=16 format=3 uid="uid://c7p7rhykkacvx"]
 
 [ext_resource type="Script" path="res://Scripts/Interactables/Item_Pickup.gd" id="1_alwjn"]
 [ext_resource type="Script" path="res://Scripts/Interactables/Pickup_Data.gd" id="2_54bux"]
+[ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="2_w765x"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Player_Stats.gd" id="3_e2b5j"]
+[ext_resource type="PackedScene" uid="uid://c4vdoc3p2jdi6" path="res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn" id="5_a0uj7"]
+
+[sub_resource type="Resource" id="Resource_pysiu"]
+script = ExtResource("3_e2b5j")
+maxHealth = 0.0
+actualHealth = 0.0
+speedMultiplier = 0.0
+reloadSpeedMultiplier = 0.0
+damageMultiplier = 0.0
+jumpHeightMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_oib8s"]
 script = ExtResource("2_54bux")
-isWeapon = false
+item_scene = ExtResource("2_w765x")
+playerStats = SubResource("Resource_pysiu")
+isWeapon = true
+
+[sub_resource type="Resource" id="Resource_4sue7"]
+script = ExtResource("2_54bux")
+item_scene = ExtResource("5_a0uj7")
+playerStats = SubResource("Resource_pysiu")
+isWeapon = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cis8b"]
 albedo_color = Color(0, 0.470588, 0.937255, 1)
@@ -71,33 +91,6 @@ tracks/1/keys = {
 "values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 3.14159, 0), Vector3(1.5708, 6.28319, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1ryk5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Prop_Ammo_Pistol:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Prop_Ammo_Pistol:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ocekb"]
 resource_name = "From_Lootchest"
 tracks/0/type = "value"
@@ -125,6 +118,33 @@ tracks/1/keys = {
 "values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1ryk5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prop_Ammo_Pistol:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prop_Ammo_Pistol:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j3102"]
 _data = {
 "Float": SubResource("Animation_fs0tf"),
@@ -134,10 +154,10 @@ _data = {
 
 [node name="Pickup" type="Node3D"]
 script = ExtResource("1_alwjn")
-itemList = [SubResource("Resource_oib8s"), null]
+itemList = [SubResource("Resource_oib8s"), SubResource("Resource_4sue7")]
 
 [node name="Prop_Ammo_Pistol" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
+transform = Transform3D(0.01, 0, 0, 0, -3.61999e-08, -0.01, 0, 0.01, -3.61999e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_dgble")
 skeleton = NodePath("")
 

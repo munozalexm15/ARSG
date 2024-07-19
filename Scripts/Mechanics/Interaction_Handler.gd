@@ -89,6 +89,12 @@ func _process(_delta):
 				hud.pickupAmmoContainer.visible = true
 				if Input.is_action_just_pressed("Interact"):
 					pickup_ammo.emit(interactable)
+		
+		if interactable is ChestInteractable and Input.is_action_just_pressed("Interact"):
+			if interactable.opened:
+				return
+			interactable.selectedWeapon = interactable.WeaponList.pick_random()
+			interactable.spawn_weapon.rpc(interactable.selectedWeapon)
 
 
 func on_pickup_weapon(actualWeaponName, newWeaponStringScene : String, isInHolder : bool):
@@ -96,9 +102,9 @@ func on_pickup_weapon(actualWeaponName, newWeaponStringScene : String, isInHolde
 
 @rpc("any_peer", "reliable", "call_local")
 func deleteWeaponFromMap():
-	for weapon : WeaponInteractable in Network.game.interactables_node.get_children():
-		if weapon == weaponInteractable:
-			weapon.queue_free()
+	for interactable in Network.game.interactables_node.get_children():
+		if interactable == weaponInteractable:
+			interactable.queue_free()
 	
 func _on_interact_timer_timeout():
 	swap_weapon.emit(weaponInteractable, true)

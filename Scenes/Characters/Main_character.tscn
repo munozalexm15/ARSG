@@ -18,7 +18,12 @@
 
 [sub_resource type="Resource" id="Resource_w2eju"]
 script = ExtResource("2_ae4m0")
-hasDoubleWeapon = true
+maxHealth = 100.0
+actualHealth = 100.0
+speedMultiplier = 1.0
+reloadSpeedMultiplier = 1.0
+damageMultiplier = 1.0
+jumpHeightMultiplier = 1.0
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
