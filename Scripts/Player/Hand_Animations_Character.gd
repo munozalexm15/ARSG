@@ -55,7 +55,6 @@ func _ready():
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	playerSwappingWeapons.emit()
 	
-	reloadTimer.wait_time = actualWeapon.weaponData.reloadTime
 	for weapon in weaponHolder.get_children():
 		weapon.position = weapon.weaponData.weaponSpawnPosition
 

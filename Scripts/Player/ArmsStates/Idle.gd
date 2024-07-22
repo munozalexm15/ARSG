@@ -5,7 +5,8 @@ signal swapWeapon
 func enter(_msg := {}):
 	if not is_multiplayer_authority():
 		return
-	
+		
+	arms.ads_position = arms.actualWeapon.weaponData.cameraADSPosition
 	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
 		pass

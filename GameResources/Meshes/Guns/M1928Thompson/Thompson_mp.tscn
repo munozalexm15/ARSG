@@ -188,7 +188,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_taruu")
 
-[node name="MP5SD_MP" type="Node3D"]
+[node name="Thompson" type="Node3D"]
 transform = Transform3D(0.0615339, -0.174205, -0.0765906, 0.0662367, -0.055855, 0.180258, -0.178399, -0.0808256, 0.0405091, -0.220759, -0.397527, 0.706655)
 script = ExtResource("1_gnvby")
 weaponSkeletonData = SubResource("Resource_0w2jv")
@@ -200,7 +200,7 @@ transform = Transform3D(-3.93403e-07, -5.2108e-15, 9, -1.19209e-07, 9, 0, -9, -1
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="M1928Thompson/Armature"]
-transform = Transform3D(1, 0, 1.86265e-09, 2.98023e-08, 1, 8.3819e-09, 1.86265e-09, -1.86265e-09, 1, 0, 0, 0)
+transform = Transform3D(1, 2.98023e-08, 0, 5.21541e-08, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0)
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 4.37114e-08, 0, 0, 0, 1, 4.37114e-08, -1, 0, 0, 0, 0)
@@ -285,4 +285,4 @@ mesh = SubResource("ArrayMesh_na3hw")
 skeleton = NodePath("")
 
 [node name="RHand_Grip" type="Node3D" parent="."]
-transform = Transform3D(0.258819, 0.965926, 1.49012e-07, 1.04308e-07, 0, -1, -0.965926, 0.258819, 7.45058e-08, -1.15371, 0.993068, 0.22133)
+transform = Transform3D(0.258819, 0.965926, 2.68221e-07, 2.98023e-07, 0, -1, -0.965926, 0.258819, 5.21541e-08, 1.88937, -0.0643223, 0.644013)

@@ -10,15 +10,12 @@ class_name WeaponData extends Resource
 
 @export var weaponCaliber: String
 
-@export var reloadTime: float
 @export var allowsFireSelection : bool
-
 @export var fireModes: Array
 @export var selectedFireMode: StringName
 @export var selectedFireModeIndex: int
-@export var isBoltAction : bool
 
-@export var reloadsWithMagazine : bool
+@export var isBoltAction : bool
 
 @export var cadency : float
 @export var recoil: Vector3
@@ -31,4 +28,6 @@ class_name WeaponData extends Resource
 
 #Used for the external POV of the player
 @export var weaponExternalScene : PackedScene
+
+@export var cameraADSPosition: Vector3
 

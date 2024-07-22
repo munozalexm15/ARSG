@@ -1,6 +1,5 @@
 extends ArmsState
 
-var bullet_reload_time : float
 var wantsToShoot = false
 
 func enter(_msg := {}):
@@ -158,8 +157,6 @@ func reload_bullet_by_bullet():
 		player_model_reload.rpc("Sniper_Reload", 2.0)
 	else:
 		player_model_reload.rpc("Shotgun_Reload", 2.0)
-	
-	bullet_reload_time = arms.actualWeapon.weaponData.reloadTime / arms.actualWeapon.weaponData.magSize
 	
 	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
 	arms.actualWeapon.reload_sound.play()
