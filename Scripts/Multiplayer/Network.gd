@@ -36,6 +36,7 @@ func player_joined(id):
 		return
 	
 	game.init_player(id)
+	game.set_player_data.rpc(id, id)
 
 func player_left(_id):
 	pass

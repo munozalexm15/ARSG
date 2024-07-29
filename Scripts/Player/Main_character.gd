@@ -31,8 +31,7 @@ signal step
 
 @export var playerData : PlayerData
 
-#@export var pauseMenuNode := NodePath()
-#@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
+var pauseMenu : Pause_Menu 
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
@@ -97,7 +96,7 @@ func _ready():
 	if not is_multiplayer_authority(): 
 		arms.visible = false
 		return
-	
+
 	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
@@ -121,18 +120,16 @@ func _input(event : InputEvent):
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
 	
-		
-		
-	#if Input.is_action_just_pressed("Pause") and not get_tree().paused:
-		#pauseMenu.show()
-		#pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#get_tree().paused = not get_tree().paused
+	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
+		pauseMenu.show()
+		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
-		return
-		
+		return 
+	
 	if health < 100:
 		updateHealth()
 	

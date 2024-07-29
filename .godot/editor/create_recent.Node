@@ -1,8 +1,9 @@
+Node3D
+GridMap
 CollisionShape3D
 StaticBody3D
 SpringArm3D
 RigidBody3D
-Node3D
 AnimationPlayer
 AnimationTree
 Node
@@ -11,4 +12,3 @@ SkeletonIK3D
 MultiplayerSpawner
 Area3D
 MultiplayerSynchronizer
-Arms

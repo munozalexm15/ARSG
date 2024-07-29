@@ -227,8 +227,8 @@ properties/13/spawn = true
 properties/13/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
-collision_layer = 128
-collision_mask = 131
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
 armsNode = NodePath("Head/eyesHolder/armsHolder/arms")
@@ -321,7 +321,7 @@ next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
+blend_times = [&"hard_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"soft_landing", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"reload", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

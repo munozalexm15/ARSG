@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=17 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
-[ext_resource type="PackedScene" uid="uid://blnr21yhajb0g" path="res://Scenes/Guns/M1928_Thompson.tscn" id="8_87eib"]
 [ext_resource type="PackedScene" uid="uid://dtt6181hvgoee" path="res://Scenes/Guns/MP5.tscn" id="9_mqlgh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
@@ -220,21 +219,6 @@ _data = {
 "SwapWeapon": SubResource("Animation_6d0bv")
 }
 
-[sub_resource type="Curve" id="Curve_8qq0t"]
-min_value = -1.0
-_data = [Vector2(0, 0.0145161), 0.0, 0.0, 0, 0, Vector2(0.0620155, 0.329032), 0.0, 0.0, 0, 0, Vector2(0.097, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_ig4xy"]
-min_value = -1.0
-_data = [Vector2(0, -0.00645161), 0.0, 0.0, 0, 0, Vector2(0.0813954, 0.266129), 0.0, 0.0, 0, 0, Vector2(0.120155, -0.0693549), 0.0, 0.0, 0, 0, Vector2(0.271, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_k2n46"]
-max_value = 2.0
-_data = [Vector2(0, 0.993548), 0.0, 0.0, 0, 0, Vector2(0.0348837, 1.14032), 0.0, 0.0, 0, 0, Vector2(0.128, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="arms" type="Node3D"]
 process_mode = 1
 script = ExtResource("1_fm3lv")
@@ -262,7 +246,7 @@ libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
 speed_scale = 2.0
-blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2]
+blend_times = [&"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -289,14 +273,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 [node name="MP5" parent="WeaponHolder" instance=ExtResource("9_mqlgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57922, -1.04679, 1.24629)
 handsNode = NodePath("../..")
-
-[node name="Thompson" parent="WeaponHolder" instance=ExtResource("8_87eib")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.579232, 0.624478, 0.768721)
-handsNode = NodePath("../..")
-recoil_rotation_x = SubResource("Curve_8qq0t")
-recoil_rotation_z = SubResource("Curve_ig4xy")
-recoil_position_z = SubResource("Curve_k2n46")
-recoil_amplitude = Vector3(1, 0.2, 0.3)
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="endedMelee" from="Knife" to="StateMachine/Melee" method="_on_knife_ended_melee"]

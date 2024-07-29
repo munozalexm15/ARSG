@@ -1,3 +1,5 @@
+res://GameResources/MeshLibraries
+res://Scenes/Levels
 res://GameResources/Meshes/Guns/M1928Thompson
 res://GameResources/Meshes/Guns/MP5
 res://Scenes/Characters
@@ -15,10 +17,8 @@ res://GameResources/Meshes/Guns/Remington870
 res://Scripts/Player
 res://Scripts/Guns/SkeletonPositionsData
 res://GameResources/Skeleton
-res://Scenes/Levels
 res://GameResources/Meshes/Guns/Bullets/9MM
 res://Scripts/Guns
 res://GameResources/Meshes/Guns/M16A2
-res://GameResources/Meshes/Guns/M14
 E:/GODOT/ARSG/Scripts/Guns/Resources
 E:/GODOT/ARSG/Scripts/Multiplayer
