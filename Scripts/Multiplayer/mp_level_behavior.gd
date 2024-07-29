@@ -31,7 +31,6 @@ func _process(_delta):
 
 @rpc("authority", "call_local", "reliable")
 func init_player(peer_id):
-	print("viene de : " , multiplayer.get_unique_id(), " y es para crear personaje de : ",  peer_id)
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
 	players_node.add_child(player)
@@ -40,7 +39,6 @@ func init_player(peer_id):
 
 @rpc("any_peer", "call_local", "reliable")
 func set_player_data(peer_id, playerName):
-	print("viene de " , peer_id)
 	var player : Player = null
 	for p in players_node.get_children():
 		if p.name == str(playerName):

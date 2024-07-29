@@ -38,8 +38,11 @@ func player_joined(id):
 	game.init_player(id)
 	game.set_player_data.rpc(id, id)
 
+@rpc("any_peer", "call_local")
 func player_left(_id):
-	pass
+	for p in game.players_node.get_children():
+		if p.name == str(_id):
+			p.queue_free()
 
 func load_map():
 	pass

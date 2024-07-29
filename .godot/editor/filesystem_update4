@@ -22,3 +22,5 @@ res://Scenes/Characters/Main_character.tscn
 res://Scenes/Characters/player_skeleton.tscn
 res://Scripts/Multiplayer/mp_level_behavior.gd
 res://Scripts/Player/Main_character.gd
+res://Scenes/UI/Pause_Menu/pause_menu.tscn
+res://Scripts/UI/Pause_menu/pause_menu.gd
