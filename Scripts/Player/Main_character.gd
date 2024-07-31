@@ -32,6 +32,7 @@ signal step
 @export var playerData : PlayerData
 
 var pauseMenu : Pause_Menu 
+var teamSelectionMenu : TeamSelection_Menu
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
@@ -84,8 +85,10 @@ var health: float = 75
 
 var seeing_ally : bool = false
 
+##MP RESPAWNS, TEAMS, DATA
 var can_respawn = false
 var time_to_respawn = 3.0
+var team = ""
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())

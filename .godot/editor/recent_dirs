@@ -1,3 +1,5 @@
+res://Scripts/UI/Team_Selection
+res://Scenes/UI/Team_Selection
 res://Scenes/UI/Pause_Menu
 res://GameResources/MeshLibraries
 res://Scenes/Levels
@@ -18,7 +20,5 @@ res://GameResources/Meshes/Guns/Remington870
 res://Scripts/Player
 res://Scripts/Guns/SkeletonPositionsData
 res://GameResources/Skeleton
-res://GameResources/Meshes/Guns/Bullets/9MM
-res://Scripts/Guns
 E:/GODOT/ARSG/Scripts/Guns/Resources
 E:/GODOT/ARSG/Scripts/Multiplayer

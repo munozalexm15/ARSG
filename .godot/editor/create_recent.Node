@@ -1,3 +1,6 @@
+Button
+Label
+PanelContainer
 Node3D
 GridMap
 CollisionShape3D
@@ -10,5 +13,3 @@ Node
 BoneAttachment3D
 SkeletonIK3D
 MultiplayerSpawner
-Area3D
-MultiplayerSynchronizer

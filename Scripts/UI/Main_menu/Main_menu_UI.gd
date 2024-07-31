@@ -16,8 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Network.players == 2:
-		pass
+	pass
 
 func _on_firing_range_play_pressed():
 	# LOAD NEXT LEVEL IN ANOTHER THREAD, SHOW LOADING SCREEN

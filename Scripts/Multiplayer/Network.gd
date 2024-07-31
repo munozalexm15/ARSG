@@ -46,3 +46,9 @@ func player_left(_id):
 
 func load_map():
 	pass
+
+@rpc("any_peer", "call_local", "reliable")
+func update_teams(identifier, newTeam):
+	for player in game.players_node.get_children():
+		if str(identifier) == player.name:
+			player.team = newTeam

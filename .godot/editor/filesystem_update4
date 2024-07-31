@@ -16,11 +16,11 @@ res://Scripts/Guns/Resources/M16A2_Resource.tres
 res://GameResources/Shaders/psx_lit.gdshader
 res://GameResources/Shaders/blur_shader.gdshader
 res://GameResources/Shaders/psx_unlit.gdshader
-res://Scripts/Multiplayer/Network.gd
 res://Scenes/Characters/player_arms.tscn
 res://Scenes/Characters/Main_character.tscn
 res://Scenes/Characters/player_skeleton.tscn
-res://Scripts/Multiplayer/mp_level_behavior.gd
-res://Scripts/Player/Main_character.gd
 res://Scenes/UI/Pause_Menu/pause_menu.tscn
-res://Scripts/UI/Pause_menu/pause_menu.gd
+res://Scenes/UI/Team_Selection/Team_selection.tscn
+res://Scripts/UI/Team_Selection/Team_selection.gd
+res://Scripts/Multiplayer/mp_level_behavior.gd
+res://Scripts/Guns/init_weapon.gd
