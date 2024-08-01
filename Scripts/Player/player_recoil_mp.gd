@@ -32,6 +32,9 @@ func _ready():
 func _process(delta):
 	if not is_multiplayer_authority():
 		return
+	
+	if not skeleton.arms.weaponHolder.get_child_count() > 0:
+		return
 		# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, originalHandPos , returnSpeed * delta)
 	currentRotation = lerp(targetNode.position, targetRotation, snappiness * delta)

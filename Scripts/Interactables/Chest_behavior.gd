@@ -16,10 +16,6 @@ var selectedWeapon : String
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 @rpc("any_peer", "call_local", "reliable")
 func spawn_weapon(weaponPath : String):
 	opened = true

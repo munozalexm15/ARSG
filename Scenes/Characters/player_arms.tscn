@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=16 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
-[ext_resource type="PackedScene" uid="uid://dtt6181hvgoee" path="res://Scenes/Guns/MP5.tscn" id="9_mqlgh"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
 properties/0/path = NodePath("../Knife:position")
@@ -246,7 +245,7 @@ libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
 speed_scale = 2.0
-blend_times = [&"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2]
+blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -269,10 +268,6 @@ script = ExtResource("7_mq3cw")
 
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
-
-[node name="MP5" parent="WeaponHolder" instance=ExtResource("9_mqlgh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57922, -1.04679, 1.24629)
-handsNode = NodePath("../..")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="endedMelee" from="Knife" to="StateMachine/Melee" method="_on_knife_ended_melee"]

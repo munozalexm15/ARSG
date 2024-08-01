@@ -43,20 +43,14 @@ var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
-		actualWeapon = weaponHolder.get_child(actual_weapon_index)
+		if weaponHolder.get_child_count() > 0:
+			actualWeapon = weaponHolder.get_child(actual_weapon_index)
 		return 
 		
 	knife.set_process(false)
 	interactorRay.add_exception(owner)
-	weaponHolder.get_child(actual_weapon_index).visible = true
-	weaponHolder.get_child(actual_weapon_index).being_used = true
 	default_weaponHolder_pos = weaponHolder.position
-	
-	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	playerSwappingWeapons.emit()
-	
-	for weapon in weaponHolder.get_children():
-		weapon.position = weapon.weaponData.weaponSpawnPosition
 
 func _input(event):
 	if not is_multiplayer_authority():
@@ -72,6 +66,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Flashlight"):
 		flashlight.visible = !flashlight.visible
 	
+	if weaponHolder.get_child_count() == 0:
+		return
 	
 	player.hud.primaryWeaponIcon.texture = weaponHolder.get_child(0).weaponData.weaponImage
 	if weaponHolder.get_child_count() > 1:
@@ -127,7 +123,7 @@ func _on_interact_ray_swap_weapon(actualWeaponName, pickupWeaponScene : String, 
 	drop_weapon.rpc(actualWeaponName, pickupWeaponScene, isSwapping)
 
 @rpc("authority", "call_local", "reliable")
-func drop_weapon(actualWeaponName, pickupWeaponScene, isSwapping):
+func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
 	var weapon_Ref = null
 	for x in weaponHolder.get_child_count():
@@ -217,5 +213,5 @@ func _on_interact_ray_pickup_ammo(ammoBox : RigidBody3D):
 				ammoBox.queue_free()
 
 
-func _on_state_machine_transitioned(state_name, old_state):
+func _on_state_machine_transitioned(_state_name, _old_state):
 	pass

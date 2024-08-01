@@ -1,6 +1,5 @@
-class_name TeamSelection_Menu
+class_name WeaponSelection_Menu
 extends Control
-
 
 var player : Player
 
@@ -8,24 +7,22 @@ var player : Player
 func _ready():
 	if not is_multiplayer_authority(): 
 		visible = false
-	
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_mp_5_button_pressed():
+	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/MP5.tscn")
 
-func _on_rebirth_team_button_pressed():
-	Network.update_teams.rpc(multiplayer.get_unique_id(), "REBIRTH")
-	visible = false
+
+func _on_m_16_button_pressed():
+	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/M16A2.tscn")
+
+
+func _on_sniper_button_pressed():
+	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/remington_700.tscn")
+
+
+func _on_shotgun_button_pressed():
+	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/remington_870.tscn")
+
+func show_player():
 	player.visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-
-
-func _on_dsf_team_button_pressed():
 	visible = false
-	player.visible = true
-	Network.update_teams.rpc(multiplayer.get_unique_id(), "DSF")
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	
-

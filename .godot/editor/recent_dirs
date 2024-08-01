@@ -1,3 +1,4 @@
+res://Scenes/Guns
 res://Scripts/UI/Team_Selection
 res://Scenes/UI/Team_Selection
 res://Scenes/UI/Pause_Menu
@@ -8,7 +9,6 @@ res://GameResources/Meshes/Guns/MP5
 res://Scenes/Characters
 res://Scripts/Guns/Resources
 res://Scenes/Guns/Pickups
-res://Scenes/Guns
 res://GameResources/Shaders
 res://Scripts/Interactables
 res://Scenes/Interactables

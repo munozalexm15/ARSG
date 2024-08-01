@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=52 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -1974,23 +1974,6 @@ _data = {
 "RESET": SubResource("Animation_sfg36")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6ru2p"]
-properties/0/path = NodePath(".:rotation")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:position")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Muzzle:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("Player_Arms:position")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("Player_Arms:rotation")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-
 [node name="MP5" type="Node3D"]
 script = ExtResource("1_q6gp1")
 weaponData = ExtResource("2_65qhb")
@@ -2438,10 +2421,3 @@ bus = &"Weapons"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52298, 0)
 stream = ExtResource("15_fghx8")
 bus = &"Weapons"
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_6ru2p")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn")
-spawn_path = NodePath("../Muzzle")

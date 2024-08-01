@@ -8,13 +8,17 @@ func enter(_msg := {}):
 
 	arms.animationPlayer.play("SwapWeapon")
 	
-	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
-		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
+	if arms.weaponHolder.get_child_count() > 0:
+		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
+			arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 
 func physics_update(_delta):
 	if not is_multiplayer_authority():
 		return
-		
+	
+	if not arms.weaponHolder.get_child_count() > 0:
+		return
+	
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
@@ -63,8 +67,8 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
 	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-	var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-	var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
+	var randomMagAmmo = randi_range(0, pickupWeapon.weaponData.magSize)
+	var randomReserveAmmo = randi_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
 	
 	if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
 		arms.actualWeapon.weaponData.bulletsInMag = randomMagAmmo
@@ -88,6 +92,9 @@ func _on_animation_player_animation_finished(anim_name):
 		return
 	
 	if anim_name == "SwapWeapon" and state_machine.state.name == "Melee":
+		return
+	
+	if not arms.weaponHolder.get_child_count() > 0:
 		return
 	
 	#RESET OTHER WEAPON ANIMATION IF IT IS RELOAD CANCELLING

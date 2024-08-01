@@ -75,6 +75,9 @@ func _process(_delta):
 func _on_arms_player_swapping_weapons():
 	if not is_multiplayer_authority():
 		return
+	
+	if not arms.weaponHolder.get_child_count() > 0:
+		return
 		
 	actualWeaponName = arms.actualWeapon.weaponData.name
 	update_anim(arms.actualWeapon.weaponData.weaponType)
