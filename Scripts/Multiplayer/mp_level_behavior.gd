@@ -4,6 +4,7 @@ extends Node3D
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
+var players : Dictionary = {}
 
 @export var PlayerScene = preload("res://Scenes/Characters/Main_character.tscn")
 @export var PauseScene = preload("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
@@ -70,11 +71,17 @@ func replace_weapon_content(weapon : Node3D):
 	for child : Node in weapon.get_children():
 		child.queue_free()
 
-
 func random_spawn():
 	var randomValue = randi_range(0, spawnPoints_node.get_child_count() -1)
 	var spawnPoint = spawnPoints_node.get_child(randomValue)
 	return spawnPoint.position
 
-func request_game_info():
-	pass
+@rpc("any_peer", "call_local", "reliable")
+func request_game_info(player_dict):
+	for index in players_node.get_child_count():
+		var player : Player = players_node.get_child(index)
+		if player.name == player_dict["id"]:
+			var weaponScene : PackedScene = load(player_dict["weaponScenePath"])
+			var weapon : Weapon = weaponScene.instantiate()
+			weapon.handsNode = player.arms.get_path()
+			player.arms.weaponHolder.add_child(weapon)

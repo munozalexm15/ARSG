@@ -1,3 +1,4 @@
+res://Scenes/Enemies
 res://Scenes/Guns
 res://Scripts/UI/Team_Selection
 res://Scenes/UI/Team_Selection
@@ -19,6 +20,5 @@ res://Scenes/UI/Player_Hud
 res://GameResources/Meshes/Guns/Remington870
 res://Scripts/Player
 res://Scripts/Guns/SkeletonPositionsData
-res://GameResources/Skeleton
 E:/GODOT/ARSG/Scripts/Guns/Resources
 E:/GODOT/ARSG/Scripts/Multiplayer

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Player_Stats.gd" id="2_ae4m0"]
@@ -24,6 +24,17 @@ speedMultiplier = 1.0
 reloadSpeedMultiplier = 1.0
 damageMultiplier = 1.0
 jumpHeightMultiplier = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
+bg_color = Color(0.54902, 0.0941176, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8aut"]
+bg_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ti48e"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -240,6 +251,25 @@ cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 hudNode = NodePath("UI")
 playerData = SubResource("Resource_w2eju")
 
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(90, 4)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+visible = false
+texture_filter = 1
+offset_right = 100.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_p17vv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r8aut")
+max_value = 10.0
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288413, 0.924778, 0.0940464)
+billboard = 1
+texture = SubResource("ViewportTexture_ti48e")
+
 [node name="PlayerSkeleton" parent="." instance=ExtResource("2_wc48o")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -0.758191, 0.0942096)
 eyesHolderNode = NodePath("../Head/eyesHolder")
@@ -321,7 +351,7 @@ next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
+blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

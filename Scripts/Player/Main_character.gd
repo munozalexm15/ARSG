@@ -81,7 +81,8 @@ var headBobbing_index = 0.0
 var headBobbing_vector = Vector2.ZERO
 var headBobbing_curr_intensity = 0.0
 
-var health: float = 75
+@onready var health_display : ProgressBar = $SubViewport/ProgressBar
+var health: float = 100
 
 var seeing_ally : bool = false
 
@@ -100,6 +101,7 @@ func _ready():
 		arms.visible = false
 		return
 
+	health_display.value = health
 	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
