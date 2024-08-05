@@ -31,23 +31,19 @@ func player_joined(id):
 	#if its the host -> ignore
 	if id == 1:
 		return
-	
-	if game.players.size() != game.players_node.get_child_count():
-		print( game.players.size() ,  game.players_node.get_child_count())
-	
-	
+
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
 		var dict_data = game.players["player"+player.name]
 		game.set_player_data.rpc_id(id, player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(id, dict_data)
-		
-		
+	
 	game.init_player(id)
 	game.set_player_data.rpc(id, id)
 	
-	update_client_Data.rpc()
 	
+	update_client_Data.rpc()
+	show_all_players.rpc_id(id)
 	
 func player_left(_id):
 	for p in game.players_node.get_children():
@@ -95,7 +91,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
-		player.visible = true
 		if str(identifier) == player.name:
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			
@@ -112,3 +107,9 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			player.weaponSelectionMenu.visible = false
 			var dict_data : Dictionary = {"id": identifier ,"weaponName" : weaponSpawned.weaponData.name, "weaponScenePath": weaponScenePath}
 			game.players["player" + str(identifier)] = dict_data
+
+@rpc("any_peer", "call_local")
+func show_all_players():
+	for player : Player in game.players_node.get_children():
+		if player.arms.weaponHolder.get_child_count() > 0:
+			player.visible = true

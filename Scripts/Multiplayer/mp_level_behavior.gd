@@ -52,6 +52,7 @@ func set_player_data(peer_id, playerName):
 		if p.name == str(playerName):
 			player = p
 	
+	
 	player.visible = false
 	player.global_position = random_spawn()
 	
@@ -77,6 +78,7 @@ func random_spawn():
 	var spawnPoint = spawnPoints_node.get_child(randomValue)
 	return spawnPoint.position
 
+#load client data from the other players already in the match.
 @rpc("any_peer", "call_local", "reliable")
 func request_game_info(player_dict : Dictionary):
 	for index in players_node.get_child_count():
@@ -87,4 +89,5 @@ func request_game_info(player_dict : Dictionary):
 				var weapon : Weapon = weaponScene.instantiate()
 				weapon.handsNode = player.arms.get_path()
 				player.arms.weaponHolder.add_child(weapon)
+				
 			set_player_data(player.name.to_int(), player.name)
