@@ -33,26 +33,28 @@ func player_joined(id):
 		return
 	
 	if game.players.size() != game.players_node.get_child_count():
-		return
+		print( game.players.size() ,  game.players_node.get_child_count())
 	
-	#Lo mejor seria tener un diccionario con los jugadores, el arma que estan usando, las kills que llevan, las bajas que llevan, etc.
+	
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
 		var dict_data = game.players["player"+player.name]
-		print(dict_data)
+		game.set_player_data.rpc_id(id, player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(id, dict_data)
+		
+		
 	game.init_player(id)
 	game.set_player_data.rpc(id, id)
 	
 	update_client_Data.rpc()
 	
 	
-
-@rpc("any_peer", "call_local")
 func player_left(_id):
 	for p in game.players_node.get_children():
 		if p.name == str(_id):
 			p.queue_free()
+	
+	game.players.erase("player" + str(_id))
 
 func load_map():
 	pass
@@ -93,6 +95,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
+		player.visible = true
 		if str(identifier) == player.name:
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			

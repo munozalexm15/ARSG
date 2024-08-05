@@ -37,7 +37,7 @@ func _process(_delta):
 			#player.seeing_ally = false
 			#hud.ally_indicator(Color.WHITE)
 		
-		if collision is Player and collision.health > 0 and collision.health < 100:
+		if collision is Player and collision.health > 0:
 			collision.health_display.visible = true
 			lastEnemy = collision
 			hud.ally_indicator(Color.DARK_RED)

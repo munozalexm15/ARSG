@@ -37,11 +37,12 @@ func init_player(peer_id):
 	player.name = str(peer_id)
 	players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
+	var dict_data : Dictionary = {"id": str(peer_id)}
+	players["player" + str(peer_id)] = dict_data
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
 @rpc("any_peer", "call_local", "reliable")
 func set_player_data(peer_id, playerName):
-	
 	var node : Node3D = Node3D.new() 
 	node.name = str(playerName)
 	add_child(node)
@@ -56,7 +57,7 @@ func set_player_data(peer_id, playerName):
 	
 	var pauseMenu : Pause_Menu = PauseScene.instantiate()
 	pauseMenu.name = str(peer_id)
-	pauseMenu.set_multiplayer_authority(peer_id)
+	pauseMenu.set_multiplayer_authority(peer_id) 
 	node.add_child(pauseMenu)
 	player.pauseMenu = pauseMenu
 	
@@ -77,11 +78,13 @@ func random_spawn():
 	return spawnPoint.position
 
 @rpc("any_peer", "call_local", "reliable")
-func request_game_info(player_dict):
+func request_game_info(player_dict : Dictionary):
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:
-			var weaponScene : PackedScene = load(player_dict["weaponScenePath"])
-			var weapon : Weapon = weaponScene.instantiate()
-			weapon.handsNode = player.arms.get_path()
-			player.arms.weaponHolder.add_child(weapon)
+			if player_dict.has("weaponScenePath"):
+				var weaponScene : PackedScene = load(player_dict["weaponScenePath"])
+				var weapon : Weapon = weaponScene.instantiate()
+				weapon.handsNode = player.arms.get_path()
+				player.arms.weaponHolder.add_child(weapon)
+			set_player_data(player.name.to_int(), player.name)

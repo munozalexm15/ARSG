@@ -70,7 +70,7 @@ func _on_continue_button_mouse_entered():
 
 func _on_exit_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-	Network.player_left.rpc(multiplayer.get_unique_id())
+	Network.player_left(multiplayer.get_unique_id())
 	get_tree().quit()
 
 
