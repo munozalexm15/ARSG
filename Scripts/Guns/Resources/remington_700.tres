@@ -8,7 +8,7 @@
 script = ExtResource("1_tx0qn")
 name = &"Remington700"
 weaponType = "Sniper"
-damage = 10.0
+damage = 25.0
 magSize = 5
 bulletsInMag = 5
 reserveAmmo = 20

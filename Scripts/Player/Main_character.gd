@@ -136,7 +136,7 @@ func _physics_process(delta):
 		return 
 	
 	if health < 100:
-		updateHealth()
+		updateHealth.rpc()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
@@ -248,9 +248,10 @@ func leaning(delta):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
 
 ##play swap weapon hands animation and show weapon
+@rpc("any_peer", "call_local")
 func updateHealth():
-	await get_tree().create_timer(3).timeout
-	health += 0.01
+	health += 0.02
+	health_display.value = health
 	hud.healthBar.value = health
 
 @rpc("any_peer", "call_local")
