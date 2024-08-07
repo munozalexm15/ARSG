@@ -10508,7 +10508,7 @@ mesh = SubResource("ArrayMesh_3x73f")
 skin = SubResource("Skin_4tfsw")
 
 [node name="LeftHand_BAttachment" type="BoneAttachment3D" parent="PlayerModel/Armature/Skeleton3D"]
-transform = Transform3D(0.298617, 0.00186083, -0.95437, -0.896132, -0.343438, -0.281064, -0.32829, 0.939174, -0.100889, 0.438181, 2.21413, 1.05818)
+transform = Transform3D(0.298617, 0.00186091, -0.95437, -0.896132, -0.343438, -0.281064, -0.32829, 0.939174, -0.100888, 0.438181, 2.21413, 1.05818)
 bone_name = "Hand.L_end"
 bone_idx = 9
 
@@ -10593,9 +10593,6 @@ visibility_update_mode = 1
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../PlayerModel")
-libraries = {
-"": SubResource("AnimationLibrary_36p6n")
-}
 tree_root = SubResource("AnimationNodeBlendTree_vknl2")
 anim_player = NodePath("../PlayerModel/AnimationPlayer")
 parameters/Blend2/blend_amount = 1.0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://crngejj5apm2l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Lobbies_list_menu/LobbyList_script.gd" id="1_50nqw"]
+
+[node name="PanelContainer" type="ScrollContainer"]
+anchors_preset = -1
+anchor_left = 0.462
+anchor_top = 0.046
+anchor_right = 0.965
+anchor_bottom = 0.951
+offset_left = -0.223999
+offset_top = 0.191998
+offset_right = 0.319946
+offset_bottom = -0.248047
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_50nqw")
+
+[node name="LobbiesList" type="VBoxContainer" parent="."]
+layout_mode = 2

@@ -8,11 +8,14 @@ var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
 @export var button_press_SFX : AudioStreamOggVorbis
 
 @onready var optionsMainContainer = $SettingsMenu
+@onready var lobbyBrowser = $LobbyBrowser
 
 
 func _ready():
 	$AnimationPlayer.play("Fade_in")
 	optionsMainContainer.visible = false
+	lobbyBrowser.visible = false
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -51,14 +54,17 @@ func _on_host_button_pressed():
 	Network.host_server()
 	GlobalData.isOnlineMatch = true
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
-	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	
 	
 
 func _on_join_button_pressed():
-	Network.join_server()
-	GlobalData.isOnlineMatch = true
-	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
-	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	lobbyBrowser.visible = !lobbyBrowser.visible
+	if lobbyBrowser.visible:
+		lobbyBrowser.open_lobby_list()
+	#Network.join_server()
+	#GlobalData.isOnlineMatch = true
+	#LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+	#get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func _on_join_button_mouse_entered():
 	pass # Replace with function body.

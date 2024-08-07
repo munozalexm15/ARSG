@@ -1,6 +1,7 @@
 extends Node
 
-var server = null
+var lobby_id = 0
+var peer = SteamMultiplayerPeer.new()
 var client = null
 var connect_ip = "127.0.0.1"
 var default_PORT = 55455
@@ -12,22 +13,37 @@ var gameInteractables = null
 var playerListNode = {}
 
 func _ready():
-	multiplayer.peer_connected.connect(player_joined)
-	multiplayer.peer_disconnected.connect(player_left)
+	peer.lobby_created.connect(on_lobby_created)
+	peer.peer_connected.connect(player_joined)
+	peer.lobby_joined.connect(player_joined)
+	#multiplayer.peer_connected.connect(player_joined)
+	#multiplayer.peer_disconnected.connect(player_left)
+	
 
 func host_server():
-	server = ENetMultiplayerPeer.new()
-	server.create_server(default_PORT)
-	multiplayer.multiplayer_peer = server
-	unique_id = server.get_unique_id()
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 2)
+	multiplayer.multiplayer_peer = peer
 	
-func join_server():
-	client = ENetMultiplayerPeer.new()
-	client.create_client(connect_ip, default_PORT)
-	multiplayer.multiplayer_peer = client
-	unique_id = client.get_unique_id()
+	#unique_id = server.get_unique_id()
+
+func on_lobby_created(connect, id):
+	if connect:
+		lobby_id = id
+		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
+		Steam.setLobbyJoinable(lobby_id, true)
+		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	
+
+func join_server(id):
+	peer.connect_lobby(id)
+	multiplayer.multiplayer_peer = peer
+	lobby_id = id
+	GlobalData.isOnlineMatch = true
+	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func player_joined(id):
+	print("a")
 	#if its the host -> ignore
 	if id == 1:
 		return

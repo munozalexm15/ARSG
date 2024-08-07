@@ -2,7 +2,6 @@ class_name MP_Map
 extends Node3D
 
 const PORT = 9999
-var enet_peer = ENetMultiplayerPeer.new()
 
 var players : Dictionary = {}
 

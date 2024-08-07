@@ -1,3 +1,6 @@
+res://Scripts/UI/Lobbies_list_menu
+res://Scenes/UI/Lobbies_list_menu
+res://Scenes/Menu
 res://Scripts/Player
 res://Scenes/Characters
 res://GameResources/Meshes/Guns/Bullets/9MM
@@ -17,8 +20,5 @@ res://Scripts/Interactables
 res://Scenes/Interactables
 res://Scenes/Ammo
 res://GameResources/Meshes/Crates
-res://Scripts/Mechanics
-res://Scenes/UI/Player_Hud
-res://GameResources/Meshes/Guns/Remington870
 E:/GODOT/ARSG/Scripts/Guns/Resources
 E:/GODOT/ARSG/Scripts/Multiplayer

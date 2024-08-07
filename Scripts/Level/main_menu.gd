@@ -17,6 +17,9 @@ var spotLightArray : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	OS.set_environment("SteamAppID", str(480))
+	OS.set_environment("SteamGameID", str(480))
+	Steam.steamInitEx()
 	animationPlayer.play("Fade_in")
 	for mesh in lightArray:
 		var node = get_node(mesh)
@@ -32,6 +35,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	Steam.run_callbacks()
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		
