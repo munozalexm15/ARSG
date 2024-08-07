@@ -1,6 +1,5 @@
-[gd_scene load_steps=23 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=22 format=3 uid="uid://dt0rs4bad2jg6"]
 
-[ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
 [ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
@@ -17,17 +16,17 @@
 [ext_resource type="MeshLibrary" uid="uid://bvxl63081b4kl" path="res://GameResources/MeshLibraries/ShootingRangeMeshLib.tres" id="15_lusvx"]
 [ext_resource type="MeshLibrary" uid="uid://b0uuyjts02jcr" path="res://GameResources/MeshLibraries/RetroFPSKitMeshLib.tres" id="15_s8m5e"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
-panorama = ExtResource("1_4v70f")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p2vb6"]
 
-[sub_resource type="Sky" id="Sky_03k1s"]
-sky_material = SubResource("PanoramaSkyMaterial_5bswf")
+[sub_resource type="Sky" id="Sky_kbq3q"]
+sky_material = SubResource("PanoramaSkyMaterial_p2vb6")
 
 [sub_resource type="Environment" id="Environment_8f8v4"]
 background_mode = 2
 background_energy_multiplier = 0.2
-sky = SubResource("Sky_03k1s")
+sky = SubResource("Sky_kbq3q")
 ambient_light_source = 3
+ambient_light_color = Color(0.281457, 0.583198, 0.942916, 1)
 ssao_radius = 4.7
 ssao_intensity = 3.33
 ssao_horizon = 0.0
