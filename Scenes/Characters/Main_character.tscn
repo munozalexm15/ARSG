@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
+[ext_resource type="PackedScene" uid="uid://chs5wra0urxdf" path="res://Scenes/Characters/player_skeleton.tscn" id="2_wc48o"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_recoil.gd" id="2_wsffb"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Interaction_Handler.gd" id="3_1c2ms"]
@@ -13,15 +14,24 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="14_u53b0"]
-[ext_resource type="Texture2D" uid="uid://bht3xnsodc7ok" path="res://GameResources/Textures/Crates/crate_1.png" id="15_72oqi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
+bg_color = Color(0.54902, 0.0941176, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8aut"]
+bg_color = Color(1, 1, 1, 1)
+anti_aliasing = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ti48e"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,14 +43,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.04, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -61,7 +71,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,14 +83,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 0.258816, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_si43w"]
@@ -90,7 +100,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,14 +112,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_oeq1r"]
@@ -118,7 +128,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,7 +144,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/Camera3D:rotation")
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,14 +156,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/Camera3D:position")
+tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, -0.04, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
@@ -173,20 +183,6 @@ height = 1.86314
 radius = 0.257403
 height = 1.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqcvl"]
-render_priority = 0
-shader = ExtResource("14_u53b0")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.25
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("15_72oqi")
-
-[sub_resource type="SphereMesh" id="SphereMesh_o7hu8"]
-material = SubResource("ShaderMaterial_nqcvl")
-radius = 0.17
-height = 1.35
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -194,22 +190,46 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("Head/eyesHolder:position")
+properties/2/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("Head/eyesHolder:rotation")
+properties/3/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
+properties/4/path = NodePath("Head/eyesHolder/armsHolder:position")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
+properties/5/path = NodePath("Head/eyesHolder/armsHolder:rotation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("Head/eyesHolder:rotation")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Head/eyesHolder:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Head/eyesHolder/armsHolder:recoil")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:enabled")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:position")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:rotation")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:wait_time")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot")
+properties/13/spawn = true
+properties/13/replication_mode = 1
 
 [node name="Character" type="CharacterBody3D"]
-collision_layer = 0
-collision_mask = 3
+collision_layer = 128
+collision_mask = 135
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
 armsNode = NodePath("Head/eyesHolder/armsHolder/arms")
@@ -217,8 +237,30 @@ standing_collisionNode = NodePath("Standing_collisionShape")
 crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
-cameraNode = NodePath("Head/eyesHolder/armsHolder/Camera3D")
+cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 hudNode = NodePath("UI")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(90, 4)
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+texture_filter = 1
+offset_right = 100.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_p17vv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r8aut")
+show_percentage = false
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288413, 0.924778, 0.0940464)
+billboard = 1
+texture = SubResource("ViewportTexture_ti48e")
+
+[node name="PlayerSkeleton" parent="." instance=ExtResource("2_wc48o")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -0.758191, 0.0942096)
+eyesHolderNode = NodePath("../Head/eyesHolder")
+armsNode = NodePath("../Head/eyesHolder/armsHolder/arms")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696685, 0)
@@ -234,13 +276,14 @@ aimRecoil = Vector3(0.05, 0.1, 0.05)
 snappiness = 4.0
 returnSpeed = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
-process_mode = 1
-cull_mask = 1048573
+[node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
+cull_mask = 1
+near = 0.01
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
-collision_mask = 33
+collision_mask = 161
 script = ExtResource("3_lt84g")
 hudNode = NodePath("../../../../UI")
 
@@ -252,9 +295,9 @@ script = ExtResource("3_1c2ms")
 hudNode = NodePath("../../../../UI")
 
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
-transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0, -0.193333, -0.041)
+transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.135596, -0.27398, 0.0546597)
 rayNode = NodePath("../InteractRay")
-cameraNode = NodePath("../Camera3D")
+cameraNode = NodePath("../PlayerPOV")
 playerNode = NodePath("../../../..")
 
 [node name="InteractTimer" type="Timer" parent="Head/eyesHolder/armsHolder"]
@@ -291,6 +334,11 @@ root_node = NodePath("../Head/eyesHolder")
 libraries = {
 "": SubResource("AnimationLibrary_sri1h")
 }
+next/hard_landing = &"RESET"
+next/out_ammo = &"RESET"
+next/reload = &"RESET"
+next/soft_landing = &"RESET"
+blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
@@ -308,15 +356,12 @@ collision_mask = 64
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
 bus = &"Environment"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_o7hu8")
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_interval = 0.017
 replication_config = SubResource("SceneReplicationConfig_ycvks")
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]
 [connection signal="swap_weapon" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_swap_weapon"]
+[connection signal="playerSwappingWeapons" from="Head/eyesHolder/armsHolder/arms" to="PlayerSkeleton" method="_on_arms_player_swapping_weapons"]
 [connection signal="timeout" from="Head/eyesHolder/armsHolder/InteractTimer" to="Head/eyesHolder/armsHolder/InteractRay" method="_on_interact_timer_timeout"]
 [connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]

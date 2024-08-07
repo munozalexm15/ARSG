@@ -5,7 +5,11 @@ var falling_velocity = 0.0
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
 	if msg.has("jump"):
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_Jump")
 		player.velocity.y = player.jump_force
+		
+		if not player.player_body.animationPlayer.is_connected("animation_finished", body_animation_ended):
+			player.player_body.animationPlayer.connect("animation_finished", body_animation_ended)
 	
 	if msg.has("climb"):
 		#(player.velocity += Vector3(0, player.jump_force * 4, 0)
@@ -38,3 +42,7 @@ func physics_update(delta: float) -> void:
 		elif falling_velocity >= -5:
 			player.animationPlayer.play("soft_landing")
 		state_machine.transition_to("Idle")
+
+func body_animation_ended(anim_name):
+	if anim_name == "Idle_Jump":
+		player.player_body.animationPlayer.play("Air_Falling")

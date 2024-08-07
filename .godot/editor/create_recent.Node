@@ -1,0 +1,14 @@
+Node3D
+CollisionShape3D
+RigidBody3D
+Camera3D
+TextEdit
+TextureRect
+Button
+Label
+PanelContainer
+GridMap
+StaticBody3D
+SpringArm3D
+AnimationPlayer
+AnimationTree

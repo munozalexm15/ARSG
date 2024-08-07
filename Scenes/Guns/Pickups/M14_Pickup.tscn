@@ -1,28 +1,50 @@
-[gd_scene load_steps=15 format=3 uid="uid://cskqdhschvvf8"]
+[gd_scene load_steps=20 format=3 uid="uid://cskqdhschvvf8"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_pm5w7"]
 [ext_resource type="Resource" uid="uid://dut7j1qco7vmk" path="res://Scripts/Guns/Resources/M14_Pickup.tres" id="2_m37c8"]
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="3_iloig"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_xwkek"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
 size = Vector3(8.82239, 0.850087, 2.0539)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cwocp"]
+render_priority = 0
+shader = ExtResource("4_xwkek")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]
 resource_name = "Material.046"
+next_pass = SubResource("ShaderMaterial_cwocp")
 cull_mode = 2
 albedo_texture = ExtResource("3_iloig")
 roughness = 0.5
 texture_filter = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5ul4"]
+render_priority = 0
+shader = ExtResource("4_xwkek")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2e6ht"]
 resource_name = "Material.047"
+next_pass = SubResource("ShaderMaterial_d5ul4")
 cull_mode = 2
 albedo_texture = ExtResource("3_iloig")
 roughness = 0.5
 texture_filter = 0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hyr61"]
+render_priority = 0
+shader = ExtResource("4_xwkek")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4k6e"]
 resource_name = "Material.048"
+next_pass = SubResource("ShaderMaterial_hyr61")
 cull_mode = 2
 albedo_texture = ExtResource("3_iloig")
 roughness = 0.5
@@ -106,8 +128,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fvghi")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_auelf"]
+render_priority = 0
+shader = ExtResource("4_xwkek")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyjih"]
 resource_name = "Material.049"
+next_pass = SubResource("ShaderMaterial_auelf")
 cull_mode = 2
 albedo_texture = ExtResource("3_iloig")
 roughness = 0.5

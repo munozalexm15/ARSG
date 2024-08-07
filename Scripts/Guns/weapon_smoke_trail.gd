@@ -68,7 +68,8 @@ func _prepare_geometry(point_prev :Point, point :Point, half_width :float, facto
 			var path_direction :Vector3 = (point.transform.origin - point_prev.transform.origin).normalized()
 			normal = (cam_pos - (point.transform.origin + point_prev.transform.origin)/2).cross(path_direction).normalized()
 		else:
-			print("There is no camera in the scene")
+			pass
+			#print("There is no camera in the scene")
 			
 	elif alignment == NORMAL:
 		if axis == X:

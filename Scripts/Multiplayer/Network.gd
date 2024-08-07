@@ -5,9 +5,11 @@ var client = null
 var connect_ip = "127.0.0.1"
 var default_PORT = 55455
 var unique_id = -1
-var players = 0
+var game : MP_Map = null
 
-var game = null
+var gameInteractables = null
+
+var playerListNode = {}
 
 func _ready():
 	multiplayer.peer_connected.connect(player_joined)
@@ -18,7 +20,6 @@ func host_server():
 	server.create_server(default_PORT)
 	multiplayer.multiplayer_peer = server
 	unique_id = server.get_unique_id()
-	players+=1
 	
 func join_server():
 	client = ENetMultiplayerPeer.new()
@@ -27,12 +28,88 @@ func join_server():
 	unique_id = client.get_unique_id()
 
 func player_joined(id):
-	print(str(id) + " " +  "joined")
-	if id != 1:
-		game.init_player(id)
+	#if its the host -> ignore
+	if id == 1:
+		return
+
+	for index in game.players_node.get_child_count():
+		var player : Player = game.players_node.get_child(index)
+		var dict_data = game.players["player"+player.name]
+		game.set_player_data.rpc_id(id, player.name.to_int(), player.name)
+		game.request_game_info.rpc_id(id, dict_data)
+	
+	game.init_player(id)
+	game.set_player_data.rpc(id, id)
+	
+	
+	update_client_Data.rpc()
+	show_all_players.rpc_id(id)
 	
 func player_left(_id):
-	pass
+	for p in game.players_node.get_children():
+		if p.name == str(_id):
+			p.queue_free()
+	
+	game.players.erase("player" + str(_id))
 
 func load_map():
 	pass
+
+@rpc("call_remote", "any_peer")
+func update_client_Data():
+	var PauseScene = load("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
+	var weaponSelectionScene = load("res://Scenes/UI/Team_Selection/Team_selection.tscn")
+	
+	for player in game.players_node.get_children():
+		if player.name == str(multiplayer.get_unique_id()):
+			continue
+		var node : Node3D = Node3D.new() 
+		node.name = player.name
+		game.add_child(node)
+		
+		var pauseMenu : Pause_Menu = PauseScene.instantiate()
+		pauseMenu.name = str(player.name.to_int())
+		pauseMenu.set_multiplayer_authority(player.name.to_int())
+		node.add_child(pauseMenu)
+		player.pauseMenu = pauseMenu
+		
+		var weaponSelection : WeaponSelection_Menu = weaponSelectionScene.instantiate()
+		weaponSelection.name = str(player.name.to_int())
+		weaponSelection.player = player
+		weaponSelection.set_multiplayer_authority(player.name.to_int())
+		node.add_child(weaponSelection)
+		player.weaponSelectionMenu = weaponSelection
+	
+@rpc("any_peer", "call_local", "reliable")
+func update_teams(identifier, newTeam):
+	for player in game.players_node.get_children():
+		if str(identifier) == player.name:
+			player.team = newTeam
+
+@rpc("any_peer", "call_local", "reliable")
+func updatePlayerWeapon(identifier, weaponScenePath : String):
+	var weapon : PackedScene = load(weaponScenePath)
+	var weaponSpawned : Weapon = weapon.instantiate()
+	for player : Player in game.players_node.get_children():
+		if str(identifier) == player.name:
+			weaponSpawned.set_multiplayer_authority(player.name.to_int())
+			
+			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
+			weaponSpawned.handsNode = player.arms.get_path()
+			
+			if player.arms.weaponHolder.get_child_count() > 0:
+				player.arms.weaponHolder.remove_child(player.arms.weaponHolder.get_child(0))
+			player.arms.weaponHolder.add_child(weaponSpawned) 
+			player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
+			player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
+			player.arms.state_machine.transition_to("SwappingWeapon")
+			player.visible = true
+			player.weaponSelectionMenu.visible = false
+			var dict_data : Dictionary = {"id": identifier ,"weaponName" : weaponSpawned.weaponData.name, "weaponScenePath": weaponScenePath}
+			game.players["player" + str(identifier)] = dict_data
+
+@rpc("any_peer", "call_local")
+func show_all_players():
+	for player : Player in game.players_node.get_children():
+		if player.arms.weaponHolder.get_child_count() > 0:
+			player.visible = true

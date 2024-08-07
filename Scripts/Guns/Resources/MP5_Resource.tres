@@ -1,27 +1,28 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://b4cqjfw42oy3m"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://b4cqjfw42oy3m"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_j3i85"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="2_v0td2"]
+[ext_resource type="PackedScene" uid="uid://cmsrpqbcd0j6r" path="res://GameResources/Meshes/Guns/MP5/MP5_MP.tscn" id="2_wrx6q"]
 
 [resource]
 script = ExtResource("1_j3i85")
 name = &"MP5"
 weaponType = "SMG"
-damage = 1.8
+damage = 8.0
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 180
 weaponCaliber = "9MM"
-reloadTime = 2.5
 allowsFireSelection = true
 fireModes = [&"Auto", &"Burst", &"Semi"]
 selectedFireMode = &""
 selectedFireModeIndex = 0
 isBoltAction = false
-reloadsWithMagazine = true
 cadency = 325.0
-recoil = Vector3(0.2, 0.3, 0.1)
+recoil = Vector3(0.2, 0.3, 0.3)
 weaponScene = ""
 weaponPickupScene = "res://Scenes/Guns/Pickups/MP5_Pickup.tscn"
 weaponSpawnPosition = Vector3(2.57922, -1.04679, 1.24629)
 weaponImage = ExtResource("2_v0td2")
+weaponExternalScene = ExtResource("2_wrx6q")
+cameraADSPosition = Vector3(0, -0.6, -1.26)

@@ -28,10 +28,6 @@ window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_rl_agents/plugin.cfg")
-
 [filesystem]
 
 import/fbx/enabled=false
@@ -164,6 +160,7 @@ Pause={
 3d_physics/layer_5="Knife"
 3d_physics/layer_6="NPC"
 3d_physics/layer_7="Ground"
+3d_physics/layer_8="OtherPlayers"
 
 [rendering]
 

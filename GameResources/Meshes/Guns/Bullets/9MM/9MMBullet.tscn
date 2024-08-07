@@ -89,6 +89,7 @@ height = 0.1
 is_hemisphere = true
 
 [sub_resource type="Gradient" id="Gradient_klljm"]
+offsets = PackedFloat32Array(0.36019, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xnr1t"]
@@ -102,37 +103,31 @@ shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = SubResource("GradientTexture1D_xnr1t")
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_118ap"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
+radius = 0.618
+height = 2.342
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 5
-collision_mask = 5
-continuous_cd = true
-max_contacts_reported = 1
-contact_monitor = true
+collision_layer = 0
+collision_mask = 2147483392
+gravity_scale = 0.0
 script = ExtResource("1_jb3pr")
 meshNode = NodePath("9MM_001")
 decal = ExtResource("2_wvaat")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
 shape = SubResource("CapsuleShape3D_rtfty")
 
-[node name="9MM_001" type="MeshInstance3D" parent="."]
+[node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_58l50")
 skeleton = NodePath("")
 
-[node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-1, -16.7396, -1, 2, 33.4791, 2)
-
-[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -1.48231e-21, 0, 1, -0.352483, -1.54075e-08, 1.37313e-21)
+[node name="CPUParticles3D" type="GPUParticles3D" parent="." groups=["WeaponCollisionException"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.48231e-21, 0, 1, 2.11895e-05, 9.52866e-13, 1.55477e-22)
 emitting = false
 amount = 5
 lifetime = 0.05
@@ -144,15 +139,18 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_roi0e")
 draw_pass_1 = SubResource("SphereMesh_ka03k")
 
-[node name="Trail3D" type="MeshInstance3D" parent="."]
+[node name="Trail3D" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 material_override = SubResource("StandardMaterial3D_4bi2d")
 script = ExtResource("5_gq6vk")
-distance = 0.5
-base_width = 0.05
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_118ap")
+[node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
+collision_layer = 133
+collision_mask = 133
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["WeaponCollisionException"]]
+transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
+shape = SubResource("CapsuleShape3D_p247a")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
 [connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

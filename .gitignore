@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
-.godot/
+.godot/imported/kloppenheim_02_puresky_4k.exr-1eff687acbe18a54292c8cb2b9f73119.bptc.ctex
+.godot/imported/kloppenheim_02_puresky_4k.exr-1eff687acbe18a54292c8cb2b9f73119.ctex
+.godot/imported/lonely_road_afternoon_puresky_4k.exr-ee660b1c65c46c3ce7d9fa285e897040.bptc.ctex
+.godot/imported/autumn_field_puresky_4k.exr-4540b87e04047737229fdd5a2c774835.bptc.ctex

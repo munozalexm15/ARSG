@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=16 format=3 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_eenh5"]
@@ -7,8 +7,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/SwappingWeapon.gd" id="7_uihv3"]
-[ext_resource type="PackedScene" uid="uid://duonirwf385bc" path="res://Scenes/Guns/M16A2.tscn" id="8_ajg4k"]
-[ext_resource type="PackedScene" uid="uid://dldfeavhyt2ys" path="res://Scenes/Guns/USP.tscn" id="9_rkt7h"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qg62j"]
 properties/0/path = NodePath("../Knife:position")
@@ -22,7 +20,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 2
 properties/3/path = NodePath("../Flashlight:visible")
 properties/3/spawn = true
-properties/3/replication_mode = 1
+properties/3/replication_mode = 2
 properties/4/path = NodePath("../Flashlight:rotation")
 properties/4/spawn = true
 properties/4/replication_mode = 1
@@ -32,24 +30,15 @@ properties/5/replication_mode = 1
 properties/6/path = NodePath("../WeaponHolder:position")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("../WeaponHolder/M16A2:position")
+properties/7/path = NodePath("../WeaponHolder:visible")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("../WeaponHolder/M16A2:rotation")
+properties/8/path = NodePath("../Flashlight:spot_range")
 properties/8/spawn = true
 properties/8/replication_mode = 1
-properties/9/path = NodePath("../WeaponHolder/USP:position")
+properties/9/path = NodePath("../ReloadTimer:wait_time")
 properties/9/spawn = true
 properties/9/replication_mode = 1
-properties/10/path = NodePath("../WeaponHolder/USP:rotation")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("../WeaponHolder/USP:visible")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("../WeaponHolder/M16A2:visible")
-properties/12/spawn = true
-properties/12/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_c7y05"]
 resource_name = "Idle"
@@ -61,10 +50,10 @@ tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.87623, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -73,10 +62,10 @@ tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.415, -0.701, 0), Vector3(-0.03, -1.166, 0)]
+"values": [Vector3(-0.03, -1.166, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_bsjly"]
@@ -108,7 +97,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_3bcrb"]
 resource_name = "Reload"
-length = 0.2
+length = 0.3
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -116,10 +106,10 @@ tracks/0/path = NodePath("WeaponHolder:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.328122, -0.907571)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.187483)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -128,10 +118,10 @@ tracks/1/path = NodePath("WeaponHolder:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.03, -0.701, 0), Vector3(1.2, -2, 1.219)]
+"values": [Vector3(-0.03, -0.701, 0), Vector3(-0.03, -1.11104, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_yj86q"]
@@ -233,7 +223,6 @@ process_mode = 1
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
 initial_position = Vector3(0, -1.166, 0)
-ads_position = Vector3(0, -0.6, -1.26)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../AnimationPlayer")
@@ -255,7 +244,8 @@ spot_angle = 34.1279
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
-blend_times = [&"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2]
+speed_scale = 2.0
+blend_times = [&"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Idle", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
@@ -264,6 +254,7 @@ script = ExtResource("2_eenh5")
 initial_state = NodePath("SwappingWeapon")
 
 [node name="Reload" type="Node" parent="StateMachine"]
+process_mode = 1
 script = ExtResource("5_3e6c2")
 
 [node name="Idle" type="Node" parent="StateMachine"]
@@ -278,20 +269,10 @@ script = ExtResource("7_mq3cw")
 [node name="WeaponHolder" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, -0.701, 0)
 
-[node name="M16A2" parent="WeaponHolder" instance=ExtResource("8_ajg4k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13842, -1.03361, 1.21918)
-handsNode = NodePath("../..")
-
-[node name="USP" parent="WeaponHolder" instance=ExtResource("9_rkt7h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.132, 0.253)
-visible = false
-handsNode = NodePath("../..")
-
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="endedMelee" from="Knife" to="StateMachine/Melee" method="_on_knife_ended_melee"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SwappingWeapon" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Melee" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
-[connection signal="animation_started" from="AnimationPlayer" to="StateMachine/Reload" method="_on_animation_player_animation_started"]
 [connection signal="timeout" from="ReloadTimer" to="StateMachine/Reload" method="_on_reload_timer_timeout"]
+[connection signal="transitioned" from="StateMachine" to="." method="_on_state_machine_transitioned"]

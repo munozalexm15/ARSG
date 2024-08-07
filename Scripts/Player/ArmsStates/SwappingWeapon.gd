@@ -3,46 +3,48 @@ extends ArmsState
 func enter(_msg := {}):
 	if not is_multiplayer_authority():
 		return
-		
 	if _msg.has("drop_weapon"):
 		drop_weapon(_msg.get("drop_weapon"), _msg.get("pickup_weapon"), _msg.get("is_dropping_weapon"))
 
 	arms.animationPlayer.play("SwapWeapon")
 	
-	if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
-		arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
+	if arms.weaponHolder.get_child_count() > 0:
+		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
+			arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 
 func physics_update(_delta):
 	if not is_multiplayer_authority():
 		return
-		
+	
+	if not arms.weaponHolder.get_child_count() > 0:
+		return
+	
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
 func drop_weapon(_weaponName, pickupWeapon, isSwapping):
-	if not is_multiplayer_authority():
-		return
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
-		if arms.weaponHolder.get_child(x).weaponData.name == name:
+		if arms.weaponHolder.get_child(x).weaponData.name == _weaponName:
 			weapon_Ref = arms.weaponHolder.get_child(x)
 	
 	if weapon_Ref == null:
 		return
 		
 	var weapon_to_spawn = load(weapon_Ref.weaponData.weaponPickupScene)
-	var spawnedWeapon = weapon_to_spawn.instantiate()
-	spawnedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
-	spawnedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
+	var droppedWeapon = weapon_to_spawn.instantiate()
+	
+	droppedWeapon.weaponData.reserveAmmo = weapon_Ref.weaponData.reserveAmmo
+	droppedWeapon.weaponData.bulletsInMag = weapon_Ref.weaponData.bulletsInMag
 
 	#if both weapons have the same caliber, when dropping the actual weapon it will lose all its reserve ammo 
 	if arms.weaponHolder.get_child(0).weaponData.weaponCaliber == arms.weaponHolder.get_child(1).weaponData.weaponCaliber:
-		spawnedWeapon.weaponData.reserveAmmo = 0
+		droppedWeapon.weaponData.reserveAmmo = 0
 	
-	spawnedWeapon.isAlreadyGrabbed = true
-	spawnedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
-	var world = get_tree().get_root().get_child(0)
-	world.add_child(spawnedWeapon)
+	droppedWeapon.isAlreadyGrabbed = true
+	droppedWeapon.set_global_transform(arms.weaponHolder.get_global_transform())
+	if arms.weaponHolder.get_child_count() > 1:
+		Network.game.interactables_node.add_child(droppedWeapon)
 	arms.weaponHolder.remove_child(weapon_Ref)
 	
 	arms.actual_weapon_index = 0
@@ -52,20 +54,21 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	
 	#weapon switching
 	var spawnedWeaponScene = load(pickupWeapon.weaponData.weaponScene)
-	spawnedWeapon = spawnedWeaponScene.instantiate()
-	spawnedWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
-	spawnedWeapon.handsNode = arms.get_path()
+	var newWeapon = spawnedWeaponScene.instantiate()
+	newWeapon.position = pickupWeapon.weaponData.weaponSpawnPosition
+	newWeapon.handsNode = arms.get_path()
 	
-	arms.weaponHolder.add_child(spawnedWeapon)
+	arms.weaponHolder.add_child(newWeapon)
 	pickupWeapon.queue_free()
 	
+	#as it is swapping weapons on pickup, set the current weapon to not being used
 	arms.actual_weapon_index = 1
-	loadWeapon(1)
+	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
 	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-	var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-	var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
+	var randomMagAmmo = randi_range(0, pickupWeapon.weaponData.magSize)
+	var randomReserveAmmo = randi_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
 	
 	if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
 		arms.actualWeapon.weaponData.bulletsInMag = randomMagAmmo
@@ -80,7 +83,8 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	if arms.actualWeapon.weaponData.weaponCaliber == arms.weaponHolder.get_child(0).weaponData.weaponCaliber:
 		arms.weaponHolder.get_child(1).weaponData.reserveAmmo = arms.weaponHolder.get_child(0).weaponData.reserveAmmo
 		arms.weaponHolder.get_child(0).weaponData.reserveAmmo = arms.weaponHolder.get_child(1).weaponData.reserveAmmo
-
+	
+	Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), arms.weaponHolder)
 	state_machine.transition_to("Idle")
 
 func _on_animation_player_animation_finished(anim_name):
@@ -90,9 +94,16 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "SwapWeapon" and state_machine.state.name == "Melee":
 		return
 	
+	if not arms.weaponHolder.get_child_count() > 0:
+		return
+	
+	#RESET OTHER WEAPON ANIMATION IF IT IS RELOAD CANCELLING
+	arms.actualWeapon.being_used = false
+	arms.actualWeapon.handsAnimPlayer.play("RESET")
+	await arms.actualWeapon.handsAnimPlayer.animation_finished
+	
 	loadWeapon(arms.actual_weapon_index)
 	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
-	arms.reloadTimer.wait_time = arms.actualWeapon.weaponData.reloadTime
 	
 	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 	
@@ -136,3 +147,12 @@ func loadWeapon(index):
 
 	arms.weaponHolder.get_child(index).being_used = true
 	arms.weaponHolder.get_child(index).visible = true
+
+func replace_weapon_content(weapon : Node3D):
+	for child : Node in weapon.get_children():
+		child.queue_free()
+
+func exit():
+	arms.playerSwappingWeapons.emit()
+	if is_multiplayer_authority():
+		arms.actualWeapon.being_used = true

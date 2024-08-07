@@ -7,7 +7,7 @@ extends RayCast3D
 
 var npcData : NPCData
 
-var lastEnemy: Target
+var lastEnemy: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,29 +22,32 @@ func _process(_delta):
 	if is_colliding():
 		var collision = get_collider()
 		
-		if collision is FiringRange_NPC:
-			npcData = collision.npcData
-			player.seeing_ally = true
-			
-			hud.NPCNameLabel.text = npcData.name
-			hud.NPCRoleLabel.text = npcData.role
-			
-			hud.NPCNameLabel.visible = true
-			hud.NPCRoleLabel.visible = true
-		else:
-			hud.NPCNameLabel.visible = false
-			hud.NPCRoleLabel.visible = false
-			player.seeing_ally = false
+		#if collision is Player:
+			#hud.ally_indicator(Color.LAWN_GREEN)
+			#player.seeing_ally = true
+			#
+			#hud.NPCNameLabel.text = collision.name
+			#hud.NPCRoleLabel.text = "Health: " + str(collision.health)
+			#
+			#hud.NPCNameLabel.visible = true
+			#hud.NPCRoleLabel.visible = true
+		#else:
+			#hud.NPCNameLabel.visible = false
+			#hud.NPCRoleLabel.visible = false
+			#player.seeing_ally = false
+			#hud.ally_indicator(Color.WHITE)
 		
-		if collision is Target and collision.targetData.actualHealth > 0 and collision.targetData.actualHealth != collision.targetData.health:
-			collision.healthBar.visible = true
+		if collision is Player and collision.health > 0 and collision.visible == true:
+			collision.health_display.visible = true
 			lastEnemy = collision
-		elif lastEnemy and collision != Target:
-			lastEnemy.healthBar.visible = false
+			hud.ally_indicator(Color.DARK_RED)
+		elif lastEnemy and collision != Player and collision.visible == false:
+			lastEnemy.health_display.visible = false
 			#lastEnemy.tween_healthBar_visibility()
+			hud.ally_indicator(Color.WHITE)
 
 	else:
 		hud.NPCNameLabel.visible = false
 		hud.NPCRoleLabel.visible = false
 		player.seeing_ally = false
-		
+		hud.ally_indicator(Color.WHITE)

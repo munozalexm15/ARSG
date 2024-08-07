@@ -1,10 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://fbndaf23pxhe"]
-
-[ext_resource type="Texture2D" uid="uid://bjeg8140ksm3n" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArmsTAC-OPS-Urban.png" id="1_4eo8t"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://fbndaf23pxhe"]
 
 [resource]
 resource_name = "HandMaterial"
 cull_mode = 2
-albedo_texture = ExtResource("1_4eo8t")
 texture_filter = 0
 texture_repeat = false

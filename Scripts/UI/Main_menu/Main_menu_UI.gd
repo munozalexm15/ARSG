@@ -16,15 +16,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Network.players == 2:
-		pass
-	
-
+	pass
 
 func _on_firing_range_play_pressed():
 	# LOAD NEXT LEVEL IN ANOTHER THREAD, SHOW LOADING SCREEN
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/test_scene.tscn"
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+	GlobalData.isOnlineMatch = false
 
 
 func _on_options_button_pressed():
@@ -46,15 +44,19 @@ func _on_options_button_pressed():
 
 func _on_host_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+	
 
 func _on_host_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
 	Network.host_server()
+	GlobalData.isOnlineMatch = true
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	
 
 func _on_join_button_pressed():
 	Network.join_server()
+	GlobalData.isOnlineMatch = true
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 

@@ -1,14 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://bdjqvf0cs5dl2"]
+[gd_scene load_steps=14 format=3 uid="uid://bdjqvf0cs5dl2"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_p15ln"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="2_hlcsh"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="3_fxvtr"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_v5g3p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
 size = Vector3(8.82239, 0.850087, 2.0539)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjcrw"]
+render_priority = 0
+shader = ExtResource("4_v5g3p")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3x50"]
 resource_name = "Material.005"
+next_pass = SubResource("ShaderMaterial_yjcrw")
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")
@@ -49,8 +57,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b51de")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_alcjb"]
+render_priority = 0
+shader = ExtResource("4_v5g3p")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdwyj"]
 resource_name = "Material.006"
+next_pass = SubResource("ShaderMaterial_alcjb")
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")

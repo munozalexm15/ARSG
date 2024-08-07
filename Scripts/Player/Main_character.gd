@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-
 signal challenge
 
 signal step
@@ -30,13 +29,15 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
-#@export var pauseMenuNode := NodePath()
-#@onready var pauseMenu : Pause_Menu = get_node(pauseMenuNode)
-
+var pauseMenu : Pause_Menu 
+var weaponSelectionMenu : WeaponSelection_Menu
 
 @onready var state_machine : StateMachine = $StateMachine
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
+@onready var player_body : PlayerSkeleton = $PlayerSkeleton
+
+var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
 
 var configData : ConfigFile
 
@@ -60,7 +61,7 @@ var lerp_air_speed = 3
 #---OTHER
 var state
 const mouse_sensibility = 0.4
-var crouching_depth = 0.8
+var crouching_depth = 1.0
 var initialHead_pos = 0.0
 var initialHands_pos = 0.0
 
@@ -75,21 +76,34 @@ const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 2
 #---------In meters
 const hb_intensities = {"crouch_speed"= 0.005, "walk_speed" = 0.01, "sprint_speed" = 0.06, "idle_speed" = 0.005}
 
+
 #---------Index value for assign function (wave)
 var headBobbing_index = 0.0
 var headBobbing_vector = Vector2.ZERO
 var headBobbing_curr_intensity = 0.0
 
-var health: float = 75
+@onready var health_display : ProgressBar = $SubViewport/ProgressBar
+var health: float = 100
 
 var seeing_ally : bool = false
+
+##MP RESPAWNS, TEAMS, DATA
+var can_respawn = false
+var time_to_respawn = 3.0
+var team = ""
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	if not is_multiplayer_authority(): return
-	
+	#modificar dependiendo del arma que tenga el jugador
+	#si no es el que controla al player
+	if not is_multiplayer_authority(): 
+		arms.visible = false
+		return
+
+	health_display.value = health
+	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
@@ -110,20 +124,20 @@ func _input(event : InputEvent):
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
-		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-		
-	#if Input.is_action_just_pressed("Pause") and not get_tree().paused:
-		#pauseMenu.show()
-		#pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		#get_tree().paused = not get_tree().paused
+		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
+	
+	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
+		pauseMenu.show()
+		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().paused = not get_tree().paused
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
-		return
-		
+		return 
+	
 	if health < 100:
-		updateHealth()
+		updateHealth.rpc()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
@@ -165,7 +179,10 @@ func _physics_process(delta):
 		_checkCollisionWithWall()
 	else:
 		arms.position.z = 0
-	leaning(delta)
+
+#leaning ---------------------- WIP
+	#leaning(delta)
+	
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -232,11 +249,35 @@ func leaning(delta):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
 
 ##play swap weapon hands animation and show weapon
+@rpc("any_peer", "call_local")
 func updateHealth():
-	await get_tree().create_timer(3).timeout
-	health += 0.01
+	health += 0.02
+	health_display.value = health
 	hud.healthBar.value = health
 
+@rpc("any_peer", "call_local")
+func die_respawn():
+	set_collision_mask_value(3, false)
+	visible= false
+	Network.game.death_count += 1
+	
+	var deathModelScene = death_model.instantiate()
+	deathModelScene.name = "body_count" + str(Network.game.death_count)
+	
+	Network.game.add_child(deathModelScene)
+	deathModelScene.parent.rotation_degrees = rotation_degrees
+	deathModelScene.position = position
+	deathModelScene.position.y -= player_body.scale.y * 1.5
+	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
+	
+	deathModelScene.animationPlayer.play("Death_BodyShot")
+	global_position = Network.game.random_spawn()
+	
+	await get_tree().create_timer(2).timeout
+	health = 100
+	set_collision_mask_value(3, true)
+	visible = true
+	
 
 func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true

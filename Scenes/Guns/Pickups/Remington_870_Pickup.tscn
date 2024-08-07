@@ -1,14 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4vdoc3p2jdi6"]
+[gd_scene load_steps=16 format=3 uid="uid://c4vdoc3p2jdi6"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_xrrxs"]
 [ext_resource type="Resource" uid="uid://bvygu2thysu23" path="res://Scripts/Guns/Resources/remington_870_Pickup.tres" id="2_kv4wo"]
 [ext_resource type="Texture2D" uid="uid://bwlvmcb515vv2" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="3_5prvp"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="3_eeshj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
 size = Vector3(9.0783, 0.850087, 1.5993)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3sjt4"]
+render_priority = 0
+shader = ExtResource("3_eeshj")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erm2y"]
 resource_name = "Material.121"
+next_pass = SubResource("ShaderMaterial_3sjt4")
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_5prvp")
@@ -49,6 +57,7 @@ shadow_mesh = SubResource("ArrayMesh_ik6on")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4amdk"]
 resource_name = "Material.124"
+next_pass = SubResource("ShaderMaterial_3sjt4")
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_5prvp")
@@ -89,6 +98,7 @@ shadow_mesh = SubResource("ArrayMesh_qvm50")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ote8g"]
 resource_name = "Material.141"
+next_pass = SubResource("ShaderMaterial_3sjt4")
 cull_mode = 2
 albedo_texture = ExtResource("3_5prvp")
 roughness = 0.5
@@ -131,7 +141,7 @@ shadow_mesh = SubResource("ArrayMesh_cmld8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
 collision_layer = 8
 collision_mask = 9
-gravity_scale = 2.0
+gravity_scale = 4.0
 script = ExtResource("1_xrrxs")
 weaponData = ExtResource("2_kv4wo")
 

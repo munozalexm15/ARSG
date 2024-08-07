@@ -3,9 +3,11 @@ extends Node
 @onready var ditheringShader = preload("res://GameResources/Materials/Dithering_Shader_Material.tres") 
 
 var configData : ConfigFile
+var isOnlineMatch : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	isOnlineMatch = false
 	configData = ConfigFile.new()
 	var loadedData = configData.load("res://GameSettings.cfg")
 	if loadedData == OK:

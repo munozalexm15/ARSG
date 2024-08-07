@@ -1,9 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=23 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="1_4v70f"]
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="7_6kr1g"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
+[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="8_7en35"]
+[ext_resource type="AudioStream" uid="uid://bbhjrostu8o1y" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-015.ogg" id="9_mw3g2"]
+[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="10_6m5hg"]
+[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="11_i4lfl"]
+[ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="12_x57sp"]
+[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="13_clg16"]
+[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="14_a7fxl"]
+[ext_resource type="MeshLibrary" uid="uid://bvxl63081b4kl" path="res://GameResources/MeshLibraries/ShootingRangeMeshLib.tres" id="15_lusvx"]
+[ext_resource type="MeshLibrary" uid="uid://b0uuyjts02jcr" path="res://GameResources/MeshLibraries/RetroFPSKitMeshLib.tres" id="15_s8m5e"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5bswf"]
 panorama = ExtResource("1_4v70f")
@@ -27,8 +39,31 @@ shader = ExtResource("6_qbtv3")
 shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kb8cs"]
+transparency = 1
+blend_mode = 1
+
+[sub_resource type="Resource" id="Resource_udwen"]
+script = ExtResource("6_kndw7")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("7_6kr1g"), ExtResource("8_7en35"), ExtResource("9_mw3g2"), ExtResource("10_6m5hg"), ExtResource("11_i4lfl"), ExtResource("12_x57sp"), ExtResource("13_clg16"), ExtResource("14_a7fxl")])
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5qqm8")
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 6.28574)
+
+[node name="Node3D4" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8034, 1.25085, 0)
+
+[node name="Node3D2" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5979, 1.31947, -18.0461)
+
+[node name="Node3D" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0429, 1.5442, 4.38036)
+
+[node name="Node3D3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7146, 0.493529, -15.9017)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -36,7 +71,6 @@ script = ExtResource("1_5qqm8")
 environment = SubResource("Environment_8f8v4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.63124, 0.774265, -0.0452627, -0.234267, 0.245975, 0.94054, 0.739361, -0.583103, 0.336655, -0.736377, 4.67972, -0.410247)
 light_energy = 0.0
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
@@ -73,14 +107,39 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31238, -8.73713, 0.0794935)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05951, -2.25446, -5.43768)
 use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(12.1213, 1, 11.793)
+collision_layer = 67
+collision_mask = 67
+size = Vector3(56.2083, 1, 45.1766)
+material = SubResource("StandardMaterial3D_kb8cs")
+script = ExtResource("5_4lg0s")
+groundData = SubResource("Resource_udwen")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="PauseMenusNode" type="Node3D" parent="."]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn", "res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
 spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
+
+[node name="BulletsParent" type="Node3D" parent="."]
+
+[node name="InteractablesParent" type="Node3D" parent="."]
+
+[node name="GridMap2" type="GridMap" parent="."]
+visible = false
+mesh_library = ExtResource("15_s8m5e")
+collision_layer = 0
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(65525, 65527, 1376260, 65525, 65528, 1376260, 65525, 65529, 1376260, 65525, 65530, 1376260, 65525, 65531, 1376260, 65525, 65532, 1376260, 65525, 65533, 1376260, 65525, 65534, 1376260, 65525, 65535, 1376260, 65525, 0, 1376260, 65525, 1, 1376260, 65525, 2, 1376260, 65525, 3, 1376260, 65525, 4, 1376260, 65525, 5, 1376260, 65526, 65527, 1376260, 65526, 65528, 1376260, 65526, 65529, 1376260, 65526, 65530, 1376260, 65526, 65531, 1376260, 65526, 65532, 1376260, 65526, 65533, 1376260, 65526, 65534, 1376260, 65526, 65535, 1376260, 65526, 0, 1376260, 65526, 1, 1376260, 65526, 2, 1376260, 65526, 3, 1376260, 65526, 4, 1376260, 65526, 5, 1376260, 65527, 65527, 1376260, 65527, 65528, 1376260, 65527, 65529, 1376260, 65527, 65530, 1376260, 65527, 65531, 1376260, 65527, 65532, 1376260, 65527, 65533, 1376260, 65527, 65534, 1376260, 65527, 65535, 1376260, 65527, 0, 1376260, 65527, 1, 1376260, 65527, 2, 1376260, 65527, 3, 1376260, 65527, 4, 1376260, 65527, 5, 1376260, 65528, 65527, 1376260, 65528, 65528, 1376260, 65528, 65529, 1376260, 65528, 65530, 1376260, 65528, 65531, 1376260, 65528, 65532, 1376260, 65528, 65533, 1376260, 65528, 65534, 1376260, 65528, 65535, 1376260, 65528, 0, 1376260, 65528, 1, 1376260, 65528, 2, 1376260, 65528, 3, 1376260, 65528, 4, 1376260, 65528, 5, 1376260, 65529, 65527, 1376260, 65529, 65528, 1376260, 65529, 65529, 1376260, 65529, 65530, 1376260, 65529, 65531, 1376260, 65529, 65532, 1376260, 65529, 65533, 1376260, 65529, 65534, 1376260, 65529, 65535, 1376260, 65529, 0, 1376260, 65529, 1, 1376260, 65529, 2, 1376260, 65529, 3, 1376260, 65529, 4, 1376260, 65529, 5, 1376260, 65530, 65527, 1376260, 65530, 65528, 1376260, 65530, 65529, 1376260, 65530, 65530, 1376260, 65530, 65531, 1376260, 65530, 65532, 1376260, 65530, 65533, 1376260, 65530, 65534, 1376260, 65530, 65535, 1376260, 65530, 0, 1376260, 65530, 1, 1376260, 65530, 2, 1376260, 65530, 3, 1376260, 65530, 4, 1376260, 65530, 5, 1376260, 65531, 65527, 1376260, 65531, 65528, 1376260, 65531, 65529, 1376260, 65531, 65530, 1376260, 65531, 65531, 1376260, 65531, 65532, 1376260, 65531, 65533, 1376260, 65531, 65534, 1376260, 65531, 65535, 1376260, 65531, 0, 1376260, 65531, 1, 1376260, 65531, 2, 1376260, 65531, 3, 1376260, 65531, 4, 1376260, 65531, 5, 1376260, 65532, 65527, 1376260, 65532, 65528, 1376260, 65532, 65529, 1376260, 65532, 65530, 1376260, 65532, 65531, 1376260, 65532, 65532, 1376260, 65532, 65533, 1376260, 65532, 65534, 1376260, 65532, 65535, 1376260, 65532, 0, 1376260, 65532, 1, 1376260, 65532, 2, 1376260, 65532, 3, 1376260, 65532, 4, 1376260, 65532, 5, 1376260, 65533, 65527, 1376260, 65533, 65528, 1376260, 65533, 65529, 1376260, 65533, 65530, 1376260, 65533, 65531, 1376260, 65533, 65532, 1376260, 65533, 65533, 1376260, 65533, 65534, 1376260, 65533, 65535, 1376260, 65533, 0, 1376260, 65533, 1, 1376260, 65533, 2, 1376260, 65533, 3, 1376260, 65533, 4, 1376260, 65533, 5, 1376260, 65534, 65527, 1376260, 65534, 65528, 1376260, 65534, 65529, 1376260, 65534, 65530, 1376260, 65534, 65531, 1376260, 65534, 65532, 1376260, 65534, 65533, 1376260, 65534, 65534, 1376260, 65534, 65535, 1376260, 65534, 0, 1376260, 65534, 1, 1376260, 65534, 2, 1376260, 65534, 3, 1376260, 65534, 4, 1376260, 65534, 5, 1376260, 65535, 65527, 1376260, 65535, 65528, 1376260, 65535, 65529, 1376260, 65535, 65530, 1376260, 65535, 65531, 1376260, 65535, 65532, 1376260, 65535, 65533, 1376260, 65535, 65534, 1376260, 65535, 65535, 1376260, 65535, 0, 1376260, 65535, 1, 1376260, 65535, 2, 1376260, 65535, 3, 1376260, 65535, 4, 1376260, 65535, 5, 1376260, 0, 65527, 1376260, 0, 65528, 1376260, 0, 65529, 1376260, 0, 65530, 1376260, 0, 65531, 1376260, 0, 65532, 1376260, 0, 65533, 1376260, 0, 65534, 1376260, 0, 65535, 1376260, 0, 0, 1376260, 0, 1, 1376260, 0, 2, 1376260, 0, 3, 1376260, 0, 4, 1376260, 0, 5, 1376260, 1, 65527, 1376260, 1, 65528, 1376260, 1, 65529, 1376260, 1, 65530, 1376260, 1, 65531, 1376260, 1, 65532, 1376260, 1, 65533, 1376260, 1, 65534, 1376260, 1, 65535, 1376260, 1, 0, 1376260, 1, 1, 1376260, 1, 2, 1376260, 1, 3, 1376260, 1, 4, 1376260, 1, 5, 1376260, 2, 65527, 1376260, 2, 65528, 1376260, 2, 65529, 1376260, 2, 65530, 1376260, 2, 65531, 1376260, 2, 65532, 1376260, 2, 65533, 1376260, 2, 65534, 1376260, 2, 65535, 1376260, 2, 0, 1376260, 2, 1, 1376260, 2, 2, 1376260, 2, 3, 1376260, 2, 4, 1376260, 2, 5, 1376260, 3, 65527, 1376260, 3, 65528, 1376260, 3, 65529, 1376260, 3, 65530, 1376260, 3, 65531, 1376260, 3, 65532, 1376260, 3, 65533, 1376260, 3, 65534, 1376260, 3, 65535, 1376260, 3, 0, 1376260, 3, 1, 1376260, 3, 2, 1376260, 3, 3, 1376260, 3, 4, 1376260, 3, 5, 1376260, 4, 65527, 1376260, 4, 65528, 1376260, 4, 65529, 1376260, 4, 65530, 1376260, 4, 65531, 1376260, 4, 65532, 1376260, 4, 65533, 1376260, 4, 65534, 1376260, 4, 65535, 1376260, 4, 0, 1376260, 4, 1, 1376260, 4, 2, 1376260, 4, 3, 1376260, 4, 4, 1376260, 4, 5, 1376260, 5, 65527, 1376260, 5, 65528, 1376260, 5, 65529, 1376260, 5, 65530, 1376260, 5, 65531, 1376260, 5, 65532, 1376260, 5, 65533, 1376260, 5, 65534, 1376260, 5, 65535, 1376260, 5, 0, 1376260, 5, 1, 1376260, 5, 2, 1376260, 5, 3, 1376260, 5, 4, 1376260, 5, 5, 1376260, 6, 65527, 1376260, 6, 65528, 1376260, 6, 65529, 1376260, 6, 65530, 1376260, 6, 65531, 1376260, 6, 65532, 1376260, 6, 65533, 1376260, 6, 65534, 1376260, 6, 65535, 1376260, 6, 0, 1376260, 6, 1, 1376260, 6, 2, 1376260, 6, 3, 1376260, 6, 4, 1376260, 6, 5, 1376260)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+visible = false
+mesh_library = ExtResource("15_lusvx")
+cell_scale = 0.005
+collision_layer = 0
+collision_mask = 0
+metadata/_editor_floor_ = Vector3(0, 0, 0)

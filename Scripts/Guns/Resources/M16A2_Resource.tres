@@ -1,27 +1,28 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://c0m78ciyutr0s"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://c0m78ciyutr0s"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponData.gd" id="1_fq7rl"]
 [ext_resource type="Texture2D" uid="uid://de1335i6ml83u" path="res://GameResources/Textures/GunsIcons/M16A2_Icon.png" id="2_0s577"]
+[ext_resource type="PackedScene" uid="uid://brocukvma6tr3" path="res://GameResources/Meshes/Guns/M16A2/M16_MP.tscn" id="2_ccdjf"]
 
 [resource]
 script = ExtResource("1_fq7rl")
 name = &"M16A2"
 weaponType = "AR"
-damage = 3.38
+damage = 10.0
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 90
 weaponCaliber = "5,56MM"
-reloadTime = 2.5
 allowsFireSelection = true
 fireModes = [&"Burst", &"Semi"]
 selectedFireMode = &""
 selectedFireModeIndex = 0
 isBoltAction = false
-reloadsWithMagazine = true
 cadency = 400.0
 recoil = Vector3(0.15, 0.2, 0.2)
 weaponScene = "res://Scenes/Guns/M16A2.tscn"
 weaponPickupScene = "res://Scenes/Guns/Pickups/M16A2_Pickup.tscn"
 weaponSpawnPosition = Vector3(3.13842, -1.03361, 1.24179)
 weaponImage = ExtResource("2_0s577")
+weaponExternalScene = ExtResource("2_ccdjf")
+cameraADSPosition = Vector3(0, -0.6, -1.26)

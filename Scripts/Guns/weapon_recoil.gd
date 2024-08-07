@@ -14,11 +14,14 @@ var beforeShootRotation : Vector3
 @export var returnSpeed : float
 
 func _process(delta):
+	recoilRotation(delta)
+
+func recoilRotation(delta):
 	
 	# Lerp target rotation to (0,0,0) and lerp current rotation to target rotation
 	targetRotation = lerp(targetRotation, Vector3.ZERO , returnSpeed * delta)
 	currentRotation = lerp(currentRotation, targetRotation, snappiness * delta)
-	
+	 
 	# Set rotation
 	rotation = currentRotation
 	# Camera z axis tilt fix, ignored if tilt intentionals
@@ -26,6 +29,7 @@ func _process(delta):
 	if recoil.z == 0 and aimRecoil.z == 0:
 		global_rotation.z = 0
 
+@rpc("any_peer", "call_local", "reliable")
 func recoilFire(isAiming : bool = false):
 	if isAiming:
 		targetRotation += Vector3(aimRecoil.x, randf_range(-aimRecoil.y, aimRecoil.y), randf_range(-aimRecoil.z, aimRecoil.z))

@@ -3,14 +3,21 @@ extends Node3D
 
 @export var weaponData : WeaponData
 
+#MAG WEAPONS (reload_sound it is also used in bolt weapons)
 @onready var fire_sound : AudioStreamPlayer3D = $ASP_ShotShound
 @onready var reload_sound : AudioStreamPlayer3D = $ASP_ReloadSound
+var full_reload_sound : AudioStreamPlayer3D
 
+#Bolt action weapons, shotguns, etc.
+var bolt_back_sound : AudioStreamPlayer3D
+var bolt_forward_sound : AudioStreamPlayer3D
 
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
 
-@onready var animPlayer = $AnimationPlayer
+@onready var leftArm = $Player_Arms/Armature_001/Skeleton3D/Cube_002
+@onready var rightArm  = $Player_Arms/Armature_001/Skeleton3D/Cube_001
+
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
 #Weapon parts
@@ -47,11 +54,11 @@ var removeSmokeMuzzle : bool = false
 var being_used : bool = false
 
 var mouse_movement
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
 		return
-		
 	if muzzleSmoke:
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
@@ -60,6 +67,12 @@ func _ready():
 	current_time = 1
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
+	
+	if weaponData.weaponType == "Sniper" or weaponData.weaponType == "Shotgun":
+		bolt_back_sound = $ASP_BoltBackSound
+		bolt_forward_sound = $ASP_BoltForwardSound
+	else:
+		full_reload_sound = $ASP_FullReloadSound
 	
 func _input(event):
 	if not is_multiplayer_authority():
@@ -72,10 +85,9 @@ func _input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-		
 	if not being_used:
 		return
-		
+	
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection and hands.state_machine.state.name != "Reload":
 		fire_selection_sound.play()
 		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():
@@ -84,25 +96,25 @@ func _physics_process(delta):
 		else:
 			weaponData.selectedFireModeIndex +=1
 			weaponData.selectedFireMode = weaponData.fireModes[weaponData.selectedFireModeIndex]
-		
+
 	if hands.state_machine.state.name != "Reload" and not hands.player.seeing_ally:
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Semi" and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and (animPlayer.is_playing() or handsAnimPlayer.is_playing()):
+			if (weaponData.weaponType == "Shotgun" or weaponData.weaponType == "Sniper") and handsAnimPlayer.is_playing():
 				return
-			apply_recoil()
 			if weaponData.bulletsInMag > 0:
+				load_recoil.rpc()
 				shoot()
-	
+
 		if Input.is_action_pressed("Fire") and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Auto" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
-			apply_recoil()
 			if weaponData.bulletsInMag > 0:
+				load_recoil.rpc()
 				shoot()
 			time_to_shoot = weaponData.cadency * delta
 		
 		if (Input.is_action_just_pressed("Fire") or isBurstActive) and weaponData.bulletsInMag > 0 and weaponData.selectedFireMode == "Burst" and time_to_shoot <= 0 and (not hands.state_machine.state.name == "SwappingWeapon" or not hands.state_machine.state.name == "Reload"):
 			isBurstActive = true
-			apply_recoil()
 			if weaponData.bulletsInMag > 0:
+				load_recoil.rpc()
 				shoot()
 				burstBullet += 1
 			time_to_shoot = weaponData.cadency * delta
@@ -118,17 +130,8 @@ func _physics_process(delta):
 	if burstBullet == 3 and isBurstActive:
 		isBurstActive = false
 		burstBullet = 0
-	
-	if current_time < 1:
-		current_time += delta
-		
-		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
-		rotation.z = lerp(rotation.z, target_rot.z, lerp_speed * delta)
-		rotation.x = lerp(rotation.x, target_rot.x, lerp_speed * delta)
-		
-		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
-		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
-		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+
+	apply_recoil.rpc(delta)
 	
 	# MUZZLE SMOKE : DISABLED ATM
 	#if Input.is_action_just_released("Fire") and weaponData.bulletsInMag > 0 and muzzleSmoke and not hands.player.seeing_ally:
@@ -143,52 +146,74 @@ func _physics_process(delta):
 		#if muzzleSmoke.base_width <= 0:
 			#muzzleSmoke.segments = 0
 			#removeSmokeMuzzle = false
+
+@rpc("any_peer", "call_local", "reliable")
+func apply_recoil(delta):
+	if current_time < 1:
+		current_time += delta
 		
-func apply_recoil():
+		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
+		rotation.z = lerp(rotation.z, target_rot.z, lerp_speed * delta)
+		rotation.x = lerp(rotation.x, target_rot.x, lerp_speed * delta)
+		
+		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
+		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
+		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+
+
+@rpc("authority", "call_local", "reliable")
+func load_recoil():
 	if Input.is_action_pressed("ADS"):
-		recoil_amplitude.y *= -0.2 if randf() > 0.5 else 0.2
+		recoil_amplitude.y *= -0.1 if randf() > 0.5 else 0.1
 	else:
 		recoil_amplitude = initial_recoil_amplitude
 		recoil_amplitude.y *= -1 if randf() > 0.5 else 1
-		
+	
 	target_rot.z = recoil_rotation_z.sample(0) * recoil_amplitude.y
 	target_rot.x = recoil_rotation_x.sample(0) * -recoil_amplitude.x
 	target_pos.z = recoil_position_z.sample(0) * recoil_amplitude.z
+	
 	current_time = 0
+
 
 func shoot():
 	#get recoil script from child node and apply some to the weapon
 	if Input.is_action_pressed("ADS"):
-		hands.player.eyes.get_child(0).recoilFire(true)
+		hands.player.eyes.get_child(0).recoilFire.rpc(true)
 	else:
-		hands.player.eyes.get_child(0).recoilFire()
+		hands.player.eyes.get_child(0).recoilFire.rpc(false)
 	weaponData.bulletsInMag -= 1
-
-	animPlayer.play("RESET")
-	animPlayer.play("Shoot")
+	
+	#Setting boltreloaded to true, to force players to play the bolt animation first and prevent reload spamming
+	if weaponData.isBoltAction:
+		isBoltReloaded = true
+		
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
 	if fire_sound:
 		SFXHandler.play_sfx(fire_sound.stream, self, "Weapons")
-	spawnBullet()
+	spawnBullet.rpc()
+	
 
+@rpc("authority", "call_local", "reliable")
 func spawnBullet():
-	var level_root = get_tree().get_root()
+	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Bullet = bullet_type.instantiate()
 			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
-			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-20, 20)
-			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-20, 20)
+			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-40, 40)
+			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-40, 40)
+			
 			bullet.damage = weaponData.damage
 			bullet.hitmark.connect(show_hitmarker)
 			bullet.hitmark.connect(hit_update_score)
 			bullet.playerDamaged.connect(update_health)
 			bullet.kill.connect(kill_update_score)
 			
-			level_root.add_child(bullet)
+			Network.game.bullets_node.add_child(bullet)
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
 		bullet.instigator = hands.player
@@ -203,8 +228,11 @@ func spawnBullet():
 		#For when player kills somebody (atm just for update hud points)
 		bullet.kill.connect(kill_update_score)
 		
-		level_root.add_child(bullet)
+		Network.game.bullets_node.add_child(bullet)
+		
+	show_muzzleFlash()
 
+func show_muzzleFlash():
 	muzzle_flash_particles.emitting = true
 	muzzle_flash_light.show()
 	
@@ -233,16 +261,19 @@ func hit_update_score(points):
 func update_health():
 	if not is_multiplayer_authority():
 		return
-		
+	
 	hands.player.hud.healthBar.value = hands.player.health
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == weaponData.name + "_Shot" and weaponData.isBoltAction:
+		isBoltReloaded = true
 		handsAnimPlayer.play(weaponData.name + "_Bolt")
+		handsAnimPlayer.assigned_animation = weaponData.name + "_Bolt"
 	
-	if anim_name == weaponData.name + "_Bolt" and isBoltReloaded == false:
-		isBoltReloaded =  true
+	if anim_name == weaponData.name + "_Bolt" and handsAnimPlayer.assigned_animation == weaponData.name + "_Bolt":
 		handsAnimPlayer.play(weaponData.name + "_Bolt", -1, -1, true)
-	
-	elif anim_name == weaponData.name + "_Bolt" and isBoltReloaded == true:
-		isBoltReloaded =  false
+		await handsAnimPlayer.animation_finished
+		handsAnimPlayer.play("RESET")
+		handsAnimPlayer.assigned_animation = "RESET"
+		
+		isBoltReloaded = false

@@ -3080,7 +3080,7 @@ mesh = SubResource("ArrayMesh_mf7gs")
 skeleton = NodePath("")
 
 [node name="WallSupport_Horizontal_3x3" type="MeshInstance3D" parent="Walls/Wall10"]
-transform = Transform3D(0.01, 4.96308e-24, 0, 0, -2.18557e-10, -0.01, -1.98523e-23, 0.005, -4.37114e-10, 0.139983, 2.94666, -0.00175633)
+transform = Transform3D(0.01, 3.30872e-24, 0, 0, -2.18557e-10, -0.01, -1.98523e-23, 0.005, -4.37114e-10, 0.139983, 2.94666, -0.00175633)
 mesh = SubResource("ArrayMesh_mf7gs")
 skeleton = NodePath("")
 
@@ -3951,7 +3951,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.461378, 0.0520949, -0.4479
 shape = SubResource("BoxShape3D_i24ei")
 
 [node name="PauseMenu" parent="." instance=ExtResource("64_lkiga")]
-
-[connection signal="challenge" from="FadeShader/SubViewport/DitheringShader/SubViewport/Character" to="." method="_on_character_challenge"]
 
 [editable path="Firing Range/Prop_GunTable4"]

@@ -1,15 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://cpexpuinj1378"]
+[gd_scene load_steps=20 format=3 uid="uid://cpexpuinj1378"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_548rg"]
 [ext_resource type="Resource" uid="uid://o43pyk7ph22q" path="res://Scripts/Guns/Resources/remington_700.tres" id="2_pbwcl"]
 [ext_resource type="Texture2D" uid="uid://cgkidwvu5px" path="res://GameResources/Textures/Guns/Remington700/HuntingRifleText.png" id="3_rt4kx"]
 [ext_resource type="Texture2D" uid="uid://77e8srjpcfei" path="res://GameResources/Textures/Guns/Remington700/ScopeText.jpg" id="4_miffu"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_sn1u0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
 size = Vector3(9.0783, 0.850087, 1.5993)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k73h0"]
+render_priority = 0
+shader = ExtResource("4_sn1u0")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3mdo"]
 resource_name = "Material.065"
+next_pass = SubResource("ShaderMaterial_k73h0")
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("3_rt4kx")
@@ -124,8 +132,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8gdye")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3h5d8"]
+render_priority = 0
+shader = ExtResource("4_sn1u0")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 4.915
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rckin"]
 resource_name = "Material.067"
+next_pass = SubResource("ShaderMaterial_3h5d8")
 cull_mode = 2
 albedo_texture = ExtResource("4_miffu")
 roughness = 0.5

@@ -1,11 +1,16 @@
 extends ArmsState
 
+signal swapWeapon
+
 func enter(_msg := {}):
-	if (arms.actualWeapon.weaponData.weaponType == "Shotgun" or arms.actualWeapon.weaponData.weaponType == "Sniper") and arms.state_machine.old_state.name == "Reload" and not _msg.has("play_reload"):
-		arms.actualWeapon.reload_sound.play()
-	
+	if not is_multiplayer_authority():
+		return
+		
+	arms.ads_position = arms.actualWeapon.weaponData.cameraADSPosition
+	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
-		replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
+		pass
+		#replace_weapon(_msg.get("replace_weapon"), _msg.get("isSwappingValue"))
 	
 	if (not _msg.has("replace_weapon") and not _msg.has("isSwappingValue")):
 		if state_machine.old_state.name != "Reload" and not _msg.has("playHud"):
@@ -26,11 +31,12 @@ func enter(_msg := {}):
 			arms.player.hud.aimAnimationPlayer.play("Aim")
 
 func physics_update(_delta):
-	
 	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
 		state_machine.transition_to("Idle")
 		
-	if Input.is_action_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
+	if Input.is_action_just_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
+		if arms.actualWeapon.isBoltReloaded:
+			return
 		state_machine.transition_to("Reload")
 	
 	mouse_swap_weapon_logic()
@@ -93,6 +99,7 @@ func mouse_swap_weapon_logic():
 		
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 	
 	
@@ -101,15 +108,19 @@ func swap_weapon():
 		arms.actual_weapon_index = 0
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 		
 	if Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1:
 		arms.actual_weapon_index = 1
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		state_machine.transition_to("SwappingWeapon")
+		swapWeapon.emit()
 		return
 
 func reload_listener():
+	if not arms.actualWeapon:
+		return
 	if arms.actualWeapon.weaponData.bulletsInMag <= 0 and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		arms.actualWeapon.isBurstActive = false
 		arms.actualWeapon.burstBullet = 0
