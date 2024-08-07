@@ -29,8 +29,6 @@ signal step
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
-@export var playerData : PlayerData
-
 var pauseMenu : Pause_Menu 
 var weaponSelectionMenu : WeaponSelection_Menu
 
@@ -38,6 +36,9 @@ var weaponSelectionMenu : WeaponSelection_Menu
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
 @onready var player_body : PlayerSkeleton = $PlayerSkeleton
+
+var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
+
 var configData : ConfigFile
 
 var defaultGravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -256,10 +257,27 @@ func updateHealth():
 
 @rpc("any_peer", "call_local")
 func die_respawn():
-	if not is_multiplayer_authority(): return
-	standing_CollisionShape.disabled = true
-	crouching_CollisionShape.disabled = true
-	queue_free()
+	set_collision_mask_value(3, false)
+	visible= false
+	Network.game.death_count += 1
+	
+	var deathModelScene = death_model.instantiate()
+	deathModelScene.name = "body_count" + str(Network.game.death_count)
+	
+	Network.game.add_child(deathModelScene)
+	deathModelScene.parent.rotation_degrees = rotation_degrees
+	deathModelScene.position = position
+	deathModelScene.position.y -= player_body.scale.y * 1.5
+	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
+	
+	deathModelScene.animationPlayer.play("Death_BodyShot")
+	global_position = Network.game.random_spawn()
+	
+	await get_tree().create_timer(2).timeout
+	health = 100
+	set_collision_mask_value(3, true)
+	visible = true
+	
 
 func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true

@@ -63,9 +63,8 @@ func _on_area_3d_body_entered(body):
 	if body is Player:
 		body.health -= damage
 		playerDamaged.emit()
-		if body.health <= 0:
-			pass
-			#body.die_respawn.rpc()
+		if body.health <= 0 and body.visible == true:
+			body.die_respawn.rpc()
 	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)

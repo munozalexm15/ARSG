@@ -107,7 +107,7 @@ albedo_texture = SubResource("GradientTexture1D_xnr1t")
 radius = 0.618
 height = 2.342
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2147483392
@@ -116,17 +116,17 @@ script = ExtResource("1_jb3pr")
 meshNode = NodePath("9MM_001")
 decal = ExtResource("2_wvaat")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
 shape = SubResource("CapsuleShape3D_rtfty")
 
-[node name="9MM_001" type="MeshInstance3D" parent="."]
+[node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_58l50")
 skeleton = NodePath("")
 
-[node name="CPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="CPUParticles3D" type="GPUParticles3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, -1.48231e-21, 0, 1, 2.11895e-05, 9.52866e-13, 1.55477e-22)
 emitting = false
 amount = 5
@@ -139,15 +139,15 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_roi0e")
 draw_pass_1 = SubResource("SphereMesh_ka03k")
 
-[node name="Trail3D" type="MeshInstance3D" parent="."]
+[node name="Trail3D" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 material_override = SubResource("StandardMaterial3D_4bi2d")
 script = ExtResource("5_gq6vk")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 collision_layer = 133
 collision_mask = 133
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
 shape = SubResource("CapsuleShape3D_p247a")
 

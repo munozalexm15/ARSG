@@ -1,3 +1,5 @@
+res://Scripts/Player
+res://Scenes/Characters
 res://GameResources/Meshes/Guns/Bullets/9MM
 res://Scenes/Enemies
 res://Scenes/Guns
@@ -8,7 +10,6 @@ res://GameResources/MeshLibraries
 res://Scenes/Levels
 res://GameResources/Meshes/Guns/M1928Thompson
 res://GameResources/Meshes/Guns/MP5
-res://Scenes/Characters
 res://Scripts/Guns/Resources
 res://Scenes/Guns/Pickups
 res://GameResources/Shaders
@@ -19,6 +20,5 @@ res://GameResources/Meshes/Crates
 res://Scripts/Mechanics
 res://Scenes/UI/Player_Hud
 res://GameResources/Meshes/Guns/Remington870
-res://Scripts/Player
 E:/GODOT/ARSG/Scripts/Guns/Resources
 E:/GODOT/ARSG/Scripts/Multiplayer

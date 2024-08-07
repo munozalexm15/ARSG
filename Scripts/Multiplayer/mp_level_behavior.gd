@@ -6,6 +6,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var players : Dictionary = {}
 
+var death_count = 0
+
 @export var PlayerScene = preload("res://Scenes/Characters/Main_character.tscn")
 @export var PauseScene = preload("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
 @export var weaponSelectionScene = preload("res://Scenes/UI/Team_Selection/Team_selection.tscn")

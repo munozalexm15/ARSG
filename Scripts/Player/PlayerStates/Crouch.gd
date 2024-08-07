@@ -35,7 +35,7 @@ func physics_update(delta: float) -> void:
 	player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
 	player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	player.eyes.position.y = lerp(player.eyes.position.y, player.initialHead_pos- player.crouching_depth, delta * player.lerp_speed)
-	player.arms.position.y = lerp(player.arms.position.y, player.initialHands_pos + player.crouching_depth / 2, delta * player.lerp_speed)
+	player.arms.position.y = lerp(player.arms.position.y, player.initialHands_pos - player.crouching_depth * 0.01, delta * player.lerp_speed)
 	
 	if player.direction != Vector3.ZERO and player.input_direction != Vector2.ZERO:
 		play_anim.rpc()
