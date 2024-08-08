@@ -1,7 +1,7 @@
 extends Node
 
 var lobby_id = 0
-var peer = SteamMultiplayerPeer.new()
+var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var client = null
 var connect_ip = "127.0.0.1"
 var default_PORT = 55455
@@ -14,14 +14,15 @@ var playerListNode = {}
 
 func _ready():
 	peer.lobby_created.connect(on_lobby_created)
+	peer.lobby_joined.connect(server)
 	multiplayer.peer_connected.connect(client_connected_to_server)
+	#multiplayer.connected_to_server.connect(server)
 	#multiplayer.peer_disconnected.connect(player_left)
 	
 
 func host_server():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 4)
 	multiplayer.multiplayer_peer = peer
-	
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connect, id):
@@ -29,16 +30,18 @@ func on_lobby_created(connect, id):
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
-		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
-		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		
+		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
+	Network.peer.poll()
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	
+
+func server():
+	print("server autojoin")
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
