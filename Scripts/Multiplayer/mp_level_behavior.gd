@@ -19,10 +19,11 @@ var death_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Network.game = self
 	if multiplayer.get_unique_id() == 1:
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+	
+	Network.game = self
 	
 func start_game():
 	pass
