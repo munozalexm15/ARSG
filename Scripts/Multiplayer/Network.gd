@@ -20,7 +20,7 @@ func _ready():
 	
 
 func host_server():
-	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 2)
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 3)
 	multiplayer.multiplayer_peer = peer
 	
 	#unique_id = server.get_unique_id()
@@ -39,6 +39,8 @@ func join_server(id):
 	lobby_id = id
 	
 func client_connected_to_server(id):
+	if id == 1:
+		return
 	print("connected to server with id: ", id)
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
