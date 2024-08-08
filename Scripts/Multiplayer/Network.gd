@@ -31,22 +31,19 @@ func on_lobby_created(connect, id):
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
-		await multiplayer.connected_to_server
 		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
-	print(multiplayer.multiplayer_peer)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	print(multiplayer.multiplayer_peer)
 	
 func client_connected_to_server(id):
 	print("connected to server with id: ", id)
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func connect_to_server():
 	print("aaa")
-	
 	
 func player_joined(id):
 	#if its the host -> ignore
