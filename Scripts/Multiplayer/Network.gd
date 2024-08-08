@@ -39,6 +39,7 @@ func join_server(id):
 	
 func client_connected_to_server(id):
 	if multiplayer.get_unique_id() == 1:
+		print("A new client has joined with id :" , id)
 		return
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 	
