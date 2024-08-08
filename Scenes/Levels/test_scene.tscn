@@ -1,4 +1,4 @@
-[gd_scene load_steps=245 format=3 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=244 format=3 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Level/test_scene.gd" id="1_rw0mx"]
 [ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="1_s20kc"]
@@ -61,7 +61,6 @@
 [ext_resource type="AudioStream" uid="uid://bshq3q1bdppqa" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-004.ogg" id="47_ibd1r"]
 [ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="48_dutlt"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="55_yonfe"]
-[ext_resource type="Texture2D" uid="uid://uvi8mffg171k" path="res://GameResources/SkyBox/lonely_road_afternoon_puresky_4k.exr" id="57_2ype3"]
 [ext_resource type="PackedScene" uid="uid://jkwqpcqg8ct" path="res://Scenes/UI/Pause_Menu/pause_menu.tscn" id="64_lkiga"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qjc7"]
@@ -2122,7 +2121,6 @@ shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nuxu3"]
-panorama = ExtResource("57_2ype3")
 
 [sub_resource type="Sky" id="Sky_wfdj2"]
 sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
@@ -2130,8 +2128,6 @@ sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 [sub_resource type="Environment" id="Environment_kkv0d"]
 background_energy_multiplier = 0.2
 sky = SubResource("Sky_wfdj2")
-reflected_light_source = 1
-tonemap_mode = 1
 ssr_enabled = true
 ssr_fade_in = 1.7569
 ssao_enabled = true

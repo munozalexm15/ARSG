@@ -2,7 +2,7 @@ class_name MP_Map
 extends Node3D
 
 const PORT = 9999
-
+var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var players : Dictionary = {}
 
 var death_count = 0
@@ -24,9 +24,6 @@ func _ready():
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 	
 	Network.game = self
-	
-func start_game():
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
