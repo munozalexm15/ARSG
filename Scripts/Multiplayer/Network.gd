@@ -14,7 +14,7 @@ var playerListNode = {}
 
 func _ready():
 	peer.lobby_created.connect(on_lobby_created)
-	#multiplayer.peer_connected.connect(player_joined)
+	peer.lobby_joined.connect(spawn)
 	#multiplayer.peer_disconnected.connect(player_left)
 	
 
@@ -29,17 +29,23 @@ func on_lobby_created(connect, id):
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
+		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
 		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+		
 	
 
 func join_server(id):
+	print(multiplayer.multiplayer_peer)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+	print(multiplayer.multiplayer_peer)
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
-
-func player_joined(id):
+	
+func spawn():
 	print("a")
+	
+func player_joined(id):
 	#if its the host -> ignore
 	if id == 1:
 		return
