@@ -31,6 +31,8 @@ func on_lobby_created(connect, id):
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
+		
+		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
 	peer.connect_lobby(id)
@@ -40,14 +42,14 @@ func join_server(id):
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
-	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
 		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 	
 func player_joined(id):
 	#if its the host -> ignore
