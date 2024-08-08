@@ -39,10 +39,6 @@ func join_server(id):
 	lobby_id = id
 	
 func client_connected_to_server(id):
-	if id == 1:
-		print("Player has started a server with id: ", id)
-		return
-	
 	print("Client has connected to server with id: ", id)
 	
 
