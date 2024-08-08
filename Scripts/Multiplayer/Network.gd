@@ -14,8 +14,7 @@ var playerListNode = {}
 
 func _ready():
 	peer.lobby_created.connect(on_lobby_created)
-	#multiplayer.peer_connected.connect(client_connected_to_server)
-	multiplayer.connected_to_server.connect(client_connected_to_server)
+	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.peer_disconnected.connect(player_left)
 	
 
@@ -39,6 +38,8 @@ func join_server(id):
 	lobby_id = id
 	
 func client_connected_to_server(id):
+	if multiplayer.get_unique_id() == 1:
+		return
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 	
 func player_joined(id):
