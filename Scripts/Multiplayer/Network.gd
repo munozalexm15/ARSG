@@ -15,7 +15,7 @@ var playerListNode = {}
 func _ready():
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
-	multiplayer.connected_to_server.connect(connect_to_server)
+	#multiplayer.connected_to_server.connect(connect_to_server)
 	#multiplayer.peer_disconnected.connect(player_left)
 	
 
@@ -31,7 +31,7 @@ func on_lobby_created(connect, id):
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
-		
+		print("Player has started a server with id: ", id)
 
 func join_server(id):
 	peer.connect_lobby(id)
