@@ -36,7 +36,6 @@ func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	await peer.lobby_joined
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func player_joined(id):
