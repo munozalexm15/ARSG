@@ -21,7 +21,6 @@ func _ready():
 func host_server():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 3)
 	multiplayer.multiplayer_peer = peer
-	
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connect, id):
@@ -31,7 +30,6 @@ func on_lobby_created(connect, id):
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
-		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
 	peer.connect_lobby(id)
