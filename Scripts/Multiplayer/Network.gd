@@ -31,7 +31,8 @@ func on_lobby_created(connect, id):
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		Steam.setLobbyMemberData(lobby_id, "user", str(Steam.getSteamID()) )
-	
+		await multiplayer.connected_to_server
+		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
 	print(multiplayer.multiplayer_peer)
@@ -41,7 +42,7 @@ func join_server(id):
 	print(multiplayer.multiplayer_peer)
 	
 func client_connected_to_server(id):
-	print("a")
+	print("connected to server with id: ", id)
 
 func connect_to_server():
 	print("aaa")
