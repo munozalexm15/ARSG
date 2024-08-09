@@ -51,6 +51,7 @@ func _on_host_button_mouse_entered():
 func _on_host_button_pressed():
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
 	Network.host_server()
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 	GlobalData.isOnlineMatch = true
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
 	

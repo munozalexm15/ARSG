@@ -13,12 +13,17 @@ var gameInteractables = null
 var playerListNode = {}
 
 func _ready():
+	OS.set_environment("SteamAppID", str(480))
+	OS.set_environment("SteamGameID", str(480))
+	Steam.steamInitEx()
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.connected_to_server.connect(server)
 	#multiplayer.peer_disconnected.connect(player_left)
-	
 
+func _process(delta):
+	Steam.run_callbacks()
+	
 func host_server():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 4)
 	multiplayer.multiplayer_peer = peer
@@ -26,24 +31,18 @@ func host_server():
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connection, id):
-	var mainMenu : MainMenuNode = get_tree().get_first_node_in_group("Menu")
-	mainMenu.queue_free()
-	var mapScene : PackedScene = load("res://Scenes/Levels/initial_level.tscn")
-	var mapNode = mapScene.instantiate()
-	get_tree().root.add_child(mapNode)
+	
 	
 	if connection:
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
-		
 
 func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	print(peer)
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
@@ -54,6 +53,8 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	player_joined(multiplayer.get_unique_id())
 	
 func player_joined(id):
 	#if its the host -> ignore

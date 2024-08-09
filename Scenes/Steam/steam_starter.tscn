@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpmp7npi1tq74"]
-
-[ext_resource type="Script" path="res://Scripts/Steam/Steam_Init.gd" id="1_rgrl8"]
-
-[node name="Node3D" type="Node3D"]
-script = ExtResource("1_rgrl8")
