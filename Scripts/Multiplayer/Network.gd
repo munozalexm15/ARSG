@@ -49,14 +49,14 @@ func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
-		player_joined.rpc_id(id, id)
+		player_joined.rpc_id(id, id, game.players)
 		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 	
 @rpc("any_peer", "call_remote")
-func player_joined(id):
+func player_joined(id, players_dict):
 	#if its the host -> ignore
 	if id == 1:
 		return
@@ -64,16 +64,14 @@ func player_joined(id):
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
 		
-		var dict_data : Dictionary = {"id": str(player.name)}
-		game.players["player" + str(player.name)] = dict_data
-		var player_data = game.players["player"+player.name]
+		var player_data = players_dict["player"+player.name]
 		
-		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
+		#game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
 	game.init_player.rpc(multiplayer.get_unique_id())
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	
-	#update_client_Data.rpc()
+	update_client_Data.rpc()
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
 func player_left(_id):
