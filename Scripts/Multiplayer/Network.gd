@@ -48,16 +48,17 @@ func join_server(id):
 func client_connected_to_server(id):
 	
 	#Notificar al host que se acaba de unir un nuevo jugador
-	if multiplayer.get_unique_id() == 1 or id == 1:
+	if multiplayer.get_unique_id() == 1 :
 		print("A new client has joined with id :" , id)
 		return
 	
 	#Notificar al cliente que se acaba de unir
-	print("Client has connected to server with id: ", id)
-	player_joined(id)
+	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+	player_joined(multiplayer.get_unique_id())
 	
 func player_joined(id):
 	#if its the host -> ignore
+	print(id)
 	if id == 1:
 		return
 
@@ -80,8 +81,6 @@ func player_left(_id):
 	
 	game.players.erase("player" + str(_id))
 
-func load_map():
-	pass
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
