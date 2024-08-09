@@ -46,7 +46,7 @@ func join_server(id):
 	
 	
 func client_connected_to_server(id):
-	#Notificar al host que se acaba de unir un nuevo jugador
+	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players)
