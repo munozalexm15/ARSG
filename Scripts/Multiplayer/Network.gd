@@ -17,7 +17,7 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	peer.lobby_created.connect(on_lobby_created)
-	multiplayer.peer_connected.connect(player_joined)
+	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.connected_to_server.connect(server)
 	#multiplayer.peer_disconnected.connect(player_left)
 
