@@ -46,11 +46,10 @@ func join_server(id):
 	
 	
 func client_connected_to_server(id):
-	
 	#Notificar al host que se acaba de unir un nuevo jugador
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
-		player_joined.rpc_id(id)
+		player_joined.rpc_id(id, id)
 		return
 	
 	#Notificar al cliente que se acaba de unir
@@ -64,15 +63,18 @@ func player_joined(id):
 	
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
-		print(player.name)
-		var dict_data = game.players["player"+player.name]
+		
+		var dict_data : Dictionary = {"id": str(player.name)}
+		game.players["player" + str(player.name)] = dict_data
+		var player_data = game.players["player"+player.name]
+		
 		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
-		game.request_game_info.rpc_id(multiplayer.get_unique_id(), dict_data)
-	game.init_player(multiplayer.get_unique_id())
+		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
+	game.init_player.rpc(multiplayer.get_unique_id())
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	
-	update_client_Data.rpc()
-	show_all_players.rpc_id(multiplayer.get_unique_id() == 1)
+	#update_client_Data.rpc()
+	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
 func player_left(_id):
 	for p in game.players_node.get_children():
