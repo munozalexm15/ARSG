@@ -42,6 +42,7 @@ func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
@@ -52,7 +53,7 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	
 	
 	
 func player_joined(id):
