@@ -13,9 +13,6 @@ var gameInteractables = null
 var playerListNode = {}
 
 func _ready():
-	OS.set_environment("SteamAppID", str(480))
-	OS.set_environment("SteamGameID", str(480))
-	Steam.steamInitEx()
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.connected_to_server.connect(server)
@@ -23,19 +20,19 @@ func _ready():
 	
 
 func host_server():
-	
-	
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 4)
 	multiplayer.multiplayer_peer = peer
+	
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connection, id):
+	var mainMenu : MainMenuNode = get_tree().get_first_node_in_group("Menu")
+	mainMenu.queue_free()
+	var mapScene : PackedScene = load("res://Scenes/Levels/initial_level.tscn")
+	var mapNode = mapScene.instantiate()
+	get_tree().root.add_child(mapNode)
+	
 	if connection:
-		var mainMenu : MainMenuNode = get_tree().get_first_node_in_group("Menu")
-		mainMenu.queue_free()
-		var mapScene : PackedScene = load("res://Scenes/Levels/initial_level.tscn")
-		var mapNode = mapScene.instantiate()
-		get_tree().root.add_child(mapNode)
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
@@ -46,6 +43,7 @@ func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+	print(peer)
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador
