@@ -3,6 +3,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 
 var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
+var level = preload("res://Scenes/Levels/initial_level.tscn")
 
 @export var button_hover_SFX : AudioStreamOggVorbis
 @export var button_press_SFX : AudioStreamOggVorbis
@@ -10,12 +11,10 @@ var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
 @onready var optionsMainContainer = $SettingsMenu
 @onready var lobbyBrowser = $LobbyBrowser
 
-
 func _ready():
 	$AnimationPlayer.play("Fade_in")
 	optionsMainContainer.visible = false
 	lobbyBrowser.visible = false
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -54,7 +53,6 @@ func _on_host_button_pressed():
 	Network.host_server()
 	GlobalData.isOnlineMatch = true
 	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
-	
 	
 
 func _on_join_button_pressed():

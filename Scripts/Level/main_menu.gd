@@ -1,3 +1,4 @@
+class_name MainMenuNode
 extends Node3D
 
 @export var lightArray : Array
@@ -17,9 +18,6 @@ var spotLightArray : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	OS.set_environment("SteamAppID", str(480))
-	OS.set_environment("SteamGameID", str(480))
-	Steam.steamInitEx()
 	animationPlayer.play("Fade_in")
 	for mesh in lightArray:
 		var node = get_node(mesh)

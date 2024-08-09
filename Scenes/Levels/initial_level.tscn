@@ -22,11 +22,11 @@
 sky_material = SubResource("PanoramaSkyMaterial_p2vb6")
 
 [sub_resource type="Environment" id="Environment_8f8v4"]
-background_mode = 2
-background_energy_multiplier = 0.2
+background_mode = 1
+background_color = Color(0.335882, 0.402655, 1, 1)
 sky = SubResource("Sky_kbq3q")
-ambient_light_source = 3
-ambient_light_color = Color(0.281457, 0.583198, 0.942916, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.841901, 0.891973, 1, 1)
 ssao_radius = 4.7
 ssao_intensity = 3.33
 ssao_horizon = 0.0

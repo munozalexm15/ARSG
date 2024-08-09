@@ -20,16 +20,24 @@ func _ready():
 	
 
 func host_server():
+	
+	
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 4)
 	multiplayer.multiplayer_peer = peer
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connection, id):
 	if connection:
+		var mainMenu : MainMenuNode = get_tree().get_first_node_in_group("Menu")
+		mainMenu.queue_free()
+		var mapScene : PackedScene = load("res://Scenes/Levels/initial_level.tscn")
+		var mapNode = mapScene.instantiate()
+		get_tree().root.add_child(mapNode)
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
+		
 
 func join_server(id):
 	peer.connect_lobby(id)
