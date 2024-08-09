@@ -31,13 +31,12 @@ func host_server():
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connection, id):
-	
-	
 	if connection:
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
+		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
 
 func join_server(id):
 	peer.connect_lobby(id)
@@ -54,7 +53,7 @@ func client_connected_to_server(id):
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
-	player_joined(multiplayer.get_unique_id())
+	
 	
 func player_joined(id):
 	#if its the host -> ignore
