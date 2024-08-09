@@ -17,7 +17,7 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	peer.lobby_created.connect(on_lobby_created)
-	multiplayer.peer_connected.connect(client_connected_to_server)
+	multiplayer.peer_connected.connect(player_joined)
 	#multiplayer.connected_to_server.connect(server)
 	#multiplayer.peer_disconnected.connect(player_left)
 
@@ -48,31 +48,31 @@ func join_server(id):
 func client_connected_to_server(id):
 	
 	#Notificar al host que se acaba de unir un nuevo jugador
-	if multiplayer.get_unique_id() == 1 :
+	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
+		player_joined.rpc_id(id)
 		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	player_joined(multiplayer.get_unique_id())
 	
+@rpc("any_peer", "call_remote")
 func player_joined(id):
 	#if its the host -> ignore
-	print(id)
 	if id == 1:
 		return
-
+	
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
+		print(player.name)
 		var dict_data = game.players["player"+player.name]
-		game.set_player_data.rpc_id(id, player.name.to_int(), player.name)
-		game.request_game_info.rpc_id(id, dict_data)
-	game.init_player(id)
-	game.set_player_data.rpc(id, id)
-	
+		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
+		game.request_game_info.rpc_id(multiplayer.get_unique_id(), dict_data)
+	game.init_player(multiplayer.get_unique_id())
+	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	
 	update_client_Data.rpc()
-	show_all_players.rpc_id(id)
+	show_all_players.rpc_id(multiplayer.get_unique_id() == 1)
 	
 func player_left(_id):
 	for p in game.players_node.get_children():
