@@ -12,7 +12,7 @@ var death_count = 0
 @export var weaponSelectionScene = preload("res://Scenes/UI/Team_Selection/Team_selection.tscn")
 
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
-@onready var player_spawner = $MultiplayerSpawner
+@onready var player_spawner : MultiplayerSpawner = $MultiplayerSpawner
 @onready var bullets_node : Node3D= $BulletsParent
 
 @onready var interactables_node : Node3D = $InteractablesParent
@@ -21,9 +21,10 @@ var death_count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
-	
+	player_spawner.spawn_function = init_player
 	if multiplayer.get_unique_id() == 1:
 		print("soy host jeje")
+		player_spawner.spawn()
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 	
@@ -35,7 +36,7 @@ func _process(_delta):
 func init_player(peer_id):
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
-	#players_node.add_child(player)
+	players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id)}
 	players["player" + str(peer_id)] = dict_data
