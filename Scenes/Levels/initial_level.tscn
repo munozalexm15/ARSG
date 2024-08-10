@@ -117,10 +117,6 @@ groundData = SubResource("Resource_udwen")
 
 [node name="PauseMenusNode" type="Node3D" parent="."]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
-spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
-
 [node name="BulletsParent" type="Node3D" parent="."]
 
 [node name="InteractablesParent" type="Node3D" parent="."]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
-[ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
+[ext_resource type="Texture2D" uid="uid://cfdgxy422e8r8" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="3_fvmmw"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
@@ -428,7 +428,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -514,6 +514,7 @@ uppercase = true
 layout_mode = 2
 texture = ExtResource("2_rrjfu")
 expand_mode = 5
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer2/HBoxContainer"]
 layout_mode = 2

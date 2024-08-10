@@ -48,21 +48,21 @@ func set_player_data(peer_id, playerName):
 	
 	var player : Player = null
 	for p in players_node.get_children():
+		print(p.name)
 		if p.name == str(playerName):
 			player = p
-	
 	
 	player.visible = false
 	player.global_position = random_spawn()
 	
 	var pauseMenu : Pause_Menu = PauseScene.instantiate()
-	pauseMenu.name = str(peer_id)
+	pauseMenu.name = str(peer_id) + "pauseMenu"
 	pauseMenu.set_multiplayer_authority(peer_id) 
 	node.add_child(pauseMenu)
 	player.pauseMenu = pauseMenu
 	
 	var weaponSelection : WeaponSelection_Menu = weaponSelectionScene.instantiate()
-	weaponSelection.name = str(peer_id)
+	weaponSelection.name = str(peer_id) + "weaponMenu"
 	weaponSelection.player = player
 	weaponSelection.set_multiplayer_authority(peer_id)
 	node.add_child(weaponSelection)
@@ -88,5 +88,3 @@ func request_game_info(player_dict : Dictionary):
 				var weapon : Weapon = weaponScene.instantiate()
 				weapon.handsNode = player.arms.get_path()
 				player.arms.weaponHolder.add_child(weapon)
-				
-			set_player_data(player.name.to_int(), player.name)

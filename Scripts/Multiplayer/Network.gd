@@ -21,7 +21,7 @@ func _ready():
 	#multiplayer.connected_to_server.connect(server)
 	#multiplayer.peer_disconnected.connect(player_left)
 
-func _process(delta):
+func _process(_delta):
 	Steam.run_callbacks()
 	
 func host_server():
@@ -46,7 +46,7 @@ func join_server(id):
 	
 	
 func client_connected_to_server(id):
-	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores (armas, muertes, bajas, etc.)
+	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players)
@@ -61,17 +61,16 @@ func player_joined(id, players_dict):
 	if id == 1:
 		return
 	
+	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
-		
 		var player_data = players_dict["player"+player.name]
-		
-		#game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
+		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
+	
 	game.init_player.rpc(multiplayer.get_unique_id())
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	
-	update_client_Data.rpc()
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
 func player_left(_id):
