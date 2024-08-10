@@ -69,6 +69,7 @@ func player_joined(id, players_dict):
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
 	
 	game.init_player.rpc(multiplayer.get_unique_id())
+	await game.player_spawner.spawned
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	

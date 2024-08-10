@@ -21,10 +21,7 @@ var death_count = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
-	player_spawner.spawn_function = init_player
 	if multiplayer.get_unique_id() == 1:
-		print("soy host jeje")
-		player_spawner.spawn()
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 	
@@ -34,9 +31,11 @@ func _process(_delta):
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
+	
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
-	players_node.add_child(player)
+	if multiplayer.get_unique_id() == 1:
+		players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id)}
 	players["player" + str(peer_id)] = dict_data
@@ -50,7 +49,6 @@ func set_player_data(peer_id, playerName):
 	
 	var player : Player = null
 	for p in players_node.get_children():
-		print(p.name)
 		if p.name == str(playerName):
 			player = p
 	
