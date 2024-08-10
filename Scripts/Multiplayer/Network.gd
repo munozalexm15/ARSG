@@ -70,7 +70,7 @@ func player_joined(id, players_dict):
 	
 	game.init_player.rpc(multiplayer.get_unique_id())
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
-	
+	await game.player_spawner.spawned
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
 func player_left(_id):
