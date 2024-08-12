@@ -87,3 +87,5 @@ func request_game_info(player_dict : Dictionary):
 				var weapon : Weapon = weaponScene.instantiate()
 				weapon.handsNode = player.arms.get_path()
 				player.arms.weaponHolder.add_child(weapon)
+				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
+				
