@@ -290,6 +290,7 @@ func die_respawn(player_id):
 	
 	var weaponPickupScene = load(player.arms.actualWeapon.weaponData.weaponPickupScene)
 	var weaponPickupNode : WeaponInteractable = weaponPickupScene.instantiate()
+	weaponPickupNode.id = randi()
 	weaponPickupNode.position = deathModelScene.position
 	weaponPickupNode.weaponData.reserveAmmo = player.arms.actualWeapon.weaponData.reserveAmmo
 	weaponPickupNode.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.bulletsInMag
