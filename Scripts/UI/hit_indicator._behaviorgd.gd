@@ -2,6 +2,7 @@ class_name HitIndicator
 extends Control
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
+@onready var indicator_node = $Screen_centered/Damage_Indicator
 
 var instigator : Player
 # Called when the node enters the scene tree for the first time.

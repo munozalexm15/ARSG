@@ -255,13 +255,13 @@ func update_hitPosition():
 	if hit_indicator.visible:
 		print(hit_indicator.rotation)
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
-		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
+		hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
 	print(instigator_player_id)
 	for p : Player in Network.game.players_node.get_children():
-		if p.player_id == instigator_player_id:
+		if p.name.to_int() == instigator_player_id:
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
 
