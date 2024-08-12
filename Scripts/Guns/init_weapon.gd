@@ -261,8 +261,8 @@ func hit_update_score(points):
 func update_health():
 	if not is_multiplayer_authority():
 		return
-	
 	hands.player.hud.healthBar.value = hands.player.health
+	
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == weaponData.name + "_Shot" and weaponData.isBoltAction:

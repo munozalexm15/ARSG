@@ -64,7 +64,7 @@ func _on_area_3d_body_entered(body):
 		body.health -= damage
 		playerDamaged.emit()
 		instigator.hud.animationPlayer.play("hitmarker")
-		body.hit_indicator.animationPlayer.play("hit_anim")
+		instigator.assign_enemy_to_player_hit.rpc_id(instigator.player_id, instigator.player_id)
 		if body.health <= 0 and body.visible == true:
 			body.die_respawn.rpc()
 	
@@ -74,3 +74,4 @@ func _on_area_3d_body_entered(body):
 	#await fade_tween.finished
 	#decal_instance.queue_free()
 	queue_free()
+

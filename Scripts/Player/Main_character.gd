@@ -2,8 +2,9 @@ class_name Player
 extends CharacterBody3D
 
 signal challenge
-
 signal step
+
+var player_id = 0
 
 @export var bobbingNode := NodePath()
 @onready var eyes : Node3D = get_node(bobbingNode)
@@ -92,18 +93,20 @@ var seeing_ally : bool = false
 var can_respawn = false
 var time_to_respawn = 3.0
 var team = ""
-@onready var nameLabel = $Sprite3D/PlayerName
+@onready var nameLabel : Label3D = $Sprite3D/PlayerName
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
+	nameLabel.text = Steam.getPersonaName()
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
 		arms.visible = false
 		return
-
+	
+	player_id = name.to_int()
 	health_display.value = health
 	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -111,7 +114,7 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
-	nameLabel = Steam.getPersonaName()
+	
 	
 
 func _input(event : InputEvent):
@@ -253,9 +256,15 @@ func leaning(delta):
 
 func update_hitPosition():
 	if hit_indicator.visible:
-		$Damage_indicator_lookAt.look_at(hit_indicator.get_global_transform().origin, Vector3.UP)
+		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
-		
+
+@rpc("any_peer", "reliable", "call_remote")
+func assign_enemy_to_player_hit(instigator_player_id):
+	for p : Player in Network.game.players_node.get_children():
+		if p.player_id == instigator_player_id:
+			hit_indicator.instigator = p
+
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
 func updateHealth():
