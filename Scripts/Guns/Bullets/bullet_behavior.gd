@@ -66,7 +66,7 @@ func _on_area_3d_body_entered(body):
 		instigator.hud.animationPlayer.play("hitmarker")
 		body.assign_enemy_to_player_hit.rpc_id(body.name.to_int(), instigator.name.to_int())
 		if body.health <= 0 and body.visible == true:
-			body.die_respawn.rpc()
+			body.die_respawn.rpc(body.name.to_int())
 	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)

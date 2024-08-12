@@ -267,10 +267,15 @@ func updateHealth():
 	hud.healthBar.value = health
 
 @rpc("any_peer", "call_local")
-func die_respawn():
+func die_respawn(player_id):
 	set_collision_mask_value(3, false)
 	visible= false
 	Network.game.death_count += 1
+	
+	var player : Player = null
+	for p : Player in Network.game.players_node.get_children():
+		if p.name.to_int() == player_id:
+			player = p
 	
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
@@ -283,11 +288,11 @@ func die_respawn():
 	
 	deathModelScene.animationPlayer.play("Death_BodyShot")
 	
-	var weaponPickupScene = load(arms.actualWeapon.weaponData.weaponPickupScene)
+	var weaponPickupScene = load(player.arms.actualWeapon.weaponData.weaponPickupScene)
 	var weaponPickupNode : WeaponInteractable = weaponPickupScene.instantiate()
 	weaponPickupNode.position = deathModelScene.position
-	weaponPickupNode.weaponData.reserveAmmo = arms.actualWeapon.weaponData.reserveAmmo
-	weaponPickupNode.weaponData.bulletsInMag = arms.actualWeapon.weaponData.bulletsInMag
+	weaponPickupNode.weaponData.reserveAmmo = player.arms.actualWeapon.weaponData.reserveAmmo
+	weaponPickupNode.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.bulletsInMag
 	Network.game.interactables_node.add_child(weaponPickupNode)
 	
 	global_position = Network.game.random_spawn()
@@ -295,7 +300,7 @@ func die_respawn():
 	health = 100
 	set_collision_mask_value(3, true)
 	visible = true
-	arms.actualWeapon.weaponData.bulletsInMag = arms.actualWeapon.weaponData.magSize
+	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	
 
 func _on_interact_ray_button_pressed():
