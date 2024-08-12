@@ -7,7 +7,7 @@ var player : Player
 func _ready():
 	if not is_multiplayer_authority(): 
 		visible = false
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	
 
 func _on_mp_5_button_pressed():
 	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/MP5.tscn")

@@ -268,6 +268,7 @@ func updateHealth():
 
 @rpc("any_peer", "call_local")
 func die_respawn(player_id):
+	health = 100
 	set_collision_mask_value(3, false)
 	visible= false
 	Network.game.death_count += 1
@@ -298,7 +299,7 @@ func die_respawn(player_id):
 	
 	global_position = Network.game.random_spawn()
 	await get_tree().create_timer(2).timeout
-	health = 100
+	
 	set_collision_mask_value(3, true)
 	visible = true
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize

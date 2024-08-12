@@ -33,6 +33,7 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 		var interactable = Network.game.interactables_node.get_child(index)
 		if interactable is WeaponData and interactable.id == pickupWeaponId:
 			pickupWeapon = interactable
+			print("yea")
 	
 	 #search the player and the weapon it is using
 	for player : Player in Network.game.players_node.get_children():
