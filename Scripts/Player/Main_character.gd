@@ -4,8 +4,6 @@ extends CharacterBody3D
 signal challenge
 signal step
 
-var player_id = 0
-
 @export var bobbingNode := NodePath()
 @onready var eyes : Node3D = get_node(bobbingNode)
 
@@ -106,7 +104,6 @@ func _ready():
 		return
 	
 	nameLabel.text = Steam.getPersonaName()
-	player_id = multiplayer.get_unique_id()
 	health_display.value = health
 	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -256,15 +253,15 @@ func leaning(delta):
 
 func update_hitPosition():
 	if hit_indicator.visible:
-		print(hit_indicator.instigator.global_transform.origin, " " , Vector3.UP)
+		print(hit_indicator.rotation)
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
+	print(instigator_player_id)
 	for p : Player in Network.game.players_node.get_children():
 		if p.player_id == instigator_player_id:
-			print(p.player_id)
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
 
