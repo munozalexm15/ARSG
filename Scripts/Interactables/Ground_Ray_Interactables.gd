@@ -21,19 +21,19 @@ func _process(delta):
 		var weapon = get_collider()
 		for x in player.arms.weaponHolder.get_child_count():
 			if weapon.weaponData.weaponCaliber == player.arms.weaponHolder.get_child(x).weaponData.weaponCaliber and weapon.weaponData.reserveAmmo > 0:
-				print(weapon.weaponData.reserveAmmo )
 				get_weapon_ammo.rpc(multiplayer.get_unique_id(), x, weapon.id)
 		
 @rpc("any_peer", "call_local", "reliable")
 func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeaponId : int):
 	var pickupWeapon = null
 	
+	print(player_id, " ", weaponHolder_child_pos,  " ",  pickupWeaponId )
 	#search the dropped weapon in the map
 	for index in Network.game.interactables_node.get_child_count():
 		var interactable = Network.game.interactables_node.get_child(index)
-		if interactable is WeaponData and interactable.id == pickupWeaponId:
+		if interactable is WeaponInteractable and interactable.id == pickupWeaponId:
 			pickupWeapon = interactable
-			print("yea")
+			
 	
 	 #search the player and the weapon it is using
 	for player : Player in Network.game.players_node.get_children():
