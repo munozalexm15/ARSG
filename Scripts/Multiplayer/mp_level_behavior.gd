@@ -31,7 +31,6 @@ func _process(_delta):
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
-	
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
 	if multiplayer.get_unique_id() == 1:

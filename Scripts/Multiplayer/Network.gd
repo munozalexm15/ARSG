@@ -60,7 +60,8 @@ func player_joined(id, players_dict):
 	#if its the host -> ignore
 	if id == 1:
 		return
-	
+		
+	game.players = players_dict
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
