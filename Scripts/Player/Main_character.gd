@@ -99,13 +99,13 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	nameLabel.text = Steam.getPersonaName()
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
 		arms.visible = false
 		return
 	
+	nameLabel.text = Steam.getPersonaName()
 	player_id = name.to_int()
 	health_display.value = health
 	player_body.visible = false
@@ -259,11 +259,12 @@ func update_hitPosition():
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
 
-@rpc("any_peer", "reliable", "call_remote")
+@rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.player_id == instigator_player_id:
 			hit_indicator.instigator = p
+			hit_indicator.animationPlayer.play("hit_anim")
 
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
