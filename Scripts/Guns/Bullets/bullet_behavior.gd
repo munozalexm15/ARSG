@@ -12,7 +12,7 @@ signal kill(points)
 @onready var mesh : MeshInstance3D = get_node(meshNode) 
 @onready var trail : Trail3D = $Trail3D
 
-var instigator: CharacterBody3D
+var instigator: Player
 
 var damage : float
 var distanceTraveled: float = 0
@@ -60,9 +60,11 @@ func _on_area_3d_body_entered(body):
 		
 		impactParticle.emitting = true
 	
-	if body is Player:
+	if body is Player and body != instigator:
 		body.health -= damage
 		playerDamaged.emit()
+		instigator.hud.animationPlayer.play("hitmarker")
+		body.hit_indicator.animationPlayer.play("hit_anim")
 		if body.health <= 0 and body.visible == true:
 			body.die_respawn.rpc()
 	

@@ -111,7 +111,9 @@ func cam_tilt(input_x, delta):
 
 func weapon_tilt(input_x, delta):
 	if weaponHolder:
+		print(player.input_direction)
 		weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, -input_x * weapon_rotation_amount * 10, 10 * delta)
+		weaponHolder.position.x = lerp(weaponHolder.position.x, (player.input_direction.y * 3) * weapon_rotation_amount * 10, 5 * delta)
 
 func weapon_sway(delta):
 	mouse_input = lerp(mouse_input,Vector2.ZERO,10*delta)

@@ -36,6 +36,7 @@ var weaponSelectionMenu : WeaponSelection_Menu
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
 @onready var player_body : PlayerSkeleton = $PlayerSkeleton
+@onready var hit_indicator : HitIndicator = $HitIndicator
 
 var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
 
@@ -91,6 +92,7 @@ var seeing_ally : bool = false
 var can_respawn = false
 var time_to_respawn = 3.0
 var team = ""
+@onready var nameLabel = $Sprite3D/PlayerName
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -109,10 +111,8 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
+	nameLabel = Steam.getPersonaName()
 	
-	##WIP, this goes on the main menu once it is done
-	configData = ConfigFile.new()
-	var _loadedData = configData.load("res://GameSettings.cfg")
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():
@@ -138,6 +138,8 @@ func _physics_process(delta):
 	
 	if health < 100:
 		updateHealth.rpc()
+	
+	update_hitPosition()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
@@ -248,6 +250,12 @@ func leaning(delta):
 	elif (Input.is_action_pressed("Lean Left") and Input.is_action_pressed("Lean Right")) or (!Input.is_action_pressed("Lean Left") and !Input.is_action_pressed("Lean Right")):
 		rotation_degrees.z = lerp(rotation_degrees.z, 0.0, delta * 5)
 
+
+func update_hitPosition():
+	if hit_indicator.visible:
+		$Damage_indicator_lookAt.look_at(hit_indicator.get_global_transform().origin, Vector3.UP)
+		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
+		
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
 func updateHealth():
