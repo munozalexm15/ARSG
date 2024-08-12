@@ -22,6 +22,7 @@ func _process(delta):
 		for x in player.arms.weaponHolder.get_child_count():
 			if weapon.weaponData.weaponCaliber == player.arms.weaponHolder.get_child(x).weaponData.weaponCaliber and weapon.weaponData.reserveAmmo > 0:
 				get_weapon_ammo.rpc(multiplayer.get_unique_id(), x, weapon.id)
+				await get_tree().create_timer(1).timeout
 		
 @rpc("any_peer", "call_local", "reliable")
 func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeaponId : int):
@@ -34,6 +35,8 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 		if interactable is WeaponInteractable and interactable.id == pickupWeaponId:
 			pickupWeapon = interactable
 			
+	if pickupWeapon == null:
+		return
 	
 	 #search the player and the weapon it is using
 	for player : Player in Network.game.players_node.get_children():
