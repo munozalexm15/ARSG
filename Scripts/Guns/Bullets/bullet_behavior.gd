@@ -64,7 +64,7 @@ func _on_area_3d_body_entered(body):
 		body.health -= damage
 		playerDamaged.emit()
 		instigator.hud.animationPlayer.play("hitmarker")
-		instigator.assign_enemy_to_player_hit.rpc_id(body.player_id, instigator.player_id)
+		body.assign_enemy_to_player_hit.rpc(instigator.player_id)
 		if body.health <= 0 and body.visible == true:
 			body.die_respawn.rpc()
 	

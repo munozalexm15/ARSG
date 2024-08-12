@@ -106,7 +106,7 @@ func _ready():
 		return
 	
 	nameLabel.text = Steam.getPersonaName()
-	player_id = name.to_int()
+	player_id = multiplayer.get_unique_id()
 	health_display.value = health
 	player_body.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -264,6 +264,7 @@ func update_hitPosition():
 func assign_enemy_to_player_hit(instigator_player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.player_id == instigator_player_id:
+			print(p.player_id)
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
 
