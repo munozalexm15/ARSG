@@ -256,6 +256,7 @@ func leaning(delta):
 
 func update_hitPosition():
 	if hit_indicator.visible:
+		print(hit_indicator.instigator.global_transform.origin, " " , Vector3.UP)
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.rotation = -$Damage_indicator_lookAt.rotation.y
 
