@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
 [ext_resource type="PackedScene" uid="uid://dpywwrcd6hkt5" path="res://Scenes/UI/hit_indicator.tscn" id="14_npphj"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
 bg_color = Color(0.54902, 0.0941176, 0, 1)
@@ -290,7 +291,7 @@ near = 0.01
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
-collision_mask = 161
+collision_mask = 169
 script = ExtResource("3_lt84g")
 hudNode = NodePath("../../../../HUD")
 
@@ -362,7 +363,8 @@ shape = SubResource("CapsuleShape3D_rgde6")
 target_position = Vector3(0, 1, 0)
 
 [node name="GroundCheckRaycast" type="RayCast3D" parent="."]
-collision_mask = 64
+collision_mask = 72
+script = ExtResource("16_0qd02")
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
 bus = &"Environment"

@@ -155,11 +155,7 @@ func _physics_process(delta):
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
 
-		if groundCheck_Raycast.is_colliding() and headBobbing_vector.y < -0.98 and not ASP_Footsteps.playing:
-			var collision : GroundData = groundCheck_Raycast.get_collider().groundData
-			var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
-			ASP_Footsteps.stream = sound
-			ASP_Footsteps.play()
+		
 		
 		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
@@ -253,13 +249,11 @@ func leaning(delta):
 
 func update_hitPosition():
 	if hit_indicator.visible:
-		print(hit_indicator.rotation)
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
-	print(instigator_player_id)
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
 			hit_indicator.instigator = p
@@ -288,12 +282,20 @@ func die_respawn():
 	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
 	
 	deathModelScene.animationPlayer.play("Death_BodyShot")
-	global_position = Network.game.random_spawn()
 	
+	var weaponPickupScene = load(arms.actualWeapon.weaponData.weaponPickupScene)
+	var weaponPickupNode : WeaponInteractable = weaponPickupScene.instantiate()
+	weaponPickupNode.position = deathModelScene.position
+	weaponPickupNode.weaponData.reserveAmmo = arms.actualWeapon.weaponData.reserveAmmo
+	weaponPickupNode.weaponData.bulletsInMag = arms.actualWeapon.weaponData.bulletsInMag
+	Network.game.interactables_node.add_child(weaponPickupNode)
+	
+	global_position = Network.game.random_spawn()
 	await get_tree().create_timer(2).timeout
 	health = 100
 	set_collision_mask_value(3, true)
 	visible = true
+	arms.actualWeapon.weaponData.bulletsInMag = arms.actualWeapon.weaponData.magSize
 	
 
 func _on_interact_ray_button_pressed():

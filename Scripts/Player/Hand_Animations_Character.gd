@@ -123,6 +123,9 @@ func weapon_sway(delta):
 func _on_interact_ray_swap_weapon(actualWeaponName, pickupWeaponScene : String, isSwapping : bool):
 	drop_weapon.rpc(actualWeaponName, pickupWeaponScene, isSwapping)
 
+func pickup_ammo(reserveAmmo, weapon):
+	pass
+
 @rpc("authority", "call_local", "reliable")
 func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
@@ -165,9 +168,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	newWeapon.handsNode = get_path()
 	
 	weaponHolder.add_child(newWeapon)
-
-	#delete pickup weapon -> find in the game the dropped weapon (with an id?) and remove it locally in each client
-	#pickupWeapon.queue_free()
 	
 	#as it is swapping weapons on pickup, set the current weapon to not being used
 	actual_weapon_index = 1
@@ -192,7 +192,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 		weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
 		weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
 	
-	#Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), weaponHolder)
 	state_machine.transition_to("SwappingWeapon")
 
 

@@ -53,11 +53,8 @@ func _process(_delta):
 				weaponImage.texture = interactable.weaponData.weaponImage
 				if interactable.weaponData.reserveAmmo > 0:
 					hud.marginContainer.visible = true
-					hud.pickupAmmoContainer.visible = true
+					#hud.pickupAmmoContainer.visible = true
 				hud.pickupWeaponContainer.visible = true
-			
-			elif isInHolder:
-				hud.pickupAmmoContainer.visible = true
 
 			elif not isInHolder and not isHoldingWeaponWithSameCaliber:
 				var weaponImage : TextureRect = hud.pickupWeaponContainer.get_child(1)
@@ -66,6 +63,7 @@ func _process(_delta):
 				
 			#grab ammo
 			if Input.is_action_just_pressed("Interact") and isInHolder:
+				var pickupReserveAmmo = interactable.weaponData.reserveAmmo
 				swap_weapon.emit(interactable, false)
 			
 			#grab ammo without destroying weapon
@@ -83,6 +81,7 @@ func _process(_delta):
 			if Input.is_action_just_released("Interact") and not isInHolder:
 				if not InteractTimer.is_stopped():
 					InteractTimer.stop()
+		
 		
 		if interactable is Ammo:
 			if hud.player_controller.arms.actualWeapon.weaponData.weaponType == interactable.ammoData.ammoType:

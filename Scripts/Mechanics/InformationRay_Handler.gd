@@ -21,7 +21,6 @@ func _process(_delta):
 		
 	if is_colliding():
 		var collision = get_collider()
-		
 		#if collision is Player:
 			#hud.ally_indicator(Color.LAWN_GREEN)
 			#player.seeing_ally = true
