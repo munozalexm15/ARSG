@@ -44,4 +44,6 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 			var pickupReserveAmmo = pickupWeapon.weaponData.reserveAmmo
 			if weapon.weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
 				weapon.weaponData.reserveAmmo += pickupReserveAmmo
-				pickupWeapon.queue_free()
+			
+			
+			pickupWeapon.queue_free()
