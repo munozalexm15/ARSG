@@ -267,7 +267,14 @@ func updateHealth():
 	hud.healthBar.value = health
 
 @rpc("any_peer", "call_local")
-func die_respawn(player_id):
+func die_respawn(player_id, instigator_id):
+	#actualizar los diccionarios de todos los jugadores con los stats
+	var dead_guy = Network.game.players["player"+ player_id]
+	var killer = Network.game.players["player"+ instigator_id]
+	killer["score"] += 100
+	killer["kills"] += 1
+	dead_guy["deaths"] += 1
+		
 	health = 100
 	set_collision_mask_value(3, false)
 	visible= false

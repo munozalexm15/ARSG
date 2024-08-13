@@ -26,8 +26,6 @@ func _process(_delta):
 @rpc("any_peer", "call_local", "reliable")
 func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeaponId : int):
 	var pickupWeapon = null
-	
-	print(player_id, " ", weaponHolder_child_pos,  " ",  pickupWeaponId )
 	#search the dropped weapon in the map
 	for index in Network.game.interactables_node.get_child_count():
 		var interactable = Network.game.interactables_node.get_child(index)
@@ -44,6 +42,4 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 			var pickupReserveAmmo = pickupWeapon.weaponData.reserveAmmo
 			if weapon.weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
 				weapon.weaponData.reserveAmmo += pickupReserveAmmo
-			
-			
 			pickupWeapon.queue_free()

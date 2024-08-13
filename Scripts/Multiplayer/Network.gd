@@ -133,8 +133,10 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			player.arms.state_machine.transition_to("SwappingWeapon")
 			player.visible = true
 			player.weaponSelectionMenu.visible = false
-			var dict_data : Dictionary = {"id": identifier ,"weaponName" : weaponSpawned.weaponData.name, "weaponScenePath": weaponScenePath}
-			game.players["player" + str(identifier)] = dict_data
+			var playerDict = game.players["player" + str(identifier)]
+			playerDict["weaponName"] = weaponSpawned.weaponData.name
+			playerDict["weaponScenePath"] = weaponScenePath
+			
 
 @rpc("any_peer", "call_local")
 func show_all_players():

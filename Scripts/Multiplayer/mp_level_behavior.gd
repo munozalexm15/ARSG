@@ -27,7 +27,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	print(players)
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
@@ -36,7 +36,7 @@ func init_player(peer_id):
 	if multiplayer.get_unique_id() == 1:
 		players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
-	var dict_data : Dictionary = {"id": str(peer_id)}
+	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players["player" + str(peer_id)] = dict_data
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
