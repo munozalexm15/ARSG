@@ -269,8 +269,8 @@ func updateHealth():
 @rpc("any_peer", "call_local")
 func die_respawn(player_id, instigator_id):
 	#actualizar los diccionarios de todos los jugadores con los stats
-	var dead_guy = Network.game.players["player"+ player_id]
-	var killer = Network.game.players["player"+ instigator_id]
+	var dead_guy = Network.game.players["player"+ str(player_id)]
+	var killer = Network.game.players["player"+ str(instigator_id)]
 	killer["score"] += 100
 	killer["kills"] += 1
 	dead_guy["deaths"] += 1
