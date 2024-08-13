@@ -8,7 +8,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if is_colliding() and get_collider() is GroundData and player.headBobbing_vector.y < -0.98 and not player.ASP_Footsteps.playing:
 		var collision : GroundData = get_collider().groundData
 		var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
@@ -17,7 +17,6 @@ func _process(delta):
 	
 	if is_colliding() and get_collider() is WeaponInteractable:
 		#player.hud.pickupAmmoContainer.visible = true
-		var isInHolder = false
 		var weapon = get_collider()
 		for x in player.arms.weaponHolder.get_child_count():
 			if weapon.weaponData.weaponCaliber == player.arms.weaponHolder.get_child(x).weaponData.weaponCaliber and weapon.weaponData.reserveAmmo > 0:
@@ -39,9 +38,10 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 		return
 	
 	 #search the player and the weapon it is using
-	for player : Player in Network.game.players_node.get_children():
-		if player.name.to_int() == player_id:
-			var weapon = player.arms.weaponHolder.get_child(weaponHolder_child_pos)
+	for p : Player in Network.game.players_node.get_children():
+		if p.name.to_int() == player_id:
+			var weapon = p.arms.weaponHolder.get_child(weaponHolder_child_pos)
 			var pickupReserveAmmo = pickupWeapon.weaponData.reserveAmmo
-			weapon.weaponData.reserveAmmo += pickupReserveAmmo
-			pickupWeapon.queue_free()
+			if weapon.weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
+				weapon.weaponData.reserveAmmo += pickupReserveAmmo
+				pickupWeapon.queue_free()
