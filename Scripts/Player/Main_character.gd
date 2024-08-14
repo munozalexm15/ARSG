@@ -37,8 +37,10 @@ var weaponSelectionMenu : WeaponSelection_Menu
 @onready var player_body : PlayerSkeleton = $PlayerSkeleton
 
 var hit_indicator_scene = preload("res://Scenes/UI/hit_indicator.tscn")
-var hit_indicator_array : Array = []
 var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
+
+var hit_indicator_array : Array = []
+var look_at_hit_indicator_array : Array = []
 
 var configData : ConfigFile
 
@@ -140,7 +142,7 @@ func _physics_process(delta):
 	if health < 100:
 		updateHealth.rpc()
 	
-	update_hitPosition()
+	#update_hitPosition()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
@@ -261,13 +263,18 @@ func update_hitPosition():
 func assign_enemy_to_player_hit(instigator_player_id):
 	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
 	hit_indicator.connect("finished", updateIndicatorsArray)
-	Network.game.add_child(hit_indicator)
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
+			p.add_child(hit_indicator)
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
 			hit_indicator_array.append(hit_indicator)
 			
+			var look_at_node = Node3D.new()
+			look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
+			hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
+			p.add_child(look_at_node)
+			look_at_hit_indicator_array.append(look_at_node)
 
 func updateIndicatorsArray(node):
 	for index in range(hit_indicator_array.size() -1, -1, -1):
@@ -275,6 +282,7 @@ func updateIndicatorsArray(node):
 		if hit_node == node:
 			hit_indicator_array.remove_at(index)
 			hit_node.queue_free()
+			look_at_hit_indicator_array.remove_at(index)
 	
 
 ##play swap weapon hands animation and show weapon
