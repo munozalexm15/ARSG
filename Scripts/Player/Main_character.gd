@@ -87,7 +87,7 @@ var headBobbing_curr_intensity = 0.0
 
 @onready var health_display : ProgressBar = $SubViewport/ProgressBar
 var health: float = 100
-
+var can_heal = false
 var seeing_ally : bool = false
 
 ##MP RESPAWNS, TEAMS, DATA
@@ -139,7 +139,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return 
 	
-	if health < 100:
+	if health < 100 and can_heal:
 		updateHealth.rpc()
 	
 	#update_hitPosition()
@@ -261,9 +261,14 @@ func update_hitPosition():
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
+	can_heal = false
+	if animationPlayer.is_playing():
+		animationPlayer.play("RESET")
 	animationPlayer.play("hit")
+	
 	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
 	hit_indicator.connect("finished", updateIndicatorsArray)
+	
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
 			hit_indicator.instigator = p
@@ -280,6 +285,9 @@ func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
 			look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 			hit_indicator.indicator_node.rotation = -look_at_node.rotation.y
 			look_at_hit_indicator_array.append(look_at_node)
+	
+	await get_tree().create_timer(2).timeout
+	can_heal = true
 
 func updateIndicatorsArray(node):
 	for index in range(hit_indicator_array.size() -1, -1, -1):
@@ -294,7 +302,9 @@ func updateIndicatorsArray(node):
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
 func updateHealth():
-	health += 0.02
+	if health < 35:
+		hud.HurtScreenAnimationPlayer.play("low_hp")
+	health += 0.5
 	health_display.value = health
 	hud.healthBar.value = health
 

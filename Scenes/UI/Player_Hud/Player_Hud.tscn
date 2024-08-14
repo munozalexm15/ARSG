@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=44 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -8,6 +8,47 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
 [ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader" id="7_m5vmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyhua"]
+bg_color = Color(0.995287, 0.000985044, 0.093398, 1)
+
+[sub_resource type="Animation" id="Animation_ca002"]
+resource_name = "low_hp"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtScreenIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.117647), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t0uba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtScreenIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxoc4"]
+_data = {
+"RESET": SubResource("Animation_t0uba"),
+"low_hp": SubResource("Animation_ca002")
+}
 
 [sub_resource type="Animation" id="Animation_44682"]
 resource_name = "Aim"
@@ -405,6 +446,25 @@ mouse_filter = 1
 script = ExtResource("1_tmuf1")
 reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Right"), NodePath("CenterContainer/Down"), NodePath("CenterContainer/Left")]
 
+[node name="HurtScreenContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HurtScreenIndicator" type="PanelContainer" parent="HurtScreenContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyhua")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HurtScreenContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_wxoc4")
+}
+
 [node name="PrecisionSightContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -420,7 +480,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(0, 0, 0, 0.305882)
+self_modulate = Color(0, 0, 0, 0)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 

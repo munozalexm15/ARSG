@@ -275,6 +275,7 @@ returnSpeed = 10.0
 [node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
+size = 11.029
 near = 0.01
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]

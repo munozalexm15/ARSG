@@ -42,6 +42,8 @@ extends Control
 @onready var NPCNameLabel : Label = $InformationContainer/VBoxContainer/Name
 @onready var NPCRoleLabel : Label = $InformationContainer/VBoxContainer/Role
 
+@onready var HurtScreenContainer : PanelContainer = $HurtScreenContainer
+@onready var HurtScreenAnimationPlayer : AnimationPlayer = $HurtScreenContainer/AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
