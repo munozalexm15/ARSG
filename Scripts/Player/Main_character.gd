@@ -250,7 +250,7 @@ func leaning(delta):
 
 
 func update_hitPosition():
-	for hit_indicator in hit_indicator_array:
+	for hit_indicator : HitIndicator in hit_indicator_array:
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 	
@@ -260,14 +260,14 @@ func update_hitPosition():
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
-	var hit_indicator = hit_indicator_scene.instantiate()
-	
+	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
+	Network.game.add_child(hit_indicator)
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
 			hit_indicator_array.append(hit_indicator)
-			Network.game.add_child(hit_indicator)
+			
 
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
