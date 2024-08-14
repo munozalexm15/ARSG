@@ -63,7 +63,6 @@ func _process(_delta):
 				
 			#grab ammo
 			if Input.is_action_just_pressed("Interact") and isInHolder:
-				var pickupReserveAmmo = interactable.weaponData.reserveAmmo
 				swap_weapon.emit(interactable, false)
 			
 			#grab ammo without destroying weapon

@@ -123,9 +123,6 @@ func weapon_sway(delta):
 func _on_interact_ray_swap_weapon(actualWeaponName, pickupWeaponScene : String, isSwapping : bool):
 	drop_weapon.rpc(actualWeaponName, pickupWeaponScene, isSwapping)
 
-func pickup_ammo(reserveAmmo, weapon):
-	pass
-
 @rpc("authority", "call_local", "reliable")
 func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
@@ -174,17 +171,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	loadWeapon(actual_weapon_index)
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	
-	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-	#var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-	#var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
-	#
-	#if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
-		#actualWeapon.weaponData.bulletsInMag = randomMagAmmo
-		#actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
-	#elif pickupWeapon.isAlreadyGrabbed:
-		#actualWeapon.weaponData.bulletsInMag = pickupWeapon.weaponData.bulletsInMag
-		#actualWeapon.weaponData.reserveAmmo = pickupWeapon.weaponData.reserveAmmo
-	#
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
 	#if both weapons have the same caliber, add more ammo to both reserve

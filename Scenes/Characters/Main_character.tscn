@@ -110,34 +110,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0.00174533, 0, 0.00872665), Vector3(0, 0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.04, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_oeq1r"]
-resource_name = "reload"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(-0.00174533, 0, -0.0436332), Vector3(-0.00116355, 0, -0.0116355)]
-}
 
 [sub_resource type="Animation" id="Animation_p7pfv"]
 resource_name = "soft_landing"
@@ -167,12 +139,29 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, -0.04, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_oeq1r"]
+resource_name = "hit"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(0.0349066, 0, 0), Vector3(-0.00116355, 0, -0.0116355)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
 _data = {
 "RESET": SubResource("Animation_p700l"),
 "hard_landing": SubResource("Animation_i4awl"),
+"hit": SubResource("Animation_oeq1r"),
 "out_ammo": SubResource("Animation_si43w"),
-"reload": SubResource("Animation_oeq1r"),
 "soft_landing": SubResource("Animation_p7pfv")
 }
 
@@ -345,9 +334,8 @@ libraries = {
 }
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
-next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"reload", &"RESET", 0.2]
+blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hit", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

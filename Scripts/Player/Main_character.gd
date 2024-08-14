@@ -261,6 +261,7 @@ func update_hitPosition():
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
+	animationPlayer.play("hit")
 	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
 	hit_indicator.connect("finished", updateIndicatorsArray)
 	for p : Player in Network.game.players_node.get_children():
@@ -286,6 +287,7 @@ func updateIndicatorsArray(node):
 		if hit_node == node:
 			hit_indicator_array.remove_at(index)
 			hit_node.queue_free()
+			look_at_hit_indicator_array[index].queue_free()
 			look_at_hit_indicator_array.remove_at(index)
 	
 
