@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=28 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
-[ext_resource type="PackedScene" uid="uid://dpywwrcd6hkt5" path="res://Scenes/UI/hit_indicator.tscn" id="14_npphj"]
 [ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
@@ -335,8 +334,6 @@ script = ExtResource("7_nbd32")
 script = ExtResource("12_g67w3")
 
 [node name="Damage_indicator_lookAt" type="Node3D" parent="."]
-
-[node name="HitIndicator" parent="." instance=ExtResource("14_npphj")]
 
 [node name="HUD" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("11_l81ke")]
 player_controller = NodePath("..")
