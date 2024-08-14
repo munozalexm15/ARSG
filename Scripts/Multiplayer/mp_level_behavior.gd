@@ -24,10 +24,6 @@ func _ready():
 	if multiplayer.get_unique_id() == 1:
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	print(players)
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):

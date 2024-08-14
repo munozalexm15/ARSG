@@ -260,7 +260,7 @@ func update_hitPosition():
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
 	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
-	hit_indicator.animationPlayer.connect("finished", updateIndicatorsArray)
+	hit_indicator.connect("finished", updateIndicatorsArray)
 	Network.game.add_child(hit_indicator)
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
@@ -274,6 +274,7 @@ func updateIndicatorsArray(node):
 		var hit_node = hit_indicator_array[index]
 		if hit_node == node:
 			hit_indicator_array.remove_at(index)
+			hit_node.queue_free()
 	
 
 ##play swap weapon hands animation and show weapon
