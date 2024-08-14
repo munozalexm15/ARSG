@@ -270,7 +270,7 @@ func assign_enemy_to_player_hit(instigator_player_id):
 			
 
 func updateIndicatorsArray(node):
-	for index in hit_indicator_array.size():
+	for index in range(hit_indicator_array.size() -1, -1, -1):
 		var hit_node = hit_indicator_array[index]
 		if hit_node == node:
 			hit_indicator_array.remove_at(index)
