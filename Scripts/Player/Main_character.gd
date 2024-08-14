@@ -139,6 +139,14 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return 
 	
+	if health < 35:
+		hud.HurtScreenAnimationPlayer.play("low_hp")
+	else:
+		hud.HurtScreenAnimationPlayer.stop()
+	
+	health_display.value = health
+	hud.healthBar.value = health
+	
 	if health < 100 and can_heal:
 		updateHealth.rpc()
 	
@@ -302,11 +310,7 @@ func updateIndicatorsArray(node):
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
 func updateHealth():
-	if health < 35:
-		hud.HurtScreenAnimationPlayer.play("low_hp")
-	health += 0.5
-	health_display.value = health
-	hud.healthBar.value = health
+	health += 0.05
 
 @rpc("any_peer", "call_local")
 func die_respawn(player_id, instigator_id):
