@@ -271,9 +271,9 @@ func assign_enemy_to_player_hit(instigator_player_id):
 			hit_indicator_array.append(hit_indicator)
 			
 			var look_at_node = Node3D.new()
+			p.add_child(look_at_node)
 			look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 			hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
-			p.add_child(look_at_node)
 			look_at_hit_indicator_array.append(look_at_node)
 
 func updateIndicatorsArray(node):
