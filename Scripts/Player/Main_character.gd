@@ -37,6 +37,8 @@ var weaponSelectionMenu : WeaponSelection_Menu
 @onready var player_body : PlayerSkeleton = $PlayerSkeleton
 @onready var hit_indicator : HitIndicator = $HitIndicator
 
+var hit_indicator_scene = preload("res://Scenes/UI/hit_indicator.tscn")
+var hit_indicator_array : Array = []
 var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
 
 var configData : ConfigFile
@@ -248,16 +250,24 @@ func leaning(delta):
 
 
 func update_hitPosition():
-	if hit_indicator.visible:
+	for hit_indicator in hit_indicator_array:
 		$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
 		hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
+	
+	#if hit_indicator.visible:
+		#$Damage_indicator_lookAt.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
+		#hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
 func assign_enemy_to_player_hit(instigator_player_id):
+	var hit_indicator = hit_indicator_scene.instantiate()
+	
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
 			hit_indicator.instigator = p
 			hit_indicator.animationPlayer.play("hit_anim")
+			hit_indicator_array.append(hit_indicator)
+			Network.game.add_child(hit_indicator)
 
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
