@@ -260,20 +260,24 @@ func update_hitPosition():
 		#hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
-func assign_enemy_to_player_hit(instigator_player_id):
+func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
 	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
 	hit_indicator.connect("finished", updateIndicatorsArray)
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == instigator_player_id:
-			p.add_child(hit_indicator)
 			hit_indicator.instigator = p
-			hit_indicator.animationPlayer.play("hit_anim")
 			hit_indicator_array.append(hit_indicator)
+	
+	for p : Player in Network.game.players_node.get_children():
+		if p.name.to_int() == affected_player_id:
+			
+			p.add_child(hit_indicator)
+			hit_indicator.animationPlayer.play("hit_anim")
 			
 			var look_at_node = Node3D.new()
 			p.add_child(look_at_node)
 			look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
-			hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
+			hit_indicator.indicator_node.rotation = -look_at_node.rotation.y
 			look_at_hit_indicator_array.append(look_at_node)
 
 func updateIndicatorsArray(node):
