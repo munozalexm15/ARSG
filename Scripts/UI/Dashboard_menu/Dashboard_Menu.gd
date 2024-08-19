@@ -6,11 +6,6 @@ extends PanelContainer
 func _ready():
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 @rpc("any_peer", "call_local")
 func get_lobby_data():
 	for node in playersList.get_children():

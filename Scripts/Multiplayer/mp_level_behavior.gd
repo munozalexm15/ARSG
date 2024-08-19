@@ -28,7 +28,7 @@ func _ready():
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("Dashboard"):
 		dashboardMatch.visible = true
 	if Input.is_action_just_released("Dashboard"):
