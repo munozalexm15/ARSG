@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://cws836aheogns"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Dashboard_menu/Dashboard_Menu.gd" id="1_5w3h6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g8qf6"]
+font_size = 56
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_coxy8"]
+color = Color(1, 1, 1, 1)
+
+[node name="DashboardMatch" type="PanelContainer"]
+anchors_preset = -1
+anchor_top = 0.209
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = 17.568
+offset_right = -176.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5w3h6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_top = -70
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "GAMEMODE"
+label_settings = SubResource("LabelSettings_g8qf6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TEAM_SideBar" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Team1LOGO" type="Label" parent="HBoxContainer/TEAM_SideBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "TEAM1"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/TEAM_SideBar"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_coxy8")
+
+[node name="Team2LOGO" type="Label" parent="HBoxContainer/TEAM_SideBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "TEAM2"
+
+[node name="PLAYERS_SideBar" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PLAYERS_SideBar"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "KILLS"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "DEATHS"
+horizontal_alignment = 1

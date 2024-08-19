@@ -165,8 +165,6 @@ func _physics_process(delta):
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
-
-		
 		
 		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
@@ -325,6 +323,7 @@ func die_respawn(player_id, instigator_id):
 	set_collision_mask_value(3, false)
 	visible= false
 	Network.game.death_count += 1
+	Network.game.dashboardMatch.get_lobby_data()
 	
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():

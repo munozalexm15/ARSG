@@ -94,6 +94,23 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, -0.04, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_oeq1r"]
+resource_name = "hit"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(0.0349066, 0, 0), Vector3(-0.00116355, 0, -0.0116355)]
+}
+
 [sub_resource type="Animation" id="Animation_si43w"]
 resource_name = "out_ammo"
 length = 0.1
@@ -137,23 +154,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -0.02, 0), Vector3(0, -0.04, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_oeq1r"]
-resource_name = "hit"
-length = 0.1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(0.0349066, 0, 0), Vector3(-0.00116355, 0, -0.0116355)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sri1h"]
@@ -336,7 +336,7 @@ libraries = {
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hit", &"RESET", 0.2]
+blend_times = [&"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"out_ammo", &"RESET", 0.2, &"hit", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")

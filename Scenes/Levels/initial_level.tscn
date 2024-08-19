@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=21 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
+[ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="2_ptill"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
 [ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
@@ -123,3 +124,9 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 [node name="BulletsParent" type="Node3D" parent="."]
 
 [node name="InteractablesParent" type="Node3D" parent="."]
+
+[node name="DashboardMatch" parent="." instance=ExtResource("2_ptill")]
+visible = false
+offset_left = 181.0
+offset_top = 107.336
+offset_bottom = -6.12006

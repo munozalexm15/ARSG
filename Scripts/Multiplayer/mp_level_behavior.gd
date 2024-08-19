@@ -18,12 +18,21 @@ var death_count = 0
 @onready var interactables_node : Node3D = $InteractablesParent
 @onready var spawnPoints_node : Node3D= $SpawnPoints
 
+@onready var dashboardMatch : PanelContainer = $DashboardMatch
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
+	
 	if multiplayer.get_unique_id() == 1:
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+
+func _process(delta):
+	if Input.is_action_pressed("Dashboard"):
+		dashboardMatch.visible = true
+	if Input.is_action_just_released("Dashboard"):
+		dashboardMatch.visible = false
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
@@ -32,8 +41,9 @@ func init_player(peer_id):
 	if multiplayer.get_unique_id() == 1:
 		players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
-	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
+	var dict_data : Dictionary = {"id": str(peer_id), "steamID": str(Steam.getSteamID()) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players["player" + str(peer_id)] = dict_data
+	dashboardMatch.get_lobby_data()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
 @rpc("any_peer", "call_local", "reliable")
@@ -77,6 +87,7 @@ func random_spawn():
 #load client data from the other players already in the match.
 @rpc("any_peer", "call_local", "reliable")
 func request_game_info(player_dict : Dictionary):
+	dashboardMatch.get_lobby_data()
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:
