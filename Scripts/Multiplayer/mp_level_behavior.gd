@@ -87,7 +87,6 @@ func random_spawn():
 #load client data from the other players already in the match.
 @rpc("any_peer", "call_local", "reliable")
 func request_game_info(player_dict : Dictionary):
-	dashboardMatch.get_lobby_data.rpc()
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:

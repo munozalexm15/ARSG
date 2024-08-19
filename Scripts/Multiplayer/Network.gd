@@ -19,7 +19,7 @@ func _ready():
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.connected_to_server.connect(server)
-	#multiplayer.peer_disconnected.connect(player_left)
+	multiplayer.peer_disconnected.connect(player_left)
 
 func _process(_delta):
 	Steam.run_callbacks()

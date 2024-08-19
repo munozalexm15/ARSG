@@ -19,10 +19,12 @@ offset_right = -176.0
 offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_5w3h6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_top = -70
 
 [node name="Label" type="Label" parent="MarginContainer"]
@@ -33,11 +35,13 @@ label_settings = SubResource("LabelSettings_g8qf6")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TEAM_SideBar" type="VBoxContainer" parent="HBoxContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Team1LOGO" type="Label" parent="HBoxContainer/TEAM_SideBar"]
 layout_mode = 2
@@ -59,9 +63,11 @@ text = "TEAM2"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PLAYERS_SideBar"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label2" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
 layout_mode = 2
@@ -80,3 +86,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "DEATHS"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PLAYERS_SideBar"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2

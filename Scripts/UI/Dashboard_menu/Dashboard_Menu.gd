@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@onready var playersList : VBoxContainer = $HBoxContainer/PLAYERS_SideBar
+@onready var playersList : VBoxContainer = $HBoxContainer/PLAYERS_SideBar/VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,9 +13,9 @@ func _process(delta):
 
 @rpc("any_peer", "call_local")
 func get_lobby_data():
-	if playersList.get_child_count() > 1:
-		for x in range(1, playersList.get_child_count()):
-			playersList.remove_child(playersList.get_child(x))
+	for node in playersList.get_children():
+		node.queue_free()
+		
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
 	
 	for member in range(0, num_of_members):
@@ -42,7 +42,6 @@ func get_lobby_data():
 		playerDeaths.horizontal_alignment =HORIZONTAL_ALIGNMENT_CENTER
 		playerRow.add_child(playerDeaths)
 		
-		for player in Network.game.players:
-			var playerData = Network.game.players[player]
-			playerKills.text = str(playerData["kills"])
-			playerDeaths.text = str(playerData["deaths"])
+		var playerData = Network.game.players[ "player" + str(Network.peer.get_peer_id_from_steam64(member_steam_id)) ]
+		playerKills.text = str(playerData["kills"])
+		playerDeaths.text = str(playerData["deaths"])
