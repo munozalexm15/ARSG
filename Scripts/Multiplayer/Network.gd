@@ -136,7 +136,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			var playerDict = game.players["player" + str(identifier)]
 			playerDict["weaponName"] = weaponSpawned.weaponData.name
 			playerDict["weaponScenePath"] = weaponScenePath
-			
 
 @rpc("any_peer", "call_local")
 func show_all_players():

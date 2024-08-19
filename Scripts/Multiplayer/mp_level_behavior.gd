@@ -41,9 +41,9 @@ func init_player(peer_id):
 	if multiplayer.get_unique_id() == 1:
 		players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
-	var dict_data : Dictionary = {"id": str(peer_id), "steamID": str(Steam.getSteamID()) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
+	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players["player" + str(peer_id)] = dict_data
-	dashboardMatch.get_lobby_data()
+	dashboardMatch.get_lobby_data.rpc()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
 @rpc("any_peer", "call_local", "reliable")
@@ -87,7 +87,7 @@ func random_spawn():
 #load client data from the other players already in the match.
 @rpc("any_peer", "call_local", "reliable")
 func request_game_info(player_dict : Dictionary):
-	dashboardMatch.get_lobby_data()
+	dashboardMatch.get_lobby_data.rpc()
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:

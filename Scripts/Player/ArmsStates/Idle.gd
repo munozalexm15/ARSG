@@ -22,7 +22,8 @@ func enter(_msg := {}):
 		if (state_machine.old_state.name == "Reload" or state_machine.old_state.name == "SwappingWeapon") and Input.is_action_pressed("Sprint"):
 			arms.animationPlayer.play("Run")
 		else:
-			arms.animationPlayer.play("Idle")
+			if arms.player.state_machine.state.name != "Walk":
+				arms.animationPlayer.play("Idle")
 		
 		await get_tree().create_timer(0.05).timeout
 		arms.actualWeapon.show()

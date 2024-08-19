@@ -11,7 +11,11 @@ func _ready():
 func _process(delta):
 	pass
 
+@rpc("any_peer", "call_local")
 func get_lobby_data():
+	if playersList.get_child_count() > 1:
+		for x in range(1, playersList.get_child_count()):
+			playersList.remove_child(playersList.get_child(x))
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
 	
 	for member in range(0, num_of_members):
@@ -40,6 +44,5 @@ func get_lobby_data():
 		
 		for player in Network.game.players:
 			var playerData = Network.game.players[player]
-			print(playerData)
 			playerKills.text = str(playerData["kills"])
 			playerDeaths.text = str(playerData["deaths"])

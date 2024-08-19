@@ -323,7 +323,7 @@ func die_respawn(player_id, instigator_id):
 	set_collision_mask_value(3, false)
 	visible= false
 	Network.game.death_count += 1
-	Network.game.dashboardMatch.get_lobby_data()
+	Network.game.dashboardMatch.get_lobby_data.rpc()
 	
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():
