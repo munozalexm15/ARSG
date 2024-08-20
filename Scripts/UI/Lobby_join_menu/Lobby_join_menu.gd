@@ -7,13 +7,13 @@ extends PanelContainer
 
 @onready var joinRoomButton : Button = $VBoxContainer/Button
 
-var lobby
+var lobby = 0
 
 signal showLobbies
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	joinRoomButton.connect("pressed", Callable(Network, "join_server").bind(lobby))
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

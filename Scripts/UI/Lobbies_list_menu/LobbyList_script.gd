@@ -34,6 +34,7 @@ func on_lobby_mach_list(lobbies):
 func show_lobby_data(lobby):
 	visible = false
 	joinLobbyMenu.lobby = lobby
+	joinLobbyMenu.joinRoomButton.connect("pressed", Callable(Network, "join_server").bind(lobby))
 	joinLobbyMenu.mapName.text = Steam.getLobbyData(lobby, "map")
 	joinLobbyMenu.lobbyName.text = Steam.getLobbyData(lobby, "name")
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")

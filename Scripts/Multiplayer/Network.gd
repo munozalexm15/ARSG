@@ -49,7 +49,6 @@ func join_server(id):
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
 	
-	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
