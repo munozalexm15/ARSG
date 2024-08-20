@@ -10,11 +10,16 @@ var level = preload("res://Scenes/Levels/initial_level.tscn")
 
 @onready var optionsMainContainer = $SettingsMenu
 @onready var lobbyBrowser = $LobbyBrowser
+@onready var matchCreator = $MatchCreator
+@onready var lobbyDetails = $JoinLobbyMenu
 
 func _ready():
 	$AnimationPlayer.play("Fade_in")
 	optionsMainContainer.visible = false
 	lobbyBrowser.visible = false
+	matchCreator.visible = false
+	lobbyDetails.visible = false
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -28,6 +33,8 @@ func _on_firing_range_play_pressed():
 
 
 func _on_options_button_pressed():
+	lobbyBrowser.visible = false
+	matchCreator.visible = false
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
 	
 	if optionsMainContainer.visible:
@@ -46,16 +53,17 @@ func _on_options_button_pressed():
 
 func _on_host_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
-	
 
 func _on_host_button_pressed():
+	matchCreator.visible = !matchCreator.visible
+	optionsMainContainer.visible = false
+	lobbyBrowser.visible = false
 	SFXHandler.play_sfx(button_press_SFX, self, "Effects")
-	Network.host_server()
-	GlobalData.isOnlineMatch = true
-	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
 	
 
 func _on_join_button_pressed():
+	matchCreator.visible = false
+	optionsMainContainer.visible = false
 	lobbyBrowser.visible = !lobbyBrowser.visible
 	if lobbyBrowser.visible:
 		lobbyBrowser.open_lobby_list()

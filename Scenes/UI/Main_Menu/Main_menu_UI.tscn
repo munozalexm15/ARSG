@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://dsctvo84j6kal"]
+[gd_scene load_steps=28 format=3 uid="uid://dsctvo84j6kal"]
 
 [ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="1_20gce"]
 [ext_resource type="Script" path="res://Scripts/UI/Main_menu/Main_menu_UI.gd" id="1_ffext"]
 [ext_resource type="PackedScene" uid="uid://co3rj6o5p11p4" path="res://Scenes/UI/Settings_Menu/Settings_menu.tscn" id="3_xrmfw"]
 [ext_resource type="PackedScene" uid="uid://crngejj5apm2l" path="res://Scenes/UI/Lobbies_list_menu/Lobbies_list.tscn" id="4_bahym"]
+[ext_resource type="PackedScene" uid="uid://d2bw4qxehx75c" path="res://Scenes/UI/Create_Match_Menu/Create_Match_Menu.tscn" id="4_j1mlc"]
+[ext_resource type="PackedScene" uid="uid://b06n5o8r35ub6" path="res://Scenes/UI/Lobby_join_Menu/Lobby_join_menu.tscn" id="5_x7yq3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_w8fuj"]
 font = ExtResource("1_20gce")
@@ -211,8 +213,18 @@ size_flags_stretch_ratio = 2.0
 layout_mode = 2
 offset_bottom = 834.0
 
+[node name="MatchCreator" parent="." instance=ExtResource("4_j1mlc")]
+layout_mode = 1
+
+[node name="JoinLobbyMenu" parent="." instance=ExtResource("5_x7yq3")]
+layout_mode = 1
+anchor_top = 0.003
+offset_top = 0.056
+offset_bottom = -2.0
+
 [node name="LobbyBrowser" parent="." instance=ExtResource("4_bahym")]
 layout_mode = 1
+lobbyJoinMenuNode = NodePath("../JoinLobbyMenu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

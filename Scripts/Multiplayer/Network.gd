@@ -8,6 +8,8 @@ var default_PORT = 55455
 var unique_id = -1
 var game : MP_Map = null
 
+var gameData = {}
+
 var gameInteractables = null
 
 var playerListNode = {}
@@ -24,8 +26,9 @@ func _ready():
 func _process(_delta):
 	Steam.run_callbacks()
 	
-func host_server():
-	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC, 4)
+func host_server(roomData : Dictionary):
+	gameData = roomData
+	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
 	
 	#unique_id = server.get_unique_id()
@@ -33,7 +36,10 @@ func host_server():
 func on_lobby_created(connection, id):
 	if connection:
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", str(Steam.getPersonaName() + "'s Lobby"))
+		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
+		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
+		Steam.setLobbyData(lobby_id, "map", gameData["map"])
+		Steam.setLobbyData(lobby_id, "privacity", gameData["lobbyType"])
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")

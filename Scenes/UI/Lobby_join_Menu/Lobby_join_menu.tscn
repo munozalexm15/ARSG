@@ -1,0 +1,128 @@
+[gd_scene load_steps=6 format=3 uid="uid://b06n5o8r35ub6"]
+
+[ext_resource type="Texture2D" uid="uid://dctel52eg6yco" path="res://GameResources/Meshes/Characters/textures/godot_plush_basecolor.png" id="1_8j0v2"]
+[ext_resource type="Script" path="res://Scripts/UI/Lobby_join_menu/Lobby_join_menu.gd" id="1_jx8hu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w52wu"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh27g"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.559
+anchor_right = 0.97
+anchor_bottom = 1.0
+offset_left = 0.0319824
+offset_right = -0.440063
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_jx8hu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "<--"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "JOIN A MATCH"
+label_settings = SubResource("LabelSettings_w52wu")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "MAP"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="MapSelectorContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MapSelectorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_8j0v2")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/MapSelectorContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.096
+anchor_right = 0.502
+anchor_bottom = 0.096
+offset_left = -23.464
+offset_top = -11.584
+offset_right = 23.536
+offset_bottom = 11.416
+grow_horizontal = 2
+text = "MAP NAME"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "GAMEMODE"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label8" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "TEAM DEATHMACH"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="PrivacityLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRIVACITY"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "PUBLIC"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PLAYER CAPACITY"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label9" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "0"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "JOIN ROOM"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
