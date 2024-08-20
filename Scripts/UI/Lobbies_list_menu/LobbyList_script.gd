@@ -37,6 +37,5 @@ func show_lobby_data(lobby):
 	joinLobbyMenu.mapName.text = Steam.getLobbyData(lobby, "map")
 	joinLobbyMenu.lobbyName.text = Steam.getLobbyData(lobby, "name")
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")
-	joinLobbyMenu.roomPrivacity.text = Steam.getLobbyData(lobby, "privacity")
 	joinLobbyMenu.playerCount.text = str(Steam.getNumLobbyMembers(lobby)) + " / " + str(Steam.getLobbyMemberLimit(lobby))
 	joinLobbyMenu.visible = true

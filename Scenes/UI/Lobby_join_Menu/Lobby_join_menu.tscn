@@ -91,19 +91,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
 text = "TEAM DEATHMACH"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="PrivacityLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "PRIVACITY"
-label_settings = SubResource("LabelSettings_rw6vp")
-
-[node name="Label7" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
-text = "PUBLIC"
-label_settings = SubResource("LabelSettings_rw6vp")
-
 [node name="Label5" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1

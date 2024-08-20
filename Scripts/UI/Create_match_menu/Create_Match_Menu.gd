@@ -21,7 +21,7 @@ func _process(delta):
 	pass
 
 func _on_create_room_button_pressed():
-	var roomDict = {"lobbyName" : lobbyName.text, "mapName": mapName.text, "playerQuantity" : playerQuantityOption.text.to_int(), "lobbyType" : privacityOption.text, "gameMode" : gamemodeOption.text}
+	var roomDict = {"lobbyName" : lobbyName.text, "mapName": mapName.text, "playerQuantity" : playerQuantityOption.text.to_int(), "gameMode" : gamemodeOption.text}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC

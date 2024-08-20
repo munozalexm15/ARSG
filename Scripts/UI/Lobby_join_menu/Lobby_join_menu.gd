@@ -2,7 +2,6 @@ extends PanelContainer
 
 @onready var mapName : Label = $VBoxContainer/MapSelectorContainer/TextureRect/Label
 @onready var gamemodeName : Label = $VBoxContainer/Label8
-@onready var roomPrivacity : Label = $VBoxContainer/Label7
 @onready var playerCount : Label = $VBoxContainer/Label9
 @onready var lobbyName : Label = $VBoxContainer/HBoxContainer/Label3
 

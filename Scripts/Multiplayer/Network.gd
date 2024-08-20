@@ -38,8 +38,7 @@ func on_lobby_created(connection, id):
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
-		Steam.setLobbyData(lobby_id, "map", gameData["map"])
-		Steam.setLobbyData(lobby_id, "privacity", gameData["lobbyType"])
+		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
