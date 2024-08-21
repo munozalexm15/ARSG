@@ -40,6 +40,8 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
 		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])
 		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
+		Steam.setLobbyData(lobby_id, "goal", gameData["goal"])
+		Steam.setLobbyData(lobby_id, "time", gameData["time"])
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		get_tree().change_scene_to_file(gameData["mapPath"])

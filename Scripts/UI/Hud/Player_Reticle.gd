@@ -63,6 +63,7 @@ func _ready():
 	NPCRoleLabel.visible = false
 	pointsContainer.visible = false
 	timerContainer.visible = false
+	print(Network.game.matchGoal)
 	Team1ProgressBar.max_value = int(Network.game.matchGoal)
 	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 
