@@ -63,8 +63,8 @@ func _ready():
 	NPCRoleLabel.visible = false
 	pointsContainer.visible = false
 	timerContainer.visible = false
-	Team1ProgressBar.max_value = Network.game.matchGoal
-	Team2ProgressBar.max_value = Network.game.matchGoal
+	Team1ProgressBar.max_value = int(Network.game.matchGoal)
+	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
