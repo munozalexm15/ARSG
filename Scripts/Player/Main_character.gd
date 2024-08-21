@@ -114,8 +114,6 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
-	
-	
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():

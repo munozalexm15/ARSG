@@ -1,4 +1,4 @@
-extends PanelContainer
+extends ScrollContainer
 
 @onready var lobbyName : TextEdit = $VBoxContainer/TextEdit
 
@@ -16,6 +16,9 @@ var selectedMap = ""
 @onready var gamemodeOption : OptionButton = $VBoxContainer/OptionButton
 @onready var privacityOption : OptionButton = $VBoxContainer/OptionButton2
 
+@onready var matchTimeOption : OptionButton = $VBoxContainer/OptionButton5
+@onready var objectiveGoalOption : OptionButton = $VBoxContainer/OptionButton4
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +26,16 @@ func _ready():
 	mapName.text = mapNamesList[mapListIndex]
 
 func _on_create_room_button_pressed():
-	var roomDict = {"lobbyName" : lobbyName.text, "mapName": mapName.text, "mapPath" : selectedMap, "playerQuantity" : playerQuantityOption.text.to_int(), "gameMode" : gamemodeOption.text}
+	var matchTime = matchTimeOption.text.split(" ")[0].to_int() * 60
+	var objectiveGoal = objectiveGoalOption.text.split(" ")[0].to_int()
+	
+	var roomDict = {"lobbyName" : lobbyName.text, 
+	"mapName": mapName.text, 
+	"mapPath" : selectedMap, 
+	"playerQuantity" : playerQuantityOption.text.to_int(), 
+	"gameMode" : gamemodeOption.text, 
+	"time" : matchTime, 
+	"goal": objectiveGoal}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC

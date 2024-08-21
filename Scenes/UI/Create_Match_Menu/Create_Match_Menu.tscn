@@ -9,7 +9,7 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
 font_size = 24
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="PanelContainer" type="ScrollContainer"]
 anchors_preset = -1
 anchor_left = 0.559
 anchor_right = 0.97
@@ -22,6 +22,8 @@ script = ExtResource("1_e5xdp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -40,9 +42,9 @@ text = "ROOM NAME"
 label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
 placeholder_text = "ROOM NAME"
 
 [node name="Label6" type="Label" parent="VBoxContainer"]
@@ -52,9 +54,9 @@ text = "MAP"
 label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="MapSelectorContainer" type="HBoxContainer" parent="VBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
 
 [node name="PreviousMapButton" type="Button" parent="VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
@@ -66,7 +68,7 @@ text = "<--"
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_5cwy5")
-expand_mode = 3
+expand_mode = 4
 
 [node name="Label" type="Label" parent="VBoxContainer/MapSelectorContainer/TextureRect"]
 layout_mode = 1
@@ -97,12 +99,10 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-item_count = 2
+item_count = 1
 selected = 0
-popup/item_0/text = "TEAM DEATHMATCH"
-popup/item_0/id = 0
-popup/item_1/text = "FREE FOR ALL"
-popup/item_1/id = 1
+popup/item_0/text = "FREE FOR ALL"
+popup/item_0/id = 1
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -138,6 +138,48 @@ popup/item_1/id = 1
 popup/item_2/text = "8"
 popup/item_2/id = 2
 popup/item_3/text = "10"
+popup/item_3/id = 3
+popup/item_4/text = "12"
+popup/item_4/id = 4
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "OBJECTIVE GOAL"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "5 KILLS"
+popup/item_0/id = 0
+popup/item_1/text = "10 KILLS"
+popup/item_1/id = 1
+popup/item_2/text = "15 KILLS"
+popup/item_2/id = 2
+popup/item_3/text = "20 KILLS"
+popup/item_3/id = 3
+popup/item_4/text = "12"
+popup/item_4/id = 4
+
+[node name="Label8" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TIME"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton5" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "1 MINUTE"
+popup/item_0/id = 0
+popup/item_1/text = "2 MINUTES"
+popup/item_1/id = 1
+popup/item_2/text = "5 MINUTES"
+popup/item_2/id = 2
+popup/item_3/text = "10 MINUTES"
 popup/item_3/id = 3
 popup/item_4/text = "12"
 popup/item_4/id = 4

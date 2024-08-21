@@ -40,3 +40,14 @@ func get_lobby_data():
 		var playerData = Network.game.players[ "player" + str(Network.peer.get_peer_id_from_steam64(member_steam_id)) ]
 		playerKills.text = str(playerData["kills"])
 		playerDeaths.text = str(playerData["deaths"])
+	
+	#if gamemode is FFA
+		if Network.gameData["gameMode"] == "FREE FOR ALL":
+			#if the person is not you (the other team)
+			if multiplayer.get_unique_id() != Network.peer.get_peer_id_from_steam64(member_steam_id) and playerData["kills"] > Network.game.team2GoalProgress :
+				Network.game.team2GoalProgress = playerData["kills"]
+			if multiplayer.get_unique_id() == Network.peer.get_peer_id_from_steam64(member_steam_id):
+				Network.game.team1GoalProgress = playerData["kills"]
+		
+			if multiplayer.get_unique_id() == Network.peer.get_peer_id_from_steam64(member_steam_id) and playerData["kills"] > Network.game.team2GoalProgress :
+				Network.game.team2GoalProgress = playerData["kills"]

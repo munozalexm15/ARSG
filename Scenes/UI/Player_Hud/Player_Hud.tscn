@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=45 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
@@ -11,6 +11,21 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyhua"]
 bg_color = Color(0.995287, 0.000985044, 0.093398, 1)
+
+[sub_resource type="Animation" id="Animation_t0uba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtScreenIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ca002"]
 resource_name = "low_hp"
@@ -27,21 +42,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.117647), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_t0uba"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HurtScreenIndicator:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wxoc4"]
@@ -435,6 +435,8 @@ _data = {
 "RESET": SubResource("Animation_01alm")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otfsy"]
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -480,7 +482,7 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="PrecisionSightContainer"]
-self_modulate = Color(0, 0, 0, 0)
+self_modulate = Color(0, 0, 0, 0.305882)
 layout_mode = 2
 texture = ExtResource("6_0y6oq")
 
@@ -488,7 +490,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
+blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -804,3 +806,34 @@ autowrap_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_4hn1e")
 }
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.69
+anchor_right = 0.277
+anchor_bottom = 0.849
+offset_left = 0.135998
+offset_top = -0.120026
+offset_right = -0.104004
+offset_bottom = -0.152039
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_otfsy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3"]
+layout_mode = 2
+
+[node name="MatchTimer" type="Timer" parent="PanelContainer3/VBoxContainer"]
+one_shot = true
+
+[node name="MatchTimeIndicator" type="Label" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2
+text = "0:00"
+
+[node name="TEAM1-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2
+step = 1.0
+
+[node name="TEAM2-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c6vbtles2oskv"]
+[gd_scene load_steps=42 format=3 uid="uid://c6vbtles2oskv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_p6qro"]
 [ext_resource type="Resource" uid="uid://djpuiinpxuhnt" path="res://Scripts/Guns/Resources/remington_870_Resource.tres" id="2_u3ci8"]
@@ -6,7 +6,6 @@
 [ext_resource type="Curve" uid="uid://djm48utct3gd5" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_X.tres" id="4_lps0n"]
 [ext_resource type="Curve" uid="uid://b7bacf7vjxpa6" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_Z.tres" id="5_orud4"]
 [ext_resource type="Curve" uid="uid://de35cm0ulsia4" path="res://GameResources/Curves/Remington870/R870_RecoilPosition_Z.tres" id="6_au2cj"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="7_0i2q2"]
 [ext_resource type="Texture2D" uid="uid://b5g115swamubr" path="res://GameResources/Textures/Guns/Remington870/shotgunShellTexture.jpg" id="7_anogj"]
 [ext_resource type="Texture2D" uid="uid://bwlvmcb515vv2" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="7_dl3ei"]
 [ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="9_jiuk6"]
@@ -14,14 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://dxtksqadfgny3" path="res://GameResources/Sounds/Weapons/Remington870/r870_reload.wav" id="11_gvg4c"]
 [ext_resource type="AudioStream" uid="uid://dfr2dr06t0onh" path="res://GameResources/Sounds/Weapons/Remington870/r870_shot.mp3" id="13_fubij"]
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="14_nfkrh"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q71ol"]
-render_priority = 0
-shader = ExtResource("7_0i2q2")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65asu"]
 resource_name = "HandMaterial"
@@ -182,14 +173,6 @@ bind/42/pose = Transform3D(-0.486306, -3.3745, 0.119815, 3.20674, -0.499461, -1.
 bind/43/name = &"Thumb3.L"
 bind/43/bone = -1
 bind/43/pose = Transform3D(-0.0240365, -3.41126, -0.0289854, 2.626, 7.51079e-08, -2.17766, 2.17753, -0.0376551, 2.62584, -0.0289091, -10.4472, 11.5606)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgm6o"]
-render_priority = 0
-shader = ExtResource("7_0i2q2")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_j0hl0"]
 resource_name = "Player_Arms_Cube_001"
@@ -2428,15 +2411,6 @@ _data = {
 "Remington870_Shot": SubResource("Animation_th16e")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxeir"]
-render_priority = 0
-shader = ExtResource("7_0i2q2")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("7_dl3ei")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erm2y"]
 resource_name = "Material.121"
 transparency = 4
@@ -2477,15 +2451,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nf65q")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqj2x"]
-render_priority = 0
-shader = ExtResource("7_0i2q2")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("7_dl3ei")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4amdk"]
 resource_name = "Material.124"
 transparency = 4
@@ -2525,15 +2490,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p5snx")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjohq"]
-render_priority = 0
-shader = ExtResource("7_0i2q2")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("7_dl3ei")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ote8g"]
 resource_name = "Material.141"
@@ -2976,13 +2932,11 @@ bones/43/rotation = Quaternion(-0.241267, 0.0501629, 0.131426, 0.960209)
 bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, -2.27374e-13, 0, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_q71ol")
+transform = Transform3D(1, 0, 4.54747e-13, 0, 1, 0, -4.54747e-13, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_us444")
 skin = SubResource("Skin_mtpij")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-material_override = SubResource("ShaderMaterial_pgm6o")
 mesh = SubResource("ArrayMesh_j0hl0")
 skin = SubResource("Skin_mtpij")
 
@@ -2997,19 +2951,16 @@ transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, 5.11, 
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, -5.96047e-08, 7.45058e-08, 5.96046e-08, 1, 1.77636e-15, -7.45058e-08, 2.66454e-15, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_rxeir")
 mesh = SubResource("ArrayMesh_xroja")
 skeleton = NodePath("")
 
 [node name="Pump_001" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(0.999999, -7.45056e-09, -4.09781e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.07689, -0.000115752, -0.0724883)
-material_override = SubResource("ShaderMaterial_nqj2x")
 mesh = SubResource("ArrayMesh_7lep4")
 skeleton = NodePath("")
 
 [node name="Trigger" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32711, 2.98023e-08, 0.046785)
-material_override = SubResource("ShaderMaterial_kjohq")
 mesh = SubResource("ArrayMesh_vj7qq")
 skeleton = NodePath("")
 

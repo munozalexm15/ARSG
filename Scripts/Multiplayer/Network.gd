@@ -55,18 +55,25 @@ func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
-		player_joined.rpc_id(id, id, game.players)
+		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress)
 		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 	
 @rpc("any_peer", "call_remote")
-func player_joined(id, players_dict):
+func player_joined(id, players_dict, time_left, team1Progress, team2Progress):
 	#if its the host -> ignore
 	if id == 1:
 		return
-		
+	
+	game.matchGoal = Network.gameData["goal"]
+	game.matchTime = Network.gameData["time"]
+	game.matchTimer.wait_time = time_left
+	game.matchTimer.start()
+	game.team1GoalProgress = team1Progress
+	game.team2GoalProgress = team2Progress
+	
 	game.players = players_dict
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():

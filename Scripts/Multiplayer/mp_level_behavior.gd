@@ -20,11 +20,24 @@ var death_count = 0
 
 @onready var dashboardMatch : PanelContainer = $DashboardMatch
 
+@onready var matchTimer : Timer = $MatchTimer
+
+var matchGoal = 0
+var team1GoalProgress = 0
+var team2GoalProgress = 0
+var matchTime = 0
+var matchTimeLeft = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
 	
 	if multiplayer.get_unique_id() == 1:
+		matchGoal = Network.gameData["goal"]
+		matchTime = Network.gameData["time"]
+		print(matchTime)
+		matchTimer.wait_time = matchTime
+		matchTimer.start()
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 
@@ -43,6 +56,8 @@ func init_player(peer_id):
 	player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players["player" + str(peer_id)] = dict_data
+	
+	
 	dashboardMatch.get_lobby_data.rpc()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
