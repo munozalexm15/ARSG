@@ -39,15 +39,17 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
 		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])
+		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
-		get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+		get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
-	get_tree().change_scene_to_file("res://Scenes/Levels/initial_level.tscn")
+	var map = Steam.getLobbyData(id, "mapPath")
+	get_tree().change_scene_to_file(map)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
-	lobby_id = id
+	lobby_id = id	
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)

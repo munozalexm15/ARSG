@@ -4,7 +4,13 @@ extends PanelContainer
 
 @onready var mapName : Label = $VBoxContainer/MapSelectorContainer/TextureRect/Label
 
-var mapList = [""]
+var mapPathsList = [ "res://Scenes/Levels/initial_level.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
+var mapNamesList = ["Flatworld", "Flying Rectangles"]
+
+var mapListIndex = 0
+
+
+var selectedMap = ""
 
 @onready var playerQuantityOption : OptionButton = $VBoxContainer/OptionButton3
 @onready var gamemodeOption : OptionButton = $VBoxContainer/OptionButton
@@ -13,15 +19,11 @@ var mapList = [""]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	selectedMap = mapPathsList[mapListIndex]
+	mapName.text = mapNamesList[mapListIndex]
 
 func _on_create_room_button_pressed():
-	var roomDict = {"lobbyName" : lobbyName.text, "mapName": mapName.text, "playerQuantity" : playerQuantityOption.text.to_int(), "gameMode" : gamemodeOption.text}
+	var roomDict = {"lobbyName" : lobbyName.text, "mapName": mapName.text, "mapPath" : selectedMap, "playerQuantity" : playerQuantityOption.text.to_int(), "gameMode" : gamemodeOption.text}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC
@@ -32,4 +34,26 @@ func _on_create_room_button_pressed():
 	
 	Network.host_server(roomDict)
 	GlobalData.isOnlineMatch = true
-	LoadScreenHandler.next_scene = "res://Scenes/Levels/initial_level.tscn"
+	LoadScreenHandler.next_scene = selectedMap
+
+
+func _on_previous_map_button_pressed():
+	mapListIndex -= 1
+	print(mapListIndex)
+	
+	if mapListIndex < 0:
+		mapListIndex = mapPathsList.size() -1
+	
+	selectedMap = mapPathsList[mapListIndex]
+	mapName.text = mapNamesList[mapListIndex]
+	
+	print(mapListIndex)
+
+func _on_next_map_button_pressed():
+	mapListIndex += 1
+	
+	if mapListIndex >= mapPathsList.size():
+		mapListIndex = 0
+	
+	selectedMap = mapPathsList[mapListIndex]
+	mapName.text = mapNamesList[mapListIndex]

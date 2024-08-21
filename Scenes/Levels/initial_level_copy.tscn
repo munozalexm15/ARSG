@@ -1,19 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=21 format=3 uid="uid://onxdhry62ydx"]
 
-[ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
-[ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="2_ptill"]
-[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
-[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
-[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="7_6kr1g"]
-[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
-[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="8_7en35"]
-[ext_resource type="AudioStream" uid="uid://bbhjrostu8o1y" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-015.ogg" id="9_mw3g2"]
-[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="10_6m5hg"]
-[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="11_i4lfl"]
-[ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="12_x57sp"]
-[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="13_clg16"]
-[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="14_a7fxl"]
+[ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_scfab"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="2_0lmuq"]
+[ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="3_d1p48"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="4_dfioo"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="5_p8kwc"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="6_li1cv"]
+[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="7_pgbu8"]
+[ext_resource type="AudioStream" uid="uid://bbhjrostu8o1y" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-015.ogg" id="8_25dst"]
+[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="9_u00kw"]
+[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="10_177tk"]
+[ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="11_p1enh"]
+[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="12_ma4c0"]
+[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="13_med5f"]
+[ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="14_w5yiw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p2vb6"]
 
@@ -33,7 +33,7 @@ fog_light_color = Color(0.552941, 0.568627, 0.376471, 1)
 fog_sky_affect = 0.37
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
-shader = ExtResource("6_qbtv3")
+shader = ExtResource("2_0lmuq")
 shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
 
@@ -43,26 +43,26 @@ blend_mode = 1
 albedo_color = Color(5.77569e-07, 0.456584, 0.490484, 1)
 
 [sub_resource type="Resource" id="Resource_udwen"]
-script = ExtResource("6_kndw7")
-walk_sound = Array[AudioStreamOggVorbis]([ExtResource("7_6kr1g"), ExtResource("8_7en35"), ExtResource("9_mw3g2"), ExtResource("10_6m5hg"), ExtResource("11_i4lfl"), ExtResource("12_x57sp"), ExtResource("13_clg16"), ExtResource("14_a7fxl")])
+script = ExtResource("5_p8kwc")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("6_li1cv"), ExtResource("7_pgbu8"), ExtResource("8_25dst"), ExtResource("9_u00kw"), ExtResource("10_177tk"), ExtResource("11_p1enh"), ExtResource("12_ma4c0"), ExtResource("13_med5f")])
 
 [node name="Game" type="Node3D"]
-script = ExtResource("1_5qqm8")
+script = ExtResource("1_scfab")
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 6.28574)
 
 [node name="Node3D4" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8034, 1.25085, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8034, 0.436673, 2.92256)
 
 [node name="Node3D2" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5979, 1.31947, -18.0461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5979, 6.75899, -29.8016)
 
 [node name="Node3D" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0429, 1.5442, 4.38036)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0429, 1.5442, 4.30061)
 
 [node name="Node3D3" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7146, 0.493529, -15.9017)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3688, 5.58139, -31.7595)
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -93,7 +93,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="DitheringShader" type="SubViewportContainer" parent="FadeShader/SubViewport"]
-material = ExtResource("7_gh3na")
+material = ExtResource("3_d1p48")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,13 +107,23 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05951, -2.25446, -5.43768)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05951, -2.25446, 8.44784)
 use_collision = true
 collision_layer = 67
 collision_mask = 67
-size = Vector3(56.2083, 1, 45.1766)
+size = Vector3(56.2083, 1, 17.4056)
 material = SubResource("StandardMaterial3D_kb8cs")
-script = ExtResource("5_4lg0s")
+script = ExtResource("4_dfioo")
+groundData = SubResource("Resource_udwen")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45593, 7.36542, -36.2724)
+use_collision = true
+collision_layer = 67
+collision_mask = 67
+size = Vector3(56.2083, 1, 17.4056)
+material = SubResource("StandardMaterial3D_kb8cs")
+script = ExtResource("4_dfioo")
 groundData = SubResource("Resource_udwen")
 
 [node name="PauseMenusNode" type="Node3D" parent="."]
@@ -126,7 +136,7 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="InteractablesParent" type="Node3D" parent="."]
 
-[node name="DashboardMatch" parent="." instance=ExtResource("2_ptill")]
+[node name="DashboardMatch" parent="." instance=ExtResource("14_w5yiw")]
 visible = false
 offset_left = 181.0
 offset_top = 107.336

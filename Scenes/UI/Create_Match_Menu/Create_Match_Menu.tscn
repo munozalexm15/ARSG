@@ -56,10 +56,11 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="Button" type="Button" parent="VBoxContainer/MapSelectorContainer"]
+[node name="PreviousMapButton" type="Button" parent="VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+text = "<--"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
@@ -82,10 +83,11 @@ grow_horizontal = 2
 text = "MAP NAME"
 horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="VBoxContainer/MapSelectorContainer"]
+[node name="NextMapButton" type="Button" parent="VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
+text = "-->"
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -148,4 +150,6 @@ theme_override_constants/separation = 50
 layout_mode = 2
 text = "CREATE ROOM"
 
+[connection signal="pressed" from="VBoxContainer/MapSelectorContainer/PreviousMapButton" to="." method="_on_previous_map_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MapSelectorContainer/NextMapButton" to="." method="_on_next_map_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CreateRoomButton" to="." method="_on_create_room_button_pressed"]
