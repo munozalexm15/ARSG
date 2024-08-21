@@ -40,8 +40,8 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
 		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])
 		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
-		Steam.setLobbyData(lobby_id, "goal", gameData["goal"])
-		Steam.setLobbyData(lobby_id, "time", gameData["time"])
+		Steam.setLobbyData(lobby_id, "goal", str(gameData["goal"]) )
+		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		get_tree().change_scene_to_file(gameData["mapPath"])
@@ -70,8 +70,8 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 		return
 	
 	gameData = hostGameData
-	game.matchGoal = Steam.getLobbyData(lobby_id, "goal")
-	game.matchTime = Steam.getLobbyData(lobby_id, "time")
+	game.matchGoal = int(Steam.getLobbyData(lobby_id, "goal"))
+	game.matchTime = int(Steam.getLobbyData(lobby_id, "time"))
 	game.matchTimer.wait_time = time_left
 	game.matchTimer.start()
 	game.team1GoalProgress = team1Progress
