@@ -153,14 +153,14 @@ func show_all_players():
 
 
 func endGame():
-	if multiplayer.get_unique_id() == 1:
-		peer.close()
 	game.dashboardMatch.visible = true
 	for player : Player in game.players_node.get_children():
 		player.set_multiplayer_authority(-1, true)
 	
 	await get_tree().create_timer(3).timeout
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	if multiplayer.get_unique_id() == 1:
+		peer.close()
 	peer = SteamMultiplayerPeer.new()
 	lobby_id = -1
 	game = null

@@ -150,9 +150,9 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton4" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-item_count = 5
+item_count = 4
 selected = 0
-popup/item_0/text = "5 KILLS"
+popup/item_0/text = "1 KILLS"
 popup/item_0/id = 0
 popup/item_1/text = "10 KILLS"
 popup/item_1/id = 1
@@ -160,8 +160,6 @@ popup/item_2/text = "15 KILLS"
 popup/item_2/id = 2
 popup/item_3/text = "20 KILLS"
 popup/item_3/id = 3
-popup/item_4/text = "12"
-popup/item_4/id = 4
 
 [node name="Label8" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -171,7 +169,7 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton5" type="OptionButton" parent="VBoxContainer"]
 layout_mode = 2
-item_count = 5
+item_count = 4
 selected = 0
 popup/item_0/text = "1 MINUTE"
 popup/item_0/id = 0
@@ -181,8 +179,6 @@ popup/item_2/text = "5 MINUTES"
 popup/item_2/id = 2
 popup/item_3/text = "10 MINUTES"
 popup/item_3/id = 3
-popup/item_4/text = "12"
-popup/item_4/id = 4
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
