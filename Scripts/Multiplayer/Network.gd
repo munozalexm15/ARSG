@@ -82,6 +82,10 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
 func player_left(_id):
+	if game == null:
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		return
+		
 	for p in game.players_node.get_children():
 		if p.name == str(_id):
 			p.queue_free()
@@ -149,9 +153,13 @@ func show_all_players():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
 
-@rpc("any_peer", "reliable", "call_local")
 func endGame():
+	if multiplayer.get_unique_id() != 1:
+		peer.disconnect_peer(multiplayer.get_unique_id(), true)
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	
+	peer = SteamMultiplayerPeer.new()
+	
 	lobby_id = -1
 	game = null
 	gameData = {}

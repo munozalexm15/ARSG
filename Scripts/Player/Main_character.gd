@@ -310,8 +310,6 @@ func updateHealth():
 
 @rpc("any_peer", "call_local")
 func die_respawn(player_id, instigator_id):
-	if Network.game == null:
-		return
 	#actualizar los diccionarios de todos los jugadores con los stats
 	var dead_guy = Network.game.players["player"+ str(player_id)]
 	var killer = Network.game.players["player"+ str(instigator_id)]
@@ -324,6 +322,9 @@ func die_respawn(player_id, instigator_id):
 	visible= false
 	Network.game.death_count += 1
 	Network.game.dashboardMatch.get_lobby_data.rpc()
+	
+	if Network.game == null:
+		return
 	
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():
