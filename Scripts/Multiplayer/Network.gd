@@ -2,17 +2,9 @@ extends Node
 
 var lobby_id = 0
 var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
-var client = null
-var connect_ip = "127.0.0.1"
-var default_PORT = 55455
-var unique_id = -1
 var game : MP_Map = null
 
 var gameData = {}
-
-var gameInteractables = null
-
-var playerListNode = {}
 
 func _ready():
 	OS.set_environment("SteamAppID", str(480))

@@ -1,7 +1,7 @@
 extends PanelContainer
 
 @onready var playersList : VBoxContainer = $HBoxContainer/PLAYERS_SideBar/VBoxContainer
-
+@onready var matchStatus : Label = $Label
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -51,3 +51,14 @@ func get_lobby_data():
 		
 			if multiplayer.get_unique_id() == Network.peer.get_peer_id_from_steam64(member_steam_id) and playerData["kills"] > Network.game.team2GoalProgress :
 				Network.game.team2GoalProgress = playerData["kills"]
+	
+		if Network.game.team1GoalProgress == Network.game.matchGoal:
+			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
+			Network.game.endGame.rpc()
+			return
+		
+		if Network.game.team2GoalProgress == Network.game.matchGoal:
+			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
+			Network.game.endGame.rpc()
+			return
+		

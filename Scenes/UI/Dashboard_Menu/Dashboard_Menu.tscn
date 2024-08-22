@@ -19,6 +19,10 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5w3h6")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "NAME WINS"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
