@@ -12,9 +12,7 @@ func _ready():
 	Steam.steamInitEx()
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
-	#multiplayer.connected_to_server.connect(server)
 	multiplayer.peer_disconnected.connect(player_left)
-	multiplayer.server_disconnected.connect(endGame)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -151,15 +149,11 @@ func show_all_players():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
 
-
+@rpc("authority", "reliable", "call_local")
 func endGame():
 	game.dashboardMatch.visible = true
-	
 	for player : Player in game.players_node.get_children():
 		player.set_multiplayer_authority(-1, true)
-		
-	if multiplayer.get_unique_id() != 1:
-		return
 	
 	await get_tree().create_timer(3).timeout
 	
@@ -167,14 +161,7 @@ func endGame():
 	for member in range(0, num_of_members):
 		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, member)
 		var peer_id = Network.peer.get_peer_id_from_steam64(member_steam_id)
-		
-		if peer_id != 1:
-			peer.disconnect_peer(peer_id, true)
-			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	
-
-	get_tree().set_network_peer(null)
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		peer.disconnect_peer(peer_id, true)
 	
 	peer = SteamMultiplayerPeer.new()
 	lobby_id = -1

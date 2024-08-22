@@ -111,11 +111,6 @@ func request_game_info(player_dict : Dictionary):
 				weapon.handsNode = player.arms.get_path()
 				player.arms.weaponHolder.add_child(weapon)
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
-				
-
 
 func _on_match_timer_timeout():
-	if multiplayer.get_unique_id() == 1:
-		Network.endGame()
-
-
+	pass
