@@ -14,6 +14,7 @@ func _ready():
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	#multiplayer.connected_to_server.connect(server)
 	multiplayer.peer_disconnected.connect(player_left)
+	multiplayer.server_disconnected.connect(endGame)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -150,3 +151,16 @@ func show_all_players():
 	for player : Player in game.players_node.get_children():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
+
+
+func endGame():
+	game.dashboardMatch.visible = true
+	for player : Player in game.players_node.get_children():
+		player.set_multiplayer_authority(-1, true)
+	
+	await get_tree().create_timer(3).timeout
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	peer = SteamMultiplayerPeer.new()
+	lobby_id = -1
+	game = null
+	gameData = {}

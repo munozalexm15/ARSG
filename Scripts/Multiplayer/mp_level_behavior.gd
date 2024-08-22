@@ -116,19 +116,6 @@ func request_game_info(player_dict : Dictionary):
 
 func _on_match_timer_timeout():
 	if multiplayer.get_unique_id() == 1:
-		endGame.rpc()
+		Network.endGame()
 
-@rpc("any_peer", "call_local", "reliable")
-func endGame():
-	Network.peer.disconnect_peer(multiplayer.get_unique_id())
-	dashboardMatch.visible = true
-	for player : Player in players_node.get_children():
-		player.set_multiplayer_authority(-1, true)
-	
-	await get_tree().create_timer(3).timeout
-	Network.peer.close()
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	Network.peer = SteamMultiplayerPeer.new()
-	Network.lobby_id = -1
-	Network.game = null
-	Network.gameData = {}
+
