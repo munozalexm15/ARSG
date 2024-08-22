@@ -322,6 +322,9 @@ func die_respawn(player_id, instigator_id):
 	visible= false
 	Network.game.death_count += 1
 	Network.game.dashboardMatch.get_lobby_data.rpc()
+
+	if Network.game.matchGoal == Network.game.team1GoalProgress or Network.game.matchGoal == Network.game.team2GoalProgress:
+		return
 	
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():

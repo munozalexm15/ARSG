@@ -152,13 +152,6 @@ func show_all_players():
 @rpc("any_peer", "reliable", "call_local")
 func endGame():
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	if multiplayer.get_unique_id() == 1:
-		var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
-		for member in range(0, num_of_members):
-			var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, member)
-			var peer_id = Network.peer.get_peer_id_from_steam64(member_steam_id)
-			peer.disconnect_peer(peer_id, true)
-	
-		lobby_id = -1
-		game = null
-		gameData = {}
+	lobby_id = -1
+	game = null
+	gameData = {}
