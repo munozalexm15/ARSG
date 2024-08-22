@@ -90,7 +90,6 @@ func player_left(_id):
 	
 	game.players.erase("player" + str(_id))
 
-
 @rpc("call_remote", "any_peer")
 func update_client_Data():
 	var PauseScene = load("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
@@ -154,6 +153,8 @@ func show_all_players():
 
 
 func endGame():
+	if multiplayer.get_unique_id() == 1:
+		peer.close()
 	game.dashboardMatch.visible = true
 	for player : Player in game.players_node.get_children():
 		player.set_multiplayer_authority(-1, true)
