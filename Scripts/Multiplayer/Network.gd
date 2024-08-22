@@ -158,9 +158,19 @@ func endGame():
 		player.set_multiplayer_authority(-1, true)
 	
 	await get_tree().create_timer(3).timeout
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	
+	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
+	for member in range(0, num_of_members):
+		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, member)
+		var peer_id = Network.peer.get_peer_id_from_steam64(member_steam_id)
+		
+		if peer_id != 1:
+			peer.disconnect_peer(peer_id)
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	
 	if multiplayer.get_unique_id() == 1:
 		peer.close()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	peer = SteamMultiplayerPeer.new()
 	lobby_id = -1
 	game = null
