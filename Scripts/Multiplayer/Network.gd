@@ -165,11 +165,10 @@ func endGame():
 		var peer_id = Network.peer.get_peer_id_from_steam64(member_steam_id)
 		
 		if peer_id != 1:
-			peer.disconnect_peer(peer_id)
+			peer.disconnect_peer(peer_id, true)
 			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	
 	if multiplayer.get_unique_id() == 1:
-		peer.close()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	peer = SteamMultiplayerPeer.new()
 	lobby_id = -1
