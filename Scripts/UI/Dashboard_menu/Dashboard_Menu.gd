@@ -54,11 +54,19 @@ func get_lobby_data():
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
 			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
+			
+			await get_tree().create_timer(2).timeout
+			Network.game.players_node.queue_free()
+			Network.game.interactables_node.queue_free()
+			Network.game.bullets_node.queue_free()
 			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 			return
 		
 		if Network.game.team2GoalProgress == Network.game.matchGoal:
 			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
+			Network.game.players_node.queue_free()
+			Network.game.interactables_node.queue_free()
+			Network.game.bullets_node.queue_free()
 			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 			return
 		
