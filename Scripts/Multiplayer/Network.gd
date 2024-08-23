@@ -1,18 +1,23 @@
 extends Node
 
 var lobby_id = 0
-var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
+var peer : SteamMultiplayerPeer = null
 var game : MP_Map = null
 
 var gameData = {}
 
 func _ready():
+	peer = SteamMultiplayerPeer.new()
 	OS.set_environment("SteamAppID", str(480))
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
+	
 	peer.lobby_created.connect(on_lobby_created)
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	multiplayer.peer_disconnected.connect(player_left)
+	multiplayer.server_disconnected.connect(
+		func():
+		get_tree().change_scene_to_file("res://main.tscn"))
 
 func _process(_delta):
 	Steam.run_callbacks()
