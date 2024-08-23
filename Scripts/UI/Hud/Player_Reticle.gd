@@ -82,7 +82,7 @@ func _process(_delta):
 		for x in reticle_lines.size():
 			reticle_lines[x].visible = true
 		adjust_reticle_size()
-		
+	
 	var seconds =  int(Network.game.matchTimer.time_left) % 60
 	var minutes = (int(Network.game.matchTimer.time_left) / 60) % 60
 	TimerIndicator.text = "%02d:%02d" % [minutes, seconds]

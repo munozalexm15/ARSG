@@ -6,7 +6,7 @@ extends PanelContainer
 func _ready():
 	pass
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
 	for node in playersList.get_children():
 		node.queue_free()
@@ -54,11 +54,11 @@ func get_lobby_data():
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
 			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
-			Network.call_deferred("endGame")
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 			return
 		
 		if Network.game.team2GoalProgress == Network.game.matchGoal:
 			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
-			Network.call_deferred("endGame")
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 			return
 		
