@@ -156,7 +156,6 @@ func show_all_players():
 func endGame():
 	if multiplayer.get_unique_id() != 1:
 		peer.disconnect_peer(multiplayer.get_unique_id(), true)
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	
 	peer = SteamMultiplayerPeer.new()
 	
