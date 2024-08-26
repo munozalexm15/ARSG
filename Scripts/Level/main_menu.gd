@@ -31,6 +31,7 @@ func _ready():
 				spotLightArray.append(child)
 	
 	lightError()
+	print(multiplayer.is_server())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
