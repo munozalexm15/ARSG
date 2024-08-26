@@ -167,11 +167,14 @@ func endGame():
 			peer.disconnect_peer(member_peer_id, true)
 		
 	gameData.clear()
-	peer.close()
+	for player in game.players_node.get_children():
+		call_deferred("queue_free")
+	
 	call_deferred("load_main_menu")
 
 func load_main_menu():
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	peer.close()
 
 @rpc("call_remote", "reliable", "any_peer")
 func kicked():

@@ -83,6 +83,7 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	
 	if not is_multiplayer_authority():
 		return
 	if not being_used:
