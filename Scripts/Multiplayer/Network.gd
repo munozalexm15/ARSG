@@ -159,4 +159,5 @@ func show_all_players():
 			player.visible = true
 
 func endGame():
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	await get_tree().create_timer(2).timeout
+	
