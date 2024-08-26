@@ -179,4 +179,3 @@ func load_main_menu():
 @rpc("reliable", "any_peer", "call_local")
 func kicked():
 	peer.disconnect_peer(multiplayer.get_unique_id())
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
