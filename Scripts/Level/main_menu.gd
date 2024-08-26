@@ -29,9 +29,7 @@ func _ready():
 				meshesArray.append(child)
 			if child is SpotLight3D:
 				spotLightArray.append(child)
-	
 	lightError()
-	print(multiplayer.is_server())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
