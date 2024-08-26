@@ -51,15 +51,12 @@ func _on_create_room_button_pressed():
 
 func _on_previous_map_button_pressed():
 	mapListIndex -= 1
-	print(mapListIndex)
 	
 	if mapListIndex < 0:
 		mapListIndex = mapPathsList.size() -1
 	
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
-	
-	print(mapListIndex)
 
 func _on_next_map_button_pressed():
 	mapListIndex += 1

@@ -35,7 +35,6 @@ func _ready():
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
-		print(matchTime)
 		matchTimer.wait_time = matchTime
 		matchTimer.start()
 		init_player.rpc(multiplayer.get_unique_id())
