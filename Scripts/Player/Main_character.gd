@@ -356,9 +356,6 @@ func die_respawn(player_id, instigator_id):
 	set_collision_mask_value(3, true)
 	visible = true
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
-	
-	if Network.game.team1GoalProgress == Network.game.matchGoal or  Network.game.team2GoalProgress == Network.game.matchGoal:
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 
 func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true
