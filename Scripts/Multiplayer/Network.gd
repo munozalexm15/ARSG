@@ -164,7 +164,7 @@ func endGame():
 		var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
 		if member_peer_id != 1:
 			rpc_id(member_peer_id, "kicked")
-			peer.disconnect_peer(member_peer_id, true)
+			#peer.disconnect_peer(member_peer_id, true)
 		
 	gameData.clear()
 	for player in game.players_node.get_children():
@@ -178,5 +178,5 @@ func load_main_menu():
 
 @rpc("call_remote", "reliable", "any_peer")
 func kicked():
-	#peer.disconnect_peer(multiplayer.get_unique_id())
+	peer.disconnect_peer(multiplayer.get_unique_id())
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
