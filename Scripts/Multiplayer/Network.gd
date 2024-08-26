@@ -159,18 +159,15 @@ func show_all_players():
 			player.visible = true
 
 func endGame():
+	if multiplayer.get_unique_id() != 1:
+		return
+	
 	for x in Steam.getNumLobbyMembers(lobby_id):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
 		var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
 		if member_peer_id != 1:
-			rpc_id(member_peer_id, "kicked")
 			peer.disconnect_peer(member_peer_id, true)
 		
 	gameData.clear()
 	peer = null
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-
-@rpc("call_remote", "reliable", "any_peer")
-func kicked():
-	peer.disconnect_peer(multiplayer.get_unique_id(), true)
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
