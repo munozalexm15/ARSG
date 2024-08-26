@@ -158,12 +158,6 @@ func show_all_players():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
 
+@rpc("reliable", "any_peer", "call_local")
 func endGame():
-	if multiplayer.get_unique_id() != 1:
-		peer.disconnect_peer(multiplayer.get_unique_id(), true)
-	
-	peer = SteamMultiplayerPeer.new()
-	
-	lobby_id = -1
-	game = null
-	gameData = {}
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
