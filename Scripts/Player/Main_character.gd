@@ -321,7 +321,6 @@ func die_respawn(player_id, instigator_id):
 	set_collision_mask_value(3, false)
 	visible= false
 	Network.game.death_count += 1
-	Network.game.dashboardMatch.get_lobby_data.rpc()
 	
 	if Network.game == null:
 		return
@@ -351,11 +350,11 @@ func die_respawn(player_id, instigator_id):
 	Network.game.interactables_node.add_child(weaponPickupNode)
 	
 	global_position = Network.game.random_spawn()
-	await get_tree().create_timer(2).timeout
 	
 	set_collision_mask_value(3, true)
 	visible = true
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
+	Network.game.dashboardMatch.get_lobby_data.rpc()
 
 func _on_interact_ray_button_pressed():
 	hud.pointsContainer.visible = true
