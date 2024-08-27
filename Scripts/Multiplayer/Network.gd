@@ -174,8 +174,7 @@ func endGame():
 
 func load_main_menu():
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	if multiplayer.get_unique_id() == 1:
-		peer.close()
+	peer.close()
 
 @rpc("reliable", "any_peer", "call_local")
 func kicked():
