@@ -162,9 +162,6 @@ func endGame():
 	for x in Steam.getNumLobbyMembers(lobby_id):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
 		var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
-		if member_peer_id != 1:
-			rpc_id(member_peer_id, "kicked")
-			#peer.disconnect_peer(member_peer_id, true)
 		
 	gameData.clear()
 	for player in game.players_node.get_children():
@@ -173,8 +170,11 @@ func endGame():
 	call_deferred("load_main_menu")
 
 func load_main_menu():
+	if multiplayer.get_unique_id() == 1:
+		peer.close()
+		
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	peer.close()
+	
 
 @rpc("reliable", "any_peer", "call_local")
 func kicked():

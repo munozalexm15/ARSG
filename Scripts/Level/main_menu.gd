@@ -18,7 +18,6 @@ var spotLightArray : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	animationPlayer.play("Fade_in")
 	for mesh in lightArray:
 		var node = get_node(mesh)
