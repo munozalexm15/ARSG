@@ -59,5 +59,6 @@ func get_lobby_data():
 		
 		elif Network.game.team2GoalProgress == Network.game.matchGoal:
 			matchStatus.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
+			Network.endGame()
 			return
 		
