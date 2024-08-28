@@ -17,11 +17,6 @@ func _ready():
 	
 	#si se mete un cliente
 	multiplayer.peer_connected.connect(client_connected_to_server)
-	
-	#si el server cierra
-	multiplayer.server_disconnected.connect(
-		func():
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -92,10 +87,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 
 @rpc("any_peer", "call_local", "reliable")
 func player_left(_id):
-	if game == null:
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-		return
-		
 	for p in game.players_node.get_children():
 		if p.name == str(_id):
 			p.queue_free()
