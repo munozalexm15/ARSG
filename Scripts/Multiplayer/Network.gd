@@ -4,7 +4,7 @@ var lobby_id = 0
 var peer : SteamMultiplayerPeer = null
 var game : MP_Map = null
 
-var gameData = {}
+var gameData : Dictionary = {}
 
 func _ready():
 	peer = SteamMultiplayerPeer.new()
@@ -12,9 +12,13 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	
+	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
+	
+	#si se mete un cliente
 	multiplayer.peer_connected.connect(client_connected_to_server)
-	multiplayer.peer_disconnected.connect(player_left)
+	
+	#si el server cierra
 	multiplayer.server_disconnected.connect(
 		func():
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
@@ -85,7 +89,8 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	await game.player_spawner.spawned
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
-	
+
+@rpc("any_peer", "call_local", "reliable")
 func player_left(_id):
 	if game == null:
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
@@ -96,6 +101,7 @@ func player_left(_id):
 			p.queue_free()
 	
 	game.players.erase("player" + str(_id))
+	gameData.erase("player" + str(_id))
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():

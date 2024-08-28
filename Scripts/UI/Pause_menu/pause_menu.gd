@@ -76,3 +76,17 @@ func _on_exit_button_pressed():
 
 func _on_exit_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+
+
+func _on_exit_match_button_pressed():
+	Network.lobby_id = 0
+	Network.gameData.clear()
+	
+	if multiplayer.get_unique_id() == 1:
+		Network.peer.close()
+		
+	else:
+		Network.player_left.rpc(multiplayer.get_unique_id())
+		Steam.leaveLobby(Network.lobby_id)
+	
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

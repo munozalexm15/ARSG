@@ -659,8 +659,10 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 1150.85
+offset_top = -649.296
+offset_right = 1153.15
+offset_bottom = -997.92
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -672,10 +674,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = 570.0
-offset_top = -338.0
-offset_right = 1722.0
-offset_bottom = 310.0
+offset_left = -600.432
+offset_top = 1039.0
+offset_right = -9.45605
+offset_bottom = 324.256
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -688,10 +690,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 168.0
-offset_top = 1654.0
-offset_right = 1320.0
-offset_bottom = 2302.0
+offset_left = 5.56799
+offset_top = 673.576
+offset_right = 14.7839
+offset_bottom = 324.304
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -704,10 +706,10 @@ anchor_left = 0.0555556
 anchor_top = 0.140432
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = 52.0
-offset_right = 93617.0
-offset_bottom = 47954.0
+offset_left = -15.0001
+offset_top = -38.9999
+offset_right = 96817.0
+offset_bottom = 49534.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -762,6 +764,24 @@ text = "SETTINGS"
 flat = true
 alignment = 0
 
+[node name="ExitMatchBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
+theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_thhm6")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
+text = "EXIT MATCH"
+flat = true
+alignment = 0
+
 [node name="ExitBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -776,7 +796,7 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
-text = "EXIT"
+text = "CLOSE GAME"
 flat = true
 alignment = 0
 
@@ -796,5 +816,7 @@ libraries = {
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_continue_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON" to="." method="_on_exit_match_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_pressed"]
