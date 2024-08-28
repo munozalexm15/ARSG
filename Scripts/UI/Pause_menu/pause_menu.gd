@@ -75,12 +75,11 @@ func _on_exit_button_mouse_entered():
 
 
 func _on_exit_match_button_pressed():
-	Network.lobby_id = 0
 	Network.gameData.clear()
 
 	#Network.player_left.rpc(multiplayer.get_unique_id())
 	Steam.leaveLobby(Network.lobby_id)
-	
+	Network.lobby_id = 0
 	for x in Steam.getNumLobbyMembers(Network.lobby_id):
 		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, x)
 		var member_peer_id = Network.peer.get_peer_id_from_steam64(member_steam_id)
