@@ -75,6 +75,8 @@ func _on_exit_button_mouse_entered():
 
 
 func _on_exit_match_button_pressed():
+	if get_tree().paused:
+		get_tree().paused = false
 	var lobbyId = Network.lobby_id 
 	for x in Steam.getNumLobbyMembers(lobbyId):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
@@ -83,4 +85,3 @@ func _on_exit_match_button_pressed():
 	
 	if multiplayer.get_unique_id() == 1:
 		Network.peer.close()
-	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

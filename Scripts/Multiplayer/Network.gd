@@ -17,6 +17,9 @@ func _ready():
 	
 	#si se mete un cliente
 	multiplayer.peer_connected.connect(client_connected_to_server)
+	
+	multiplayer.server_disconnected.connect(
+		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 
 func _process(_delta):
 	Steam.run_callbacks()
