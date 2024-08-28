@@ -26,6 +26,10 @@ func host_server(roomData : Dictionary):
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
 	
+	#si el server cierra
+	multiplayer.server_disconnected.connect(
+		func():
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 	#unique_id = server.get_unique_id()
 
 func on_lobby_created(connection, id):
