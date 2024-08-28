@@ -20,6 +20,7 @@ func _ready():
 
 func _process(_delta):
 	Steam.run_callbacks()
+	print(Steam.getNumLobbyMembers(lobby_id))
 	
 func host_server(roomData : Dictionary):
 	gameData = roomData
@@ -97,6 +98,12 @@ func player_left(_id):
 	
 	game.players.erase("player" + str(_id))
 	gameData.erase("player" + str(_id))
+	
+	Steam.leaveLobby(lobby_id)
+	for x in Steam.getNumLobbyMembers(lobby_id):
+		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
+		Steam.closeP2PSessionWithUser(member_steam_id)
+	
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():

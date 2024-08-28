@@ -75,13 +75,12 @@ func _on_exit_button_mouse_entered():
 
 
 func _on_exit_match_button_pressed():
-	Network.gameData.clear()
-
-	#Network.player_left.rpc(multiplayer.get_unique_id())
-	Steam.leaveLobby(Network.lobby_id)
 	var lobbyId = Network.lobby_id 
-	Network.lobby_id = 0
 	for x in Steam.getNumLobbyMembers(lobbyId):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
-		if Steam.getSteamID() != member_steam_id:
-			Steam.closeP2PSessionWithUser(member_steam_id)
+		var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
+		Network.player_left.rpc(peer_id)
+	
+	if multiplayer.get_unique_id() == 1:
+		Network.peer.close()
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
