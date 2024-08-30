@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://c55fkgbvbibt1" path="res://Scenes/Ammo/ammo_pistol_global_pickup.tscn" id="12_6ivfo"]
 [ext_resource type="PackedScene" uid="uid://b8sgf4prmtev2" path="res://Scenes/Ammo/sniper_ammo_pickup.tscn" id="12_y5r7t"]
 [ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="13_5ftpj"]
-[ext_resource type="Texture2D" uid="uid://bg3t6evx5pkn5" path="res://GameResources/Textures/ShootingRange/Posters.png" id="13_rplw8"]
 [ext_resource type="PackedScene" uid="uid://bitwj6kklxfmh" path="res://Scenes/Ammo/shotgun_ammo_pickup.tscn" id="14_0da68"]
 [ext_resource type="Texture2D" uid="uid://xtwpxvwln5j5" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/ceiling_lamp_1.png" id="14_5g1vd"]
 [ext_resource type="PackedScene" uid="uid://17iqvw1y3t11" path="res://Scenes/Meshes/ShootingRange/shooting_range_wall_doorway.tscn" id="14_c34fx"]
@@ -49,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://dj7fb8flmpy7h" path="res://Scenes/Interactables/Button.tscn" id="32_odvjk"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
+[ext_resource type="Texture2D" uid="uid://b6d1tm4xkuljw" path="res://GameResources/Textures/ShootingRange/Posters_eng_quitgame.png" id="36_pceob"]
 [ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="38_gl6ba"]
 [ext_resource type="PackedScene" uid="uid://cpexpuinj1378" path="res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn" id="40_g4ke6"]
 [ext_resource type="PackedScene" uid="uid://bcepmrcqbhkaf" path="res://Scenes/Ammo/assault_rifle_ammo_pickup.tscn" id="41_nllwm"]
@@ -1434,11 +1434,11 @@ data = PackedVector3Array(-0.0005, -37, -0.0015, 26.1623, -26.1634, -100, -0.000
 resource_name = "Posters"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("13_rplw8")
+albedo_texture = ExtResource("36_pceob")
 roughness = 0.0
 texture_filter = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_seqci"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_1s1m0"]
 _surfaces = [{
 "aabb": AABB(-39.6718, -4.37114e-06, -60.9302, 79.3436, 1e-05, 121.86),
 "format": 34896613377,
@@ -1468,7 +1468,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 0, 0, 254, 255, 255, 191, 255, 255, 0, 0, 254, 255, 255, 191, 0, 0, 204, 223, 0, 0, 255, 191, 255, 255, 204, 223, 0, 0, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_seqci")
+shadow_mesh = SubResource("ArrayMesh_1s1m0")
 
 [sub_resource type="Resource" id="Resource_s84wl"]
 script = ExtResource("15_th7gw")

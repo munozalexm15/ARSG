@@ -23,7 +23,6 @@ func _ready():
 
 func _process(_delta):
 	Steam.run_callbacks()
-	print(Steam.getNumLobbyMembers(lobby_id))
 	
 func host_server(roomData : Dictionary):
 	gameData = roomData
@@ -54,7 +53,7 @@ func join_server(id):
 	get_tree().change_scene_to_file(map)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
-	lobby_id = id	
+	lobby_id = id
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
