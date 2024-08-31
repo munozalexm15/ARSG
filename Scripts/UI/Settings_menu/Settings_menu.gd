@@ -42,7 +42,6 @@ var configData : ConfigFile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	optionsMainContainer.visible = false
 	configData = ConfigFile.new()
 	var _loadedData = configData.load("res://GameSettings.cfg")
 	

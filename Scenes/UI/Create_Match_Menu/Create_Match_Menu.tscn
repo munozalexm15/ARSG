@@ -9,68 +9,80 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
 font_size = 24
 
-[node name="PanelContainer" type="ScrollContainer"]
-anchors_preset = -1
-anchor_left = 0.559
-anchor_right = 0.97
+[node name="HostingMatchControl" type="Control"]
+layout_mode = 3
+anchor_left = 0.296
+anchor_top = 0.14
+anchor_right = 0.709
+anchor_bottom = 0.938
+offset_left = 0.00799561
+offset_top = 0.279999
+offset_right = 0.231934
+offset_bottom = 0.175964
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PanelContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 0.0319824
-offset_right = -0.440063
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e5xdp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "HOST A MATCH"
 label_settings = SubResource("LabelSettings_w52wu")
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "ROOM NAME"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "ROOM NAME"
 
-[node name="Label6" type="Label" parent="VBoxContainer"]
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "MAP"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="MapSelectorContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MapSelectorContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PreviousMapButton" type="Button" parent="VBoxContainer/MapSelectorContainer"]
+[node name="PreviousMapButton" type="Button" parent="PanelContainer/VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "<--"
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MapSelectorContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("1_5cwy5")
 expand_mode = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/MapSelectorContainer/TextureRect"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MapSelectorContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.502
@@ -85,32 +97,32 @@ grow_horizontal = 2
 text = "MAP NAME"
 horizontal_alignment = 1
 
-[node name="NextMapButton" type="Button" parent="VBoxContainer/MapSelectorContainer"]
+[node name="NextMapButton" type="Button" parent="PanelContainer/VBoxContainer/MapSelectorContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "-->"
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "GAMEMODE"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 1
 selected = 0
 popup/item_0/text = "FREE FOR ALL"
 popup/item_0/id = 1
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "PRIVACITY"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="OptionButton2" type="OptionButton" parent="VBoxContainer"]
+[node name="OptionButton2" type="OptionButton" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 3
 selected = 0
@@ -121,13 +133,13 @@ popup/item_1/id = 1
 popup/item_2/text = "PRIVATE"
 popup/item_2/id = 2
 
-[node name="Label5" type="Label" parent="VBoxContainer"]
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "PLAYER CAPACITY"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="OptionButton3" type="OptionButton" parent="VBoxContainer"]
+[node name="OptionButton3" type="OptionButton" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 5
 selected = 0
@@ -142,13 +154,13 @@ popup/item_3/id = 3
 popup/item_4/text = "12"
 popup/item_4/id = 4
 
-[node name="Label7" type="Label" parent="VBoxContainer"]
+[node name="Label7" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "OBJECTIVE GOAL"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="OptionButton4" type="OptionButton" parent="VBoxContainer"]
+[node name="OptionButton4" type="OptionButton" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 4
 selected = 0
@@ -161,13 +173,13 @@ popup/item_2/id = 2
 popup/item_3/text = "20 KILLS"
 popup/item_3/id = 3
 
-[node name="Label8" type="Label" parent="VBoxContainer"]
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "TIME"
 label_settings = SubResource("LabelSettings_rw6vp")
 
-[node name="OptionButton5" type="OptionButton" parent="VBoxContainer"]
+[node name="OptionButton5" type="OptionButton" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 item_count = 4
 selected = 0
@@ -180,14 +192,14 @@ popup/item_2/id = 2
 popup/item_3/text = "10 MINUTES"
 popup/item_3/id = 3
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="CreateRoomButton" type="Button" parent="VBoxContainer"]
+[node name="CreateRoomButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "CREATE ROOM"
 
-[connection signal="pressed" from="VBoxContainer/MapSelectorContainer/PreviousMapButton" to="." method="_on_previous_map_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MapSelectorContainer/NextMapButton" to="." method="_on_next_map_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/CreateRoomButton" to="." method="_on_create_room_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MapSelectorContainer/PreviousMapButton" to="PanelContainer" method="_on_previous_map_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MapSelectorContainer/NextMapButton" to="PanelContainer" method="_on_next_map_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/CreateRoomButton" to="PanelContainer" method="_on_create_room_button_pressed"]

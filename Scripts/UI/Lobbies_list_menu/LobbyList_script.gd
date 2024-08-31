@@ -1,14 +1,14 @@
-extends ScrollContainer
+extends Control
 
-@onready var lobbiesList : VBoxContainer = $LobbiesList
+@onready var lobbiesList : VBoxContainer = $PanelContainer/LobbiesList
 
 @export var lobbyJoinMenuNode := NodePath()
-@onready var joinLobbyMenu : PanelContainer = get_node(lobbyJoinMenuNode)
+@onready var joinLobbyMenu = get_node(lobbyJoinMenuNode)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Steam.lobby_match_list.connect(on_lobby_mach_list)
-	joinLobbyMenu.connect("showLobbies", open_lobby_list)
+	#joinLobbyMenu.connect("showLobbies", open_lobby_list)
 
 
 func open_lobby_list():
@@ -40,3 +40,8 @@ func show_lobby_data(lobby):
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")
 	joinLobbyMenu.playerCount.text = str(Steam.getNumLobbyMembers(lobby)) + " / " + str(Steam.getLobbyMemberLimit(lobby))
 	joinLobbyMenu.visible = true
+
+
+func _on_visibility_changed():
+	if visible:
+		open_lobby_list()

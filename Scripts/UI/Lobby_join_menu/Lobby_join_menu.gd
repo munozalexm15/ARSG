@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 @onready var mapName : Label = $VBoxContainer/MapSelectorContainer/TextureRect/Label
 @onready var gamemodeName : Label = $VBoxContainer/Label8

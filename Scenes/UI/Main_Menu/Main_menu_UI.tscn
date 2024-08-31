@@ -211,6 +211,7 @@ size_flags_stretch_ratio = 2.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_xrmfw")]
 layout_mode = 2
+anchors_preset = 0
 offset_bottom = 834.0
 
 [node name="MatchCreator" parent="." instance=ExtResource("4_j1mlc")]

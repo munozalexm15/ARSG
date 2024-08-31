@@ -14,7 +14,13 @@ extends Node3D
 var meshesArray : Array
 var spotLightArray : Array
 
+@onready var optionsUI : Control = $OptionsUI
+@onready var hostUI : Control = $HostingMatchControl
+@onready var lobbiesListUI : Control = $LobbiesControl
+@onready var joinLobbyUI : Control = $JoinLobbyControl
+
 @onready var playLabel : Label3D = $PlayLable
+@onready var laptopScreenMesh : MeshInstance3D = $Laptop01/Laptop01_Lid/Screen
 @onready var animPlayerPlayLabel : AnimationPlayer = $PlayLable/AnimationPlayer
 
 @onready var quitLabel : Label3D = $QuitLabel
@@ -24,7 +30,7 @@ var spotLightArray : Array
 
 @onready var optionsLabel : Label3D = $OptionsLabel
 @onready var animPlayerOptionsLabel : AnimationPlayer = $OptionsLabel/AnimationPlayer
-@onready var optionsControl : Control = $FadeShader/SubViewport/DitheringShader/SubViewport/OptionsControl
+@onready var optionsControl : Control = $OptionsUI
 
 @onready var customizationLabel : Label3D = $ClassesLabel
 @onready var animPlayerCustomizationLabel : AnimationPlayer = $ClassesLabel/AnimationPlayer
@@ -32,12 +38,21 @@ var spotLightArray : Array
 var sections : Dictionary = {"play": "menu_to_play", "options": "menu_to_options", "exit": "menu_to_exit"}
 var selectedSection = ""
 
+var screenMaterial : Material
+@export var lobbyFindTexture : Texture2D 
+@export var hostMatchTexture : Texture2D 
+
+var listingLobbies = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05
+	screenMaterial = laptopScreenMesh.get_active_material(0)
+	hostUI.visible = false
+	optionsUI.visible = false
 	
 	if get_tree().paused:
 		get_tree().paused = false
@@ -55,6 +70,13 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_pressed("Pause") and selectedSection != "":
+		
+		hostUI.visible = false
+		lobbiesListUI.visible = false
+		joinLobbyUI.visible = false
+		
+		if selectedSection == "options":
+			optionsUI.visible = false
 		cameraAnimPlayer.play(sections.get(selectedSection), -1, -1, true)
 		await cameraAnimPlayer.animation_finished
 		selectedSection = ""
@@ -69,9 +91,9 @@ func _process(delta):
 		camera.v_offset = shakeOffset.y
 
 func lightError():
-	var randomTime = randi_range(5, 10)
+	var randomTime = randi_range(15, 30)
 	await get_tree().create_timer(randomTime).timeout
-	camera.randomStrength = randf_range(0.05, 0.2)
+	camera.randomStrength = randf_range(0.01, 0.02)
 	camera.apply_camera_shake()
 	mortarSound.play()
 	
@@ -108,6 +130,8 @@ func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
 		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_options")
 			selectedSection = "options"
+			await cameraAnimPlayer.animation_finished
+			optionsUI.visible = true
 
 #---------------Exit part---------------------------
 func _on_quit_cartel_mouse_exited():
@@ -186,6 +210,24 @@ func _on_keyboard_laptop_mouse_exited():
 		return
 	animPlayerPlayLabel.play("play_hover", -1, -1, true)
 
+func _on_lobby_list_finder_r_body_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+			screenMaterial.albedo_texture = lobbyFindTexture
+			listingLobbies = true
+			hostUI.visible = false
+			lobbiesListUI.visible = true
+
+
+func _on_host_match_r_body_input_event(camera, event, position, normal, shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+			screenMaterial.albedo_texture = hostMatchTexture
+			listingLobbies = false
+			hostUI.visible = true
+			lobbiesListUI.visible = false
+			
+
 #---------------Customize weapons part (WIP)---------------------------
 func _on_mp_5_input_event(camera, event, position, normal, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
@@ -200,3 +242,4 @@ func _on_mp_5_mouse_entered():
 func _on_mp_5_mouse_exited():
 	#animPlayerCustomizationLabel.play("classes_hover", -1, -1, true)
 	pass
+
