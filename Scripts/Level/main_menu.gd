@@ -17,7 +17,6 @@ var spotLightArray : Array
 @onready var optionsUI : Control = $OptionsUI
 @onready var hostUI : Control = $HostingMatchControl
 @onready var lobbiesListUI : Control = $LobbiesControl
-@onready var joinLobbyUI : Control = $JoinLobbyControl
 
 @onready var playLabel : Label3D = $PlayLable
 @onready var laptopScreenMesh : MeshInstance3D = $Laptop01/Laptop01_Lid/Screen
@@ -70,10 +69,8 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_pressed("Pause") and selectedSection != "":
-		
 		hostUI.visible = false
 		lobbiesListUI.visible = false
-		joinLobbyUI.visible = false
 		
 		if selectedSection == "options":
 			optionsUI.visible = false
@@ -226,6 +223,8 @@ func _on_host_match_r_body_input_event(camera, event, position, normal, shape_id
 			listingLobbies = false
 			hostUI.visible = true
 			lobbiesListUI.visible = false
+			for x in lobbiesListUI.lobbiesList.get_children():
+				lobbiesListUI.lobbiesList.remove_child(x)
 			
 
 #---------------Customize weapons part (WIP)---------------------------

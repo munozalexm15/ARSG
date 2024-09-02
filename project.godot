@@ -24,9 +24,7 @@ Network="*res://Scripts/Multiplayer/Network.gd"
 
 [display]
 
-window/size/mode=4
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
 
 [filesystem]
 
