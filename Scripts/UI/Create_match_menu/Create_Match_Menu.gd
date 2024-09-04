@@ -1,8 +1,7 @@
-extends ScrollContainer
+extends Control
 
-@onready var lobbyName : TextEdit = $VBoxContainer/TextEdit
-
-@onready var mapName : Label = $VBoxContainer/MapSelectorContainer/TextureRect/Label
+@onready var lobbyName : TextEdit = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer/TextEdit
+@onready var mapName : Label = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect/Label
 
 var mapPathsList = [ "res://Scenes/Levels/initial_level.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
 var mapNamesList = ["Flatworld", "Flying Rectangles"]
@@ -12,12 +11,12 @@ var mapListIndex = 0
 
 var selectedMap = ""
 
-@onready var playerQuantityOption : OptionButton = $VBoxContainer/OptionButton3
-@onready var gamemodeOption : OptionButton = $VBoxContainer/OptionButton
-@onready var privacityOption : OptionButton = $VBoxContainer/OptionButton2
+@onready var playerQuantityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton3
+@onready var gamemodeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton
+@onready var privacityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton2
 
-@onready var matchTimeOption : OptionButton = $VBoxContainer/OptionButton5
-@onready var objectiveGoalOption : OptionButton = $VBoxContainer/OptionButton4
+@onready var matchTimeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton5
+@onready var objectiveGoalOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton4
 
 
 # Called when the node enters the scene tree for the first time.

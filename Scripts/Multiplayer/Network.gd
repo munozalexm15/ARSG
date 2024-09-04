@@ -170,8 +170,9 @@ func show_all_players():
 
 func endGame():
 	for x in Steam.getNumLobbyMembers(lobby_id):
-		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
-		var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
+		pass
+		#var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
+		#var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
 		
 	gameData.clear()
 	for player in game.players_node.get_children():

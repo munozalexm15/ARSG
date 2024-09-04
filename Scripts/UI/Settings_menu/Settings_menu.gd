@@ -44,9 +44,11 @@ var configData : ConfigFile
 func _ready():
 	configData = ConfigFile.new()
 	var _loadedData = configData.load("res://GameSettings.cfg")
+	if _loadedData == OK:
+		loadSettings()
 	
 	addResolutions()
-
+	
 func addResolutions():
 	var current_res : Vector2i = get_viewport().size
 	var index = 0
@@ -57,6 +59,16 @@ func addResolutions():
 			resolutionDropdown.select(index)
 		
 		index+=1
+
+func loadSettings():
+	weaponSounds_Slider.value = configData.get_value("Audio", "WeaponSliderValue", 1)
+	effectsSounds_Slider.value = configData.get_value("Audio", "EffectsSliderValue", 1)
+	environmentSounds_Slider.value = configData.get_value("Audio", "EnvironmentSliderValue", 1)
+	colorDepth_Slider.value = configData.get_value("Video", "ColorDepth", 5)
+	resolutionScale_Slider.value = configData.get_value("Video", "ResolutionScale", 2)
+	fullscrenButton.button_pressed = configData.get_value("Video", "isFullscreen", false)
+	hasDitheringButton.button_pressed = configData.get_value("Video", "hasDithering", false)
+	vsyncButton.button_pressed = configData.get_value("Video", "V-Sync", false)
 
 func _input(_event):
 	hide_menu()
@@ -100,7 +112,7 @@ func _on_vsync_checkbox_pressed():
 		configData.set_value("Video", "V-Sync", true)
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-		configData.set_value("Video", "V-Sync", true)
+		configData.set_value("Video", "V-Sync", false)
 		
 	configData.save("res://GameSettings.cfg")
 

@@ -14,7 +14,7 @@ extends Node3D
 var meshesArray : Array
 var spotLightArray : Array
 
-@onready var optionsUI : Control = $OptionsUI
+@onready var optionsUI : Control = $OptionsControl/OptionsUI
 @onready var hostUI : Control = $HostingMatchControl
 @onready var lobbiesListUI : Control = $LobbiesControl
 
@@ -29,10 +29,12 @@ var spotLightArray : Array
 
 @onready var optionsLabel : Label3D = $OptionsLabel
 @onready var animPlayerOptionsLabel : AnimationPlayer = $OptionsLabel/AnimationPlayer
-@onready var optionsControl : Control = $OptionsUI
+@onready var optionsControl : Control = $OptionsControl
 
 @onready var customizationLabel : Label3D = $ClassesLabel
 @onready var animPlayerCustomizationLabel : AnimationPlayer = $ClassesLabel/AnimationPlayer
+
+@onready var flashlightLight : SpotLight3D = $OldFlashlight012/SpotLight3D
 
 var sections : Dictionary = {"play": "menu_to_play", "options": "menu_to_options", "exit": "menu_to_exit"}
 var selectedSection = ""
@@ -43,15 +45,15 @@ var screenMaterial : Material
 
 var listingLobbies = true
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05
 	screenMaterial = laptopScreenMesh.get_active_material(0)
 	hostUI.visible = false
 	optionsUI.visible = false
+	optionsControl.visible = false
 	
 	if get_tree().paused:
 		get_tree().paused = false
@@ -67,16 +69,22 @@ func _ready():
 	lightError()
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("Pause") and selectedSection != "":
 		hostUI.visible = false
 		lobbiesListUI.visible = false
 		
 		if selectedSection == "options":
 			optionsUI.visible = false
+			optionsControl.visible = false
+		
 		cameraAnimPlayer.play(sections.get(selectedSection), -1, -1, true)
-		await cameraAnimPlayer.animation_finished
+	
 		selectedSection = ""
+		await cameraAnimPlayer.animation_finished
+		lobbiesListUI.visible = false
+		hostUI.visible = false
+		optionsUI.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -88,6 +96,8 @@ func _process(delta):
 		camera.v_offset = shakeOffset.y
 
 func lightError():
+	if selectedSection == "play":
+		return
 	var randomTime = randi_range(15, 30)
 	await get_tree().create_timer(randomTime).timeout
 	camera.randomStrength = randf_range(0.01, 0.02)
@@ -122,13 +132,19 @@ func _on_static_body_3d_mouse_exited():
 	animPlayerOptionsLabel.play("options_hover", -1, -1, true)
 
 
-func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
+func _on_static_body_3d_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_options")
 			selectedSection = "options"
 			await cameraAnimPlayer.animation_finished
+			
+			if selectedSection == "":
+				return
+				
+			optionsUI.animationPlayer.play("RESET")
 			optionsUI.visible = true
+			optionsControl.visible = true
 
 #---------------Exit part---------------------------
 func _on_quit_cartel_mouse_exited():
@@ -143,9 +159,9 @@ func _on_quit_cartel_mouse_entered():
 	animPlayerQuitLabel.play("quit_hover")
 
 
-func _on_quit_cartel_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
+func _on_quit_cartel_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_exit")
 			selectedSection = "exit"
 			
@@ -161,9 +177,9 @@ func _on_no_r_body_mouse_exited():
 		return
 	animPlayerQuitLabel.play("quit_no_hover", -1, -1, true)
 
-func _on_no_r_body_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+func _on_no_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT:
 			cameraAnimPlayer.play(sections.get(selectedSection), -1, -1, true)
 			await cameraAnimPlayer.animation_finished
 			selectedSection = ""
@@ -174,27 +190,32 @@ func _on_yes_r_body_mouse_entered():
 		return
 	animPlayerQuitLabel.play("quit_yes_hover")
 
-
 func _on_yes_r_body_mouse_exited():
 	if selectedSection != "exit":
 		return
 	animPlayerQuitLabel.play("quit_yes_hover", -1, -1, true)
 
-
-
-func _on_yes_r_body_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+func _on_yes_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT:
 			get_tree().quit()
-	
 
 #---------------PlayMatch part ---------------------------
 
-func _on_keyboard_laptop_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
+func _on_keyboard_laptop_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_play")
 			selectedSection = "play"
+			await cameraAnimPlayer.animation_finished
+			
+			if selectedSection == "":
+				return
+				
+			if listingLobbies:
+				lobbiesListUI.open_lobby_list()
+			else:
+				hostUI.visible = true
 
 func _on_keyboard_laptop_mouse_entered():
 	if selectedSection != "":
@@ -207,18 +228,18 @@ func _on_keyboard_laptop_mouse_exited():
 		return
 	animPlayerPlayLabel.play("play_hover", -1, -1, true)
 
-func _on_lobby_list_finder_r_body_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+func _on_lobby_list_finder_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
 			screenMaterial.albedo_texture = lobbyFindTexture
 			listingLobbies = true
 			hostUI.visible = false
 			lobbiesListUI.visible = true
 
 
-func _on_host_match_r_body_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+func _on_host_match_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
 			screenMaterial.albedo_texture = hostMatchTexture
 			listingLobbies = false
 			hostUI.visible = true
@@ -228,9 +249,9 @@ func _on_host_match_r_body_input_event(camera, event, position, normal, shape_id
 			
 
 #---------------Customize weapons part (WIP)---------------------------
-func _on_mp_5_input_event(camera, event, position, normal, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
+func _on_mp_5_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			pass
 
 
@@ -242,3 +263,9 @@ func _on_mp_5_mouse_exited():
 	#animPlayerCustomizationLabel.play("classes_hover", -1, -1, true)
 	pass
 
+
+#------------------Flashlight-------------------------------------
+func _on_flashlight_input_event(_camera, _event, _position, _normal, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == MOUSE_BUTTON_LEFT:
+			flashlightLight.visible = !flashlightLight.visible

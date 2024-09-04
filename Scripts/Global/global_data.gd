@@ -30,6 +30,7 @@ func _ready():
 
 
 func loadGameSettings():
+	#FULLSCREEN---------------------------------------------------------------------
 	if configData.get_value("Video", "isFullscreen", true) == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
@@ -37,11 +38,14 @@ func loadGameSettings():
 	
 	get_window().size = configData.get_value("Video", "Resolution", Vector2i(1024, 768))
 	
+	#DITHERING---------------------------------------------------------------------
+	
 	if configData.get_value("Video", "hasDithering", true) == true:
 		ditheringShader.set_shader_parameter("dithering", true)
 	else:
 		ditheringShader.set_shader_parameter("dithering", false)
 	
+	#V-SYNC---------------------------------------------------------------------
 	if configData.get_value("Video", "V-Sync", true) == true:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 	else:
@@ -51,6 +55,7 @@ func loadGameSettings():
 	ditheringShader.set_shader_parameter("resolution_scale", configData.get_value("Video", "ResolutionScale", true))
 	
 	
+	#AUDIO---------------------------------------------------------------------
 	var bus_index = AudioServer.get_bus_index("Weapons")
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(configData.get_value("Audio", "Weapons", 0.5)))
 	bus_index = AudioServer.get_bus_index("Environment")

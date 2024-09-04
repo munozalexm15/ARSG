@@ -11,10 +11,10 @@ var refRowContainer = null
 var index = 0
 
 var selectedLobby = -1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Steam.lobby_match_list.connect(on_lobby_mach_list)
-	joinLobbyMenu.connect("showLobbies", open_lobby_list)
 
 
 func open_lobby_list():
@@ -22,6 +22,7 @@ func open_lobby_list():
 	Steam.requestLobbyList()
 	
 func on_lobby_mach_list(lobbies):
+	joinLobbyMenu.visible = false
 	animPlayer.play("open_list")
 	visible = true
 	if lobbiesList.get_child_count() > 0:
@@ -60,3 +61,5 @@ func show_lobby_data(lobby):
 func _on_visibility_changed():
 	if visible:
 		open_lobby_list()
+	else:
+		visible = false

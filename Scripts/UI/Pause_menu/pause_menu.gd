@@ -12,9 +12,8 @@ var isMultiplayer : bool = false
 @export var button_press_SFX : AudioStreamOggVorbis
 
 @onready var pauseMenu : VBoxContainer = $HBoxContainer2/MarginContainer/PauseMenu
-@onready var optionsNavigation : HBoxContainer = $VBoxContainer/MarginContainer/OptionsNavigation
 
-@onready var optionsMainContainer : SettingsMenu = $VBoxContainer
+@onready var optionsMainContainer : SettingsMenu = $OptionsControl
 
 @onready var ditheringMaterial : ShaderMaterial = GlobalData.ditheringShader
 
