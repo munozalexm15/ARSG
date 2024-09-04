@@ -184,6 +184,7 @@ func load_main_menu():
 	if multiplayer.get_unique_id() == 1:
 		peer.close()
 		
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	
 

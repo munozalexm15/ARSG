@@ -109,7 +109,6 @@ func _ready():
 	nameLabel.text = Steam.getPersonaName()
 	health_display.value = health
 	player_body.visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
