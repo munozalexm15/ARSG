@@ -92,12 +92,13 @@ func _process(delta):
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		
 		var shakeOffset : Vector2 = camera.randomizeCamOffset()
+		if selectedSection == "play":
+			return
 		camera.h_offset = shakeOffset.x
 		camera.v_offset = shakeOffset.y
 
 func lightError():
-	if selectedSection == "play":
-		return
+	
 	var randomTime = randi_range(15, 30)
 	await get_tree().create_timer(randomTime).timeout
 	camera.randomStrength = randf_range(0.01, 0.02)

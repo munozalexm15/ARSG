@@ -86,8 +86,6 @@ func set_player_data(peer_id, playerName):
 	weaponSelection.set_multiplayer_authority(peer_id)
 	node.add_child(weaponSelection)
 	player.weaponSelectionMenu = weaponSelection
-	if peer_id == multiplayer.get_unique_id():
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func replace_weapon_content(weapon : Node3D):
 	for child : Node in weapon.get_children():

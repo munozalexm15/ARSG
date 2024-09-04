@@ -1,116 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://co3rj6o5p11p4"]
+[gd_scene load_steps=9 format=3 uid="uid://co3rj6o5p11p4"]
 
-[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_8xof8"]
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_enhrk"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings_menu/Settings_menu.gd" id="1_lgrhf"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="4_a4uii"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
-bg_color = Color(0.205117, 0.205117, 0.205117, 1)
-skew = Vector2(1, 0)
-border_width_left = 10
-border_width_right = 10
-border_color = Color(0.147671, 0.147672, 0.147672, 1)
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no026"]
-bg_color = Color(0.689924, 0.251688, 0.319423, 1)
-skew = Vector2(1, 0)
-border_width_left = 10
-border_width_right = 10
-border_color = Color(0.616742, 0.039596, 0.0712458, 1)
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crj7m"]
-bg_color = Color(0.707967, 0.707967, 0.707966, 1)
-skew = Vector2(1, 0)
-border_width_left = 10
-border_width_right = 10
-border_color = Color(0.32544, 0.325441, 0.325441, 1)
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkcre"]
-bg_color = Color(0.439049, 0.439049, 0.439049, 1)
-skew = Vector2(1, 0)
-border_width_left = 10
-border_width_right = 10
-border_color = Color(0.32544, 0.325441, 0.325441, 1)
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyate"]
-bg_color = Color(0.775438, 0.514888, 0.575553, 1)
-skew = Vector2(1, 0)
-border_width_left = 10
-border_width_right = 10
-border_color = Color(0.32544, 0.325441, 0.325441, 1)
-expand_margin_left = 10.0
-expand_margin_right = 10.0
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ii5b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkp28"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeuf6"]
-bg_color = Color(0.6, 0.6, 0.647059, 0)
-border_width_bottom = 5
-border_color = Color(0.8, 0.8, 0.8, 0)
-expand_margin_left = 20.0
-expand_margin_right = 20.0
-shadow_offset = Vector2(6.23, 8.125)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj7i6"]
-bg_color = Color(0.666569, 0.666569, 0.666569, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay64e"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk1bi"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jagra"]
-border_width_left = 10
-border_color = Color(0.329157, 0.329159, 0.329158, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3lp"]
-
-[sub_resource type="Theme" id="Theme_hc302"]
-Button/fonts/font = ExtResource("1_8xof8")
-Button/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
-Button/styles/focus = SubResource("StyleBoxFlat_no026")
-Button/styles/hover = SubResource("StyleBoxFlat_crj7m")
-Button/styles/normal = SubResource("StyleBoxFlat_wkcre")
-Button/styles/pressed = SubResource("StyleBoxFlat_gyate")
-CheckBox/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
-CheckBox/styles/focus = SubResource("StyleBoxFlat_no026")
-CheckBox/styles/hover = SubResource("StyleBoxFlat_crj7m")
-CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_no026")
-CheckBox/styles/normal = SubResource("StyleBoxFlat_wkcre")
-CheckBox/styles/pressed = SubResource("StyleBoxFlat_gyate")
-CheckButton/styles/disabled = null
-Fonts/fonts/normal = null
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_6ii5b")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bkp28")
-Label/font_sizes/font_size = 20
-Label/fonts/font = ExtResource("1_8xof8")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
-VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
-VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
-VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
-VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
-VSlider/styles/grabber_area = SubResource("StyleBoxFlat_6ii5b")
-VSlider/styles/grabber_area_highlight = null
-VSlider/styles/slider = SubResource("StyleBoxFlat_jagra")
 
 [sub_resource type="LabelSettings" id="LabelSettings_jymd7"]
 font_size = 20
@@ -142,7 +34,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(500, 165), Vector2(526, 165)]
+"values": [Vector2(500, 150), Vector2(526, 150)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -207,7 +99,7 @@ offset_left = 227.0
 offset_top = 103.0
 offset_right = 891.0
 offset_bottom = 772.0
-theme = SubResource("Theme_hc302")
+theme = ExtResource("1_enhrk")
 script = ExtResource("1_lgrhf")
 ditheringMaterial = ExtResource("4_a4uii")
 

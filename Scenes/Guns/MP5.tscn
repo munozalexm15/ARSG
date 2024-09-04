@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=46 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -10,7 +10,6 @@
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_3ahf2"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="10_7icfy"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_cj2rk"]
 [ext_resource type="AudioStream" uid="uid://bohwu0eynruj5" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel.mp3" id="12_r6xwg"]
 [ext_resource type="AudioStream" uid="uid://bip2mwmeqwj1a" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel_full.mp3" id="13_86q7m"]
@@ -213,15 +212,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_igqvi")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2nfb"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_phe3m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p70te"]
 resource_name = "Material.036"
@@ -2010,7 +2000,6 @@ initial_velocity_max = 20.0
 [node name="MP5BodyFull" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.00001, 0, 0, 0, -3.61999e-06, -1, 0, 0.999999, -3.61999e-06, 0, -6.86563, 0)
 mesh = SubResource("ArrayMesh_qnlie")
-skeleton = NodePath("")
 
 [node name="MP5Bolt" type="MeshInstance3D" parent="MP5BodyFull"]
 transform = Transform3D(-0.999694, -0.00083052, -0.0245643, -0.000780956, -0.997852, 0.0655201, -0.0245658, 0.0655196, 0.997549, 3.24961, 0.55027, 0.0822692)
@@ -2027,7 +2016,6 @@ mesh = SubResource("ArrayMesh_u7xm0")
 skeleton = NodePath("")
 
 [node name="MP5FullStock" type="MeshInstance3D" parent="MP5BodyFull"]
-material_override = SubResource("ShaderMaterial_o2nfb")
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
 

@@ -72,7 +72,7 @@ func _process(_delta):
 		return
 		
 	fpsCounter.set_text("FPS %d" % Engine.get_frames_per_second())
-	if Input.is_action_pressed("ADS"):
+	if Input.is_action_pressed("ADS") or player_controller.arms.state_machine.state.name == "Reload":
 		crosshair.queue_redraw()
 		for x in reticle_lines.size():
 			reticle_lines[x].visible = false

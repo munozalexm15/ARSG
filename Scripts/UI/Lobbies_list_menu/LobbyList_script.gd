@@ -32,8 +32,8 @@ func on_lobby_mach_list(lobbies):
 	for lobby in lobbies:
 		var lobby_name = Steam.getLobbyData(lobby, "name")
 		var user_count = Steam.getNumLobbyMembers(lobby)
-		
-		if lobby_name.length() >= 14:
+			
+		if lobby_name.length() > 10:
 			lobby_name = lobby_name.substr(0, 5) + "..."
 		
 		var button: Button = Button.new()

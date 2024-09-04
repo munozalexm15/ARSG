@@ -11,7 +11,7 @@ func physics_update(delta: float) -> void:
 	#En un futuro estructurar mejor
 	play_anim.rpc()
 	
-	if not Input.is_action_pressed("ADS"):
+	if not Input.is_action_pressed("ADS") or (Input.is_action_pressed("ADS") and player.arms.state_machine.state.name == "Reload"):
 		player.curr_speed = player.walk_speed
 		player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
 		player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta

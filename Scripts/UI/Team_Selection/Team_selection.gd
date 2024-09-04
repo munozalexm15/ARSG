@@ -27,4 +27,10 @@ func _on_shotgun_button_pressed():
 func show_player():
 	player.visible = true
 	visible = false
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN 
+
+
+func _on_visibility_changed():
+	if visible:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
