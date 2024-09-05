@@ -45,6 +45,14 @@ var screenMaterial : Material
 
 var listingLobbies = true
 
+@export var playHover_soundEffect : AudioStreamMP3
+@export var playClick_soundEffect : AudioStreamMP3
+
+@export var settingsHover_soundEffect : AudioStreamMP3
+@export var settingsClick_soundEffect : AudioStreamMP3
+
+@export var exitHover_soundEffect : AudioStreamMP3
+@export var exitClick_soundEffect : AudioStreamMP3
 
 func _ready():
 	playLabel.modulate.a = 0.05
@@ -125,6 +133,7 @@ func _on_static_body_3d_mouse_entered():
 	if selectedSection != "":
 		return
 	animPlayerOptionsLabel.queue("options_hover")
+	SFXHandler.play_sfx(settingsHover_soundEffect, self, "Effects")
 
 
 func _on_static_body_3d_mouse_exited():
@@ -138,6 +147,7 @@ func _on_static_body_3d_input_event(_camera, _event, _position, _normal, _shape_
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_options")
 			selectedSection = "options"
+			SFXHandler.play_sfx(settingsClick_soundEffect, self, "Effects")
 			await cameraAnimPlayer.animation_finished
 			
 			if selectedSection == "":
@@ -158,11 +168,13 @@ func _on_quit_cartel_mouse_entered():
 	if selectedSection != "":
 		return
 	animPlayerQuitLabel.play("quit_hover")
+	SFXHandler.play_sfx(exitHover_soundEffect, self, "Effects")
 
 
 func _on_quit_cartel_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
+			SFXHandler.play_sfx(exitClick_soundEffect, self, "Effects")
 			cameraAnimPlayer.play("menu_to_exit")
 			selectedSection = "exit"
 			
@@ -208,6 +220,7 @@ func _on_keyboard_laptop_input_event(_camera, _event, _position, _normal, _shape
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "":
 			cameraAnimPlayer.play("menu_to_play")
 			selectedSection = "play"
+			SFXHandler.play_sfx(playClick_soundEffect, self, "Effects")
 			await cameraAnimPlayer.animation_finished
 			
 			if selectedSection == "":
@@ -222,6 +235,7 @@ func _on_keyboard_laptop_mouse_entered():
 	if selectedSection != "":
 		return
 	animPlayerPlayLabel.play("play_hover")
+	SFXHandler.play_sfx(playHover_soundEffect, self, "Effects")
 
 
 func _on_keyboard_laptop_mouse_exited():

@@ -15,8 +15,8 @@ var bolt_forward_sound : AudioStreamPlayer3D
 @export var handsNode := NodePath()
 @onready var hands : Arms = get_node(handsNode)
 
-@onready var leftArm = $Player_Arms/Armature_001/Skeleton3D/Cube_002
-@onready var rightArm  = $Player_Arms/Armature_001/Skeleton3D/Cube_001
+@onready var leftArm : MeshInstance3D = $Player_Arms/Armature_001/Skeleton3D/Cube_002
+@onready var rightArm  : MeshInstance3D= $Player_Arms/Armature_001/Skeleton3D/Cube_001
 
 @onready var handsAnimPlayer = $Player_Arms/AnimationPlayer
 
@@ -25,7 +25,7 @@ var bolt_forward_sound : AudioStreamPlayer3D
 @onready var muzzleSmoke : Trail3D = $Muzzle/MuzzleSmoke
 @export var bullet_type: PackedScene
 @onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
-@onready var muzzle_flash_particles :CPUParticles3D = $Muzzle/MuzzleFlash
+@onready var muzzle_flash_particles : GPUParticles3D = $Muzzle/MuzzleFlash
 @onready var muzzle_flash_light : OmniLight3D = $Muzzle/MuzzleFlashLight
 @onready var fire_selection_sound : AudioStreamPlayer3D = $ASP_FireSelectionSound
 @onready var no_ammo_sound : AudioStreamPlayer3D = $ASP_NoAmmoSound
@@ -192,7 +192,7 @@ func shoot():
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
 	if fire_sound:
-		SFXHandler.play_sfx(fire_sound.stream, self, "Weapons")
+		SFXHandler.play_sfx_3d(fire_sound.stream, hands.player, "Weapons")
 	spawnBullet.rpc()
 	
 

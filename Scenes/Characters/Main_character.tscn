@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
 [ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="16_ub6kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
 bg_color = Color(0.54902, 0.0941176, 0, 1)
@@ -240,18 +241,13 @@ offset_right = 100.0
 offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_p17vv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_r8aut")
+value = 100.0
 show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288413, 0.924778, 0.0940464)
 billboard = 1
 texture = SubResource("ViewportTexture_ti48e")
-
-[node name="PlayerName" type="Label3D" parent="Sprite3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.123884, 0)
-billboard = 1
-texture_filter = 0
-text = "NAME"
 
 [node name="PlayerSkeleton" parent="." instance=ExtResource("2_wc48o")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -0.758191, 0.0942096)
@@ -275,8 +271,8 @@ returnSpeed = 10.0
 [node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
+fov = 37.8493
 size = 11.029
-near = 0.01
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -336,7 +332,7 @@ libraries = {
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"hit", &"RESET", 0.2]
+blend_times = [&"hit", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
@@ -353,6 +349,9 @@ collision_mask = 72
 script = ExtResource("16_0qd02")
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0890639, -0.151006, -0.0560327)
+stream = ExtResource("16_ub6kv")
+max_distance = 2.0
 bus = &"Environment"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

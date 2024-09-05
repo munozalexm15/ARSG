@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=47 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -35,12 +35,20 @@ albedo_texture = SubResource("GradientTexture1D_oulwv")
 _data = [Vector2(0, 0.10814), 0.0, 0.0, 0, 0, Vector2(0.517752, 0.22907), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uq8hy"]
+angle_min = -28.8
+angle_max = 14.4
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafp2"]
 transparency = 1
 albedo_texture = ExtResource("7_r6skm")
 emission_enabled = true
 emission = Color(0.901961, 0.482353, 0, 1)
 emission_energy_multiplier = 16.0
+emission_texture = ExtResource("7_r6skm")
 backlight = Color(0.482353, 0.223529, 0, 1)
 billboard_mode = 3
 particles_anim_h_frames = 1
@@ -1953,22 +1961,18 @@ script = ExtResource("9_3ahf2")
 lifetime = 0.4
 width_profile = SubResource("Curve_32b2x")
 
-[node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
 emitting = false
 amount = 1
 lifetime = 0.05
 one_shot = true
 randomness = 1.0
+fixed_fps = 0
 local_coords = true
 draw_order = 1
-mesh = SubResource("QuadMesh_7wysp")
-emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-angle_min = -28.8
-angle_max = 14.4
+process_material = SubResource("ParticleProcessMaterial_uq8hy")
+draw_pass_1 = SubResource("QuadMesh_7wysp")
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
 visible = false

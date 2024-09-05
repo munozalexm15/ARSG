@@ -4,6 +4,8 @@ var wantsToShoot = false
 
 func enter(_msg := {}):
 	set_process(true)
+	arms.actualWeapon.isBurstActive = false
+	arms.actualWeapon.burstBullet = 0
 	if arms.actualWeapon.being_used == false:
 		state_machine.transition_to("Idle")
 		return

@@ -94,7 +94,6 @@ var seeing_ally : bool = false
 var can_respawn = false
 var time_to_respawn = 3.0
 var team = ""
-@onready var nameLabel : Label3D = $Sprite3D/PlayerName
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -106,7 +105,6 @@ func _ready():
 		arms.visible = false
 		return
 	
-	nameLabel.text = Steam.getPersonaName()
 	health_display.value = health
 	player_body.visible = false
 	initialHead_pos = eyes.position.y
@@ -150,6 +148,12 @@ func _physics_process(delta):
 	#update_hitPosition()
 	
 	input_direction = Input.get_vector("Left", "Right", "Forward", "Backwards")
+		#hardcoded sensibility
+	eyes.rotate_x(Input.get_action_strength("LookUp") * 0.1)
+	eyes.rotate_x(Input.get_action_strength("LookDown") * 0.1 * -1)
+	rotate_y(Input.get_action_strength("LookLeft") * 0.1)
+	rotate_y(Input.get_action_strength("LookRight") * 0.1 * -1)
+	eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
 	#NON SMOOTH DIRECTION : direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
 	if (!Input.is_action_pressed("Crouch") or !is_on_floor()) and !standingRaycast.is_colliding():

@@ -30,6 +30,9 @@ func show_player():
 
 
 func _on_visibility_changed():
+	if not is_multiplayer_authority():
+		return
+		
 	if visible:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:

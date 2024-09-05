@@ -18,6 +18,7 @@ var actualWeaponName = ""
 
 @onready var leftArmShoulder: Node3D = $LeftArmShoulder
 @onready var rightArmShoulder: Node3D = $RightArmShoulder
+@onready var playerMesh : MeshInstance3D = $PlayerModel/Armature/Skeleton3D/PoliceOfficer
 
 #ADS positions to lerp-----------------------
 @export var leftArmADSPosition : Vector3

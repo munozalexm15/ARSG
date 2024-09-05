@@ -1,19 +1,52 @@
-[gd_scene load_steps=21 format=3 uid="uid://dt0rs4bad2jg6"]
+[gd_scene load_steps=30 format=3 uid="uid://dt0rs4bad2jg6"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_5qqm8"]
+[ext_resource type="Script" path="res://Scripts/Player/Skins/player_skin_resource.gd" id="2_in42t"]
+[ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_npsgj"]
 [ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="2_ptill"]
+[ext_resource type="Texture2D" uid="uid://dq4h5540wywb2" path="res://GameResources/Textures/CharacterTextures/Faces/AsianPoliceOfficer_Face128.png" id="3_j431t"]
+[ext_resource type="Texture2D" uid="uid://bxo8xyadj87ks" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Militia.png" id="4_a4mhq"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="5_4lg0s"]
-[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="6_kndw7"]
+[ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="5_ttbek"]
+[ext_resource type="Texture2D" uid="uid://dv0mvhd5mb2mv" path="res://GameResources/Textures/CharacterTextures/Faces/GermanPoliceOfficer_Face128.jpg" id="6_3c3ly"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="6_5bfoc"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="6_qbtv3"]
-[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="7_6kr1g"]
+[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="7_ccfab"]
+[ext_resource type="Texture2D" uid="uid://peidbjqfijnf" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Police.jpg" id="7_dg1e3"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="7_gh3na"]
-[ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="8_7en35"]
-[ext_resource type="AudioStream" uid="uid://bbhjrostu8o1y" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-015.ogg" id="9_mw3g2"]
-[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="10_6m5hg"]
-[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="11_i4lfl"]
-[ext_resource type="AudioStream" uid="uid://bfioyx6sh3sel" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-019.ogg" id="12_x57sp"]
-[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="13_clg16"]
-[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="14_a7fxl"]
+[ext_resource type="Texture2D" uid="uid://bey4oppscqukq" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Police.png" id="8_u55d8"]
+[ext_resource type="AudioStream" uid="uid://43k8ahya2ukn" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-003.ogg" id="8_vso8u"]
+[ext_resource type="AudioStream" uid="uid://bshq3q1bdppqa" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-004.ogg" id="9_3wnen"]
+[ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="10_lv61s"]
+[ext_resource type="AudioStream" uid="uid://bvtcdpjvjmhii" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-006.ogg" id="11_5h2ob"]
+
+[sub_resource type="Resource" id="Resource_kp5a3"]
+script = ExtResource("2_in42t")
+HeadSkin = ExtResource("3_j431t")
+BodySkin = ExtResource("2_npsgj")
+leftHandSkin = ExtResource("4_a4mhq")
+rightHandSkin = ExtResource("4_a4mhq")
+
+[sub_resource type="Resource" id="Resource_576ic"]
+script = ExtResource("2_in42t")
+HeadSkin = ExtResource("6_3c3ly")
+BodySkin = ExtResource("2_npsgj")
+leftHandSkin = ExtResource("4_a4mhq")
+rightHandSkin = ExtResource("4_a4mhq")
+
+[sub_resource type="Resource" id="Resource_aia0x"]
+script = ExtResource("2_in42t")
+HeadSkin = ExtResource("6_3c3ly")
+BodySkin = ExtResource("7_dg1e3")
+leftHandSkin = ExtResource("8_u55d8")
+rightHandSkin = ExtResource("8_u55d8")
+
+[sub_resource type="Resource" id="Resource_po85s"]
+script = ExtResource("2_in42t")
+HeadSkin = ExtResource("3_j431t")
+BodySkin = ExtResource("7_dg1e3")
+leftHandSkin = ExtResource("8_u55d8")
+rightHandSkin = ExtResource("8_u55d8")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p2vb6"]
 
@@ -42,12 +75,14 @@ transparency = 1
 blend_mode = 1
 albedo_color = Color(5.77569e-07, 0.456584, 0.490484, 1)
 
-[sub_resource type="Resource" id="Resource_udwen"]
-script = ExtResource("6_kndw7")
-walk_sound = Array[AudioStreamOggVorbis]([ExtResource("7_6kr1g"), ExtResource("8_7en35"), ExtResource("9_mw3g2"), ExtResource("10_6m5hg"), ExtResource("11_i4lfl"), ExtResource("12_x57sp"), ExtResource("13_clg16"), ExtResource("14_a7fxl")])
+[sub_resource type="Resource" id="Resource_778yg"]
+script = ExtResource("5_ttbek")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("6_5bfoc"), ExtResource("7_ccfab"), ExtResource("8_vso8u"), ExtResource("9_3wnen"), ExtResource("10_lv61s"), ExtResource("11_5h2ob")])
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_5qqm8")
+team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
+team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
 
 [node name="MatchTimer" type="Timer" parent="."]
 process_mode = 3
@@ -79,7 +114,7 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0640787, 0.647491, -0.0512241)
 
 [node name="FadeShader" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_prhnf")
@@ -93,6 +128,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="FadeShader"]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -107,18 +143,18 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="FadeShader/SubViewport/DitheringShader"]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05951, -2.25446, -5.43768)
 use_collision = true
 collision_layer = 67
 collision_mask = 67
 size = Vector3(56.2083, 1, 45.1766)
 material = SubResource("StandardMaterial3D_kb8cs")
 script = ExtResource("5_4lg0s")
-groundData = SubResource("Resource_udwen")
+groundData = SubResource("Resource_778yg")
 
 [node name="PauseMenusNode" type="Node3D" parent="."]
 

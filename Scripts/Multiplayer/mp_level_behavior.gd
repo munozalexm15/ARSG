@@ -11,6 +11,10 @@ var death_count = 0
 @export var PauseScene = preload("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
 @export var weaponSelectionScene = preload("res://Scenes/UI/Team_Selection/Team_selection.tscn")
 
+@export var team1SkinsResources : Array
+@export var team2SkinsResources : Array
+
+
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
 @onready var player_spawner : MultiplayerSpawner = $MultiplayerSpawner
 @onready var bullets_node : Node3D= $BulletsParent
@@ -56,7 +60,20 @@ func init_player(peer_id):
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players["player" + str(peer_id)] = dict_data
 	
-	
+#skin assignation
+	if Network.gameData["gameMode"] == "FREE FOR ALL":
+		var team : int = randi_range(0, 1)
+		var skin : PlayerSkin = null
+		if team == 0:
+			skin = team1SkinsResources.pick_random()
+		else:
+			skin = team2SkinsResources.pick_random()
+		
+		player.arms.handsAssignedTexture = skin.leftHandSkin
+		
+		player.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		player.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.BodySkin)
+		
 	dashboardMatch.get_lobby_data.rpc()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player

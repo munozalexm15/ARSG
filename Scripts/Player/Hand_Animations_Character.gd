@@ -40,6 +40,8 @@ var mouse_input : Vector2
 
 var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
+var handsAssignedTexture : Texture = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
@@ -58,6 +60,8 @@ func _input(event):
 		
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
+		
+	
 	
 func _physics_process(delta):
 	if not is_multiplayer_authority():
