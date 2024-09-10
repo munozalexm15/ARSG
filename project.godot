@@ -26,6 +26,10 @@ Network="*res://Scripts/Multiplayer/Network.gd"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
+
 [filesystem]
 
 import/fbx/enabled=false

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cmsh8pkdtekju"]
+
+[ext_resource type="Texture2D" uid="uid://df2nqrpn1b454" path="res://textures/meshes/electronics/PinballTable01_a.png" id="1_gloyr"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_gloyr")
+texture_filter = 0

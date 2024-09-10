@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b8jblthta6ac3"]
+
+[ext_resource type="Texture2D" uid="uid://bphwqodu84hup" path="res://textures/meshes/furniture/DoorWooden02_a.png" id="1_l6f03"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_l6f03")
+texture_filter = 0

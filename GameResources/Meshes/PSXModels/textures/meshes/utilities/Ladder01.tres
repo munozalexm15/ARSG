@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://63vbekcn1xkv"]
+
+[ext_resource type="Texture2D" uid="uid://dc41yxlqw8brx" path="res://textures/meshes/utilities/Ladder01_a.png" id="1_uxmvc"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_uxmvc")
+texture_filter = 0

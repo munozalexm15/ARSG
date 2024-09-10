@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://mvv5rsygl3x"]
+
+[ext_resource type="Texture2D" uid="uid://k0jqauk3e7cs" path="res://textures/meshes/lights/Chandelier01_a.png" id="1_khbr0"]
+[ext_resource type="Texture2D" uid="uid://eggdnnk8y2fl" path="res://textures/meshes/lights/OldLantern01a_e.png" id="2_ymxu7"]
+
+[resource]
+transparency = 1
+cull_mode = 1
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_khbr0")
+emission_enabled = true
+emission_texture = ExtResource("2_ymxu7")
+texture_filter = 0

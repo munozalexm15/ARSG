@@ -55,10 +55,10 @@ var lerp_speed = 10
 var curr_speed = 2.0
 
 const walk_speed = 2.0
-const run_speed = 10.0
+const run_speed = 7
 const crouch_speed = 1
 
-const jump_force = 4.5
+const jump_force = 4
 var lerp_air_speed = 3
 
 #---OTHER

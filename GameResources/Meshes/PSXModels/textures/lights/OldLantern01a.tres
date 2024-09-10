@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://hm3j0celkxct"]
+
+[ext_resource type="Texture2D" uid="uid://bcdqs7v4e81fo" path="res://textures/lights/OldLantern01a_a.png" id="1_hjt00"]
+[ext_resource type="Texture2D" uid="uid://eggdnnk8y2fl" path="res://textures/lights/OldLantern01a_e.png" id="2_kxuae"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_hjt00")
+emission_enabled = true
+emission_texture = ExtResource("2_kxuae")
+texture_filter = 0

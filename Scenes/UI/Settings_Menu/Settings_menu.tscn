@@ -394,6 +394,7 @@ text = "INTERACT"
 label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="WeaponSounds12" type="Label" parent="ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 text = "MELEE"
@@ -489,6 +490,7 @@ text = "F"
 label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="WeaponSounds12" type="Label" parent="ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 text = "V"

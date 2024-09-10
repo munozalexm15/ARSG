@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bq2aigwu7hbt2"]
+
+[ext_resource type="Texture2D" uid="uid://cfubanqd05cl6" path="res://textures/meshes/exercise/BasketballGoal01_a.png" id="1_snll0"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_snll0")
+texture_filter = 0

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bv4qr0d5fsiu2"]
+
+[ext_resource type="Texture2D" uid="uid://b4mi8rgx6tosp" path="res://textures/meshes/misc/Bandage01_a.png" id="1_vurrv"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_vurrv")
+texture_filter = 0

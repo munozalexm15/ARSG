@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dtilcaendmtd1"]
+
+[ext_resource type="Texture2D" uid="uid://cqcbgo5f4e1to" path="res://textures/meshes/lights/Lamp01_a.png" id="1_66gc5"]
+[ext_resource type="Texture2D" uid="uid://dy6kg7su7ydel" path="res://textures/meshes/lights/Lamp01_e.png" id="2_000wq"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_66gc5")
+emission_enabled = true
+emission_texture = ExtResource("2_000wq")
+texture_filter = 0
