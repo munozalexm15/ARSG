@@ -10,7 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
-	if is_colliding() and get_collider() is Ground_Handler and player.headBobbing_vector.y < -0.98 and not player.ASP_Footsteps.playing:
+	if is_colliding() and get_collider() is Ground_Handler and player.headBobbing_vector.y < -0.98 and not player.ASP_Footsteps.playing and (player.state_machine.state.name == "Walk" or player.state_machine.state.name == "Run"):
 		var collision : GroundData = get_collider().groundData
 		var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
 		player.ASP_Footsteps.stream = sound

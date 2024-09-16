@@ -78,7 +78,7 @@ func _on_exit_match_button_pressed():
 		get_tree().paused = false
 	
 	if multiplayer.get_unique_id() != 1:
-		Network.player_left(multiplayer.get_unique_id())
+		Network.player_left.rpc(multiplayer.get_unique_id())
 	else:
 		var lobbyId = Network.lobby_id 
 		for x in Steam.getNumLobbyMembers(lobbyId):
