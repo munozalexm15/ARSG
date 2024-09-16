@@ -22,7 +22,7 @@ func _ready():
 		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 
 func _process(_delta):
-	Steam.run_callbacks() 
+	Steam.run_callbacks()
 	
 func host_server(roomData : Dictionary):
 	gameData = roomData
@@ -106,8 +106,6 @@ func player_left(_id):
 	for x in Steam.getNumLobbyMembers(lobby_id):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
 		Steam.closeP2PSessionWithUser(member_steam_id)
-	
-	get_tree().quit()
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
