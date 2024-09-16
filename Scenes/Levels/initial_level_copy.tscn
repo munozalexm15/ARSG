@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://onxdhry62ydx"]
+[gd_scene load_steps=32 format=3 uid="uid://onxdhry62ydx"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_scfab"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="2_0lmuq"]
@@ -50,6 +50,11 @@ BodySkin = ExtResource("7_amokd")
 leftHandSkin = ExtResource("8_td14j")
 rightHandSkin = ExtResource("8_td14j")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_umyiw"]
+properties/0/path = NodePath(".:wait_time")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="Sky" id="Sky_hj8k5"]
 sky_material = ExtResource("9_qu8j1")
 
@@ -84,8 +89,13 @@ script = ExtResource("1_scfab")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../MatchTimer")
+replication_config = SubResource("SceneReplicationConfig_umyiw")
+
 [node name="MatchTimer" type="Timer" parent="."]
 process_mode = 3
+wait_time = 10.0
 one_shot = true
 
 [node name="SpawnPoints" type="Node3D" parent="."]
