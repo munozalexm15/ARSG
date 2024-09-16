@@ -76,11 +76,15 @@ func _on_exit_button_mouse_entered():
 func _on_exit_match_button_pressed():
 	if get_tree().paused:
 		get_tree().paused = false
-	var lobbyId = Network.lobby_id 
-	for x in Steam.getNumLobbyMembers(lobbyId):
-		var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
-		var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
-		Network.player_left.rpc(peer_id)
+	
+	if multiplayer.get_unique_id() != 1:
+		Network.player_left(multiplayer.get_unique_id())
+	else:
+		var lobbyId = Network.lobby_id 
+		for x in Steam.getNumLobbyMembers(lobbyId):
+			var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
+			var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
+			Network.player_left.rpc(peer_id)
 	
 	if multiplayer.get_unique_id() == 1:
 		Network.peer.close()
