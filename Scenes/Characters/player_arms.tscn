@@ -235,16 +235,13 @@ handsNode = NodePath("..")
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.566974, 1.03582, 0.100783)
-shadow_enabled = true
-spot_range = 10.0
-spot_angle = 34.1279
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_igvyo")
 }
 speed_scale = 2.0
-blend_times = [&"Run", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"SwapWeapon", &"Run", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2]
+blend_times = [&"Idle", &"Run", 0.2, &"Idle", &"SwapWeapon", 0.2, &"Reload", &"Idle", 0.2, &"Reload", &"Run", 0.2, &"Reload", &"SwapWeapon", 0.2, &"Run", &"Idle", 0.2, &"Run", &"SwapWeapon", 0.2, &"SwapWeapon", &"Idle", 0.2, &"SwapWeapon", &"Reload", 0.2, &"SwapWeapon", &"Run", 0.2]
 
 [node name="ReloadTimer" type="Timer" parent="."]
 

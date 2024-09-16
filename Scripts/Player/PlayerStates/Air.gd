@@ -30,17 +30,17 @@ func physics_update(delta: float) -> void:
 		player.velocity.y -= player.gravity * delta
 		falling_velocity = player.velocity.y
 	if player.is_on_floor() and player.input_direction.x != 0:
-		if falling_velocity < -5:
-			player.animationPlayer.play("hard_landing")
-		elif falling_velocity >= -5:
-			player.animationPlayer.play("soft_landing")
+		#if falling_velocity < -5:
+			#player.animationPlayer.play("hard_landing")
+		#elif falling_velocity >= -5:
+			#player.animationPlayer.play("soft_landing")
 		state_machine.transition_to("Walk")
 	
 	elif player.is_on_floor() and player.input_direction.x == 0:
-		if falling_velocity < -5:
-			player.animationPlayer.play("hard_landing")
-		elif falling_velocity >= -5:
-			player.animationPlayer.play("soft_landing")
+		#if falling_velocity < -5:
+			#player.animationPlayer.play("hard_landing")
+		#elif falling_velocity >= -5:
+			#player.animationPlayer.play("soft_landing")
 		state_machine.transition_to("Idle")
 
 func body_animation_ended(anim_name):

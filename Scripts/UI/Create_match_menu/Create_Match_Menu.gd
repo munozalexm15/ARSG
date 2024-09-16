@@ -3,8 +3,9 @@ extends Control
 @onready var lobbyName : TextEdit = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer/TextEdit
 @onready var mapName : Label = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect/Label
 
-var mapPathsList = [ "res://Scenes/Levels/initial_level.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
-var mapNamesList = ["Flatworld", "Flying Rectangles"]
+var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
+var mapNamesList = ["Hangar", "Flying Rectangles"]
+@export var mapImagesList : Array
 
 var mapListIndex = 0
 
@@ -14,6 +15,8 @@ var selectedMap = ""
 @onready var playerQuantityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton3
 @onready var gamemodeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton
 @onready var privacityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton2
+@onready var mapImage : TextureRect = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect
+
 
 @onready var matchTimeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton5
 @onready var objectiveGoalOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton4
@@ -23,6 +26,7 @@ var selectedMap = ""
 func _ready():
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
+	mapImage.texture = mapImagesList[mapListIndex]
 
 func _on_create_room_button_pressed():
 	var matchTime = matchTimeOption.text.split(" ")[0].to_int() * 60
@@ -56,6 +60,7 @@ func _on_previous_map_button_pressed():
 	
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
+	mapImage.texture = mapImagesList[mapListIndex]
 
 func _on_next_map_button_pressed():
 	mapListIndex += 1
@@ -65,3 +70,4 @@ func _on_next_map_button_pressed():
 	
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
+	mapImage.texture = mapImagesList[mapListIndex]

@@ -168,7 +168,7 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
 radius = 0.256435
-height = 1.86314
+height = 1.6958
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 radius = 0.257403
@@ -332,7 +332,7 @@ libraries = {
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"out_ammo", &"RESET", 0.2, &"hit", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
+blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hit", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
@@ -356,6 +356,16 @@ bus = &"Environment"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ycvks")
+
+[node name="StairsCheckerBehindRaycast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.917513, 0)
+target_position = Vector3(0, -0.3, 0)
+
+[node name="StairsCheckerAheadRaycast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428576, -0.278364)
+visible = false
+target_position = Vector3(0, -0.5, 0)
+hit_from_inside = true
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]
