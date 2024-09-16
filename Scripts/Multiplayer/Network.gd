@@ -22,7 +22,7 @@ func _ready():
 		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 
 func _process(_delta):
-	Steam.run_callbacks()
+	Steam.run_callbacks() 
 	
 func host_server(roomData : Dictionary):
 	gameData = roomData
