@@ -60,7 +60,6 @@ func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
-		print(game.matchTimer.time_left)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 		return
 	
@@ -76,7 +75,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	gameData = hostGameData
 	game.matchGoal = int(Steam.getLobbyData(lobby_id, "goal"))
 	game.matchTime = int(Steam.getLobbyData(lobby_id, "time"))
-	#game.matchTimer.wait_time = time_left
+	game.matchTimer.wait_time = time_left
 	game.matchTimer.start()
 	game.team1GoalProgress = team1Progress
 	game.team2GoalProgress = team2Progress
