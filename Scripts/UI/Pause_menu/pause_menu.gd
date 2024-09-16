@@ -79,13 +79,16 @@ func _on_exit_match_button_pressed():
 	
 	if multiplayer.get_unique_id() != 1:
 		Network.player_left.rpc(multiplayer.get_unique_id())
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	else:
 		var lobbyId = Network.lobby_id 
 		for x in Steam.getNumLobbyMembers(lobbyId):
 			var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
 			var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
+			if peer_id == 1:
+				continue
+			
 			Network.player_left.rpc(peer_id)
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	
-	if multiplayer.get_unique_id() == 1:
 		Network.peer.close()
