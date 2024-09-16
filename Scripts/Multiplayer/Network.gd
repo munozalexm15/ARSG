@@ -106,8 +106,6 @@ func player_left(_id):
 	for x in Steam.getNumLobbyMembers(lobby_id):
 		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
 		Steam.closeP2PSessionWithUser(member_steam_id)
-	
-	game.dashboardMatch.get_lobby_data.rpc()
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
