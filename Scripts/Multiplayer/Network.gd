@@ -76,8 +76,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	var map = Steam.getLobbyData(id, "mapPath")
 	LoadScreenHandler.next_scene = map
 	print("Your unique id is " , multiplayer.get_unique_id())
-	#get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
-	#multiplayer.set_multiplayer_peer(peer)
+	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)

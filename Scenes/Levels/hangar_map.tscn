@@ -47,7 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://bj0ixqndsfxd3" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Billboard01.blend" id="45_8g6p5"]
 [ext_resource type="PackedScene" uid="uid://cqn3px863eak" path="res://GameResources/Meshes/PSXModels/meshes/misc/Candle02.blend" id="46_83dqt"]
 [ext_resource type="PackedScene" uid="uid://s2a7fun2e6t8" path="res://GameResources/Meshes/PSXModels/meshes/construction/Bolt01.blend" id="47_ush8v"]
-[ext_resource type="Texture2D" uid="uid://cey2gewwobn0x" path="res://GameResources/Meshes/PSXModels/textures/meshes/buildings/Pier01_a.png" id="48_pdxqd"]
+[ext_resource type="Texture2D" uid="uid://be85bx2du7jra" path="res://GameResources/Meshes/PSXModels/textures/meshes/buildings/Pier01_a.png" id="48_pdxqd"]
 [ext_resource type="PackedScene" uid="uid://cv7lj0tqgul72" path="res://GameResources/Meshes/PSXModels/meshes/finances/Goldbar01.blend" id="49_u1mcl"]
 [ext_resource type="PackedScene" uid="uid://cdyehjuo8qqob" path="res://GameResources/Meshes/PSXModels/meshes/finances/GoldBar02.blend" id="50_a3p66"]
 [ext_resource type="PackedScene" uid="uid://cd0a0fjdaimp2" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Bucket01.blend" id="51_0fon1"]
@@ -80,7 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://d4b31mny5cx0j" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Fence01Brick_a.png" id="78_mubc8"]
 [ext_resource type="Texture2D" uid="uid://7is4mjapx518" path="res://GameResources/Meshes/PSXModels/textures/concrete/ConcretePlain01_a.png" id="79_grsv0"]
 [ext_resource type="Texture2D" uid="uid://dxm87sxjla6f8" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/FenceWoodPlanks01_a.png" id="80_ko2g5"]
-[ext_resource type="Texture2D" uid="uid://bhn2mq3j6hg0e" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Fence03_a.png" id="81_nec0d"]
+[ext_resource type="Texture2D" uid="uid://bl5gpci76a0e8" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Fence03_a.png" id="81_nec0d"]
 [ext_resource type="Texture2D" uid="uid://celckffeomj6p" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/EFT_a.jpg" id="82_xa1f1"]
 [ext_resource type="Texture2D" uid="uid://wd58bofjtm82" path="res://GameResources/Meshes/PSXModels/textures/meshes/storage/Wheelbarrow01_a.jpg" id="83_5mg0y"]
 [ext_resource type="Texture2D" uid="uid://dfwmvxocp6b0h" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Toilet01_a.png" id="84_iygn1"]
@@ -13807,7 +13807,7 @@ script = ExtResource("122_3kxp3")
 [node name="ModelParent" type="Node3D" parent="Map/Outside/Player_8_ways_skeleton"]
 
 [node name="Armature" type="Node3D" parent="Map/Outside/Player_8_ways_skeleton/ModelParent"]
-transform = Transform3D(-0.107083, 0.602763, -0.790702, -0.987933, 0.0249978, 0.15285, 0.111898, 0.797528, 0.592813, -0.657795, 0.325771, 0.620516)
+transform = Transform3D(-0.107083, 0.602763, -0.790702, -0.987933, 0.0249975, 0.15285, 0.111898, 0.797528, 0.592813, -0.657795, 0.325771, 0.620516)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Map/Outside/Player_8_ways_skeleton/ModelParent/Armature"]
 bones/0/name = "Root"

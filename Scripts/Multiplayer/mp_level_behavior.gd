@@ -5,6 +5,8 @@ const PORT = 9999
 var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var players : Dictionary = {}
 
+signal isMapLoaded
+
 var death_count = 0
 
 @export var PlayerScene = preload("res://Scenes/Characters/Main_character.tscn")
