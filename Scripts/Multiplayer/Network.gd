@@ -20,10 +20,7 @@ func _ready():
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
 	#si se mete un cliente (para sincronizar la sala)
-	#multiplayer.peer_connected.connect(client_connected_to_server)
-	
-	multiplayer.server_disconnected.connect(
-		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
+	multiplayer.peer_connected.connect(client_connected_to_server)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -78,23 +75,25 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	print("Your unique id is " , multiplayer.get_unique_id())
 	#get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	
-@rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
-	print(multiplayer.get_unique_id())
+	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+	var map = Steam.getLobbyData(lobby_id, "mapPath")
+	LoadScreenHandler.next_scene = map
+	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+
+func on_load_map(player_id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
+	load_player_to_map.rpc(player_id)
+	
+	#client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
+
+@rpc("any_peer", "call_local", "reliable")
+func load_player_to_map(player_id):
 	if multiplayer.get_unique_id() == 1:
-		print("A new client has joined with id :" , id)
-		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+		print("A new client has loaded the map with id :" , player_id)
+		player_joined.rpc_id(player_id, player_id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 		return
 	
-	#Notificar al cliente que se acaba de unir
-	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-
-
-func on_load_map():
-	print(Steam.getNumLobbyMembers(lobby_id))
-	client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
-
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var changer_name: String = Steam.getFriendPersonaName(change_id)
