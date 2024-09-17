@@ -17,6 +17,8 @@ func _ready():
 	peer.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
+	
+	LoadScreenHandler.isMapLoaded.connect(client_connected_to_server)
 	#si se mete un cliente
 	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
@@ -78,6 +80,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	print("Your unique id is " , multiplayer.get_unique_id())
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	
+@rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
@@ -93,9 +96,15 @@ func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id:
 	# Get the user who has made the lobby change
 	var changer_name: String = Steam.getFriendPersonaName(change_id)
 	
+	
+	
 	# If a player has joined the lobby
 	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
 		print("%s has joined the lobby." % changer_name)
+		
+		if multiplayer.get_unique_id() != 1:
+			client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
+			
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
 		print("%s has left the lobby." % changer_name)

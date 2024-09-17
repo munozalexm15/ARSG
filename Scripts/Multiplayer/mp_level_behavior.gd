@@ -45,6 +45,7 @@ func _ready():
 		matchTimer.start()
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+	
 
 func _process(_delta):
 	if Input.is_action_pressed("Dashboard"):
