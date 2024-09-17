@@ -43,9 +43,11 @@ func on_lobby_mach_list(lobbies):
 		lobbiesList.add_child(button)
 
 func show_lobby_data(lobby):
+	if joinLobbyMenu.joinRoomButton.is_connected("pressed", Callable(Network, "join_server")):
+		joinLobbyMenu.joinRoomButton.disconnect("pressed", Callable(Network, "join_server"))
+	
 	joinLobbyMenu.lobby = lobby
-	if not joinLobbyMenu.joinRoomButton.is_connected("pressed", Callable(Network, "join_server")):
-		joinLobbyMenu.joinRoomButton.connect("pressed", Callable(Network, "join_server").bind(lobby))
+	joinLobbyMenu.joinRoomButton.connect("pressed", Callable(Network, "join_server").bind(lobby))
 	joinLobbyMenu.mapName.text = Steam.getLobbyData(lobby, "map")
 	joinLobbyMenu.lobbyName.text = Steam.getLobbyData(lobby, "name")
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")

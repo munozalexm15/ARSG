@@ -79,10 +79,6 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
 font_size = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
-bg_color = Color(0.537011, 0.537011, 0.537011, 1)
-anti_aliasing = false
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
 bg_color = Color(0.690196, 0.25098, 0.317647, 1)
 anti_aliasing = false
@@ -90,12 +86,16 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
 bg_color = Color(0.776471, 0.513726, 0.576471, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
-bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
+bg_color = Color(0.537011, 0.537011, 0.537011, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
 bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
@@ -248,10 +248,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.3
-theme_override_styles/normal = SubResource("StyleBoxFlat_bj8c8")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xfcnb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_il6pe")
-theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bj8c8")
 text = "<--"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer"]
@@ -281,10 +281,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.3
-theme_override_styles/normal = SubResource("StyleBoxFlat_dvk4a")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xfcnb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hhhtd")
-theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvk4a")
 text = "-->"
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
@@ -313,8 +313,8 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-item_count = 1
 selected = 0
+item_count = 1
 popup/item_0/text = "FREE FOR ALL"
 popup/item_0/id = 1
 
@@ -326,10 +326,9 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton2" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-item_count = 3
 selected = 0
+item_count = 3
 popup/item_0/text = "PUBLIC"
-popup/item_0/id = 0
 popup/item_1/text = "ONLY FRIENDS"
 popup/item_1/id = 1
 popup/item_2/text = "PRIVATE"
@@ -343,10 +342,9 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton3" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-item_count = 5
 selected = 0
+item_count = 5
 popup/item_0/text = "4"
-popup/item_0/id = 0
 popup/item_1/text = "6"
 popup/item_1/id = 1
 popup/item_2/text = "8"
@@ -364,10 +362,9 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton4" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = "1 KILLS"
-popup/item_0/id = 0
 popup/item_1/text = "10 KILLS"
 popup/item_1/id = 1
 popup/item_2/text = "15 KILLS"
@@ -383,10 +380,9 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton5" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = "1 MINUTE"
-popup/item_0/id = 0
 popup/item_1/text = "2 MINUTES"
 popup/item_1/id = 1
 popup/item_2/text = "5 MINUTES"

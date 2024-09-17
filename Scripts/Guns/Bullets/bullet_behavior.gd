@@ -75,4 +75,3 @@ func _on_area_3d_body_entered(body):
 	#await fade_tween.finished
 	#decal_instance.queue_free()
 	queue_free()
-

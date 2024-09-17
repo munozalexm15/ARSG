@@ -30,4 +30,3 @@ class_name WeaponData extends Resource
 @export var weaponExternalScene : PackedScene
 
 @export var cameraADSPosition: Vector3
-
