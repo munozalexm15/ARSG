@@ -11,12 +11,10 @@ func _ready():
 	OS.set_environment("SteamAppID", str(480))
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
-	
-	LoadScreenHandler.isMapLoaded.connect(on_load_map)
 	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
 	
-	Steam.lobby_joined.connect(_on_lobby_joined)
+	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
 	#si se mete un cliente (para sincronizar la sala)
@@ -80,7 +78,6 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	
 
 func client_connected_to_server(id):
-	print(multiplayer.get_unique_id())
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
@@ -89,12 +86,6 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-
-
-func on_load_map():
-	print(multiplayer.get_peers())
-	print(multiplayer.get_unique_id())
-	#client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
