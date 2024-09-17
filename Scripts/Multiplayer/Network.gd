@@ -15,7 +15,7 @@ func _ready():
 	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
 	peer.lobby_chat_update.connect(_on_lobby_chat_update)
-	peer.lobby_joined.connect(_on_lobby_joined)
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	#si se mete un cliente
 	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
@@ -44,7 +44,6 @@ func on_lobby_created(connection, id):
 		#get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
-	
 	lobby_id = id
 	var map = Steam.getLobbyData(id, "mapPath")
 	#get_tree().change_scene_to_file(map)
@@ -73,7 +72,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	lobby_id = id
 	var map = Steam.getLobbyData(id, "mapPath")
 	LoadScreenHandler.next_scene = map
-	print(multiplayer.get_unique_id())
+	print("your unique id is " , multiplayer.get_unique_id())
 	#get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	#multiplayer.set_multiplayer_peer(peer)
 	
