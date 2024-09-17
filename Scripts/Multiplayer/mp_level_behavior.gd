@@ -5,8 +5,6 @@ const PORT = 9999
 var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
 var players : Dictionary = {}
 
-signal isMapLoaded
-
 var death_count = 0
 
 @export var PlayerScene = preload("res://Scenes/Characters/Main_character.tscn")
@@ -45,6 +43,8 @@ func _ready():
 		matchTimer.start()
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+	else:
+		LoadScreenHandler.isMapLoaded.emit()
 	
 
 func _process(_delta):

@@ -18,7 +18,7 @@ func _ready():
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
-	LoadScreenHandler.isMapLoaded.connect(client_connected_to_server)
+	LoadScreenHandler.isMapLoaded.connect(on_load_map)
 	#si se mete un cliente
 	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
@@ -92,19 +92,16 @@ func client_connected_to_server(id):
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
 
+func on_load_map():
+	client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
+
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var changer_name: String = Steam.getFriendPersonaName(change_id)
 	
-	
-	
 	# If a player has joined the lobby
 	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
 		print("%s has joined the lobby." % changer_name)
-		
-		if multiplayer.get_unique_id() != 1:
-			client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
-			
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
 		print("%s has left the lobby." % changer_name)
