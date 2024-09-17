@@ -12,14 +12,15 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	
+	LoadScreenHandler.isMapLoaded.connect(on_load_map)
 	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
-	#Steam.lobby_joined.connect(_on_lobby_joined)
+	
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
-	LoadScreenHandler.isMapLoaded.connect(on_load_map)
-	#si se mete un cliente
-	multiplayer.peer_connected.connect(client_connected_to_server)
+	#si se mete un cliente (para sincronizar la sala)
+	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
 	multiplayer.server_disconnected.connect(
 		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
@@ -75,9 +76,9 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	var map = Steam.getLobbyData(id, "mapPath")
 	LoadScreenHandler.next_scene = map
 	print("Your unique id is " , multiplayer.get_unique_id())
-	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+	#get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	
-
+@rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
 	print(multiplayer.get_unique_id())
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
@@ -91,9 +92,8 @@ func client_connected_to_server(id):
 
 
 func on_load_map():
-	print(multiplayer.get_peers())
-	print(multiplayer.get_unique_id())
-	#client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
+	print(Steam.getNumLobbyMembers(lobby_id))
+	client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
