@@ -44,14 +44,16 @@ func on_lobby_created(connection, id):
 		#get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
-	print(id)
+	
 	lobby_id = id
 	var map = Steam.getLobbyData(id, "mapPath")
 	#get_tree().change_scene_to_file(map)
 	peer.connect_lobby(id)
+	print("connecting to lobby " +  id)
 	multiplayer.multiplayer_peer = peer
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
+	print("ressponse")
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var fail_reason: String
 		match response:
