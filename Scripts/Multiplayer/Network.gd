@@ -14,20 +14,18 @@ func _ready():
 	
 	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
-	peer.lobby_chat_update.connect(_on_lobby_chat_update)
-	Steam.lobby_joined.connect(_on_lobby_joined)
+	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
 	LoadScreenHandler.isMapLoaded.connect(on_load_map)
 	#si se mete un cliente
-	#multiplayer.peer_connected.connect(client_connected_to_server)
+	multiplayer.peer_connected.connect(client_connected_to_server)
 	
 	multiplayer.server_disconnected.connect(
 		func(): get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn"))
 
 func _process(_delta):
 	Steam.run_callbacks()
-	
 
 # --------------------------------------- STEAM MULTIPLAYER PEER AND STEAM HOST / CLIENT WORKFLOW ----------------
 
@@ -47,15 +45,14 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
-		#get_tree().change_scene_to_file(gameData["mapPath"])
+		get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
-	lobby_id = id
 	var map = Steam.getLobbyData(id, "mapPath")
-	#get_tree().change_scene_to_file(map)
+	get_tree().change_scene_to_file(map)
 	peer.connect_lobby(id)
-	print("connecting to lobby ", id)
 	multiplayer.multiplayer_peer = peer
+	lobby_id = id
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -82,6 +79,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	
 @rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
+	print(multiplayer.get_unique_id())
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
@@ -93,6 +91,8 @@ func client_connected_to_server(id):
 
 
 func on_load_map():
+	print(multiplayer.get_peers())
+	print(multiplayer.get_unique_id())
 	client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
