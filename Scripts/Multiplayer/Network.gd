@@ -16,6 +16,7 @@ func _ready():
 	peer.lobby_created.connect(on_lobby_created)
 	peer.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.lobby_joined.connect(_on_lobby_joined)
+	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	#si se mete un cliente
 	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
@@ -25,6 +26,9 @@ func _ready():
 func _process(_delta):
 	Steam.run_callbacks()
 	
+
+# --------------------------------------- STEAM MULTIPLAYER PEER AND STEAM HOST / CLIENT WORKFLOW ----------------
+
 func host_server(roomData : Dictionary):
 	gameData = roomData
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
@@ -48,11 +52,10 @@ func join_server(id):
 	var map = Steam.getLobbyData(id, "mapPath")
 	#get_tree().change_scene_to_file(map)
 	peer.connect_lobby(id)
-	print("connecting to lobby " +  id)
+	print("connecting to lobby ", id)
 	multiplayer.multiplayer_peer = peer
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
-	print("ressponse")
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var fail_reason: String
 		match response:
@@ -72,7 +75,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	lobby_id = id
 	var map = Steam.getLobbyData(id, "mapPath")
 	LoadScreenHandler.next_scene = map
-	print("your unique id is " , multiplayer.get_unique_id())
+	print("Your unique id is " , multiplayer.get_unique_id())
 	#get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 	#multiplayer.set_multiplayer_peer(peer)
 	
@@ -85,7 +88,31 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+
+
+func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
+	# Get the user who has made the lobby change
+	var changer_name: String = Steam.getFriendPersonaName(change_id)
 	
+	# If a player has joined the lobby
+	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
+		print("%s has joined the lobby." % changer_name)
+	# Else if a player has left the lobby
+	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
+		print("%s has left the lobby." % changer_name)
+	# Else if a player has been kicked
+	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_KICKED:
+		print("%s has been kicked from the lobby." % changer_name)
+	# Else if a player has been banned
+	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_BANNED:
+		print("%s has been banned from the lobby." % changer_name)
+	# Else there was some unknown change
+	else:
+		print("%s did... something." % changer_name)
+		
+
+#--------------------------------------------------- GAME MECHANICS (ADDING PLAYER, ETC.)--------------------------------
+
 @rpc("any_peer", "call_remote")
 func player_joined(id, players_dict, time_left, team1Progress, team2Progress, hostGameData):
 	#if its the host -> ignore
@@ -112,31 +139,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	await game.player_spawner.spawned
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
-
-
-func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
-	# Get the user who has made the lobby change
-	var changer_name: String = Steam.getFriendPersonaName(change_id)
-
-	# If a player has joined the lobby
-	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
-		print("%s has joined the lobby." % changer_name)
-
-	# Else if a player has left the lobby
-	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
-		print("%s has left the lobby." % changer_name)
-
-	# Else if a player has been kicked
-	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_KICKED:
-		print("%s has been kicked from the lobby." % changer_name)
-
-	# Else if a player has been banned
-	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_BANNED:
-		print("%s has been banned from the lobby." % changer_name)
-
-	# Else there was some unknown change
-	else:
-		print("%s did... something." % changer_name)
 
 @rpc("any_peer", "call_local", "reliable")
 func player_left(_id):
