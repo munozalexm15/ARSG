@@ -77,9 +77,12 @@ func _on_exit_match_button_pressed():
 	if get_tree().paused:
 		get_tree().paused = false
 	
+	#CLIENT LEAVING MATCH
 	if multiplayer.get_unique_id() != 1:
 		Network.player_left.rpc(multiplayer.get_unique_id())
+		Network.leave_lobby()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	#HOST CLOSING MATCH
 	else:
 		var lobbyId = Network.lobby_id 
 		for x in Steam.getNumLobbyMembers(lobbyId):

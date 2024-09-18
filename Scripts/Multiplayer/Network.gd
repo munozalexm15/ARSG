@@ -31,6 +31,7 @@ func _process(_delta):
 func host_server(roomData : Dictionary):
 	gameData = roomData
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
+	#Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
 
 func on_lobby_created(connection, id):
@@ -49,6 +50,7 @@ func on_lobby_created(connection, id):
 func join_server(id):
 	var map = Steam.getLobbyData(id, "mapPath")
 	get_tree().change_scene_to_file(map)
+	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
@@ -145,11 +147,6 @@ func player_left(_id):
 	
 	game.players.erase("player" + str(_id))
 	gameData.erase("player" + str(_id))
-	
-	Steam.leaveLobby(lobby_id)
-	for x in Steam.getNumLobbyMembers(lobby_id):
-		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
-		Steam.closeP2PSessionWithUser(member_steam_id)
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
@@ -212,17 +209,16 @@ func show_all_players():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
 
-func endGame():
+func leave_lobby() -> void:
+	if lobby_id == 0:
+		return
+	Steam.leaveLobby(lobby_id)
 	for x in Steam.getNumLobbyMembers(lobby_id):
-		pass
-		#var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
-		#var member_peer_id = peer.get_peer_id_from_steam64(member_steam_id)
-		
-	gameData.clear()
-	for player in game.players_node.get_children():
-		call_deferred("queue_free")
+		var member_steam_id = Steam.getLobbyMemberByIndex(lobby_id, x)
+		if member_steam_id != Steam.getSteamID():
+			Steam.closeP2PSessionWithUser(member_steam_id)
 	
-	call_deferred("load_main_menu")
+	lobby_id = 0
 
 func load_main_menu():
 	if multiplayer.get_unique_id() == 1:
