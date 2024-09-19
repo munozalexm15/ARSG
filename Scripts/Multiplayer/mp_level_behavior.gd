@@ -35,6 +35,7 @@ var matchTimeLeft = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
+	print(multiplayer.multiplayer_peer)
 	print(Network.peer.get_connection_status())
 	print(Network.peer.get_state())
 	if multiplayer.get_unique_id() == 1:

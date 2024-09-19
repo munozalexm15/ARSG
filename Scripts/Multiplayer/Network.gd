@@ -218,7 +218,7 @@ func leave_lobby() -> void:
 			Steam.closeP2PSessionWithUser(member_steam_id)
 	
 	lobby_id = 0
-	peer.disconnect_peer(multiplayer.get_unique_id())
+	peer.disconnect_peer(multiplayer.get_unique_id(), true)
 	peer.close()
 	peer = SteamMultiplayerPeer.new()
 	peer.refuse_new_connections = true
