@@ -91,7 +91,7 @@ func _on_exit_match_button_pressed():
 			if peer_id == 1:
 				continue
 			
-			Network.player_left.rpc(peer_id)
-			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+			Network.exit_and_return_to_main_menu.rpc_id(peer_id)
 	
 		Network.peer.close()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

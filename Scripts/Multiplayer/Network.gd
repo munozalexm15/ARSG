@@ -222,10 +222,10 @@ func leave_lobby() -> void:
 	peer.close()
 	peer = SteamMultiplayerPeer.new()
 
-func load_main_menu():
-	if multiplayer.get_unique_id() == 1:
-		peer.close()
-		
+@rpc("any_peer", "reliable", "call_local")
+func exit_and_return_to_main_menu():
+	Network.player_left.rpc(multiplayer.get_unique_id())
+	Network.leave_lobby()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	
