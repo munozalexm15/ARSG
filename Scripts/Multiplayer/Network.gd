@@ -19,6 +19,8 @@ func _ready():
 	
 	#si se mete un cliente (para sincronizar la sala)
 	multiplayer.peer_connected.connect(client_connected_to_server)
+	
+	tree_exiting.connect(force_exit_handler)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -215,6 +217,8 @@ func show_all_players():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
 
+
+# ------------------------------------------ EXIT LOBBY ---------------------------------------------------
 func leave_lobby() -> void:
 	if lobby_id == 0:
 		return
@@ -236,8 +240,32 @@ func exit_and_return_to_main_menu():
 	Network.leave_lobby()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED 
 	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+
+func close_match():
+	var lobbyId = Network.lobby_id 
+	for x in Steam.getNumLobbyMembers(lobbyId):
+		var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
+		var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
+		
+		if peer_id == 1:
+			continue
+		
+		Network.exit_and_return_to_main_menu.rpc_id(peer_id)
+		Network.peer.disconnect_peer(peer_id, true)
+		
+	Steam.leaveLobby(lobbyId)
+	Network.peer.close()
+	Network.peer = OfflineMultiplayerPeer.new()
+	Network.peer.refuse_new_connections = true
 	
 
-@rpc("reliable", "any_peer", "call_local")
-func kicked():
-	peer.disconnect_peer(multiplayer.get_unique_id())
+
+#----------------------------------------------- FORCING EXIT (TREE QUITING / EXITING) -----------------------------
+
+func force_exit_handler():
+	if peer is SteamMultiplayerPeer and (peer.get_connection_status() == peer.CONNECTION_CONNECTED or peer.get_connection_status() == peer.CONNECTION_CONNECTING):
+		if multiplayer.get_unique_id() == 1:
+			close_match()
+		else:
+			Network.player_left.rpc(multiplayer.get_unique_id())
+			Network.leave_lobby()

@@ -84,20 +84,5 @@ func _on_exit_match_button_pressed():
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	#HOST CLOSING MATCH
 	else:
-		var lobbyId = Network.lobby_id 
-		for x in Steam.getNumLobbyMembers(lobbyId):
-			var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
-			var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
-			
-			if peer_id == 1:
-				continue
-			
-			Network.exit_and_return_to_main_menu.rpc_id(peer_id)
-			Network.peer.disconnect_peer(peer_id, true)
-			
-		
-		Steam.leaveLobby(lobbyId)
-		Network.peer.close()
-		Network.peer = OfflineMultiplayerPeer.new()
-		Network.peer.refuse_new_connections = true
+		Network.close_match()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
