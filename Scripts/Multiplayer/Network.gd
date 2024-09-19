@@ -89,7 +89,7 @@ func client_connected_to_server(id):
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
-func _on_lobby_chat_update(this_lobby_id: int, change_id: int, making_change_id: int, chat_state: int) -> void:
+func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var changer_name: String = Steam.getFriendPersonaName(change_id)
 	
@@ -219,7 +219,7 @@ func leave_lobby() -> void:
 			Steam.closeP2PSessionWithUser(member_steam_id)
 	
 	lobby_id = 0
-	peer.disconnect_peer(multiplayer.get_unique_id())
+	peer.close()
 	peer = SteamMultiplayerPeer.new()
 
 func load_main_menu():
