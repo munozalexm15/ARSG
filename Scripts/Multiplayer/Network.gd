@@ -31,6 +31,7 @@ func host_server(roomData : Dictionary):
 	peer = SteamMultiplayerPeer.new()
 	peer.lobby_created.connect(on_lobby_created)
 	
+	
 	gameData = roomData
 	peer.refuse_new_connections = false
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
