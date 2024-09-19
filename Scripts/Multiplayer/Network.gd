@@ -222,9 +222,9 @@ func leave_lobby() -> void:
 	
 	lobby_id = 0
 	peer.disconnect_peer(multiplayer.get_unique_id())
-	#peer.close()
+	peer.close()
+	peer = SteamMultiplayerPeer.new()
 	peer.refuse_new_connections = true
-	#peer = SteamMultiplayerPeer.new()
 
 @rpc("any_peer", "reliable", "call_local")
 func exit_and_return_to_main_menu():
