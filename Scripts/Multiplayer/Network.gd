@@ -226,7 +226,7 @@ func leave_lobby() -> void:
 	
 	lobby_id = 0
 	peer.disconnect_peer(multiplayer.get_unique_id(), true)
-	peer.close()
+	#peer.close()
 	peer = OfflineMultiplayerPeer.new()
 	peer.refuse_new_connections = true
 
