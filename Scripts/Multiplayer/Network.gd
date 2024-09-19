@@ -53,6 +53,7 @@ func on_lobby_created(connection, id):
 func join_server(id):
 	var map = Steam.getLobbyData(id, "mapPath")
 	peer.refuse_new_connections = false
+	peer = SteamMultiplayerPeer.new()
 	get_tree().change_scene_to_file(map)
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
