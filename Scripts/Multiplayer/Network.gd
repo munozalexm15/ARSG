@@ -30,6 +30,7 @@ func _process(_delta):
 
 func host_server(roomData : Dictionary):
 	gameData = roomData
+	peer.refuse_new_connections = false
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
 	#Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
@@ -49,6 +50,7 @@ func on_lobby_created(connection, id):
 
 func join_server(id):
 	var map = Steam.getLobbyData(id, "mapPath")
+	peer.refuse_new_connections = false
 	get_tree().change_scene_to_file(map)
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
@@ -219,8 +221,10 @@ func leave_lobby() -> void:
 			Steam.closeP2PSessionWithUser(member_steam_id)
 	
 	lobby_id = 0
-	peer.close()
-	peer = SteamMultiplayerPeer.new()
+	peer.disconnect_peer(multiplayer.get_unique_id())
+	#peer.close()
+	peer.refuse_new_connections = true
+	#peer = SteamMultiplayerPeer.new()
 
 @rpc("any_peer", "reliable", "call_local")
 func exit_and_return_to_main_menu():

@@ -55,6 +55,7 @@ var listingLobbies = true
 @export var exitClick_soundEffect : AudioStreamMP3
 
 func _ready():
+	print(Network.peer.get_connection_status())
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05

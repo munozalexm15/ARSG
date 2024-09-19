@@ -92,6 +92,9 @@ func _on_exit_match_button_pressed():
 				continue
 			
 			Network.exit_and_return_to_main_menu.rpc_id(peer_id)
+			Network.peer.disconnect_peer(peer_id)
 	
-		Network.peer.close()
+		#Network.peer.close()
+		
+		Network.peer.refuse_new_connections = true
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
