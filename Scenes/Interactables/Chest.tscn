@@ -145,7 +145,7 @@ _data = {
 collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_hjfkk")
-WeaponList = ["res://Scenes/Guns/Pickups/Remington_870_Pickup.tscn", "res://Scenes/Guns/Pickups/MP5_Pickup.tscn", "res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn", "res://Scenes/Guns/Pickups/Thompson_pickup.tscn", "res://Scenes/Guns/Pickups/M14_Pickup.tscn"]
+WeaponList = ["res://Scenes/Guns/Pickups/MP5_Pickup.tscn"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.281672, 0)

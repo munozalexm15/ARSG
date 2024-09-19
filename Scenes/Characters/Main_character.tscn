@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://brc6aet1f2h2b" path="res://Scenes/Characters/player_arms.tscn" id="8_jvk7e"]
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Climb.gd" id="12_g67w3"]
+[ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
+[ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="16_ub6kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
 bg_color = Color(0.54902, 0.0941176, 0, 1)
@@ -93,6 +95,23 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.1, 0), Vector3(0, -0.04, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_oeq1r"]
+resource_name = "hit"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(0.0349066, 0, 0), Vector3(-0.00116355, 0, -0.0116355)]
+}
+
 [sub_resource type="Animation" id="Animation_si43w"]
 resource_name = "out_ammo"
 length = 0.1
@@ -108,34 +127,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0.00174533, 0, 0.00872665), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("armsHolder/PlayerPOV:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.04, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_oeq1r"]
-resource_name = "reload"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("armsHolder/PlayerPOV:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00116355, 0, -0.0116355), Vector3(-0.00174533, 0, -0.0436332), Vector3(-0.00116355, 0, -0.0116355)]
 }
 
 [sub_resource type="Animation" id="Animation_p7pfv"]
@@ -170,14 +161,14 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_p700l"),
 "hard_landing": SubResource("Animation_i4awl"),
+"hit": SubResource("Animation_oeq1r"),
 "out_ammo": SubResource("Animation_si43w"),
-"reload": SubResource("Animation_oeq1r"),
 "soft_landing": SubResource("Animation_p7pfv")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
 radius = 0.256435
-height = 1.86314
+height = 1.6958
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 radius = 0.257403
@@ -238,7 +229,7 @@ crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
-hudNode = NodePath("UI")
+hudNode = NodePath("HUD")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -250,6 +241,7 @@ offset_right = 100.0
 offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_p17vv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_r8aut")
+value = 100.0
 show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -279,20 +271,21 @@ returnSpeed = 10.0
 [node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
-near = 0.01
+fov = 37.8493
+size = 11.029
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
-collision_mask = 161
+collision_mask = 169
 script = ExtResource("3_lt84g")
-hudNode = NodePath("../../../../UI")
+hudNode = NodePath("../../../../HUD")
 
 [node name="InteractRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0365286, 0)
 target_position = Vector3(0, 0, -2)
 collision_mask = 9
 script = ExtResource("3_1c2ms")
-hudNode = NodePath("../../../../UI")
+hudNode = NodePath("../../../../HUD")
 
 [node name="arms" parent="Head/eyesHolder/armsHolder" instance=ExtResource("8_jvk7e")]
 transform = Transform3D(-3.61999e-07, 0, 0.1, 0, 0.1, 0, -0.1, 0, -3.61999e-07, 0.135596, -0.27398, 0.0546597)
@@ -303,9 +296,6 @@ playerNode = NodePath("../../../..")
 [node name="InteractTimer" type="Timer" parent="Head/eyesHolder/armsHolder"]
 wait_time = 0.2
 one_shot = true
-
-[node name="UI" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("11_l81ke")]
-player_controller = NodePath("..")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_p6bay")
@@ -329,6 +319,11 @@ script = ExtResource("7_nbd32")
 [node name="Climb" type="Node" parent="StateMachine"]
 script = ExtResource("12_g67w3")
 
+[node name="Damage_indicator_lookAt" type="Node3D" parent="."]
+
+[node name="HUD" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("11_l81ke")]
+player_controller = NodePath("..")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Head/eyesHolder")
 libraries = {
@@ -336,9 +331,8 @@ libraries = {
 }
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
-next/reload = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"reload", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hard_landing", &"RESET", 0.2]
+blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hit", &"RESET", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
@@ -351,13 +345,27 @@ shape = SubResource("CapsuleShape3D_rgde6")
 target_position = Vector3(0, 1, 0)
 
 [node name="GroundCheckRaycast" type="RayCast3D" parent="."]
-collision_mask = 64
+collision_mask = 72
+script = ExtResource("16_0qd02")
 
 [node name="ASP_footsteps" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0890639, -0.151006, -0.0560327)
+stream = ExtResource("16_ub6kv")
+max_distance = 2.0
 bus = &"Environment"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ycvks")
+
+[node name="StairsCheckerBehindRaycast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.917513, 0)
+target_position = Vector3(0, -0.3, 0)
+
+[node name="StairsCheckerAheadRaycast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428576, -0.278364)
+visible = false
+target_position = Vector3(0, -0.5, 0)
+hit_from_inside = true
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]

@@ -1,0 +1,406 @@
+[gd_scene load_steps=30 format=3 uid="uid://d2bw4qxehx75c"]
+
+[ext_resource type="Texture2D" uid="uid://dctel52eg6yco" path="res://GameResources/Meshes/Characters/textures/godot_plush_basecolor.png" id="1_5cwy5"]
+[ext_resource type="Script" path="res://Scripts/UI/Create_match_menu/Create_Match_Menu.gd" id="1_e5xdp"]
+[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_k63hv"]
+[ext_resource type="Texture2D" uid="uid://cmwhr8qf6gbix" path="res://Scenes/Levels/Level_Images/hangar_level.PNG" id="3_c4iy2"]
+[ext_resource type="Texture2D" uid="uid://ibjlbsgwgdkd" path="res://GameResources/Meshes/Characters/textures/godot_plush_normal.png" id="4_opulg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upnvi"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeuf6"]
+bg_color = Color(0.6, 0.6, 0.647059, 0)
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+shadow_offset = Vector2(6.23, 8.125)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kg4e"]
+bg_color = Color(0.439216, 0.439216, 0.439216, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxvk2"]
+content_margin_left = 10.0
+bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj7i6"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay64e"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk1bi"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jagra"]
+border_width_left = 10
+border_color = Color(0.329157, 0.329159, 0.329158, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3lp"]
+
+[sub_resource type="Theme" id="Theme_5otoo"]
+Button/fonts/font = ExtResource("1_k63hv")
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_upnvi")
+CheckButton/styles/disabled = null
+Fonts/fonts/normal = null
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_k63hv")
+LineEdit/styles/normal = null
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
+TextEdit/fonts/font = ExtResource("1_k63hv")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_6kg4e")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_sxvk2")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_w52wu"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
+bg_color = Color(0.690196, 0.25098, 0.317647, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
+bg_color = Color(0.537011, 0.537011, 0.537011, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no026"]
+bg_color = Color(0.689924, 0.251688, 0.319423, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.616742, 0.039596, 0.0712458, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crj7m"]
+bg_color = Color(0.707967, 0.707967, 0.707966, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkcre"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyate"]
+bg_color = Color(0.775438, 0.514888, 0.575553, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_r55vl"]
+Button/fonts/font = ExtResource("1_k63hv")
+Button/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
+Button/styles/focus = SubResource("StyleBoxFlat_no026")
+Button/styles/hover = SubResource("StyleBoxFlat_crj7m")
+Button/styles/normal = SubResource("StyleBoxFlat_wkcre")
+Button/styles/pressed = SubResource("StyleBoxFlat_gyate")
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_upnvi")
+CheckButton/styles/disabled = null
+Fonts/fonts/normal = null
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_k63hv")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
+
+[node name="HostingMatchControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = 88.0
+offset_right = -138.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = SubResource("Theme_5otoo")
+script = ExtResource("1_e5xdp")
+mapImagesList = [ExtResource("3_c4iy2"), ExtResource("4_opulg")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.084
+anchor_top = 0.038
+anchor_right = 0.084
+anchor_bottom = 0.038
+offset_left = -0.364006
+offset_top = -0.114
+offset_right = 759.636
+offset_bottom = 461.886
+
+[node name="HostMatchTitle" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "HOST A MATCH"
+label_settings = SubResource("LabelSettings_w52wu")
+
+[node name="Separator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 7
+size_flags_vertical = 4
+
+[node name="RoomNameContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "ROOM NAME"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "ROOM NAME"
+
+[node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "MAP"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="MapSelectorContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PreviousMapButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.3
+theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_il6pe")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bj8c8")
+text = "<--"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_5cwy5")
+expand_mode = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.096
+anchor_right = 0.502
+anchor_bottom = 0.096
+offset_left = -23.464
+offset_top = -11.584
+offset_right = 23.536
+offset_bottom = 11.416
+grow_horizontal = 2
+text = "MAP NAME"
+horizontal_alignment = 1
+
+[node name="NextMapButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.3
+theme_override_styles/focus = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xfcnb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hhhtd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvk4a")
+text = "-->"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 45
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1rc75")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = SubResource("Theme_r55vl")
+
+[node name="InvisibleTile" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+label_settings = SubResource("LabelSettings_w52wu")
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "GAMEMODE"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "FREE FOR ALL"
+popup/item_0/id = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PRIVACITY"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "PUBLIC"
+popup/item_1/text = "ONLY FRIENDS"
+popup/item_1/id = 1
+popup/item_2/text = "PRIVATE"
+popup/item_2/id = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PLAYER CAPACITY"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton3" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 5
+popup/item_0/text = "4"
+popup/item_1/text = "6"
+popup/item_1/id = 1
+popup/item_2/text = "8"
+popup/item_2/id = 2
+popup/item_3/text = "10"
+popup/item_3/id = 3
+popup/item_4/text = "12"
+popup/item_4/id = 4
+
+[node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "OBJECTIVE GOAL"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "1 KILLS"
+popup/item_1/text = "10 KILLS"
+popup/item_1/id = 1
+popup/item_2/text = "15 KILLS"
+popup/item_2/id = 2
+popup/item_3/text = "20 KILLS"
+popup/item_3/id = 3
+
+[node name="Label8" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "TIME"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="OptionButton5" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "1 MINUTE"
+popup/item_1/text = "2 MINUTES"
+popup/item_1/id = 1
+popup/item_2/text = "5 MINUTES"
+popup/item_2/id = 2
+popup/item_3/text = "10 MINUTES"
+popup/item_3/id = 3
+
+[node name="Separator2" type="HSeparator" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CreateRoomButton" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "CREATE ROOM"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/PreviousMapButton" to="." method="_on_previous_map_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/NextMapButton" to="." method="_on_next_map_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer2/CreateRoomButton" to="." method="_on_create_room_button_pressed"]

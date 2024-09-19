@@ -1,39 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://co3rj6o5p11p4"]
+[gd_scene load_steps=9 format=3 uid="uid://co3rj6o5p11p4"]
 
-[ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="1_enhuw"]
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_enhrk"]
 [ext_resource type="Script" path="res://Scripts/UI/Settings_menu/Settings_menu.gd" id="1_lgrhf"]
-[ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_wvgiy"]
-[ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="3_swj0o"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="4_a4uii"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x66wk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0p82"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66vfe"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34gcf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iehka"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2o5gi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nb6q5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1xnjx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t2kpt"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xt6r0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7uun5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqkb1"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_jymd7"]
-line_spacing = 0.0
-font = ExtResource("1_enhuw")
 font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjb5e"]
 
 [sub_resource type="Animation" id="Animation_2ynxc"]
 resource_name = "OpenOptions"
@@ -60,7 +34,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(500, 165), Vector2(526, 165)]
+"values": [Vector2(500, 150), Vector2(526, 150)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(577, 669)]
 }
 
 [sub_resource type="Animation" id="Animation_unn4j"]
@@ -87,7 +73,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(526, 165)]
+"values": [Vector2(227, 103)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(664, 669)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nrxot"]
@@ -97,13 +95,12 @@ _data = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer"]
-offset_left = 526.0
-offset_top = 165.0
-offset_right = 1065.0
-offset_bottom = 6018.0
+offset_left = 227.0
+offset_top = 103.0
+offset_right = 891.0
+offset_bottom = 772.0
+theme = ExtResource("1_enhrk")
 script = ExtResource("1_lgrhf")
-button_hover_SFX = ExtResource("2_wvgiy")
-button_press_SFX = ExtResource("3_swj0o")
 ditheringMaterial = ExtResource("4_a4uii")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -121,12 +118,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("1_enhuw")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_x66wk")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_e0p82")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_66vfe")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_34gcf")
+theme_override_font_sizes/font_size = 24
 text = "VISUAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/OptionsNavigation"]
@@ -141,12 +133,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("1_enhuw")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_iehka")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_2o5gi")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_nb6q5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1xnjx")
+theme_override_font_sizes/font_size = 24
 text = "SOUND"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/OptionsNavigation"]
@@ -161,12 +148,7 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("1_enhuw")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_t2kpt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_xt6r0")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_7uun5")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_fqkb1")
+theme_override_font_sizes/font_size = 24
 text = "CONTROLS"
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -226,6 +208,11 @@ text = "COLOR DEPTH
 "
 label_settings = SubResource("LabelSettings_jymd7")
 
+[node name="VSeparator" type="VSeparator" parent="VisualOptionsContainer/VisualOptions"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_rjb5e")
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="VisualOptionsContainer/VisualOptions"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -236,28 +223,35 @@ size_flags_vertical = 3
 
 [node name="Fullscreen-Checkbox" type="CheckBox" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="Vsync-Checkbox" type="CheckBox" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="HasDithering-Checkbox" type="CheckBox" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
 [node name="ResolutionScale-Slider" type="HSlider" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 min_value = 1.0
 max_value = 5.0
 value = 1.0
 
 [node name="ColorDepth-Slider" type="HSlider" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 min_value = 1.0
 max_value = 8.0
 value = 5.0
 
 [node name="SoundOptionsContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 1.95
@@ -316,6 +310,7 @@ max_value = 1.0
 step = 0.001
 
 [node name="ControlsOptionsContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 4.41
@@ -399,6 +394,7 @@ text = "INTERACT"
 label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="WeaponSounds12" type="Label" parent="ControlsOptionsContainer/VisualOptions/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 text = "MELEE"
@@ -494,6 +490,7 @@ text = "F"
 label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="WeaponSounds12" type="Label" parent="ControlsOptionsContainer/VisualOptions/VBoxContainer2"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 2
 text = "V"

@@ -1175,7 +1175,7 @@ script = ExtResource("1_ov187")
 [node name="ModelParent" type="Node3D" parent="."]
 
 [node name="Armature" type="Node3D" parent="ModelParent"]
-transform = Transform3D(0.575676, 0.0703005, -0.81465, 0.032642, 0.993527, 0.108803, 0.817026, -0.0892273, 0.569655, -0.1143, -0.102457, 0.145581)
+transform = Transform3D(0.575676, 0.0703006, -0.81465, 0.0326421, 0.993527, 0.108804, 0.817026, -0.0892275, 0.569655, -0.1143, -0.102457, 0.145581)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="ModelParent/Armature"]
 bones/0/name = "Root"
@@ -1338,7 +1338,7 @@ mesh = SubResource("ArrayMesh_ur62i")
 skin = SubResource("Skin_q306x")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="ModelParent"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 3
 gravity_scale = 3.595
 

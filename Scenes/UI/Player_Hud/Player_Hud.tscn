@@ -1,13 +1,54 @@
-[gd_scene load_steps=40 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=47 format=3 uid="uid://dx22dqq2sepg8"]
 
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_a84a5"]
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://dh2g35wnansra" path="res://GameResources/Textures/GunsIcons/USP_Icon.png" id="2_37f7l"]
-[ext_resource type="Texture2D" uid="uid://ynjtu3tdlsal" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
-[ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="3_fvmmw"]
+[ext_resource type="Texture2D" uid="uid://cfdgxy422e8r8" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
 [ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader" id="7_m5vmm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyhua"]
+bg_color = Color(0.995287, 0.000985044, 0.093398, 1)
+
+[sub_resource type="Animation" id="Animation_t0uba"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtScreenIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ca002"]
+resource_name = "low_hp"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtScreenIndicator:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.117647), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxoc4"]
+_data = {
+"RESET": SubResource("Animation_t0uba"),
+"low_hp": SubResource("Animation_ca002")
+}
 
 [sub_resource type="Animation" id="Animation_44682"]
 resource_name = "Aim"
@@ -263,25 +304,21 @@ _data = {
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fd5yr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c7qgx"]
-font = ExtResource("3_fvmmw")
 font_size = 30
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ruw7"]
-font = ExtResource("3_fvmmw")
 font_size = 25
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wbprd"]
-font = ExtResource("3_fvmmw")
 font_size = 20
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_glh50"]
-font = ExtResource("3_fvmmw")
 font_size = 25
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
@@ -316,7 +353,6 @@ shader = ExtResource("7_m5vmm")
 shader_parameter/percentage = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mp7e6"]
-font_size = 32
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 2
@@ -394,6 +430,16 @@ _data = {
 "RESET": SubResource("Animation_01alm")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otfsy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajhln"]
+bg_color = Color(0, 0.230642, 0.512831, 1)
+skew = Vector2(1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63t0w"]
+bg_color = Color(0.443137, 0.113725, 0, 1)
+skew = Vector2(1, 0)
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -402,8 +448,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_a84a5")
 script = ExtResource("1_tmuf1")
 reticle_lines = [NodePath("CenterContainer/Top"), NodePath("CenterContainer/Right"), NodePath("CenterContainer/Down"), NodePath("CenterContainer/Left")]
+
+[node name="HurtScreenContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HurtScreenIndicator" type="PanelContainer" parent="HurtScreenContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iyhua")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HurtScreenContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_wxoc4")
+}
 
 [node name="PrecisionSightContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -428,7 +494,7 @@ texture = ExtResource("6_0y6oq")
 libraries = {
 "": SubResource("AnimationLibrary_a2ros")
 }
-blend_times = [&"swap_gun_backwards", &"swap_gun", 0.1, &"swap_gun", &"swap_gun_backwards", 0.1]
+blend_times = [&"swap_gun", &"swap_gun_backwards", 0.1, &"swap_gun_backwards", &"swap_gun", 0.1]
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -514,6 +580,7 @@ uppercase = true
 layout_mode = 2
 texture = ExtResource("2_rrjfu")
 expand_mode = 5
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer2/HBoxContainer"]
 layout_mode = 2
@@ -620,17 +687,18 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="FPSCOUNTER" type="Label" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06
 anchor_top = 0.086
 anchor_right = 0.161
 anchor_bottom = 0.173
-offset_left = -0.120003
-offset_top = 0.271999
-offset_right = -0.472015
-offset_bottom = -0.104004
+offset_left = -38.12
+offset_top = -51.728
+offset_right = -0.472
+offset_bottom = -71.104
+text = "
+"
 label_settings = SubResource("LabelSettings_mp7e6")
 
 [node name="PanelContainer2" type="PanelContainer" parent="."]
@@ -743,3 +811,41 @@ autowrap_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_4hn1e")
 }
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.744
+anchor_right = 0.277
+anchor_bottom = 0.86
+offset_left = 0.135998
+offset_top = -0.112
+offset_right = -0.104004
+offset_bottom = -0.280029
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_otfsy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3"]
+layout_mode = 2
+
+[node name="MatchTimer" type="Timer" parent="PanelContainer3/VBoxContainer"]
+one_shot = true
+
+[node name="MatchTimeIndicator" type="Label" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2
+text = "0:00"
+horizontal_alignment = 2
+
+[node name="TEAM1-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_ajhln")
+step = 1.0
+show_percentage = false
+
+[node name="TEAM2-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_63t0w")
+show_percentage = false

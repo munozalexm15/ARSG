@@ -99,11 +99,12 @@ transform = Transform3D(0.0095264, -3.50938e-13, 1.534e-20, 0, -4.37114e-10, -0.
 mesh = SubResource("ArrayMesh_kf31v")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Prop_GunTable3"]
+[node name="Mesa" type="StaticBody3D" parent="Prop_GunTable3"]
 collision_layer = 15
 collision_mask = 15
+input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Prop_GunTable3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Prop_GunTable3/Mesa"]
 shape = SubResource("ConcavePolygonShape3D_exn30")
 
 [node name="Prop_GunTable_EndCap3" type="MeshInstance3D" parent="."]

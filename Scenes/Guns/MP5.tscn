@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=47 format=3 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -10,7 +10,6 @@
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_3ahf2"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="10_7icfy"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_cj2rk"]
 [ext_resource type="AudioStream" uid="uid://bohwu0eynruj5" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel.mp3" id="12_r6xwg"]
 [ext_resource type="AudioStream" uid="uid://bip2mwmeqwj1a" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel_full.mp3" id="13_86q7m"]
@@ -36,12 +35,20 @@ albedo_texture = SubResource("GradientTexture1D_oulwv")
 _data = [Vector2(0, 0.10814), 0.0, 0.0, 0, 0, Vector2(0.517752, 0.22907), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uq8hy"]
+angle_min = -28.8
+angle_max = 14.4
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafp2"]
 transparency = 1
 albedo_texture = ExtResource("7_r6skm")
 emission_enabled = true
 emission = Color(0.901961, 0.482353, 0, 1)
 emission_energy_multiplier = 16.0
+emission_texture = ExtResource("7_r6skm")
 backlight = Color(0.482353, 0.223529, 0, 1)
 billboard_mode = 3
 particles_anim_h_frames = 1
@@ -53,19 +60,14 @@ proximity_fade_distance = 28.45
 material = SubResource("StandardMaterial3D_qafp2")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cuxv"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_phe3m")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36j7u"]
 resource_name = "Material.034"
 cull_mode = 2
-roughness = 0.5
+albedo_texture = ExtResource("1_phe3m")
+anisotropy = 1.0
+backlight = Color(1, 0.821542, 0.957404, 1)
+refraction_scale = 1.0
+texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0dm8p"]
 _surfaces = [{
@@ -100,15 +102,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0dm8p")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_48q1s"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_phe3m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyk3w"]
 resource_name = "Material.035"
@@ -189,15 +182,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_isbts")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_grif8"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_phe3m")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
 resource_name = "Material.039"
 cull_mode = 2
@@ -236,15 +220,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_igqvi")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2nfb"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_phe3m")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p70te"]
 resource_name = "Material.036"
@@ -286,14 +261,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v3pjr")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_goru4"]
-render_priority = 0
-shader = ExtResource("10_7icfy")
-shader_parameter/affine_mapping = false
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8rk56"]
 resource_name = "Player_Arms_Cube_002"
@@ -1994,22 +1961,18 @@ script = ExtResource("9_3ahf2")
 lifetime = 0.4
 width_profile = SubResource("Curve_32b2x")
 
-[node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
 emitting = false
 amount = 1
 lifetime = 0.05
 one_shot = true
 randomness = 1.0
+fixed_fps = 0
 local_coords = true
 draw_order = 1
-mesh = SubResource("QuadMesh_7wysp")
-emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-angle_min = -28.8
-angle_max = 14.4
+process_material = SubResource("ParticleProcessMaterial_uq8hy")
+draw_pass_1 = SubResource("QuadMesh_7wysp")
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
 visible = false
@@ -2040,29 +2003,23 @@ initial_velocity_max = 20.0
 
 [node name="MP5BodyFull" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.00001, 0, 0, 0, -3.61999e-06, -1, 0, 0.999999, -3.61999e-06, 0, -6.86563, 0)
-material_override = SubResource("ShaderMaterial_6cuxv")
 mesh = SubResource("ArrayMesh_qnlie")
-skeleton = NodePath("")
 
 [node name="MP5Bolt" type="MeshInstance3D" parent="MP5BodyFull"]
 transform = Transform3D(-0.999694, -0.00083052, -0.0245643, -0.000780956, -0.997852, 0.0655201, -0.0245658, 0.0655196, 0.997549, 3.24961, 0.55027, 0.0822692)
-material_override = SubResource("ShaderMaterial_48q1s")
 mesh = SubResource("ArrayMesh_m8yiq")
 skeleton = NodePath("")
 
 [node name="MP5Magazene" type="MeshInstance3D" parent="MP5BodyFull"]
-material_override = SubResource("ShaderMaterial_48q1s")
 mesh = SubResource("ArrayMesh_oypem")
 skeleton = NodePath("")
 
 [node name="Trigger_002" type="MeshInstance3D" parent="MP5BodyFull"]
 transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_grif8")
 mesh = SubResource("ArrayMesh_u7xm0")
 skeleton = NodePath("")
 
 [node name="MP5FullStock" type="MeshInstance3D" parent="MP5BodyFull"]
-material_override = SubResource("ShaderMaterial_o2nfb")
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
 
@@ -2383,12 +2340,10 @@ bones/43/rotation = Quaternion(-0.167817, 0.0292973, 0.0152039, 0.985265)
 bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-material_override = SubResource("ShaderMaterial_goru4")
 mesh = SubResource("ArrayMesh_8rk56")
 skin = SubResource("Skin_vnh3t")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
-material_override = SubResource("ShaderMaterial_goru4")
 mesh = SubResource("ArrayMesh_fi8e8")
 skin = SubResource("Skin_vnh3t")
 

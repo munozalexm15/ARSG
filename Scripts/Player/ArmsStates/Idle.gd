@@ -5,7 +5,7 @@ signal swapWeapon
 func enter(_msg := {}):
 	if not is_multiplayer_authority():
 		return
-		
+	
 	arms.ads_position = arms.actualWeapon.weaponData.cameraADSPosition
 	arms.actualWeapon.being_used = true
 	if _msg.has("replace_weapon") and _msg.has("isSwappingValue"):
@@ -22,7 +22,8 @@ func enter(_msg := {}):
 		if (state_machine.old_state.name == "Reload" or state_machine.old_state.name == "SwappingWeapon") and Input.is_action_pressed("Sprint"):
 			arms.animationPlayer.play("Run")
 		else:
-			arms.animationPlayer.play("Idle")
+			if arms.player.state_machine.state.name != "Walk":
+				arms.animationPlayer.play("Idle")
 		
 		await get_tree().create_timer(0.05).timeout
 		arms.actualWeapon.show()
@@ -87,6 +88,9 @@ func replace_weapon(pickupWeapon, isSwapping):
 
 
 func mouse_swap_weapon_logic():
+	if arms.weaponHolder.get_child_count() < 2:
+		return
+		
 	if Input.is_action_just_pressed("Next Weapon"):
 		arms.actual_weapon_index = (arms.actual_weapon_index + 1) % arms.weaponHolder.get_child_count()
 		
@@ -104,6 +108,9 @@ func mouse_swap_weapon_logic():
 	
 	
 func swap_weapon():
+	if arms.weaponHolder.get_child_count() < 2:
+		return
+		
 	if Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0:
 		arms.actual_weapon_index = 0
 		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)

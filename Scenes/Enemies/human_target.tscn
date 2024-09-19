@@ -193,7 +193,6 @@ libraries = {
 
 [node name="Prop_Target_Pole2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, -3.61999e-08, -0.01, 0, 0.01, -3.61999e-08, 0, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_hg1as")
 skeleton = NodePath("")
 
@@ -219,7 +218,6 @@ shape = SubResource("BoxShape3D_p4esa")
 
 [node name="Prop_Target_SpringBox" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
-visible = false
 mesh = SubResource("ArrayMesh_5ewq0")
 skeleton = NodePath("")
 

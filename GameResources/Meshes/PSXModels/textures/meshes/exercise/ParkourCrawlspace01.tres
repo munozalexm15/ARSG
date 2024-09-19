@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d248p1yx38j4o"]
+
+[ext_resource type="Texture2D" uid="uid://bep1wkrlwyshg" path="res://textures/meshes/exercise/ParkourWire01_a.png" id="1_76qbw"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_76qbw")
+texture_filter = 0

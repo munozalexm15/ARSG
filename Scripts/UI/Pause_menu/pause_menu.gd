@@ -12,21 +12,16 @@ var isMultiplayer : bool = false
 @export var button_press_SFX : AudioStreamOggVorbis
 
 @onready var pauseMenu : VBoxContainer = $HBoxContainer2/MarginContainer/PauseMenu
-@onready var optionsNavigation : HBoxContainer = $VBoxContainer/MarginContainer/OptionsNavigation
 
-@onready var optionsMainContainer : SettingsMenu = $VBoxContainer
+@onready var optionsMainContainer : SettingsMenu = $OptionsControl
 
 @onready var ditheringMaterial : ShaderMaterial = GlobalData.ditheringShader
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	isMultiplayer = false
 	visible = false
 
 func _input(_event):
-	if isMultiplayer:
-		hide()
-
 	if Input.is_action_just_pressed("Pause"):
 		hide_menu()
 	
@@ -76,3 +71,18 @@ func _on_exit_button_pressed():
 
 func _on_exit_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")
+
+
+func _on_exit_match_button_pressed():
+	if get_tree().paused:
+		get_tree().paused = false
+	
+	#CLIENT LEAVING MATCH
+	if multiplayer.get_unique_id() != 1:
+		Network.player_left.rpc(multiplayer.get_unique_id())
+		Network.leave_lobby()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	#HOST CLOSING MATCH
+	else:
+		Network.close_match()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

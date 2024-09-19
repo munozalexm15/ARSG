@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cb0dqbh2gpiph"]
+
+[ext_resource type="Texture2D" uid="uid://cowaq2q83s6sg" path="res://textures/meshes/electronics/CraneGame01_a.png" id="1_slk4w"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_slk4w")
+texture_filter = 0

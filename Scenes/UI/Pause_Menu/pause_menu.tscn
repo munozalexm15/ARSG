@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://jkwqpcqg8ct"]
 
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_ij5cj"]
 [ext_resource type="Script" path="res://Scripts/UI/Pause_menu/pause_menu.gd" id="1_or8mf"]
 [ext_resource type="AudioStream" uid="uid://bhok1sp1gj6t" path="res://GameResources/Sounds/UI/Button_hover.ogg" id="2_cschq"]
-[ext_resource type="FontFile" uid="uid://vi4mnhgse0bg" path="res://GameResources/Fonts/Stenha.otf" id="2_thhm6"]
 [ext_resource type="AudioStream" uid="uid://bif2pttbb315m" path="res://GameResources/Sounds/UI/Button_press.ogg" id="3_vk65q"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/vhs_shader.gdshader" id="4_awo0g"]
 [ext_resource type="PackedScene" uid="uid://co3rj6o5p11p4" path="res://Scenes/UI/Settings_Menu/Settings_menu.tscn" id="7_6jlu2"]
@@ -23,16 +23,15 @@ bg_color = Color(0, 0, 0, 0.823529)
 bg_color = Color(0, 0, 0, 0.745098)
 
 [sub_resource type="LabelSettings" id="LabelSettings_c6rmc"]
-font = ExtResource("2_thhm6")
 font_size = 64
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tomq"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ko5ln"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3fbn7"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tomq"]
 
 [sub_resource type="Animation" id="Animation_ic50v"]
 resource_name = "OpenMenu"
@@ -300,6 +299,42 @@ tracks/21/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0.7, 1)
 }
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:disabled")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:theme_override_colors/font_color")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.45098), Color(1, 1, 1, 0.686275)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:theme_override_colors/font_disabled_color")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0.6, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 0.686275)]
+}
 
 [sub_resource type="Animation" id="Animation_y24ej"]
 resource_name = "OpenOptions"
@@ -307,7 +342,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer:modulate")
+tracks/0/path = NodePath("OptionsControl:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -319,7 +354,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer:position:x")
+tracks/1/path = NodePath("OptionsControl:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -585,7 +620,7 @@ tracks/20/keys = {
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("VBoxContainer:modulate")
+tracks/21/path = NodePath("OptionsControl:modulate")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
@@ -597,7 +632,7 @@ tracks/21/keys = {
 tracks/22/type = "bezier"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("VBoxContainer:position:x")
+tracks/22/path = NodePath("OptionsControl:position:x")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
@@ -615,6 +650,42 @@ tracks/23/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:disabled")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:theme_override_colors/font_color")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.45098)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON:theme_override_colors/font_disabled_color")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_b732t"]
@@ -638,6 +709,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_ij5cj")
 script = ExtResource("1_or8mf")
 button_hover_SFX = ExtResource("2_cschq")
 button_press_SFX = ExtResource("3_vk65q")
@@ -659,8 +731,10 @@ anchor_left = -0.999
 anchor_top = 1.002
 anchor_right = -0.001
 anchor_bottom = 2.54
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 1150.85
+offset_top = -649.296
+offset_right = 1153.15
+offset_bottom = -997.92
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gaxxy")
@@ -672,10 +746,10 @@ anchor_left = 1.016
 anchor_top = -2.125
 anchor_right = 1.503
 anchor_bottom = -0.022
-offset_left = 570.0
-offset_top = -338.0
-offset_right = 1722.0
-offset_bottom = 310.0
+offset_left = -600.432
+offset_top = 1039.0
+offset_right = -9.45593
+offset_bottom = 324.256
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -688,10 +762,10 @@ anchor_left = 0.141
 anchor_top = 1.513
 anchor_right = 1.133
 anchor_bottom = 3.052
-offset_left = 168.0
-offset_top = 1654.0
-offset_right = 1320.0
-offset_bottom = 2302.0
+offset_left = 5.56799
+offset_top = 673.576
+offset_right = 14.7839
+offset_bottom = 324.304
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.0472
@@ -704,10 +778,10 @@ anchor_left = 0.0555556
 anchor_top = 0.140432
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 49.0
-offset_top = 52.0
-offset_right = 92529.0
-offset_bottom = 47397.0
+offset_left = -15.0001
+offset_top = -38.9999
+offset_right = 133809.0
+offset_bottom = 68472.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -728,17 +802,16 @@ layout_mode = 2
 [node name="ContinueBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
-theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 text = "CONTINUE"
 flat = true
 alignment = 0
@@ -746,45 +819,61 @@ alignment = 0
 [node name="SettingsBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
-theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.686275)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 disabled = true
 text = "SETTINGS"
+flat = true
+alignment = 0
+
+[node name="ExitMatchBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
+text = "EXIT MATCH"
 flat = true
 alignment = 0
 
 [node name="ExitBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
-theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.521569, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_fonts/font = ExtResource("2_thhm6")
 theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
-text = "EXIT"
+text = "CLOSE GAME"
 flat = true
 alignment = 0
 
-[node name="VBoxContainer" parent="." instance=ExtResource("7_6jlu2")]
+[node name="OptionsControl" parent="." instance=ExtResource("7_6jlu2")]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-offset_bottom = 834.0
-grow_horizontal = 2
+offset_left = 526.0
+offset_right = 1190.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -796,5 +885,7 @@ libraries = {
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_continue_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON" to="." method="_on_exit_match_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ExitBUTTON" to="." method="_on_exit_button_pressed"]

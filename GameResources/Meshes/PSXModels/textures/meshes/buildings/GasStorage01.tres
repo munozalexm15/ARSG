@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://brsihrafkcc3p"]
+
+[ext_resource type="Texture2D" uid="uid://drp6tfvbc5et0" path="res://textures/meshes/buildings/GasStorage01_a.png" id="1_nuoj5"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_nuoj5")
+texture_filter = 0

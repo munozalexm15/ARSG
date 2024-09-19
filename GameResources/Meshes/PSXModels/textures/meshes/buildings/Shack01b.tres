@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://buofhbe0rdrol"]
+
+[ext_resource type="Texture2D" uid="uid://2deooqboutec" path="res://textures/meshes/buildings/Shack01b_a.png" id="1_l6rpi"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_l6rpi")
+texture_filter = 0

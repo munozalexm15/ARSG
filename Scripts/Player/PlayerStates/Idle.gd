@@ -24,6 +24,7 @@ func physics_update(delta):
 	player.headBobbing_index += player.hb_speeds.get("idle_speed") * delta
 
 func update(_delta: float):
+	
 	if not is_multiplayer_authority():
 		return
 	if int(player.rotation.y) < rotation_value:

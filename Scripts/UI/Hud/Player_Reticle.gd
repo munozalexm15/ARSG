@@ -42,6 +42,14 @@ extends Control
 @onready var NPCNameLabel : Label = $InformationContainer/VBoxContainer/Name
 @onready var NPCRoleLabel : Label = $InformationContainer/VBoxContainer/Role
 
+@onready var HurtScreenContainer : PanelContainer = $HurtScreenContainer
+@onready var HurtScreenAnimationPlayer : AnimationPlayer = $HurtScreenContainer/AnimationPlayer
+
+
+@onready var TimerIndicator = $PanelContainer3/VBoxContainer/MatchTimeIndicator
+@onready var matchTimer = $PanelContainer3/VBoxContainer/MatchTimer
+@onready var Team1ProgressBar = $"PanelContainer3/VBoxContainer/TEAM1-ProgressBar"
+@onready var Team2ProgressBar = $"PanelContainer3/VBoxContainer/TEAM2-ProgressBar"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,7 +63,8 @@ func _ready():
 	NPCRoleLabel.visible = false
 	pointsContainer.visible = false
 	timerContainer.visible = false
-	
+	Team1ProgressBar.max_value = int(Network.game.matchGoal)
+	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -63,7 +72,7 @@ func _process(_delta):
 		return
 		
 	fpsCounter.set_text("FPS %d" % Engine.get_frames_per_second())
-	if Input.is_action_pressed("ADS"):
+	if Input.is_action_pressed("ADS") or player_controller.arms.state_machine.state.name == "Reload":
 		crosshair.queue_redraw()
 		for x in reticle_lines.size():
 			reticle_lines[x].visible = false
@@ -73,7 +82,12 @@ func _process(_delta):
 			reticle_lines[x].visible = true
 		adjust_reticle_size()
 	
-
+	var seconds =  int(Network.game.matchTimer.time_left) % 60
+	var minutes = (int(Network.game.matchTimer.time_left) / 60) % 60
+	TimerIndicator.text = "%02d:%02d" % [minutes, seconds]
+	Team1ProgressBar.value = Network.game.team1GoalProgress
+	Team2ProgressBar.value = Network.game.team2GoalProgress
+	
 func adjust_reticle_size():
 	if not is_multiplayer_authority():
 		return

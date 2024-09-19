@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cxps8xejtxprh"]
+
+[ext_resource type="Texture2D" uid="uid://ckrqjj60ktehl" path="res://textures/meshes/buildings/modular/DecorBeams02_a.png" id="1_p2rso"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+depth_draw_mode = 1
+albedo_texture = ExtResource("1_p2rso")
+texture_filter = 0

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c5crrpwafsxjr"]
+
+[ext_resource type="Texture2D" uid="uid://bpdkalfu2x3da" path="res://textures/meshes/residential/DishWasher01_a.png" id="1_ef56s"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_ef56s")
+texture_filter = 0

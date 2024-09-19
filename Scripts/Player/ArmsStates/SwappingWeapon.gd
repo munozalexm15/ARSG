@@ -153,6 +153,8 @@ func replace_weapon_content(weapon : Node3D):
 		child.queue_free()
 
 func exit():
+	arms.actualWeapon.leftArm.get_active_material(0).albedo_texture = arms.handsAssignedTexture
+	arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = arms.handsAssignedTexture
 	arms.playerSwappingWeapons.emit()
 	if is_multiplayer_authority():
 		arms.actualWeapon.being_used = true

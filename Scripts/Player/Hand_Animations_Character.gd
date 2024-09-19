@@ -40,6 +40,8 @@ var mouse_input : Vector2
 
 var default_weaponHolder_pos = Vector3(Vector3.ZERO)
 
+var handsAssignedTexture : Texture = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
@@ -58,6 +60,8 @@ func _input(event):
 		
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
+		
+	
 	
 func _physics_process(delta):
 	if not is_multiplayer_authority():
@@ -112,6 +116,7 @@ func cam_tilt(input_x, delta):
 func weapon_tilt(input_x, delta):
 	if weaponHolder:
 		weaponHolder.rotation.y = lerp(weaponHolder.rotation.y, -input_x * weapon_rotation_amount * 10, 10 * delta)
+		weaponHolder.position.x = lerp(weaponHolder.position.x, (player.input_direction.y * 3) * weapon_rotation_amount * 10, 5 * delta)
 
 func weapon_sway(delta):
 	mouse_input = lerp(mouse_input,Vector2.ZERO,10*delta)
@@ -164,26 +169,12 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	newWeapon.handsNode = get_path()
 	
 	weaponHolder.add_child(newWeapon)
-
-	#delete pickup weapon -> find in the game the dropped weapon (with an id?) and remove it locally in each client
-	#pickupWeapon.queue_free()
 	
 	#as it is swapping weapons on pickup, set the current weapon to not being used
 	actual_weapon_index = 1
 	loadWeapon(actual_weapon_index)
 	actualWeapon = weaponHolder.get_child(actual_weapon_index)
 	
-	#Give ammo to the other weapon reserve - RANDOMIZED, else: body.weaponData.bulletsInMag
-	#var randomMagAmmo = randf_range(0, pickupWeapon.weaponData.magSize)
-	#var randomReserveAmmo = randf_range(pickupWeapon.weaponData.reserveAmmo / 3, pickupWeapon.weaponData.reserveAmmo)
-	#
-	#if (not pickupWeapon.isAlreadyGrabbed and not isSwapping):
-		#actualWeapon.weaponData.bulletsInMag = randomMagAmmo
-		#actualWeapon.weaponData.reserveAmmo = randomReserveAmmo
-	#elif pickupWeapon.isAlreadyGrabbed:
-		#actualWeapon.weaponData.bulletsInMag = pickupWeapon.weaponData.bulletsInMag
-		#actualWeapon.weaponData.reserveAmmo = pickupWeapon.weaponData.reserveAmmo
-	#
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
 	#if both weapons have the same caliber, add more ammo to both reserve
@@ -191,7 +182,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 		weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
 		weaponHolder.get_child(0).weaponData.reserveAmmo = weaponHolder.get_child(1).weaponData.reserveAmmo
 	
-	#Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), weaponHolder)
 	state_machine.transition_to("SwappingWeapon")
 
 

@@ -1,0 +1,240 @@
+[gd_scene load_steps=22 format=3 uid="uid://b06n5o8r35ub6"]
+
+[ext_resource type="Texture2D" uid="uid://dctel52eg6yco" path="res://GameResources/Meshes/Characters/textures/godot_plush_basecolor.png" id="1_8j0v2"]
+[ext_resource type="Script" path="res://Scripts/UI/Lobby_join_menu/Lobby_join_menu.gd" id="1_jx8hu"]
+[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_yuamt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no026"]
+bg_color = Color(0.689924, 0.251688, 0.319423, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.616742, 0.039596, 0.0712458, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crj7m"]
+bg_color = Color(0.707967, 0.707967, 0.707966, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkcre"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyate"]
+bg_color = Color(0.775438, 0.514888, 0.575553, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upnvi"]
+bg_color = Color(0.370364, 0.370364, 0.370365, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeuf6"]
+bg_color = Color(0.6, 0.6, 0.647059, 0)
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+shadow_offset = Vector2(6.23, 8.125)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj7i6"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay64e"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk1bi"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jagra"]
+border_width_left = 10
+border_color = Color(0.329157, 0.329159, 0.329158, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3lp"]
+
+[sub_resource type="Theme" id="Theme_2f68e"]
+Button/fonts/font = ExtResource("1_yuamt")
+Button/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
+Button/styles/focus = SubResource("StyleBoxFlat_no026")
+Button/styles/hover = SubResource("StyleBoxFlat_crj7m")
+Button/styles/normal = SubResource("StyleBoxFlat_wkcre")
+Button/styles/pressed = SubResource("StyleBoxFlat_gyate")
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_upnvi")
+CheckButton/styles/disabled = null
+Fonts/fonts/normal = null
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_yuamt")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_w52wu"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_hpevn"]
+font_size = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh27g"]
+bg_color = Color(0.125911, 0.125911, 0.125911, 1)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tlye"]
+font_size = 18
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 569.0
+offset_top = 36.0
+offset_right = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_2f68e")
+script = ExtResource("1_jx8hu")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -260.0
+offset_right = 131.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "JOIN A MATCH"
+label_settings = SubResource("LabelSettings_w52wu")
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="MapSelectorContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MapSelectorContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_8j0v2")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MapSelectorContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.502
+anchor_top = 0.096
+anchor_right = 0.502
+anchor_bottom = 0.096
+offset_left = -23.464
+offset_top = -11.584
+offset_right = 23.536
+offset_bottom = 11.416
+grow_horizontal = 2
+text = "MAP NAME"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "GAMEMODE"
+label_settings = SubResource("LabelSettings_hpevn")
+
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "TEAM DEATHMACH"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "PLAYER CAPACITY"
+label_settings = SubResource("LabelSettings_6tlye")
+
+[node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "0"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "JOIN ROOM"

@@ -1,0 +1,423 @@
+[gd_scene load_steps=20 format=3 uid="uid://crngejj5apm2l"]
+
+[ext_resource type="Script" path="res://Scripts/UI/Lobbies_list_menu/LobbyList_script.gd" id="1_50nqw"]
+[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="2_ty5ac"]
+[ext_resource type="PackedScene" uid="uid://b06n5o8r35ub6" path="res://Scenes/UI/Lobby_join_Menu/Lobby_join_menu.tscn" id="3_65ar1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no026"]
+bg_color = Color(0.689924, 0.251688, 0.319423, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.616742, 0.039596, 0.0712458, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crj7m"]
+bg_color = Color(0.707967, 0.707967, 0.707966, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkcre"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyate"]
+bg_color = Color(0.775438, 0.514888, 0.575553, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.32544, 0.325441, 0.325441, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upnvi"]
+bg_color = Color(0.205117, 0.205117, 0.205117, 1)
+skew = Vector2(1, 0)
+border_width_left = 10
+border_width_right = 10
+border_color = Color(0.147671, 0.147672, 0.147672, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj7i6"]
+bg_color = Color(0.666569, 0.666569, 0.666569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ay64e"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk1bi"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jagra"]
+border_width_left = 10
+border_color = Color(0.329157, 0.329159, 0.329158, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3lp"]
+
+[sub_resource type="Theme" id="Theme_yxhqg"]
+Button/fonts/font = ExtResource("2_ty5ac")
+Button/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
+Button/styles/focus = SubResource("StyleBoxFlat_no026")
+Button/styles/hover = SubResource("StyleBoxFlat_crj7m")
+Button/styles/normal = SubResource("StyleBoxFlat_wkcre")
+Button/styles/pressed = SubResource("StyleBoxFlat_gyate")
+CheckBox/styles/disabled = SubResource("StyleBoxFlat_upnvi")
+CheckButton/styles/disabled = null
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
+
+[sub_resource type="Animation" id="Animation_6i53t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LobbyDetailsControl:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(577, 505)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(316, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LobbyDetailsControl:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(345, 505)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LobbyDetailsControl:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(547, 17)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PanelContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LobbyDetailsControl:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_51m46"]
+resource_name = "open_list"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LobbyDetailsControl:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(577, 505)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PanelContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(316, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t28ed"]
+resource_name = "show_lobby_details"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LobbyDetailsControl:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LobbyDetailsControl:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(345, 505)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LobbyDetailsControl:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(589.635, 17), Vector2(547, 17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PanelContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PanelContainer:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(577, 505), Vector2(789, 505)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PanelContainer:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(316, 11), Vector2(104, 11)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("LobbyDetailsControl:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_apgjg"]
+_data = {
+"RESET": SubResource("Animation_6i53t"),
+"open_list": SubResource("Animation_51m46"),
+"show_lobby_details": SubResource("Animation_t28ed")
+}
+
+[node name="LobbiesControl" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchor_left = 0.067
+anchor_top = 0.14
+anchor_right = 0.689
+anchor_bottom = 0.931
+offset_left = -0.184006
+offset_top = 0.279999
+offset_right = 281.272
+offset_bottom = 10.712
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_50nqw")
+lobbyJoinMenuNode = NodePath("LobbyDetailsControl")
+
+[node name="PanelContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = -250.5
+offset_right = 394.0
+offset_bottom = 254.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yxhqg")
+horizontal_scroll_mode = 0
+
+[node name="LobbiesList" type="GridContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_yxhqg")
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="Button" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="Button2" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="Button3" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="Button4" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="Button5" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="Button6" type="Button" parent="PanelContainer/LobbiesList"]
+layout_mode = 2
+text = "aadwdwdwadw"
+
+[node name="LobbyDetailsControl" parent="." instance=ExtResource("3_65ar1")]
+layout_mode = 1
+offset_left = 547.0
+offset_top = 17.0
+offset_right = -106.0
+offset_bottom = -1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_apgjg")
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
