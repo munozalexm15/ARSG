@@ -46,6 +46,9 @@ func on_lobby_created(connection, id):
 		get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
+	print(multiplayer.multiplayer_peer)
+	print(Network.peer.get_connection_status())
+	print(Network.peer.get_state())
 	var map = Steam.getLobbyData(id, "mapPath")
 	peer.refuse_new_connections = false
 	get_tree().change_scene_to_file(map)
