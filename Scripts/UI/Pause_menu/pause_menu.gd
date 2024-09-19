@@ -98,6 +98,6 @@ func _on_exit_match_button_pressed():
 		
 		Steam.leaveLobby(lobbyId)
 		Network.peer.close()
-		Network.peer = SteamMultiplayerPeer.new()
+		Network.peer = OfflineMultiplayerPeer.new()
 		Network.peer.refuse_new_connections = true
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

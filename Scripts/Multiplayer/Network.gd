@@ -1,7 +1,7 @@
 extends Node
 
 var lobby_id = 0
-var peer : SteamMultiplayerPeer = null
+var peer : MultiplayerPeer = null
 var game : MP_Map = null
 
 var gameData : Dictionary = {}
@@ -26,6 +26,11 @@ func _process(_delta):
 # --------------------------------------- STEAM MULTIPLAYER PEER AND STEAM HOST / CLIENT WORKFLOW ----------------
 
 func host_server(roomData : Dictionary):
+	print(multiplayer.multiplayer_peer)
+	print(Network.peer.get_connection_status())
+	peer = SteamMultiplayerPeer.new()
+	peer.lobby_created.connect(on_lobby_created)
+	
 	gameData = roomData
 	peer.refuse_new_connections = false
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
@@ -46,9 +51,6 @@ func on_lobby_created(connection, id):
 		get_tree().change_scene_to_file(gameData["mapPath"])
 
 func join_server(id):
-	print(multiplayer.multiplayer_peer)
-	print(Network.peer.get_connection_status())
-	print(Network.peer.get_state())
 	var map = Steam.getLobbyData(id, "mapPath")
 	peer.refuse_new_connections = false
 	get_tree().change_scene_to_file(map)
@@ -223,7 +225,7 @@ func leave_lobby() -> void:
 	lobby_id = 0
 	peer.disconnect_peer(multiplayer.get_unique_id(), true)
 	peer.close()
-	peer = SteamMultiplayerPeer.new()
+	peer = OfflineMultiplayerPeer.new()
 	peer.refuse_new_connections = true
 
 @rpc("any_peer", "reliable", "call_local")
