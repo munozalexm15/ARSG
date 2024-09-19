@@ -88,11 +88,13 @@ func _on_exit_match_button_pressed():
 		for x in Steam.getNumLobbyMembers(lobbyId):
 			var member_steam_id = Steam.getLobbyMemberByIndex(lobbyId, x)
 			var peer_id= Network.peer.get_peer_id_from_steam64(member_steam_id)
+			
 			if peer_id == 1:
 				continue
 			
 			Network.exit_and_return_to_main_menu.rpc_id(peer_id)
 			Network.peer.disconnect_peer(peer_id)
+			
 		
 		Steam.leaveLobby(lobbyId)
 		Network.peer.close()

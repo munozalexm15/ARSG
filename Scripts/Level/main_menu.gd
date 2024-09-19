@@ -56,6 +56,7 @@ var listingLobbies = true
 
 func _ready():
 	print(Network.peer.get_connection_status())
+	print(Network.peer.get_state())
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05
