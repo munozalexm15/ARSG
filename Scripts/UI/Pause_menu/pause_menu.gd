@@ -93,7 +93,8 @@ func _on_exit_match_button_pressed():
 			
 			Network.exit_and_return_to_main_menu.rpc_id(peer_id)
 			Network.peer.disconnect_peer(peer_id)
-	
+		
+		Steam.leaveLobby(lobbyId)
 		Network.peer.close()
 		Network.peer = SteamMultiplayerPeer.new()
 		Network.peer.refuse_new_connections = true
