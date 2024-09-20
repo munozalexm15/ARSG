@@ -11,6 +11,7 @@ func _ready():
 	OS.set_environment("SteamAppID", str(480))
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
+	Steam.initAuthentication()
 	#si se crea un lobby
 	peer.lobby_created.connect(on_lobby_created)
 	
@@ -22,7 +23,9 @@ func _ready():
 	
 	tree_exiting.connect(force_exit_handler)
 	
+	
 	Steam.p2p_session_connect_fail.connect(client_connection_failed_handler)
+	print(Steam.getCertificateRequest())
 
 func _process(_delta):
 	Steam.run_callbacks()
