@@ -25,7 +25,6 @@ func _ready():
 	
 	
 	Steam.p2p_session_connect_fail.connect(client_connection_failed_handler)
-	print(Steam.getCertificateRequest())
 
 func _process(_delta):
 	Steam.run_callbacks()
