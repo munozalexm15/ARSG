@@ -109,14 +109,15 @@ theme_override_constants/margin_bottom = 20
 
 [node name="OptionsNavigation" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme = ExtResource("1_enhrk")
 
 [node name="VisualsButton" type="Button" parent="MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 24
 text = "VISUAL"
@@ -128,10 +129,10 @@ theme_override_constants/margin_right = 15
 [node name="SoundButton" type="Button" parent="MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 24
 text = "SOUND"
@@ -143,10 +144,10 @@ theme_override_constants/margin_right = 15
 [node name="ControlsButton" type="Button" parent="MarginContainer/OptionsNavigation"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.784314)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
 theme_override_font_sizes/font_size = 24
 text = "CONTROLS"

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=17 format=3 uid="uid://c6qxefe5j4hst"]
 
-[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_o2b43"]
+[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_8kx6u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)
@@ -90,7 +90,7 @@ anti_aliasing = false
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xh3lp"]
 
 [resource]
-Button/fonts/font = ExtResource("1_o2b43")
+Button/fonts/font = ExtResource("1_8kx6u")
 Button/styles/disabled = SubResource("StyleBoxFlat_7ef2k")
 Button/styles/focus = SubResource("StyleBoxFlat_no026")
 Button/styles/hover = SubResource("StyleBoxFlat_crj7m")
@@ -107,9 +107,9 @@ Fonts/fonts/normal = null
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_6ii5b")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bkp28")
 Label/font_sizes/font_size = 20
-Label/fonts/font = ExtResource("1_o2b43")
+Label/fonts/font = ExtResource("1_8kx6u")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
-ProgressBar/fonts/font = ExtResource("1_o2b43")
+ProgressBar/fonts/font = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_bum1m")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_023tk")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")

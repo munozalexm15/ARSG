@@ -21,6 +21,8 @@ func _ready():
 	multiplayer.peer_connected.connect(client_connected_to_server)
 	
 	tree_exiting.connect(force_exit_handler)
+	
+	Steam.p2p_session_connect_fail.connect(client_connection_failed_handler)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -269,3 +271,34 @@ func force_exit_handler():
 		else:
 			Network.player_left.rpc(multiplayer.get_unique_id())
 			Network.leave_lobby()
+
+
+#--------------------------------------------- CONNECTION ERROR HANDLING -------------------------------------------------
+func client_connection_failed_handler(steam_id: int, session_error: int) -> void:
+	# If no error was given
+	if session_error == 0:
+		print("WARNING: Session failure with %s: no error given" % steam_id)
+
+	# Else if target user was not running the same game
+	elif session_error == 1:
+		print("WARNING: Session failure with %s: target user not running the same game" % steam_id)
+
+	# Else if local user doesn't own app / game
+	elif session_error == 2:
+		print("WARNING: Session failure with %s: local user doesn't own app / game" % steam_id)
+
+	# Else if target user isn't connected to Steam
+	elif session_error == 3:
+		print("WARNING: Session failure with %s: target user isn't connected to Steam" % steam_id)
+
+	# Else if connection timed out
+	elif session_error == 4:
+		print("WARNING: Session failure with %s: connection timed out" % steam_id)
+
+	# Else if unused
+	elif session_error == 5:
+		print("WARNING: Session failure with %s: unused" % steam_id)
+
+	# Else no known error
+	else:
+		print("WARNING: Session failure with %s: unknown error %s" % [steam_id, session_error])
