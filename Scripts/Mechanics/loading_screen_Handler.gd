@@ -16,4 +16,6 @@ func _process(_delta):
 	if progress[0] == 1:
 		var packed_scene = ResourceLoader.load_threaded_get(LoadScreenHandler.next_scene)
 		loadingShader.set_shader_parameter("percentage", 0)
+		if Network.lobby_id != 0:
+			Network.join_server(Network.lobby_id)
 		get_tree().change_scene_to_packed(packed_scene)

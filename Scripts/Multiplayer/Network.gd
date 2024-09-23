@@ -57,15 +57,12 @@ func on_lobby_created(connection, id):
 		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func join_server(id):
-	var map = Steam.getLobbyData(id, "mapPath")
 	peer.refuse_new_connections = false
 	peer = SteamMultiplayerPeer.new()
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	
-	
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -85,7 +82,6 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 		print("Failed to join this chat room: %s" % fail_reason)
 	
 	lobby_id = id
-	
 	print("Your unique id is " , multiplayer.get_unique_id())
 	
 	
@@ -93,15 +89,13 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
-		#print("A new client has joined with id :" , id)
-		#player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+		print("A new client has joined with id :" , id)
+		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	var map = Steam.getLobbyData(id, "mapPath")
-	LoadScreenHandler.next_scene = map
-	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+	
 
 func on_client_map_loaded(client_id : int):
 	generate_client_data.rpc_id(1, client_id)

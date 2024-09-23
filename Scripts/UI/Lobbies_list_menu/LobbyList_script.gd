@@ -43,11 +43,11 @@ func on_lobby_mach_list(lobbies):
 		lobbiesList.add_child(button)
 
 func show_lobby_data(lobby):
-	if joinLobbyMenu.joinRoomButton.is_connected("pressed", Callable(Network, "join_server")):
-		joinLobbyMenu.joinRoomButton.disconnect("pressed", Callable(Network, "join_server"))
+	if joinLobbyMenu.joinRoomButton.is_connected("pressed", Callable(self, "load_map_and_get_lobby")):
+		joinLobbyMenu.joinRoomButton.disconnect("pressed", Callable(self, "load_map_and_get_lobby"))
 	
 	joinLobbyMenu.lobby = lobby
-	joinLobbyMenu.joinRoomButton.connect("pressed", Callable(Network, "join_server").bind(lobby))
+	joinLobbyMenu.joinRoomButton.connect("pressed", Callable(self, "load_map_and_get_lobby").bind(lobby))
 	joinLobbyMenu.mapName.text = Steam.getLobbyData(lobby, "map")
 	joinLobbyMenu.lobbyName.text = Steam.getLobbyData(lobby, "name")
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")
@@ -65,3 +65,8 @@ func _on_visibility_changed():
 		open_lobby_list()
 	else:
 		visible = false
+
+func load_map_and_get_lobby(lobby):
+	Network.lobby_id = lobby
+	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
+	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
