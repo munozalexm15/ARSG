@@ -43,7 +43,6 @@ func _ready():
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 	else:
-		pass
 		LoadScreenHandler.isMapLoaded.emit(multiplayer.get_unique_id())
 	
 

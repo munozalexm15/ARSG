@@ -92,10 +92,10 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
-	#if multiplayer.get_unique_id() == 1:
+	if multiplayer.get_unique_id() == 1:
 		#print("A new client has joined with id :" , id)
 		#player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
-		#return
+		return
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
@@ -104,7 +104,12 @@ func client_connected_to_server(id):
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func on_client_map_loaded(client_id : int):
-	player_joined.rpc_id(1, client_id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+	generate_client_data.rpc_id(1)
+
+@rpc("any_peer", "call_local", "reliable")
+func generate_client_data(client_id):
+	player_joined.rpc_id(client_id, client_id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+
 
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
