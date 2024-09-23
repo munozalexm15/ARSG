@@ -40,7 +40,7 @@ func _process(_delta):
 			collision.health_display.visible = true
 			lastEnemy = collision
 			hud.ally_indicator(Color.DARK_RED)
-		elif lastEnemy and collision != Player and collision.visible == false:
+		elif (lastEnemy and collision != Player and collision.visible == false) or collision == null:
 			lastEnemy.health_display.visible = false
 			#lastEnemy.tween_healthBar_visibility()
 			hud.ally_indicator(Color.WHITE)
