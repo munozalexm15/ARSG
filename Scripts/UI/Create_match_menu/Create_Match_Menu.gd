@@ -49,7 +49,6 @@ func _on_create_room_button_pressed():
 	
 	Network.host_server(roomDict)
 	GlobalData.isOnlineMatch = true
-	LoadScreenHandler.next_scene = selectedMap
 
 
 func _on_previous_map_button_pressed():

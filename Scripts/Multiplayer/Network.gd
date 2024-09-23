@@ -36,7 +36,6 @@ func host_server(roomData : Dictionary):
 	peer = SteamMultiplayerPeer.new()
 	peer.lobby_created.connect(on_lobby_created)
 	
-	
 	gameData = roomData
 	peer.refuse_new_connections = false
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
@@ -65,6 +64,7 @@ func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+	
 	
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
@@ -99,15 +99,16 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	var map = Steam.getLobbyData(lobby_id, "mapPath")
+	var map = Steam.getLobbyData(id, "mapPath")
 	LoadScreenHandler.next_scene = map
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func on_client_map_loaded(client_id : int):
-	generate_client_data.rpc_id(1)
+	generate_client_data.rpc_id(1, client_id)
 
-@rpc("any_peer", "call_local", "reliable")
-func generate_client_data(client_id):
+@rpc("any_peer", "call_remote")
+func generate_client_data(client_id : int):
+	print("enviando datos de host (1) a cliente (" , client_id, ")")
 	player_joined.rpc_id(client_id, client_id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 
 
@@ -140,6 +141,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	if id == 1:
 		return
 	
+	print("hola ", id)
 	gameData = hostGameData
 	game.matchGoal = int(Steam.getLobbyData(lobby_id, "goal"))
 	game.matchTime = int(Steam.getLobbyData(lobby_id, "time"))
