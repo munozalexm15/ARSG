@@ -32,8 +32,6 @@ func _process(_delta):
 # --------------------------------------- STEAM MULTIPLAYER PEER AND STEAM HOST / CLIENT WORKFLOW ----------------
 
 func host_server(roomData : Dictionary):
-	print(multiplayer.multiplayer_peer)
-	print(Network.peer.get_connection_status())
 	peer = SteamMultiplayerPeer.new()
 	peer.lobby_created.connect(on_lobby_created)
 	
@@ -55,17 +53,19 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
 		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
-		get_tree().change_scene_to_file(gameData["mapPath"])
+		LoadScreenHandler.next_scene = gameData["mapPath"]
+		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func join_server(id):
 	var map = Steam.getLobbyData(id, "mapPath")
 	peer.refuse_new_connections = false
 	peer = SteamMultiplayerPeer.new()
-	get_tree().change_scene_to_file(map)
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+	LoadScreenHandler.next_scene = map
+	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
@@ -85,10 +85,9 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 		print("Failed to join this chat room: %s" % fail_reason)
 	
 	lobby_id = id
-	var map = Steam.getLobbyData(id, "mapPath")
-	LoadScreenHandler.next_scene = map
+	
 	print("Your unique id is " , multiplayer.get_unique_id())
-	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+	
 	
 
 func client_connected_to_server(id):
@@ -100,6 +99,8 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+	var map = Steam.getLobbyData(lobby_id, "mapPath")
+	
 
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
