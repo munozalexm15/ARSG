@@ -35,9 +35,6 @@ var matchTimeLeft = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
-	print(multiplayer.multiplayer_peer)
-	print(Network.peer.get_connection_status())
-	print(Network.peer.get_state())
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
@@ -47,7 +44,7 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 	else:
 		pass
-		#LoadScreenHandler.isMapLoaded.emit(multiplayer.get_unique_id())
+		LoadScreenHandler.isMapLoaded.emit(multiplayer.get_unique_id())
 	
 
 func _process(_delta):
