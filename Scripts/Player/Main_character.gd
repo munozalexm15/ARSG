@@ -95,14 +95,6 @@ var can_respawn = false
 var time_to_respawn = 3.0
 var team = ""
 
-
-##SLOPES FIXES
-@onready var stairBelowRaycast : RayCast3D = $StairsCheckerBehindRaycast3D
-@onready var stairAheadRaycast : RayCast3D = $StairsCheckerAheadRaycast3D
-const MAX_STEP_HEIGHT = 0.5
-var _snapped_to_stairs_last_frame := false
-var _last_frame_was_on_floor = -INF
-
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
@@ -170,9 +162,6 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
-	if is_on_floor(): 
-		_last_frame_was_on_floor = Engine.get_physics_frames()
-	
 	if is_on_floor() and input_direction != Vector2.ZERO:
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
@@ -202,7 +191,6 @@ func _physics_process(delta):
 #leaning ---------------------- WIP
 	#leaning(delta)
 	move_and_slide()
-	_snap_down_to_stairs_check()
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -217,55 +205,6 @@ func _physics_process(delta):
 func _on_state_machine_transitioned(state_name, _old_state):
 	state = state_name
 	#print("Last state: " , old_state , "   ---   New state: " , state_name)
-
-func is_surface_too_steep(normal : Vector3) -> bool:
-	return normal.angle_to(Vector3.UP) > self.floor_max_angle
-	
-func _run_body_test_motion(from : Transform3D, motion : Vector3, result = null ) -> bool:
-	if not result : result = PhysicsTestMotionResult3D.new() 
-	var params = PhysicsTestMotionParameters3D.new()
-	params.from = from
-	params.motion = motion
-	return PhysicsServer3D.body_test_motion(self.get_rid(), params, result)
-
-func _snap_down_to_stairs_check() -> void:
-	#si detectamos que el jugador estaba en el suelo justo antes y ahora no (esta bajando unas escaleras), consultaremos las fisicas para ver si
-	# el jugador puede moverse a una posicion en la que no colisione (translate_y)
-	var did_snap := false
-	var floor_below : bool = stairBelowRaycast.is_colliding() and not is_surface_too_steep(stairBelowRaycast.get_collision_normal())
-	var was_on_floor_last_frame = Engine.get_physics_frames() - _last_frame_was_on_floor == 1
-	if not is_on_floor() and velocity.y <= 0 and (was_on_floor_last_frame or _snapped_to_stairs_last_frame) and floor_below:
-		var body_test_result = PhysicsTestMotionResult3D.new()
-		if _run_body_test_motion(self.global_transform, Vector3(0, -MAX_STEP_HEIGHT, 0), body_test_result):
-			#si hay unas escaleras debajo
-			var translate_y = body_test_result.get_travel().y
-			self.position.y += translate_y
-			apply_floor_snap()
-			did_snap = true
-	_snapped_to_stairs_last_frame = did_snap
-
-func _snap_up_stairs_check(delta) -> bool:
-	if not is_on_floor() and not _snapped_to_stairs_last_frame: return false
-	# Don't snap stairs if trying to jump, also no need to check for stairs ahead if not moving
-	if self.velocity.y > 0 or (self.velocity * Vector3(1,0,1)).length() == 0: return false
-	var expected_move_motion = self.velocity * Vector3(1,0,1) * delta
-	var step_pos_with_clearance = self.global_transform.translated(expected_move_motion + Vector3(0, MAX_STEP_HEIGHT * 2, 0))
-	
-	var down_check_result = KinematicCollision3D.new()
-	if (self.test_move(step_pos_with_clearance, Vector3(0,-MAX_STEP_HEIGHT*2,0), down_check_result)
-	and (down_check_result.get_collider().is_class("StaticBody3D") or down_check_result.get_collider().is_class("CSGShape3D"))):
-		var step_height = ((step_pos_with_clearance.origin + down_check_result.get_travel()) - self.global_position).y
-		print(step_height)
-		if step_height > MAX_STEP_HEIGHT or step_height <= 0.001 or (down_check_result.get_position() - self.global_position).y > MAX_STEP_HEIGHT: return false
-		stairAheadRaycast.global_position = down_check_result.get_position() + Vector3(0,MAX_STEP_HEIGHT,0) + expected_move_motion.normalized() * 0.1
-		stairAheadRaycast.force_raycast_update()
-		if stairAheadRaycast.is_colliding() and not is_surface_too_steep(stairAheadRaycast.get_collision_normal()):
-			#_save_camera_pos_for_smoothing()
-			self.global_position = step_pos_with_clearance.origin + down_check_result.get_travel()
-			apply_floor_snap()
-			_snapped_to_stairs_last_frame = true
-			return true
-	return false
 
 func _checkCollisionWithWall():
 	var space_state = get_world_3d().direct_space_state

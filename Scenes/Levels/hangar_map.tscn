@@ -1,4 +1,4 @@
-[gd_scene load_steps=718 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=736 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -20,6 +20,7 @@
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="18_aargq"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="19_kolhr"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Ground_Handler.gd" id="20_mikd0"]
+[ext_resource type="AudioStream" uid="uid://c76qngdqvmcqu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-021.ogg" id="21_72ftl"]
 [ext_resource type="Script" path="res://Scripts/Sounds/Ground_Sounds/GroundSound_DataResource.gd" id="21_426mr"]
 [ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="22_12cyq"]
 [ext_resource type="AudioStream" uid="uid://bvhntur0w5msu" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-002.ogg" id="23_t56t2"]
@@ -29,9 +30,14 @@
 [ext_resource type="AudioStream" uid="uid://bvtcdpjvjmhii" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-006.ogg" id="27_nqof2"]
 [ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="28_j7j3x"]
 [ext_resource type="PackedScene" uid="uid://glnoblnle76" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Fence04.blend" id="29_4g0wi"]
+[ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="29_tjhsg"]
+[ext_resource type="AudioStream" uid="uid://dxig5314gh6rb" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-016.ogg" id="30_nekca"]
 [ext_resource type="PackedScene" uid="uid://8d26lronu3i1" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Fence04Gate.blend" id="30_nnpqw"]
+[ext_resource type="AudioStream" uid="uid://bfafipho2grv2" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-017.ogg" id="31_fytg0"]
 [ext_resource type="Texture2D" uid="uid://eb864raoeidt" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_5.png" id="31_mkaba"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="32_85gsc"]
+[ext_resource type="AudioStream" uid="uid://3gvhab7awqqf" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-018.ogg" id="32_ub41n"]
+[ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="33_iljqy"]
 [ext_resource type="Texture2D" uid="uid://wbnj7pcc7dnf" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_8.png" id="33_v808w"]
 [ext_resource type="Texture2D" uid="uid://cxr0t6rkhtfw7" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_frame_1.png" id="34_hp4yb"]
 [ext_resource type="Texture2D" uid="uid://bg3bv8txsgttc" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_1.png" id="35_g81dk"]
@@ -97,15 +103,26 @@
 [ext_resource type="PackedScene" uid="uid://b7jpnm1awebcr" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book04.blend" id="95_f0q77"]
 [ext_resource type="PackedScene" uid="uid://dd8xs42gnp8bu" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book05.blend" id="96_fnu8b"]
 [ext_resource type="Texture2D" uid="uid://dkhhqunhsb1s1" path="res://GameResources/Meshes/PSXModels/textures/meshes/exercise/ParkourPlywood01_a.png" id="97_8y60p"]
+[ext_resource type="AudioStream" uid="uid://dxkyo6tm08bu7" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-001.ogg" id="98_jnblw"]
 [ext_resource type="Texture2D" uid="uid://dgv5iw46a2tm" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/ColumnBrick01_a.png" id="98_lcek1"]
+[ext_resource type="AudioStream" uid="uid://db1d8hactoupa" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-020.ogg" id="98_lxexn"]
 [ext_resource type="Texture2D" uid="uid://fvubcqdjwydd" path="res://GameResources/Textures/ShootingRange/WoodDivider_01.png" id="99_nbbm6"]
+[ext_resource type="AudioStream" uid="uid://cnfivce8dn38i" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-002.ogg" id="99_xpqjx"]
+[ext_resource type="AudioStream" uid="uid://b5aykjvnjss5m" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-003.ogg" id="100_3hov0"]
 [ext_resource type="Texture2D" uid="uid://qx1p4h7uqegy" path="res://GameResources/Textures/ShootingRange/Trims.png" id="100_tx7ha"]
 [ext_resource type="Texture2D" uid="uid://di3lh6pnj8ff8" path="res://GameResources/Textures/ShootingRange/Sandbags.png" id="101_d1t2o"]
+[ext_resource type="AudioStream" uid="uid://ce23db2y5ggru" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-005.ogg" id="101_fawkr"]
+[ext_resource type="AudioStream" uid="uid://cel8vastbuv0t" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-006.ogg" id="102_m42nf"]
 [ext_resource type="Texture2D" uid="uid://c2muse815aem5" path="res://GameResources/Textures/ShootingRange/ConcreteBarriers.png" id="102_p2atx"]
 [ext_resource type="Texture2D" uid="uid://cdrejnfeyg7om" path="res://GameResources/Textures/ShootingRange/Barrel01.png" id="103_6b6tp"]
+[ext_resource type="AudioStream" uid="uid://bsusnarkntya8" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-007.ogg" id="103_07t0f"]
+[ext_resource type="AudioStream" uid="uid://mo5ruthdpsqx" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-008.ogg" id="104_4yw54"]
 [ext_resource type="Texture2D" uid="uid://bg3t6evx5pkn5" path="res://GameResources/Textures/ShootingRange/Posters.png" id="104_huhtv"]
 [ext_resource type="Texture2D" uid="uid://ssr8v72fckql" path="res://GameResources/Textures/ShootingRange/AmmoSheet.png" id="105_apqio"]
+[ext_resource type="AudioStream" uid="uid://bj10div0j13p5" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-009.ogg" id="105_gb0sa"]
+[ext_resource type="AudioStream" uid="uid://ccrkscqgwbp1q" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-010.ogg" id="106_650xn"]
 [ext_resource type="Texture2D" uid="uid://tvbkhxjjaytf" path="res://GameResources/Textures/ShootingRange/Targets.png" id="106_g7aia"]
+[ext_resource type="AudioStream" uid="uid://ber3ckggu122o" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-011.ogg" id="107_idgql"]
 [ext_resource type="Texture2D" uid="uid://ddte4g2vsgw2d" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Red.png" id="107_j448e"]
 [ext_resource type="Texture2D" uid="uid://dore47wv1vxys" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Green.png" id="108_6nb8d"]
 [ext_resource type="Texture2D" uid="uid://dq7ndsljf8sh" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Yellow.png" id="109_8o4rg"]
@@ -197,7 +214,8 @@ texture_filter = 0
 
 [sub_resource type="Resource" id="Resource_778yg"]
 script = ExtResource("21_426mr")
-walk_sound = Array[AudioStreamOggVorbis]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2")])
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
+jump_sound = ExtResource("21_72ftl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
 size = Vector3(8.3268, 4.91049, 0.652865)
@@ -4066,6 +4084,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3joe6")
+
+[sub_resource type="Resource" id="Resource_xuugu"]
+script = ExtResource("21_426mr")
+walk_sound = Array[AudioStreamOggVorbis]([ExtResource("98_jnblw"), ExtResource("99_xpqjx"), ExtResource("100_3hov0"), ExtResource("101_fawkr"), ExtResource("102_m42nf"), ExtResource("103_07t0f"), ExtResource("104_4yw54"), ExtResource("105_gb0sa"), ExtResource("106_650xn"), ExtResource("107_idgql")])
+jump_sound = ExtResource("98_lxexn")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7co58"]
 data = PackedVector3Array(-1, 0.0024, -1.3151, 1, 2, -1.3151, -1, 2, -1.3151, -1, 0.0024, -1.3151, 1, 0.0024, -1.3151, 1, 2, -1.3151, 1, 1.8249, -1.1401, -1, 1.8249, 0.5098, 1, 1.8249, 0.5098, 1, 1.8249, -1.1401, -1, 1.8249, -1.1401, -1, 1.8249, 0.5098, 1, 0.0024, 0.5098, -1, 2, 0.5098, 1, 2, 0.5098, 1, 0.0024, 0.5098, -1, 0.0024, 0.5098, -1, 2, 0.5098, 1, 2, -1.3151, -1, 2, 0.5098, -1, 2, -1.3151, 1, 2, -1.3151, 1, 2, 0.5098, -1, 2, 0.5098, -1, -0.0096, 3.3805, -1, 0.0024, 0.5098, -1, 2, 0.5098, 1, -0.0096, 3.3805, 1, 2, 0.5098, 1, 0.0024, 0.5098, 1, -0.0096, 3.3805, -1, 2, 0.5098, 1, 2, 0.5098, 1, -0.0096, 3.3805, -1, -0.0096, 3.3805, -1, 2, 0.5098, 1, 0.0024, -1.1401, -1, 1.8249, -1.1401, 1, 1.8249, -1.1401, 1, 0.0024, -1.1401, -1, 0.0024, -1.1401, -1, 1.8249, -1.1401, -1, 1.8249, -1.1401, -1, 2, 0.5098, -1, 1.8249, 0.5098, -1, 1.8249, -1.1401, -1, 2, -1.3151, -1, 2, 0.5098, -1, 0.0024, -1.1401, -1, 2, -1.3151, -1, 1.8249, -1.1401, -1, 0.0024, -1.1401, -1, 0.0024, -1.3151, -1, 2, -1.3151, 1, 1.8249, -1.1401, 1, 0.0024, -1.3151, 1, 0.0024, -1.1401, 1, 1.8249, -1.1401, 1, 2, -1.3151, 1, 0.0024, -1.3151, 1, 1.8249, 0.5098, 1, 2, -1.3151, 1, 1.8249, -1.1401, 1, 1.8249, 0.5098, 1, 2, 0.5098, 1, 2, -1.3151)
@@ -12854,6 +12877,10 @@ mesh = SubResource("ArrayMesh_60aiy")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Inside/ParkourRamp021/ParkourRamp01"]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("20_mikd0")
+groundData = SubResource("Resource_xuugu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Inside/ParkourRamp021/ParkourRamp01/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7co58")
@@ -13284,6 +13311,10 @@ mesh = SubResource("ArrayMesh_pxti1")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Inside/shootingrange/Prop_Pallet2"]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("20_mikd0")
+groundData = SubResource("Resource_xuugu")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/Inside/shootingrange/Prop_Pallet2/StaticBody3D"]
 transform = Transform3D(1, -1.49012e-08, 2.22045e-16, -3.72529e-09, 1, 0, -2.22045e-16, 0, 1, 0, 0, 0)
@@ -13317,6 +13348,10 @@ mesh = SubResource("ArrayMesh_pxti1")
 skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/Inside/shootingrange/Prop_Pallet3"]
+collision_layer = 65
+collision_mask = 65
+script = ExtResource("20_mikd0")
+groundData = SubResource("Resource_xuugu")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/Inside/shootingrange/Prop_Pallet3/StaticBody3D"]
 transform = Transform3D(1, 0, 0, -3.72529e-09, 1, 0, 1.16415e-10, 0, 1, 0, 0, 0)

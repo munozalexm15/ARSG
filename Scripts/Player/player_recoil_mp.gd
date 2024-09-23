@@ -23,8 +23,6 @@ var originalHandRot : Vector3
 @export var snappiness : float
 @export var returnSpeed : float
 
-
-
 func _ready():
 	originalHandPos = targetNode.position
 	originalHandRot = rotation

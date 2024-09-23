@@ -38,9 +38,9 @@ func _on_visibility_notifier_screen_exited():
 func spawn_decal(body : Node3D):
 	decal_instance = decal.instantiate()
 	get_tree().root.add_child(decal_instance)
-	decal_instance.global_position = position
-	decal_instance.look_at(decal_instance.transform.origin + body.global_position.normalized(), Vector3.UP)
-	decal_instance.rotate_object_local(Vector3(0,1,0), randf_range(0.0,360.0))
+	if !body.global_position.normalized().is_equal_approx(Vector3.UP) and !body.global_position.normalized().is_equal_approx(Vector3.DOWN):
+		decal_instance.look_at(decal_instance.global_transform.origin + body.global_position.normalized(), Vector3.UP)
+		decal_instance.rotate_object_local(Vector3(1,0,0), 90)
 
 
 func _on_area_3d_body_entered(body):
