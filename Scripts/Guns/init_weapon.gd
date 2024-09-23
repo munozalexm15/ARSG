@@ -271,10 +271,12 @@ func _on_animation_player_animation_finished(anim_name):
 		handsAnimPlayer.play(weaponData.name + "_Bolt")
 		handsAnimPlayer.assigned_animation = weaponData.name + "_Bolt"
 	
-	if anim_name == weaponData.name + "_Bolt" and handsAnimPlayer.assigned_animation == weaponData.name + "_Bolt":
+	if anim_name == weaponData.name + "_Bolt" and handsAnimPlayer.assigned_animation == weaponData.name + "_Bolt" and isBoltReloaded:
+		print("a")
 		handsAnimPlayer.play(weaponData.name + "_Bolt", -1, -1, true)
-		await handsAnimPlayer.animation_finished
-		handsAnimPlayer.play("RESET")
-		handsAnimPlayer.assigned_animation = "RESET"
-		
 		isBoltReloaded = false
+		await handsAnimPlayer.animation_finished
+		#handsAnimPlayer.play("RESET")
+		#handsAnimPlayer.assigned_animation = "RESET"
+		
+		

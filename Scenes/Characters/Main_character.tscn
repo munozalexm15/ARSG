@@ -273,6 +273,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
 fov = 37.8493
 size = 11.029
+near = 0.01
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -332,7 +333,7 @@ libraries = {
 next/hard_landing = &"RESET"
 next/out_ammo = &"RESET"
 next/soft_landing = &"RESET"
-blend_times = [&"out_ammo", &"RESET", 0.2, &"hard_landing", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2, &"hit", &"RESET", 0.2]
+blend_times = [&"hard_landing", &"RESET", 0.2, &"hit", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2]
 
 [node name="Standing_collisionShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_37yn0")
