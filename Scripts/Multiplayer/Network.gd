@@ -7,13 +7,12 @@ var game : MP_Map = null
 var gameData : Dictionary = {}
 
 func _ready():
-	peer = SteamMultiplayerPeer.new()
+	peer = OfflineMultiplayerPeer.new()
 	OS.set_environment("SteamAppID", str(480))
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	Steam.initAuthentication()
 	#si se crea un lobby
-	peer.lobby_created.connect(on_lobby_created)
 	
 	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
@@ -24,8 +23,6 @@ func _ready():
 	tree_exiting.connect(force_exit_handler)
 	
 	Steam.p2p_session_connect_fail.connect(client_connection_failed_handler)
-	
-	LoadScreenHandler.isMapLoaded.connect(on_client_map_loaded)
 
 func _process(_delta):
 	Steam.run_callbacks()
@@ -95,16 +92,6 @@ func client_connected_to_server(id):
 	
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
-	
-
-func on_client_map_loaded(client_id : int):
-	generate_client_data.rpc_id(1, client_id)
-
-@rpc("any_peer", "call_remote")
-func generate_client_data(client_id : int):
-	print("enviando datos de host (1) a cliente (" , client_id, ")")
-	player_joined.rpc_id(client_id, client_id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
-
 
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change

@@ -15,7 +15,14 @@ func _process(_delta):
 	
 	if progress[0] == 1:
 		var packed_scene = ResourceLoader.load_threaded_get(LoadScreenHandler.next_scene)
+		join_or_host_match(packed_scene)
+		
+
+func join_or_host_match(packed_scene : PackedScene):
+	if Network.peer.get_class() == "OfflineMultiplayerPeer":
+		Network.join_server(Network.lobby_id)
+		await multiplayer.peer_connected
 		loadingShader.set_shader_parameter("percentage", 0)
-		if Network.lobby_id != 0 and multiplayer.get_unique_id() != 1:
-			Network.join_server(Network.lobby_id)
+		get_tree().change_scene_to_packed(packed_scene)
+	else:
 		get_tree().change_scene_to_packed(packed_scene)

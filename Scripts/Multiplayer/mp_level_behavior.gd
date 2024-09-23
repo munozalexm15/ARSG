@@ -35,7 +35,6 @@ var matchTimeLeft = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
-	
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
