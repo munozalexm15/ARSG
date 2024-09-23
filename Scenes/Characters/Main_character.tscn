@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=32 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -218,6 +218,43 @@ properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot
 properties/13/spawn = true
 properties/13/replication_mode = 1
 
+[sub_resource type="Animation" id="Animation_lecix"]
+resource_name = "Right_to_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.35, 0.02, 1), Vector3(-0.35, 0.04, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3v13c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.35, 0.02, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2nma"]
+_data = {
+"RESET": SubResource("Animation_3v13c"),
+"Right_to_left": SubResource("Animation_lecix")
+}
+
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 128
 collision_mask = 135
@@ -229,6 +266,7 @@ crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
+thirdPersonCamNode = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam")
 hudNode = NodePath("HUD")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -236,6 +274,7 @@ transparent_bg = true
 size = Vector2i(90, 4)
 
 [node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
+visible = false
 texture_filter = 1
 offset_right = 100.0
 offset_bottom = 27.0
@@ -271,9 +310,11 @@ returnSpeed = 10.0
 [node name="PlayerPOV" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
-fov = 37.8493
 size = 11.029
 near = 0.01
+
+[node name="ThirdPersonCam" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.02, 1)
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
 target_position = Vector3(0, 0, -30)
@@ -358,6 +399,11 @@ bus = &"Environment"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_ycvks")
+
+[node name="ThirdPersonCameraAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k2nma")
+}
 
 [connection signal="button_pressed" from="Head/eyesHolder/armsHolder/InteractRay" to="." method="_on_interact_ray_button_pressed"]
 [connection signal="pickup_ammo" from="Head/eyesHolder/armsHolder/InteractRay" to="Head/eyesHolder/armsHolder/arms" method="_on_interact_ray_pickup_ammo"]

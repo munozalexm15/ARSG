@@ -105,7 +105,7 @@ func set_player_data(peer_id, playerName):
 		player.arms.handsAssignedTexture = skin.rightHandSkin
 		
 		player.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		player.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.BodySkin)
+		player.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
 func replace_weapon_content(weapon : Node3D):
 	for child : Node in weapon.get_children():

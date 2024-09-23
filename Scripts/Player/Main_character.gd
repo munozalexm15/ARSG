@@ -25,6 +25,9 @@ signal step
 @export var cameraNode := NodePath()
 @onready var camera : Camera3D = get_node(cameraNode)
 
+@export var thirdPersonCamNode := NodePath()
+@onready var thirdPersonCam : Camera3D = get_node(thirdPersonCamNode)
+
 @export var hudNode := NodePath()
 @onready var hud : HUD = get_node(hudNode)
 
@@ -95,6 +98,10 @@ var can_respawn = false
 var time_to_respawn = 3.0
 var team = ""
 
+var thirdPersonEnabled : bool = false
+@onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
+var lookingLeft : bool = false
+
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
@@ -129,6 +136,41 @@ func _input(event : InputEvent):
 		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().paused = not get_tree().paused
+
+#-----------------------------------------------Changing between perspective---------------------------------------------
+	if Input.is_action_just_pressed("Perspective") and not Input.is_action_pressed("ADS"):
+		if camera.current:
+			camera.current = false
+			thirdPersonCam.current = true
+			arms.visible = false
+			player_body.visible = true
+			thirdPersonEnabled = true
+		elif thirdPersonCam.current:
+			camera.current = true
+			thirdPersonCam.current = false
+			arms.visible = true
+			player_body.visible = false
+			thirdPersonEnabled = false
+	
+	if Input.is_action_just_pressed("ADS") and camera.current == false:
+		camera.current = true
+		thirdPersonCam.current = false
+		arms.visible = true
+		player_body.visible = false
+		thirdPersonEnabled = true
+	
+	if Input.is_action_just_released("ADS") and thirdPersonEnabled:
+		camera.current = false
+		thirdPersonCam.current = true
+		arms.visible = false
+		player_body.visible = true
+		
+	if Input.is_action_just_pressed("SwitchLook") and not lookingLeft:
+		lookingLeft = true
+		thirdPersonAnimPlayer.play("Right_to_left")
+	elif Input.is_action_just_pressed("SwitchLook") and lookingLeft:
+		lookingLeft = false
+		thirdPersonAnimPlayer.play("Right_to_left", -1, -1, true)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():

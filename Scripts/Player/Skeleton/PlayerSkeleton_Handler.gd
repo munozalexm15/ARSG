@@ -60,8 +60,12 @@ func _ready():
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
 	
-	rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
-	leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
+	if arms.player.state_machine.state.name != "Run":
+		rightArmShoulder.rotation.x = -arms.player.eyes.rotation.x / 2
+		leftArmShoulder.rotation.x = -arms.player.eyes.rotation.x * 2
+	else:
+		rightArmShoulder.rotation.x = lerp(rightArmShoulder.rotation.x, 0.00, _delta * 2)
+		leftArmShoulder.rotation.x = lerp(leftArmShoulder.rotation.x, 0.00, _delta * 2)
 	
 	if Input.is_action_pressed("ADS") and arms.state_machine.state.name != "Reload":
 		leftArmTarget.originalHandPos.x = leftArmADSPosition.x + + abs(arms.player.eyes.rotation.x / 2) * -1
