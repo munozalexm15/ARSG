@@ -360,8 +360,7 @@ func die_respawn(player_id, instigator_id):
 	killer["score"] += 100
 	killer["kills"] += 1
 	dead_guy["deaths"] += 1
-		
-	transition_to_dead.rpc_id(player_id)
+	
 	set_collision_mask_value(3, false)
 	
 	Network.game.death_count += 1
@@ -406,11 +405,12 @@ func die_respawn(player_id, instigator_id):
 	global_position = Network.game.random_spawn()
 	set_collision_mask_value(3, true)
 	
-	transition_to_alive.rpc_id(player_id)
+	
 	visible = true
 	player.health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
+	transition_to_alive.rpc_id(player_id)
 
 @rpc("any_peer", "call_remote", "reliable")
 func transition_to_dead():
