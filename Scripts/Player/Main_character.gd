@@ -359,15 +359,19 @@ func die_respawn(player_id, instigator_id):
 	killer["kills"] += 1
 	dead_guy["deaths"] += 1
 		
-	health = 100
+	
 	set_collision_mask_value(3, false)
-	state_machine.transition_to("Dead")
+	
 	Network.game.death_count += 1
 	
+	#get the dead player to access its weapon
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			player = p
+	
+	player.health = 100
+	player.state_machine.transition_to("Dead")
 	
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
@@ -398,8 +402,8 @@ func die_respawn(player_id, instigator_id):
 	await deathModelScene.animationPlayer.animation_finished
 	
 	global_position = Network.game.random_spawn()
-	state_machine.transition_to("Idle")
+	player.state_machine.transition_to("Idle")
 	set_collision_mask_value(3, true)
-	health = 100
+	player.health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
