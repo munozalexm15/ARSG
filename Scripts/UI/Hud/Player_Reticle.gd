@@ -77,6 +77,8 @@ func _process(_delta):
 		adjust_reticle_size()
 	
 	var seconds =  int(Network.game.matchTimer.time_left) % 60
+
+	@warning_ignore("integer_division")
 	var minutes = (int(Network.game.matchTimer.time_left) / 60) % 60
 	TimerIndicator.text = "%02d:%02d" % [minutes, seconds]
 	Team1ProgressBar.value = Network.game.team1GoalProgress

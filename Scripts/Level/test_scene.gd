@@ -29,8 +29,5 @@ func _input(_event):
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _on_character_challenge():
-	startCountdown = true
-
 func on_timerLeft_end():
 	player.hud.timerContainer.visible = false

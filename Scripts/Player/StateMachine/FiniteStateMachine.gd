@@ -3,6 +3,7 @@
 class_name StateMachine
 extends Node
 
+@warning_ignore("unused_signal")
 signal transitioned(state_name, old_state)
 
 @export var initial_state := NodePath()

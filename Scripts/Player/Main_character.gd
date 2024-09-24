@@ -1,9 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-signal challenge
-signal step
-
 @export var bobbingNode := NodePath()
 @onready var eyes : Node3D = get_node(bobbingNode)
 

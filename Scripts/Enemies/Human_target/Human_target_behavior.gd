@@ -1,6 +1,7 @@
 extends StaticBody3D
 class_name Target
 
+@warning_ignore("unused_signal")
 signal hitmark
 
 @onready var animationPlayer: AnimationPlayer = $"../../../AnimationPlayer"
