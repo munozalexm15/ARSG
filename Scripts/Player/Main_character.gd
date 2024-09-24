@@ -354,6 +354,8 @@ func die_respawn(player_id, instigator_id):
 	if Network.game == null:
 		return
 	
+	print("muerto")
+	
 	#actualizar los diccionarios de todos los jugadores con los stats
 	var dead_guy = Network.game.players["player"+ str(player_id)]
 	var killer = Network.game.players["player"+ str(instigator_id)]
@@ -405,12 +407,13 @@ func die_respawn(player_id, instigator_id):
 	
 	await deathModelScene.animationPlayer.animation_finished
 	
-	global_position = Network.game.random_spawn()
 	set_collision_mask_value(3, true)
-	
+
 	#visible = true
 	#hay que hacer que el que ha muerto sincronice y le diga al resto que sea visible el player, porque si no al resto les saldrá visible antes
 	if player_id == multiplayer.get_unique_id():
+		global_position = Network.game.random_spawn()
+		get_tree().create_timer(1).timeout
 		make_player_visible.rpc(player_id)
 		hud.visible = true
 		hud.animationPlayer.play("swap_gun")
