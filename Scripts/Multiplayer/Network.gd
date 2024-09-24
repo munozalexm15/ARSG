@@ -122,7 +122,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	if id == 1:
 		return
 	
-	print("hola ", id)
 	gameData = hostGameData
 	game.matchGoal = int(Steam.getLobbyData(lobby_id, "goal"))
 	game.matchTime = int(Steam.getLobbyData(lobby_id, "time"))

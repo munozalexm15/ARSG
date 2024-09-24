@@ -8754,7 +8754,7 @@ collision_mask = 79
 shape = SubResource("ConvexPolygonShape3D_7feju")
 
 [node name="wall_46" type="MeshInstance3D" parent="Map/Walls1"]
-transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -28.099, -4.62636, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -28.099, -4.62636, 0)
 mesh = SubResource("ArrayMesh_gha3y")
 skeleton = NodePath("")
 

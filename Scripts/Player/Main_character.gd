@@ -100,7 +100,6 @@ var team = ""
 
 var thirdPersonEnabled : bool = false
 @onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
-var lookingLeft : bool = false
 
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
@@ -138,39 +137,34 @@ func _input(event : InputEvent):
 		get_tree().paused = not get_tree().paused
 
 #-----------------------------------------------Changing between perspective---------------------------------------------
+	if Network.gameData.get("perspective") == "FIRST PERSON ONLY":
+		return
 	if Input.is_action_just_pressed("Perspective") and not Input.is_action_pressed("ADS"):
 		if camera.current:
 			camera.current = false
 			thirdPersonCam.current = true
-			arms.visible = false
+			arms.weaponHolder.visible = false
 			player_body.visible = true
 			thirdPersonEnabled = true
 		elif thirdPersonCam.current:
 			camera.current = true
 			thirdPersonCam.current = false
-			arms.visible = true
+			arms.weaponHolder.visible = true
 			player_body.visible = false
 			thirdPersonEnabled = false
 	
 	if Input.is_action_just_pressed("ADS") and camera.current == false:
 		camera.current = true
 		thirdPersonCam.current = false
-		arms.visible = true
+		arms.weaponHolder.visible = true
 		player_body.visible = false
 		thirdPersonEnabled = true
 	
 	if Input.is_action_just_released("ADS") and thirdPersonEnabled:
 		camera.current = false
 		thirdPersonCam.current = true
-		arms.visible = false
+		arms.weaponHolder.visible = false
 		player_body.visible = true
-		
-	if Input.is_action_just_pressed("SwitchLook") and not lookingLeft:
-		lookingLeft = true
-		thirdPersonAnimPlayer.play("Right_to_left")
-	elif Input.is_action_just_pressed("SwitchLook") and lookingLeft:
-		lookingLeft = false
-		thirdPersonAnimPlayer.play("Right_to_left", -1, -1, true)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority():
@@ -355,6 +349,9 @@ func updateHealth():
 
 @rpc("any_peer", "call_local", "reliable")
 func die_respawn(player_id, instigator_id):
+	if Network.game == null:
+		return
+	
 	#actualizar los diccionarios de todos los jugadores con los stats
 	var dead_guy = Network.game.players["player"+ str(player_id)]
 	var killer = Network.game.players["player"+ str(instigator_id)]
@@ -364,11 +361,8 @@ func die_respawn(player_id, instigator_id):
 		
 	health = 100
 	set_collision_mask_value(3, false)
-	visible= false
+	state_machine.transition_to("Dead")
 	Network.game.death_count += 1
-	
-	if Network.game == null:
-		return
 	
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():
@@ -377,14 +371,21 @@ func die_respawn(player_id, instigator_id):
 	
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
+	#setear skin al cuerpo muerto
+	var playerbodySkin = player_body.playerMesh.get_active_material(0).get_shader_parameter("albedo")
+	var playerheadSkin = player_body.playerMesh.get_active_material(1).get_shader_parameter("albedo")
+	
 	
 	Network.game.add_child(deathModelScene)
+	deathModelScene.playerMesh.get_active_material(0).set_shader_parameter("albedo", playerbodySkin)
+	deathModelScene.playerMesh.get_active_material(1).set_shader_parameter("albedo", playerheadSkin)
 	deathModelScene.parent.rotation_degrees = rotation_degrees
 	deathModelScene.position = position
 	deathModelScene.position.y -= player_body.scale.y * 1.5
 	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
 	
-	deathModelScene.animationPlayer.play("Death_BodyShot")
+	var anims = deathModelScene.animationPlayer.get_animation_list()
+	deathModelScene.animationPlayer.play(anims[randi() % anims.size()])
 	
 	var weaponPickupScene = load(player.arms.actualWeapon.weaponData.weaponPickupScene)
 	var weaponPickupNode : WeaponInteractable = weaponPickupScene.instantiate()
@@ -394,14 +395,11 @@ func die_respawn(player_id, instigator_id):
 	weaponPickupNode.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.bulletsInMag
 	Network.game.interactables_node.add_child(weaponPickupNode)
 	
-	global_position = Network.game.random_spawn()
+	await deathModelScene.animationPlayer.animation_finished
 	
+	global_position = Network.game.random_spawn()
+	state_machine.transition_to("Idle")
 	set_collision_mask_value(3, true)
-	visible = true
+	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
-
-func _on_interact_ray_button_pressed():
-	hud.pointsContainer.visible = true
-	hud.timerContainer.visible = true
-	challenge.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=33 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -27,6 +27,8 @@ anti_aliasing = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ti48e"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_82thd"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
 length = 0.001
@@ -218,28 +220,12 @@ properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot
 properties/13/spawn = true
 properties/13/replication_mode = 1
 
-[sub_resource type="Animation" id="Animation_lecix"]
-resource_name = "Right_to_left"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.35, 0.02, 1), Vector3(-0.35, 0.04, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_3v13c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam:position")
+tracks/0/path = NodePath("Head/eyesHolder/armsHolder/SpringArm3D/ThirdPersonCam:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -247,6 +233,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.35, 0.02, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lecix"]
+resource_name = "Right_to_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/eyesHolder/armsHolder/SpringArm3D/ThirdPersonCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.35, 0.02, 1), Vector3(-0.35, 0.04, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k2nma"]
@@ -266,7 +268,7 @@ crouching_collisionNode = NodePath("Crouching_collisionShape")
 standingRaycastNode = NodePath("StandingRaycast")
 animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
-thirdPersonCamNode = NodePath("Head/eyesHolder/armsHolder/ThirdPersonCam")
+thirdPersonCamNode = NodePath("Head/eyesHolder/armsHolder/SpringArm3D/ThirdPersonCam")
 hudNode = NodePath("HUD")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -313,7 +315,13 @@ cull_mask = 1
 size = 11.029
 near = 0.01
 
-[node name="ThirdPersonCam" type="Camera3D" parent="Head/eyesHolder/armsHolder"]
+[node name="SpringArm3D" type="SpringArm3D" parent="Head/eyesHolder/armsHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.02, -0.38473)
+collision_mask = 65
+shape = SubResource("SeparationRayShape3D_82thd")
+spring_length = 1.5
+
+[node name="ThirdPersonCam" type="Camera3D" parent="Head/eyesHolder/armsHolder/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.02, 1)
 
 [node name="InformationRay" type="RayCast3D" parent="Head/eyesHolder/armsHolder"]
@@ -358,7 +366,7 @@ script = ExtResource("6_an03r")
 [node name="Crouch" type="Node" parent="StateMachine"]
 script = ExtResource("7_nbd32")
 
-[node name="Climb" type="Node" parent="StateMachine"]
+[node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("12_g67w3")
 
 [node name="Damage_indicator_lookAt" type="Node3D" parent="."]

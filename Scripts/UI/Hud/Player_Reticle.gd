@@ -32,12 +32,6 @@ extends Control
 
 @onready var interactContainer :VBoxContainer = $CenterContainer2/HBoxContainer/InteractContainer
 
-@onready var pointsContainer: HBoxContainer = $ObjectiveContainer/VBoxContainer/PointsContainer
-@onready var pointsLabel : Label = $ObjectiveContainer/VBoxContainer/PointsContainer/PointsLabel
-
-@onready var timerContainer : HBoxContainer = $ObjectiveContainer/VBoxContainer/TimerContainer
-@onready var timeLabel : Label = $ObjectiveContainer/VBoxContainer/TimerContainer/TimeLabel
-
 @onready var InfoAnimationPlayer: AnimationPlayer = $InformationContainer/InformationAnimPlayer
 @onready var NPCNameLabel : Label = $InformationContainer/VBoxContainer/Name
 @onready var NPCRoleLabel : Label = $InformationContainer/VBoxContainer/Role
@@ -51,6 +45,8 @@ extends Control
 @onready var Team1ProgressBar = $"PanelContainer3/VBoxContainer/TEAM1-ProgressBar"
 @onready var Team2ProgressBar = $"PanelContainer3/VBoxContainer/TEAM2-ProgressBar"
 
+@onready var killPointsAnimPlayer : AnimationPlayer = $KillPointsHUDContainer/AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not is_multiplayer_authority():
@@ -61,8 +57,6 @@ func _ready():
 	healthBar.value = player_controller.health 
 	NPCNameLabel.visible = false
 	NPCRoleLabel.visible = false
-	pointsContainer.visible = false
-	timerContainer.visible = false
 	Team1ProgressBar.max_value = int(Network.game.matchGoal)
 	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 

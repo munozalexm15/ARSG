@@ -21,6 +21,8 @@ var selectedMap = ""
 @onready var matchTimeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton5
 @onready var objectiveGoalOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton4
 
+@onready var perspectiveSelector : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2/PerspectiveSelector
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,7 +40,8 @@ func _on_create_room_button_pressed():
 	"playerQuantity" : playerQuantityOption.text.to_int(), 
 	"gameMode" : gamemodeOption.text, 
 	"time" : matchTime, 
-	"goal": objectiveGoal}
+	"goal": objectiveGoal,
+	"perspective": perspectiveSelector.text}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC

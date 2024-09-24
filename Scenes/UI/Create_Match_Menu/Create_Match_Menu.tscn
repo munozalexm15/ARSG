@@ -79,27 +79,6 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
 font_size = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
-bg_color = Color(0.690196, 0.25098, 0.317647, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
-bg_color = Color(0.776471, 0.513726, 0.576471, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
-bg_color = Color(0.537011, 0.537011, 0.537011, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
-bg_color = Color(0.776471, 0.513726, 0.576471, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
-bg_color = Color(0.439049, 0.439049, 0.439049, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)
 skew = Vector2(1, 0)
@@ -169,6 +148,27 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
+bg_color = Color(0.690196, 0.25098, 0.317647, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
+bg_color = Color(0.537011, 0.537011, 0.537011, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
+
 [node name="HostingMatchControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -230,6 +230,25 @@ custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "ROOM NAME"
+
+[node name="RoomNameContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_r55vl")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PERSPECTIVE"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="PerspectiveSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "FIRST PERSON ONLY"
+popup/item_1/text = "FIRST PERSON / THIRD PERSON (WIP)"
+popup/item_1/id = 1
 
 [node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
