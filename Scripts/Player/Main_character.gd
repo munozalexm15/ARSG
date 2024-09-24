@@ -353,9 +353,11 @@ func updateHealth():
 func die_respawn(player_id, instigator_id):
 	if Network.game == null:
 		return
-	
+		
+	if not visible:
+		return
+		
 	print("muerto")
-	
 	#actualizar los diccionarios de todos los jugadores con los stats
 	var dead_guy = Network.game.players["player"+ str(player_id)]
 	var killer = Network.game.players["player"+ str(instigator_id)]
@@ -393,9 +395,6 @@ func die_respawn(player_id, instigator_id):
 	deathModelScene.position = position
 	deathModelScene.position.y -= player_body.scale.y * 1.5
 	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
-	
-	var anims = deathModelScene.animationPlayer.get_animation_list()
-	deathModelScene.animationPlayer.play(anims[randi() % anims.size()])
 	
 	var weaponPickupScene = load(player.arms.actualWeapon.weaponData.weaponPickupScene)
 	var weaponPickupNode : WeaponInteractable = weaponPickupScene.instantiate()
