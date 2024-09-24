@@ -1180,7 +1180,7 @@ script = ExtResource("1_ov187")
 [node name="ModelParent" type="Node3D" parent="."]
 
 [node name="Armature" type="Node3D" parent="ModelParent"]
-transform = Transform3D(0.767124, 0.126424, -0.628918, 0.0248314, 0.973801, 0.22604, 0.641019, -0.189017, 0.743886, -0.185027, -0.0306558, 0.297284)
+transform = Transform3D(0.767124, 0.126424, -0.628918, 0.0248315, 0.973801, 0.22604, 0.641019, -0.189017, 0.743886, -0.185027, -0.0306558, 0.297284)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="ModelParent/Armature"]
 bones/0/name = "Root"
