@@ -18,13 +18,14 @@ func update(_delta: float):
 
 func exit():
 	player.hud.visible = true
-	player.arms.visible = true
 	player.arms.process_mode = Node.PROCESS_MODE_INHERIT
-	player.player_body.visible = true
 	
 	if not player.thirdPersonEnabled:
 		player.thirdPersonCam.current = false
 		player.camera.current = true
+		player.arms.visible = true
 	else:
+		player.player_body.visible = false
 		player.thirdPersonCam.current = true
 		player.camera.current = false
+		player.arms.visible = false

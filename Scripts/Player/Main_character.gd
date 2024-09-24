@@ -347,6 +347,8 @@ func updateIndicatorsArray(node):
 func updateHealth():
 	health += 0.05
 
+
+#hacer RPC al jugador que va a morir para transicionarlo a muerto y luego otro rpc para transicionarlo a vivo (la state machine)
 @rpc("any_peer", "call_local", "reliable")
 func die_respawn(player_id, instigator_id):
 	if Network.game == null:
@@ -359,9 +361,8 @@ func die_respawn(player_id, instigator_id):
 	killer["kills"] += 1
 	dead_guy["deaths"] += 1
 		
-	
+	transition_to_dead.rpc_id(player_id)
 	set_collision_mask_value(3, false)
-	
 	Network.game.death_count += 1
 	
 	#get the dead player to access its weapon
@@ -371,7 +372,6 @@ func die_respawn(player_id, instigator_id):
 			player = p
 	
 	player.health = 100
-	player.state_machine.transition_to("Dead")
 	
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
@@ -402,8 +402,18 @@ func die_respawn(player_id, instigator_id):
 	await deathModelScene.animationPlayer.animation_finished
 	
 	global_position = Network.game.random_spawn()
-	player.state_machine.transition_to("Idle")
 	set_collision_mask_value(3, true)
+	
+	transition_to_alive.rpc_id(player_id)
+	
 	player.health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
+
+@rpc("any_peer", "call_local", "reliable")
+func transition_to_dead():
+	state_machine.transition_to("Dead")
+
+@rpc("any_peer", "call_local", "reliable")
+func transition_to_alive():
+	state_machine.transition_to("Idle")
