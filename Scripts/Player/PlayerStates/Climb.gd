@@ -18,6 +18,7 @@ func update(_delta: float):
 
 func exit():
 	player.hud.visible = true
+	player.hud.animationPlayer.play("swap_gun")
 	player.arms.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	if not player.thirdPersonEnabled:

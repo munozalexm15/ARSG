@@ -363,7 +363,7 @@ func die_respawn(player_id, instigator_id):
 		
 	transition_to_dead.rpc_id(player_id)
 	set_collision_mask_value(3, false)
-	visible = false
+	
 	Network.game.death_count += 1
 	
 	#get the dead player to access its weapon
@@ -371,7 +371,7 @@ func die_respawn(player_id, instigator_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			player = p
-	
+	player.visible = false
 	player.health = 100
 	
 	var deathModelScene = death_model.instantiate()
@@ -406,7 +406,7 @@ func die_respawn(player_id, instigator_id):
 	set_collision_mask_value(3, true)
 	
 	transition_to_alive.rpc_id(player_id)
-	visible = true
+	player.visible = true
 	player.health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
