@@ -369,6 +369,7 @@ func die_respawn(player_id, instigator_id):
 		thirdPersonCam.current = true
 		set_process(false)
 		arms.visible = false
+		state_machine.transition_to("Dead")
 		
 	set_collision_mask_value(3, false)
 	Network.game.death_count += 1
@@ -415,6 +416,7 @@ func die_respawn(player_id, instigator_id):
 		set_process(true)
 		camera.current = true
 		arms.visible = true
+		state_machine.transition_to("Idle")
 	
 	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
