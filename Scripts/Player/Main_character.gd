@@ -411,7 +411,6 @@ func die_respawn(player_id, instigator_id):
 	if player_id == multiplayer.get_unique_id():
 		global_position = Network.game.random_spawn()
 		set_process(true)
-		
 		hud.visible = true
 		hud.animationPlayer.play("swap_gun")
 		camera.current = true
