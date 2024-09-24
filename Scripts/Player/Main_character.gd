@@ -169,7 +169,9 @@ func _input(event : InputEvent):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-	
+	if health < 100:
+		print(health)
+		
 	if health < 35:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
 	else:
@@ -361,8 +363,10 @@ func die_respawn(player_id, instigator_id):
 	killer["kills"] += 1
 	dead_guy["deaths"] += 1
 	
+	health = 100
+	visible = false
+	thirdPersonCam.current = true
 	set_collision_mask_value(3, false)
-	
 	Network.game.death_count += 1
 	
 	#get the dead player to access its weapon
@@ -370,19 +374,8 @@ func die_respawn(player_id, instigator_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			player = p
-	
-	if player_id == multiplayer.get_unique_id():
-		hud.visible = false
-		arms.visible = false
-		arms.process_mode = Node.PROCESS_MODE_DISABLED
-		player_body.visible = false
-		
-		thirdPersonCam.current = true
-		camera.current = false
-	
-	visible = false
-	player.health = 100
-	
+
+
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
 	#setear skin al cuerpo muerto
@@ -414,26 +407,11 @@ func die_respawn(player_id, instigator_id):
 	global_position = Network.game.random_spawn()
 	set_collision_mask_value(3, true)
 	
-	
 	visible = true
-	player.health = 100
+	camera.current = true
+	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
-	
-	if player_id == multiplayer.get_unique_id():
-		hud.visible = true
-		hud.animationPlayer.play("swap_gun")
-		arms.process_mode = Node.PROCESS_MODE_INHERIT
-		
-		if not thirdPersonEnabled:
-			thirdPersonCam.current = false
-			camera.current = true
-			arms.visible = true
-		else:
-			player_body.visible = false
-			thirdPersonCam.current = true
-			camera.current = false
-			arms.visible = false
 		
 @rpc("any_peer", "call_remote", "reliable")
 func transition_to_dead():
