@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://vgp6vv5gubtl"]
+[gd_scene load_steps=15 format=4 uid="uid://vgp6vv5gubtl"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player_DeathModel.gd" id="1_ov187"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="2_658h1"]
@@ -1159,9 +1159,6 @@ tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = PackedFloat32Array(0, 1, -3.72529e-09, 7.45058e-09, -1.86265e-09, 1)
 
-[sub_resource type="Animation" id="Animation_262lw"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6puwe"]
 _data = {
 "Death_BackHeadShot": SubResource("Animation_oa3ux"),
@@ -1169,8 +1166,7 @@ _data = {
 "Death_BodyShot2": SubResource("Animation_a6xjw"),
 "Death_Crouch_HeadShot": SubResource("Animation_bkdcu"),
 "Death_FrontalHeadShot": SubResource("Animation_a0le1"),
-"Death_HeavyShot": SubResource("Animation_yj4vr"),
-"RESET": SubResource("Animation_262lw")
+"Death_HeavyShot": SubResource("Animation_yj4vr")
 }
 
 [node name="Player_8_ways_skeleton" type="Node3D"]
