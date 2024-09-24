@@ -94,8 +94,6 @@ var can_heal = false
 var seeing_ally : bool = false
 
 ##MP RESPAWNS, TEAMS, DATA
-var can_respawn = false
-var time_to_respawn = 3.0
 var team = ""
 
 var thirdPersonEnabled : bool = false
@@ -366,6 +364,7 @@ func die_respawn(player_id, instigator_id):
 	health = 100
 	visible = false
 	if player_id == multiplayer.get_unique_id():
+		hud.visible = false
 		thirdPersonCam.current = true
 		arms.visible = false
 		state_machine.process_mode = Node.PROCESS_MODE_DISABLED
@@ -411,6 +410,8 @@ func die_respawn(player_id, instigator_id):
 	
 	visible = true
 	if player_id == multiplayer.get_unique_id():
+		hud.visible = true
+		hud.animationPlayer.play("swap_gun")
 		set_process(true)
 		camera.current = true
 		arms.visible = true

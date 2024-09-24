@@ -69,7 +69,6 @@ func _on_area_3d_body_entered(body):
 		if body.health <= 0 and body.visible == true:
 			instigator.hud.killPointsAnimPlayer.play("killNotification")
 			body.die_respawn.rpc(body.name.to_int(), instigator.name.to_int())
-			await get_tree().create_timer(0.3).timeout
 	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)
