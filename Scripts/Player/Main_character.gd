@@ -367,9 +367,8 @@ func die_respawn(player_id, instigator_id):
 	visible = false
 	if player_id == multiplayer.get_unique_id():
 		thirdPersonCam.current = true
-		set_process(false)
 		arms.visible = false
-		state_machine.transition_to("Dead")
+		state_machine.process_mode = Node.PROCESS_MODE_DISABLED
 		
 	set_collision_mask_value(3, false)
 	Network.game.death_count += 1
@@ -378,7 +377,6 @@ func die_respawn(player_id, instigator_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			player = p
-
 
 	var deathModelScene = death_model.instantiate()
 	deathModelScene.name = "body_count" + str(Network.game.death_count)
@@ -416,7 +414,7 @@ func die_respawn(player_id, instigator_id):
 		set_process(true)
 		camera.current = true
 		arms.visible = true
-		state_machine.transition_to("Idle")
+		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
