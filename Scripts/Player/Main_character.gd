@@ -371,6 +371,15 @@ func die_respawn(player_id, instigator_id):
 		if p.name.to_int() == player_id:
 			player = p
 	
+	if player_id == multiplayer.get_unique_id():
+		hud.visible = false
+		arms.visible = false
+		arms.process_mode = Node.PROCESS_MODE_DISABLED
+		player_body.visible = false
+		
+		thirdPersonCam.current = true
+		camera.current = false
+	
 	visible = false
 	player.health = 100
 	
@@ -410,8 +419,22 @@ func die_respawn(player_id, instigator_id):
 	player.health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
-	transition_to_alive.rpc_id(player_id)
-
+	
+	if player_id == multiplayer.get_unique_id():
+		hud.visible = true
+		hud.animationPlayer.play("swap_gun")
+		arms.process_mode = Node.PROCESS_MODE_INHERIT
+		
+		if not thirdPersonEnabled:
+			thirdPersonCam.current = false
+			camera.current = true
+			arms.visible = true
+		else:
+			player_body.visible = false
+			thirdPersonCam.current = true
+			camera.current = false
+			arms.visible = false
+		
 @rpc("any_peer", "call_remote", "reliable")
 func transition_to_dead():
 	state_machine.transition_to("Dead")
