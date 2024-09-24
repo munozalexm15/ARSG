@@ -367,9 +367,11 @@ func die_respawn(player_id, instigator_id):
 	visible = false
 	if player_id == multiplayer.get_unique_id():
 		thirdPersonCam.current = true
+		set_process(false)
+		arms.visible = false
+		
 	set_collision_mask_value(3, false)
 	Network.game.death_count += 1
-	
 	#get the dead player to access its weapon
 	var player : Player = null
 	for p : Player in Network.game.players_node.get_children():
@@ -410,7 +412,10 @@ func die_respawn(player_id, instigator_id):
 	
 	visible = true
 	if player_id == multiplayer.get_unique_id():
+		set_process(true)
 		camera.current = true
+		arms.visible = true
+	
 	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
