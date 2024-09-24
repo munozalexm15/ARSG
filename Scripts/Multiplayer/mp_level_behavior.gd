@@ -112,6 +112,7 @@ func replace_weapon_content(weapon : Node3D):
 		child.queue_free()
 
 func random_spawn():
+	print("random spawn now")
 	var randomValue = randi_range(0, spawnPoints_node.get_child_count() -1)
 	var spawnPoint = spawnPoints_node.get_child(randomValue)
 	return spawnPoint.position

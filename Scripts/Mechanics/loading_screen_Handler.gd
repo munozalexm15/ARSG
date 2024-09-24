@@ -21,7 +21,6 @@ func _process(_delta):
 func join_or_host_match(packed_scene : PackedScene):
 	if Network.peer.get_class() == "OfflineMultiplayerPeer":
 		Network.join_server(Network.lobby_id)
-		await multiplayer.peer_connected
 		loadingShader.set_shader_parameter("percentage", 0)
 		get_tree().change_scene_to_packed(packed_scene)
 	else:
