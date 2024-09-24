@@ -408,8 +408,10 @@ func die_respawn(player_id, instigator_id):
 	global_position = Network.game.random_spawn()
 	set_collision_mask_value(3, true)
 	
-	visible = true
+	#visible = true
+	#hay que hacer que el que ha muerto sincronice y le diga al resto que sea visible el player, porque si no al resto les saldrá visible antes
 	if player_id == multiplayer.get_unique_id():
+		make_player_visible.rpc(player_id)
 		hud.visible = true
 		hud.animationPlayer.play("swap_gun")
 		set_process(true)
@@ -420,11 +422,9 @@ func die_respawn(player_id, instigator_id):
 	health = 100
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	Network.game.dashboardMatch.get_lobby_data.rpc()
-		
-@rpc("any_peer", "call_remote", "reliable")
-func transition_to_dead():
-	state_machine.transition_to("Dead")
 
-@rpc("any_peer", "call_remote", "reliable")
-func transition_to_alive():
-	state_machine.transition_to("Idle")
+@rpc("any_peer", "call_local", "reliable")
+func make_player_visible(player_id):
+	for p : Player in Network.game.players_node.get_children():
+		if p.name.to_int() == player_id:
+			p.visible = true
