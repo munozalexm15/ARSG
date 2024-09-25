@@ -70,6 +70,7 @@ func _on_area_3d_body_entered(body):
 			instigator.hud.killPointsAnimPlayer.play("killNotification")
 			body.die_respawn.rpc(body.name.to_int(), instigator.name.to_int())
 			await get_tree().process_frame
+			Network.game.dashboardMatch.get_lobby_data.rpc()
 	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)
