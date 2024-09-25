@@ -3,8 +3,7 @@ extends Node3D
 
 const PORT = 9999
 var peer : SteamMultiplayerPeer = SteamMultiplayerPeer.new()
-var players : Dictionary = {}
-
+var players : Array = []
 var death_count = 0
 
 @export var PlayerScene = preload("res://Scenes/Characters/Main_character.tscn")
@@ -60,7 +59,7 @@ func init_player(peer_id):
 		players_node.add_child(player)
 	player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
-	players["player" + str(peer_id)] = dict_data
+	players.append(dict_data)
 	dashboardMatch.get_lobby_data.rpc()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player

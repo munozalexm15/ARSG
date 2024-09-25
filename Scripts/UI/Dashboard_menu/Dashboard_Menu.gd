@@ -58,7 +58,7 @@ func get_lobby_data():
 		playerDeaths.horizontal_alignment =HORIZONTAL_ALIGNMENT_CENTER
 		playerRow.add_child(playerDeaths)
 		
-		var playerData = Network.game.players["player" + str(Network.peer.get_peer_id_from_steam64(member_steam_id)) ]
+		var playerData = Network.game.players[index]
 		playerKills.text = str(playerData["kills"])
 		playerDeaths.text = str(playerData["deaths"])
 		playerScore.text = str(playerData['score'])

@@ -353,12 +353,14 @@ func die_respawn(player_id, instigator_id):
 		
 	if not visible:
 		return
-	#actualizar los diccionarios de todos los jugadores con los stats
-	var dead_guy = Network.game.players["player"+ str(player_id)]
-	var killer = Network.game.players["player"+ str(instigator_id)]
-	killer["score"] += 100
-	killer["kills"] += 1
-	dead_guy["deaths"] += 1
+	
+	for index in Network.game.players.size():
+		var playerDict = Network.game.players[index]
+		if playerDict["id"] == str(instigator_id):
+			playerDict["score"] += 100
+			playerDict["kills"] += 1
+		if playerDict["id"] == str(player_id):
+			playerDict["deaths"] += 1
 	
 	health = 100
 	visible = false

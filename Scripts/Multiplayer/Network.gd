@@ -134,7 +134,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
-		var player_data = players_dict["player"+player.name]
+		var player_data = players_dict[index]
 		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
 	
@@ -150,7 +150,11 @@ func player_left(_id):
 		if p.name == str(_id):
 			p.queue_free()
 	
-	game.players.erase("player" + str(_id))
+	for index in game.players.size():
+		var playerData = game.players[index]
+		if playerData["id"] == str(_id):
+			game.players.erase(index)
+
 	gameData.erase("player" + str(_id))
 
 @rpc("call_remote", "any_peer")
@@ -204,9 +208,13 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			player.arms.state_machine.transition_to("SwappingWeapon")
 			player.visible = true
 			player.weaponSelectionMenu.visible = false
-			var playerDict = game.players["player" + str(identifier)]
-			playerDict["weaponName"] = weaponSpawned.weaponData.name
-			playerDict["weaponScenePath"] = weaponScenePath
+			
+			for index in game.players.size():
+				var playerDict = game.players[index]
+				if playerDict["id"] == str(identifier):
+					playerDict["weaponName"] = weaponSpawned.weaponData.name
+					playerDict["weaponScenePath"] = weaponScenePath
+			
 
 @rpc("any_peer", "call_local")
 func show_all_players():
