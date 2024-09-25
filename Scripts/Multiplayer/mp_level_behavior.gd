@@ -60,6 +60,7 @@ func init_player(peer_id):
 	player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players.append(dict_data)
+	await get_tree().process_frame
 	dashboardMatch.get_lobby_data.rpc()
 
 ##Creating and assigning a team selection, class selection and pause menus to a player

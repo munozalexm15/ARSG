@@ -164,8 +164,6 @@ func _input(event : InputEvent):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-	if health < 100:
-		print(health)
 		
 	if health < 35:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
