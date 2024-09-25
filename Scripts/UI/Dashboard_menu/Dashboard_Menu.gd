@@ -84,8 +84,7 @@ func get_lobby_data():
 			#Network.call_deferred("endGame")
 
 func sort_by_kills(a, b):
-	if a["kills"] > b["kills"]:
-		print(a["name"], "ha matado más que ", b["name"])
-		return a
+	if a["score"] < b["score"]:
+		return true 
 	else:
-		return b
+		return false
