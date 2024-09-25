@@ -2951,7 +2951,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="Weapon" type="Node3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, 5.11, 0.212, 0.403)
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 5.11, 0.212, 0.403)
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, -5.96047e-08, 7.45058e-08, 5.96046e-08, 1, 1.77636e-15, -7.45058e-08, 2.66454e-15, 1, 0, 0, 0)
@@ -2959,7 +2959,7 @@ mesh = SubResource("ArrayMesh_xroja")
 skeleton = NodePath("")
 
 [node name="Pump_001" type="MeshInstance3D" parent="Weapon"]
-transform = Transform3D(0.999999, -7.45056e-09, -4.09781e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.01805, -0.000115648, -0.0724883)
+transform = Transform3D(0.999999, -7.45056e-09, -4.09782e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.01805, -0.000115648, -0.0724883)
 mesh = SubResource("ArrayMesh_7lep4")
 skeleton = NodePath("")
 

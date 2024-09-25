@@ -8,7 +8,7 @@
 script = ExtResource("1_rfvcw")
 name = &"M14"
 weaponType = "Rifle"
-damage = 3.5
+damage = 33.5
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 80

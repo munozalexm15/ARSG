@@ -370,7 +370,7 @@ func die_respawn(player_id, instigator_id):
 		
 	set_collision_mask_value(3, false)
 	Network.game.death_count += 1
-	Network.game.dashboardMatch.get_lobby_data.rpc()
+	print(Network.game.players)
 	
 	#get the dead player to access its weapon
 	var player : Player = null

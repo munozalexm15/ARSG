@@ -29,7 +29,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	distanceTraveled += 0.005
+	distanceTraveled += 0.0001
 	pass
 
 func _on_visibility_notifier_screen_exited():
@@ -61,7 +61,7 @@ func _on_area_3d_body_entered(body):
 		impactParticle.emitting = true
 	
 	if body is Player and body != instigator:
-		body.health -= damage
+		body.health -= damage - distanceTraveled
 		playerDamaged.emit()
 		instigator.hud.animationPlayer.play("hitmarker")
 		

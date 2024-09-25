@@ -20,7 +20,6 @@ func get_lobby_data():
 		node.queue_free()
 		
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
-	print(num_of_members)
 	
 	for index in range(0, num_of_members):
 		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, index)
