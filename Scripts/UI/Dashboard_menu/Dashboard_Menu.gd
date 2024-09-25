@@ -13,6 +13,7 @@ func _ready():
 
 @rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
+	Network.game.players.sort_custom(sort_by_kills)
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
 	gamemodeMap.uppercase = true
 	
@@ -81,3 +82,9 @@ func get_lobby_data():
 		elif Network.game.team2GoalProgress == Network.game.matchGoal:
 			winnerLabel.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
 			#Network.call_deferred("endGame")
+
+func sort_by_kills(a, b):
+	if a["kills"] > b["kills"]:
+		return a
+	else:
+		return b
