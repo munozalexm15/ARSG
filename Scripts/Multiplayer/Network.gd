@@ -131,8 +131,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	game.team2GoalProgress = team2Progress
 	
 	game.players = players_dict
-	print("giving newly connected the players info")
-	print(game.players)
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
@@ -140,13 +138,11 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
 	
-	print("showing newly connected player the players info after setting it")
-	print(game.players)
 	game.init_player.rpc(multiplayer.get_unique_id())
 	await game.player_spawner.spawned
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
-	await get_tree().process_frame
+	
 	game.dashboardMatch.get_lobby_data.rpc()
 
 @rpc("any_peer", "call_local", "reliable")
@@ -221,9 +217,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				if playerDict["id"] == str(identifier):
 					playerDict["weaponName"] = weaponSpawned.weaponData.name
 					playerDict["weaponScenePath"] = weaponScenePath
-			
-		print("pillar info despues de elegir arma")
-		print(Network.game.players)
 
 @rpc("any_peer", "call_local")
 func show_all_players():
