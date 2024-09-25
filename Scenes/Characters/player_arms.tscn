@@ -235,6 +235,7 @@ handsNode = NodePath("..")
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.15263, 1.03582, 0.100783)
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -40,8 +40,9 @@ extends Control
 @onready var HurtScreenAnimationPlayer : AnimationPlayer = $HurtScreenContainer/AnimationPlayer
 
 
-@onready var TimerIndicator = $PanelContainer3/VBoxContainer/MatchTimeIndicator
+@onready var TimerIndicator = $PanelContainer3/VBoxContainer/HBoxContainer/MatchTimeIndicator
 @onready var matchTimer = $PanelContainer3/VBoxContainer/MatchTimer
+@onready var gamemodeLabel = $PanelContainer3/VBoxContainer/HBoxContainer/GamemodeName
 @onready var Team1ProgressBar = $"PanelContainer3/VBoxContainer/TEAM1-ProgressBar"
 @onready var Team2ProgressBar = $"PanelContainer3/VBoxContainer/TEAM2-ProgressBar"
 
@@ -59,6 +60,7 @@ func _ready():
 	NPCRoleLabel.visible = false
 	Team1ProgressBar.max_value = int(Network.game.matchGoal)
 	Team2ProgressBar.max_value = int(Network.game.matchGoal)
+	gamemodeLabel.text = Network.gameData.get("gameMode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

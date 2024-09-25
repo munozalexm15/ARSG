@@ -169,8 +169,5 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="DashboardMatch" parent="." instance=ExtResource("14_w5yiw")]
 visible = false
-offset_left = 181.0
-offset_top = 107.336
-offset_bottom = -6.12006
 
 [connection signal="timeout" from="MatchTimer" to="." method="_on_match_timer_timeout"]

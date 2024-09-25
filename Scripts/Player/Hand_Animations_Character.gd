@@ -68,7 +68,8 @@ func _physics_process(delta):
 		return
 	
 	if Input.is_action_just_pressed("Flashlight"):
-		flashlight.visible = !flashlight.visible
+		return
+		#flashlight.visible = !flashlight.visible
 	
 	if weaponHolder.get_child_count() == 0:
 		return

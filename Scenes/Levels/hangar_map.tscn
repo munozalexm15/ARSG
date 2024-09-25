@@ -8086,9 +8086,6 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="DashboardMatch" parent="." instance=ExtResource("28_j7j3x")]
 visible = false
-offset_left = 181.0
-offset_top = 107.336
-offset_bottom = -6.12006
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)

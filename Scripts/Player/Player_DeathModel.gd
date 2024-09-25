@@ -15,12 +15,11 @@ func _ready():
 	scale = Vector3(0.5, 0.5, 0.5)
 	anims = animationPlayer.get_animation_list()
 	selectedPos = randi() % anims.size()
+	animationPlayer.play(anims[selectedPos])
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if playAnim:
-		animationPlayer.play(anims[selectedPos])
+	pass
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	playAnim = false
-	await get_tree().create_timer(5).timeout
-	queue_free()
+	pass

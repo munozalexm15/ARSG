@@ -22,7 +22,7 @@ var death_count = 0
 @onready var interactables_node : Node3D = $InteractablesParent
 @onready var spawnPoints_node : Node3D= $SpawnPoints
 
-@onready var dashboardMatch : PanelContainer = $DashboardMatch
+@onready var dashboardMatch : Control = $DashboardMatch
 
 @onready var matchTimer : Timer = $MatchTimer
 

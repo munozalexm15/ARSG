@@ -1,88 +1,215 @@
-[gd_scene load_steps=3 format=3 uid="uid://cws836aheogns"]
+[gd_scene load_steps=12 format=3 uid="uid://cws836aheogns"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Dashboard_menu/Dashboard_Menu.gd" id="1_5w3h6"]
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_6tif3"]
+[ext_resource type="Shader" path="res://GameResources/Shaders/Blur.gdshader" id="3_2bj63"]
+[ext_resource type="StyleBox" uid="uid://dcjdkk2pg5dkt" path="res://Scenes/UI/OverrideStyles/You_in_Scoreboard.tres" id="4_cfxm8"]
+[ext_resource type="StyleBox" uid="uid://iy00nyg4tju8" path="res://Scenes/UI/OverrideStyles/Enemy_on_Scoreboard.tres" id="5_jbsnq"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_coxy8"]
-color = Color(1, 1, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sccoh"]
+shader = ExtResource("3_2bj63")
+shader_parameter/lod = 1.0
 
-[node name="DashboardMatch" type="PanelContainer"]
-anchors_preset = -1
-anchor_top = 0.236
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_heeww"]
+content_margin_bottom = 25.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsvvk"]
+font_size = 64
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3xo6"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyrh4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tskv5"]
+font_size = 24
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 176.0
-offset_top = 0.071991
-offset_right = -176.0
-offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+theme = ExtResource("1_6tif3")
 script = ExtResource("1_5w3h6")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-text = "NAME WINS"
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_sccoh")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = -70
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-mouse_filter = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.077
+anchor_top = 0.16
+anchor_right = 0.898
+anchor_bottom = 1.0
+offset_left = 0.29599
+offset_top = 0.319992
+offset_right = 0.503906
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TEAM_SideBar" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 visible = false
+custom_minimum_size = Vector2(900, 100)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_heeww")
+text = "PEEPOSAD WINS"
+label_settings = SubResource("LabelSettings_hsvvk")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GamemodeMap" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.5
+text = "GAMEMODE | MAP"
+label_settings = SubResource("LabelSettings_r3xo6")
+
+[node name="Label5" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "KILLS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "DEATHS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DashboardMatch" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Team1LOGO" type="Label" parent="HBoxContainer/TEAM_SideBar"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/DashboardMatch"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "TEAM1"
+mouse_filter = 2
 
-[node name="HSeparator" type="HSeparator" parent="HBoxContainer/TEAM_SideBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DashboardMatch"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_coxy8")
+mouse_filter = 2
 
-[node name="Team2LOGO" type="Label" parent="HBoxContainer/TEAM_SideBar"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-text = "TEAM2"
-
-[node name="PLAYERS_SideBar" type="VBoxContainer" parent="HBoxContainer"]
+[node name="PLAYERS_SideBar" type="VBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PLAYERS_SideBar"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label2" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "NAME"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "KILLS"
-horizontal_alignment = 1
-
-[node name="Label4" type="Label" parent="HBoxContainer/PLAYERS_SideBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "DEATHS"
-horizontal_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PLAYERS_SideBar"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar"]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("4_cfxm8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 7.5
+theme_override_styles/normal = SubResource("StyleBoxFlat_dyrh4")
+text = "adwdasdwdas"
+label_settings = SubResource("LabelSettings_tskv5")
+
+[node name="Label2" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "13"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "adwdas"
+
+[node name="Label4" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "adwdas"
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("5_jbsnq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 7.5
+theme_override_styles/normal = SubResource("StyleBoxFlat_dyrh4")
+text = "adwdasdwdas"
+label_settings = SubResource("LabelSettings_tskv5")
+
+[node name="Label2" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "13"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "adwdas"
+
+[node name="Label4" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "adwdas"
