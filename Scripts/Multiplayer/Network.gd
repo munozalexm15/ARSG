@@ -103,6 +103,7 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
 		print("%s has left the lobby." % changer_name)
+		game.dashboardMatch.get_lobby_data.rpc()
 	# Else if a player has been kicked
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_KICKED:
 		print("%s has been kicked from the lobby." % changer_name)
@@ -156,7 +157,6 @@ func player_left(_id):
 			playerIndex = index
 	
 	game.players.remove_at(playerIndex)
-	game.dashboardMatch.get_lobby_data.rpc()
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():

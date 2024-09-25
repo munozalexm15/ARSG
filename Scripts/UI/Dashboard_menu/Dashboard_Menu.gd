@@ -16,6 +16,7 @@ func get_lobby_data():
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
 	gamemodeMap.uppercase = true
 	
+	print(Network.game.players)
 	for node in playersList.get_children():
 		node.queue_free()
 		
