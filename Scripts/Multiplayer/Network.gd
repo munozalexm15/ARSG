@@ -18,7 +18,7 @@ func _ready():
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
 	#si se mete un cliente (para sincronizar la sala)
-	multiplayer.peer_connected.connect(client_connected_to_server)
+	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
 	tree_exiting.connect(force_exit_handler)
 	
@@ -123,7 +123,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 		return
 	
 	gameData = hostGameData
-	game.matchGoal = gameData.get("goal")
+	game.matchGoal = gameData.get("goal") 
 	game.matchTime = gameData.get("time")
 	game.matchTimer.wait_time = time_left
 	game.matchTimer.start()

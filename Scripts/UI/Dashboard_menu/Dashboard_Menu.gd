@@ -19,9 +19,8 @@ func get_lobby_data():
 		
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
 	
-	for member in range(0, num_of_members):
-		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, member)
-		Steam.getPlayerAvatar(Steam.AVATAR_SMALL, member_steam_id)
+	for index in range(0, num_of_members):
+		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, index)
 		
 		var playerContainer: PanelContainer = PanelContainer.new()
 		if member_steam_id == Steam.getSteamID():
