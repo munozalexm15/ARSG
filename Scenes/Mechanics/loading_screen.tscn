@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://up3k22f56a1l"]
+[gd_scene load_steps=9 format=3 uid="uid://up3k22f56a1l"]
 
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_0rdke"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/loading_screen_Handler.gd" id="1_gos10"]
 [ext_resource type="Texture2D" uid="uid://bfj0cowt08ml1" path="res://GameResources/Textures/Other/MP5SD-Background.png" id="1_mjbp3"]
 [ext_resource type="Material" uid="uid://b4tt8dgju1tee" path="res://GameResources/Materials/loading_screen_shader.tres" id="2_b1phq"]
@@ -9,6 +10,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r4g5q"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ehd5w"]
+font_size = 48
+
 [node name="Loading_screen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -16,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0rdke")
 script = ExtResource("1_gos10")
 loadingShader = ExtResource("2_b1phq")
 
@@ -51,3 +56,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_u07hl")
 expand_mode = 2
+
+[node name="LOAD_status" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_top = 0.807
+anchor_right = 0.371
+anchor_bottom = 0.897
+offset_left = -0.368001
+offset_top = 0.0639648
+offset_right = -0.392029
+offset_bottom = -0.255981
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_ehd5w")

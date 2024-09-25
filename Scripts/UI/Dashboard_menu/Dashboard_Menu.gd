@@ -9,11 +9,12 @@ var enemyStylebox : StyleBoxFlat = preload("res://Scenes/UI/OverrideStyles/Enemy
 @onready var gamemodeMap : Label = $VBoxContainer/PanelContainer/HBoxContainer/GamemodeMap
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
-	gamemodeMap.uppercase = true
+	pass
 
 @rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
+	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
+	gamemodeMap.uppercase = true
 	for node in playersList.get_children():
 		node.queue_free()
 		
