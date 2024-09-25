@@ -12,6 +12,8 @@ func _ready():
 	pass
 
 func get_lobby_data():
+	if Network.peer is OfflineMultiplayerPeer:
+		return
 	Network.game.players.sort_custom(sort_by_kills)
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
 	gamemodeMap.uppercase = true
@@ -84,7 +86,7 @@ func get_lobby_data():
 			#Network.call_deferred("endGame")
 
 func sort_by_kills(a, b):
-	if a["score"] < b["score"]:
+	if a["score"] > b["score"]:
 		return true 
 	else:
 		return false
