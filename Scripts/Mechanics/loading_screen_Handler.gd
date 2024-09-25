@@ -2,16 +2,14 @@ extends Control
 
 @export var loadingShader : ShaderMaterial
 
-
-signal ReadyToJoin
-
 var loadedScene = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
-	Steam.lobby_chat_update.connect(join_room)
+	Steam.steamInitEx()
+	multiplayer.peer_connected.connect(join_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -32,9 +30,9 @@ func start_map(packed_scene : PackedScene):
 	#host joining
 	get_tree().change_scene_to_packed(packed_scene)
 
-func join_room(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int):
-	if Network.peer.get_class() == "OfflineMultiplayerPeer":
-		if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
-			get_tree().change_scene_to_packed(loadedScene)
-		else:
-			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+func join_room(id):
+	if Network.peer.get_connection_status() == 2:
+		loadingShader.set_shader_parameter("percentage", 100)
+		get_tree().change_scene_to_packed(loadedScene)
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

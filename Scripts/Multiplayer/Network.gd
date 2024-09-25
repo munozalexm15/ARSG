@@ -83,6 +83,7 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	
 	
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
+@rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
