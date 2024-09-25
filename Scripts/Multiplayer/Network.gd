@@ -143,7 +143,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 	
-	game.dashboardMatch.get_lobby_data.rpc()
+	game.dashboardMatch.get_lobby_data()
 
 @rpc("any_peer", "call_local", "reliable")
 func player_left(_id):

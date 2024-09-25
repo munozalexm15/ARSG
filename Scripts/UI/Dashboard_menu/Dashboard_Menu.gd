@@ -11,7 +11,6 @@ var enemyStylebox : StyleBoxFlat = preload("res://Scenes/UI/OverrideStyles/Enemy
 func _ready():
 	pass
 
-@rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
 	gamemodeMap.uppercase = true

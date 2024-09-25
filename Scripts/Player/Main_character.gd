@@ -405,7 +405,7 @@ func die_respawn(player_id, instigator_id):
 	
 	await deathModelScene.animationPlayer.animation_finished
 	
-	Network.game.dashboardMatch.get_lobby_data.rpc()
+	Network.game.dashboardMatch.get_lobby_data()
 	set_collision_mask_value(3, true)
 
 	#visible = true
