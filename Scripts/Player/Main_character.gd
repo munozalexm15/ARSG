@@ -360,9 +360,7 @@ func die_respawn(player_id, instigator_id):
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
 			
-	print("cuando muere un pibe")
-	print(Network.game.players)
-	
+	Network.game.dashboardMatch.get_lobby_data.rpc()
 	health = 100
 	visible = false
 	if player_id == multiplayer.get_unique_id():
@@ -405,7 +403,6 @@ func die_respawn(player_id, instigator_id):
 	
 	await deathModelScene.animationPlayer.animation_finished
 	
-	Network.game.dashboardMatch.get_lobby_data.rpc()
 	set_collision_mask_value(3, true)
 
 	#visible = true

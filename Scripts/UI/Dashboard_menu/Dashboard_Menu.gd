@@ -23,7 +23,9 @@ func get_lobby_data():
 		
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
 	for index in range(0, num_of_members):
-		var member_steam_id = Steam.getLobbyMemberByIndex(Network.lobby_id, index)
+		var playerData = Network.game.players[index]
+		
+		var member_steam_id = Network.peer.get_steam64_from_peer_id(playerData["id"])
 		
 		var playerContainer: PanelContainer = PanelContainer.new()
 		if member_steam_id == Steam.getSteamID():
@@ -59,7 +61,6 @@ func get_lobby_data():
 		playerDeaths.horizontal_alignment =HORIZONTAL_ALIGNMENT_CENTER
 		playerRow.add_child(playerDeaths)
 		
-		var playerData = Network.game.players[index]
 		playerKills.text = str(playerData["kills"])
 		playerDeaths.text = str(playerData["deaths"])
 		playerScore.text = str(playerData['score'])
