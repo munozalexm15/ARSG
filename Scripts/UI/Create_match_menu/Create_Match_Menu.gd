@@ -4,7 +4,7 @@ extends Control
 @onready var mapName : Label = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect/Label
 
 var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
-var mapNamesList = ["Hangar", "Flying Rectangles"]
+var mapNamesList = ["Hangar", "Flatworld"]
 @export var mapImagesList : Array
 
 var mapListIndex = 0
