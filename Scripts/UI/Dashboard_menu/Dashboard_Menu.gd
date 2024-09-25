@@ -11,6 +11,7 @@ var enemyStylebox : StyleBoxFlat = preload("res://Scenes/UI/OverrideStyles/Enemy
 func _ready():
 	pass
 
+@rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
 	gamemodeMap.uppercase = true
@@ -75,10 +76,7 @@ func get_lobby_data():
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
 			winnerLabel.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
 			#Network.call_deferred("endGame")
-			return
 		
 		elif Network.game.team2GoalProgress == Network.game.matchGoal:
 			winnerLabel.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
 			#Network.call_deferred("endGame")
-			return
-		

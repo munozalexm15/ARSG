@@ -156,7 +156,7 @@ func player_left(_id):
 			playerIndex = index
 	
 	game.players.remove_at(playerIndex)
-	game.dashboardMatch.get_lobby_data()
+	game.dashboardMatch.get_lobby_data.rpc()
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
