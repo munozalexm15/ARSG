@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cws836aheogns"]
+[gd_scene load_steps=8 format=3 uid="uid://cws836aheogns"]
 
 [ext_resource type="Script" path="res://Scripts/UI/Dashboard_menu/Dashboard_Menu.gd" id="1_5w3h6"]
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_6tif3"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/Blur.gdshader" id="3_2bj63"]
-[ext_resource type="StyleBox" uid="uid://dcjdkk2pg5dkt" path="res://Scenes/UI/OverrideStyles/You_in_Scoreboard.tres" id="4_cfxm8"]
-[ext_resource type="StyleBox" uid="uid://iy00nyg4tju8" path="res://Scenes/UI/OverrideStyles/Enemy_on_Scoreboard.tres" id="5_jbsnq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sccoh"]
 shader = ExtResource("3_2bj63")
@@ -20,12 +18,6 @@ shadow_offset = Vector2(4, 4)
 
 [sub_resource type="LabelSettings" id="LabelSettings_r3xo6"]
 font_size = 48
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyrh4"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="LabelSettings" id="LabelSettings_tskv5"]
-font_size = 24
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -141,75 +133,3 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("4_cfxm8")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 7.5
-theme_override_styles/normal = SubResource("StyleBoxFlat_dyrh4")
-text = "adwdasdwdas"
-label_settings = SubResource("LabelSettings_tskv5")
-
-[node name="Label2" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "13"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "adwdas"
-
-[node name="Label4" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "adwdas"
-
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = ExtResource("5_jbsnq")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-size_flags_stretch_ratio = 7.5
-theme_override_styles/normal = SubResource("StyleBoxFlat_dyrh4")
-text = "adwdasdwdas"
-label_settings = SubResource("LabelSettings_tskv5")
-
-[node name="Label2" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "13"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "adwdas"
-
-[node name="Label4" type="Label" parent="VBoxContainer/DashboardMatch/HBoxContainer/PLAYERS_SideBar/VBoxContainer/PanelContainer2/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "adwdas"

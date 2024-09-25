@@ -142,8 +142,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	await game.player_spawner.spawned
 	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
-	
-	game.dashboardMatch.get_lobby_data()
 
 @rpc("any_peer", "call_local", "reliable")
 func player_left(_id):
@@ -158,7 +156,7 @@ func player_left(_id):
 			playerIndex = index
 	
 	game.players.remove_at(playerIndex)
-	print(game.players)	
+	game.dashboardMatch.get_lobby_data()
 
 @rpc("call_remote", "any_peer")
 func update_client_Data():
