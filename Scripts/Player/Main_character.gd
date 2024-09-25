@@ -361,6 +361,9 @@ func die_respawn(player_id, instigator_id):
 			playerDict["kills"] += 1
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
+			
+	print("cuando muere un pibe")
+	print(Network.game.players)
 	
 	health = 100
 	visible = false
