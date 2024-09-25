@@ -11,7 +11,6 @@ var enemyStylebox : StyleBoxFlat = preload("res://Scenes/UI/OverrideStyles/Enemy
 func _ready():
 	pass
 
-@rpc("any_peer", "call_local", "reliable")
 func get_lobby_data():
 	Network.game.players.sort_custom(sort_by_kills)
 	gamemodeMap.text = str(Network.gameData.get("gameMode") , " | " , Network.gameData.get("mapName"))
@@ -25,7 +24,7 @@ func get_lobby_data():
 	for index in range(0, num_of_members):
 		var playerData = Network.game.players[index]
 		
-		var member_steam_id = Network.peer.get_steam64_from_peer_id(playerData["id"])
+		var member_steam_id = Network.peer.get_steam64_from_peer_id(int(playerData["id"]))
 		
 		var playerContainer: PanelContainer = PanelContainer.new()
 		if member_steam_id == Steam.getSteamID():
@@ -86,6 +85,7 @@ func get_lobby_data():
 
 func sort_by_kills(a, b):
 	if a["kills"] > b["kills"]:
+		print(a["name"], "ha matado más que ", b["name"])
 		return a
 	else:
 		return b

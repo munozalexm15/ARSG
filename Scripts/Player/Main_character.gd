@@ -360,7 +360,7 @@ func die_respawn(player_id, instigator_id):
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
 			
-	Network.game.dashboardMatch.get_lobby_data.rpc()
+	Network.game.dashboardMatch.get_lobby_data()
 	health = 100
 	visible = false
 	if player_id == multiplayer.get_unique_id():
