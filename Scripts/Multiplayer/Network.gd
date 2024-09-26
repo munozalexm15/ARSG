@@ -283,9 +283,10 @@ func endGame(winnerText: String):
 func force_exit_handler():
 	if peer is SteamMultiplayerPeer and (peer.get_connection_status() == peer.CONNECTION_CONNECTED or peer.get_connection_status() == peer.CONNECTION_CONNECTING):
 		if multiplayer.get_unique_id() == 1:
-			endGame.rpc("HOST ENDED THE MATCH")
+			Network.endGame.rpc("HOST ENDED THE MATCH") 
 			await get_tree().create_timer(5).timeout
-			close_match()
+			if multiplayer.get_unique_id() == 1:
+				Network.close_match()
 		else:
 			Network.player_left.rpc(multiplayer.get_unique_id())
 			Network.leave_lobby()

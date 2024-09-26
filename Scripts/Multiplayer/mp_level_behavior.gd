@@ -132,5 +132,6 @@ func _on_match_timer_timeout():
 	if multiplayer.get_unique_id() == 1:
 		Network.endGame.rpc(str("THE WINNER IS " , players[0]["name"]) ) 
 		await get_tree().create_timer(5).timeout
-		Network.close_match()
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		if multiplayer.get_unique_id() == 1:
+			Network.close_match()
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

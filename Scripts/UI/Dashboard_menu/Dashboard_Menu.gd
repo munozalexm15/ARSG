@@ -24,6 +24,8 @@ func get_lobby_data():
 		
 	var num_of_members: int = Steam.getNumLobbyMembers(Network.lobby_id)
 	for index in range(0, num_of_members):
+		if Network.peer is OfflineMultiplayerPeer:
+			return
 		var playerData = Network.game.players[index]
 		
 		var member_steam_id = Network.peer.get_steam64_from_peer_id(int(playerData["id"]))
@@ -78,14 +80,20 @@ func get_lobby_data():
 				Network.game.team2GoalProgress = playerData["kills"]
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
-			Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!")
-			await get_tree().create_timer(5).timeout
-			Network.close_match()
+			if multiplayer.get_unique_id() == 1:
+				Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!") 
+				await get_tree().create_timer(5).timeout
+				if multiplayer.get_unique_id() == 1:
+					Network.close_match()
+					get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 		
 		elif Network.game.team2GoalProgress == Network.game.matchGoal:
-			Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!")
-			await get_tree().create_timer(5).timeout
-			Network.close_match()
+			if multiplayer.get_unique_id() == 1:
+				Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!") 
+				await get_tree().create_timer(5).timeout
+				if multiplayer.get_unique_id() == 1:
+					Network.close_match()
+					get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 
 func sort_by_kills(a, b):
 	if a["score"] > b["score"]:

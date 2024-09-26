@@ -86,5 +86,7 @@ func _on_exit_match_button_pressed():
 	else:
 		Network.endGame.rpc("HOST ENDED THE MATCH")
 		await get_tree().create_timer(5).timeout
-		Network.close_match()
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+		Network.endGame.rpc("HOST ENDED THE MATCH") 
+		if multiplayer.get_unique_id() == 1:
+			Network.close_match()
+			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
