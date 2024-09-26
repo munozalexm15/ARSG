@@ -46,6 +46,9 @@ func _ready():
 	
 
 func _process(_delta):
+	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
+		return
+		
 	if Input.is_action_pressed("Dashboard"):
 		dashboardMatch.visible = true
 	if Input.is_action_just_released("Dashboard"):

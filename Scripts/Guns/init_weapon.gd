@@ -191,13 +191,15 @@ func shoot():
 		
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
-	if fire_sound:
-		SFXHandler.play_sfx_3d(fire_sound.stream, hands.player, "Weapons")
+	
 	spawnBullet.rpc()
 	
 
 @rpc("authority", "call_local", "reliable")
 func spawnBullet():
+	if fire_sound:
+		SFXHandler.play_sfx_3d.rpc(fire_sound.stream, hands.player, "Weapons")
+	
 	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):

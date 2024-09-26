@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://deq0ph2t36sew"]
+[gd_scene load_steps=18 format=4 uid="uid://deq0ph2t36sew"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
@@ -88,23 +88,10 @@ radius = 0.005
 height = 0.1
 is_hemisphere = true
 
-[sub_resource type="Gradient" id="Gradient_klljm"]
-offsets = PackedFloat32Array(0.36019, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jenmb"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_xnr1t"]
-gradient = SubResource("Gradient_klljm")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bi2d"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture1D_xnr1t")
-
-[sub_resource type="Curve" id="Curve_sltou"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.199134, 0.120879), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_32j3b"]
+_data = [Vector2(0, 0.581128), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.334292), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
@@ -144,10 +131,10 @@ process_material = SubResource("ParticleProcessMaterial_roi0e")
 draw_pass_1 = SubResource("SphereMesh_ka03k")
 
 [node name="Trail3D" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
-material_override = SubResource("StandardMaterial3D_4bi2d")
+material_override = SubResource("StandardMaterial3D_jenmb")
 script = ExtResource("5_gq6vk")
-base_width = 0.2
-width_profile = SubResource("Curve_sltou")
+distance = 1.0
+width_profile = SubResource("Curve_32j3b")
 
 [node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 collision_layer = 133

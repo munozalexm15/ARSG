@@ -25,6 +25,8 @@ var fovList = {"Default": 75.0, "ADS": 50.0, "Sniper": 25.0}
 @onready var state_machine: StateMachine = $StateMachine
 @onready var flashlight : SpotLight3D = $Flashlight
 @onready var knife : Node3D = $Knife
+@onready var weaponReloadAudios : Node3D = $weaponAudios/Reloads
+@onready var weaponFullReloadAudios : Node3D = $weaponAudios/FullReloads
 
 var actual_weapon_index = 0
 var actualWeapon : Weapon

@@ -213,11 +213,7 @@ func _physics_process(delta):
 		arms.position.y = lerp(arms.position.y, 0.0, delta * lerp_speed)
 		arms.position.x = lerp(arms.position.x, 0.0, delta * lerp_speed)
 	
-	#Check for frontal collisions with a wall
-	if arms.state_machine.state.name != "Melee":
-		_checkCollisionWithWall()
-	else:
-		arms.position.z = 0
+	arms.position.z = 0
 
 #leaning ---------------------- WIP
 	#leaning(delta)

@@ -13,6 +13,9 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 	parent.add_child(stream)
 	stream.play()
 
+
+#rpc because it is intended to be used only for shooting, walking, reload, etc.
+@rpc("any_peer", "call_local", "reliable")
 func play_sfx_3d(sound: AudioStream, parent: Node, busLayout : String):
 	var stream = AudioStreamPlayer3D.new()
 
