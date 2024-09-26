@@ -55,6 +55,7 @@ var listingLobbies = true
 @export var exitClick_soundEffect : AudioStreamMP3
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05

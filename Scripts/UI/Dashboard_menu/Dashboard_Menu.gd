@@ -78,12 +78,14 @@ func get_lobby_data():
 				Network.game.team2GoalProgress = playerData["kills"]
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
-			winnerLabel.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
-			#Network.call_deferred("endGame")
+			Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!")
+			await get_tree().create_timer(5).timeout
+			Network.close_match()
 		
 		elif Network.game.team2GoalProgress == Network.game.matchGoal:
-			winnerLabel.text = Steam.getFriendPersonaName(member_steam_id) + " WINS!"
-			#Network.call_deferred("endGame")
+			Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!")
+			await get_tree().create_timer(5).timeout
+			Network.close_match()
 
 func sort_by_kills(a, b):
 	if a["score"] > b["score"]:

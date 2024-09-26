@@ -84,5 +84,7 @@ func _on_exit_match_button_pressed():
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 	#HOST CLOSING MATCH
 	else:
+		Network.endGame.rpc("HOST ENDED THE MATCH")
+		await get_tree().create_timer(5).timeout
 		Network.close_match()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

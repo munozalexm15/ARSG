@@ -263,13 +263,24 @@ func close_match():
 	Network.peer = OfflineMultiplayerPeer.new()
 	Network.peer.refuse_new_connections = true
 	
-
+@rpc("any_peer", "call_local", "reliable")
+func endGame(winnerText: String):
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	for player : Player in game.players_node.get_children():
+		player.pauseMenu.visible = false
+		player.pauseMenu.set_process(false)
+		
+	game.dashboardMatch.visible = true
+	game.dashboardMatch.winnerLabel.text = winnerText
+	game.dashboardMatch.winnerLabel.visible = true
 
 #----------------------------------------------- FORCING EXIT (TREE QUITING / EXITING) -----------------------------
 
 func force_exit_handler():
 	if peer is SteamMultiplayerPeer and (peer.get_connection_status() == peer.CONNECTION_CONNECTED or peer.get_connection_status() == peer.CONNECTION_CONNECTING):
 		if multiplayer.get_unique_id() == 1:
+			endGame.rpc("HOST ENDED THE MATCH")
+			await get_tree().create_timer(5).timeout
 			close_match()
 		else:
 			Network.player_left.rpc(multiplayer.get_unique_id())
