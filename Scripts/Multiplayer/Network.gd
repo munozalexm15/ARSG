@@ -269,6 +269,8 @@ func close_match():
 func endGame(winnerText: String):
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	for player : Player in game.players_node.get_children():
+		if not player.pauseMenu:
+			continue
 		player.pauseMenu.visible = false
 		player.pauseMenu.set_process(false)
 		
