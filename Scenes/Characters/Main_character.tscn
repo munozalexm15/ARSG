@@ -301,7 +301,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.696685, 0)
 process_mode = 1
 
 [node name="armsHolder" type="Node3D" parent="Head/eyesHolder"]
-process_mode = 1
 script = ExtResource("2_wsffb")
 recoil = Vector3(0.1, 0.2, 0.1)
 aimRecoil = Vector3(0.05, 0.1, 0.05)

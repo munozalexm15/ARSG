@@ -95,8 +95,8 @@ _data = [Vector2(0, 0.581128), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
-radius = 0.618
-height = 2.342
+radius = 0.192859
+height = 0.385719
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)

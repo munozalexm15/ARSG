@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://onxdhry62ydx"]
+[gd_scene load_steps=32 format=3 uid="uid://onxdhry62ydx"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_scfab"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="2_0lmuq"]
@@ -22,7 +22,6 @@
 [ext_resource type="AudioStream" uid="uid://bshq3q1bdppqa" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-004.ogg" id="18_drkt2"]
 [ext_resource type="AudioStream" uid="uid://bvtcdpjvjmhii" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-006.ogg" id="20_1e8f2"]
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="21_pnu6s"]
-[ext_resource type="Texture2D" uid="uid://de1335i6ml83u" path="res://GameResources/Textures/GunsIcons/M16A2_Icon.png" id="22_tn3dv"]
 
 [sub_resource type="Resource" id="Resource_kp5a3"]
 script = ExtResource("5_3wu5m")
@@ -81,8 +80,6 @@ texture_filter = 0
 [sub_resource type="Resource" id="Resource_778yg"]
 script = ExtResource("5_p8kwc")
 walk_sound = Array[AudioStreamOggVorbis]([ExtResource("6_li1cv"), ExtResource("7_pgbu8"), ExtResource("17_olakk"), ExtResource("18_drkt2"), ExtResource("13_med5f"), ExtResource("20_1e8f2")])
-
-[sub_resource type="LabelSettings" id="LabelSettings_u0vla"]
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_scfab")
@@ -203,24 +200,6 @@ offset_top = 22.475
 offset_bottom = 0.0149994
 grow_vertical = 0
 theme = ExtResource("21_pnu6s")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="KillFeed/KillFeedHistory"]
-layout_mode = 2
-localize_numeral_system = false
-
-[node name="Label" type="Label" parent="KillFeed/KillFeedHistory/HBoxContainer"]
-layout_mode = 2
-text = "dwdswadwa"
-label_settings = SubResource("LabelSettings_u0vla")
-
-[node name="TextureRect" type="TextureRect" parent="KillFeed/KillFeedHistory/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("22_tn3dv")
-expand_mode = 3
-
-[node name="Label2" type="Label" parent="KillFeed/KillFeedHistory/HBoxContainer"]
-layout_mode = 2
-text = "dwdswadwaddddddddddddddddddddddddddddd"
 
 [node name="DashboardMatch" parent="." instance=ExtResource("14_w5yiw")]
 visible = false

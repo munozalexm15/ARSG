@@ -89,6 +89,7 @@ func set_player_data(peer_id, playerName):
 	pauseMenu.set_multiplayer_authority(peer_id) 
 	node.add_child(pauseMenu)
 	player.pauseMenu = pauseMenu
+	pauseMenu.player = player
 	
 	var weaponSelection : WeaponSelection_Menu = weaponSelectionScene.instantiate()
 	weaponSelection.name = str(peer_id) + "weaponMenu"

@@ -17,6 +17,8 @@ var isMultiplayer : bool = false
 
 @onready var ditheringMaterial : ShaderMaterial = GlobalData.ditheringShader
 
+var player : Player = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible = false
@@ -31,9 +33,12 @@ func hide_menu():
 		optionsMainContainer.animationPlayer.play("OpenOptions", -1, -2, true)
 		await optionsMainContainer.animationPlayer.animation_finished
 		optionsMainContainer.hide()
+		
 	animationPlayer.play("OpenMenu", -1, -2, true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	await animationPlayer.animation_finished
+	player.isPauseMenuOpened = false
 	hide()
 
 func _on_settings_button_mouse_entered():

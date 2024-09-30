@@ -143,8 +143,6 @@ func _input(event : InputEvent):
 		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
 		pauseMenu.show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		state_machine.transition_to("Idle")
-		state_machine.process_mode = PROCESS_MODE_DISABLED
 		
 		await pauseMenu.animationPlayer.animation_finished
 		isPauseMenuOpened = true
@@ -216,7 +214,7 @@ func _physics_process(delta):
 		headBobbing_vector.y =  sin(headBobbing_index)
 		headBobbing_vector.x =  sin(headBobbing_index/2)+0.5
 		
-		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)
+		eyes.position.y = lerp(eyes.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0) * 4, delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, headBobbing_vector.x * headBobbing_curr_intensity, delta * lerp_speed)
 		
 		arms.position.y = lerp(arms.position.y, headBobbing_vector.y * (headBobbing_curr_intensity / 2.0), delta * lerp_speed)

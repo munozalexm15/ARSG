@@ -39,12 +39,13 @@ func physics_update(delta: float) -> void:
 	
 	if player.direction != Vector3.ZERO and player.input_direction != Vector2.ZERO:
 		play_anim.rpc()
-		player.velocity.x = player.direction.x * player.curr_speed
-		player.velocity.z = player.direction.z * player.curr_speed
+		if not player.isPauseMenuOpened:
+			player.velocity.x = player.direction.x * player.curr_speed
+			player.velocity.z = player.direction.z * player.curr_speed
 		 
-		if state_machine.old_state.name == "Run" and slide_timer > 0.1:
-			player.velocity.x = player.direction.x * slide_timer * slide_multiplier
-			player.velocity.z = player.direction.z * slide_timer * slide_multiplier
+			if state_machine.old_state.name == "Run" and slide_timer > 0.1:
+				player.velocity.x = player.direction.x * slide_timer * slide_multiplier
+				player.velocity.z = player.direction.z * slide_timer * slide_multiplier
 	
 	if Vector2.ZERO == player.input_direction:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.curr_speed)
