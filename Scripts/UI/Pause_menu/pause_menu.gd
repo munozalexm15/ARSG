@@ -22,8 +22,9 @@ func _ready():
 	visible = false
 
 func _input(_event):
-	if Input.is_action_just_pressed("Pause"):
-		hide_menu()
+	pass
+	#if Input.is_action_just_pressed("Pause") and not animationPlayer.is_playing():
+		#hide_menu()
 	
 func hide_menu():
 	if optionsMainContainer.visible:
@@ -32,11 +33,8 @@ func hide_menu():
 		optionsMainContainer.hide()
 	animationPlayer.play("OpenMenu", -1, -2, true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_viewport().set_input_as_handled()
 	await animationPlayer.animation_finished
-	if get_tree().paused:
-		get_tree().paused = false
-		hide()
+	hide()
 
 func _on_settings_button_mouse_entered():
 	SFXHandler.play_sfx(button_hover_SFX, self, "Effects")

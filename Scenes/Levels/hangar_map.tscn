@@ -1,4 +1,4 @@
-[gd_scene load_steps=736 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=739 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -39,6 +39,8 @@
 [ext_resource type="AudioStream" uid="uid://3gvhab7awqqf" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-018.ogg" id="32_ub41n"]
 [ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="33_iljqy"]
 [ext_resource type="Texture2D" uid="uid://wbnj7pcc7dnf" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_8.png" id="33_v808w"]
+[ext_resource type="Texture2D" uid="uid://de1335i6ml83u" path="res://GameResources/Textures/GunsIcons/M16A2_Icon.png" id="34_7pcpt"]
+[ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="34_11jtk"]
 [ext_resource type="Texture2D" uid="uid://cxr0t6rkhtfw7" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_frame_1.png" id="34_hp4yb"]
 [ext_resource type="Texture2D" uid="uid://bg3bv8txsgttc" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_1.png" id="35_g81dk"]
 [ext_resource type="Texture2D" uid="uid://buxf14fk2xjik" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/GDWolf_a.jpg" id="36_10rey"]
@@ -216,6 +218,8 @@ texture_filter = 0
 script = ExtResource("21_426mr")
 walk_sound = Array[AudioStreamOggVorbis]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
 jump_sound = ExtResource("21_72ftl")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ogpf0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
 size = Vector3(8.3268, 4.91049, 0.652865)
@@ -8083,6 +8087,49 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 [node name="BulletsParent" type="Node3D" parent="."]
 
 [node name="InteractablesParent" type="Node3D" parent="."]
+
+[node name="KillFeed" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.03
+anchor_top = 0.744
+anchor_right = 0.286
+anchor_bottom = 0.767
+offset_left = 0.439999
+offset_top = -0.112
+offset_right = -0.472015
+offset_bottom = -0.0160217
+grow_vertical = 0
+
+[node name="KillFeedHistory" type="VBoxContainer" parent="KillFeed"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.012
+anchor_top = -0.345
+anchor_right = 1.0
+anchor_bottom = 1.187
+offset_left = -0.124
+offset_top = 22.475
+offset_bottom = 0.0149994
+grow_vertical = 0
+theme = ExtResource("34_11jtk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KillFeed/KillFeedHistory"]
+layout_mode = 2
+localize_numeral_system = false
+
+[node name="Label" type="Label" parent="KillFeed/KillFeedHistory/HBoxContainer"]
+layout_mode = 2
+text = "dwdswadwa"
+label_settings = SubResource("LabelSettings_ogpf0")
+
+[node name="TextureRect" type="TextureRect" parent="KillFeed/KillFeedHistory/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("34_7pcpt")
+expand_mode = 3
+
+[node name="Label2" type="Label" parent="KillFeed/KillFeedHistory/HBoxContainer"]
+layout_mode = 2
+text = "dwdswadwaddddddddddddddddddddddddddddd"
 
 [node name="DashboardMatch" parent="." instance=ExtResource("28_j7j3x")]
 visible = false

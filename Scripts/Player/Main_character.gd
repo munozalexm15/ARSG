@@ -29,6 +29,7 @@ extends CharacterBody3D
 @onready var hud : HUD = get_node(hudNode)
 
 var pauseMenu : Pause_Menu 
+var isPauseMenuOpened: bool = false
 var weaponSelectionMenu : WeaponSelection_Menu
 
 @onready var state_machine : StateMachine = $StateMachine
@@ -95,7 +96,6 @@ var team = ""
 
 var thirdPersonEnabled : bool = false
 @onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
-
 func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
@@ -124,12 +124,30 @@ func _input(event : InputEvent):
 		#rotate camera y axis and limit its rotation
 		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
+		
 	
-	if Input.is_action_just_pressed("Pause") and not get_tree().paused:
-		pauseMenu.show()
+	if Input.is_action_just_pressed("Pause") and isPauseMenuOpened:
+		if pauseMenu.optionsMainContainer.visible:
+			pauseMenu.optionsMainContainer.animationPlayer.play("OpenOptions", -1, -2, true)
+			await pauseMenu.optionsMainContainer.animationPlayer.animation_finished
+			pauseMenu.optionsMainContainer.hide()
+		pauseMenu.animationPlayer.play("OpenMenu", -1, -2, true)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+		await pauseMenu.animationPlayer.animation_finished
+		isPauseMenuOpened = false
+		pauseMenu.hide()
+		state_machine.process_mode = PROCESS_MODE_INHERIT
+	
+	if Input.is_action_just_pressed("Pause") and not isPauseMenuOpened:
 		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
+		pauseMenu.show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		get_tree().paused = not get_tree().paused
+		state_machine.transition_to("Idle")
+		state_machine.process_mode = PROCESS_MODE_DISABLED
+		
+		await pauseMenu.animationPlayer.animation_finished
+		isPauseMenuOpened = true
 
 #-----------------------------------------------Changing between perspective---------------------------------------------
 	if Network.gameData.get("perspective") == "FIRST PERSON ONLY":
@@ -213,7 +231,7 @@ func _physics_process(delta):
 		arms.position.y = lerp(arms.position.y, 0.0, delta * lerp_speed)
 		arms.position.x = lerp(arms.position.x, 0.0, delta * lerp_speed)
 	
-	arms.position.z = 0
+	_checkCollisionWithWall()
 
 #leaning ---------------------- WIP
 	#leaning(delta)
@@ -342,6 +360,9 @@ func updateHealth():
 #hacer RPC al jugador que va a morir para transicionarlo a muerto y luego otro rpc para transicionarlo a vivo (la state machine)
 @rpc("any_peer", "call_local", "reliable")
 func die_respawn(player_id, instigator_id):
+	var killerName = ""
+	var deadName = ""
+	var killerWeaponImage : CompressedTexture2D
 	if Network.game == null:
 		return
 		
@@ -353,10 +374,14 @@ func die_respawn(player_id, instigator_id):
 		if playerDict["id"] == str(instigator_id):
 			playerDict["score"] += 100
 			playerDict["kills"] += 1
+			killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+			killerWeaponImage = Network.game.players_node.get_child(index).arms.actualWeapon.weaponData.weaponImage
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
+			deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
 			
 	Network.game.dashboardMatch.get_lobby_data()
+	Network.game.add_kill_to_killFeed(killerName, killerWeaponImage, deadName)
 	health = 100
 	visible = false
 	if player_id == multiplayer.get_unique_id():

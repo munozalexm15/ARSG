@@ -68,9 +68,8 @@ func _input(event):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-	
-	if Input.is_action_just_pressed("Flashlight"):
-		return
+	#if Input.is_action_just_pressed("Flashlight"):
+		#return
 		#flashlight.visible = !flashlight.visible
 	
 	if weaponHolder.get_child_count() == 0:

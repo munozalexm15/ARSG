@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnth3nwd1jkd2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ctpdx"]
+font_size = 20
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(0, 25)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+focus_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_right = 0.963
+anchor_bottom = 1.0
+offset_left = -0.110001
+offset_right = -0.131042
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "TEXT"
+label_settings = SubResource("LabelSettings_ctpdx")
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="InputLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "TEXT wd"
+label_settings = SubResource("LabelSettings_ctpdx")
+horizontal_alignment = 2
+vertical_alignment = 1

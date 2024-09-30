@@ -219,7 +219,6 @@ _data = {
 }
 
 [node name="arms" type="Node3D"]
-process_mode = 1
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
 initial_position = Vector3(0, -1.166, 0)

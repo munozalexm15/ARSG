@@ -25,6 +25,8 @@ var death_count = 0
 
 @onready var matchTimer : Timer = $MatchTimer
 
+@onready var killFeedVBox = $KillFeed/KillFeedHistory
+
 var matchGoal = 0
 var team1GoalProgress = 0
 var team2GoalProgress = 0
@@ -33,6 +35,7 @@ var matchTimeLeft = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	Network.game = self
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
@@ -49,9 +52,9 @@ func _process(_delta):
 	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
 		return
 		
-	if Input.is_action_pressed("Dashboard"):
+	if Input.is_action_pressed("Scoreboard"):
 		dashboardMatch.visible = true
-	if Input.is_action_just_released("Dashboard"):
+	if Input.is_action_just_released("Scoreboard"):
 		dashboardMatch.visible = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -138,3 +141,23 @@ func _on_match_timer_timeout():
 		if multiplayer.get_unique_id() == 1:
 			Network.close_match()
 			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+
+func add_kill_to_killFeed(killer_name : String, weaponImage : CompressedTexture2D, dead_name : String):
+	var playerRow : HBoxContainer = HBoxContainer.new()
+	killFeedVBox.add_child(playerRow)
+	
+	var killerPlayerName : Label = Label.new()
+	killerPlayerName.text = killer_name
+	playerRow.add_child(killerPlayerName)
+	
+	var weaponKillerImage : TextureRect = TextureRect.new()
+	weaponKillerImage.texture = weaponImage
+	weaponKillerImage.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	playerRow.add_child(weaponKillerImage)
+	
+	var deadPlayerName : Label = Label.new()
+	deadPlayerName.text = dead_name
+	playerRow.add_child(deadPlayerName)
+	
+	await get_tree().create_timer(4).timeout
+	playerRow.queue_free()
