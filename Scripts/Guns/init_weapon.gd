@@ -202,7 +202,7 @@ func shoot():
 @rpc("authority", "call_local", "reliable")
 func spawnBullet():
 	if fire_sound:
-		SFXHandler.play_sfx_3d.rpc(fire_sound.stream, hands.player, "Weapons")
+		SFXHandler.play_sfx_3d.rpc(fire_sound.stream, hands.player.name, "Weapons")
 	
 	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":

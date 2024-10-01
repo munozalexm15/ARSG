@@ -16,7 +16,7 @@ func enter(_msg := {}):
 	if arms.actualWeapon.weaponData.isBoltAction:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt")
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_back_sound.stream, arms.weaponReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_back_sound.stream, arms.player.name, "Weapons")
 			
 			await arms.actualWeapon.handsAnimPlayer.animation_finished
 		arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload")
@@ -31,7 +31,7 @@ func enter(_msg := {}):
 			else:
 				player_model_reload.rpc("Pistol_Reload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.weaponReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.player.name, "Weapons")
 			arms.reloadTimer.wait_time = arms.actualWeapon.reload_sound.stream.get_length() + 0.2
 		else:
 			if arms.actualWeapon.weaponData.weaponType  != "Pistol":
@@ -39,7 +39,7 @@ func enter(_msg := {}):
 			else:
 				player_model_reload.rpc("Full_PistolReload", 1.0)
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Full_Reload")
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.full_reload_sound.stream, arms.weaponFullReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.full_reload_sound.stream, arms.player.name, "Weapons")
 			arms.reloadTimer.wait_time = arms.actualWeapon.full_reload_sound.stream.get_length() + 0.2
 		
 		arms.reloadTimer.start()
@@ -52,7 +52,7 @@ func physics_update(_delta):
 		wantsToShoot = true
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.weaponReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.player.name, "Weapons")
 			await arms.actualWeapon.handsAnimPlayer.animation_finished
 			arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
 		else:
@@ -138,14 +138,14 @@ func reload_bullet_by_bullet():
 	
 	if wantsToShoot:
 		wantsToShoot = false
-		SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.weaponReloadAudios, "Weapons")
+		SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.player.name, "Weapons")
 		state_machine.transition_to("Idle")
 		return
 	
 	if arms.actualWeapon.weaponData.bulletsInMag >= arms.actualWeapon.weaponData.magSize:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.weaponReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.player.name, "Weapons")
 			await arms.actualWeapon.handsAnimPlayer.animation_finished
 			arms.actualWeapon.handsAnimPlayer.assigned_animation = "RESET"
 		else:
@@ -157,7 +157,7 @@ func reload_bullet_by_bullet():
 	if arms.actualWeapon.weaponData.reserveAmmo == 0:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper":
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Bolt", -1, -1, true)
-			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.weaponReloadAudios, "Weapons")
+			SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.bolt_forward_sound.stream, arms.player.name, "Weapons")
 			await arms.actualWeapon.handsAnimPlayer.animation_finished
 		else:
 			arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Enter_Reload", -1, -1, true)
@@ -172,7 +172,7 @@ func reload_bullet_by_bullet():
 		player_model_reload.rpc("Shotgun_Reload", 2.0)
 	
 	arms.actualWeapon.handsAnimPlayer.play(arms.actualWeapon.weaponData.name + "_Reload")
-	SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.weaponReloadAudios, "Weapons")
+	SFXHandler.play_sfx_3d.rpc(arms.actualWeapon.reload_sound.stream, arms.player.name, "Weapons")
 	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	arms.actualWeapon.weaponData.bulletsInMag += 1
 	arms.actualWeapon.weaponData.reserveAmmo -= 1

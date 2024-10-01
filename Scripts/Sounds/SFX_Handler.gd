@@ -16,13 +16,16 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 
 #rpc because it is intended to be used only for shooting, walking, reload, etc.
 @rpc("any_peer", "call_local", "reliable")
-func play_sfx_3d(sound: AudioStream, parent: Node, busLayout : String):
+func play_sfx_3d(sound: AudioStream, parentId: String, busLayout : String):
 	var stream = AudioStreamPlayer3D.new()
+	var player_ref = null
+	for x : Player in Network.game.players_node.get_children():
+		if x.name == parentId:
+			player_ref = x
 	
-	print("recrga")
 	stream.stream = sound
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
 	
-	parent.add_child(stream)
+	player_ref.add_child(stream)
 	stream.play()
