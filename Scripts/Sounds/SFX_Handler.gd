@@ -27,7 +27,10 @@ func play_sfx_3d(soundPath: String, parentId: String, busLayout : String):
 		if x.name == parentId:
 			player_ref = x
 	
-	
+	if busLayout == "Weapons":
+		stream.max_distance = 100.0
+	if busLayout == "Environment":
+		stream.max_distance = 20.0
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
 	
