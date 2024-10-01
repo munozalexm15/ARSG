@@ -243,7 +243,7 @@ texture_filter = 0
 
 [sub_resource type="Resource" id="Resource_778yg"]
 script = ExtResource("21_426mr")
-walk_sound = Array[AudioStreamOggVorbis]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
+walk_sound = Array[AudioStream]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
 jump_sound = ExtResource("21_72ftl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
@@ -1324,7 +1324,7 @@ shadow_mesh = SubResource("ArrayMesh_hc0o0")
 
 [sub_resource type="Resource" id="Resource_xuugu"]
 script = ExtResource("21_426mr")
-walk_sound = Array[AudioStreamOggVorbis]([ExtResource("98_jnblw"), ExtResource("99_xpqjx"), ExtResource("100_3hov0"), ExtResource("101_fawkr"), ExtResource("102_m42nf"), ExtResource("103_07t0f"), ExtResource("104_4yw54"), ExtResource("105_gb0sa"), ExtResource("106_650xn"), ExtResource("107_idgql")])
+walk_sound = Array[AudioStream]([ExtResource("98_jnblw"), ExtResource("99_xpqjx"), ExtResource("100_3hov0"), ExtResource("101_fawkr"), ExtResource("102_m42nf"), ExtResource("103_07t0f"), ExtResource("104_4yw54"), ExtResource("105_gb0sa"), ExtResource("106_650xn"), ExtResource("107_idgql")])
 jump_sound = ExtResource("98_lxexn")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0vu3c"]

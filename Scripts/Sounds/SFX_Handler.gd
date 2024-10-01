@@ -18,7 +18,8 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 @rpc("any_peer", "call_local", "reliable")
 func play_sfx_3d(sound: AudioStream, parent: Node, busLayout : String):
 	var stream = AudioStreamPlayer3D.new()
-
+	
+	print("recrga")
 	stream.stream = sound
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
