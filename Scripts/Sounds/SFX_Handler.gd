@@ -16,7 +16,7 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 
 #rpc because it is intended to be used only for shooting, walking, reload, etc.
 @rpc("any_peer", "call_local", "reliable")
-func play_sfx_3d(soundPath: String, parentId: String, busLayout : String):
+func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDistance : float):
 	
 	var audioSteam : AudioStream = load(soundPath)
 	var stream = AudioStreamPlayer3D.new()
@@ -27,10 +27,7 @@ func play_sfx_3d(soundPath: String, parentId: String, busLayout : String):
 		if x.name == parentId:
 			player_ref = x
 	
-	if busLayout == "Weapons":
-		stream.max_distance = 100.0
-	if busLayout == "Environment":
-		stream.max_distance = 20.0
+	stream.max_distance = maxDistance
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
 	
