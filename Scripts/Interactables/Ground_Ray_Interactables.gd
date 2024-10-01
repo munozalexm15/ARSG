@@ -11,7 +11,7 @@ func _ready():
 func _process(_delta):
 	if is_colliding() and get_collider() is Ground_Handler and player.headBobbing_vector.y < -0.98 and not player.ASP_Footsteps.playing and (player.state_machine.state.name == "Walk" or player.state_machine.state.name == "Run"):
 		var collision : GroundData = get_collider().groundData
-		var sound : AudioStreamOggVorbis = collision.walk_sound.pick_random()
+		var sound = collision.walk_sound.pick_random()
 		SFXHandler.play_sfx_3d.rpc(sound, player, "Environment")
 	
 	if is_colliding() and get_collider() is WeaponInteractable:
