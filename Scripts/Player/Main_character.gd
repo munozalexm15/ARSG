@@ -441,8 +441,9 @@ func die_respawn(player_id, instigator_id):
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
 				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
-	
-	health = 100
+		
+		health = 100
+
 
 @rpc("any_peer", "call_local", "reliable")
 func make_player_visible(player_id):
