@@ -30,6 +30,6 @@ func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDis
 	stream.max_distance = maxDistance
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
-	
-	player_ref.add_child(stream)
-	stream.play()
+	if player_ref != null:
+		player_ref.add_child(stream)
+		stream.play()
