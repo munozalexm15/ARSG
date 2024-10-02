@@ -434,9 +434,6 @@ func die_respawn(player_id, instigator_id):
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)
-	
-		for weapon in player.arms.weaponHolder.get_children():
-			player.arms.weaponHolder.remove_child(weapon)
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
