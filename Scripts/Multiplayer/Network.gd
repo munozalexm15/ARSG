@@ -198,7 +198,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
 		if str(identifier) == player.name:
-			
+			player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
@@ -213,7 +213,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
 				player.arms.state_machine.transition_to("SwappingWeapon")
-				print("assigned weapon")
 			
 			player.weaponSelectionMenu.visible = false
 			
