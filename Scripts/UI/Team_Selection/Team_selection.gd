@@ -121,3 +121,5 @@ func _on_visibility_changed():
 	else:
 		player.hud.visible = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+		player.isPauseMenuOpened = false
+		player.state_machine.process_mode = PROCESS_MODE_INHERIT

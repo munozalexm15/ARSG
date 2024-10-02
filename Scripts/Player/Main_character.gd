@@ -447,3 +447,4 @@ func make_player_visible(player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			p.visible = true
+			p.health = 100

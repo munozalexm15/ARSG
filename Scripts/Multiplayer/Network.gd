@@ -193,6 +193,7 @@ func update_teams(identifier, newTeam):
 
 @rpc("any_peer", "call_local", "reliable")
 func updatePlayerWeapon(identifier, weaponScenePath : String):
+	
 	print("updating weapon for player , " , identifier)
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
