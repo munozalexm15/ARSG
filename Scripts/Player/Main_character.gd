@@ -422,8 +422,7 @@ func die_respawn(player_id, instigator_id):
 	await deathModelScene.animationPlayer.animation_finished
 	
 	set_collision_mask_value(3, true)
-
-	#visible = true
+	
 	#hay que hacer que el que ha muerto sincronice y le diga al resto que sea visible el player, porque si no al resto les saldrá visible antes
 	if player_id == multiplayer.get_unique_id():
 		global_position = Network.game.random_spawn()
@@ -436,16 +435,13 @@ func die_respawn(player_id, instigator_id):
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)
 	
+		for weapon in player.arms.weaponHolder.get_children():
+			player.arms.weaponHolder.remove_child(weapon)
+		
+		for index in Network.game.players.size():
+			if Network.game.players[index]["id"] == player.name:
+				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
 	
-	#setear nueva arma
-	for weapon : Weapon in player.arms.weaponHolder.get_children():
-		player.arms.weaponHolder.remove_child(weapon)
-	
-	for index in Network.game.players.size():
-		if Network.game.players[index]["id"] == player.name:
-			Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
-	
-	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	health = 100
 
 @rpc("any_peer", "call_local", "reliable")
