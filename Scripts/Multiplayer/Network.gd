@@ -213,8 +213,8 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
 				player.arms.state_machine.transition_to("SwappingWeapon")
+				print("assigned weapon")
 			
-			player.visible = true
 			player.weaponSelectionMenu.visible = false
 			
 			for index in game.players.size():

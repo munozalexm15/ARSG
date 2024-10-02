@@ -432,13 +432,13 @@ func die_respawn(player_id, instigator_id):
 		camera.current = true
 		arms.visible = true
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
-		await get_tree().process_frame
-		make_player_visible.rpc(player_id)
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
 				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
-		
+				
+		await get_tree().process_frame
+		make_player_visible.rpc(player_id)
 		health = 100
 
 
@@ -447,3 +447,4 @@ func make_player_visible(player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			p.visible = true
+			p.state_machine.transition_to("SwappingWeapon")
