@@ -17,7 +17,7 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 #rpc because it is intended to be used only for shooting, walking, reload, etc.
 @rpc("any_peer", "call_local", "reliable")
 func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDistance : float):
-	
+	print("me reproduzco por ", parentId)
 	var audioSteam : AudioStream = load(soundPath)
 	var stream = AudioStreamPlayer3D.new()
 	stream.stream = audioSteam

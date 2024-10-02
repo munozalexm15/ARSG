@@ -12,6 +12,7 @@ damage = 10.0
 magSize = 30
 bulletsInMag = 30
 reserveAmmo = 180
+defaultReserveAmmo = 180
 weaponCaliber = "9MM"
 allowsFireSelection = true
 fireModes = [&"Auto", &"Burst", &"Semi"]

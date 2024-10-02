@@ -12,6 +12,7 @@ damage = 15.0
 magSize = 8
 bulletsInMag = 8
 reserveAmmo = 32
+defaultReserveAmmo = 32
 weaponCaliber = ".45 ACP"
 allowsFireSelection = false
 fireModes = [&"Semi"]

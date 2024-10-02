@@ -12,6 +12,7 @@ damage = 120.0
 magSize = 5
 bulletsInMag = 5
 reserveAmmo = 20
+defaultReserveAmmo = 20
 weaponCaliber = "7MM"
 allowsFireSelection = false
 fireModes = [&"Semi"]

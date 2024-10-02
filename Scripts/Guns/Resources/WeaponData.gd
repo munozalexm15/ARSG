@@ -7,6 +7,7 @@ class_name WeaponData extends Resource
 @export var magSize : int
 @export var bulletsInMag: int
 @export var reserveAmmo : int
+@export var defaultReserveAmmo : int
 
 @export var weaponCaliber: String
 
