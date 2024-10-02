@@ -209,6 +209,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			
 			if player.health <= 0:
 				player.health = 100
+				print("adding weapon to weaponHolder")
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)

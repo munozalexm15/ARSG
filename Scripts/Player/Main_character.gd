@@ -439,7 +439,6 @@ func die_respawn(player_id, instigator_id):
 				
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)
-		health = 100
 
 
 @rpc("any_peer", "call_local", "reliable")
