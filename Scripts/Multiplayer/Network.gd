@@ -204,10 +204,10 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
 			
-			for weaponInHolder in player.arms.weaponHolder.get_children():
-				player.arms.weaponHolder.remove_child(weaponInHolder)
-			
 			if player.health <= 0:
+				player.can_heal = true
+				for weaponInHolder in player.arms.weaponHolder.get_children():
+					player.arms.weaponHolder.remove_child(weaponInHolder)
 				player.health = 100
 				print("adding weapon to weaponHolder")
 				player.arms.weaponHolder.add_child(weaponSpawned) 

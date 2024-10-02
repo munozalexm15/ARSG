@@ -419,6 +419,7 @@ func die_respawn(player_id, instigator_id):
 	weaponPickupNode.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.bulletsInMag
 	Network.game.interactables_node.add_child(weaponPickupNode)
 	
+	player.can_heal = false
 	await deathModelScene.animationPlayer.animation_finished
 	
 	set_collision_mask_value(3, true)
