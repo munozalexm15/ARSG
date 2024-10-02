@@ -51,9 +51,6 @@ func _ready():
 func _process(_delta):
 	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
 		return
-	
-	for p in players:
-		print(p)
 		
 	if Input.is_action_pressed("Scoreboard"):
 		dashboardMatch.visible = true
