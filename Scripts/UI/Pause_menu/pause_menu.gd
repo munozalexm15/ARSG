@@ -93,3 +93,8 @@ func _on_exit_match_button_pressed():
 		if multiplayer.get_unique_id() == 1:
 			Network.close_match()
 			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+
+
+func _on_change_weapon_button_pressed() -> void:
+	player.weaponSelectionMenu.visible = true
+	visible = false

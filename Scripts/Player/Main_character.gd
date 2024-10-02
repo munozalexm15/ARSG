@@ -87,7 +87,7 @@ var headBobbing_vector = Vector2.ZERO
 var headBobbing_curr_intensity = 0.0
 
 @onready var health_display : ProgressBar = $SubViewport/ProgressBar
-var health: float = 100
+var health: float = 0
 var can_heal = false
 var seeing_ally : bool = false
 
@@ -380,7 +380,6 @@ func die_respawn(player_id, instigator_id):
 			
 	Network.game.dashboardMatch.get_lobby_data()
 	Network.game.add_kill_to_killFeed(killerName, killerWeaponImage, deadName)
-	health = 100
 	visible = false
 	if player_id == multiplayer.get_unique_id():
 		hud.visible = false
@@ -437,9 +436,17 @@ func die_respawn(player_id, instigator_id):
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)
 	
-	health = 100
-	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 	
+	#setear nueva arma
+	for weapon : Weapon in player.arms.weaponHolder.get_children():
+		player.arms.weaponHolder.remove_child(weapon)
+	
+	for index in Network.game.players:
+		if Network.game.players[index]["name"] == player.name:
+			Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
+	
+	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
+	health = 100
 
 @rpc("any_peer", "call_local", "reliable")
 func make_player_visible(player_id):

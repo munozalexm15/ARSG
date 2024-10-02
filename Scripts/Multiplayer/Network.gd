@@ -203,12 +203,16 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
 			
-			if player.arms.weaponHolder.get_child_count() > 0:
-				player.arms.weaponHolder.remove_child(player.arms.weaponHolder.get_child(0))
-			player.arms.weaponHolder.add_child(weaponSpawned) 
-			player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
-			player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
-			player.arms.state_machine.transition_to("SwappingWeapon")
+			if player.health <= 0:
+				player.health = 100
+				for weaponEquipped : Weapon in player.arms.weaponHolder.get_children():
+					player.arms.weaponHolder.remove_child(weaponEquipped)
+					
+				player.arms.weaponHolder.add_child(weaponSpawned) 
+				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
+				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
+				player.arms.state_machine.transition_to("SwappingWeapon")
+			
 			player.visible = true
 			player.weaponSelectionMenu.visible = false
 			

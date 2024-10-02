@@ -818,6 +818,24 @@ text = "CONTINUE"
 flat = true
 alignment = 0
 
+[node name="ChangeWeaponBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.752941, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0.45098)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("6_ciuny")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2tomq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ko5ln")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3fbn7")
+text = "CHANGE WEAPON"
+flat = true
+alignment = 0
+
 [node name="SettingsBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -888,6 +906,8 @@ libraries = {
 
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_continue_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ContinueBUTTON" to="." method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ChangeWeaponBUTTON" to="." method="_on_continue_button_mouse_entered"]
+[connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/ChangeWeaponBUTTON" to="." method="_on_change_weapon_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_mouse_entered"]
 [connection signal="pressed" from="HBoxContainer2/MarginContainer/PauseMenu/SettingsBUTTON" to="." method="_on_settings_button_pressed"]
 [connection signal="mouse_entered" from="HBoxContainer2/MarginContainer/PauseMenu/ExitMatchBUTTON" to="." method="_on_exit_button_mouse_entered"]
