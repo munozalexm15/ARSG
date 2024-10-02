@@ -441,8 +441,8 @@ func die_respawn(player_id, instigator_id):
 	for weapon : Weapon in player.arms.weaponHolder.get_children():
 		player.arms.weaponHolder.remove_child(weapon)
 	
-	for index in Network.game.players:
-		if Network.game.players[index]["name"] == player.name:
+	for index in Network.game.players.size():
+		if Network.game.players[index]["id"] == player.name:
 			Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
 	
 	player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
