@@ -78,6 +78,8 @@ func _process(_delta):
 			reticle_lines[x].visible = true
 		adjust_reticle_size()
 	
+	healthBar.value = player_controller.health
+	
 	var seconds =  int(Network.game.matchTimer.time_left) % 60
 
 	@warning_ignore("integer_division")
