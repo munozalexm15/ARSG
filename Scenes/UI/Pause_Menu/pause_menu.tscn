@@ -874,6 +874,7 @@ flat = true
 alignment = 0
 
 [node name="ExitBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
@@ -895,8 +896,9 @@ alignment = 0
 visible = false
 layout_mode = 1
 anchors_preset = -1
-offset_left = 227.0
-offset_right = 891.0
+offset_top = 103.0
+offset_right = 1190.0
+offset_bottom = 772.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
