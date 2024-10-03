@@ -194,7 +194,7 @@ resource_name = "RESET"
 length = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("../Weapon/Pump_001:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -206,7 +206,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("../Weapon/Pump_001:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -218,7 +218,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = false
+tracks/2/enabled = true
 tracks/2/path = NodePath("../Weapon:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -230,7 +230,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("../Weapon:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -242,7 +242,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = false
+tracks/4/enabled = true
 tracks/4/path = NodePath("Armature_001:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -254,7 +254,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = false
+tracks/5/enabled = true
 tracks/5/path = NodePath("Armature_001:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -266,7 +266,7 @@ tracks/5/keys = {
 }
 tracks/6/type = "value"
 tracks/6/imported = false
-tracks/6/enabled = false
+tracks/6/enabled = true
 tracks/6/path = NodePath(".:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
@@ -278,7 +278,7 @@ tracks/6/keys = {
 }
 tracks/7/type = "value"
 tracks/7/imported = false
-tracks/7/enabled = false
+tracks/7/enabled = true
 tracks/7/path = NodePath(".:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
@@ -290,7 +290,7 @@ tracks/7/keys = {
 }
 tracks/8/type = "value"
 tracks/8/imported = false
-tracks/8/enabled = false
+tracks/8/enabled = true
 tracks/8/path = NodePath("Armature_001/Skeleton3D:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
@@ -302,7 +302,7 @@ tracks/8/keys = {
 }
 tracks/9/type = "value"
 tracks/9/imported = false
-tracks/9/enabled = false
+tracks/9/enabled = true
 tracks/9/path = NodePath("Armature_001/Skeleton3D:rotation")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
@@ -2951,7 +2951,7 @@ libraries = {
 speed_scale = 2.0
 
 [node name="Weapon" type="Node3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 5.11, 0.212, 0.403)
+transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, 5.11, 0.212, 0.403)
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, -5.96047e-08, 7.45058e-08, 5.96046e-08, 1, 1.77636e-15, -7.45058e-08, 2.66454e-15, 1, 0, 0, 0)
@@ -2959,7 +2959,7 @@ mesh = SubResource("ArrayMesh_xroja")
 skeleton = NodePath("")
 
 [node name="Pump_001" type="MeshInstance3D" parent="Weapon"]
-transform = Transform3D(0.999999, -7.45056e-09, -4.09782e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.01805, -0.000115648, -0.0724883)
+transform = Transform3D(0.999999, -7.45056e-09, -4.09781e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.01805, -0.000115648, -0.0724883)
 mesh = SubResource("ArrayMesh_7lep4")
 skeleton = NodePath("")
 

@@ -51,7 +51,6 @@ func _ready():
 func _process(_delta):
 	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
 		return
-		
 	if Input.is_action_pressed("Scoreboard"):
 		dashboardMatch.visible = true
 	if Input.is_action_just_released("Scoreboard"):
@@ -128,12 +127,21 @@ func request_game_info(player_dict : Dictionary):
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:
-			if player_dict.has("weaponScenePath"):
-				var weaponScene : PackedScene = load(player_dict["weaponScenePath"])
+			if player_dict.has("primaryWeaponPath"):
+				var weaponScene : PackedScene = load(player_dict["primaryWeaponPath"])
 				var weapon : Weapon = weaponScene.instantiate()
 				weapon.handsNode = player.arms.get_path()
 				player.arms.weaponHolder.add_child(weapon)
-				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
+				
+			if player_dict.has("secondaryWeaponPath"):
+				var weaponScene : PackedScene = load(player_dict["secondaryWeaponPath"])
+				var weapon : Weapon = weaponScene.instantiate()
+				weapon.handsNode = player.arms.get_path()
+				player.arms.weaponHolder.add_child(weapon)
+			
+			for weapon : Weapon in player.arms.weaponHolder.get_children():
+				if weapon.weaponData.name == player_dict["actualWeaponName"]:
+					player.arms.actualWeapon = weapon
 
 func _on_match_timer_timeout():
 	if multiplayer.get_unique_id() == 1:

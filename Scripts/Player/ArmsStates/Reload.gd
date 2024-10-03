@@ -62,8 +62,11 @@ func physics_update(_delta):
 		return
 
 func mouse_swap_weapon_logic():
-	if Input.is_action_just_pressed("Next Weapon") or Input.is_action_just_pressed("Previous Weapon"):
-		_on_reload_timer_timeout()
+	if Input.is_action_just_pressed("Next Weapon") or Input.is_action_just_pressed("Previous Weapon") and arms.weaponHolder.get_child_count() > 1:
+		if arms.reloadTimer.time_left > 0:
+			arms.actualWeapon.handsAnimPlayer.play("RESET")
+			
+			
 		if Input.is_action_just_pressed("Next Weapon"):
 			if arms.actual_weapon_index < arms.weaponHolder.get_child_count() -1:
 				arms.actual_weapon_index += 1
@@ -78,17 +81,21 @@ func mouse_swap_weapon_logic():
 				arms.actual_weapon_index = 0
 			arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 		
-		for audio in arms.weaponReloadAudios.get_children():
-			arms.weaponReloadAudios.remove_child(audio)
+		for audio in arms.player.player_sounds.get_children():
+			arms.player.player_sounds.remove_child(audio)
 		
 		#arms.actualWeapon.reload_sound.stop()
 		#arms.actualWeapon.full_reload_sound.stop()
 		arms.reloadTimer.stop()
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
 		state_machine.transition_to("SwappingWeapon")
 	
 func swap_weapon():
-	if (Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0) or (Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1):
-		_on_reload_timer_timeout()
+	if (Input.is_action_just_pressed("Primary weapon") and arms.actual_weapon_index != 0) or (Input.is_action_just_pressed("Secondary weapon") and arms.actual_weapon_index != 1) and arms.weaponHolder.get_child_count() > 1:
+		if arms.reloadTimer.time_left > 0:
+			arms.actualWeapon.handsAnimPlayer.play("RESET")
+		
+			
 		if Input.is_action_just_pressed("Primary weapon"):
 			if arms.actual_weapon_index != 0:
 				arms.actual_weapon_index = 0
@@ -112,6 +119,7 @@ func swap_weapon():
 			for audio in arms.weaponReloadAudios.get_children():
 				arms.weaponReloadAudios.remove_child(audio)
 		arms.reloadTimer.stop()
+		await arms.actualWeapon.handsAnimPlayer.animation_finished
 		state_machine.transition_to("SwappingWeapon")
 		
 

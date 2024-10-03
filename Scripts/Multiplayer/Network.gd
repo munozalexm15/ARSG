@@ -193,8 +193,6 @@ func update_teams(identifier, newTeam):
 
 @rpc("any_peer", "call_local", "reliable")
 func updatePlayerWeapon(identifier, weaponScenePath : String):
-	
-	print("updating weapon for player , " , identifier)
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
@@ -210,7 +208,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
 				player.health = 100
-				print("adding weapon to weaponHolder")
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
@@ -223,8 +220,11 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			for index in game.players.size():
 				var playerDict = game.players[index]
 				if playerDict["id"] == str(identifier):
-					playerDict["weaponName"] = weaponSpawned.weaponData.name
-					playerDict["weaponScenePath"] = weaponScenePath
+					playerDict["actualWeaponName"] = weaponSpawned.weaponData.name
+					playerDict["actualWeaponPath"] = weaponScenePath
+					playerDict["primaryWeaponName"] = weaponSpawned.weaponData.name
+					playerDict["primaryWeaponPath"] = weaponScenePath
+					
 
 @rpc("any_peer", "call_local")
 func show_all_players():

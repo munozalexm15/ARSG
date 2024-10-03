@@ -161,6 +161,9 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
+	for audio in player.player_sounds.get_children():
+		player.player_sounds.remove_child(audio)
+	
 	#weapon switching
 	var spawnedWeaponScene = load(pickupWeaponScene)
 	var newWeapon : Weapon = spawnedWeaponScene.instantiate()
@@ -177,6 +180,19 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
+	var playerWeaponDict : Dictionary = { "id" =  str(multiplayer.get_unique_id()) }
+	playerWeaponDict["actualWeaponName"] = actualWeapon.weaponData.name
+	playerWeaponDict["actualWeaponPath"] = actualWeapon.weaponData.weaponScene
+	
+	playerWeaponDict["primaryWeaponName"] = weaponHolder.get_child(0).weaponData.name
+	playerWeaponDict["primaryWeaponPath"] = weaponHolder.get_child(0).weaponData.weaponScene
+	
+	if weaponHolder.get_child_count() > 1:
+		playerWeaponDict["secondaryWeaponName"] = weaponHolder.get_child(1).weaponData.name
+		playerWeaponDict["secondaryWeaponPath"] = weaponHolder.get_child(1).weaponData.weaponScene
+	
+	updatePlayerWeaponStatus.rpc(playerWeaponDict)
+	
 	#if both weapons have the same caliber, add more ammo to both reserve
 	if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
 		weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
@@ -184,6 +200,20 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
 	state_machine.transition_to("SwappingWeapon")
 
+@rpc("any_peer", "call_local", "reliable")
+func updatePlayerWeaponStatus(playerDict : Dictionary):
+	for index in Network.game.players.size():
+		var playerData = Network.game.players[index]
+		if playerData["id"] == playerDict["id"]:
+			playerData["actualWeaponName"] = playerDict["actualWeaponName"]
+			playerData["actualWeaponPath"] = playerDict["actualWeaponPath"]
+			
+			playerData["primaryWeaponName"] = playerDict["primaryWeaponName"]
+			playerData["primaryWeaponPath"] = playerDict["primaryWeaponPath"]
+			
+			if playerDict.has("secondaryWeaponName"):
+				playerData["secondaryWeaponName"] = playerDict["secondaryWeaponName"]
+				playerData["secondaryWeaponPath"] = playerDict["secondaryWeaponPath"]
 
 func loadWeapon(index):
 	for x in weaponHolder.get_child_count():

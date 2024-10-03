@@ -36,6 +36,8 @@ var weaponSelectionMenu : WeaponSelection_Menu
 @onready var groundCheck_Raycast : RayCast3D = $GroundCheckRaycast
 @onready var ASP_Footsteps : AudioStreamPlayer3D = $ASP_footsteps
 @onready var player_body : PlayerSkeleton = $PlayerSkeleton
+@onready var player_sounds : Node3D = $PlayerSounds
+@onready var weapon_sounds : Node3D = $WeaponSounds
 
 var hit_indicator_scene = preload("res://Scenes/UI/hit_indicator.tscn")
 var death_model = preload("res://Scenes/Characters/Player_DeathModel.tscn")
@@ -73,7 +75,6 @@ var lerpHandsPosition = 0.0
 var newDirection = 0
 var distanceCheck = 1
 var isColliding = false
-var isClimbing = false
 #--- Head bobbing
 const hb_speeds = {"crouch_speed"= 10.0, "walk_speed" = 15.0, "sprint_speed" = 22.0, "idle_speed"= 10.0}
 
@@ -234,16 +235,6 @@ func _physics_process(delta):
 #leaning ---------------------- WIP
 	#leaning(delta)
 	move_and_slide()
-	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "Ladder" and !isClimbing and !is_on_floor():
-			isClimbing = true
-			if state != "Climb":
-				state_machine.transition_to("Climb")
-	
-	if  get_slide_collision_count() == 0:
-		isClimbing = false
 
 func _on_state_machine_transitioned(state_name, _old_state):
 	state = state_name

@@ -8,6 +8,10 @@ func enter(_msg := {}):
 
 	arms.animationPlayer.play("SwapWeapon")
 	
+	if arms.player.player_sounds:
+		for audio in arms.player.player_sounds.get_children():
+			arms.player.player_sounds.remove_child(audio)
+		
 	if arms.weaponHolder.get_child_count() > 0:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 			arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
@@ -22,6 +26,8 @@ func physics_update(_delta):
 	swap_weapon()
 	mouse_swap_weapon_logic()
 
+
+#metodo que se encarga de dropearte el arma actual y spawnearte en las manos la que querias coger
 func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 	var weapon_Ref = null
 	for x in arms.weaponHolder.get_child_count():
@@ -84,7 +90,6 @@ func drop_weapon(_weaponName, pickupWeapon, isSwapping):
 		arms.weaponHolder.get_child(1).weaponData.reserveAmmo = arms.weaponHolder.get_child(0).weaponData.reserveAmmo
 		arms.weaponHolder.get_child(0).weaponData.reserveAmmo = arms.weaponHolder.get_child(1).weaponData.reserveAmmo
 	
-	Network.game.update_players_equipment.rpc(multiplayer.get_unique_id(), arms.weaponHolder)
 	state_machine.transition_to("Idle")
 
 func _on_animation_player_animation_finished(anim_name):
@@ -156,5 +161,19 @@ func exit():
 	arms.actualWeapon.leftArm.get_active_material(0).albedo_texture = arms.handsAssignedTexture
 	arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = arms.handsAssignedTexture
 	arms.playerSwappingWeapons.emit()
+	
+	var playerWeaponDict : Dictionary = { "id" =  str(multiplayer.get_unique_id()) }
+	playerWeaponDict["actualWeaponName"] = arms.actualWeapon.weaponData.name
+	playerWeaponDict["actualWeaponPath"] = arms.actualWeapon.weaponData.weaponScene
+	
+	playerWeaponDict["primaryWeaponName"] = arms.weaponHolder.get_child(0).weaponData.name
+	playerWeaponDict["primaryWeaponPath"] = arms.weaponHolder.get_child(0).weaponData.weaponScene
+	
+	if arms.weaponHolder.get_child_count() > 1:
+		playerWeaponDict["secondaryWeaponName"] = arms.weaponHolder.get_child(1).weaponData.name
+		playerWeaponDict["secondaryWeaponPath"] = arms.weaponHolder.get_child(1).weaponData.weaponScene
+	
+	arms.updatePlayerWeaponStatus.rpc(playerWeaponDict)
+	
 	if is_multiplayer_authority():
 		arms.actualWeapon.being_used = true

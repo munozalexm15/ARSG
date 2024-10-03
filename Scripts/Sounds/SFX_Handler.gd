@@ -17,12 +17,11 @@ func play_sfx(sound: AudioStream, parent: Node, busLayout : String):
 #rpc because it is intended to be used only for shooting, walking, reload, etc.
 @rpc("any_peer", "call_local", "reliable")
 func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDistance : float):
-	print("me reproduzco por ", parentId)
 	var audioSteam : AudioStream = load(soundPath)
 	var stream = AudioStreamPlayer3D.new()
 	stream.stream = audioSteam
 	
-	var player_ref = null
+	var player_ref : Player = null
 	for x : Player in Network.game.players_node.get_children():
 		if x.name == parentId:
 			player_ref = x
@@ -31,5 +30,13 @@ func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDis
 	stream.bus = busLayout
 	stream.connect("finished", Callable(stream, "queue_free"))
 	if player_ref != null:
-		player_ref.add_child(stream)
+		#for shooting sounds which don't have to be removed if switching weapon
+		if busLayout == "Weapons" and maxDistance > 50:
+			player_ref.weapon_sounds.add_child(stream)
+		#for having all the sounds of reload in a node that can be used to be removed if reload cancelling
+		elif busLayout == "Weapons" and maxDistance < 50:
+			player_ref.player_sounds.add_child(stream)
+		#all other kind of sounds player by the user
+		else:
+			player_ref.add_child(stream)
 		stream.play()

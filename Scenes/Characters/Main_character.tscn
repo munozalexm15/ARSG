@@ -366,6 +366,10 @@ script = ExtResource("7_nbd32")
 
 [node name="Damage_indicator_lookAt" type="Node3D" parent="."]
 
+[node name="PlayerSounds" type="Node3D" parent="."]
+
+[node name="WeaponSounds" type="Node3D" parent="."]
+
 [node name="HUD" parent="." node_paths=PackedStringArray("player_controller") instance=ExtResource("11_l81ke")]
 player_controller = NodePath("..")
 
