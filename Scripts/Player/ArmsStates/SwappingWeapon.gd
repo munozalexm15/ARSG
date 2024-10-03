@@ -162,7 +162,7 @@ func exit():
 	arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = arms.handsAssignedTexture
 	arms.playerSwappingWeapons.emit()
 	
-	var playerWeaponDict : Dictionary = { "id" =  str(multiplayer.get_unique_id()) }
+	var playerWeaponDict : Dictionary = { "id" = str(multiplayer.get_unique_id()) }
 	playerWeaponDict["actualWeaponName"] = arms.actualWeapon.weaponData.name
 	playerWeaponDict["actualWeaponPath"] = arms.actualWeapon.weaponData.weaponScene
 	

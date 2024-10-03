@@ -180,7 +180,7 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
-	var playerWeaponDict : Dictionary = { "id" =  str(multiplayer.get_unique_id()) }
+	var playerWeaponDict : Dictionary = { "id" =  str(player.name) }
 	playerWeaponDict["actualWeaponName"] = actualWeapon.weaponData.name
 	playerWeaponDict["actualWeaponPath"] = actualWeapon.weaponData.weaponScene
 	
@@ -204,6 +204,7 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 func updatePlayerWeaponStatus(playerDict : Dictionary):
 	for index in Network.game.players.size():
 		var playerData = Network.game.players[index]
+		
 		if playerData["id"] == playerDict["id"]:
 			playerData["actualWeaponName"] = playerDict["actualWeaponName"]
 			playerData["actualWeaponPath"] = playerDict["actualWeaponPath"]
@@ -214,6 +215,7 @@ func updatePlayerWeaponStatus(playerDict : Dictionary):
 			if playerDict.has("secondaryWeaponName"):
 				playerData["secondaryWeaponName"] = playerDict["secondaryWeaponName"]
 				playerData["secondaryWeaponPath"] = playerDict["secondaryWeaponPath"]
+		print(playerData)
 
 func loadWeapon(index):
 	for x in weaponHolder.get_child_count():
