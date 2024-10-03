@@ -219,6 +219,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			for index in game.players.size():
 				var playerDict = game.players[index]
 				if playerDict["id"] == str(identifier):
+					playerDict["classSelectedPath"] = weaponScenePath 
 					playerDict["actualWeaponName"] = weaponSpawned.weaponData.name
 					playerDict["actualWeaponPath"] = weaponScenePath
 					playerDict["primaryWeaponName"] = weaponSpawned.weaponData.name
