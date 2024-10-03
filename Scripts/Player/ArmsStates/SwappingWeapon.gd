@@ -17,7 +17,7 @@ func enter(_msg := {}):
 			arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 	
 	if arms.weaponHolder.get_child_count() == 1:
-		arms.player.hud.secondaryWeaponIcon.visible = false
+		arms.player.hud.secondaryWeaponIcon.texture = null
 
 func physics_update(_delta):
 	if not is_multiplayer_authority():
