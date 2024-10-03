@@ -192,8 +192,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 		playerWeaponDict["secondaryWeaponName"] = weaponHolder.get_child(1).weaponData.name
 		playerWeaponDict["secondaryWeaponPath"] = weaponHolder.get_child(1).weaponData.weaponScene
 	
-	updatePlayerWeaponStatus(playerWeaponDict)
-	
 	#if both weapons have the same caliber, add more ammo to both reserve
 	if actualWeapon.weaponData.weaponCaliber == weaponHolder.get_child(0).weaponData.weaponCaliber:
 		weaponHolder.get_child(1).weaponData.reserveAmmo = weaponHolder.get_child(0).weaponData.reserveAmmo
