@@ -430,10 +430,8 @@ func die_respawn(player_id, instigator_id):
 				var playerData : Dictionary = Network.game.players[index]
 				playerData.erase("secondaryWeaponName")
 				playerData.erase("secondaryWeaponPath")
-				print(Network.game.players[index])
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
-					print("borrando armas!")
 				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["classSelectedPath"])
 				
 		await get_tree().process_frame

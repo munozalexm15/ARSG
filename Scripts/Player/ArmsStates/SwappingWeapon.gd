@@ -15,6 +15,9 @@ func enter(_msg := {}):
 	if arms.weaponHolder.get_child_count() > 0:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 			arms.player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
+	
+	if arms.weaponHolder.get_child_count() == 1:
+		arms.player.hud.secondaryWeaponIcon.visible = false
 
 func physics_update(_delta):
 	if not is_multiplayer_authority():
