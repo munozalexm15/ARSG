@@ -208,6 +208,14 @@ func spawnBullet():
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Bullet = bullet_type.instantiate()
+		
+			bullet.hitmark.connect(show_hitmarker)
+			bullet.hitmark.connect(hit_update_score)
+			bullet.playerDamaged.connect(update_health)
+			bullet.kill.connect(kill_update_score)
+			
+			Network.game.bullets_node.add_child(bullet)
+			
 			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
@@ -215,18 +223,10 @@ func spawnBullet():
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 			
 			bullet.damage = weaponData.damage
-			bullet.hitmark.connect(show_hitmarker)
-			bullet.hitmark.connect(hit_update_score)
-			bullet.playerDamaged.connect(update_health)
-			bullet.kill.connect(kill_update_score)
-			
-			Network.game.bullets_node.add_child(bullet)
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
 		bullet.instigator = hands.player
-		bullet.transform = muzzle.global_transform
-		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
-		bullet.damage = weaponData.damage
+		
 		#if player gets damaged
 		bullet.playerDamaged.connect(update_health)
 		#Hitmarker in hud
@@ -236,6 +236,9 @@ func spawnBullet():
 		bullet.kill.connect(kill_update_score)
 		
 		Network.game.bullets_node.add_child(bullet)
+		bullet.transform = muzzle.global_transform
+		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+		bullet.damage = weaponData.damage
 		
 	show_muzzleFlash()
 
