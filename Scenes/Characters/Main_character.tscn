@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=30 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -15,14 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://dx22dqq2sepg8" path="res://Scenes/UI/Player_Hud/Player_Hud.tscn" id="11_l81ke"]
 [ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
 [ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="16_ub6kv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p17vv"]
-bg_color = Color(0.54902, 0.0941176, 0, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8aut"]
-bg_color = Color(1, 1, 1, 1)
-anti_aliasing = false
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ti48e"]
 viewport_path = NodePath("SubViewport")
@@ -269,20 +261,6 @@ animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 thirdPersonCamNode = NodePath("Head/eyesHolder/armsHolder/SpringArm3D/ThirdPersonCam")
 hudNode = NodePath("HUD")
-
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(90, 4)
-
-[node name="ProgressBar" type="ProgressBar" parent="SubViewport"]
-visible = false
-texture_filter = 1
-offset_right = 100.0
-offset_bottom = 27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_p17vv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_r8aut")
-value = 100.0
-show_percentage = false
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0288413, 0.924778, 0.0940464)

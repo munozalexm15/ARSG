@@ -217,6 +217,10 @@ func spawnBullet():
 			
 			bullet.instigator = hands.player
 			bullet.transform = muzzle.global_transform
+			
+			if hands.player.state_machine.state.name == "Crouch":
+				bullet.position.y -= 0.06
+			
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
@@ -236,6 +240,10 @@ func spawnBullet():
 		
 		Network.game.bullets_node.add_child(bullet)
 		bullet.transform = muzzle.global_transform
+		
+		if hands.player.state_machine.state.name == "Crouch":
+			bullet.position.y -= 0.06
+			
 		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
 		bullet.damage = weaponData.damage
 		

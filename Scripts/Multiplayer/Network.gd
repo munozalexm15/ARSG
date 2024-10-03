@@ -216,6 +216,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
 				player.arms.state_machine.transition_to("SwappingWeapon")
 			
+			player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
 			player.weaponSelectionMenu.visible = false
 			
 			for index in game.players.size():

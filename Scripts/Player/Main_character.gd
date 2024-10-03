@@ -87,7 +87,7 @@ var headBobbing_index = 0.0
 var headBobbing_vector = Vector2.ZERO
 var headBobbing_curr_intensity = 0.0
 
-@onready var health_display : ProgressBar = $SubViewport/ProgressBar
+
 var health: float = 0
 var can_heal = false
 var seeing_ally : bool = false
@@ -107,7 +107,6 @@ func _ready():
 		arms.visible = false
 		return
 	
-	health_display.value = health
 	player_body.visible = false
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
@@ -187,7 +186,6 @@ func _physics_process(delta):
 	else:
 		hud.HurtScreenAnimationPlayer.stop()
 	
-	health_display.value = health
 	hud.healthBar.value = health
 	
 	if health < 100 and can_heal:

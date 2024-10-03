@@ -784,7 +784,7 @@ layout_mode = 1
 anchors_preset = -1
 offset_left = 31.0
 offset_top = -49.0
-offset_right = 484.0
+offset_right = 1144.0
 offset_bottom = 305.0
 
 [node name="PrimaryWeaponImage" type="TextureRect" parent="VBoxContainer"]

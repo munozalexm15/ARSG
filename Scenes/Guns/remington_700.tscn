@@ -2054,7 +2054,6 @@ resource_name = "Material.065"
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("7_c6abr")
-roughness = 0.0
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3kakb"]
@@ -2169,7 +2168,6 @@ shadow_mesh = SubResource("ArrayMesh_cvha6")
 resource_name = "Material.067"
 cull_mode = 2
 albedo_texture = ExtResource("8_6uq8l")
-roughness = 0.0
 texture_filter = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_llcpx"]
