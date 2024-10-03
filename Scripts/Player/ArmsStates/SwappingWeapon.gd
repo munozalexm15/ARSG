@@ -107,10 +107,11 @@ func _on_animation_player_animation_finished(anim_name):
 	arms.actualWeapon.handsAnimPlayer.play("RESET")
 	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	
-	loadWeapon(arms.actual_weapon_index)
-	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
+	if arms.actual_weapon_index != null:
+		loadWeapon(arms.actual_weapon_index)
+		arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
-	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 	
 	state_machine.transition_to("Idle")
 	#elif arms.player.state == "Run":
