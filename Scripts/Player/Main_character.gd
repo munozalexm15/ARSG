@@ -427,7 +427,7 @@ func die_respawn(player_id, instigator_id):
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
-				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["weaponScenePath"])
+				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["primaryWeaponPath"])
 				
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)

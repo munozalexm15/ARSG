@@ -199,7 +199,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 		if str(identifier) == player.name:
 			player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
-			
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
 			
