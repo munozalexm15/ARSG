@@ -427,6 +427,10 @@ func die_respawn(player_id, instigator_id):
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
+				var playerData : Dictionary = Network.game.players[index]
+				playerData.erase("secondaryWeaponName")
+				playerData.erase("secondaryWeaponPath")
+				print(Network.game.players[index])
 				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["classSelectedPath"])
 				
 		await get_tree().process_frame

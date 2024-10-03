@@ -107,11 +107,10 @@ func _on_animation_player_animation_finished(anim_name):
 	arms.actualWeapon.handsAnimPlayer.play("RESET")
 	await arms.actualWeapon.handsAnimPlayer.animation_finished
 	
-	if arms.actual_weapon_index != null:
-		loadWeapon(arms.actual_weapon_index)
-		arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
+	loadWeapon(arms.actual_weapon_index)
+	arms.actualWeapon = arms.weaponHolder.get_child(arms.actual_weapon_index)
 	
-		arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
+	arms.player.eyes.get_child(0).setRecoil(arms.actualWeapon.weaponData.recoil)
 	
 	state_machine.transition_to("Idle")
 	#elif arms.player.state == "Run":
@@ -151,6 +150,7 @@ func loadWeapon(index):
 		arms.weaponHolder.get_child(x).being_used = false
 		arms.weaponHolder.get_child(x).visible = false
 
+#me pilla index 1 porque no termina de borrarse el arma. Hay que asegurarse de que el player al morir se le setee la arma que tiene en la clase, sea la actualWeapon y se le haga un loadWeapon de la que tiene actualmente
 	arms.weaponHolder.get_child(index).being_used = true
 	arms.weaponHolder.get_child(index).visible = true
 

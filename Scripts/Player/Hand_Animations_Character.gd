@@ -181,7 +181,6 @@ func drop_weapon(actualWeaponName, pickupWeaponScene, _isSwapping):
 	player.eyes.get_child(0).setRecoil(actualWeapon.weaponData.recoil)
 	
 	var playerWeaponDict : Dictionary = { "id" =  str(player.name) }
-	print(player.name)
 	playerWeaponDict["actualWeaponName"] = actualWeapon.weaponData.name
 	playerWeaponDict["actualWeaponPath"] = actualWeapon.weaponData.weaponScene
 	
@@ -214,7 +213,6 @@ func updatePlayerWeaponStatus(playerDict : Dictionary):
 			if playerDict.has("secondaryWeaponName"):
 				playerData["secondaryWeaponName"] = playerDict["secondaryWeaponName"]
 				playerData["secondaryWeaponPath"] = playerDict["secondaryWeaponPath"]
-		print(playerData)
 
 func loadWeapon(index):
 	for x in weaponHolder.get_child_count():

@@ -206,6 +206,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.can_heal = true
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
+					print("borrando armas!")
 				player.health = 100
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)

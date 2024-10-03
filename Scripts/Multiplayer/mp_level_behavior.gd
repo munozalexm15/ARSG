@@ -127,7 +127,6 @@ func request_game_info(player_dict : Dictionary):
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
 		if player.name == player_dict["id"]:
-			print(player.name)
 			if player_dict.has("primaryWeaponPath"):
 				var weaponScene : PackedScene = load(player_dict["primaryWeaponPath"])
 				var weapon : Weapon = weaponScene.instantiate()
