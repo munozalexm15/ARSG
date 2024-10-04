@@ -193,29 +193,32 @@ func update_teams(identifier, newTeam):
 
 @rpc("any_peer", "call_local", "reliable")
 func updatePlayerWeapon(identifier, weaponScenePath : String):
-	print("updating weapon for player " , identifier)
+	
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
-		if str(identifier) == player.name:
+		if str(identifier) == str(player.name):
+			print("player exists inside game node")
 			player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
-			
+			print(player.health)
 			if player.health <= 0:
 				player.can_heal = true
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
 					print("borrando armas!")
-				player.health = 100
+				
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.arms.actual_weapon_index = 0
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
-				player.arms.actualWeapon.weaponData.reserveAmmo = player.arms.actualWeapon.weaponData.defaultReserveAmmo
-				player.arms.actualWeapon.weaponData.bulletsInMag = player.arms.actualWeapon.weaponData.magSize
+				weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
+				weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
+				print("updating weapon for player " , identifier)
 				player.arms.state_machine.transition_to("SwappingWeapon")
+				player.health = 100
 			
 			player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
 			player.weaponSelectionMenu.visible = false

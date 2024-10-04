@@ -428,9 +428,8 @@ func die_respawn(player_id, instigator_id):
 				var playerData : Dictionary = Network.game.players[index]
 				playerData.erase("secondaryWeaponName")
 				playerData.erase("secondaryWeaponPath")
-				for weaponInHolder in player.arms.weaponHolder.get_children():
-					player.arms.weaponHolder.remove_child(weaponInHolder)
-				Network.updatePlayerWeapon.rpc(player.name, Network.game.players[index]["classSelectedPath"])
+				print("player found, erasing secondary weapon (if it exists) and resetting weaponData for respawn")
+				Network.updatePlayerWeapon.rpc(Network.game.players[index]["id"], Network.game.players[index]["classSelectedPath"])
 				
 		await get_tree().process_frame
 		make_player_visible.rpc(player_id)
@@ -441,4 +440,3 @@ func make_player_visible(player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			p.visible = true
-			p.health = 100

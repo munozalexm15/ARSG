@@ -14106,7 +14106,7 @@ script = ExtResource("122_3kxp3")
 [node name="ModelParent" type="Node3D" parent="Map/Outside/Player_8_ways_skeleton"]
 
 [node name="Armature" type="Node3D" parent="Map/Outside/Player_8_ways_skeleton/ModelParent"]
-transform = Transform3D(-0.107083, 0.602763, -0.790702, -0.987933, 0.0249975, 0.15285, 0.111898, 0.797528, 0.592813, -0.657795, 0.325771, 0.620516)
+transform = Transform3D(-0.107083, 0.602763, -0.790702, -0.987933, 0.0249974, 0.15285, 0.111898, 0.797528, 0.592813, -0.657795, 0.325771, 0.620516)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Map/Outside/Player_8_ways_skeleton/ModelParent/Armature"]
 bones/0/name = "Root"
