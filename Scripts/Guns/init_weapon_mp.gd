@@ -7,6 +7,13 @@ extends Node3D
 @export var weaponSkeletonData : WeaponSkeletonData
 
 @onready var rHand_grip : Node3D = $RHand_Grip
+
+@onready var muzzleFlash : GPUParticles3D = $MuzzleFlash
+@onready var muzzleFlashLight : OmniLight3D = $MuzzleFlashLight
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+
+
+func _on_muzzle_flash_finished() -> void:
+	muzzleFlashLight.visible = false

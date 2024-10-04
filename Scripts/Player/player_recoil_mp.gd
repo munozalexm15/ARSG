@@ -8,6 +8,7 @@ extends Node3D
 
 @export var skeletonNodePath := NodePath()
 @onready var skeleton : PlayerSkeleton = get_node(skeletonNodePath)
+
 # Rotations
 var currentRotation : Vector3
 var targetRotation : Vector3
@@ -62,7 +63,10 @@ func recoilFire(isAiming : bool = false):
 		targetRotation += Vector3(aimRecoil.x, randf_range(-aimRecoil.y, aimRecoil.y), randf_range(-aimRecoil.z, aimRecoil.z))
 	else:
 		targetRotation += Vector3(recoil.x , randf_range(-recoil.y, recoil.y), randf_range(-recoil.z - 0.01, -recoil.z))
-	
+		
+	var weapon : WeaponSkeleton = skeleton.LeftHandB_Attachment.get_child(0)
+	weapon.muzzleFlash.restart()
+	weapon.muzzleFlashLight.visible = true
 
 func setRecoil(newRecoil : Vector3):
 	recoil = newRecoil

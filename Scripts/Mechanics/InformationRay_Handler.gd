@@ -35,10 +35,13 @@ func _process(_delta):
 			#hud.NPCRoleLabel.visible = false
 			#player.seeing_ally = false
 			#hud.ally_indicator(Color.WHITE)
+		if collision != Player and collision.get_class() != "CharacterBody3D":
+			hud.ally_indicator(Color.WHITE)
 		
-		if (collision is Player and collision != player) and (collision.health > 0 and collision.visible == true):
+		elif (collision is Player and collision != player) and (collision.health > 0):
 			lastEnemy = collision
 			hud.ally_indicator(Color.DARK_RED)
+			
 		elif (lastEnemy and collision != Player and collision.visible == false) or collision == null:
 			#lastEnemy.tween_healthBar_visibility()
 			hud.ally_indicator(Color.WHITE)
