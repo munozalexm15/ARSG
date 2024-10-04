@@ -61,6 +61,8 @@ func _on_area_3d_body_entered(body):
 		impactParticle.emitting = true
 	
 	if body is Player and body != instigator:
+		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
+		SFXHandler.play_sfx(audioSteam, instigator, "Effects")
 		body.health -= damage - distanceTraveled
 		playerDamaged.emit()
 		instigator.hud.animationPlayer.play("hitmarker")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=780 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=778 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -181,8 +181,6 @@
 [ext_resource type="AudioStream" uid="uid://dfnyp78xobwb3" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-017.ogg" id="141_c4r6w"]
 [ext_resource type="AudioStream" uid="uid://b42tqy1ablq20" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-015.ogg" id="142_b4kr5"]
 [ext_resource type="AudioStream" uid="uid://c74e723tbsxgr" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-016.ogg" id="143_mm6er"]
-[ext_resource type="PackedScene" uid="uid://bdjqvf0cs5dl2" path="res://Scenes/Guns/Pickups/M16A2_Pickup.tscn" id="182_3lwgf"]
-[ext_resource type="PackedScene" uid="uid://b8rr8x0gextkk" path="res://Scenes/Guns/Pickups/MP5_Pickup.tscn" id="183_8j6od"]
 
 [sub_resource type="Resource" id="Resource_kp5a3"]
 script = ExtResource("5_qnagl")
@@ -8086,8 +8084,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91877, 1, -7.87736)
 [node name="Node3D5" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, 13.5076, 1, -2.29642)
 
+[node name="Node3D6" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, 13.5076, 1, 9.20561)
+
+[node name="Node3D8" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, -6.42059, 1, 13.2369)
+
+[node name="Node3D7" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(0.127394, 0, -0.991852, 0, 1, 0, 0.991852, 0, 0.127394, 16.8273, 1, 8.38947)
+
 [node name="Node3D2" type="Node3D" parent="SpawnPoints"]
 transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -27.1754, 1, 15.5928)
+
+[node name="Node3D3" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -20.6805, 1, 8.37565)
+
+[node name="Node3D9" type="Node3D" parent="SpawnPoints"]
+transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -9.61308, 1, -10.074)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
@@ -14745,11 +14758,5 @@ size = Vector3(7.46509, 1, 5.53006)
 texture_albedo = ExtResource("135_u40ie")
 upper_fade = 1e-05
 lower_fade = 1e-05
-
-[node name="M16A2" parent="." instance=ExtResource("182_3lwgf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.153013, 0.163244)
-
-[node name="MP5" parent="M16A2" instance=ExtResource("183_8j6od")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.07322)
 
 [connection signal="timeout" from="MatchTimer" to="." method="_on_match_timer_timeout"]

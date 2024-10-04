@@ -133,7 +133,9 @@ func _input(event : InputEvent):
 			await pauseMenu.optionsMainContainer.animationPlayer.animation_finished
 			pauseMenu.optionsMainContainer.hide()
 		pauseMenu.animationPlayer.play("OpenMenu", -1, -2, true)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+		if Input.mouse_mode != Input.MOUSE_MODE_CONFINED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 		await pauseMenu.animationPlayer.animation_finished
 		isPauseMenuOpened = false
@@ -141,6 +143,9 @@ func _input(event : InputEvent):
 		state_machine.process_mode = PROCESS_MODE_INHERIT
 	
 	if Input.is_action_just_pressed("Pause") and not isPauseMenuOpened:
+		if arms.weaponHolder.get_child_count() <= 0 or weaponSelectionMenu.visible:
+			return
+		
 		pauseMenu.animationPlayer.play("OpenMenu", -1, 2, false)
 		pauseMenu.show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -327,7 +332,6 @@ func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
 			look_at_hit_indicator_array.append(look_at_node)
 	
 			await get_tree().create_timer(2).timeout
-			print("health after dying: " , health)
 			if health > 0:
 				can_heal = true
 

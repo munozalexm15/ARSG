@@ -270,9 +270,6 @@ func show_hitmarker(_points):
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
 		hands.player.hud.animationPlayer.play("RESET")
 	hands.player.hud.animationPlayer.play("hitmarker")
-	var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
-	var stream = AudioStreamPlayer3D.new()
-	SFXHandler.play_sfx(stream, hands.player, "Effects")
 
 func kill_update_score(points):
 	if hands.player.hud.timerContainer.visible == true:

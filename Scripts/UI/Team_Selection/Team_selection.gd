@@ -20,6 +20,16 @@ func _ready():
 		visible = false
 	animPlayer.play("weapon_preview")
 
+
+func _input(event: InputEvent) -> void:
+	if player.arms.weaponHolder.get_child_count() <= 0:
+		return
+	
+	if Input.is_action_just_pressed("Pause") and visible:
+		visible = false
+		player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
+		player.isPauseMenuOpened = false
+
 func _on_mp_5_button_pressed():
 	Network.updatePlayerWeapon.rpc(player.name, "res://Scenes/Guns/MP5.tscn")
 
@@ -114,7 +124,7 @@ func show_player():
 func _on_visibility_changed():
 	if not is_multiplayer_authority():
 		return
-		
+	
 	if visible:
 		player.hud.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
