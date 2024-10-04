@@ -63,6 +63,8 @@ func _ready():
 		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
 	
+	weaponData = weaponData.duplicate()
+	
 	weaponData.selectedFireMode = weaponData.fireModes[0]
 	current_time = 1
 	target_rot.y = rotation.y
