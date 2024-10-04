@@ -91,6 +91,7 @@ var headBobbing_curr_intensity = 0.0
 var health: float = 0
 var can_heal = false
 var seeing_ally : bool = false
+var is_dead = true
 
 ##MP RESPAWNS, TEAMS, DATA
 var team = ""
@@ -413,6 +414,8 @@ func die_respawn(player_id, instigator_id):
 	Network.game.interactables_node.add_child(weaponPickupNode)
 	
 	player.can_heal = false
+	player.is_dead = true
+	
 	await deathModelScene.animationPlayer.animation_finished
 	
 	set_collision_mask_value(3, true)

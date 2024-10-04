@@ -204,7 +204,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
 			print("player before setting weapons ", player.health)
-			if player.health <= 0:
+			if player.is_dead:
 				player.can_heal = true
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
@@ -219,6 +219,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				print("updating weapon for player " , identifier)
 				player.arms.state_machine.transition_to("SwappingWeapon")
 				player.health = 100
+				player.is_dead = false
 			
 			player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
 			player.weaponSelectionMenu.visible = false
