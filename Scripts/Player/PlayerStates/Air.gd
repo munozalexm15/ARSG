@@ -6,10 +6,10 @@ var falling_velocity = 0.0
 func enter(msg := {}) -> void:
 	if msg.has("jump"):
 		player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_Jump")
-		player.velocity.y = player.jump_force
+		if not player.player_body.animationTree.is_connected("animation_finished", body_animation_ended):
+			player.player_body.animationTree.connect("animation_finished", body_animation_ended)
 		
-		if not player.player_body.animationPlayer.is_connected("animation_finished", body_animation_ended):
-			player.player_body.animationPlayer.connect("animation_finished", body_animation_ended)
+		player.velocity.y = player.jump_force
 	
 	if msg.has("climb"):
 		#(player.velocity += Vector3(0, player.jump_force * 4, 0)
@@ -45,4 +45,4 @@ func physics_update(delta: float) -> void:
 
 func body_animation_ended(anim_name):
 	if anim_name == "Idle_Jump":
-		player.player_body.animationPlayer.play("Air_Falling")
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Air_Falling")

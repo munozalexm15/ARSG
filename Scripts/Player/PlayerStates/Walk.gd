@@ -4,6 +4,9 @@ func enter(_msg := {}):
 	player.curr_speed = player.walk_speed
 	player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
 	
+	if player.state_machine.old_state.name == "Air":
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Air_Land")
+	
 	if player.arms.animationPlayer.assigned_animation != "Idle" and player.arms.state_machine.state.name == "Idle":
 		player.arms.animationPlayer.play("Idle")
 

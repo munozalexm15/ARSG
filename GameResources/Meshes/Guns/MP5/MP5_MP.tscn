@@ -226,6 +226,7 @@ draw_pass_1 = SubResource("QuadMesh_r1l7i")
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, -3.21865e-07, 2.04921e-13, 3.21865e-07, 1, -4.05312e-07, -7.44653e-14, 4.05312e-07, 1, 3.07416, 1.95484, 0.00603852)
+visible = false
 light_color = Color(0.721569, 0.321569, 0, 1)
 light_energy = 0.5
 light_specular = 0.25

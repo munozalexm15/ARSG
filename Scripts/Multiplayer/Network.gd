@@ -12,7 +12,6 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	Steam.initAuthentication()
-	#si se crea un lobby
 	
 	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
@@ -198,17 +197,14 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
 		if str(identifier) == str(player.name):
-			print("player exists inside game node")
 			player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
-			print("player before setting weapons ", player.health)
 			if player.is_dead:
 				player.can_heal = true
 				for weaponInHolder in player.arms.weaponHolder.get_children():
 					player.arms.weaponHolder.remove_child(weaponInHolder)
-					print("borrando armas!")
 				
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
@@ -216,7 +212,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
 				weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
 				weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
-				print("updating weapon for player " , identifier)
 				player.arms.state_machine.transition_to("SwappingWeapon")
 				player.health = 100
 				player.is_dead = false
