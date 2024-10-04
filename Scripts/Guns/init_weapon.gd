@@ -252,6 +252,8 @@ func spawnBullet():
 	show_muzzleFlash()
 
 func show_muzzleFlash():
+	if not is_multiplayer_authority():
+		return
 	muzzle_flash_particles.emitting = true
 	muzzle_flash_light.show()
 	

@@ -181,8 +181,6 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
-	print(can_heal)
-	
 	if health < 35:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
 	else:
@@ -328,6 +326,7 @@ func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
 			look_at_hit_indicator_array.append(look_at_node)
 	
 			await get_tree().create_timer(2).timeout
+			print("health after dying: " , health)
 			if health > 0:
 				can_heal = true
 

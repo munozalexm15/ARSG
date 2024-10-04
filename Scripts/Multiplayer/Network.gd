@@ -203,7 +203,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
-			print(player.health)
+			print("player before setting weapons ", player.health)
 			if player.health <= 0:
 				player.can_heal = true
 				for weaponInHolder in player.arms.weaponHolder.get_children():
