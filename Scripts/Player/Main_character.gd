@@ -329,7 +329,7 @@ func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
 	
 			await get_tree().create_timer(2).timeout
 			if health > 0:
-				p.can_heal = true
+				can_heal = true
 
 func updateIndicatorsArray(node):
 	for index in range(hit_indicator_array.size() -1, -1, -1):
