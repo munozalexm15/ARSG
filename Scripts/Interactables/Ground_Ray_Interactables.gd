@@ -19,7 +19,7 @@ func _process(_delta):
 		var weapon = get_collider()
 		for x in player.arms.weaponHolder.get_child_count():
 			if weapon.weaponData.weaponCaliber == player.arms.weaponHolder.get_child(x).weaponData.weaponCaliber and weapon.weaponData.reserveAmmo > 0:
-				get_weapon_ammo.rpc(multiplayer.get_unique_id(), x, weapon.id)
+				get_weapon_ammo.rpc(player.name.to_int(), x, weapon.id)
 				await get_tree().create_timer(1).timeout
 		
 @rpc("any_peer", "call_local", "reliable")
@@ -39,6 +39,7 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 		if p.name.to_int() == player_id:
 			var weapon = p.arms.weaponHolder.get_child(weaponHolder_child_pos)
 			var pickupReserveAmmo = pickupWeapon.weaponData.reserveAmmo
-			if weapon.weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
-				weapon.weaponData.reserveAmmo += pickupReserveAmmo
+			if weapon.get_multiplayer_authority() == player.get_multiplayer_authority():
+				if weapon.weaponData.weaponCaliber == pickupWeapon.weaponData.weaponCaliber:
+					weapon.weaponData.reserveAmmo += pickupReserveAmmo
 			pickupWeapon.queue_free()
