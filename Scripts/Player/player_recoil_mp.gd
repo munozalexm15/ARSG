@@ -50,21 +50,30 @@ func _process(delta):
 	var semiReq = skeleton.arms.state_machine.state.name == "Idle" and skeleton.arms.actualWeapon.weaponData.bulletsInMag > 0 and skeleton.arms.actualWeapon.weaponData.selectedFireMode == "Semi"
 	var burstReq = skeleton.arms.state_machine.state.name == "Idle" and skeleton.arms.actualWeapon.weaponData.bulletsInMag > 0 and skeleton.arms.actualWeapon.weaponData.selectedFireMode == "Burst"
 	if Input.is_action_pressed("Fire") and fullAutoReq:
-		recoilFire()
+		recoilFire.rpc(multiplayer.get_unique_id() , false)
 	
 	if Input.is_action_just_pressed("Fire") and semiReq:
-		recoilFire()
+		recoilFire.rpc(multiplayer.get_unique_id() , false)
 	
 	if skeleton.arms.actualWeapon.isBurstActive and burstReq:
-		recoilFire()
+		recoilFire.rpc(multiplayer.get_unique_id(), false)
 
-func recoilFire(isAiming : bool = false):
+@rpc("any_peer", "call_local", "reliable")
+func recoilFire(identifier, isAiming : bool):
+	var player : Player = null
+	for p : Player in Network.game.players_node.get_children():
+		if p.name == str(identifier):
+			player = p
+	
+	if player == null:
+		return
+		
 	if isAiming:
 		targetRotation += Vector3(aimRecoil.x, randf_range(-aimRecoil.y, aimRecoil.y), randf_range(-aimRecoil.z, aimRecoil.z))
 	else:
 		targetRotation += Vector3(recoil.x , randf_range(-recoil.y, recoil.y), randf_range(-recoil.z - 0.01, -recoil.z))
 		
-	var weapon : WeaponSkeleton = skeleton.LeftHandB_Attachment.get_child(0)
+	var weapon : WeaponSkeleton = player.player_body.LeftHandB_Attachment.get_child(0)
 	weapon.muzzleFlash.restart()
 	weapon.muzzleFlashLight.visible = true
 
