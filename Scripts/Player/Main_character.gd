@@ -180,7 +180,9 @@ func _input(event : InputEvent):
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
-		
+	
+	print(can_heal)
+	
 	if health < 35:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
 	else:
@@ -189,7 +191,7 @@ func _physics_process(delta):
 	hud.healthBar.value = health
 	
 	if health < 100 and can_heal:
-		updateHealth.rpc()
+		updateHealth.rpc(multiplayer.get_unique_id())
 	
 	#update_hitPosition()
 	
@@ -340,8 +342,10 @@ func updateIndicatorsArray(node):
 
 ##play swap weapon hands animation and show weapon
 @rpc("any_peer", "call_local")
-func updateHealth():
-	health += 0.05
+func updateHealth(identifier):
+	for p : Player in Network.game.players_node.get_children():
+		if p.name == str(identifier):
+			p.health += 0.05
 
 
 #hacer RPC al jugador que va a morir para transicionarlo a muerto y luego otro rpc para transicionarlo a vivo (la state machine)
