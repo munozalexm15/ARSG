@@ -45,6 +45,7 @@ func _ready():
 		init_player.rpc(multiplayer.get_unique_id())
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
+		Network.peer.refuse_new_connections = false
 	else:
 		await get_tree().create_timer(2).timeout
 		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())

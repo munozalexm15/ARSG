@@ -33,7 +33,7 @@ func host_server(roomData : Dictionary):
 	peer.lobby_created.connect(on_lobby_created)
 	
 	gameData = roomData
-	peer.refuse_new_connections = false
+	peer.refuse_new_connections = true
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
 	#Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
