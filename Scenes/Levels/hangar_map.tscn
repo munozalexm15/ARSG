@@ -8145,9 +8145,6 @@ audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="SpectatorCam" type="Camera3D" parent="FadeShader/SubViewport/DitheringShader/SubViewport"]
-transform = Transform3D(0.826167, 0, -0.563425, 0, 1, 0, 0.563425, 0, 0.826167, -19.5226, 6.0991, 16.5375)
-
 [node name="players_node" type="Node" parent="FadeShader/SubViewport/DitheringShader/SubViewport"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
