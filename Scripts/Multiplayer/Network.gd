@@ -33,7 +33,7 @@ func host_server(roomData : Dictionary):
 	peer.lobby_created.connect(on_lobby_created)
 	
 	gameData = roomData
-	peer.refuse_new_connections = true
+	peer.refuse_new_connections = false
 	peer.create_lobby(roomData["lobbyType"], roomData["playerQuantity"])
 	#Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, roomData["playerQuantity"])
 	multiplayer.multiplayer_peer = peer
@@ -41,6 +41,7 @@ func host_server(roomData : Dictionary):
 func on_lobby_created(connection, id):
 	if connection:
 		lobby_id = id
+		
 		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
 		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])
@@ -51,7 +52,9 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "mapImage", gameData["mapImage"])
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		LoadScreenHandler.next_scene = gameData["mapPath"]
+		Steam.setLobbyJoinable(Network.lobby_id, false)
 		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
+		
 
 func join_server(id):
 	peer.refuse_new_connections = false
