@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d2bw4qxehx75c"]
+[gd_scene load_steps=32 format=3 uid="uid://d2bw4qxehx75c"]
 
 [ext_resource type="Texture2D" uid="uid://dctel52eg6yco" path="res://GameResources/Meshes/Characters/textures/godot_plush_basecolor.png" id="1_5cwy5"]
 [ext_resource type="Script" path="res://Scripts/UI/Create_match_menu/Create_Match_Menu.gd" id="1_e5xdp"]
@@ -76,8 +76,35 @@ VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
 [sub_resource type="LabelSettings" id="LabelSettings_w52wu"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_uo5r1"]
+font_size = 33
+
 [sub_resource type="LabelSettings" id="LabelSettings_rw6vp"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjgti"]
+font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
+bg_color = Color(0.690196, 0.25098, 0.317647, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
+bg_color = Color(0.537011, 0.537011, 0.537011, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
+bg_color = Color(0.776471, 0.513726, 0.576471, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)
@@ -148,27 +175,6 @@ VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_jagra")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_xh3lp")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfcnb"]
-bg_color = Color(0.690196, 0.25098, 0.317647, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_il6pe"]
-bg_color = Color(0.776471, 0.513726, 0.576471, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8c8"]
-bg_color = Color(0.537011, 0.537011, 0.537011, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hhhtd"]
-bg_color = Color(0.776471, 0.513726, 0.576471, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvk4a"]
-bg_color = Color(0.439049, 0.439049, 0.439049, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rc75"]
-
 [node name="HostingMatchControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -215,6 +221,13 @@ layout_mode = 2
 size_flags_horizontal = 7
 size_flags_vertical = 4
 
+[node name="InvisibleTile" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+label_settings = SubResource("LabelSettings_uo5r1")
+
 [node name="RoomNameContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -231,30 +244,19 @@ layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "ROOM NAME"
 
-[node name="RoomNameContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="InvisibleTile" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = SubResource("Theme_r55vl")
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "PERSPECTIVE"
-label_settings = SubResource("LabelSettings_rw6vp")
-
-[node name="PerspectiveSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2"]
-layout_mode = 2
-selected = 0
-item_count = 2
-popup/item_0/text = "FIRST PERSON ONLY"
-popup/item_1/text = "FIRST PERSON / THIRD PERSON (WIP)"
-popup/item_1/id = 1
+size_flags_vertical = 1
+text = "
+"
+label_settings = SubResource("LabelSettings_yjgti")
 
 [node name="Label6" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "MAP"
 label_settings = SubResource("LabelSettings_rw6vp")
+horizontal_alignment = 1
 
 [node name="MapSelectorContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 clip_contents = true
@@ -324,6 +326,20 @@ text = "
 "
 label_settings = SubResource("LabelSettings_w52wu")
 
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PERSPECTIVE"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="PerspectiveSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "FIRST PERSON ONLY"
+popup/item_1/text = "FIRST PERSON / THIRD PERSON (WIP)"
+popup/item_1/id = 1
+
 [node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 1
@@ -334,7 +350,7 @@ label_settings = SubResource("LabelSettings_rw6vp")
 layout_mode = 2
 selected = 0
 item_count = 1
-popup/item_0/text = "FREE FOR ALL"
+popup/item_0/text = "FACE OFF"
 popup/item_0/id = 1
 
 [node name="Label4" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -352,26 +368,6 @@ popup/item_1/text = "ONLY FRIENDS"
 popup/item_1/id = 1
 popup/item_2/text = "PRIVATE"
 popup/item_2/id = 2
-
-[node name="Label5" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "PLAYER CAPACITY"
-label_settings = SubResource("LabelSettings_rw6vp")
-
-[node name="OptionButton3" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-selected = 0
-item_count = 5
-popup/item_0/text = "4"
-popup/item_1/text = "6"
-popup/item_1/id = 1
-popup/item_2/text = "8"
-popup/item_2/id = 2
-popup/item_3/text = "10"
-popup/item_3/id = 3
-popup/item_4/text = "12"
-popup/item_4/id = 4
 
 [node name="Label7" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2

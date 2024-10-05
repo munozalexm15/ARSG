@@ -209,10 +209,11 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.arms.weaponHolder.add_child(weaponSpawned) 
 				player.arms.actualWeapon = player.arms.weaponHolder.get_child(0)
 				player.arms.actual_weapon_index = 0
+				player.arms.actualWeapon.being_used = true
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
 				weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
 				weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
-				player.arms.state_machine.transition_to("SwappingWeapon")
+				player.arms.state_machine.transition_to("Idle")
 				player.health = 100
 				player.is_dead = false
 			

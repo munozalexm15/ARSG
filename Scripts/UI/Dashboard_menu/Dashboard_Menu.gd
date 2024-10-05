@@ -68,7 +68,7 @@ func get_lobby_data():
 		playerScore.text = str(playerData['score'])
 	
 	#if gamemode is FFA
-		if Network.gameData["gameMode"] == "FREE FOR ALL":
+		if Network.gameData["gameMode"] == "FACE OFF":
 			#if the person is not you (the other team)
 			if multiplayer.get_unique_id() != Network.peer.get_peer_id_from_steam64(member_steam_id) and playerData["kills"] > Network.game.team2GoalProgress :
 				Network.game.team2GoalProgress = playerData["kills"]

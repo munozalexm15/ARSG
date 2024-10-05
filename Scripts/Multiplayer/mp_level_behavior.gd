@@ -98,7 +98,7 @@ func set_player_data(peer_id, playerName):
 	player.weaponSelectionMenu = weaponSelection
 	
 	#skin assignation
-	if Network.gameData["gameMode"] == "FREE FOR ALL":
+	if Network.gameData["gameMode"] == "FACE OFF":
 		var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
 		if team == 0:

@@ -433,13 +433,15 @@ func die_respawn(player_id, instigator_id):
 		camera.current = true
 		arms.visible = true
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
+		for weapon : Weapon in arms.weaponHolder.get_children():
+			weapon.being_used = false
+		
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
 				var playerData : Dictionary = Network.game.players[index]
 				playerData.erase("secondaryWeaponName")
 				playerData.erase("secondaryWeaponPath")
-				print("player found, erasing secondary weapon (if it exists) and resetting weaponData for respawn")
 				Network.updatePlayerWeapon.rpc(Network.game.players[index]["id"], Network.game.players[index]["classSelectedPath"])
 				
 		await get_tree().process_frame

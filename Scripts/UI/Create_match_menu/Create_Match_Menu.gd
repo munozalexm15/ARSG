@@ -12,7 +12,6 @@ var mapListIndex = 0
 
 var selectedMap = ""
 
-@onready var playerQuantityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton3
 @onready var gamemodeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton
 @onready var privacityOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton2
 @onready var mapImage : TextureRect = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect
@@ -21,7 +20,7 @@ var selectedMap = ""
 @onready var matchTimeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton5
 @onready var objectiveGoalOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton4
 
-@onready var perspectiveSelector : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer2/PerspectiveSelector
+@onready var perspectiveSelector : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/PerspectiveSelector
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,23 +28,34 @@ func _ready():
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
 	mapImage.texture = mapImagesList[mapListIndex]
+	
+func _input(event: InputEvent) -> void:
+	if lobbyName.has_focus():
+		if event is InputEventKey and event.is_pressed():
+			if event.key_label == KEY_ENTER:
+				get_viewport().set_input_as_handled()
 
 func _on_create_room_button_pressed():
 	var matchTime = matchTimeOption.text.split(" ")[0].to_int() * 60
 	var objectiveGoal = objectiveGoalOption.text.split(" ")[0].to_int()
 	
+	if lobbyName.text == "" or lobbyName.text.replace(" ", "").length() == 0:
+		lobbyName.text = gamemodeOption.text + " in " + mapName.text
+	
 	var roomDict = {"lobbyName" : lobbyName.text, 
 	"mapName": mapName.text, 
 	"mapPath" : selectedMap, 
-	"playerQuantity" : playerQuantityOption.text.to_int(), 
+	"mapImage" : mapImage.texture,
+	"playerQuantity" : 2, 
 	"gameMode" : gamemodeOption.text, 
 	"time" : matchTime, 
 	"goal": objectiveGoal,
-	"perspective": perspectiveSelector.text}
+	"perspective": perspectiveSelector.text,
+	"obviousNotSpacewarButGameName": "ARSG"}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC
-	if privacityOption.text == "FRIENDS":
+	if privacityOption.text == "ONLY FRIENDS":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_FRIENDS_ONLY
 	if privacityOption.text == "PRIVATE":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PRIVATE

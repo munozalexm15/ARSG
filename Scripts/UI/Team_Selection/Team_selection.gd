@@ -22,6 +22,9 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
+	if player == null:
+		return
+		
 	if player.arms.weaponHolder.get_child_count() <= 0:
 		return
 	

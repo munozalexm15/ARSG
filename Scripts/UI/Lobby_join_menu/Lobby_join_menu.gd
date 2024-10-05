@@ -5,6 +5,8 @@ extends Control
 @onready var playerCount : Label = $PanelContainer/VBoxContainer/VBoxContainer/Label9
 @onready var lobbyName : Label = $PanelContainer/VBoxContainer/HBoxContainer/Label3
 
+@onready var mapImage : TextureRect = $PanelContainer/VBoxContainer/MapSelectorContainer/TextureRect
+
 @onready var joinRoomButton : Button = $PanelContainer/VBoxContainer/Button
 
 var lobby = 0
