@@ -13,7 +13,7 @@ func _ready():
 	Steam.steamInitEx()
 	Steam.initAuthentication()
 	
-	#Steam.lobby_joined.connect(_on_lobby_joined)
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	
 	#si se mete un cliente (para sincronizar la sala)
@@ -66,21 +66,22 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var fail_reason: String
 		match response:
-			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "This lobby no longer exists."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_NOT_ALLOWED: fail_reason = "You don't have permission to join this lobby."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_FULL: fail_reason = "The lobby is now full."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_ERROR: fail_reason = "Uh... something unexpected happened!"
-			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_LIMITED: fail_reason = "You cannot join due to having a limited account."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_CLAN_DISABLED: fail_reason = "This lobby is locked or disabled."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_COMMUNITY_BAN: fail_reason = "This lobby is community locked."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_MEMBER_BLOCKED_YOU: fail_reason = "A user in the lobby has blocked you from joining."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_YOU_BLOCKED_MEMBER: fail_reason = "A user you have blocked is in the lobby."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "ERROR: This lobby no longer exists. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_NOT_ALLOWED: fail_reason = "ERROR: You don't have permission to join this lobby. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_FULL: fail_reason = "The lobby is now full. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_ERROR: fail_reason = "Uh... something unexpected happened! Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_LIMITED: fail_reason = "You cannot join due to having a limited account. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_CLAN_DISABLED: fail_reason = "This lobby is locked or disabled. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_COMMUNITY_BAN: fail_reason = "This lobby is community locked. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_MEMBER_BLOCKED_YOU: fail_reason = "A user in the lobby has blocked you from joining. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_YOU_BLOCKED_MEMBER: fail_reason = "A user you have blocked is in the lobby. Bullet dodged. Returning to menu."
 			
 		print("Failed to join this chat room: %s" % fail_reason)
+		LoadScreenHandler.errorLoading.emit(fail_reason)
 	
-	lobby_id = id
-	print("Your unique id is " , multiplayer.get_unique_id())
+	#lobby_id = id
+	#print("Your unique id is " , multiplayer.get_unique_id())
 	
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
 @rpc("any_peer", "call_local", "reliable")

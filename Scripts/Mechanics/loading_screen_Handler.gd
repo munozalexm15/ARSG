@@ -4,10 +4,12 @@ extends Control
 
 var loadedScene = null
 
-@onready var loadStatus = $LOAD_status
+@onready var loadStatus : Label = $VBoxContainer/LOAD_status
+@onready var errorMSG : Label = $VBoxContainer/ErrorMessage
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	LoadScreenHandler.connect("errorLoading", on_error_load)
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 	Steam.steamInitEx()
@@ -39,3 +41,9 @@ func join_room(_id):
 		get_tree().change_scene_to_packed(loadedScene)
 	else:
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+
+func on_error_load(fail_message : String):
+	errorMSG.text = fail_message
+	errorMSG.visible = true
+	await get_tree().create_timer(4).timeout
+	get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
