@@ -121,6 +121,9 @@ func _on_send_chat_pressed(message : String) -> void:
 			print("ERROR: Chat message failed to send.")
 
 func add_message_to_chat(lobby_id: int, user : int, message: String, chat_type: int):
+	if game == null:
+		return
+		
 	var textLabel = Label.new()
 	textLabel.text = message
 	textLabel.label_settings = LabelSettings.new()
