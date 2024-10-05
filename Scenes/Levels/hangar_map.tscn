@@ -8051,10 +8051,6 @@ script = ExtResource("1_b8yep")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
 
-[node name="SpectatorCam" type="Camera3D" parent="."]
-transform = Transform3D(0.826167, 0, -0.563425, 0, 1, 0, 0.563425, 0, 0.826167, -19.5226, 6.0991, 16.5375)
-current = true
-
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("9_dmlld")
 ambient_wind = 0.1
@@ -8148,6 +8144,12 @@ handle_input_locally = false
 audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
+
+[node name="SpectatorCam" type="Camera3D" parent="FadeShader/SubViewport/DitheringShader/SubViewport"]
+transform = Transform3D(0.826167, 0, -0.563425, 0, 1, 0, 0.563425, 0, 0.826167, -19.5226, 6.0991, 16.5375)
+current = true
+
+[node name="players_node" type="Node" parent="FadeShader/SubViewport/DitheringShader/SubViewport"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.937, -0.49, 4.122)

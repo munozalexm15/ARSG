@@ -99,7 +99,7 @@ var team = ""
 var thirdPersonEnabled : bool = false
 @onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
 func _enter_tree():
-	pass
+	set_multiplayer_authority(name.to_int())
 
 func _ready():
 	#modificar dependiendo del arma que tenga el jugador
