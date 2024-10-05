@@ -78,6 +78,8 @@ func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : in
 			Steam.CHAT_ROOM_ENTER_RESPONSE_YOU_BLOCKED_MEMBER: fail_reason = "A user you have blocked is in the lobby. Bullet dodged. Returning to menu."
 			
 		print("Failed to join this chat room: %s" % fail_reason)
+		leave_lobby()
+		
 		LoadScreenHandler.errorLoading.emit(fail_reason)
 	
 	#lobby_id = id
