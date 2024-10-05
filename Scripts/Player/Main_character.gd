@@ -106,6 +106,8 @@ func _ready():
 	#si no es el que controla al player
 	if not is_multiplayer_authority(): 
 		arms.visible = false
+		camera.current = false
+		thirdPersonCam.current = false
 		return
 	
 	player_body.visible = false
