@@ -63,6 +63,12 @@ func show_lobby_data(lobby):
 	joinLobbyMenu.lobbyName.text = Steam.getLobbyData(lobby, "name")
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")
 	joinLobbyMenu.playerCount.text = str(Steam.getNumLobbyMembers(lobby)) + " / " + str(Steam.getLobbyMemberLimit(lobby))
+	
+	@warning_ignore("integer_division")
+	var minutes = (int(Steam.getLobbyData(lobby, "time")) / 60) % 60
+	var seconds =  int(Steam.getLobbyData(lobby, "time")) % 60
+	joinLobbyMenu.timeLeft.text = "%02d:%02d" % [minutes, seconds]
+	
 	if Steam.getLobbyData(lobby, "mapImage") != "":
 		joinLobbyMenu.mapImage.texture = load(Steam.getLobbyData(lobby, "mapImage"))
 	

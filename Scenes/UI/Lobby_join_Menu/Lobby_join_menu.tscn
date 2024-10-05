@@ -167,6 +167,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "JOIN A MATCH"
 label_settings = SubResource("LabelSettings_w52wu")
+horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
@@ -225,6 +226,19 @@ text = "PLAYER CAPACITY"
 label_settings = SubResource("LabelSettings_6tlye")
 
 [node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
+text = "0"
+label_settings = SubResource("LabelSettings_rw6vp")
+
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "MATCH TIME"
+label_settings = SubResource("LabelSettings_6tlye")
+
+[node name="Label10" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_xh27g")
