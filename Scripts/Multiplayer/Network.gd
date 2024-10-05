@@ -15,6 +15,7 @@ func _ready():
 	
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
+	Steam.join_requested.connect(accept_invite_from_friend)
 	
 	#si se mete un cliente (para sincronizar la sala)
 	#multiplayer.peer_connected.connect(client_connected_to_server)
@@ -63,6 +64,14 @@ func join_server(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
+
+func accept_invite_from_friend(lobby: int, friend_id : int):
+	if Steam.getNumLobbyMembers(lobby) >= Steam.getLobbyMemberLimit(lobby):
+		return
+		
+	Network.lobby_id = lobby
+	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
+	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
 func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
