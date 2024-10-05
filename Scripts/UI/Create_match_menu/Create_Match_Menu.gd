@@ -45,7 +45,7 @@ func _on_create_room_button_pressed():
 	var roomDict = {"lobbyName" : lobbyName.text, 
 	"mapName": mapName.text, 
 	"mapPath" : selectedMap, 
-	"mapImage" : mapImage.texture,
+	"mapImage" : mapImage.texture.resource_path,
 	"playerQuantity" : 2, 
 	"gameMode" : gamemodeOption.text, 
 	"time" : matchTime, 
