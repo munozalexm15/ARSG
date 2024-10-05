@@ -384,6 +384,8 @@ func die_respawn(player_id, instigator_id):
 		thirdPersonCam.current = true
 		arms.visible = false
 		state_machine.process_mode = Node.PROCESS_MODE_DISABLED
+		for weapon : Weapon in arms.weaponHolder.get_children():
+			weapon.being_used = false
 		
 	set_collision_mask_value(3, false)
 	Network.game.death_count += 1
@@ -433,8 +435,6 @@ func die_respawn(player_id, instigator_id):
 		camera.current = true
 		arms.visible = true
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
-		for weapon : Weapon in arms.weaponHolder.get_children():
-			weapon.being_used = false
 		
 		
 		for index in Network.game.players.size():
