@@ -1173,13 +1173,12 @@ size = Vector3(1, 2.825, 1)
 transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0, 0, 0)
 script = ExtResource("1_ov187")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../ModelParent")
+[node name="ModelParent" type="Node3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ModelParent"]
 libraries = {
 "": SubResource("AnimationLibrary_6puwe")
 }
-
-[node name="ModelParent" type="Node3D" parent="."]
 
 [node name="Armature" type="Node3D" parent="ModelParent"]
 transform = Transform3D(0.575676, 0.0703008, -0.81465, 0.0326416, 0.993527, 0.108803, 0.817027, -0.089227, 0.569654, -0.1143, -0.102458, 0.145581)
@@ -1353,4 +1352,4 @@ gravity_scale = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35587, 0)
 shape = SubResource("BoxShape3D_qc5t0")
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="ModelParent/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

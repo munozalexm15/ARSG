@@ -8051,6 +8051,9 @@ script = ExtResource("1_b8yep")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
 
+[node name="SpectatorCam" type="Camera3D" parent="."]
+transform = Transform3D(0.826167, 0, -0.563425, 0, 1, 0, 0.563425, 0, 0.826167, -19.5226, 6.0991, 16.5375)
+
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("9_dmlld")
 ambient_wind = 0.1

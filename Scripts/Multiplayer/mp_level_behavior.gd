@@ -27,6 +27,8 @@ var death_count = 0
 
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
 
+@onready var spectatorCam : Camera3D = $SpectatorCam
+
 var matchGoal = 0
 var team1GoalProgress = 0
 var team2GoalProgress = 0
@@ -35,7 +37,7 @@ var matchTimeLeft = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	spectatorCam.current = true
 	Network.game = self
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
