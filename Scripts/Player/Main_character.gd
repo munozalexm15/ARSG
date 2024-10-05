@@ -99,7 +99,7 @@ var team = ""
 var thirdPersonEnabled : bool = false
 @onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
 func _enter_tree():
-	set_multiplayer_authority(name.to_int())
+	pass
 
 func _ready():
 	#modificar dependiendo del arma que tenga el jugador
@@ -108,6 +108,8 @@ func _ready():
 		arms.visible = false
 		camera.current = false
 		thirdPersonCam.current = false
+		if Network.game:
+			Network.game.spectatorCam.current = true
 		return
 	
 	player_body.visible = false
