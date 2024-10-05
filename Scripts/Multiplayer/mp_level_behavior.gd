@@ -27,7 +27,7 @@ var death_count = 0
 
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
 
-@onready var spectatorCam : Camera3D = $FadeShader/SubViewport/SpectatorCam
+@onready var spectatorCam : Camera3D = $FadeShader/SubViewport/DitheringShader/SubViewport/SpectatorCam
 
 var matchGoal = 0
 var team1GoalProgress = 0
