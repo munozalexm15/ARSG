@@ -26,7 +26,8 @@ var death_count = 0
 @onready var matchTimer : Timer = $MatchTimer
 
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
-
+@onready var ChatMessagesDisplay : VBoxContainer = $ChatDisplay/VBoxContainer2/VBoxContainer
+@onready var chatText : TextEdit = $ChatDisplay/VBoxContainer2/ChatText
 
 var matchGoal = 0
 var team1GoalProgress = 0
@@ -51,12 +52,29 @@ func _ready():
 	
 
 func _process(_delta):
+	pass
+
+func  _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Open Chat") and not chatText.has_focus():
+		chatText.grab_focus()
+		chatText.accept_event()
+	
+	if Input.is_action_just_pressed("Send Message") and chatText.has_focus():
+		chatText.release_focus()
+		chatText.text.replace("\n", "")
+		if chatText.text.length() == 0:
+			return
+			
+		Network._on_send_chat_pressed(Steam.getFriendPersonaName(Steam.getSteamID()) + " : " + chatText.text)
+		chatText.text = ""
+	
 	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
 		return
 	if Input.is_action_pressed("Scoreboard"):
 		dashboardMatch.visible = true
 	if Input.is_action_just_released("Scoreboard"):
 		dashboardMatch.visible = false
+
 
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
@@ -74,7 +92,7 @@ func init_player(peer_id):
 ##Creating and assigning a team selection, class selection and pause menus to a player
 @rpc("any_peer", "call_local", "reliable")
 func set_player_data(peer_id, playerName):
-	var node : Node3D = Node3D.new() 
+	var node : Node3D = Node3D.new()
 	node.name = str(playerName)
 	add_child(node)
 	
@@ -108,7 +126,6 @@ func set_player_data(peer_id, playerName):
 			skin = team1SkinsResources.pick_random()
 		else:
 			skin = team2SkinsResources.pick_random()
-		
 		
 		player.arms.handsAssignedTexture = skin.rightHandSkin
 		

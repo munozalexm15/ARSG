@@ -16,7 +16,7 @@ func _ready():
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.join_requested.connect(accept_invite_from_friend)
-	
+	Steam.lobby_message.connect(add_message_to_chat)
 	#si se mete un cliente (para sincronizar la sala)
 	#multiplayer.peer_connected.connect(client_connected_to_server)
 	
@@ -109,15 +109,41 @@ func client_connected_to_server(id):
 	#Notificar al cliente que se acaba de unir
 	print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
+
+func _on_send_chat_pressed(message : String) -> void:
+	# If there is even a message
+	if message.length() > 0:
+		# Pass the message to Steam
+		var was_sent: bool = Steam.sendLobbyChatMsg(lobby_id, message)
+
+	# Was it sent successfully?
+		if not was_sent:
+			print("ERROR: Chat message failed to send.")
+
+func add_message_to_chat(lobby_id: int, user : int, message: String, chat_type: int):
+	var textLabel = Label.new()
+	textLabel.text = message
+	textLabel.label_settings = LabelSettings.new()
+	textLabel.label_settings.font_size = 14
+	textLabel.autowrap_mode =TextServer.AUTOWRAP_ARBITRARY
+	game.ChatMessagesDisplay.add_child(textLabel)
+	
+	await get_tree().create_timer(10).timeout
+	game.ChatMessagesDisplay.remove_child(textLabel)
+
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var changer_name: String = Steam.getFriendPersonaName(change_id)
 	
 	# If a player has joined the lobby
 	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
+		_on_send_chat_pressed(changer_name + " has joined the lobby.")
+		
 		print("%s has joined the lobby." % changer_name)
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
+		_on_send_chat_pressed("has joined the lobby.")
+		
 		print("%s has left the lobby." % changer_name)
 		if game.matchGoal == game.team1GoalProgress or game.matchGoal == game.team2GoalProgress:
 			return

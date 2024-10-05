@@ -216,6 +216,9 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
+	if Network.game.chatText.has_focus() or isPauseMenuOpened:
+		input_direction = Vector2.ZERO
+	
 	if is_on_floor() and input_direction != Vector2.ZERO:
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)

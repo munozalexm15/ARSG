@@ -74,9 +74,6 @@ func get_lobby_data():
 				Network.game.team2GoalProgress = playerData["kills"]
 			if multiplayer.get_unique_id() == Network.peer.get_peer_id_from_steam64(member_steam_id):
 				Network.game.team1GoalProgress = playerData["kills"]
-		
-			if multiplayer.get_unique_id() == Network.peer.get_peer_id_from_steam64(member_steam_id) and playerData["kills"] > Network.game.team2GoalProgress :
-				Network.game.team2GoalProgress = playerData["kills"]
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
 			if multiplayer.get_unique_id() == 1:

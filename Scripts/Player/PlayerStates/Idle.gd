@@ -38,6 +38,8 @@ func update(_delta: float):
 		state_machine.transition_to("Air")
 		
 	if Input.is_action_just_pressed("Jump"):
+		if player.isPauseMenuOpened or Network.game.chatText.has_focus():
+			return
 		state_machine.transition_to("Air", {"jump" = true})
 
 	if (player.direction.x != 0 or player.direction.z != 0) and player.is_on_floor():

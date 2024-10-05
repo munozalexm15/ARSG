@@ -1,4 +1,4 @@
-[gd_scene load_steps=778 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=780 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://wbnj7pcc7dnf" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_8.png" id="33_v808w"]
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="34_11jtk"]
 [ext_resource type="Texture2D" uid="uid://cxr0t6rkhtfw7" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_frame_1.png" id="34_hp4yb"]
+[ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="35_4kgcg"]
 [ext_resource type="Texture2D" uid="uid://bg3bv8txsgttc" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_1.png" id="35_g81dk"]
 [ext_resource type="Texture2D" uid="uid://buxf14fk2xjik" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/GDWolf_a.jpg" id="36_10rey"]
 [ext_resource type="Texture2D" uid="uid://xr40qxg5emic" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/TPzFuchs_a.jpg" id="37_5ivjv"]
@@ -245,6 +246,10 @@ texture_filter = 0
 script = ExtResource("21_426mr")
 walk_sound = Array[AudioStream]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
 jump_sound = ExtResource("21_72ftl")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ymn7n"]
+font = ExtResource("35_4kgcg")
+font_size = 12
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
 size = Vector3(8.3268, 4.91049, 0.652865)
@@ -8192,6 +8197,48 @@ offset_top = 22.475
 offset_bottom = 0.0149994
 grow_vertical = 0
 theme = ExtResource("34_11jtk")
+
+[node name="ChatDisplay" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.984
+anchor_top = 0.971
+anchor_right = 0.984
+anchor_bottom = 0.971
+offset_left = -349.568
+offset_top = -68.2081
+offset_right = 0.432007
+offset_bottom = -0.208069
+focus_mode = 2
+theme = ExtResource("34_11jtk")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ChatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.265
+anchor_right = 1.0
+anchor_bottom = 0.706
+offset_top = -0.0200005
+offset_bottom = 0.991997
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatDisplay/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ChatDisplay/VBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "BlueHalp: Por la puta cara abe ennove tio esque es pa flipar esto"
+label_settings = SubResource("LabelSettings_ymn7n")
+autowrap_mode = 1
+
+[node name="ChatText" type="TextEdit" parent="ChatDisplay/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("35_4kgcg")
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Press 'T' to chat..."
+wrap_mode = 1
+scroll_fit_content_height = true
 
 [node name="DashboardMatch" parent="." instance=ExtResource("28_j7j3x")]
 visible = false

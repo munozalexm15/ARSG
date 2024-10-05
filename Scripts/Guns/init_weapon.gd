@@ -91,7 +91,7 @@ func _physics_process(delta):
 	if not being_used:
 		return
 	
-	if hands.player.isPauseMenuOpened:
+	if hands.player.isPauseMenuOpened or Network.game.chatText.has_focus():
 		return
 	
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection and hands.state_machine.state.name != "Reload":
