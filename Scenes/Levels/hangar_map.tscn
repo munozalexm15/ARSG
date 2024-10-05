@@ -8145,8 +8145,6 @@ audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="players_node" type="Node" parent="FadeShader/SubViewport/DitheringShader/SubViewport"]
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.937, -0.49, 4.122)
 use_collision = true

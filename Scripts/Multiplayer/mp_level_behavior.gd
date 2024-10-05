@@ -14,7 +14,7 @@ var death_count = 0
 @export var team2SkinsResources : Array
 
 
-@onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport/players_node
+@onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
 @onready var player_spawner : MultiplayerSpawner = $MultiplayerSpawner
 @onready var bullets_node : Node3D= $BulletsParent
 
@@ -27,7 +27,6 @@ var death_count = 0
 
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
 
-@onready var spectatorCam : Camera3D = $FadeShader/SubViewport/DitheringShader/SubViewport/SpectatorCam
 
 var matchGoal = 0
 var team1GoalProgress = 0
