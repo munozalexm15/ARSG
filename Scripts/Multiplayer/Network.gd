@@ -128,7 +128,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	#if its the host -> ignore
 	if id == 1:
 		return
-	game.spectatorCam.current = true
 	gameData = hostGameData
 	game.matchGoal = gameData.get("goal") 
 	game.matchTime = gameData.get("time")

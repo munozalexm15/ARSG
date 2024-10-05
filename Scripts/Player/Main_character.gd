@@ -108,8 +108,6 @@ func _ready():
 		arms.visible = false
 		camera.current = false
 		thirdPersonCam.current = false
-		if Network.game:
-			Network.game.spectatorCam.current = true
 		return
 	
 	player_body.visible = false
