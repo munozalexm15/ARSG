@@ -64,9 +64,7 @@ func show_lobby_data(lobby):
 	joinLobbyMenu.gamemodeName.text = Steam.getLobbyData(lobby, "gamemode")
 	joinLobbyMenu.playerCount.text = str(Steam.getNumLobbyMembers(lobby)) + " / " + str(Steam.getLobbyMemberLimit(lobby))
 	if Steam.getLobbyData(lobby, "mapImage") != "":
-		var mapImageTexture : Texture2D = Texture2D.new()
-		mapImageTexture.resource_path =  Steam.getLobbyData(lobby, "mapImage")
-		joinLobbyMenu.mapImage.texture = mapImageTexture
+		joinLobbyMenu.mapImage.texture = load(Steam.getLobbyData(lobby, "mapImage"))
 	
 	if lobby != selectedLobby:
 		if not joinLobbyMenu.visible:

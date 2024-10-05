@@ -215,7 +215,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.eyes.get_child(0).setRecoil(player.arms.actualWeapon.weaponData.recoil)
 				weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
 				weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
-				player.arms.state_machine.transition_to("Idle")
+				player.arms.state_machine.transition_to("SwappingWeapon")
 				player.health = 100
 				player.is_dead = false
 			
