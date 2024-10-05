@@ -49,7 +49,6 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
 		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSG")
 		Steam.setLobbyData(lobby_id, "mapImage", gameData["mapImage"])
-		Steam.setLobbyJoinable(lobby_id, true)
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		LoadScreenHandler.next_scene = gameData["mapPath"]
 		get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
