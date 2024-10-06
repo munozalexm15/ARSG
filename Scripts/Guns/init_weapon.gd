@@ -211,9 +211,7 @@ func spawnBullet():
 			var bullet : Bullet = bullet_type.instantiate()
 		
 			bullet.hitmark.connect(show_hitmarker)
-			bullet.hitmark.connect(hit_update_score)
 			bullet.playerDamaged.connect(update_health)
-			bullet.kill.connect(kill_update_score)
 			
 			Network.game.bullets_node.add_child(bullet)
 			
@@ -235,10 +233,8 @@ func spawnBullet():
 		#if player gets damaged
 		bullet.playerDamaged.connect(update_health)
 		#Hitmarker in hud
-		bullet.hitmark.connect(hit_update_score)
 		bullet.hitmark.connect(show_hitmarker)
 		#For when player kills somebody (atm just for update hud points)
-		bullet.kill.connect(kill_update_score)
 		
 		Network.game.bullets_node.add_child(bullet)
 		bullet.transform = muzzle.global_transform
@@ -270,14 +266,6 @@ func show_hitmarker(_points):
 	if hands.player.hud.animationPlayer.current_animation == "hitmarker":
 		hands.player.hud.animationPlayer.play("RESET")
 	hands.player.hud.animationPlayer.play("hitmarker")
-
-func kill_update_score(points):
-	if hands.player.hud.timerContainer.visible == true:
-		hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + points)
-
-func hit_update_score(points):
-	if hands.player.hud.timerContainer.visible == true:
-		hands.player.hud.pointsLabel.text = str(int(hands.player.hud.pointsLabel.text) + points)
 
 func update_health():
 	if not is_multiplayer_authority():

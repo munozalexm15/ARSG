@@ -3,8 +3,8 @@ extends Control
 @onready var lobbyName : TextEdit = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer/TextEdit
 @onready var mapName : Label = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect/Label
 
-var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/initial_level_copy.tscn"]
-var mapNamesList = ["Hangar", "Flatworld"]
+var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/test_scene.tscn"]
+var mapNamesList = ["Hangar", "Firing Range"]
 @export var mapImagesList : Array
 
 var mapListIndex = 0
@@ -60,6 +60,9 @@ func _on_create_room_button_pressed():
 	if privacityOption.text == "PRIVATE":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PRIVATE
 	
+	if mapName.text == "Firing Range":
+		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PRIVATE
+	
 	Network.host_server(roomDict)
 	GlobalData.isOnlineMatch = true
 
@@ -73,6 +76,15 @@ func _on_previous_map_button_pressed():
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
 	mapImage.texture = mapImagesList[mapListIndex]
+	
+	if mapName.text == "Firing Range":
+		privacityOption.text = "PRIVATE"
+		privacityOption.disabled = true
+		matchTimeOption.text = "10 MINUTES"
+	else:
+		privacityOption.text = "PUBLIC"
+		privacityOption.disabled = false
+		matchTimeOption.disabled = false
 
 func _on_next_map_button_pressed():
 	mapListIndex += 1
@@ -83,3 +95,13 @@ func _on_next_map_button_pressed():
 	selectedMap = mapPathsList[mapListIndex]
 	mapName.text = mapNamesList[mapListIndex]
 	mapImage.texture = mapImagesList[mapListIndex]
+	
+	if mapName.text == "Firing Range":
+		privacityOption.text = "PRIVATE"
+		privacityOption.disabled = true
+		matchTimeOption.text = "10 MINUTES"
+		matchTimeOption.disabled = true
+	else:
+		privacityOption.text = "PUBLIC"
+		privacityOption.disabled = false
+		matchTimeOption.disabled = false

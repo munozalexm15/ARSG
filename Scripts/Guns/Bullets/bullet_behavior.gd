@@ -48,16 +48,8 @@ func _on_area_3d_body_entered(body):
 	mesh.visible = false
 	
 	#spawn_decal(body)
-	
 	if body is Target and body != self and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
-		
-		body.tween_health()
-		hitmark.emit(1)
-		
-		if body.targetData.actualHealth <= 0:
-			kill.emit(10)
-		
 		impactParticle.emitting = true
 	
 	if body is Player and body != instigator:

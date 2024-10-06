@@ -35,6 +35,8 @@ func _process(_delta):
 			#hud.NPCRoleLabel.visible = false
 			#player.seeing_ally = false
 			#hud.ally_indicator(Color.WHITE)
+		if collision == Ammo:
+			return
 		if collision != Player and collision.get_class() != "CharacterBody3D":
 			hud.ally_indicator(Color.WHITE)
 		

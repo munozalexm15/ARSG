@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/Create_match_menu/Create_Match_Menu.gd" id="1_e5xdp"]
 [ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_k63hv"]
 [ext_resource type="Texture2D" uid="uid://cmwhr8qf6gbix" path="res://Scenes/Levels/Level_Images/hangar_level.PNG" id="3_c4iy2"]
-[ext_resource type="Texture2D" uid="uid://ibjlbsgwgdkd" path="res://GameResources/Meshes/Characters/textures/godot_plush_normal.png" id="4_opulg"]
+[ext_resource type="Texture2D" uid="uid://dj5sdtdvd41fi" path="res://Scenes/Levels/Level_Images/firing_range_img.PNG" id="4_f2q6s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upnvi"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)
@@ -189,7 +189,7 @@ grow_vertical = 2
 mouse_filter = 1
 theme = SubResource("Theme_5otoo")
 script = ExtResource("1_e5xdp")
-mapImagesList = [ExtResource("3_c4iy2"), ExtResource("4_opulg")]
+mapImagesList = [ExtResource("3_c4iy2"), ExtResource("4_f2q6s")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
