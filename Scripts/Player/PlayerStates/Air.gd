@@ -15,6 +15,9 @@ func enter(msg := {}) -> void:
 		#(player.velocity += Vector3(0, player.jump_force * 4, 0)
 		pass
 
+	player.standing_CollisionShape.disabled = false
+	player.crouching_CollisionShape.disabled = true
+	
 func physics_update(delta: float) -> void:
 	if player.arms.animationPlayer.current_animation == null:
 		player.arms.animationPlayer.play("Idle")

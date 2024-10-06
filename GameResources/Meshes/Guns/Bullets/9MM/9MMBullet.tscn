@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="5_gq6vk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
-radius = 0.21131
-height = 0.433626
+radius = 0.0223363
+height = 0.0446725
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
 resource_name = "Material.001"
@@ -95,8 +95,9 @@ _data = [Vector2(0, 0.581128), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
-radius = 0.130748
-height = 0.46124
+margin = 0.241
+radius = 0.31743
+height = 0.63486
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -139,6 +140,7 @@ width_profile = SubResource("Curve_32j3b")
 [node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 collision_layer = 133
 collision_mask = 133
+collision_priority = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)

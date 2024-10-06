@@ -9,6 +9,9 @@ func enter(_msg := {}):
 	
 	if player.arms.animationPlayer.assigned_animation != "Idle" and player.arms.state_machine.state.name == "Idle":
 		player.arms.animationPlayer.play("Idle")
+		
+	player.standing_CollisionShape.disabled = false
+	player.crouching_CollisionShape.disabled = true
 
 func physics_update(delta: float) -> void:
 	#En un futuro estructurar mejor

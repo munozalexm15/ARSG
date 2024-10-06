@@ -15,6 +15,9 @@ func enter(_msg := {}):
 	player.standing_CollisionShape.disabled = true
 	rotation_value = player.rotation.y
 	player.curr_speed = player.crouch_speed
+	
+	player.standing_CollisionShape.disabled = true
+	player.crouching_CollisionShape.disabled = false
 
 #Slide Mechanic
 	#if state_machine.old_state.name == "Run" and player.input_direction != Vector2.ZERO:

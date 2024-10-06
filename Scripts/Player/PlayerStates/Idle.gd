@@ -17,6 +17,8 @@ func enter(_msg := {}):
 	player.velocity = Vector3.ZERO
 	player.direction = Vector3.ZERO
 	player.headBobbing_curr_intensity = player.hb_intensities.get("idle_speed")
+	player.standing_CollisionShape.disabled = false
+	player.crouching_CollisionShape.disabled = true
 
 func physics_update(delta):
 	if not is_multiplayer_authority():

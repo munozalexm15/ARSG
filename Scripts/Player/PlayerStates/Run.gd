@@ -8,6 +8,9 @@ func enter(_msg := {}):
 	player.curr_speed = player.run_speed
 	if not player.arms.state_machine.state.name == "Reload":
 		player.arms.animationPlayer.play("Run")
+	
+	player.standing_CollisionShape.disabled = false
+	player.crouching_CollisionShape.disabled = true
 
 func _input(_event):
 	pass
