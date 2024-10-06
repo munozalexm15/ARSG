@@ -123,9 +123,15 @@ func _input(event : InputEvent):
 	#If mouse is moving
 	if event is InputEventMouseMotion:
 		#rotate player x axis ONLY
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sensibility))
-		#rotate camera y axis and limit its rotation
-		eyes.rotate_x(deg_to_rad(-event.relative.y * mouse_sensibility))
+		
+		if Input.is_action_pressed("ADS"):
+			rotate_y(deg_to_rad(-event.relative.x * GlobalData.configData.get_value("Controls", "AimMouseSensibility", 1.0)))
+			#rotate camera y axis and limit its rotation
+			eyes.rotate_x(deg_to_rad(-event.relative.y * GlobalData.configData.get_value("Controls", "AimMouseSensibility", 1.0)))
+		else:
+			rotate_y(deg_to_rad(-event.relative.x * GlobalData.configData.get_value("Controls", "MouseSensibility", 1.0)))
+			#rotate camera y axis and limit its rotation
+			eyes.rotate_x(deg_to_rad(-event.relative.y * GlobalData.configData.get_value("Controls", "MouseSensibility", 1.0)))
 		eyes.rotation.x = clamp(eyes.rotation.x, deg_to_rad(-50), deg_to_rad(50))
 		
 	

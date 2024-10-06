@@ -20,7 +20,7 @@ func physics_update(delta: float) -> void:
 		player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta
 	else:
 		#añadida comprobación adicional para evitar que se pare de golpe (cuando esta andando unicamente)
-		if player.state_machine.old_state.name != "Air":
+		if player.state_machine.old_state.name != "Air" or player.is_on_floor():
 			player.curr_speed = player.crouch_speed
 			player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
 			player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta

@@ -43,6 +43,9 @@ var is_remmaping = false
 var action_to_remap = null
 var remapping_button = null
 
+@onready var mouseSensibility : HSlider = $ControlsOptionsContainer/VBoxContainer/HBoxContainer/MouseSensibilitySlider
+@onready var AimSensibility : HSlider = $ControlsOptionsContainer/VBoxContainer/HBoxContainer2/AimSensibilitySlider
+
 var allowed_input_actions = {
 	"Forward" : "Forward",
 	"Backwards" : "Backwards",
@@ -98,6 +101,9 @@ func loadSettings():
 	fullscrenButton.button_pressed = configData.get_value("Video", "isFullscreen", false)
 	hasDitheringButton.button_pressed = configData.get_value("Video", "hasDithering", false)
 	vsyncButton.button_pressed = configData.get_value("Video", "V-Sync", false)
+	
+	mouseSensibility.value = configData.get_value("Controls", "MouseSensibility", 1)
+	AimSensibility.value = configData.get_value("Controls", "AimSensibility", 1)
 
 func _input(event):
 	if is_remmaping == false:
@@ -256,3 +262,17 @@ func _on_input_button_pressed(button : Button, action):
 
 func _on_button_2_pressed() -> void:
 	create_action_list()
+
+
+func _on_mouse_sensibility_slider_value_changed(value: float) -> void:
+	configData.set_value("Controls", "MouseSensibility", value)
+	configData.save("res://GameSettings.cfg")
+	GlobalData.configData = configData
+	GlobalData.configurationUpdated.emit()
+
+
+func _on_aim_sensibility_slider_value_changed(value: float) -> void:
+	configData.set_value("Controls", "AimMouseSensibility", value)
+	configData.save("res://GameSettings.cfg")
+	GlobalData.configData = configData
+	GlobalData.configurationUpdated.emit()

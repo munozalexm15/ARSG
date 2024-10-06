@@ -289,7 +289,6 @@ func _on_flashlight_input_event(_camera, _event, _position, _normal, _shape_idx)
 			flashlightLight.visible = !flashlightLight.visible
 
 func on_config_changed():
-	print(GlobalData.configData.get_value("Video", "isFullscreen"))
 	if GlobalData.configData.get_value("Video", "isFullscreen") == true:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:

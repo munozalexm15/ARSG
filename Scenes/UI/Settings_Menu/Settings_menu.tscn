@@ -98,7 +98,7 @@ _data = {
 offset_left = 227.0
 offset_top = 103.0
 offset_right = 891.0
-offset_bottom = 772.0
+offset_bottom = 808.0
 theme = ExtResource("1_enhrk")
 script = ExtResource("1_lgrhf")
 ditheringMaterial = ExtResource("4_a4uii")
@@ -320,6 +320,46 @@ theme_override_constants/margin_right = 40
 [node name="VBoxContainer" type="VBoxContainer" parent="ControlsOptionsContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="ControlsOptionsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ControlsOptionsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.53
+text = "SENSITIVITY"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="MouseSensibilitySlider" type="HSlider" parent="ControlsOptionsContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ControlsOptionsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ControlsOptionsContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.53
+text = "AIM SENSITIVITY"
+label_settings = SubResource("LabelSettings_jymd7")
+
+[node name="AimSensibilitySlider" type="HSlider" parent="ControlsOptionsContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
 [node name="Button2" type="Button" parent="ControlsOptionsContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -358,4 +398,6 @@ libraries = {
 [connection signal="value_changed" from="SoundOptionsContainer/VisualOptions/VBoxContainer2/WeaponSounds-Slider" to="." method="_on_weapon_sounds_slider_value_changed"]
 [connection signal="value_changed" from="SoundOptionsContainer/VisualOptions/VBoxContainer2/EnvironmentSounds-Slider" to="." method="_on_environment_sounds_slider_value_changed"]
 [connection signal="value_changed" from="SoundOptionsContainer/VisualOptions/VBoxContainer2/EffectsSounds-Slider" to="." method="_on_effects_sounds_slider_value_changed"]
+[connection signal="value_changed" from="ControlsOptionsContainer/VBoxContainer/HBoxContainer/MouseSensibilitySlider" to="." method="_on_mouse_sensibility_slider_value_changed"]
+[connection signal="value_changed" from="ControlsOptionsContainer/VBoxContainer/HBoxContainer2/AimSensibilitySlider" to="." method="_on_aim_sensibility_slider_value_changed"]
 [connection signal="pressed" from="ControlsOptionsContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

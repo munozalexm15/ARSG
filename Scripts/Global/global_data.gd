@@ -23,12 +23,17 @@ func _ready():
 		configData.set_value("Video", "V-Sync", true)
 		configData.set_value("Video", "ColorDepth", 5)
 		configData.set_value("Video", "ResolutionScale", 2)
+		
 		configData.set_value("Audio", "Weapons", 1)
 		configData.set_value("Audio", "WeaponSliderValue", 1)
 		configData.set_value("Audio", "Environment", 1)
 		configData.set_value("Audio", "EnvironmentSliderValue", 1)
 		configData.set_value("Audio", "Effects", 1)
 		configData.set_value("Audio", "EffectsSliderValue", 1)
+		
+		configData.set_value("Controls", "MouseSensibility", 1)
+		configData.set_value("Controls", "AimMouseSensibility", 1)
+		
 		configData.save("res://GameSettings.cfg")
 
 
