@@ -26,8 +26,6 @@ extends Control
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var aimAnimationPlayer : AnimationPlayer = $PrecisionSightContainer/AnimationPlayerSniper
 
-@onready var fpsCounter : Label = $FPSCOUNTER
-
 @onready var healthBar : ProgressBar = $PanelContainer2/VBoxContainer/ProgressBar
 
 @onready var interactContainer :VBoxContainer = $CenterContainer2/HBoxContainer/InteractContainer
@@ -62,16 +60,11 @@ func _ready():
 	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 	gamemodeLabel.text = Network.gameData.get("gameMode")
 
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Send Message"):
-		visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if not is_multiplayer_authority():
 		return
 		
-	fpsCounter.set_text("FPS %d" % Engine.get_frames_per_second())
 	if Input.is_action_pressed("ADS") or player_controller.arms.state_machine.state.name == "Reload":
 		crosshair.queue_redraw()
 		for x in reticle_lines.size():

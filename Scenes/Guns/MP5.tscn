@@ -13,7 +13,7 @@
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_cj2rk"]
 [ext_resource type="AudioStream" uid="uid://bohwu0eynruj5" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel.mp3" id="12_r6xwg"]
 [ext_resource type="AudioStream" uid="uid://bip2mwmeqwj1a" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel_full.mp3" id="13_86q7m"]
-[ext_resource type="AudioStream" uid="uid://di6p1mnggfo3d" path="res://GameResources/Sounds/Weapons/MP5/mp5_shot.mp3" id="13_ue7nn"]
+[ext_resource type="AudioStream" uid="uid://bbor8ng532rnh" path="res://GameResources/Sounds/Weapons/MP5/mp5_shot.wav" id="14_eq8mn"]
 [ext_resource type="AudioStream" uid="uid://bs5ku0tijcrmt" path="res://GameResources/Sounds/Misc/Fire_Mode_Swap.wav" id="14_n21ik"]
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="15_fghx8"]
 
@@ -2362,7 +2362,7 @@ bus = &"Weapons"
 
 [node name="ASP_ShotShound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.807648, 3.52299, 0)
-stream = ExtResource("13_ue7nn")
+stream = ExtResource("14_eq8mn")
 bus = &"Weapons"
 
 [node name="ASP_FireSelectionSound" type="AudioStreamPlayer3D" parent="."]
