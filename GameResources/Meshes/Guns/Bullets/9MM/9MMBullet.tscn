@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="5_gq6vk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
-radius = 0.334542
-height = 0.669084
+radius = 0.21131
+height = 0.433626
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
 resource_name = "Material.001"
@@ -95,8 +95,8 @@ _data = [Vector2(0, 0.581128), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0
 point_count = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
-radius = 0.542766
-height = 1.53463
+radius = 0.130748
+height = 0.46124
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)

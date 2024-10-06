@@ -49,6 +49,9 @@ func _process(delta):
 	var fullAutoReq = skeleton.arms.state_machine.state.name == "Idle" and skeleton.arms.actualWeapon.weaponData.bulletsInMag > 0 and skeleton.arms.actualWeapon.weaponData.selectedFireMode == "Auto"
 	var semiReq = skeleton.arms.state_machine.state.name == "Idle" and skeleton.arms.actualWeapon.weaponData.bulletsInMag > 0 and skeleton.arms.actualWeapon.weaponData.selectedFireMode == "Semi"
 	var burstReq = skeleton.arms.state_machine.state.name == "Idle" and skeleton.arms.actualWeapon.weaponData.bulletsInMag > 0 and skeleton.arms.actualWeapon.weaponData.selectedFireMode == "Burst"
+	
+	if skeleton.arms.player.isPauseMenuOpened:
+		return
 	if Input.is_action_pressed("Fire") and fullAutoReq:
 		recoilFire.rpc(multiplayer.get_unique_id() , false)
 	
