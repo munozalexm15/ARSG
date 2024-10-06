@@ -5,6 +5,8 @@ extends Node
 var configData : ConfigFile
 var isOnlineMatch : bool
 
+signal configurationUpdated
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	isOnlineMatch = false
@@ -12,6 +14,7 @@ func _ready():
 	var loadedData = configData.load("res://GameSettings.cfg")
 	if loadedData == OK:
 		loadGameSettings()
+		configurationUpdated.emit()
 	
 	if loadedData != OK:
 		configData.set_value("Video", "Resolution", Vector2i(1920, 1080))

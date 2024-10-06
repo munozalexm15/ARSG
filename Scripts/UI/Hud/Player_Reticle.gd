@@ -62,6 +62,10 @@ func _ready():
 	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 	gamemodeLabel.text = Network.gameData.get("gameMode")
 
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Send Message"):
+		visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if not is_multiplayer_authority():

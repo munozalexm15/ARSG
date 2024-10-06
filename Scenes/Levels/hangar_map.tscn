@@ -224,9 +224,7 @@ background_mode = 2
 sky = SubResource("Sky_tjr1p")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ssao_radius = 4.7
-ssao_intensity = 3.33
-ssao_horizon = 0.0
+ssil_radius = 4.55
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.205117, 0.205117, 0.205117, 1)
 volumetric_fog_emission = Color(4.33177e-07, 0.032673, 0.161849, 1)
@@ -8062,7 +8060,7 @@ ambient_wind = 0.1
 centered = true
 _terrain_data = ExtResource("10_nex4x")
 chunk_size = 16
-collision_enabled = true
+collision_enabled = false
 collision_layer = 67
 collision_mask = 67
 shader_type = "Classic4Lite"
@@ -8114,10 +8112,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 environment = SubResource("Environment_8f8v4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(0.4879, 0.396389, -0.777708, -0.0274346, 0.897471, 0.440219, 0.872468, -0.193447, 0.448751, 0, 9.57452, 0)
+transform = Transform3D(0.48771, 0.40227, -0.774802, -0.0306358, 0.89485, 0.445314, 0.872468, -0.193447, 0.448751, 0, 9.57452, 0)
 light_color = Color(0, 0.147756, 0.408481, 1)
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
+light_negative = true
 
 [node name="FadeShader" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_prhnf")
@@ -13439,7 +13438,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_o3hsr")
 
 [node name="Wall_Short_3x5" type="MeshInstance3D" parent="Map/Inside/shootingrange"]
-transform = Transform3D(-4.37114e-10, 0.01, -4.37114e-10, 0, -4.37114e-10, -0.01, -0.01, -4.37114e-10, 1.91069e-17, -7.01534, 0, -11.3762)
+transform = Transform3D(-4.37114e-10, 0.01, -3.0598e-10, 0, -4.37114e-10, -0.007, -0.01, -4.37114e-10, 1.33748e-17, -7.01534, 0, -11.3762)
 mesh = SubResource("ArrayMesh_pqmhf")
 skeleton = NodePath("")
 
@@ -13551,7 +13550,7 @@ transform = Transform3D(1, 0, 0, 0, 1, -7.2737e-15, 0, 1.72301e-15, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_cspey")
 
 [node name="Sandbag_Pile_02" type="MeshInstance3D" parent="Map/Inside/shootingrange"]
-transform = Transform3D(-0.00122597, -0.00992457, 8.67633e-10, 0, -4.37114e-10, -0.02, 0.00992457, -0.00122597, 1.07178e-10, -0.490111, -0.0510684, -8.94186)
+transform = Transform3D(-0.000980776, -0.00793965, 6.94106e-10, 0, -3.49691e-10, -0.016, 0.00793965, -0.000980776, 8.57421e-11, -0.490111, -0.0510684, -8.94186)
 mesh = SubResource("ArrayMesh_iwleb")
 skeleton = NodePath("")
 
@@ -13850,7 +13849,7 @@ mesh = SubResource("ArrayMesh_4j6lu")
 skeleton = NodePath("")
 
 [node name="Prop_Target_Human4" type="MeshInstance3D" parent="Map/Inside/shootingrange"]
-transform = Transform3D(-9.5998e-06, 0.01, -4.37114e-10, 2.11758e-24, -4.37114e-10, -0.01, -0.01, -9.5998e-06, 4.19621e-13, -7.49727, 0.728087, -11.3842)
+transform = Transform3D(-6.72025e-06, 0.007, -3.0598e-10, 0, -3.0598e-10, -0.007, -0.007, -6.72025e-06, 2.93752e-13, -7.49727, 0.728087, -11.3842)
 mesh = SubResource("ArrayMesh_f0jv8")
 skeleton = NodePath("")
 

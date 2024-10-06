@@ -55,7 +55,9 @@ var listingLobbies = true
 @export var exitClick_soundEffect : AudioStreamMP3
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	on_config_changed()
+	GlobalData.configurationUpdated.connect(on_config_changed)
+	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
 	optionsLabel.modulate.a = 0.05
@@ -285,3 +287,10 @@ func _on_flashlight_input_event(_camera, _event, _position, _normal, _shape_idx)
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == MOUSE_BUTTON_LEFT:
 			flashlightLight.visible = !flashlightLight.visible
+
+func on_config_changed():
+	print(GlobalData.configData.get_value("Video", "isFullscreen"))
+	if GlobalData.configData.get_value("Video", "isFullscreen") == true:
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

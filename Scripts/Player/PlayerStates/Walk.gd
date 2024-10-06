@@ -19,9 +19,11 @@ func physics_update(delta: float) -> void:
 		player.headBobbing_curr_intensity = player.hb_intensities.get("walk_speed")
 		player.headBobbing_index += player.hb_speeds.get("walk_speed") * delta
 	else:
-		player.curr_speed = player.crouch_speed
-		player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
-		player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
+		#añadida comprobación adicional para evitar que se pare de golpe (cuando esta andando unicamente)
+		if player.state_machine.old_state.name != "Air":
+			player.curr_speed = player.crouch_speed
+			player.headBobbing_curr_intensity = player.hb_intensities.get("crouch_speed")
+			player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	
 	if not player.isPauseMenuOpened:
 		if not Network.game.chatText.has_focus():

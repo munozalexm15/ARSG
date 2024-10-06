@@ -9,4 +9,3 @@ extends Node3D
 func _ready():
 	target.targetData = targetData
 	healthBar.value = targetData.actualHealth
-

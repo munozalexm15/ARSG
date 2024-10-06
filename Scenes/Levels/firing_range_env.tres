@@ -6,7 +6,7 @@
 sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 
 [resource]
-background_energy_multiplier = 0.2
+background_energy_multiplier = 4.0
 sky = SubResource("Sky_wfdj2")
 reflected_light_source = 1
 tonemap_mode = 1
