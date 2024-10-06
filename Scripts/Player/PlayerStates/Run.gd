@@ -10,10 +10,7 @@ func enter(_msg := {}):
 		player.arms.animationPlayer.play("Run")
 
 func _input(_event):
-	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding():
-		#Para prevenir que se pare de golpe en el aire (Idle y corriendo)
-		if player.state_machine.old_state.name == "Air":
-			state_machine.transition_to("Walk")
+	pass
 
 func physics_update(delta: float):
 	if Input.is_action_just_pressed("Fire"):
@@ -21,6 +18,12 @@ func physics_update(delta: float):
 	
 	play_anim.rpc()
 
+	
+	if Input.is_action_just_pressed("ADS") and not Input.is_action_pressed("Crouch") and !player.standingRaycast.is_colliding():
+		#Para prevenir que se pare de golpe en el aire (Idle y corriendo)
+		if player.state_machine.old_state.name == "Air":
+			state_machine.transition_to("Walk")
+			
 	player.headBobbing_curr_intensity = player.hb_intensities.get("sprint_speed")
 	player.headBobbing_index += player.hb_speeds.get("sprint_speed") * delta
 	

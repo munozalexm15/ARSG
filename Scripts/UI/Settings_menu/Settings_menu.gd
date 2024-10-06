@@ -141,7 +141,6 @@ func _on_fullscreen_checkbox_pressed():
 		configData.set_value("Video", "isFullscreen", true)
 		fullscrenButton.button_pressed = true
 	else:
-		print("jeje")
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		set_resolution_text()
 		configData.set_value("Video", "isFullscreen", false)

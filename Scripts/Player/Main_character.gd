@@ -247,7 +247,7 @@ func _physics_process(delta):
 
 func _on_state_machine_transitioned(state_name, _old_state):
 	state = state_name
-	print("Last state: " , _old_state , "   ---   New state: " , state_name)
+	#print("Last state: " , _old_state , "   ---   New state: " , state_name)
 
 func _checkCollisionWithWall():
 	var space_state = get_world_3d().direct_space_state
