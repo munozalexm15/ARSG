@@ -413,7 +413,9 @@ func die_respawn(player_id, instigator_id):
 	var playerbodySkin = player_body.playerMesh.get_active_material(0).get_shader_parameter("albedo")
 	var playerheadSkin = player_body.playerMesh.get_active_material(1).get_shader_parameter("albedo")
 	
-	
+	for audio in player.player_sounds.get_children():
+			player.player_sounds.remove_child(audio)
+			
 	Network.game.add_child(deathModelScene)
 	deathModelScene.playerMesh.get_active_material(0).set_shader_parameter("albedo", playerbodySkin)
 	deathModelScene.playerMesh.get_active_material(1).set_shader_parameter("albedo", playerheadSkin)

@@ -361,6 +361,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.331374, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]
+visible = false
 target_position = Vector3(0, 1, 0)
 
 [node name="GroundCheckRaycast" type="RayCast3D" parent="."]

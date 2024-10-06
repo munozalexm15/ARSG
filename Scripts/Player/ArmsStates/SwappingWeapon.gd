@@ -9,8 +9,7 @@ func enter(_msg := {}):
 	arms.animationPlayer.play("SwapWeapon")
 	
 	if arms.player.player_sounds:
-		for audio in arms.player.player_sounds.get_children():
-			arms.player.player_sounds.remove_child(audio)
+		remove_reload_sounds_for_all.rpc(arms.player.name)
 		
 	if arms.weaponHolder.get_child_count() > 0:
 		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
@@ -181,3 +180,11 @@ func exit():
 	
 	if is_multiplayer_authority():
 		arms.actualWeapon.being_used = true
+
+
+@rpc("any_peer", "call_local")
+func remove_reload_sounds_for_all(identifier):
+	for p :Player in Network.game.players_node.get_children():
+		if p.name == identifier:
+			for audio in arms.player.player_sounds.get_children():
+					arms.player.player_sounds.remove_child(audio)
