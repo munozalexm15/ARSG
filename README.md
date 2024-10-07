@@ -58,7 +58,7 @@ I would love to optimize the game (as I haven't touched anything related to that
 
 ## Known bugs / Missing features
 
-I know there are some noticeable bugs that can affect players outside of the visual ones. The ones that are on mi sight are, in order of more important to least:
+I know there are some noticeable bugs that can affect players outside of the visual ones. The ones that are on my sight are, in order of more important to least:
 
 - **RPC calls when joining a game sometimes fail**: I think it's a sync problem of the player who is connecting. I haven't looked at it deeply because it rarely occurs, but it can happen often if your performance is VERY, very bad.
 > This bug can cause the game to be in an infinite black screen (because it's waiting for the RPC call) or take authority of a player's camera and see their POV. The only way of exiting is forcing the game to close at the moment.
