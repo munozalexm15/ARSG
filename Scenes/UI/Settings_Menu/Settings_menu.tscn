@@ -98,7 +98,7 @@ _data = {
 offset_left = 227.0
 offset_top = 103.0
 offset_right = 891.0
-offset_bottom = 808.0
+offset_bottom = 772.0
 theme = ExtResource("1_enhrk")
 script = ExtResource("1_lgrhf")
 ditheringMaterial = ExtResource("4_a4uii")
@@ -313,7 +313,6 @@ step = 0.001
 [node name="ControlsOptionsContainer" type="MarginContainer" parent="."]
 visible = false
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 40
 

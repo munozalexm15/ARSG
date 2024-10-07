@@ -10,11 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Godot"
+config/name="ARSG"
+config/description="Another retro shooter game. As if there weren't enough games like this out there... Welp, enjoy!"
+config/version="v0.0.1"
 run/main_scene="res://Scenes/Menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-config/icon="res://icon.svg"
+boot_splash/image="res://arsg_logotitle.png"
+config/icon="res://arsg_svg.svg"
 
 [autoload]
 

@@ -1,90 +1,109 @@
-# ARSG
+#ARSG
 
-#LORE / GAME TYPE
+##What is ARSG?
+ARSG is a multiplayer 1v1 FPS/TPS made in Godot with Steamworks support (thanks to GodotSteam). It started as a school proyect and after the 
+course ended I kept developing and adding new features across a few months (it has been in development for exactly six months now), giving birth to this game. Unfortunately, at the moment 
+is only a generic shooter that doesn't bring anything new to the table, but it is a good way of showcaising a first person shooter 
+main components (or the skeleton of a game) and what it can be done in half a year without almost no knowledge in Godot and game networking in general. 
 
-- En un futuro distopico, a los ladrones y los exiliados se les ofrece la oportunidad de redención si deciden acceder al coliseo de la guerra, donde a los jugadores se les envia a diferentes guerras
-de la historia de la humanidad, y donde tienen que demostrar que son capaces de avanzar en cada guerra hasta terminar volviendo al futuro. Si lo consiguen, se enfrentan al boss final (que es tu personaje
-de una anterior run con todas tus habilidades). Si lo derrotan, se convertiran en el nuevo regente del coliseo, y seran los encargados de decidir si matar o enviar a los ladrones al coliseo de la guerra. 
-(Básicamente, el juego es un loop infinito pero en cada run encarnas a un ladron diferente que tiene que enfrentarse a tu anterior personaje de la run)
+The game is now stable and playeable, allowing people to host or join lobbies to face off against one another. That doesn't mean there are no bugs, 
+I've got a few ones still waiting to be fixed, but mostly they are visual and shouldn't affect the overall experience. So, don't expect this to have 
+anything you haven't seen before, but it's a game you can play with a friend or with people across the world.
 
-- La idea es hacer un roguelike un jugador / cooperativo de disparos en primera persona, en los cuales los jugadores iran avanzando entre las diferentes gran guerras (cada nivel es una batalla famosa
-que se elige de manera aleatoria de esa guerra).
-En caso de llegar a la batalla final en cooperativo, se les obligara a pelear entre ellos en el coliseo para saber quien es el nuevo regente o aliarse para matar al boss final.
+To finish, I just want to say thanks to everyone who has kept me / keeps me motivated to keep doing the game and for the guy who is reading this right now (yeah, you). Just making you notice this exists is worth it.
 
-# CONTROLS:
-- WASD: Movement
-- Left click: Shoot
-- Right click: Aim
-- R: Reload
-- V: Melee (WIP)
-- Z: Flashlight
-- F: Interact / Grab ammo / Swap weapon
-- Shift: Sprint
-- Control: Crounch
-- Shift + Crouch: Slide
-- Spacebar: Jump
-- Q / E: Leaning
+##Features
 
-## TODO:
+###Steamworks compatibility
+As said before, thanks to [GodotSteam](https://godotsteam.com/) I can use steamworks to facilitate the networking part. To play the game, you need to have an account and steam opened to play with other people. 
 
-###ITEM LIST:
-- Los jugadores, a parte de cambiar poder cambiar de arma con aquellas que sueltan los cofres (o el equivalente) o algun enemigo (normalmente, serán de una rareza inferior a la del nivel actual)
+###Multiplayer
+Players can face agains a friend or a person in a 1v1 scenario.
 
-###ROGUELIKE:
-- Morir y modo espectador
-- Arreglar campo de tiro
-- Hacer un sitema de eleccion de armas (a lo mw3 en modo supervivencia)
+###Complete control of a character
+Users will be able to jump, sprint, crouch, walk, aim and shot, with a movement like the 2000 games era.
 
-#### Niveles
+###Feedback
+Thanks to animations, Inverse Kinematics and sounds you can know if a player is looking up or down, aiming, reloading, etc.
 
-- Fácil (Mundo uno): Armas de rareza común, enemigos basicos (soldados unicamente) y buffs genericos que no alteran la manera de jugar del jugador (más velocidad de recarga, etc.)
-- Normal (Mundo dos): Armas de rareza rara y super rara, enemigos comunes y francotiradores / granaderos
-- Dificil (mundo tres): Armas de rareza super rara y epica, enemigos comunes, francotiradores, granderos y enemigos del futuro
-- Super Dificil (mundo cuatro): Armas de rareza epica y legendaria, enemigos comunes chetados, enemigos del futuro y tanques
-- Pesadilla (mundo cinco): Armas de rareza legendaria e infame, enemigos del futuro, boss final
+###Customizable Lobbies
+You can set the privacity of the room, the time of the game, the kill limit, map, and even allow to switch perspective from a first person to third person (WIP)
 
-NOTA: Para avanzar hacia el siguiente nivel, hay que conseguir cumplir el objetivo de ese mapa (destruir un edificio, matar a x persona, etc.)
+###Weapons
+The game features 5 weapons, each one being useful to certain situations (Shotgun, SMG, AR, Combat Rifle and a Sniper) and users can change weapon anytime they want in the match.
 
-##### Rondas bonus
-- Ronda bonus 1: Supervivencia contra los no muertos (Obtienes items que pueden dropear enemigos)
-- Ronda bonus 2: Defensa de la posicion hasta la llegada de los refuerzos (Obtienes dinero que puedes comprar en una tienda, que ofrece armas de rarezas posiblementes mejores, items, etc.)
+###Settings
+You can change the graphical look of the game, lower or increase the volume and adjust the controls of the game to your liking. The changes stay even if you close the game!
 
-###LISTA DE ITEMS
+###In-game chat
+A person has joined your lobby and you want to thell them how happy you are to see them? You can tell him!
 
-#### Mecanicas para el jugador:
- - Una más no hace daño: Puedes llevar un arma adicional (2 armas en total)
- - Exoesqueleto: Un esqueleto adicional para mi persona favorita (Mecanica COD AW). Permite tener doble salto
-	- Mejora exoesqueleto 1: Añade un impulso en cualquier direccion
-	- Mejora exoesqueleto 2: Añade un impulso adicional en cualquier dirección y la opcion de hacer un golpetazo al suelo
 
-#### A implementar:
- - Gatillo rapido: Aumenta la cadencia de disparo (stackeable hasta 3 veces) -> 10%, 20%, 30%
- - Pies rapidos: Aumenta la velocidad de movimiento (stackeable hasta 3 veces) -> 5%, 10%, 15%
- - Manos de hierro: Reduce el retroceso de las armas (stackeable hasta 3 veces) 10%, 15%, 20%
- - Balas perforantes: Tus balas pueden atravesar enemigos (stackeable hasta 2 veces) e inflingir sangrado (1% de salud que pierden por segundo). Algunos enemigos son inmunes a este efecto -> Un enemigo adicional, Dos enemigos adicionales
- - Balas incendiarias: Tus balas hacen que los enemigos tengan el estado de "en llamas" y pierden un % de salud por segundo durante 3 segundos -> 0,25%, 0,5%, 1%
- - Balas explosivas: tus balas pueden hacer daño en area a los enemigos cercanos y a enemigos con blindaje (tanques o lo que sea)
- - Manos agiles: Aumenta la velocidad de recarga en un 20%
- - Bola de nieve: Haces un 15% más de daño a los enemigos afectados con más de un estado (frio, en llamas, sangrado, mareado, etc.)
- - Mata moscas: Aumenta el daño a los enemigos voladores
+##What's next
+The main idea was to make a game with leveling system and unlockables, but I figured out that if I did that, It would have to be done locally and that would allow people to
+cheat and unlock everything (can't afford a server to save all the data), so I gave it some though and came to the conclusion to make a game that doesn't has progression, but only in the match.
+So, the main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
+(more helth, invisibility for a certain time, etc.)
+Basically, the idea is to make every match completely different. This way, I can give players a different approach to the game and prevent people cheat (Outside of the lobbies).
 
-#### A implementar (Ambientales):
-- Fuerza imparable: No andaras lento en zonas de fango
-- Oculto en las sombras: No serás visible en las zonas con poca visibilidad
-- Sangre de muerto: Puedes fingir tu muerte en cualquier momento
-- Vuelve a tirar: Los cofres ya abiertos pueden volver a abrirse
+Furthermore, things that are without saying going to be done are more maps, weapons, bullet decals, blood decals, etc. and also maybe add the armory option (which now is disabled) to allow players create weapon classes.
 
-### MECHANICS
- - Fix health system
- - Add healing items
- - Climb ladders (WIP)
+Also, if you've opened the game, you have noticed the App ID is the 480 (Spacewar). This is because if anyone wants to upload a Game to Steam, you have to pay a one-time fee of 100$. I would, but I don't think my game at the moment has that worth.
+In a future, if the game keeps evolving and has some worth, maybe I will be willing to do such a big step.
 
-## WEAPON LIST
- - Grenades
- - Rocket launcher / Grenade Launcher
+Maybe I'll rework how lobbies work, and replace the firing range map to be the waiting room for hosts and when a player joins load the match itself. 
+I would love to optimize the game (as I haven't touched anything related to that and I find it interesting), fix the major bugs, and keep giving updates (If I don't find a job basically).
+
+##Known bugs / Missing features
+
+I know there are some noticeable bugs that can affect players outisde of the visual ones. The ones that are on mi sight are, in order of more important to least:
+
+- **RPC calls when joining a game sometimes fail**: I think it's a sync problem of the player who is connecting. I haven't looked at it deeply because it rarely occurs, but it can happen often if your performance is VERY, very bad.
+> This bug can cause the game to be in an infinite black screen (because it's waiting for the RPC call) or take authority of a players camera and see their POV. The only way of exiting is forcing the game to close at the moment.
+
+- **Bullet collisions**: Maybe you feel like your bullets aren't hitting. Thats because maybe they aren't. As bullets are not raycasted, I have to constantly check for colliding bodies which sometimes can not detect if the collision box is to small. 
+> This one is serious, but playi- *testing*, I mean testing, with my friends, I've seen that it's not something very noticeable. You can notice this in the firing range map.
+
+- **Steam invitations**: A friend can invite you and you can join the match, but it doesn't mostly work. I'll look more into it because, if I don't, then you can't make lobbies only for friends.
+
+- **Controls mapped are not persistent (Not saving if you close the game / exit the match)**: 
+ > This one is a missing feature it needs to be added. I don't find it important because the controls are the standard for a first person game and you can always change it in-game and stay like that.
+
+- **Better respawns**: As the lobbies only allow 2 players and the maps itselfs have a lot of spawnpoints result in making the lowering the chances of spawning in front of the enemy, but that doesn't mean it can't happen. I have to rework some 
+conditions to make spawning more safer for players.
+
+- **Footsteps bugs**: Have to fix a bug where if you die in a certain moment, the footsteps sounds bug and play a lot. It happens while you're dead, when you respawn it works as normal. Another one is it seems that if you're aiming and walking, footsteps play twice.
+
+- **Hitmarker sound**: You might have noticed that when you shot an enemy, an audio plays to indicate you're hitting the enemy, and when they hit you the same one plays. It's not a bug, but maybe I will change the sound when they hit you.
+
+- **Ammo bug**: If you pickup a weapon, the ammo in this one restores to the default, instead of having the ammo of the previous player had in it.
+
+- **Player Skeleton bugs**: You may sometimes notice bugs with the player skeleton. That's because GODOT has at the time (or I think it has) some limitations when trying to animate or use Inverse Kinematics with an Skeleton.
+> I find it goofy and funny, but I understand people can see it as a bug. With time, I will update animations and rework the logic behind.
+
+- **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
+
+##Images
+![Soldier in firing Range](/Images/ARSG_Photo1.png)
+![Ambush](/Images/ARSG_Photo2.png)
+![The silence of the night](/Images/ARSG_Photo3.png)
+![It's you or I](/Images/ARSG_Photo4.png)
+
+##Credits
+
+ - Weapon assets by [Doctor_Sci3nce](https://doctor-sci3nce.itch.io/) on Itch
+ - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch
+ - First person hands model by [CemCkrc] (https://cemckrc.itch.io/fps-arms-psx-style) on Itch
+ - Shooting range assets by [Comp-3 Interactive] (https://comp3interactive.itch.io/modular-psx-shooting-range-kit) on Itch
+ - PSXPack assets by [orange rice] (https://orange-rice.itch.io/psxpack) on Itch
+ - Retro FPS Kit by [Pizza Doggy] (https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch
+ - Weapon sounds by [oneshotofficial] (https://gamebanana.com/members/1951232) on Gamebanana
+ - Hitmarker sound by [Daniel SoundsGood] (https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects) on Itch
+ - Footsteps sounds by [Dryoma] (https://dryoma.itch.io/footsteps-sounds) on Itch
+ - UI sounds by [Cyrex Studios] (https://cyrex-studios.itch.io/universal-ui-soundpack) on Itch
+ - Pause Menu sounds by [Bleeoop] (https://bleeoop.itch.io/interface-bleeps) on Itch
+ - Font by [CGBotNet] (https://ggbot.itch.io/fortzilla-font) on Itch
+ - Light buzzing sound by [Jakob Thiesen] (https://www.soundsnap.com/ambience_room_tone_fluorescent_light_buzzing_wav) on SoudSnap
+ - Background war sounds by [DennisH18] (https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay
  
-### UI / HUD
- - Show player state (crouched, running, standing -> like COD1)
- - If shooting, add a little of camera zoom shake
- 
-
+ If it wasn't for them I wouldn't be able to mix everything and obtain the estetique I wanted for ARSG, so thanks!
