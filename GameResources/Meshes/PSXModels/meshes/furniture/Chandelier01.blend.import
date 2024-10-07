@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://02cmcnwbueqh"
+uid="uid://cnx6lvked2otg"
 path="res://.godot/imported/Chandelier01.blend-61117106155a79e18bec78e56ed2b875.scn"
 
 [deps]
@@ -31,14 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/light/Chandelier01.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

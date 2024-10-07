@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bs6vwrs1gdas0"
+uid="uid://cn5w73cnp50ot"
 path="res://.godot/imported/Lamp01.blend-e30bd7413193423bdf51d1ba3a9eada7.scn"
 
 [deps]
@@ -25,26 +25,13 @@ meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/lights/Lamp01.tres"
-}
-},
-"nodes": {
-"PATH:Lamp01": {
-"generate/physics": true,
-"physics/shape_type": 1
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

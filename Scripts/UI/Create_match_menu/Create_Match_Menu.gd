@@ -3,8 +3,8 @@ extends Control
 @onready var lobbyName : TextEdit = $VBoxContainer/HBoxContainer/VBoxContainer/RoomNameContainer/TextEdit
 @onready var mapName : Label = $VBoxContainer/HBoxContainer/VBoxContainer/MapSelectorContainer/TextureRect/Label
 
-var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/test_scene.tscn"]
-var mapNamesList = ["Hangar", "Firing Range"]
+var mapPathsList = [ "res://Scenes/Levels/hangar_map.tscn", "res://Scenes/Levels/test_scene.tscn", "res://Scenes/Levels/Ghost_city.tscn"]
+var mapNamesList = ["Hangar", "Firing Range", "Ghost Town"]
 @export var mapImagesList : Array
 
 var mapListIndex = 0

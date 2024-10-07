@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cdj0kt0o4q5h7"
+uid="uid://cmmi5t240hj0x"
 path="res://.godot/imported/FenceWoodPlanks01.blend-8663271acfdf9f200d12ceef5cb85152.scn"
 
 [deps]
@@ -31,14 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Fence": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/decor/FenceWoodPlanks01.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

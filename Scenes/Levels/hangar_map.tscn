@@ -1,4 +1,4 @@
-[gd_scene load_steps=766 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=759 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -11,11 +11,11 @@
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="9_dmlld"]
 [ext_resource type="Resource" path="res://GameResources/TerrainData/hangar/data.hterrain" id="10_nex4x"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="11_0eejc"]
-[ext_resource type="Texture2D" uid="uid://dkjoaba8yeqg1" path="res://GameResources/Meshes/PSXModels/textures/ground/Grass01_a.jpg" id="12_qrngs"]
-[ext_resource type="Texture2D" uid="uid://cqnov74fjreqs" path="res://GameResources/Meshes/PSXModels/textures/ground/Sand01_a.jpg" id="13_yr248"]
-[ext_resource type="Texture2D" uid="uid://dam4ko4rtfula" path="res://GameResources/Meshes/PSXModels/textures/ground/Dirt01_a.jpg" id="14_gse8o"]
-[ext_resource type="Texture2D" uid="uid://bcexudix2spu1" path="res://GameResources/Meshes/PSXModels/textures/metal/BlackPlain01_a.png" id="15_v48kp"]
-[ext_resource type="Material" uid="uid://bg4chc5voxnf5" path="res://GameResources/Materials/night_sky.tres" id="16_741wv"]
+[ext_resource type="Texture2D" uid="uid://di2li8p4w2dqo" path="res://GameResources/Meshes/PSXModels/textures/ground/Grass01_a.jpg" id="12_qrngs"]
+[ext_resource type="Texture2D" uid="uid://b2nnjrt24urqi" path="res://GameResources/Meshes/PSXModels/textures/ground/Sand01_a.jpg" id="13_yr248"]
+[ext_resource type="Texture2D" uid="uid://dhtfqevq7obv2" path="res://GameResources/Meshes/PSXModels/textures/ground/Dirt01_a.jpg" id="14_gse8o"]
+[ext_resource type="Texture2D" uid="uid://co6rjg77rpdom" path="res://GameResources/Meshes/PSXModels/textures/metal/BlackPlain01_a.png" id="15_v48kp"]
+[ext_resource type="Environment" uid="uid://bot81jgdsr0ay" path="res://Scenes/Environment/NIGHT_ENVIRONMENT.tres" id="16_ccowq"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="17_jqwhl"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="18_aargq"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="19_kolhr"]
@@ -29,10 +29,8 @@
 [ext_resource type="AudioStream" uid="uid://didtja70fpqkp" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-005.ogg" id="26_hrive"]
 [ext_resource type="AudioStream" uid="uid://bvtcdpjvjmhii" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-006.ogg" id="27_nqof2"]
 [ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="28_j7j3x"]
-[ext_resource type="PackedScene" uid="uid://glnoblnle76" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Fence04.blend" id="29_4g0wi"]
 [ext_resource type="AudioStream" uid="uid://comeihwnwbl5l" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-012.ogg" id="29_tjhsg"]
 [ext_resource type="AudioStream" uid="uid://dxig5314gh6rb" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-016.ogg" id="30_nekca"]
-[ext_resource type="PackedScene" uid="uid://8d26lronu3i1" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Fence04Gate.blend" id="30_nnpqw"]
 [ext_resource type="AudioStream" uid="uid://bfafipho2grv2" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-017.ogg" id="31_fytg0"]
 [ext_resource type="Texture2D" uid="uid://eb864raoeidt" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_5.png" id="31_mkaba"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="32_85gsc"]
@@ -43,78 +41,76 @@
 [ext_resource type="Texture2D" uid="uid://cxr0t6rkhtfw7" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_frame_1.png" id="34_hp4yb"]
 [ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="35_4kgcg"]
 [ext_resource type="Texture2D" uid="uid://bg3bv8txsgttc" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_1.png" id="35_g81dk"]
-[ext_resource type="Texture2D" uid="uid://buxf14fk2xjik" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/GDWolf_a.jpg" id="36_10rey"]
-[ext_resource type="Texture2D" uid="uid://xr40qxg5emic" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/TPzFuchs_a.jpg" id="37_5ivjv"]
-[ext_resource type="Texture2D" uid="uid://bcfsxdg4o322v" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_a.png" id="38_p1pe1"]
-[ext_resource type="Texture2D" uid="uid://t4n3vyag27j0" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_e.png" id="39_l5i7v"]
+[ext_resource type="Texture2D" uid="uid://bsoe30mdhnja3" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/GDWolf_a.jpg" id="36_10rey"]
+[ext_resource type="Texture2D" uid="uid://buoawp50tgvpp" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/TPzFuchs_a.jpg" id="37_5ivjv"]
+[ext_resource type="Texture2D" uid="uid://bl5tto3q7xvbf" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_a.png" id="38_p1pe1"]
+[ext_resource type="Texture2D" uid="uid://c7kfb0unbqh87" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_e.png" id="39_l5i7v"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="40_piigm"]
 [ext_resource type="Texture2D" uid="uid://dib4jq0bym55e" path="res://GameResources/Textures/ShootingRange/WallLight_Base.png" id="41_5dy1n"]
 [ext_resource type="Texture2D" uid="uid://ddcin4f8sb6uw" path="res://GameResources/Textures/ShootingRange/WallLight_E_Amber.png" id="42_oajkw"]
-[ext_resource type="PackedScene" uid="uid://dcvl6sj816v33" path="res://GameResources/Meshes/PSXModels/meshes/electronics/OldFlashlight01.blend" id="43_j67j4"]
-[ext_resource type="Texture2D" uid="uid://cqtgpitokx80" path="res://GameResources/Meshes/PSXModels/textures/meshes/exercise/ParkourWood01_a.png" id="44_xd7yf"]
-[ext_resource type="PackedScene" uid="uid://bj0ixqndsfxd3" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Billboard01.blend" id="45_8g6p5"]
-[ext_resource type="PackedScene" uid="uid://cqn3px863eak" path="res://GameResources/Meshes/PSXModels/meshes/misc/Candle02.blend" id="46_83dqt"]
-[ext_resource type="PackedScene" uid="uid://s2a7fun2e6t8" path="res://GameResources/Meshes/PSXModels/meshes/construction/Bolt01.blend" id="47_ush8v"]
-[ext_resource type="Texture2D" uid="uid://be85bx2du7jra" path="res://GameResources/Meshes/PSXModels/textures/meshes/buildings/Pier01_a.png" id="48_pdxqd"]
-[ext_resource type="PackedScene" uid="uid://cv7lj0tqgul72" path="res://GameResources/Meshes/PSXModels/meshes/finances/Goldbar01.blend" id="49_u1mcl"]
-[ext_resource type="PackedScene" uid="uid://cdyehjuo8qqob" path="res://GameResources/Meshes/PSXModels/meshes/finances/GoldBar02.blend" id="50_a3p66"]
-[ext_resource type="PackedScene" uid="uid://cd0a0fjdaimp2" path="res://GameResources/Meshes/PSXModels/meshes/utilities/Bucket01.blend" id="51_0fon1"]
-[ext_resource type="Texture2D" uid="uid://b1e3nquea8m2c" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate01_a.png" id="52_8jicb"]
-[ext_resource type="Texture2D" uid="uid://cwpom5rgnuyv2" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate03_a.png" id="53_b4t2s"]
-[ext_resource type="Texture2D" uid="uid://c6wwwymksse4h" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Locker01_a.png" id="54_pa2g1"]
-[ext_resource type="Texture2D" uid="uid://d2avkvym5m3sn" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Radiator01_a.png" id="55_aq68f"]
-[ext_resource type="Texture2D" uid="uid://hdh6nndgjvep" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Shelf01_a.png" id="56_veci6"]
-[ext_resource type="PackedScene" uid="uid://37dy33np5x1k" path="res://GameResources/Meshes/PSXModels/meshes/utilities/SignWetFloor01.blend" id="57_eb75i"]
-[ext_resource type="PackedScene" uid="uid://cqive0gq2imq7" path="res://GameResources/Meshes/PSXModels/meshes/residential/Broom01.blend" id="58_bp6ui"]
-[ext_resource type="PackedScene" uid="uid://d3ubn5uvwvf6x" path="res://GameResources/Meshes/PSXModels/meshes/residential/Mat02.blend" id="59_3imus"]
-[ext_resource type="PackedScene" uid="uid://dqbpkpec1uidm" path="res://GameResources/Meshes/PSXModels/meshes/residential/Mat01.blend" id="60_ec6hj"]
-[ext_resource type="Texture2D" uid="uid://d11ohu7fh8blw" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/Mattress01_a.png" id="61_5y8hh"]
-[ext_resource type="Texture2D" uid="uid://cjx7xkn7d1m8g" path="res://GameResources/Meshes/PSXModels/textures/meshes/finances/PaletteMoney01_a.png" id="62_a5uij"]
-[ext_resource type="PackedScene" uid="uid://243ci64nd0kk" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleA.blend" id="63_ns2nw"]
-[ext_resource type="PackedScene" uid="uid://b7us5dn2x6ky" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleC.blend" id="64_m2kbc"]
-[ext_resource type="PackedScene" uid="uid://bs34j3v4yx2a7" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleB.blend" id="65_k6mbb"]
-[ext_resource type="PackedScene" uid="uid://t0cps8ckr8b6" path="res://GameResources/Meshes/PSXModels/meshes/misc/OldFireExtinguisher01.blend" id="66_5rvde"]
-[ext_resource type="PackedScene" uid="uid://ti1ldf080727" path="res://GameResources/Meshes/PSXModels/meshes/misc/Cup01.blend" id="67_rk8ey"]
-[ext_resource type="Texture2D" uid="uid://b3iu7307bl2ga" path="res://GameResources/Meshes/PSXModels/textures/bricks/BricksWhite01_a.png" id="68_pjeg8"]
-[ext_resource type="Texture2D" uid="uid://cupxqf7j67715" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate02_a.png" id="69_sbkvh"]
-[ext_resource type="Texture2D" uid="uid://csl2o7t0a3lwh" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Toolbox01_a.png" id="70_fjeco"]
-[ext_resource type="PackedScene" uid="uid://8l7mg66xh15b" path="res://GameResources/Meshes/PSXModels/meshes/residential/BottleCleaner01.blend" id="71_h5yc8"]
-[ext_resource type="Texture2D" uid="uid://bulu55q2bqhcn" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Scaffolding01_a.png" id="72_5s32r"]
-[ext_resource type="Texture2D" uid="uid://le45y0jxlx48" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Palette02_a.png" id="73_786l8"]
-[ext_resource type="Texture2D" uid="uid://1vkf1tqc4xib" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/FenceWoodPlanks03_a.png" id="74_t8w6e"]
-[ext_resource type="Texture2D" uid="uid://pwn60ln5mns4" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/DoorResidential01_a.png" id="75_f84tk"]
-[ext_resource type="PackedScene" uid="uid://dk27albkrcj8x" path="res://GameResources/Meshes/PSXModels/meshes/construction/TrafficCone01.blend" id="76_i1mgo"]
-[ext_resource type="Texture2D" uid="uid://evk6daob5g22" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Fence01_a.png" id="77_w2kf6"]
-[ext_resource type="Texture2D" uid="uid://d4b31mny5cx0j" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Fence01Brick_a.png" id="78_mubc8"]
-[ext_resource type="Texture2D" uid="uid://7is4mjapx518" path="res://GameResources/Meshes/PSXModels/textures/concrete/ConcretePlain01_a.png" id="79_grsv0"]
-[ext_resource type="Texture2D" uid="uid://dxm87sxjla6f8" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/FenceWoodPlanks01_a.png" id="80_ko2g5"]
+[ext_resource type="PackedScene" uid="uid://bwmjwrkqv3ac7" path="res://GameResources/Meshes/PSXModels/meshes/electronics/OldFlashlight01.blend" id="43_j67j4"]
+[ext_resource type="Texture2D" uid="uid://g2j30irdk5fy" path="res://GameResources/Meshes/PSXModels/textures/meshes/exercise/ParkourWood01_a.png" id="44_xd7yf"]
+[ext_resource type="PackedScene" uid="uid://c5rq6nmr4tcs" path="res://GameResources/Meshes/PSXModels/meshes/misc/Candle02.blend" id="46_83dqt"]
+[ext_resource type="PackedScene" uid="uid://daaqnsfqv4vvk" path="res://GameResources/Meshes/PSXModels/meshes/construction/Bolt01.blend" id="47_ush8v"]
+[ext_resource type="Texture2D" uid="uid://cptu2d72hstmp" path="res://GameResources/Meshes/PSXModels/textures/meshes/buildings/Pier01_a.png" id="48_pdxqd"]
+[ext_resource type="PackedScene" uid="uid://k1tclf4du0sx" path="res://GameResources/Meshes/PSXModels/meshes/finances/Goldbar01.blend" id="49_u1mcl"]
+[ext_resource type="PackedScene" uid="uid://b1a251wrld3l0" path="res://GameResources/Meshes/PSXModels/meshes/finances/GoldBar02.blend" id="50_a3p66"]
+[ext_resource type="Texture2D" uid="uid://bdl5tkmoj53co" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate01_a.png" id="52_8jicb"]
+[ext_resource type="Texture2D" uid="uid://sveqn3coywu4" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate03_a.png" id="53_b4t2s"]
+[ext_resource type="Texture2D" uid="uid://om6va1svs7pq" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Locker01_a.png" id="54_pa2g1"]
+[ext_resource type="Texture2D" uid="uid://c18oxl875nswg" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Radiator01_a.png" id="55_aq68f"]
+[ext_resource type="Texture2D" uid="uid://biykbdhabme8p" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Shelf01_a.png" id="56_veci6"]
+[ext_resource type="PackedScene" uid="uid://ccyl1y4tm4yl0" path="res://GameResources/Meshes/PSXModels/meshes/utilities/SignWetFloor01.blend" id="57_eb75i"]
+[ext_resource type="PackedScene" uid="uid://btrvl7pflgo7h" path="res://GameResources/Meshes/PSXModels/meshes/residential/Broom01.blend" id="58_bp6ui"]
+[ext_resource type="PackedScene" uid="uid://di1k35wj8ey5h" path="res://GameResources/Meshes/PSXModels/meshes/residential/Mat02.blend" id="59_3imus"]
+[ext_resource type="PackedScene" uid="uid://soypkwvab70p" path="res://GameResources/Meshes/PSXModels/meshes/residential/Mat01.blend" id="60_ec6hj"]
+[ext_resource type="Texture2D" uid="uid://inde3y4m3kqn" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/Mattress01_a.png" id="61_5y8hh"]
+[ext_resource type="Texture2D" uid="uid://x3t2eohrusvp" path="res://GameResources/Meshes/PSXModels/textures/meshes/finances/PaletteMoney01_a.png" id="62_a5uij"]
+[ext_resource type="PackedScene" uid="uid://cfbopomrbawi" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleA.blend" id="63_ns2nw"]
+[ext_resource type="PackedScene" uid="uid://1w7yhnvq23gv" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleC.blend" id="64_m2kbc"]
+[ext_resource type="PackedScene" uid="uid://de78n13x7551k" path="res://GameResources/Meshes/PSXModels/meshes/finances/MoneyBundleB.blend" id="65_k6mbb"]
+[ext_resource type="PackedScene" uid="uid://ca44f2qq8pqh4" path="res://GameResources/Meshes/PSXModels/meshes/misc/OldFireExtinguisher01.blend" id="66_5rvde"]
+[ext_resource type="PackedScene" uid="uid://cc4r0m4d4h41d" path="res://GameResources/Meshes/PSXModels/meshes/misc/Cup01.blend" id="67_rk8ey"]
+[ext_resource type="Texture2D" uid="uid://dchtgca07o4mt" path="res://GameResources/Meshes/PSXModels/textures/bricks/BricksWhite01_a.png" id="68_pjeg8"]
+[ext_resource type="Texture2D" uid="uid://dlxe0i76hpdiu" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Crate02_a.png" id="69_sbkvh"]
+[ext_resource type="Texture2D" uid="uid://badnw6enwvc36" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Toolbox01_a.png" id="70_fjeco"]
+[ext_resource type="PackedScene" uid="uid://5cac8mnrjay1" path="res://GameResources/Meshes/PSXModels/meshes/residential/BottleCleaner01.blend" id="71_h5yc8"]
+[ext_resource type="Texture2D" uid="uid://dubwajykt62sl" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Scaffolding01_a.png" id="72_5s32r"]
+[ext_resource type="Texture2D" uid="uid://bell16wn4j1bb" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Palette02_a.png" id="73_786l8"]
+[ext_resource type="Texture2D" uid="uid://dhb48m2uoetuo" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/FenceWoodPlanks03_a.png" id="74_t8w6e"]
+[ext_resource type="Texture2D" uid="uid://cv5be72dear7f" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/DoorResidential01_a.png" id="75_f84tk"]
+[ext_resource type="PackedScene" uid="uid://dqcjbw1wd7sgy" path="res://GameResources/Meshes/PSXModels/meshes/construction/TrafficCone01.blend" id="76_i1mgo"]
+[ext_resource type="Texture2D" uid="uid://d3j2642odadcp" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Fence01_a.png" id="77_w2kf6"]
+[ext_resource type="Texture2D" uid="uid://dkg5exystkl5u" path="res://GameResources/Meshes/PSXModels/textures/meshes/construction/Fence01Brick_a.png" id="78_mubc8"]
+[ext_resource type="Texture2D" uid="uid://d1i5o6xoi1h32" path="res://GameResources/Meshes/PSXModels/textures/concrete/ConcretePlain01_a.png" id="79_grsv0"]
+[ext_resource type="Texture2D" uid="uid://c8vix5an2etoi" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/FenceWoodPlanks01_a.png" id="80_ko2g5"]
 [ext_resource type="AudioStream" uid="uid://bupw4knc6bqwu" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-014.ogg" id="80_ugok5"]
 [ext_resource type="AudioStream" uid="uid://bf2vq5esitbsf" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-013.ogg" id="81_ji7ct"]
-[ext_resource type="Texture2D" uid="uid://bl5gpci76a0e8" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Fence03_a.png" id="81_nec0d"]
-[ext_resource type="Texture2D" uid="uid://celckffeomj6p" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/EFT_a.jpg" id="82_xa1f1"]
+[ext_resource type="Texture2D" uid="uid://cvg5pnwj3jn4c" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Fence03_a.png" id="81_nec0d"]
+[ext_resource type="Texture2D" uid="uid://b8s1txswb71hj" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/EFT_a.jpg" id="82_xa1f1"]
 [ext_resource type="AudioStream" uid="uid://c4y8npcr77mgq" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-012.ogg" id="82_y73o7"]
-[ext_resource type="Texture2D" uid="uid://wd58bofjtm82" path="res://GameResources/Meshes/PSXModels/textures/meshes/storage/Wheelbarrow01_a.jpg" id="83_5mg0y"]
+[ext_resource type="Texture2D" uid="uid://bjyvs18y6ghf2" path="res://GameResources/Meshes/PSXModels/textures/meshes/storage/Wheelbarrow01_a.jpg" id="83_5mg0y"]
 [ext_resource type="AudioStream" uid="uid://bty7n4fbc7kd6" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-009.ogg" id="83_yti0k"]
 [ext_resource type="AudioStream" uid="uid://dqxfucubtxb8v" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-008.ogg" id="84_ghrq5"]
-[ext_resource type="Texture2D" uid="uid://dfwmvxocp6b0h" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Toilet01_a.png" id="84_iygn1"]
-[ext_resource type="Texture2D" uid="uid://drm5dfcqaugo1" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Sink01_a.png" id="85_53mva"]
+[ext_resource type="Texture2D" uid="uid://clw31h6cklpxw" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Toilet01_a.png" id="84_iygn1"]
+[ext_resource type="Texture2D" uid="uid://bangnb7pmr16k" path="res://GameResources/Meshes/PSXModels/textures/meshes/utilities/Sink01_a.png" id="85_53mva"]
 [ext_resource type="AudioStream" uid="uid://b2pkp7inmt8vi" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-006.ogg" id="85_bhorb"]
 [ext_resource type="AudioStream" uid="uid://dnr6mshj02fmn" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-004.ogg" id="86_k6r1j"]
-[ext_resource type="Texture2D" uid="uid://77clxs1bh5mi" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/TissuePack01_a.png" id="86_rakaj"]
-[ext_resource type="Texture2D" uid="uid://dhjjl27wfcnp" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/ToilettePaper01_a.png" id="87_0x7pa"]
+[ext_resource type="Texture2D" uid="uid://cp2aq7nx3c50p" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/TissuePack01_a.png" id="86_rakaj"]
+[ext_resource type="Texture2D" uid="uid://cbyugbatactob" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/ToilettePaper01_a.png" id="87_0x7pa"]
 [ext_resource type="AudioStream" uid="uid://b27i1ofe3lggj" path="res://GameResources/Sounds/Ground/Tiles/Steps_tiles-003.ogg" id="87_454pg"]
-[ext_resource type="Texture2D" uid="uid://s7sm58ta3ajs" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/ToilettePaperPack01_a.png" id="88_d5xth"]
-[ext_resource type="PackedScene" uid="uid://c17v5pljwvdsf" path="res://GameResources/Meshes/PSXModels/meshes/furniture/DoorResidential01.blend" id="89_0ugpx"]
-[ext_resource type="Texture2D" uid="uid://b2ndnnl3n4gxx" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/Table01_a.png" id="90_vkr32"]
-[ext_resource type="Texture2D" uid="uid://dqsaqay0xmrmn" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/Bookshelf01_a.jpg" id="91_83th0"]
-[ext_resource type="PackedScene" uid="uid://d18dgo5f83uyf" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book02.blend" id="92_11ldf"]
-[ext_resource type="PackedScene" uid="uid://cx3on2q478tn7" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book01.blend" id="93_312ft"]
-[ext_resource type="PackedScene" uid="uid://cdhih0pvbqne5" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book03.blend" id="94_4s7bl"]
-[ext_resource type="PackedScene" uid="uid://b7jpnm1awebcr" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book04.blend" id="95_f0q77"]
-[ext_resource type="PackedScene" uid="uid://dd8xs42gnp8bu" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book05.blend" id="96_fnu8b"]
-[ext_resource type="Texture2D" uid="uid://dkhhqunhsb1s1" path="res://GameResources/Meshes/PSXModels/textures/meshes/exercise/ParkourPlywood01_a.png" id="97_8y60p"]
+[ext_resource type="Texture2D" uid="uid://b6f8xquyr1buq" path="res://GameResources/Meshes/PSXModels/textures/meshes/residential/ToilettePaperPack01_a.png" id="88_d5xth"]
+[ext_resource type="PackedScene" uid="uid://ddtrtyd736px8" path="res://GameResources/Meshes/PSXModels/meshes/furniture/DoorResidential01.blend" id="89_0ugpx"]
+[ext_resource type="Texture2D" uid="uid://uk1qhamki8tc" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/Table01_a.png" id="90_vkr32"]
+[ext_resource type="Texture2D" uid="uid://bkch7ovregggx" path="res://GameResources/Meshes/PSXModels/textures/meshes/furniture/Bookshelf01_a.jpg" id="91_83th0"]
+[ext_resource type="PackedScene" uid="uid://11hbu0ocpbqu" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book02.blend" id="92_11ldf"]
+[ext_resource type="PackedScene" uid="uid://cqgrfbf84w1yl" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book01.blend" id="93_312ft"]
+[ext_resource type="PackedScene" uid="uid://ctmb68edi1bvl" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book03.blend" id="94_4s7bl"]
+[ext_resource type="PackedScene" uid="uid://dfvea555ikvw8" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book04.blend" id="95_f0q77"]
+[ext_resource type="PackedScene" uid="uid://hikfm64mggue" path="res://GameResources/Meshes/PSXModels/meshes/misc/Book05.blend" id="96_fnu8b"]
+[ext_resource type="Texture2D" uid="uid://sl7hto2xqy4v" path="res://GameResources/Meshes/PSXModels/textures/meshes/exercise/ParkourPlywood01_a.png" id="97_8y60p"]
 [ext_resource type="AudioStream" uid="uid://dxkyo6tm08bu7" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-001.ogg" id="98_jnblw"]
-[ext_resource type="Texture2D" uid="uid://dgv5iw46a2tm" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/ColumnBrick01_a.png" id="98_lcek1"]
+[ext_resource type="Texture2D" uid="uid://diju8ymail223" path="res://GameResources/Meshes/PSXModels/textures/meshes/decor/ColumnBrick01_a.png" id="98_lcek1"]
 [ext_resource type="AudioStream" uid="uid://db1d8hactoupa" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-020.ogg" id="98_lxexn"]
 [ext_resource type="Texture2D" uid="uid://fvubcqdjwydd" path="res://GameResources/Textures/ShootingRange/WoodDivider_01.png" id="99_nbbm6"]
 [ext_resource type="AudioStream" uid="uid://cnfivce8dn38i" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-002.ogg" id="99_xpqjx"]
@@ -137,41 +133,40 @@
 [ext_resource type="Texture2D" uid="uid://dore47wv1vxys" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Green.png" id="108_6nb8d"]
 [ext_resource type="Texture2D" uid="uid://dq7ndsljf8sh" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Yellow.png" id="109_8o4rg"]
 [ext_resource type="Texture2D" uid="uid://d1ela7mv7g6ia" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Blue.png" id="110_5s3rr"]
-[ext_resource type="PackedScene" uid="uid://b7x755s2khvox" path="res://GameResources/Meshes/PSXModels/meshes/tools/Axe01.blend" id="111_mcqxs"]
-[ext_resource type="PackedScene" uid="uid://b846shs5bxs7a" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag01.blend" id="112_fo51s"]
-[ext_resource type="PackedScene" uid="uid://cc0miimk6t1t0" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag03.blend" id="113_fhfef"]
-[ext_resource type="PackedScene" uid="uid://bqikcle0ubwbm" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag02.blend" id="114_4flkt"]
-[ext_resource type="PackedScene" uid="uid://bl4lnwyrd87mb" path="res://GameResources/Meshes/PSXModels/meshes/electronics/Camera01.blend" id="115_osnmi"]
-[ext_resource type="Texture2D" uid="uid://coenhyat4q2jc" path="res://GameResources/Meshes/PSXModels/textures/meshes/misc/SandbagWall01_a.jpg" id="116_ty1im"]
-[ext_resource type="PackedScene" uid="uid://cpic7qij2gcgd" path="res://GameResources/Meshes/PSXModels/meshes/decor/CamoNet01.blend" id="117_vu16x"]
-[ext_resource type="PackedScene" uid="uid://brjwo5exkfy0s" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingTable01.blend" id="118_dwqdt"]
-[ext_resource type="PackedScene" uid="uid://dv8tfv1o1h1bj" path="res://GameResources/Meshes/PSXModels/meshes/electronics/MobilePhone01.blend" id="119_dqbag"]
+[ext_resource type="PackedScene" uid="uid://ba4fu4wjgsh0y" path="res://GameResources/Meshes/PSXModels/meshes/tools/Axe01.blend" id="111_mcqxs"]
+[ext_resource type="PackedScene" uid="uid://dpnc0y3b1klat" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag01.blend" id="112_fo51s"]
+[ext_resource type="PackedScene" uid="uid://ih5f3pjdhpk8" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag03.blend" id="113_fhfef"]
+[ext_resource type="PackedScene" uid="uid://dar2rph7eplod" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag02.blend" id="114_4flkt"]
+[ext_resource type="PackedScene" uid="uid://bixdesp7dbspu" path="res://GameResources/Meshes/PSXModels/meshes/electronics/Camera01.blend" id="115_osnmi"]
+[ext_resource type="Texture2D" uid="uid://yl23338cwxy1" path="res://GameResources/Meshes/PSXModels/textures/meshes/misc/SandbagWall01_a.jpg" id="116_ty1im"]
+[ext_resource type="PackedScene" uid="uid://c0p3blnoigktf" path="res://GameResources/Meshes/PSXModels/meshes/decor/CamoNet01.blend" id="117_vu16x"]
+[ext_resource type="PackedScene" uid="uid://bocssr2kui6nl" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingTable01.blend" id="118_dwqdt"]
+[ext_resource type="PackedScene" uid="uid://ciajpmvey5ynj" path="res://GameResources/Meshes/PSXModels/meshes/electronics/MobilePhone01.blend" id="119_dqbag"]
 [ext_resource type="AudioStream" uid="uid://jglm7u6u1ry" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-021.ogg" id="120_b440o"]
-[ext_resource type="PackedScene" uid="uid://jcf1jk12qd54" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingChair01A.blend" id="120_mc428"]
-[ext_resource type="PackedScene" uid="uid://dof6e5xyt3s73" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingChair01B.blend" id="121_fyqw8"]
+[ext_resource type="PackedScene" uid="uid://b2wu533eiwolb" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingChair01A.blend" id="120_mc428"]
+[ext_resource type="PackedScene" uid="uid://bqkjs7yhhmt1k" path="res://GameResources/Meshes/PSXModels/meshes/outdoors/CampingChair01B.blend" id="121_fyqw8"]
 [ext_resource type="AudioStream" uid="uid://mualtjjocgt7" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-020.ogg" id="121_iycta"]
 [ext_resource type="AudioStream" uid="uid://cjqo60ygggpbp" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-019.ogg" id="122_82cjm"]
 [ext_resource type="AudioStream" uid="uid://byf24kmiuj4b8" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-018.ogg" id="123_8rbn5"]
 [ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="123_c5het"]
-[ext_resource type="Texture2D" uid="uid://dqb4m0lngsnj0" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01a_a.png" id="124_ip2ju"]
+[ext_resource type="Texture2D" uid="uid://ckx88gvgfex0q" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01a_a.png" id="124_ip2ju"]
 [ext_resource type="AudioStream" uid="uid://5jrud1odo5lr" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-017.ogg" id="124_joxb6"]
 [ext_resource type="Texture2D" uid="uid://becul4ri6axqc" path="res://GameResources/Textures/Environment/Rock01c_a.png" id="125_1tcqa"]
 [ext_resource type="AudioStream" uid="uid://djxipi880gaq6" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-016.ogg" id="125_365q7"]
-[ext_resource type="Texture2D" uid="uid://bkfqw36c8m732" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/PineTree01_a.png" id="126_g5ggm"]
+[ext_resource type="Texture2D" uid="uid://bmng4534v7dat" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/PineTree01_a.png" id="126_g5ggm"]
 [ext_resource type="AudioStream" uid="uid://c3qhlinnb72s7" path="res://GameResources/Sounds/Ground/Metal/metal_01_a.wav" id="126_roys3"]
 [ext_resource type="AudioStream" uid="uid://denk3t1lwdh11" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-015.ogg" id="126_txj7o"]
 [ext_resource type="AudioStream" uid="uid://dh0hbtk4f6bcy" path="res://GameResources/Sounds/Ground/Metal/metal_01_b.wav" id="127_4isdv"]
-[ext_resource type="Texture2D" uid="uid://cefqambbfvvip" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01b_a.png" id="127_g8vrm"]
+[ext_resource type="Texture2D" uid="uid://fga6nwn14xpa" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01b_a.png" id="127_g8vrm"]
 [ext_resource type="AudioStream" uid="uid://bt06qhyc3hfgu" path="res://GameResources/Sounds/Ground/Metal/metal_01_c.wav" id="128_gmcyd"]
-[ext_resource type="Texture2D" uid="uid://cgi0av6n2omgw" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01c_a.png" id="128_lkbnt"]
-[ext_resource type="PackedScene" uid="uid://biltok0wmtteo" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log02.blend" id="129_iotqh"]
+[ext_resource type="Texture2D" uid="uid://33n1ud676441" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01c_a.png" id="128_lkbnt"]
+[ext_resource type="PackedScene" uid="uid://cy5qwy54hn6cc" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log02.blend" id="129_iotqh"]
 [ext_resource type="AudioStream" uid="uid://4jjouubnykfu" path="res://GameResources/Sounds/Ground/Metal/metal_01_d.wav" id="129_liahb"]
 [ext_resource type="AudioStream" uid="uid://ntuus7hd7bl1" path="res://GameResources/Sounds/Ground/Metal/metal_01_e.wav" id="130_35b77"]
-[ext_resource type="PackedScene" uid="uid://cy6hdi6axwa8n" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log01.blend" id="130_v28ch"]
-[ext_resource type="Texture2D" uid="uid://cwsvn1hwip33h" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/StreetLight01On_a.png" id="131_traxc"]
-[ext_resource type="Texture2D" uid="uid://c4yruaxmix6s2" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/RoadGate01_a.jpg" id="132_63sem"]
-[ext_resource type="Texture2D" uid="uid://c675vdqvv4l8s" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/Barricade01_a.png" id="133_yni53"]
-[ext_resource type="PackedScene" uid="uid://c1wr756ing7wv" path="res://GameResources/Meshes/PSXModels/meshes/utilities/TrashContainer01.blend" id="134_ye4cb"]
+[ext_resource type="PackedScene" uid="uid://be7pi4mww0ssu" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log01.blend" id="130_v28ch"]
+[ext_resource type="Texture2D" uid="uid://dl5wjc62lfwaj" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/StreetLight01On_a.png" id="131_traxc"]
+[ext_resource type="Texture2D" uid="uid://dmkwqurrjw73r" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/RoadGate01_a.jpg" id="132_63sem"]
+[ext_resource type="Texture2D" uid="uid://befmy7wjkpvsy" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/Barricade01_a.png" id="133_yni53"]
 [ext_resource type="Texture2D" uid="uid://bn8nbv07bsm7q" path="res://GameResources/Textures/Other/ground_explosion-1.png" id="135_u40ie"]
 [ext_resource type="AudioStream" uid="uid://0e4ybvesu54q" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-001.ogg" id="136_8h4sw"]
 [ext_resource type="AudioStream" uid="uid://xq5fiu1ifw4a" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-021.ogg" id="137_1lgf3"]
@@ -214,20 +209,6 @@ rightHandSkin = ExtResource("8_hsusr")
 script = ExtResource("11_0eejc")
 mode = 0
 textures = [[ExtResource("12_qrngs"), ExtResource("13_yr248"), ExtResource("14_gse8o"), ExtResource("15_v48kp")], [null, null, null, null]]
-
-[sub_resource type="Sky" id="Sky_tjr1p"]
-sky_material = ExtResource("16_741wv")
-
-[sub_resource type="Environment" id="Environment_8f8v4"]
-background_mode = 2
-sky = SubResource("Sky_tjr1p")
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
-ssr_fade_in = 1.58341
-glow_enabled = true
-volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.205117, 0.205117, 0.205117, 1)
-volumetric_fog_emission = Color(4.33177e-07, 0.032673, 0.161849, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
 shader = ExtResource("17_jqwhl")
@@ -6942,7 +6923,7 @@ transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_8f8v4")
+environment = ExtResource("16_ccowq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.48771, 0.40227, -0.774802, -0.0306358, 0.89485, 0.445314, 0.872468, -0.193447, 0.448751, 0, 9.57452, 0)
@@ -7107,151 +7088,10 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57004, 1.50734, -0.152781)
 shape = SubResource("BoxShape3D_wdgdh")
 
-[node name="LateralFence" type="Node3D" parent="Map"]
-
-[node name="Fence054" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -54, 0.604895, -28)
-
-[node name="Fence055" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -50, 0.604895, -28)
-
-[node name="Fence056" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -46, 0.604895, -28)
-
-[node name="Fence057" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -41.9963, 0.604895, -28)
-
-[node name="Fence058" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -37.9963, 0.604895, -28)
-
-[node name="Fence059" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33.9963, 0.604895, -28)
-
-[node name="Fence060" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.0297, 0.604895, -28)
-
-[node name="Fence061" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -26.0297, 0.604895, -28)
-
-[node name="Fence062" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22.0297, 0.604895, -28)
-
-[node name="Fence063" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.0264, 0.604895, -28)
-
-[node name="Fence064" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.0264, 0.604895, -28)
-
-[node name="Fence065" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.0264, 0.604895, -28)
-
-[node name="Fence066" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.03981, 0.604895, -28)
-
-[node name="Fence067" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.03981, 0.604895, -28)
-
-[node name="Fence068" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.96019, 0.604895, -28)
-
-[node name="Fence069" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -54, 0.604895, 28.0345)
-
-[node name="Fence070" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -50, 0.604895, 28.0345)
-
-[node name="Fence071" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -46, 0.604895, 28.0345)
-
-[node name="Fence072" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -41.9963, 0.604895, 28.0345)
-
-[node name="Fence073" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -37.9963, 0.604895, 28.0345)
-
-[node name="Fence074" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -33.9963, 0.604895, 28.0345)
-
-[node name="Fence075" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -30.0297, 0.604895, 28.0345)
-
-[node name="Fence076" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -26.0297, 0.604895, 28.0345)
-
-[node name="Fence077" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -22.0297, 0.604895, 28.0345)
-
-[node name="Fence078" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -18.0264, 0.604895, 28.0345)
-
-[node name="Fence079" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.0264, 0.604895, 28.0345)
-
-[node name="Fence080" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10.0264, 0.604895, 28.0345)
-
-[node name="Fence081" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.03981, 0.604895, 28.0345)
-
-[node name="Fence082" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.03981, 0.604895, 28.0345)
-
-[node name="Fence083" parent="Map/LateralFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.96019, 0.604895, 28.0345)
-
-[node name="FrontalFence" type="Node3D" parent="Map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611, 0)
-
-[node name="Fence04Gate2" parent="Map/FrontalFence" instance=ExtResource("30_nnpqw")]
-transform = Transform3D(-0.79953, 0.278692, -0.532055, -0.0515575, 0.85072, 0.523085, 0.59841, 0.445654, -0.665807, -54.8121, -0.00241089, 1.42263)
-
-[node name="Fence04Gate3" parent="Map/FrontalFence" instance=ExtResource("30_nnpqw")]
-transform = Transform3D(0.757713, 0.652282, -0.0199746, 0, 0.0306082, 0.999531, 0.652588, -0.757358, 0.0231923, -56.7895, 0, -3.97222)
-
-[node name="Fence042" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 4)
-
-[node name="Fence043" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 8)
-
-[node name="Fence044" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 12)
-
-[node name="Fence045" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 16)
-
-[node name="Fence046" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 20)
-
-[node name="Fence047" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, 24)
-
-[node name="Fence048" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, -28.0063)
-
-[node name="Fence049" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, -24.0063)
-
-[node name="Fence050" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, -20.0063)
-
-[node name="Fence051" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, -16.0063)
-
-[node name="Fence052" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -58, 0, -12.0063)
-
-[node name="Fence053" parent="Map/FrontalFence" instance=ExtResource("29_4g0wi")]
-transform = Transform3D(0.13639, 0, -0.990655, 0, 1, 0, 0.990655, 0, 0.13639, -58, 0, -8.0063)
-
 [node name="tunnel_1" type="MeshInstance3D" parent="Map"]
 transform = Transform3D(30, 0, 0, 0, -6.55671e-07, -2, 0, 15, -8.74228e-08, -4, 6.93431, 4)
 mesh = SubResource("ArrayMesh_kbe5o")
 skeleton = NodePath("")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/tunnel_1"]
-collision_layer = 79
-collision_mask = 79
 
 [node name="UpCorridor1" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 24.999, 6.43801, -10.9005)
@@ -10830,8 +10670,18 @@ shape = SubResource("ConcavePolygonShape3D_c5b3j")
 [node name="Mattress012" type="Node3D" parent="Map/Props"]
 transform = Transform3D(0.995976, 0, -0.0896244, 0, 1, 0, 0.0896244, 0, 0.995976, 3.57431, 3.19741, 10.6006)
 
-[node name="Billboard012" parent="Map/Props" instance=ExtResource("45_8g6p5")]
+[node name="Billboard012" parent="Map/Props"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -59.9759, 0.611, 5.14022)
+script = null
 
 [node name="mFloorConcrete01" type="Node3D" parent="Map/Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26262, 0.621001, -2.17272)
@@ -10888,8 +10738,18 @@ transform = Transform3D(0.736026, 0, 0.676953, 0, 1, 0, -0.676953, 0, 0.736026, 
 [node name="GoldBar02" parent="Map/Inside" instance=ExtResource("50_a3p66")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7305, 1.19758, -9.23879)
 
-[node name="Bucket012" parent="Map/Inside" instance=ExtResource("51_0fon1")]
+[node name="Bucket012" parent="Map/Inside"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(0.992801, 0, -0.119773, 0, 1, 0, 0.119773, 0, 0.992801, 17.5678, 0.615985, 12.8387)
+script = null
 
 [node name="Crate012" type="Node3D" parent="Map/Inside"]
 transform = Transform3D(-0.658558, 0, 0.75253, 0, 1, 0, -0.75253, 0, -0.658558, 19.2083, 0.615986, -8.58035)
@@ -13148,8 +13008,18 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, -5.96046e-08, -9.31323e-10, 1, 0, 5.96046e-08, 2.32831e-10, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_af4rp")
 
-[node name="TrashContainer012" parent="Map/Outside" instance=ExtResource("134_ye4cb")]
+[node name="TrashContainer012" parent="Map/Outside"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.9037, 0.0703168, 2.05683)
+script = null
 
 [node name="Trees" type="Node3D" parent="Map/Outside"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.9317)

@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bei7moaxo76sy"
+uid="uid://d2j66fdsgp201"
 path="res://.godot/imported/GasStorage01.blend-d3213d164d3a14aeebc3beb9f7cf9f2c.scn"
 
 [deps]
@@ -31,18 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"GasStorage01": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/buildings/GasStorage01.tres"
-},
-"Ladder01": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/utilities/Ladder01.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

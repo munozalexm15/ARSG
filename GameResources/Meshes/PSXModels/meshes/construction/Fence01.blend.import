@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnqbmg6f5u2gk"
+uid="uid://dosq0ex5eqhom"
 path="res://.godot/imported/Fence01.blend-412ac16568e5d4435d98e66a752da1f0.scn"
 
 [deps]
@@ -31,14 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Fence01": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/meshes/construction/Fence01.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

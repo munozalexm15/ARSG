@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d4dkk8p8hbyxh"
+uid="uid://crkt0v3o1klr2"
 path="res://.godot/imported/Bandage01.blend-a341e2302520da6d956509743a1b4af1.scn"
 
 [deps]
@@ -31,14 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"Cloth-Lip": {
-"use_external/enabled": true,
-"use_external/path": "res://textures/misc/Bandage01.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

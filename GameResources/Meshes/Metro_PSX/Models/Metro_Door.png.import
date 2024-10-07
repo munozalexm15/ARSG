@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://ccie4ca0tbqg7"
+path.s3tc="res://.godot/imported/Metro_Door.png-e07e2196c5725e54b0195ae898efecff.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "d44ba71bb79b5b7b9c117b2c8d2e42ae"
+}
+
+[deps]
+
+source_file="res://GameResources/Meshes/Metro_PSX/Models/Metro_Door.png"
+dest_files=["res://.godot/imported/Metro_Door.png-e07e2196c5725e54b0195ae898efecff.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

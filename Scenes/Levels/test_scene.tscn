@@ -1,4 +1,4 @@
-[gd_scene load_steps=286 format=4 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=279 format=4 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
@@ -24,27 +24,21 @@
 [ext_resource type="Texture2D" uid="uid://peidbjqfijnf" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Police.jpg" id="7_rxp8l"]
 [ext_resource type="Texture2D" uid="uid://bey4oppscqukq" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Police.png" id="8_eguqk"]
 [ext_resource type="Texture2D" uid="uid://tvbkhxjjaytf" path="res://GameResources/Textures/ShootingRange/Targets.png" id="8_kxsbj"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="9_o504i"]
 [ext_resource type="Texture2D" uid="uid://cdrejnfeyg7om" path="res://GameResources/Textures/ShootingRange/Barrel01.png" id="9_x1qi5"]
 [ext_resource type="Texture2D" uid="uid://ot3gxcoi0b3y" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_7.png" id="10_2yvli"]
-[ext_resource type="Resource" path="res://GameResources/TerrainData/hangar/data.hterrain" id="10_50epp"]
 [ext_resource type="Texture2D" uid="uid://dib4jq0bym55e" path="res://GameResources/Textures/ShootingRange/WallLight_Base.png" id="10_k8kdh"]
 [ext_resource type="Texture2D" uid="uid://chyv1fp57b3rv" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_6.png" id="10_kq4j1"]
+[ext_resource type="Texture2D" uid="uid://2iwt8jmnq1a6" path="res://GameResources/Meshes/Buildings/Textures/asphalt.png" id="11_1ub1p"]
 [ext_resource type="PackedScene" uid="uid://c0es47flrnpww" path="res://Scenes/Ammo/submachine_gun_ammo_pickup.tscn" id="11_81jrp"]
 [ext_resource type="Texture2D" uid="uid://ddcin4f8sb6uw" path="res://GameResources/Textures/ShootingRange/WallLight_E_Amber.png" id="11_g8kp3"]
 [ext_resource type="Texture2D" uid="uid://bg3bv8txsgttc" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/door_1.png" id="11_mx27g"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="11_v3jr3"]
 [ext_resource type="PackedScene" uid="uid://c55fkgbvbibt1" path="res://Scenes/Ammo/ammo_pistol_global_pickup.tscn" id="12_6ivfo"]
-[ext_resource type="Texture2D" uid="uid://dkjoaba8yeqg1" path="res://GameResources/Meshes/PSXModels/textures/ground/Grass01_a.jpg" id="12_v54f3"]
 [ext_resource type="PackedScene" uid="uid://b8sgf4prmtev2" path="res://Scenes/Ammo/sniper_ammo_pickup.tscn" id="12_y5r7t"]
-[ext_resource type="Texture2D" uid="uid://cqnov74fjreqs" path="res://GameResources/Meshes/PSXModels/textures/ground/Sand01_a.jpg" id="13_akctx"]
 [ext_resource type="PackedScene" uid="uid://bitwj6kklxfmh" path="res://Scenes/Ammo/shotgun_ammo_pickup.tscn" id="14_0da68"]
 [ext_resource type="Texture2D" uid="uid://xtwpxvwln5j5" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/ceiling_lamp_1.png" id="14_5g1vd"]
-[ext_resource type="Texture2D" uid="uid://dam4ko4rtfula" path="res://GameResources/Meshes/PSXModels/textures/ground/Dirt01_a.jpg" id="14_7x1ki"]
 [ext_resource type="PackedScene" uid="uid://17iqvw1y3t11" path="res://Scenes/Meshes/ShootingRange/shooting_range_wall_doorway.tscn" id="14_c34fx"]
 [ext_resource type="PackedScene" uid="uid://c3fpgvqhqlcq4" path="res://Scenes/Meshes/ShootingRange/shooting_range_wall.tscn" id="15_5nb2a"]
 [ext_resource type="Texture2D" uid="uid://dm5h2877ys3iw" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/ceiling_lamp_1_emission.png" id="15_foatf"]
-[ext_resource type="Texture2D" uid="uid://bcexudix2spu1" path="res://GameResources/Meshes/PSXModels/textures/metal/BlackPlain01_a.png" id="15_rjcjk"]
 [ext_resource type="Texture2D" uid="uid://m4elvbbai5jh" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/button_off.png" id="17_qmcyl"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="18_e6v55"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="19_fsiqc"]
@@ -112,11 +106,6 @@ BodySkin = ExtResource("7_rxp8l")
 leftHandSkin = ExtResource("8_eguqk")
 rightHandSkin = ExtResource("8_eguqk")
 
-[sub_resource type="Resource" id="Resource_d282g"]
-script = ExtResource("11_v3jr3")
-mode = 0
-textures = [[ExtResource("12_v54f3"), ExtResource("13_akctx"), ExtResource("14_7x1ki"), ExtResource("15_rjcjk")], [null, null, null, null]]
-
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nuxu3"]
 
 [sub_resource type="Sky" id="Sky_wfdj2"]
@@ -140,7 +129,7 @@ shader_parameter/alpha = 7
 shader_parameter/fadeToWhite = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymbsi"]
-albedo_texture = ExtResource("18_e6v55")
+albedo_texture = ExtResource("11_1ub1p")
 uv1_scale = Vector3(0.3, 0.3, 0.3)
 uv1_triplanar = true
 texture_filter = 0
@@ -2575,26 +2564,6 @@ size = Vector3(2, 2, 1.24323)
 script = ExtResource("1_vgjab")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
-
-[node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("9_o504i")
-ambient_wind = 0.1
-centered = true
-_terrain_data = ExtResource("10_50epp")
-chunk_size = 16
-collision_enabled = false
-collision_layer = 67
-collision_mask = 67
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_d282g")
-render_layers = 1
-cast_shadow = 1
-shader_params/u_ground_uv_scale = 2.0
-shader_params/u_depth_blending = false
-shader_params/u_triplanar = true
-shader_params/u_tile_reduction = Vector4(0.39, 1.115, 0.515, 0.985)
 
 [node name="MatchTimer" type="Timer" parent="."]
 process_mode = 3
