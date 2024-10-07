@@ -107,5 +107,6 @@ conditions to make spawning safer for players.
  - Font by [CGBotNet](https://ggbot.itch.io/fortzilla-font) on Itch
  - Light buzzing sound by [Jakob Thiesen](https://www.soundsnap.com/ambience_room_tone_fluorescent_light_buzzing_wav) on SoudSnap
  - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay
+ - Muzzle flash images by [FootageCrate](https://footagecrate.com/video-effects/footagecrate-muzzleflash-5starquarter)
  
- If it wasn't for them I wouldn't be able to mix everything and obtain the estetique I wanted for ARSG, so thanks!
+Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so thanks!
