@@ -90,6 +90,7 @@ conditions to make spawning safer for players.
 ![Ambush](./Images/ARSG_Photo2.PNG)
 ![The silence of the night](./Images/ARSG_Photo3FPS.PNG)
 ![It's you or I](./Images/ARSG_Photo4FPS.PNG)
+![I win!](./Images/ARSG_Photo5FPS.png)
 
 ## Credits
 
