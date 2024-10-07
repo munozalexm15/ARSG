@@ -1,0 +1,26 @@
+ BUGS:
+
+ - Reposicionar modelos de las armas en pov outside
+ - Fixear posicion de la USP en outer pov 
+ - añadir impactos de bala
+ - Smoothear las animaciones del animation tree https://stackoverflow.com/questions/71277996/how-to-change-the-xfade-on-a-transition-node-in-script 
+ - Hacer que al mapear controles sea persistente (config básicamente)
+ - Fixear que boton de salir del juego del menu de pausa peta el scoreboard (mirar el de exit match que si funciona para ver en que diferencian)
+ - Hacer mejores spawns con comprobaciones de distancia
+ - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
+ - Malas colisiones en el firing range
+ - Cuando termine la sala (cuando salga lo de match ended by host bla bla bla y el scoreboard)  setearla para que nadie se pueda unir (Steam.allowLobbyJoinable o algo así). Que no se pueda unir gente si ha terminado la partida
+
+TODO
+
+ - Añadir invitación por steam (WIP)
+ 
+
+Decorar github / gitlab
+Hacer trailer ARSG
+Hacer video ARSG
+
+Ha sido un placer
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ - fixear errores conexion (a veces). -> Pasa en ordenadores muy lentos. Sospecho que es porque algunas peticiones rpc devuelven los datos antes que el propio ordenador cargue por ejemplo el mapa, etc. No lo voy a fixear

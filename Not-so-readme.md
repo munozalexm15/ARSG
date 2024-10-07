@@ -1,15 +1,8 @@
 # ARSG
 
-#LORE / GAME TYPE
 
-- En un futuro distopico, a los ladrones y los exiliados se les ofrece la oportunidad de redención si deciden acceder al coliseo de la guerra, donde a los jugadores se les envia a diferentes guerras
-de la historia de la humanidad, y donde tienen que demostrar que son capaces de avanzar en cada guerra hasta terminar volviendo al futuro. Si lo consiguen, se enfrentan al boss final (que es tu personaje
-de una anterior run con todas tus habilidades). Si lo derrotan, se convertiran en el nuevo regente del coliseo, y seran los encargados de decidir si matar o enviar a los ladrones al coliseo de la guerra. 
-(Básicamente, el juego es un loop infinito pero en cada run encarnas a un ladron diferente que tiene que enfrentarse a tu anterior personaje de la run)
-
-- La idea es hacer un roguelike un jugador / cooperativo de disparos en primera persona, en los cuales los jugadores iran avanzando entre las diferentes gran guerras (cada nivel es una batalla famosa
+- La idea es hacer un roguelike un jugador / cooperativo / multijugador de disparos en primera persona, en los cuales los jugadores iran avanzando entre las diferentes gran guerras (cada nivel es una batalla famosa
 que se elige de manera aleatoria de esa guerra).
-En caso de llegar a la batalla final en cooperativo, se les obligara a pelear entre ellos en el coliseo para saber quien es el nuevo regente o aliarse para matar al boss final.
 
 # CONTROLS:
 - WASD: Movement
