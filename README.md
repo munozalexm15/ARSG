@@ -1,6 +1,8 @@
-#ARSG
+# ARSG
 
-##What is ARSG?
+![ARSG_LOGO](./arsg_logotitle.png)
+
+## What is ARSG?
 ARSG is a multiplayer 1v1 FPS/TPS made in Godot with Steamworks support (thanks to GodotSteam). It started as a school proyect and after the 
 course ended I kept developing and adding new features across a few months (it has been in development for exactly six months now), giving birth to this game. Unfortunately, at the moment 
 is only a generic shooter that doesn't bring anything new to the table, but it is a good way of showcaising a first person shooter 
@@ -12,34 +14,34 @@ anything you haven't seen before, but it's a game you can play with a friend or 
 
 To finish, I just want to say thanks to everyone who has kept me / keeps me motivated to keep doing the game and for the guy who is reading this right now (yeah, you). Just making you notice this exists is worth it.
 
-##Features
+## Features
 
-###Steamworks compatibility
+### Steamworks compatibility
 As said before, thanks to [GodotSteam](https://godotsteam.com/) I can use steamworks to facilitate the networking part. To play the game, you need to have an account and steam opened to play with other people. 
 
-###Multiplayer
+### Multiplayer
 Players can face agains a friend or a person in a 1v1 scenario.
 
-###Complete control of a character
+### Complete control of a character
 Users will be able to jump, sprint, crouch, walk, aim and shot, with a movement like the 2000 games era.
 
-###Feedback
+### Feedback
 Thanks to animations, Inverse Kinematics and sounds you can know if a player is looking up or down, aiming, reloading, etc.
 
-###Customizable Lobbies
+### Customizable Lobbies
 You can set the privacity of the room, the time of the game, the kill limit, map, and even allow to switch perspective from a first person to third person (WIP)
 
-###Weapons
+### Weapons
 The game features 5 weapons, each one being useful to certain situations (Shotgun, SMG, AR, Combat Rifle and a Sniper) and users can change weapon anytime they want in the match.
 
-###Settings
+### Settings
 You can change the graphical look of the game, lower or increase the volume and adjust the controls of the game to your liking. The changes stay even if you close the game!
 
-###In-game chat
+### In-game chat
 A person has joined your lobby and you want to thell them how happy you are to see them? You can tell him!
 
 
-##What's next
+## What's next
 The main idea was to make a game with leveling system and unlockables, but I figured out that if I did that, It would have to be done locally and that would allow people to
 cheat and unlock everything (can't afford a server to save all the data), so I gave it some though and came to the conclusion to make a game that doesn't has progression, but only in the match.
 So, the main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
@@ -54,7 +56,7 @@ In a future, if the game keeps evolving and has some worth, maybe I will be will
 Maybe I'll rework how lobbies work, and replace the firing range map to be the waiting room for hosts and when a player joins load the match itself. 
 I would love to optimize the game (as I haven't touched anything related to that and I find it interesting), fix the major bugs, and keep giving updates (If I don't find a job basically).
 
-##Known bugs / Missing features
+## Known bugs / Missing features
 
 I know there are some noticeable bugs that can affect players outisde of the visual ones. The ones that are on mi sight are, in order of more important to least:
 
@@ -83,27 +85,27 @@ conditions to make spawning more safer for players.
 
 - **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
 
-##Images
-![Soldier in firing Range](/Images/ARSG_Photo1.png)
-![Ambush](/Images/ARSG_Photo2.png)
-![The silence of the night](/Images/ARSG_Photo3.png)
-![It's you or I](/Images/ARSG_Photo4.png)
+## Images
+![Soldier in firing Range](./Images/ARSG_Photo1.PNG)
+![Ambush](./Images/ARSG_Photo2.PNG)
+![The silence of the night](./Images/ARSG_Photo3.PNG)
+![It's you or I](./Images/ARSG_Photo4.PNG)
 
-##Credits
+## Credits
 
  - Weapon assets by [Doctor_Sci3nce](https://doctor-sci3nce.itch.io/) on Itch
  - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch
- - First person hands model by [CemCkrc] (https://cemckrc.itch.io/fps-arms-psx-style) on Itch
+ - First person hands model by [CemCkrc](https://cemckrc.itch.io/fps-arms-psx-style) on Itch
  - Shooting range assets by [Comp-3 Interactive] (https://comp3interactive.itch.io/modular-psx-shooting-range-kit) on Itch
- - PSXPack assets by [orange rice] (https://orange-rice.itch.io/psxpack) on Itch
- - Retro FPS Kit by [Pizza Doggy] (https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch
- - Weapon sounds by [oneshotofficial] (https://gamebanana.com/members/1951232) on Gamebanana
- - Hitmarker sound by [Daniel SoundsGood] (https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects) on Itch
- - Footsteps sounds by [Dryoma] (https://dryoma.itch.io/footsteps-sounds) on Itch
- - UI sounds by [Cyrex Studios] (https://cyrex-studios.itch.io/universal-ui-soundpack) on Itch
- - Pause Menu sounds by [Bleeoop] (https://bleeoop.itch.io/interface-bleeps) on Itch
- - Font by [CGBotNet] (https://ggbot.itch.io/fortzilla-font) on Itch
- - Light buzzing sound by [Jakob Thiesen] (https://www.soundsnap.com/ambience_room_tone_fluorescent_light_buzzing_wav) on SoudSnap
- - Background war sounds by [DennisH18] (https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay
+ - PSXPack assets by [orange rice](https://orange-rice.itch.io/psxpack) on Itch
+ - Retro FPS Kit by [Pizza Doggy](https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch
+ - Weapon sounds by [oneshotofficial](https://gamebanana.com/members/1951232) on Gamebanana
+ - Hitmarker sound by [Daniel SoundsGood](https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects) on Itch
+ - Footsteps sounds by [Dryoma](https://dryoma.itch.io/footsteps-sounds) on Itch
+ - UI sounds by [Cyrex Studios](https://cyrex-studios.itch.io/universal-ui-soundpack) on Itch
+ - Pause Menu sounds by [Bleeoop](https://bleeoop.itch.io/interface-bleeps) on Itch
+ - Font by [CGBotNet](https://ggbot.itch.io/fortzilla-font) on Itch
+ - Light buzzing sound by [Jakob Thiesen](https://www.soundsnap.com/ambience_room_tone_fluorescent_light_buzzing_wav) on SoudSnap
+ - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay
  
  If it wasn't for them I wouldn't be able to mix everything and obtain the estetique I wanted for ARSG, so thanks!
