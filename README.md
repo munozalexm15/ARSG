@@ -92,24 +92,23 @@ conditions to make spawning safer for players.
 ![It's you or I](./Images/ARSG_Photo4FPS.PNG)
 ![I win!](./Images/ARSG_Photo5FPS.png)
 
-## Credits
+## Credits / Commercial Use
 
  - Weapon assets by [Doctor_Sci3nce](https://doctor-sci3nce.itch.io/) on Itch
- - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch
- - First person hands model by [CemCkrc](https://cemckrc.itch.io/fps-arms-psx-style) on Itch
- - Shooting range assets by [Comp-3 Interactive](https://comp3interactive.itch.io/modular-psx-shooting-range-kit) on Itch
- - PSXPack assets by [orange rice](https://orange-rice.itch.io/psxpack) on Itch
+ - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch 
+ - First person hands model by [CemCkrc](https://cemckrc.itch.io/fps-arms-psx-style) on Itch 
+ - Shooting range assets by [Comp-3 Interactive](https://comp3interactive.itch.io/modular-psx-shooting-range-kit) on Itch 
+ - PSXPack assets by [orange rice](https://orange-rice.itch.io/psxpack) on Itch 
  - Additional textures (from the PSXPack): [Textures.com](https://www.textures.com/) , [Pexels.com](https://www.pexels.com/es-es/) , [FreeSound](https://freesound.org/) , [FreeStockTextures](https://freestocktextures.com/)
- - Retro FPS Kit by [Pizza Doggy](https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch
- - Weapon sounds by [oneshotofficial](https://gamebanana.com/members/1951232) on Gamebanana
- - Hitmarker sound by [Daniel SoundsGood](https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects) on Itch
- - Footsteps sounds by [Dryoma](https://dryoma.itch.io/footsteps-sounds) on Itch
- - UI sounds by [Cyrex Studios](https://cyrex-studios.itch.io/universal-ui-soundpack) on Itch
- - Pause Menu sounds by [Bleeoop](https://bleeoop.itch.io/interface-bleeps) on Itch
- - Font by [CGBotNet](https://ggbot.itch.io/fortzilla-font) on Itch
- - Light buzzing sound by [Jakob Thiesen](https://www.soundsnap.com/ambience_room_tone_fluorescent_light_buzzing_wav) on SoudSnap
- - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay
- - Muzzle flash images by [FootageCrate](https://footagecrate.com/video-effects/footagecrate-muzzleflash-5starquarter)
+ - Retro FPS Kit by [Pizza Doggy](https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch 
+ - Weapon sounds by [oneshotofficial](https://gamebanana.com/members/1951232) on Gamebanana 
+ - Hitmarker sound by [Daniel SoundsGood](https://danielsoundsgood.itch.io/free-deadly-kombat-sound-effects) on Itch 
+ - Footsteps sounds by [Dryoma](https://dryoma.itch.io/footsteps-sounds) on Itch 
+ - UI sounds by [Cyrex Studios](https://cyrex-studios.itch.io/universal-ui-soundpack) on Itch 
+ - Pause Menu sounds by [Bleeoop](https://bleeoop.itch.io/interface-bleeps) on Itch 
+ - Font by [CGBotNet](https://ggbot.itch.io/fortzilla-font) on Itch 
+ - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay 
+ - Muzzle flash images by [FootageCrate](https://footagecrate.com/video-effects/footagecrate-muzzleflash-5starquarter) 
  
  
 Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so thanks!

@@ -8,7 +8,6 @@ extends Node3D
 @onready var cameraAnimPlayer : AnimationPlayer = $FadeShader/SubViewport/DitheringShader/SubViewport/Camera3D/CameraAnimPlayer
 
 @onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
-@onready var lightBuzzSound : AudioStreamPlayer = $ASP_LightBuzzSound
 
 #PSX Cones Array
 var meshesArray : Array
@@ -128,7 +127,6 @@ func lightError():
 		light.visible = true
 	
 	lightError()
-	lightBuzzSound.play()
 
 
 #---------------Options part---------------------------
