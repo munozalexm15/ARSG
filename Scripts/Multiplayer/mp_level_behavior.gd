@@ -54,7 +54,7 @@ func _ready():
 func _process(_delta):
 	pass
 
-func  _input(event: InputEvent) -> void:
+func  _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Open Chat") and not chatText.has_focus():
 		chatText.grab_focus()
 		chatText.accept_event()

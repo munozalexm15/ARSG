@@ -72,5 +72,4 @@ ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
 ssr_fade_in = 1.58341
 fog_sky_affect = 0.36
-volumetric_fog_enabled = true
 volumetric_fog_sky_affect = 0.0

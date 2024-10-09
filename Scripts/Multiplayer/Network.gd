@@ -65,7 +65,7 @@ func join_server(id):
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
 
-func accept_invite_from_friend(lobby: int, friend_id : int):
+func accept_invite_from_friend(lobby: int, _friend_id : int):
 	if Steam.getNumLobbyMembers(lobby) >= Steam.getLobbyMemberLimit(lobby):
 		return
 		
@@ -74,7 +74,7 @@ func accept_invite_from_friend(lobby: int, friend_id : int):
 	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
-func _on_lobby_joined(id : int, _permissions: int, _locked : bool, response : int) -> void:
+func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : int) -> void:
 	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var fail_reason: String
 		match response:
@@ -120,19 +120,20 @@ func _on_send_chat_pressed(message : String) -> void:
 		if not was_sent:
 			print("ERROR: Chat message failed to send.")
 
-func add_message_to_chat(lobby_id: int, user : int, message: String, chat_type: int):
+func add_message_to_chat(_lobby_id: int, _user : int, _message: String, _chat_type: int):
 	if game == null:
 		return
 		
 	var textLabel = Label.new()
-	textLabel.text = message
+	textLabel.text = _message
 	textLabel.label_settings = LabelSettings.new()
 	textLabel.label_settings.font_size = 14
 	textLabel.autowrap_mode =TextServer.AUTOWRAP_ARBITRARY
 	game.ChatMessagesDisplay.add_child(textLabel)
 	
 	await get_tree().create_timer(10).timeout
-	game.ChatMessagesDisplay.remove_child(textLabel)
+	if game != null:
+		game.ChatMessagesDisplay.remove_child(textLabel)
 
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change

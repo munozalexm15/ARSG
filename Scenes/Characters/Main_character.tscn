@@ -248,7 +248,8 @@ _data = {
 [node name="Character" type="CharacterBody3D"]
 collision_layer = 128
 collision_mask = 135
-floor_constant_speed = true
+wall_min_slide_angle = 0.404916
+floor_snap_length = 0.2
 script = ExtResource("1_yciub")
 bobbingNode = NodePath("Head/eyesHolder")
 armsNode = NodePath("Head/eyesHolder/armsHolder/arms")

@@ -21,7 +21,7 @@ func _ready():
 	animPlayer.play("weapon_preview")
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if player == null:
 		return
 		

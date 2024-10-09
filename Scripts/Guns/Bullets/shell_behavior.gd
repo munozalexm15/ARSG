@@ -8,10 +8,6 @@ extends RigidBody3D
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func _on_visibility_notifier_screen_exited():
 	queue_free()

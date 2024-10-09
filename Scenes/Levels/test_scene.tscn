@@ -112,8 +112,10 @@ rightHandSkin = ExtResource("8_eguqk")
 sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 
 [sub_resource type="Environment" id="Environment_kkv0d"]
-background_energy_multiplier = 6.0
+background_energy_multiplier = 16.0
 sky = SubResource("Sky_wfdj2")
+ambient_light_source = 2
+ambient_light_color = Color(0.197937, 0.197937, 0.197937, 1)
 ssr_enabled = true
 ssr_fade_in = 1.7569
 ssao_enabled = true
@@ -150,7 +152,7 @@ cull_mode = 2
 albedo_texture = ExtResource("2_j4dm8")
 metallic = 1.0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_a8tnl"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qlewo"]
 _surfaces = [{
 "aabb": AABB(-300, -6.55671e-06, -300, 600, 1.31134e-05, 300),
 "format": 34896613377,
@@ -180,7 +182,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP7//////wAA/v///wAA//8AAP///////wAA////f/+//3//v/9//7//f/+/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_a8tnl")
+shadow_mesh = SubResource("ArrayMesh_qlewo")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k528v"]
 margin = 0.012
@@ -192,7 +194,7 @@ cull_mode = 2
 albedo_texture = ExtResource("2_j4dm8")
 texture_filter = 2
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_1tdyq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_etpcy"]
 _surfaces = [{
 "aabb": AABB(-9.68202, -9.68202, -306.897, 19.364, 19.364, 306.897),
 "format": 34896613377,
@@ -224,7 +226,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/3/+////VNX/f/7///9U1f9//v8AAATl/3/+/wAABOX/f/7/AABH9gAA/3////+/AAD/fwAAE9kAAP9/AACi3v///3//////////fwAA//////9/AACi3v9/AAD//1TV/38AAAAABOX/fwAAAABH9v9//v///yjS/3/+////GeX/f/7/AAD///9//v8AAO3pAAD/f///VMsAAP9///+Lyf///3//////////f/////////9////e9f///38AAE/N////fwAAhs3///9/AAAu5////38AAGrx/38AAP//4tD/fwAA//8W96qqqqqqqqqq1rLWstay1rJPuDUT/3////9///+cWDjE/7//f1bU/39ip8Y7qipU1dcyJ82vR8nst6ULtH+vK6ClnK2vQbm7pp2eMcJWSQHlxQ74x4Oym5ams0iXJ7dhqnUtjcuuAIRTNdLcfIk3J9xFF2bM")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_1tdyq")
+shadow_mesh = SubResource("ArrayMesh_etpcy")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w56w8"]
 data = PackedVector3Array(-0.0001, 9.6817, 0, -9.682, -0.0001, -306.897, -0.0001, 9.6817, -306.897, -0.0001, 9.6817, 0, -9.682, -0.0001, 0, -9.682, -0.0001, -306.897, -9.682, -0.0001, 0, -0.0001, -9.682, -306.897, -9.682, -0.0001, -306.897, -9.682, -0.0001, 0, -0.0001, -9.682, 0, -0.0001, -9.682, -306.897, -0.0001, -9.682, 0, 9.682, -0.0001, -306.897, -0.0001, -9.682, -306.897, -0.0001, -9.682, 0, 9.682, -0.0001, 0, 9.682, -0.0001, -306.897, 9.682, -0.0001, 0, -0.0001, 9.6817, -306.897, 9.682, -0.0001, -306.897, 9.682, -0.0001, 0, -0.0001, 9.6817, 0, -0.0001, 9.6817, -306.897, -0.0001, -9.682, -306.897, -0.0001, 9.6817, -306.897, -9.682, -0.0001, -306.897, -0.0001, -9.682, -306.897, 9.682, -0.0001, -306.897, -0.0001, 9.6817, -306.897)
