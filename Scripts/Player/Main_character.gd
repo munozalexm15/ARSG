@@ -119,6 +119,12 @@ func _ready():
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():
 		return
+		
+	if Input.is_action_just_pressed("noHUD"):
+		hud.visible = false
+		Network.game.killFeedVBox.visible = false
+		Network.game.ChatMessagesDisplay.visible = false
+		Network.game.chatText.visible = false
 	
 	#If mouse is moving
 	if event is InputEventMouseMotion:
