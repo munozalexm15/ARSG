@@ -30,9 +30,6 @@ var spotLightArray : Array
 @onready var animPlayerOptionsLabel : AnimationPlayer = $OptionsLabel/AnimationPlayer
 @onready var optionsControl : Control = $OptionsControl
 
-@onready var customizationLabel : Label3D = $ClassesLabel
-@onready var animPlayerCustomizationLabel : AnimationPlayer = $ClassesLabel/AnimationPlayer
-
 @onready var flashlightLight : SpotLight3D = $OldFlashlight012/SpotLight3D
 
 var sections : Dictionary = {"play": "menu_to_play", "options": "menu_to_options", "exit": "menu_to_exit"}

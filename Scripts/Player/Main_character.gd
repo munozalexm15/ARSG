@@ -107,7 +107,7 @@ func _ready():
 	if not is_multiplayer_authority(): 
 		arms.visible = false
 		camera.current = false
-		thirdPersonCam.current = false
+		thirdPersonCam.current = true
 		return
 	
 	player_body.visible = false
