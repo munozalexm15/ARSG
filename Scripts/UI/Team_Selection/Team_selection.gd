@@ -128,6 +128,9 @@ func _on_visibility_changed():
 	if not is_multiplayer_authority():
 		return
 	
+	if !player:
+		return
+	
 	if visible:
 		player.hud.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED

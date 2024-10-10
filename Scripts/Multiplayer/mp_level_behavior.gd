@@ -13,7 +13,6 @@ var death_count = 0
 
 
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
-@onready var player_spawner : MultiplayerSpawner = $MultiplayerSpawner
 @onready var bullets_node : Node3D= $BulletsParent
 
 @onready var interactables_node : Node3D = $InteractablesParent
@@ -27,6 +26,10 @@ var death_count = 0
 @onready var ChatMessagesDisplay : VBoxContainer = $ChatDisplay/VBoxContainer2/VBoxContainer
 @onready var chatText : TextEdit = $ChatDisplay/VBoxContainer2/ChatText
 
+@onready var pauseMenuSpawner : MultiplayerSpawner = $pauseMenuSpawner
+@onready var playerSpawner : MultiplayerSpawner = $PlayerSpawner
+@onready var weaponSelectionSpawner : MultiplayerSpawner = $weaponSelectionSpawner
+
 var matchGoal = 0
 var team1GoalProgress = 0
 var team2GoalProgress = 0
@@ -37,18 +40,47 @@ var matchTimeLeft = 0
 func _ready():
 	Network.game = self
 	multiplayer.connected_to_server.connect(loadGame)
+
+	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
+	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
+	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
+	var pauseMenuInstance = pauseMenuSpawner.spawn(multiplayer.get_unique_id())
+	playerSpawner.spawn_function = Callable(self, "init_player")
+	var playerInstance = playerSpawner.spawn(multiplayer.get_unique_id())
+	playerInstance.global_position = random_spawn()
+	
+	playerInstance.pauseMenu = pauseMenuInstance
+	pauseMenuInstance.player = playerInstance
+	playerInstance.weaponSelectionMenu = weaponSelectionInstance
+	weaponSelectionInstance.player = playerInstance
+	
+	if Network.gameData["gameMode"] == "FACE OFF":
+		#var team : int = randi_range(0, 1)
+		var skin : PlayerSkin = null
+		if players.size() == 1:
+			skin = team1SkinsResources.pick_random()
+		else:
+			skin = team2SkinsResources.pick_random()
+		
+		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
+		
+		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+	
 	if Network.role == "Host":
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
 		matchTimer.start()
-		init_player.rpc(multiplayer.get_unique_id())
-		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+		#uiSpawner.spawn_function = Callable(self, "set_player_data")
+		#uiSpawner.spawn()
+		#init_player.rpc(multiplayer.get_unique_id())
+		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
 		multiplayer.multiplayer_peer = Network.peer
-		print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
-		multiplayer.get_remote_sender_id()
+	
+	dashboardMatch.get_lobby_data()
 
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
@@ -82,14 +114,22 @@ func  _input(_event: InputEvent) -> void:
 func init_player(peer_id):
 	var player : Player = PlayerScene.instantiate()
 	player.name = str(peer_id)
-	if multiplayer.get_unique_id() == 1:
-		players_node.add_child(player)
-	player.set_multiplayer_authority(peer_id)
-	
+	#player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players.append(dict_data)
-	await get_tree().process_frame
-	dashboardMatch.get_lobby_data()
+	return player
+
+func set_player_pause_menu(peer_id):
+	var pauseMenu : Pause_Menu = PauseScene.instantiate()
+	pauseMenu.name = str(peer_id) + "pauseMenu"
+	pauseMenu.set_multiplayer_authority(peer_id)
+	return pauseMenu
+
+func set_player_weaponSelection(peer_id):
+	var weaponSelection : WeaponSelection_Menu = weaponSelectionScene.instantiate()
+	weaponSelection.name = str(peer_id) + "weaponSelection"
+	weaponSelection.set_multiplayer_authority(peer_id)
+	return weaponSelection
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
 @rpc("any_peer", "call_local", "reliable")

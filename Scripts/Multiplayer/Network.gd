@@ -179,12 +179,11 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
 		var player_data = players_dict[index]
-		game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
+		#game.set_player_data.rpc_id(multiplayer.get_unique_id(), player.name.to_int(), player.name)
 		game.request_game_info.rpc_id(multiplayer.get_unique_id(), player_data)
 	
-	game.init_player.rpc(multiplayer.get_unique_id())
-	await game.player_spawner.spawned
-	game.set_player_data.rpc(multiplayer.get_unique_id(), id)
+	#game.init_player.rpc(multiplayer.get_unique_id())
+	#game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
 
 @rpc("any_peer", "call_local", "reliable")
