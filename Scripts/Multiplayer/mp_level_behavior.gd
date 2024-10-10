@@ -40,7 +40,25 @@ var matchTimeLeft = 0
 func _ready():
 	Network.game = self
 	multiplayer.connected_to_server.connect(loadGame)
+	
+	if Network.role == "Host":
+		matchGoal = Network.gameData["goal"]
+		matchTime = Network.gameData["time"]
+		matchTimer.wait_time = matchTime
+		matchTimer.start()
+		generatePlayer()
+		#uiSpawner.spawn_function = Callable(self, "set_player_data")
+		#uiSpawner.spawn()
+		#init_player.rpc(multiplayer.get_unique_id())
+		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
+		Steam.setLobbyJoinable(Network.lobby_id, true)
+	else:
+		multiplayer.multiplayer_peer = Network.peer
+	
+	dashboardMatch.get_lobby_data()
 
+
+func generatePlayer():
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
@@ -66,21 +84,6 @@ func _ready():
 		
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-	
-	if Network.role == "Host":
-		matchGoal = Network.gameData["goal"]
-		matchTime = Network.gameData["time"]
-		matchTimer.wait_time = matchTime
-		matchTimer.start()
-		#uiSpawner.spawn_function = Callable(self, "set_player_data")
-		#uiSpawner.spawn()
-		#init_player.rpc(multiplayer.get_unique_id())
-		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
-		Steam.setLobbyJoinable(Network.lobby_id, true)
-	else:
-		multiplayer.multiplayer_peer = Network.peer
-	
-	dashboardMatch.get_lobby_data()
 
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())

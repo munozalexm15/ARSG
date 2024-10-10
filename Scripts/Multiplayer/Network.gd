@@ -175,6 +175,8 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	game.team2GoalProgress = team2Progress
 	
 	game.players = players_dict
+	
+	game.generatePlayer()
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
