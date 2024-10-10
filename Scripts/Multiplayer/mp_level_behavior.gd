@@ -38,31 +38,31 @@ var matchTimeLeft = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
+	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
+	playerSpawner.spawn_function = Callable(self, "init_player")
+	
 	Network.game = self
-	multiplayer.connected_to_server.connect(loadGame)
+	#multiplayer.connected_to_server.connect(loadGame)
+	generatePlayer()
 	
 	if Network.role == "Host":
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
-		matchTimer.start()
-		generatePlayer()
-		dashboardMatch.get_lobby_data()
+		#matchTimer.start()
+		
+		#dashboardMatch.get_lobby_data()
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
-	else:
-		generatePlayer()
-		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 	
 func generatePlayer():
-	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
+	
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
-	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
 	var pauseMenuInstance = pauseMenuSpawner.spawn(multiplayer.get_unique_id())
-	playerSpawner.spawn_function = Callable(self, "init_player")
 	var playerInstance = playerSpawner.spawn(multiplayer.get_unique_id())
 	playerInstance.global_position = random_spawn()
 	

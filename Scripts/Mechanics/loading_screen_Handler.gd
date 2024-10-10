@@ -14,6 +14,7 @@ func _ready():
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 	Steam.initRelayNetworkAccess()
 	Steam.lobby_joined.connect(_on_lobby_joined)
+	multiplayer.peer_connected.connect(join_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -37,7 +38,7 @@ func start_map(packed_scene : PackedScene):
 	get_tree().change_scene_to_packed(packed_scene)
 
 func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : int) -> void:
-	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS or Network.peer.get_connection_status() != Network.peer.ConnectionStatus.CONNECTION_CONNECTED:
+	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
 		var fail_reason: String
 		match response:
 			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "ERROR: This lobby no longer exists. Returning to menu."
@@ -57,7 +58,7 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 		LoadScreenHandler.errorLoading.emit(fail_reason)
 	else:
 		Network.role = "Client"
-		get_tree().change_scene_to_packed(loadedScene)
+		#get_tree().change_scene_to_packed(loadedScene)
 
 func join_room(_id):
 	if Network.peer.get_connection_status() == 2:
