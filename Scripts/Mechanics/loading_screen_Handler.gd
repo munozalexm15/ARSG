@@ -13,7 +13,7 @@ func _ready():
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 	Steam.initRelayNetworkAccess()
-	Steam.lobby_joined.connect(join_room)
+	Steam.lobby_joined.connect(_on_lobby_joined)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -56,6 +56,7 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 		
 		LoadScreenHandler.errorLoading.emit(fail_reason)
 	else:
+		Network.role = "Client"
 		get_tree().change_scene_to_packed(loadedScene)
 
 func join_room(_id):

@@ -5,6 +5,7 @@ var peer : MultiplayerPeer = null
 var game : MP_Map = null
 
 var gameData : Dictionary = {}
+var role = ""
 
 func _ready():
 	peer = OfflineMultiplayerPeer.new()
@@ -13,7 +14,7 @@ func _ready():
 	Steam.steamInitEx()
 	Steam.initAuthentication()
 	
-	Steam.lobby_joined.connect(_on_lobby_joined)
+	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.join_requested.connect(accept_invite_from_friend)
 	Steam.lobby_message.connect(add_message_to_chat)
@@ -42,7 +43,7 @@ func host_server(roomData : Dictionary):
 func on_lobby_created(connection, id):
 	if connection:
 		lobby_id = id
-		
+		role = "Host"
 		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
 		Steam.setLobbyData(lobby_id, "gamemode", gameData["gameMode"])
 		Steam.setLobbyData(lobby_id, "map", gameData["mapName"])

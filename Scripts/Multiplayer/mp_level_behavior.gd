@@ -37,7 +37,7 @@ var matchTimeLeft = 0
 func _ready():
 	Network.game = self
 	multiplayer.connected_to_server.connect(loadGame)
-	if multiplayer.get_unique_id() == 1:
+	if Network.role == "Host":
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
