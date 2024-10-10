@@ -66,7 +66,10 @@ func get_lobby_data():
 		playerKills.text = str(playerData["kills"])
 		playerDeaths.text = str(playerData["deaths"])
 		playerScore.text = str(playerData['score'])
-	
+		
+		if Network.game.matchTimer.time_left == 0:
+			return
+		print(Network.game.matchGoal, " ", Network.game.matchTimer.wait_time, " ", Network.game.team1GoalProgress, " ", Network.game.team2GoalProgress)
 	#if gamemode is FFA
 		if Network.gameData["gameMode"] == "FACE OFF":
 			#if the person is not you (the other team)
@@ -76,6 +79,7 @@ func get_lobby_data():
 				Network.game.team1GoalProgress = playerData["kills"]
 	
 		if Network.game.team1GoalProgress == Network.game.matchGoal:
+			print("a")
 			if multiplayer.get_unique_id() == 1:
 				Network.endGame.rpc(Steam.getFriendPersonaName(member_steam_id) + " WINS!") 
 				await get_tree().create_timer(5).timeout

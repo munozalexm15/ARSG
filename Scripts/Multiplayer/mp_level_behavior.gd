@@ -45,16 +45,22 @@ func _ready():
 	playerSpawner.spawn_function = Callable(self, "init_player")
 	
 	Network.game = self
+	
 	#multiplayer.connected_to_server.connect(loadGame)
 	
 	if Network.role == "Host":
 		generatePlayer(multiplayer.get_unique_id())
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
-		matchTimer.wait_time = matchTime
-		matchTimer.start()
+		team1GoalProgress = 0
+		team2GoalProgress = 0
 		
+		
+		matchTimer.wait_time = matchTime
+		print(matchGoal, " ", matchTimer.wait_time, " ", team1GoalProgress, " ", team2GoalProgress)
+		matchTimer.start()
 		dashboardMatch.get_lobby_data()
+		
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
@@ -89,6 +95,8 @@ func generatePlayer(id):
 		
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+	
+
 
 @rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
@@ -97,6 +105,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
 	
 	playerInstance.set_multiplayer_authority(newId, true)
+	playerInstance.visible = false
 	playerInstance.name = str(newId)
 	menuInstance.set_multiplayer_authority(newId, true)
 	menuInstance.name = str(newId) + "pauseMenu"
@@ -122,6 +131,9 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 		
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+	
+	if multiplayer.get_unique_id() != 1:
+		matchTimer.start()
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
