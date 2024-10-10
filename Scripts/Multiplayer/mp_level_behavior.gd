@@ -32,6 +32,8 @@ var death_count = 0
 @onready var playerSpawner : MultiplayerSpawner = $PlayerSpawner
 @onready var weaponSelectionSpawner : MultiplayerSpawner = $weaponSelectionSpawner
 
+@onready var waitingDataInfo : Control = $WaitingCameraAndInfo
+
 var matchGoal = 0
 var team1GoalProgress = 0
 var team2GoalProgress = 0
@@ -142,6 +144,8 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()
 		dashboardMatch.get_lobby_data()
+	
+	waitingDataInfo.queue_free()
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
