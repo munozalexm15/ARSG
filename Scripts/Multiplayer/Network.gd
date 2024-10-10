@@ -103,6 +103,7 @@ func client_connected_to_server(id):
 	if multiplayer.get_unique_id() == 1:
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 		game.generatePlayer(id)
+		game.dashboardMatch.get_lobby_data()
 
 
 func _on_send_chat_pressed(message : String) -> void:
@@ -176,7 +177,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	game.team2GoalProgress = team2Progress
 	
 	game.players = players_dict
-	game.dashboardMatch.get_lobby_data()
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)

@@ -91,11 +91,20 @@ func generatePlayer(id):
 
 @rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
-	players_node.get_node("./" + playernode_Name).set_multiplayer_authority(newId, true)
-	menus_node.get_node("./" + pauseMenuNode_Name).set_multiplayer_authority(newId, true)
-	weaponSelections_node.get_node("./" + weaponSelectionNode_Name).set_multiplayer_authority(newId, true)
+	var playerInstance = players_node.get_node("./" + playernode_Name)
+	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
+	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
 	
+	playerInstance.set_multiplayer_authority(newId, true)
+	menuInstance.set_multiplayer_authority(newId, true)
+	weaponSelections_node.set_multiplayer_authority(newId, true)
 	
+	playerInstance.global_position = random_spawn()
+	
+	playerInstance.pauseMenu = menuInstance
+	menuInstance.player = playerInstance
+	playerInstance.weaponSelectionMenu = weaponSelections_node
+	weaponSelections_node.player = playerInstance
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
