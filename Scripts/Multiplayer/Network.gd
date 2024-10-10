@@ -13,7 +13,7 @@ func _ready():
 	Steam.steamInitEx()
 	Steam.initAuthentication()
 	
-	Steam.lobby_joined.connect(_on_lobby_joined)
+	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	Steam.join_requested.connect(accept_invite_from_friend)
 	Steam.lobby_message.connect(add_message_to_chat)
@@ -58,7 +58,6 @@ func on_lobby_created(connection, id):
 		
 
 func join_server(id):
-	peer.refuse_new_connections = false
 	peer = SteamMultiplayerPeer.new()
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
@@ -101,15 +100,8 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 @rpc("any_peer", "call_remote", "reliable")
 func client_connected_to_server(id):
 	print("la id del tio es : " ,multiplayer.get_remote_sender_id())
-	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
-		#print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
-		peer.poll()
-	else:
-		#Notificar al cliente que se acaba de unir
-		pass
-		#print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
 
 func _on_send_chat_pressed(message : String) -> void:
