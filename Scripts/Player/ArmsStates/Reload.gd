@@ -209,4 +209,5 @@ func ammo_behavior():
 func exit():
 	if arms.actualWeapon.reload_sound.playing and arms.actualWeapon.reload_sound:
 		arms.actualWeapon.reload_sound.stop()
+	
 	set_process(false)

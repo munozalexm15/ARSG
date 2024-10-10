@@ -16,6 +16,50 @@
 [ext_resource type="Script" path="res://Scripts/Interactables/Ground_Ray_Interactables.gd" id="16_0qd02"]
 [ext_resource type="AudioStream" uid="uid://xkm4qmqx8kwm" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-001.ogg" id="16_ub6kv"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Head/eyesHolder/armsHolder:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Head/eyesHolder/armsHolder:rotation")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Head/eyesHolder:rotation")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Head/eyesHolder:position")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Head/eyesHolder/armsHolder:recoil")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:enabled")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:position")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:rotation")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:wait_time")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_82thd"]
 
 [sub_resource type="Animation" id="Animation_p700l"]
@@ -164,50 +208,6 @@ height = 1.6958
 radius = 0.257403
 height = 1.2
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ycvks"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Head/eyesHolder/armsHolder/arms:position")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-properties/3/path = NodePath("Head/eyesHolder/armsHolder/arms:rotation")
-properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath("Head/eyesHolder/armsHolder:position")
-properties/4/spawn = true
-properties/4/replication_mode = 1
-properties/5/path = NodePath("Head/eyesHolder/armsHolder:rotation")
-properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("Head/eyesHolder:rotation")
-properties/6/spawn = true
-properties/6/replication_mode = 1
-properties/7/path = NodePath("Head/eyesHolder:position")
-properties/7/spawn = true
-properties/7/replication_mode = 1
-properties/8/path = NodePath("Head/eyesHolder/armsHolder:recoil")
-properties/8/spawn = true
-properties/8/replication_mode = 1
-properties/9/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:enabled")
-properties/9/spawn = true
-properties/9/replication_mode = 1
-properties/10/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:position")
-properties/10/spawn = true
-properties/10/replication_mode = 1
-properties/11/path = NodePath("Head/eyesHolder/armsHolder/InteractRay:rotation")
-properties/11/spawn = true
-properties/11/replication_mode = 1
-properties/12/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:wait_time")
-properties/12/spawn = true
-properties/12/replication_mode = 1
-properties/13/path = NodePath("Head/eyesHolder/armsHolder/InteractTimer:one_shot")
-properties/13/spawn = true
-properties/13/replication_mode = 1
-
 [sub_resource type="Animation" id="Animation_3v13c"]
 length = 0.001
 tracks/0/type = "value"
@@ -261,6 +261,9 @@ animationNode = NodePath("AnimationPlayer")
 cameraNode = NodePath("Head/eyesHolder/armsHolder/PlayerPOV")
 thirdPersonCamNode = NodePath("Head/eyesHolder/armsHolder/SpringArm3D/ThirdPersonCam")
 hudNode = NodePath("HUD")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ycvks")
 
 [node name="PlayerSkeleton" parent="." instance=ExtResource("2_wc48o")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -0.758191, 0.0942096)
@@ -377,9 +380,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0890639, -0.151006, -0.0560
 stream = ExtResource("16_ub6kv")
 max_distance = 2.0
 bus = &"Environment"
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_ycvks")
 
 [node name="ThirdPersonCameraAnim" type="AnimationPlayer" parent="."]
 libraries = {
