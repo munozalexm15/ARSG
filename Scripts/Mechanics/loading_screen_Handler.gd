@@ -13,7 +13,7 @@ func _ready():
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
 	Steam.initRelayNetworkAccess()
-	
+	Steam.lobby_joined.connect(join_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -28,13 +28,35 @@ func _process(_delta):
 		else:
 			loadingShader.set_shader_parameter("percentage", 100)
 			loadedScene = packed_scene
+			Network.join_server(Network.lobby_id)
 			loadStatus.text = "JOINING ROOM..."
-			start_map(packed_scene)
 
 
 func start_map(packed_scene : PackedScene):
 	#host joining
 	get_tree().change_scene_to_packed(packed_scene)
+
+func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : int) -> void:
+	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
+		var fail_reason: String
+		match response:
+			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "ERROR: This lobby no longer exists. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_NOT_ALLOWED: fail_reason = "ERROR: You don't have permission to join this lobby. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_FULL: fail_reason = "The lobby is now full. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_ERROR: fail_reason = "Uh... something unexpected happened! Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_LIMITED: fail_reason = "You cannot join due to having a limited account. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_CLAN_DISABLED: fail_reason = "This lobby is locked or disabled. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_COMMUNITY_BAN: fail_reason = "This lobby is community locked. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_MEMBER_BLOCKED_YOU: fail_reason = "A user in the lobby has blocked you from joining. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_YOU_BLOCKED_MEMBER: fail_reason = "A user you have blocked is in the lobby. Bullet dodged. Returning to menu."
+			
+		print("Failed to join this chat room: %s" % fail_reason)
+		Network.leave_lobby()
+		
+		LoadScreenHandler.errorLoading.emit(fail_reason)
+	else:
+		get_tree().change_scene_to_packed(loadedScene)
 
 func join_room(_id):
 	if Network.peer.get_connection_status() == 2:
