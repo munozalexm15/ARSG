@@ -47,6 +47,7 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
+		print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
 		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 		multiplayer.get_remote_sender_id()
 	

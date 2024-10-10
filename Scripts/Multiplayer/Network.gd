@@ -99,7 +99,7 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
 @rpc("any_peer", "call_remote", "reliable")
 func client_connected_to_server(id):
-	print("la id del tio es : " ,multiplayer.get_remote_sender_id())
+	print("la id del tio es : " ,multiplayer.get_remote_sender_id(), " ... el resto de peer ids es : " , multiplayer.get_peers())
 	if multiplayer.get_unique_id() == 1:
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 
