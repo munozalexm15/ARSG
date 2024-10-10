@@ -403,7 +403,7 @@ label_settings = SubResource("LabelSettings_rw6vp")
 
 [node name="OptionButton5" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-selected = 0
+selected = 2
 item_count = 5
 popup/item_0/text = "1 MINUTE"
 popup/item_1/text = "2 MINUTES"

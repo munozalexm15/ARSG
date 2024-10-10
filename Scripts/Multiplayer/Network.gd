@@ -12,6 +12,7 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	Steam.initAuthentication()
+	Steam.initRelayNetworkAccess()
 	
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
@@ -104,10 +105,9 @@ func client_connected_to_server(id):
 	if multiplayer.get_unique_id() == 1:
 		print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
-		return
-	
-	#Notificar al cliente que se acaba de unir
-	print("Client has connected to server with id: ", multiplayer.get_unique_id())
+	else:
+		#Notificar al cliente que se acaba de unir
+		print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
 
 func _on_send_chat_pressed(message : String) -> void:
@@ -170,6 +170,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	#if its the host -> ignore
 	if id == 1:
 		return
+	print("hola")
 	gameData = hostGameData
 	game.matchGoal = gameData.get("goal") 
 	game.matchTime = gameData.get("time")

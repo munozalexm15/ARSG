@@ -47,7 +47,6 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
-		await get_tree().create_timer(2).timeout
 		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 	
 
@@ -87,6 +86,7 @@ func init_player(peer_id):
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players.append(dict_data)
 	
+	#skin assignation
 	if Network.gameData["gameMode"] == "FACE OFF":
 		var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
