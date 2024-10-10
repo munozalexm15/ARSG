@@ -47,7 +47,7 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
-		await get_tree().create_timer(2).timeout
+		print("enviando señal de generar cosas al server...")
 		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 	
 
@@ -101,7 +101,7 @@ func set_player_data(peer_id, playerName):
 		if p.name == str(playerName):
 			player = p
 	
-	print(multiplayer.get_unique_id(), " con referencia al player:" , player.name)
+	#print(multiplayer.get_unique_id(), " con referencia al player:" , player.name)
 	
 	player.visible = false
 	player.global_position = random_spawn()

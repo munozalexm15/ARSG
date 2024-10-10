@@ -102,11 +102,12 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 func client_connected_to_server(id):
 	#Notificar al host que se acaba de unir un nuevo jugador, y enviarle al cliente todos los datos de los jugadores y la partida (armas, muertes, bajas, etc.)
 	if multiplayer.get_unique_id() == 1:
-		print("A new client has joined with id :" , id)
+		#print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 	else:
 		#Notificar al cliente que se acaba de unir
-		print("Client has connected to server with id: ", multiplayer.get_unique_id())
+		pass
+		#print("Client has connected to server with id: ", multiplayer.get_unique_id())
 
 
 func _on_send_chat_pressed(message : String) -> void:
@@ -145,7 +146,7 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 		print("%s has joined the lobby." % changer_name)
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
-		_on_send_chat_pressed("has joined the lobby.")
+		_on_send_chat_pressed(changer_name + "has left the lobby.")
 		
 		print("%s has left the lobby." % changer_name)
 		if game.matchGoal == game.team1GoalProgress or game.matchGoal == game.team2GoalProgress:
