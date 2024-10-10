@@ -47,6 +47,7 @@ func _ready():
 	print(multiplayer.has_multiplayer_peer(), " ", is_inside_tree(), " ", is_multiplayer_authority())
 	
 	if Network.role == "Host":
+		generatePlayer()
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
