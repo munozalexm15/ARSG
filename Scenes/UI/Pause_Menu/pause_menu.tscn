@@ -948,8 +948,6 @@ alignment = 0
 visible = false
 layout_mode = 1
 anchors_preset = -1
-offset_left = 227.0
-offset_right = 891.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
