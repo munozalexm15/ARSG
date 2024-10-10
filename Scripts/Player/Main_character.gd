@@ -429,7 +429,6 @@ func die_respawn(player_id, instigator_id):
 	deathModelScene.position = position
 	deathModelScene.position.y -= player_body.scale.y * 1.5
 	deathModelScene.scale = Vector3(0.5, 0.5, 0.5)
-	add_collision_exception_with(deathModelScene)
 	deathModelScene.rigidBody.add_collision_exception_with(self)
 		
 	var weaponPickupScene = load(player.arms.actualWeapon.weaponData.weaponPickupScene)

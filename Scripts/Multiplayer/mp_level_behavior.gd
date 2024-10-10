@@ -73,14 +73,12 @@ func generatePlayer(id):
 	var playerInstance = playerSpawner.spawn(id)
 	playerInstance.hud.visible = false
 	
-	playerInstance.global_position = random_spawn()
-	
 	playerInstance.pauseMenu = pauseMenuInstance
 	pauseMenuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
 	
-	
+
 	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
 	if Network.gameData["gameMode"] == "FACE OFF":
@@ -103,6 +101,13 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	var playerInstance = players_node.get_node("./" + playernode_Name)
 	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
+	playerInstance.global_position = random_spawn()
+	
+	
+	#loop recursivo para ir esperando a que el player esté listo
+	if not playerInstance or not menuInstance or not selectionInstance:
+		await get_tree().create_timer(1).timeout
+		setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionScene, newId)
 	
 	playerInstance.set_multiplayer_authority(newId, true)
 	playerInstance.visible = false
@@ -134,6 +139,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()
+		dashboardMatch.get_lobby_data()
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
