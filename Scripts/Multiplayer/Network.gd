@@ -101,8 +101,8 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 @rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
 	if multiplayer.get_unique_id() == 1:
-		game.generatePlayer(id)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+		game.generatePlayer(id)
 
 
 func _on_send_chat_pressed(message : String) -> void:
@@ -166,7 +166,6 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	if id == 1:
 		print("por la cara host?")
 		return
-	
 	
 	gameData = hostGameData
 	game.matchGoal = gameData.get("goal") 

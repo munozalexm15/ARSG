@@ -73,7 +73,7 @@ func generatePlayer(id):
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
 	
-	print("setea id a ", id)
+	
 	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
 	if Network.gameData["gameMode"] == "FACE OFF":
@@ -94,6 +94,8 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	players_node.get_node("./" + playernode_Name).set_multiplayer_authority(newId, true)
 	menus_node.get_node("./" + pauseMenuNode_Name).set_multiplayer_authority(newId, true)
 	weaponSelections_node.get_node("./" + weaponSelectionNode_Name).set_multiplayer_authority(newId, true)
+	
+	
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
