@@ -56,8 +56,7 @@ func _ready():
 	healthBar.value = player_controller.health 
 	NPCNameLabel.visible = false
 	NPCRoleLabel.visible = false
-	Team1ProgressBar.max_value = int(Network.game.matchGoal)
-	Team2ProgressBar.max_value = int(Network.game.matchGoal)
+	
 	gamemodeLabel.text = Network.gameData.get("gameMode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -84,6 +83,8 @@ func _process(_delta):
 	TimerIndicator.text = "%02d:%02d" % [minutes, seconds]
 	Team1ProgressBar.value = Network.game.team1GoalProgress
 	Team2ProgressBar.value = Network.game.team2GoalProgress
+	Team1ProgressBar.max_value = int(Network.game.matchGoal)
+	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 	
 func adjust_reticle_size():
 	if not is_multiplayer_authority():

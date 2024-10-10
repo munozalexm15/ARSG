@@ -52,9 +52,9 @@ func _ready():
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
-		#matchTimer.start()
+		matchTimer.start()
 		
-		#dashboardMatch.get_lobby_data()
+		dashboardMatch.get_lobby_data()
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
@@ -65,6 +65,7 @@ func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
 	var pauseMenuInstance = pauseMenuSpawner.spawn(id)
 	var playerInstance = playerSpawner.spawn(id)
+	playerInstance.hud.visible = false
 	
 	playerInstance.global_position = random_spawn()
 	
@@ -108,6 +109,19 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	menuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = selectionInstance
 	selectionInstance.player = playerInstance
+	
+	if Network.gameData["gameMode"] == "FACE OFF":
+		#var team : int = randi_range(0, 1)
+		var skin : PlayerSkin = null
+		if players.size() == 1:
+			skin = team1SkinsResources.pick_random()
+		else:
+			skin = team2SkinsResources.pick_random()
+		
+		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
+		
+		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
