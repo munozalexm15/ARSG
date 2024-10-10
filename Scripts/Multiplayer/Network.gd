@@ -12,7 +12,6 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	Steam.initAuthentication()
-	Steam.initRelayNetworkAccess()
 	
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)

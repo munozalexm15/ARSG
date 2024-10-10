@@ -47,6 +47,7 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
+		await get_tree().create_timer(2).timeout
 		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 	
 
@@ -85,21 +86,6 @@ func init_player(peer_id):
 	
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players.append(dict_data)
-	
-	#skin assignation
-	if Network.gameData["gameMode"] == "FACE OFF":
-		var team : int = randi_range(0, 1)
-		var skin : PlayerSkin = null
-		if team == 1:
-			skin = team1SkinsResources.pick_random()
-		else:
-			skin = team2SkinsResources.pick_random()
-		
-		player.arms.handsAssignedTexture = skin.rightHandSkin
-		
-		player.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		player.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-		
 	await get_tree().process_frame
 	dashboardMatch.get_lobby_data()
 
@@ -115,7 +101,7 @@ func set_player_data(peer_id, playerName):
 		if p.name == str(playerName):
 			player = p
 	
-	print(multiplayer.get_unique_id(), " con referencia al player: " , player.name)
+	print(multiplayer.get_unique_id(), " con referencia al player:" , player.name)
 	
 	player.visible = false
 	player.global_position = random_spawn()
@@ -133,6 +119,20 @@ func set_player_data(peer_id, playerName):
 	weaponSelection.set_multiplayer_authority(peer_id)
 	node.add_child(weaponSelection)
 	player.weaponSelectionMenu = weaponSelection
+	
+	#skin assignation
+	if Network.gameData["gameMode"] == "FACE OFF":
+		#var team : int = randi_range(0, 1)
+		var skin : PlayerSkin = null
+		if players.size() == 1:
+			skin = team1SkinsResources.pick_random()
+		else:
+			skin = team2SkinsResources.pick_random()
+		
+		player.arms.handsAssignedTexture = skin.rightHandSkin
+		
+		player.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		player.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
 func replace_weapon_content(weapon : Node3D):
 	for child : Node in weapon.get_children():

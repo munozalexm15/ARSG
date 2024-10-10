@@ -12,7 +12,7 @@ func _ready():
 	LoadScreenHandler.connect("errorLoading", on_error_load)
 	loadingShader.set_shader_parameter("percentage", 0)
 	ResourceLoader.load_threaded_request(LoadScreenHandler.next_scene)
-	Steam.steamInitEx()
+	Steam.initRelayNetworkAccess()
 	multiplayer.peer_connected.connect(join_room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
