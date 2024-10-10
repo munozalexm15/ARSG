@@ -50,6 +50,8 @@ var listingLobbies = true
 @export var exitHover_soundEffect : AudioStreamMP3
 @export var exitClick_soundEffect : AudioStreamMP3
 
+var playSection = "findLobby"
+
 func _ready():
 	on_config_changed()
 	GlobalData.configurationUpdated.connect(on_config_changed)
@@ -61,6 +63,7 @@ func _ready():
 	hostUI.visible = false
 	optionsUI.visible = false
 	optionsControl.visible = false
+	lobbiesListUI.animPlayer.connect("animation_finished", showCreateLobby)
 	
 	if get_tree().paused:
 		get_tree().paused = false
@@ -244,6 +247,7 @@ func _on_keyboard_laptop_mouse_exited():
 func _on_lobby_list_finder_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+			playSection = "findLobby"
 			screenMaterial.albedo_texture = lobbyFindTexture
 			listingLobbies = true
 			hostUI.visible = false
@@ -253,13 +257,22 @@ func _on_lobby_list_finder_r_body_input_event(_camera, _event, _position, _norma
 func _on_host_match_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
+			playSection = "hostLobby"
 			screenMaterial.albedo_texture = hostMatchTexture
 			listingLobbies = false
 			hostUI.visible = true
 			lobbiesListUI.visible = false
 			for x in lobbiesListUI.lobbiesList.get_children():
 				lobbiesListUI.lobbiesList.remove_child(x)
-			
+
+func showCreateLobby(anim_name):
+	if anim_name == "open_list" and playSection != "findLobby":
+		screenMaterial.albedo_texture = hostMatchTexture
+		listingLobbies = false
+		hostUI.visible = true
+		lobbiesListUI.visible = false
+		for x in lobbiesListUI.lobbiesList.get_children():
+			lobbiesListUI.lobbiesList.remove_child(x)
 
 #---------------Customize weapons part (WIP)---------------------------
 func _on_mp_5_input_event(_camera, _event, _position, _normal, _shape_idx):

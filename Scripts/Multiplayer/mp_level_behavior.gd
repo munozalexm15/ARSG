@@ -120,9 +120,9 @@ func set_player_data(peer_id, playerName):
 	
 	#skin assignation
 	if Network.gameData["gameMode"] == "FACE OFF":
-		var team : int = randi_range(0, 1)
+		#var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
-		if team == 0:
+		if players.size() == 1:
 			skin = team1SkinsResources.pick_random()
 		else:
 			skin = team2SkinsResources.pick_random()

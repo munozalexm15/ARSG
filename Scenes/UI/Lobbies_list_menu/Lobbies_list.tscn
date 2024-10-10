@@ -432,6 +432,7 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 
 [node name="RefreshListButton" type="Button" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(353, 19)
 layout_mode = 2
 text = "REFRESH LOBBY LIST"
 
@@ -453,31 +454,11 @@ columns = 2
 layout_mode = 2
 text = "aadwdwdwadw"
 
-[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/LobbiesList"]
-layout_mode = 2
-text = "aadwdwdwadw"
-
-[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/LobbiesList"]
-layout_mode = 2
-text = "aadwdwdwadw"
-
-[node name="Button4" type="Button" parent="PanelContainer/VBoxContainer/LobbiesList"]
-layout_mode = 2
-text = "aadwdwdwadw"
-
-[node name="Button5" type="Button" parent="PanelContainer/VBoxContainer/LobbiesList"]
-layout_mode = 2
-text = "aadwdwdwadw"
-
-[node name="Button6" type="Button" parent="PanelContainer/VBoxContainer/LobbiesList"]
-layout_mode = 2
-text = "aadwdwdwadw"
-
 [node name="LobbyDetailsControl" parent="." instance=ExtResource("3_65ar1")]
 layout_mode = 1
-offset_left = 547.0
+offset_left = 589.635
 offset_top = 17.0
-offset_right = -106.0
+offset_right = -63.365
 offset_bottom = -1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -487,3 +468,4 @@ libraries = {
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/RefreshListButton" to="." method="_on_refresh_list_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

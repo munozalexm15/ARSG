@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="3_fxvtr"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_v5g3p"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_tg2na"]
 size = Vector3(8.82239, 1.24764, 2.29102)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjcrw"]
@@ -114,7 +114,7 @@ weaponData = ExtResource("2_hlcsh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00245794, 0.0721568, -0.159927)
-shape = SubResource("BoxShape3D_r5oi5")
+shape = SubResource("BoxShape3D_tg2na")
 
 [node name="M16" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, -8.74228e-09, -0.2, 0, 0.2, -8.74228e-09, -0.0319805, -0.0951938, -0.16431)

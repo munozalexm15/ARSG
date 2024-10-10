@@ -102,3 +102,7 @@ func load_map_and_get_lobby(lobby):
 func _on_refresh_list_button_pressed() -> void:
 	open_lobby_list()
 	refreshListButton.focus_mode = Control.FOCUS_NONE
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	pass # Replace with function body.
