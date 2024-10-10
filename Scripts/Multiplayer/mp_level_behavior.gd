@@ -56,7 +56,7 @@ func _ready():
 		matchTime = Network.gameData["time"]
 		team1GoalProgress = 0
 		team2GoalProgress = 0
-		
+		waitingDataInfo.queue_free()
 		
 		matchTimer.wait_time = matchTime
 		print(matchGoal, " ", matchTimer.wait_time, " ", team1GoalProgress, " ", team2GoalProgress)
@@ -144,8 +144,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()
 		dashboardMatch.get_lobby_data()
-	
-	waitingDataInfo.queue_free()
+		waitingDataInfo.queue_free()
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
