@@ -38,6 +38,7 @@ var matchTimeLeft = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Network.game = self
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	if multiplayer.get_unique_id() == 1:
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
@@ -47,10 +48,33 @@ func _ready():
 		set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
-		print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
-		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
-		multiplayer.get_remote_sender_id()
+		Network.join_server(Network.lobby_id)
+		#print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
+		
+		#multiplayer.get_remote_sender_id()
 	
+
+func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : int) -> void:
+	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
+		var fail_reason: String
+		match response:
+			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "ERROR: This lobby no longer exists. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_NOT_ALLOWED: fail_reason = "ERROR: You don't have permission to join this lobby. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_FULL: fail_reason = "The lobby is now full. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_ERROR: fail_reason = "Uh... something unexpected happened! Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_LIMITED: fail_reason = "You cannot join due to having a limited account. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_CLAN_DISABLED: fail_reason = "This lobby is locked or disabled. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_COMMUNITY_BAN: fail_reason = "This lobby is community locked. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_MEMBER_BLOCKED_YOU: fail_reason = "A user in the lobby has blocked you from joining. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_YOU_BLOCKED_MEMBER: fail_reason = "A user you have blocked is in the lobby. Bullet dodged. Returning to menu."
+			
+		print("Failed to join this chat room: %s" % fail_reason)
+		Network.leave_lobby()
+		
+		#LoadScreenHandler.errorLoading.emit(fail_reason)
+	else:
+		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _process(_delta):
 	pass
