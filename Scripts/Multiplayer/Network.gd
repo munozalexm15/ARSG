@@ -105,6 +105,7 @@ func client_connected_to_server(id):
 	if multiplayer.get_unique_id() == 1:
 		#print("A new client has joined with id :" , id)
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
+		peer.poll()
 	else:
 		#Notificar al cliente que se acaba de unir
 		pass
