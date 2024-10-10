@@ -107,7 +107,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	#loop recursivo para ir esperando a que el player esté listo
 	if not playerInstance or not menuInstance or not selectionInstance:
 		await get_tree().create_timer(1).timeout
-		setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId)
+		setAuthToPlayer.rpc(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId)
 		return
 	
 	playerInstance.global_position = random_spawn()
