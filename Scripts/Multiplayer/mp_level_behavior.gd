@@ -13,6 +13,8 @@ var death_count = 0
 
 
 @onready var players_node = $FadeShader/SubViewport/DitheringShader/SubViewport
+@onready var menus_node = $PauseMenusNode
+@onready var weaponSelections_node = $weaponSelectionNode
 @onready var bullets_node : Node3D= $BulletsParent
 
 @onready var interactables_node : Node3D = $InteractablesParent
@@ -44,10 +46,9 @@ func _ready():
 	
 	Network.game = self
 	#multiplayer.connected_to_server.connect(loadGame)
-	print(multiplayer.has_multiplayer_peer(), " ", is_inside_tree(), " ", is_multiplayer_authority())
 	
 	if Network.role == "Host":
-		generatePlayer()
+		generatePlayer(multiplayer.get_unique_id())
 		matchGoal = Network.gameData["goal"]
 		matchTime = Network.gameData["time"]
 		matchTimer.wait_time = matchTime
@@ -60,16 +61,20 @@ func _ready():
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	
-func generatePlayer():
-	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
-	var pauseMenuInstance = pauseMenuSpawner.spawn(multiplayer.get_unique_id())
-	var playerInstance = playerSpawner.spawn(multiplayer.get_unique_id())
+func generatePlayer(id):
+	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
+	var pauseMenuInstance = pauseMenuSpawner.spawn(id)
+	var playerInstance = playerSpawner.spawn(id)
+	
 	playerInstance.global_position = random_spawn()
 	
 	playerInstance.pauseMenu = pauseMenuInstance
 	pauseMenuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
+	
+	print("setea id a ", id)
+	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
 	if Network.gameData["gameMode"] == "FACE OFF":
 		#var team : int = randi_range(0, 1)
@@ -84,8 +89,13 @@ func generatePlayer():
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
+@rpc("any_peer", "call_local")
+func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
+	players_node.get_node(playernode_Name).set_multiplayer_authority(newId, true)
+	menus_node.get_node(pauseMenuNode_Name).set_multiplayer_authority(newId, true)
+	weaponSelections_node.get_node(weaponSelectionNode_Name).set_multiplayer_authority(newId, true)
+	
 func loadGame():
-	print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _process(_delta):
