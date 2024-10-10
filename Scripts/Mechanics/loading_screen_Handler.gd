@@ -37,7 +37,7 @@ func start_map(packed_scene : PackedScene):
 	get_tree().change_scene_to_packed(packed_scene)
 
 func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : int) -> void:
-	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS:
+	if response != Steam.CHAT_ROOM_ENTER_RESPONSE_SUCCESS or Network.peer.get_connection_status() != Network.peer.ConnectionStatus.CONNECTION_CONNECTED:
 		var fail_reason: String
 		match response:
 			Steam.CHAT_ROOM_ENTER_RESPONSE_DOESNT_EXIST: fail_reason = "ERROR: This lobby no longer exists. Returning to menu."

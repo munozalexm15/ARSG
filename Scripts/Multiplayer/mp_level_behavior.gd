@@ -47,17 +47,16 @@ func _ready():
 		matchTimer.wait_time = matchTime
 		matchTimer.start()
 		generatePlayer()
+		dashboardMatch.get_lobby_data()
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	else:
-		multiplayer.multiplayer_peer = Network.peer
+		generatePlayer()
+		Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 	
-	dashboardMatch.get_lobby_data()
-
-
 func generatePlayer():
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
@@ -86,6 +85,7 @@ func generatePlayer():
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
 func loadGame():
+	print(multiplayer.get_peers(), " ", multiplayer.get_unique_id(), " ", multiplayer.is_server())
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func _process(_delta):

@@ -62,7 +62,7 @@ func join_server(id):
 	peer = SteamMultiplayerPeer.new()
 	#Steam.joinLobby(id)
 	peer.connect_lobby(id)
-	#multiplayer.multiplayer_peer = peer
+	multiplayer.multiplayer_peer = peer
 	lobby_id = id
 
 func accept_invite_from_friend(lobby: int, _friend_id : int):
@@ -98,9 +98,10 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 	#print("Your unique id is " , multiplayer.get_unique_id())
 	
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func client_connected_to_server(id):
 	print("la id del tio es : " ,multiplayer.get_remote_sender_id())
+	print(multiplayer.get_unique_id())
 	if multiplayer.get_unique_id() == 1:
 		player_joined.rpc_id(id, id, game.players, game.matchTimer.time_left, game.team1GoalProgress, game.team2GoalProgress, gameData)
 
@@ -164,7 +165,9 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 func player_joined(id, players_dict, time_left, team1Progress, team2Progress, hostGameData):
 	#if its the host -> ignore
 	if id == 1:
+		print("por la cara host?")
 		return
+		
 	print("hola")
 	gameData = hostGameData
 	game.matchGoal = gameData.get("goal") 
@@ -175,8 +178,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	game.team2GoalProgress = team2Progress
 	
 	game.players = players_dict
-	
-	game.generatePlayer()
+	game.dashboardMatch.get_lobby_data()
 	#for each player, get its data and set its respective nodes / configuration
 	for index in game.players_node.get_child_count():
 		var player : Player = game.players_node.get_child(index)
@@ -187,6 +189,7 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 	#game.init_player.rpc(multiplayer.get_unique_id())
 	#game.set_player_data.rpc(multiplayer.get_unique_id(), id)
 	show_all_players.rpc_id(multiplayer.get_unique_id())
+	
 
 @rpc("any_peer", "call_local", "reliable")
 func player_left(_id):
