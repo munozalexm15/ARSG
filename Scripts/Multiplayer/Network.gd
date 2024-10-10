@@ -262,8 +262,10 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 				player.health = 100
 				player.is_dead = false
 			
-			player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
-			player.weaponSelectionMenu.visible = false
+			#modify only the visibility (locally) of the other player
+			if player.weaponSelectionMenu:
+				player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
+				player.weaponSelectionMenu.visible = false
 			
 			for index in game.players.size():
 				var playerDict = game.players[index]
