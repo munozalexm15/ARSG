@@ -296,3 +296,14 @@ func add_kill_to_killFeed(killer_name : String, weaponImage : CompressedTexture2
 	
 	await get_tree().create_timer(4).timeout
 	playerRow.queue_free()
+
+
+func _on_foce_exit_button_pressed() -> void:
+	if get_tree().paused:
+		get_tree().paused = false
+	
+	#CLIENT LEAVING MATCH
+	if multiplayer.get_unique_id() != 1:
+		Network.player_left.rpc(multiplayer.get_unique_id())
+		Network.leave_lobby()
+		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")

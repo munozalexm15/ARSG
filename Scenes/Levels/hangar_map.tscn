@@ -1,4 +1,4 @@
-[gd_scene load_steps=759 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=760 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -225,6 +225,10 @@ texture_filter = 0
 script = ExtResource("21_426mr")
 walk_sound = Array[AudioStream]([ExtResource("22_12cyq"), ExtResource("23_t56t2"), ExtResource("24_hpc20"), ExtResource("25_evtem"), ExtResource("26_hrive"), ExtResource("27_nqof2"), ExtResource("29_tjhsg"), ExtResource("30_nekca"), ExtResource("31_fytg0"), ExtResource("32_ub41n"), ExtResource("33_iljqy")])
 jump_sound = ExtResource("21_72ftl")
+
+[sub_resource type="LabelSettings" id="LabelSettings_owvs4"]
+font = ExtResource("35_4kgcg")
+font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_ymn7n"]
 font = ExtResource("35_4kgcg")
@@ -6996,6 +7000,57 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 
 [node name="InteractablesParent" type="Node3D" parent="."]
 
+[node name="WaitingCameraAndInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="WaitingCameraAndInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="WaitingCameraAndInfo/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1157, 657)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="WaitingCameraAndInfo/SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.927556, 0, 0.373684, 0, 1, 0, -0.373684, 0, -0.927556, 3.34765, 6.01053, -4.55113)
+current = true
+fov = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WaitingCameraAndInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.068
+anchor_right = 0.5
+anchor_bottom = 0.068
+offset_left = -545.0
+offset_top = -44.064
+offset_right = 548.0
+offset_bottom = 43.936
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WaitingCameraAndInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Synchronizing data, depending of your computer the duration may vary up to 30 seconds. Please wait."
+label_settings = SubResource("LabelSettings_owvs4")
+
+[node name="FoceExitButton" type="Button" parent="WaitingCameraAndInfo/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("35_4kgcg")
+text = "LEAVE GAME"
+
 [node name="KillFeed" type="Control" parent="."]
 layout_mode = 3
 anchor_left = 0.03
@@ -13138,3 +13193,4 @@ upper_fade = 1e-05
 lower_fade = 1e-05
 
 [connection signal="timeout" from="MatchTimer" to="." method="_on_match_timer_timeout"]
+[connection signal="pressed" from="WaitingCameraAndInfo/HBoxContainer/FoceExitButton" to="." method="_on_foce_exit_button_pressed"]
