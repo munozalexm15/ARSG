@@ -44,7 +44,7 @@ func _ready():
 	
 	Network.game = self
 	#multiplayer.connected_to_server.connect(loadGame)
-	generatePlayer()
+	print(multiplayer.has_multiplayer_peer(), " ", is_inside_tree(), " ", is_multiplayer_authority())
 	
 	if Network.role == "Host":
 		matchGoal = Network.gameData["goal"]
@@ -60,7 +60,6 @@ func _ready():
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 	
 func generatePlayer():
-	
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(multiplayer.get_unique_id())
 	var pauseMenuInstance = pauseMenuSpawner.spawn(multiplayer.get_unique_id())
 	var playerInstance = playerSpawner.spawn(multiplayer.get_unique_id())
@@ -116,6 +115,7 @@ func  _input(_event: InputEvent) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
 	var player : Player = PlayerScene.instantiate()
+	player.set_multiplayer_authority(peer_id)
 	player.name = str(peer_id)
 	#player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
