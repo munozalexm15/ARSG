@@ -96,8 +96,11 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
 	
 	playerInstance.set_multiplayer_authority(newId, true)
+	playerInstance.name = str(newId)
 	menuInstance.set_multiplayer_authority(newId, true)
+	menuInstance.name = str(newId) + "pauseMenu"
 	selectionInstance.set_multiplayer_authority(newId, true)
+	selectionInstance.name = str(newId) + "weaponSelection"
 	
 	playerInstance.global_position = random_spawn()
 	

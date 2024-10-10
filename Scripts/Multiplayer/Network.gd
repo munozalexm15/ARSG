@@ -240,6 +240,7 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weapon : PackedScene = load(weaponScenePath)
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
+		#creo que no encuentra al player como tal, ya que el identifier es el id y deberia ser el nombre del player o algo
 		if str(identifier) == str(player.name):
 			player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
