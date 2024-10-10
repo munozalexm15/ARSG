@@ -168,9 +168,14 @@ func player_joined(id, players_dict, time_left, team1Progress, team2Progress, ho
 		print("por la cara host?")
 		return
 	
+	#recursivo para low-end pc's que la llamada asyncrona llega antes que la propia carga del mapa y variables correspondientes
+	if !game:
+		await get_tree().create_timer(1).timeout
+		player_joined(id, players_dict, time_left, team1Progress, team2Progress, hostGameData)
+		
 	gameData = hostGameData
-	game.matchGoal = gameData.get("goal") 
-	game.matchTime = gameData.get("time")
+	game.matchGoal = hostGameData.get("goal") 
+	game.matchTime = hostGameData.get("time")
 	game.matchTimer.wait_time = time_left
 	game.matchTimer.start()
 	game.team1GoalProgress = team1Progress
