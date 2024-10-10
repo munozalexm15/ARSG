@@ -97,14 +97,14 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	
 	playerInstance.set_multiplayer_authority(newId, true)
 	menuInstance.set_multiplayer_authority(newId, true)
-	weaponSelections_node.set_multiplayer_authority(newId, true)
+	selectionInstance.set_multiplayer_authority(newId, true)
 	
 	playerInstance.global_position = random_spawn()
 	
 	playerInstance.pauseMenu = menuInstance
 	menuInstance.player = playerInstance
-	playerInstance.weaponSelectionMenu = weaponSelections_node
-	weaponSelections_node.player = playerInstance
+	playerInstance.weaponSelectionMenu = selectionInstance
+	selectionInstance.player = playerInstance
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
