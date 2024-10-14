@@ -36,6 +36,7 @@ var originalRightArmPosition : Vector3
 @onready var leftArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/LeftArmIK3D
 @onready var rightArmIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/RightArmIK3D
 @onready var chestIKSkeleton : SkeletonIK3D = $PlayerModel/Armature/Skeleton3D/ChestIK3D
+
 #Este script de encargara de cargar en las manos del jugador el mesh del arma que esta usando
 #y seguramente, otras cosas.
 
@@ -54,8 +55,6 @@ func _ready():
 	headIKSkeleton.start()
 	rightArmIKSkeleton.start()
 	chestIKSkeleton.start()
-	originalLeftArmPosition = leftArmTarget.position
-	originalRightArmPosition = rightArmTarget.position
 
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2

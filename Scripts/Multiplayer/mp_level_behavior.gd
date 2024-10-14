@@ -90,6 +90,7 @@ func generatePlayer(id):
 		else:
 			skin = team2SkinsResources.pick_random()
 		
+	#esto se tiene que pasar a un rpc con el identifier del player y deberia de estar ya hecho
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
 		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
 		

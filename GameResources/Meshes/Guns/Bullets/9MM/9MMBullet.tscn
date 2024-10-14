@@ -89,21 +89,23 @@ height = 0.1
 is_hemisphere = true
 
 [sub_resource type="Gradient" id="Gradient_103ax"]
-offsets = PackedFloat32Array(0.739437, 1)
-colors = PackedColorArray(1, 0.866667, 0.34902, 1, 0.759344, 0.417777, 0, 1)
+offsets = PackedFloat32Array(0.0985916, 0.147887, 0.996479)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.866667, 0.34902, 0.396078, 0.759344, 0.417777, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i1pfl"]
 gradient = SubResource("Gradient_103ax")
+fill_from = Vector2(0.0042735, 0.017094)
 fill_to = Vector2(1, 0.0042735)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ke14"]
+transparency = 1
 cull_mode = 2
 shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 albedo_texture = SubResource("GradientTexture2D_i1pfl")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_tb0gw"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_kf0lk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
 margin = 0.241
@@ -148,7 +150,7 @@ draw_pass_1 = SubResource("SphereMesh_ka03k")
 [node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4ke14")
-mesh = SubResource("ImmediateMesh_tb0gw")
+mesh = SubResource("ImmediateMesh_kf0lk")
 script = ExtResource("5_aot7s")
 fromWidth = 0.1
 scaleAcceleration = 0.5
