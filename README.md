@@ -42,13 +42,16 @@ A person has joined your lobby and you want to tell them how happy you are to se
 
 
 ## What's next
+
+The fast answer is: I don't know. Right now i'm trying to find a job and this game was born with the sole purpose of being a proyect that I can show for my portfolio, but if for some strange reason I keep developing it, here's a few things I will try to implement / change.
+
 The main idea was to make a game with ranks / levels system and unlockables, but I figured out that if I did that, it would have to be done locally and that would allow people to
 cheat and unlock everything (can't afford a server to save all the data), so I gave it some though and came to the conclusion to make a game that doesn't has progression, but only in the match.
 So, the main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
 (more health, invisibility for a certain time, etc.)
 Basically, the idea is to make every match completely different. This way, I can give players a different approach to the game and prevent people cheat (Outside of the lobbies).
 
-Furthermore, things that are without saying going to be done are more maps, weapons, bullet decals, blood decals, etc. and also maybe add the armoury option (which now is disabled) to allow players create weapon classes.
+Furthermore, there are a few more things that would be going to be done. These are: More maps, weapons, bullet decals, blood decals, improve player model, etc.
 
 Also, if you've opened the game, you have noticed the App ID is the 480 (Spacewar). This is because if anyone wants to upload a Game to Steam, you have to pay a one-time fee of 100$. I would, but I don't think my game at the moment has that worth.
 In a future, if the game keeps evolving and has some worth, maybe I will be willing to do such a big step.
@@ -112,4 +115,4 @@ conditions to make spawning safer for players.
  - Motion trail in [Github] https://github.com/metanoia83/Godot-4.0-Motion-Trail?tab=MIT-1-ov-file
  
  
-Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so thanks!
+Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so it is fair to give them proper credit.

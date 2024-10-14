@@ -144,12 +144,10 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 	if chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_ENTERED:
 		_on_send_chat_pressed(changer_name + " has joined the lobby.")
 		
-		print("%s has joined the lobby." % changer_name)
 	# Else if a player has left the lobby
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_LEFT:
-		_on_send_chat_pressed(changer_name + "has left the lobby.")
+		_on_send_chat_pressed(changer_name + " has left the lobby.")
 		
-		print("%s has left the lobby." % changer_name)
 		if game.matchGoal == game.team1GoalProgress or game.matchGoal == game.team2GoalProgress:
 			return
 		game.dashboardMatch.get_lobby_data()

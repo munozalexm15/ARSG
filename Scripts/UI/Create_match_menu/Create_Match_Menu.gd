@@ -45,7 +45,7 @@ func _on_create_room_button_pressed():
 	"mapName": mapName.text, 
 	"mapPath" : selectedMap, 
 	"mapImage" : mapImage.texture.resource_path,
-	"playerQuantity" : 4,
+	"playerQuantity" : 2,
 	"gameMode" : gamemodeOption.text, 
 	"time" : matchTime, 
 	"goal": objectiveGoal,

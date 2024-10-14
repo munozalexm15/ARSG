@@ -1,0 +1,26 @@
+
+UPDATE FUTURA TOCHA TO-DO:
+
+ - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
+ - Fixear bugs al conectarse a la sala
+ - Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
+ - Hacer mejores spawns con comprobaciones de distancia
+ - Malas colisiones en el firing range
+ - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
+ - Impactos de bala
+ - Hacer que al mapear controles sea persistente (config básicamente)
+ - La textura del body del otro jugador (en local funciona, debe ser que sea un rpc para setear los materiales. Habrá que hacer tambien otra funcion que loopee los jugadores y setee una skin al azar para cada uno)
+ - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
+ - Añadir invitación por steam (WIP)
+ - Añadir más sonidos en el UI (1h)
+ - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
+ - Reposicionar modelos de las armas en pov outside
+ - Fixear que boton de salir del juego del menu de pausa peta el scoreboard (mirar el de exit match que si funciona para ver en que diferencian)
+ - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
+ - Fixear si se une alguien y el host todavia no ha elegido arma que no sea visible (ahora lo es)
+
+Decorar github / gitlab de otros proyectos
+Hacer trailer ARSG
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
