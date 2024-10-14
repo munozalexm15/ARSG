@@ -103,7 +103,7 @@ disable_ambient_light = true
 disable_fog = true
 albedo_texture = SubResource("GradientTexture2D_i1pfl")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_tmpfh"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_tb0gw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
 margin = 0.241
@@ -148,7 +148,7 @@ draw_pass_1 = SubResource("SphereMesh_ka03k")
 [node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4ke14")
-mesh = SubResource("ImmediateMesh_tmpfh")
+mesh = SubResource("ImmediateMesh_tb0gw")
 script = ExtResource("5_aot7s")
 fromWidth = 0.1
 scaleAcceleration = 0.5
