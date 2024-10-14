@@ -91,9 +91,14 @@ func generatePlayer(id):
 			skin = team2SkinsResources.pick_random()
 		
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
-		playerInstance.player_body.playerMesh.get_active_material(0)
+		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
+		
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
 
 
 @rpc("any_peer", "call_local")
@@ -133,9 +138,14 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 			skin = team2SkinsResources.pick_random()
 		
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
+		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
 		
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
 	
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()

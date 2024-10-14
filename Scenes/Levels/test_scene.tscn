@@ -1,4 +1,4 @@
-[gd_scene load_steps=289 format=4 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=289 format=4 uid="uid://cqsfxxgijmr2e"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
