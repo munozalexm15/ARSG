@@ -22,7 +22,6 @@ var bolt_forward_sound : AudioStreamPlayer3D
 
 #Weapon parts
 @onready var muzzle = $Muzzle
-@onready var muzzleSmoke : Trail3D = $Muzzle/MuzzleSmoke
 @export var bullet_type: PackedScene
 @onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
 @onready var muzzle_flash_particles : GPUParticles3D = $Muzzle/MuzzleFlash
@@ -50,7 +49,6 @@ var isBurstActive: bool = false
 var burstBullet : int = 0
 
 var isBoltReloaded : bool = false
-var removeSmokeMuzzle : bool = false
 var being_used : bool = false
 
 var mouse_movement
@@ -59,10 +57,8 @@ var mouse_movement
 func _ready():
 	if not is_multiplayer_authority():
 		return
-	if muzzleSmoke:
-		muzzleSmoke.base_width = 0
 	initial_recoil_amplitude = recoil_amplitude
-	
+
 	weaponData = weaponData.duplicate()
 	
 	weaponData.selectedFireMode = weaponData.fireModes[0]
@@ -138,20 +134,6 @@ func _physics_process(delta):
 		burstBullet = 0
 
 	apply_recoil.rpc(delta)
-	
-	# MUZZLE SMOKE : DISABLED ATM
-	#if Input.is_action_just_released("Fire") and weaponData.bulletsInMag > 0 and muzzleSmoke and not hands.player.seeing_ally:
-		#muzzleSmoke.segments = 20
-		#muzzleSmoke.emit = true
-		#muzzleSmoke.base_width = 0.5
-		#await get_tree().create_timer(1).timeout
-		#removeSmokeMuzzle = true
-	#
-	#if removeSmokeMuzzle and muzzleSmoke.base_width > 0:
-		#muzzleSmoke.base_width -= 0.01
-		#if muzzleSmoke.base_width <= 0:
-			#muzzleSmoke.segments = 0
-			#removeSmokeMuzzle = false
 
 @rpc("any_peer", "call_local", "reliable")
 func apply_recoil(delta):
@@ -221,7 +203,7 @@ func spawnBullet():
 			if hands.player.state_machine.state.name == "Crouch":
 				bullet.position.y -= 0.06
 			
-			bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+			bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 			
@@ -242,7 +224,7 @@ func spawnBullet():
 		if hands.player.state_machine.state.name == "Crouch":
 			bullet.position.y -= 0.06
 			
-		bullet.linear_velocity = muzzle.global_transform.basis.x * 1000
+		bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 		bullet.damage = weaponData.damage
 		
 	show_muzzleFlash()

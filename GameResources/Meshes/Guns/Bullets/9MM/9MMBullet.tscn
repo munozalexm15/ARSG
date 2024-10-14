@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=4 uid="uid://deq0ph2t36sew"]
+[gd_scene load_steps=20 format=4 uid="uid://deq0ph2t36sew"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/bullet_behavior.gd" id="1_jb3pr"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_vh7rm"]
 [ext_resource type="PackedScene" uid="uid://b1rrnrcreuabo" path="res://Scenes/Bullets/bullet_decal.tscn" id="2_wvaat"]
 [ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_5uih7"]
-[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="5_gq6vk"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Trail3D.gd" id="5_aot7s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
 radius = 0.303382
@@ -88,12 +88,22 @@ radius = 0.005
 height = 0.1
 is_hemisphere = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jenmb"]
-disable_receive_shadows = true
+[sub_resource type="Gradient" id="Gradient_103ax"]
+offsets = PackedFloat32Array(0.739437, 1)
+colors = PackedColorArray(1, 0.866667, 0.34902, 1, 0.759344, 0.417777, 0, 1)
 
-[sub_resource type="Curve" id="Curve_32j3b"]
-_data = [Vector2(0, 0.581128), 0.0, 0.0, 0, 0, Vector2(0.475524, 0.242898), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1pfl"]
+gradient = SubResource("Gradient_103ax")
+fill_to = Vector2(1, 0.0042735)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ke14"]
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("GradientTexture2D_i1pfl")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_tmpfh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
 margin = 0.241
@@ -135,12 +145,14 @@ transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_roi0e")
 draw_pass_1 = SubResource("SphereMesh_ka03k")
 
-[node name="Trail3D" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
-material_override = SubResource("StandardMaterial3D_jenmb")
-cast_shadow = 0
-script = ExtResource("5_gq6vk")
-distance = 1.0
-width_profile = SubResource("Curve_32j3b")
+[node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4ke14")
+mesh = SubResource("ImmediateMesh_tmpfh")
+script = ExtResource("5_aot7s")
+fromWidth = 0.1
+scaleAcceleration = 0.5
+lifespan = 0.05
 
 [node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 collision_layer = 133

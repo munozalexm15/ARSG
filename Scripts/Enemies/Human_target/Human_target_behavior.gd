@@ -18,7 +18,6 @@ func _ready():
 func _process(_delta):
 	
 	if targetData.actualHealth <= 0 and not isDowned:
-		print("downed")
 		animationPlayer.play("Down")
 		isDowned = true
 

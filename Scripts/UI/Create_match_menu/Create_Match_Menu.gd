@@ -9,7 +9,6 @@ var mapNamesList = ["Hangar", "Sunday Afternoon", "Firing Range"]
 
 var mapListIndex = 0
 
-
 var selectedMap = ""
 
 @onready var gamemodeOption : OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton

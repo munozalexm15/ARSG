@@ -26,7 +26,7 @@ var death_count = 0
 
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
 @onready var ChatMessagesDisplay : VBoxContainer = $ChatDisplay/VBoxContainer2/VBoxContainer
-@onready var chatText : TextEdit = $ChatDisplay/VBoxContainer2/ChatText
+@onready var chatText : LineEdit = $ChatDisplay/VBoxContainer2/ChatText
 
 @onready var pauseMenuSpawner : MultiplayerSpawner = $pauseMenuSpawner
 @onready var playerSpawner : MultiplayerSpawner = $PlayerSpawner
@@ -59,7 +59,6 @@ func _ready():
 		waitingDataInfo.queue_free()
 		
 		matchTimer.wait_time = matchTime
-		print(matchGoal, " ", matchTimer.wait_time, " ", team1GoalProgress, " ", team2GoalProgress)
 		matchTimer.start()
 		dashboardMatch.get_lobby_data()
 		
@@ -79,7 +78,7 @@ func generatePlayer(id):
 	pauseMenuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
-	
+
 
 	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
@@ -92,10 +91,9 @@ func generatePlayer(id):
 			skin = team2SkinsResources.pick_random()
 		
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
-		
+		playerInstance.player_body.playerMesh.get_active_material(0)
 		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
 		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-	
 
 
 @rpc("any_peer", "call_local")
@@ -103,8 +101,6 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	var playerInstance = players_node.get_node("./" + playernode_Name)
 	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
-	
-	
 	
 	#loop recursivo para ir esperando a que el player esté listo
 	if not playerInstance or not menuInstance or not selectionInstance:
@@ -155,12 +151,16 @@ func _process(_delta):
 func  _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Open Chat") and not chatText.has_focus():
 		chatText.grab_focus()
+		ChatMessagesDisplay.modulate = Color(1,1,1,1)
 		chatText.accept_event()
 	
 	if Input.is_action_just_pressed("Send Message") and chatText.has_focus():
 		chatText.release_focus()
 		chatText.text.replace("\n", "")
 		if chatText.text.length() == 0:
+			var fade_tween: Tween = get_tree().create_tween()
+			fade_tween.tween_interval(2.0)
+			fade_tween.tween_property(ChatMessagesDisplay, "modulate:a", 0.5, 10.0)
 			return
 			
 		Network._on_send_chat_pressed(Steam.getFriendPersonaName(Steam.getSteamID()) + " : " + chatText.text)
@@ -207,8 +207,6 @@ func set_player_data(peer_id, playerName):
 	for p in players_node.get_children():
 		if p.name == str(playerName):
 			player = p
-	
-	#print(multiplayer.get_unique_id(), " con referencia al player:" , player.name)
 	
 	player.visible = false
 	player.global_position = random_spawn()
@@ -310,3 +308,8 @@ func _on_foce_exit_button_pressed() -> void:
 		Network.player_left.rpc(multiplayer.get_unique_id())
 		Network.leave_lobby()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+
+
+func _on_chat_text_gutter_added() -> void:
+	if chatText.text.length() > 5:
+		chatText.text = chatText.text.substr(0, 5)

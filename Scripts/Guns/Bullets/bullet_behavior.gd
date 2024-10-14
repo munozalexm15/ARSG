@@ -10,7 +10,6 @@ signal kill(points)
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode) 
-@onready var trail : Trail3D = $Trail3D
 
 var instigator: Player
 
@@ -44,7 +43,6 @@ func spawn_decal(body : Node3D):
 
 
 func _on_area_3d_body_entered(body):
-	trail.base_width = 0
 	mesh.visible = false
 	
 	#spawn_decal(body)

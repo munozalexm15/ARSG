@@ -1,4 +1,4 @@
-[gd_scene load_steps=288 format=4 uid="uid://owusm7y23nwy"]
+[gd_scene load_steps=289 format=4 uid="uid://owusm7y23nwy"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
@@ -110,12 +110,12 @@ rightHandSkin = ExtResource("8_eguqk")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nuxu3"]
 
-[sub_resource type="Sky" id="Sky_wfdj2"]
+[sub_resource type="Sky" id="Sky_dvgc3"]
 sky_material = SubResource("PanoramaSkyMaterial_nuxu3")
 
-[sub_resource type="Environment" id="Environment_kkv0d"]
+[sub_resource type="Environment" id="Environment_otvnq"]
 background_energy_multiplier = 16.0
-sky = SubResource("Sky_wfdj2")
+sky = SubResource("Sky_dvgc3")
 ambient_light_source = 2
 ambient_light_color = Color(0.197937, 0.197937, 0.197937, 1)
 ssr_enabled = true
@@ -125,6 +125,8 @@ ssil_enabled = true
 sdfgi_read_sky_light = false
 glow_enabled = true
 glow_normalized = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.022
 adjustment_brightness = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
@@ -142,6 +144,10 @@ texture_filter = 0
 script = ExtResource("43_ag4ww")
 walk_sound = Array[AudioStream]([ExtResource("44_3nrx2"), ExtResource("45_31cjs"), ExtResource("46_yyqle"), ExtResource("47_ibd1r"), ExtResource("48_dutlt"), ExtResource("27_p3on3"), ExtResource("28_vw44f"), ExtResource("29_njac7"), ExtResource("30_m1ivg"), ExtResource("31_8sks2"), ExtResource("32_ny45s")])
 jump_sound = ExtResource("20_6xuyj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mtj4r"]
+font = ExtResource("34_q4ltw")
+font_size = 18
 
 [sub_resource type="LabelSettings" id="LabelSettings_ymn7n"]
 font = ExtResource("34_q4ltw")
@@ -2668,7 +2674,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, 0.681437, -1.239)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_kkv0d")
+environment = SubResource("Environment_otvnq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.63124, 0.774266, -0.0452626, -0.234267, 0.245975, 0.94054, 0.739361, -0.583103, 0.336654, -0.736377, 4.67972, -0.410247)
@@ -2722,9 +2728,15 @@ transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -20.6316, 4.02959, 1
 
 [node name="PauseMenusNode" type="Node3D" parent="."]
 
-[node name="uiSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/UI/Pause_Menu/pause_menu.tscn", "res://Scenes/UI/Team_Selection/Team_selection.tscn")
+[node name="weaponSelectionNode" type="Node3D" parent="."]
+
+[node name="pauseMenuSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
 spawn_path = NodePath("../PauseMenusNode")
+
+[node name="weaponSelectionSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/UI/Team_Selection/Team_selection.tscn")
+spawn_path = NodePath("../weaponSelectionNode")
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/Characters/Main_character.tscn")
@@ -2733,6 +2745,57 @@ spawn_path = NodePath("../FadeShader/SubViewport/DitheringShader/SubViewport")
 [node name="BulletsParent" type="Node3D" parent="."]
 
 [node name="InteractablesParent" type="Node3D" parent="."]
+
+[node name="WaitingCameraAndInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="WaitingCameraAndInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="WaitingCameraAndInfo/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1157, 657)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="WaitingCameraAndInfo/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.489398, -0.411114, -0.769075, 0, 0.881905, -0.471428, 0.872061, 0.230716, 0.431602, -3.60408, 1.47267, -8.49975)
+current = true
+fov = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WaitingCameraAndInfo"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.068
+anchor_right = 0.5
+anchor_bottom = 0.068
+offset_left = -545.0
+offset_top = -44.064
+offset_right = 548.0
+offset_bottom = 43.936
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WaitingCameraAndInfo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Synchronizing data, depending of your computer the duration may vary up to 30 seconds. Please wait."
+label_settings = SubResource("LabelSettings_mtj4r")
+
+[node name="FoceExitButton" type="Button" parent="WaitingCameraAndInfo/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("34_q4ltw")
+text = "LEAVE GAME"
 
 [node name="KillFeed" type="Control" parent="."]
 layout_mode = 3
@@ -2795,13 +2858,11 @@ text = "BlueHalp: Por la puta cara abe ennove tio esque es pa flipar esto"
 label_settings = SubResource("LabelSettings_ymn7n")
 autowrap_mode = 1
 
-[node name="ChatText" type="TextEdit" parent="ChatDisplay/VBoxContainer2"]
+[node name="ChatText" type="LineEdit" parent="ChatDisplay/VBoxContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("34_q4ltw")
-theme_override_font_sizes/font_size = 12
+theme = ExtResource("33_qlraq")
 placeholder_text = "Press 'T' to chat..."
-wrap_mode = 1
-scroll_fit_content_height = true
+max_length = 60
 
 [node name="DashboardMatch" parent="." instance=ExtResource("35_sg0yo")]
 visible = false

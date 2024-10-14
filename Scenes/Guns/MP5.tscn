@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://dtt6181hvgoee"]
+[gd_scene load_steps=42 format=4 uid="uid://dtt6181hvgoee"]
 
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="1_phe3m"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_q6gp1"]
@@ -9,31 +9,12 @@
 [ext_resource type="Curve" uid="uid://dokukyuqosg8s" path="res://GameResources/Curves/MP5/MP5_RecoilRotiation_Z.tres" id="5_65ymy"]
 [ext_resource type="Curve" uid="uid://2h1tst5bxbg7" path="res://GameResources/Curves/MP5/MP5_RecoilPosition_Z.tres" id="6_dna7i"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="7_r6skm"]
-[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="9_3ahf2"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_cj2rk"]
 [ext_resource type="AudioStream" uid="uid://bohwu0eynruj5" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel.mp3" id="12_r6xwg"]
 [ext_resource type="AudioStream" uid="uid://bip2mwmeqwj1a" path="res://GameResources/Sounds/Weapons/MP5/mp5_rel_full.mp3" id="13_86q7m"]
 [ext_resource type="AudioStream" uid="uid://bbor8ng532rnh" path="res://GameResources/Sounds/Weapons/MP5/mp5_shot.wav" id="14_eq8mn"]
 [ext_resource type="AudioStream" uid="uid://bs5ku0tijcrmt" path="res://GameResources/Sounds/Misc/Fire_Mode_Swap.wav" id="14_n21ik"]
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="15_fghx8"]
-
-[sub_resource type="Gradient" id="Gradient_axtnq"]
-colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_oulwv"]
-gradient = SubResource("Gradient_axtnq")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6onaj"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture1D_oulwv")
-
-[sub_resource type="Curve" id="Curve_32b2x"]
-_data = [Vector2(0, 0.10814), 0.0, 0.0, 0, 0, Vector2(0.517752, 0.22907), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uq8hy"]
 angle_min = -28.8
@@ -1952,13 +1933,6 @@ lerp_speed = 20.0
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.97771, 1.98482, -0.00520781)
-
-[node name="MuzzleSmoke" type="MeshInstance3D" parent="Muzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707575, 1.86323)
-material_override = SubResource("StandardMaterial3D_6onaj")
-script = ExtResource("9_3ahf2")
-lifetime = 0.4
-width_profile = SubResource("Curve_32b2x")
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)

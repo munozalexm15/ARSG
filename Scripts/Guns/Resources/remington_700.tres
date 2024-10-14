@@ -26,4 +26,4 @@ weaponPickupScene = "res://Scenes/Guns/Pickups/Remington_700_Pickup.tscn"
 weaponSpawnPosition = Vector3(-1.72999, 0.749306, 0.532162)
 weaponImage = ExtResource("2_wgb6c")
 weaponExternalScene = ExtResource("2_51o01")
-cameraADSPosition = Vector3(0, -0.6, -1.26)
+cameraADSPosition = Vector3(-0.5, -0.6, -1.26)

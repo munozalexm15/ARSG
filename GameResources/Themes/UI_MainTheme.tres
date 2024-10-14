@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://c6qxefe5j4hst"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://c6qxefe5j4hst"]
 
 [ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_8kx6u"]
 
@@ -56,6 +56,24 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkp28"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6mvu"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.686275)
+skew = Vector2(-1, 0)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.8, 0.8, 0.8, 0.686275)
+expand_margin_left = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wm130"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.686275)
+skew = Vector2(-1, 0)
+border_width_left = 5
+border_width_right = 5
+border_color = Color(0.8, 0.8, 0.8, 0.686275)
+expand_margin_left = 10.0
+anti_aliasing = false
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeuf6"]
 bg_color = Color(0.6, 0.6, 0.647059, 0)
 border_width_bottom = 5
@@ -108,6 +126,13 @@ HSlider/styles/grabber_area = SubResource("StyleBoxFlat_6ii5b")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_bkp28")
 Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_8kx6u")
+LineEdit/colors/selection_color = Color(0.501961, 0.501961, 0.501961, 0)
+LineEdit/constants/outline_size = 0
+LineEdit/font_sizes/font_size = 14
+LineEdit/fonts/font = ExtResource("1_8kx6u")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_e6mvu")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_wm130")
+LineEdit/styles/read_only = null
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
 ProgressBar/fonts/font = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_bum1m")

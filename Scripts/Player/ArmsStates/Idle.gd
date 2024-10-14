@@ -30,14 +30,19 @@ func enter(_msg := {}):
 		if arms.actualWeapon.weaponData.weaponType == "Sniper" and Input.is_action_pressed("ADS"):
 			arms.player.hud.aimAnimationPlayer.play("Aim")
 
-func physics_update(_delta):
-	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
-		state_machine.transition_to("Idle")
-		
+
+func handle_input(_event : InputEvent):
 	if Input.is_action_just_pressed("Reload") and arms.actualWeapon.weaponData.bulletsInMag < arms.actualWeapon.weaponData.magSize and arms.actualWeapon.weaponData.reserveAmmo > 0:
 		if arms.actualWeapon.isBoltReloaded:
 			return
+		
+		if Network.game.chatText.has_focus():
+			return
 		state_machine.transition_to("Reload")
+
+func physics_update(_delta):
+	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
+		state_machine.transition_to("Idle")
 	
 	mouse_swap_weapon_logic()
 	swap_weapon()

@@ -70,7 +70,6 @@ func accept_invite_from_friend(lobby: int, _friend_id : int):
 		return
 		
 	lobby_id = lobby
-	print("conectandose a la sala")
 	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)
 
@@ -95,7 +94,6 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 		LoadScreenHandler.errorLoading.emit(fail_reason)
 	
 	#lobby_id = id
-	#print("Your unique id is " , multiplayer.get_unique_id())
 	
 #En esta funcion (cliente) añadir carga de mapa, añadir señal al loadscreenhandler y cuando cargue el mapa emitir la señal y entonces llamar a un funcion similar a esta
 @rpc("any_peer", "call_local", "reliable")
@@ -126,10 +124,17 @@ func add_message_to_chat(_lobby_id: int, _user : int, _message: String, _chat_ty
 	textLabel.label_settings.font_size = 14
 	textLabel.autowrap_mode =TextServer.AUTOWRAP_ARBITRARY
 	game.ChatMessagesDisplay.add_child(textLabel)
+	game.ChatMessagesDisplay.modulate = Color(1,1,1,1)
 	
-	await get_tree().create_timer(10).timeout
-	if game != null:
-		game.ChatMessagesDisplay.remove_child(textLabel)
+	if game != null and game.ChatMessagesDisplay.get_child_count() > 5:
+		var oldestMSG = game.ChatMessagesDisplay.get_child(0)
+		game.ChatMessagesDisplay.remove_child(oldestMSG)
+	
+	await get_tree().create_timer(5).timeout
+	var fade_tween: Tween = get_tree().create_tween()
+	fade_tween.tween_interval(2.0)
+	fade_tween.tween_property(game.ChatMessagesDisplay, "modulate:a", 0.5, 10.0)
+	await fade_tween.finished
 
 func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
@@ -165,7 +170,6 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 func player_joined(id, players_dict, time_left, team1Progress, team2Progress, hostGameData):
 	#if its the host -> ignore
 	if id == 1:
-		print("por la cara host?")
 		return
 	
 	#recursivo para low-end pc's que la llamada asyncrona llega antes que la propia carga del mapa y variables correspondientes
@@ -331,6 +335,7 @@ func close_match():
 	
 @rpc("any_peer", "call_local", "reliable")
 func endGame(winnerText: String):
+	Steam.setLobbyJoinable(lobby_id, false)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	for player : Player in game.players_node.get_children():
 		if not player.pauseMenu:
