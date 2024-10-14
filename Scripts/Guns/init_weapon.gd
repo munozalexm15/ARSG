@@ -66,6 +66,11 @@ func _ready():
 	target_rot.y = rotation.y
 	weaponData.bulletsInMag = weaponData.magSize
 	
+	#picking only one hand reference because both hands use the same texture
+	var materialDuplicate = leftArm.get_surface_override_material(0).duplicate()
+	leftArm.set_surface_override_material(0, materialDuplicate)
+	rightArm.set_surface_override_material(0, materialDuplicate)
+	
 	if weaponData.weaponType == "Sniper" or weaponData.weaponType == "Shotgun":
 		bolt_back_sound = $ASP_BoltBackSound
 		bolt_forward_sound = $ASP_BoltForwardSound

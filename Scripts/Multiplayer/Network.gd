@@ -284,9 +284,10 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 					playerDict["actualWeaponPath"] = weaponScenePath
 					playerDict["primaryWeaponName"] = weaponSpawned.weaponData.name
 					playerDict["primaryWeaponPath"] = weaponScenePath
-	
-			#player.arms.actualWeapon.leftArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
-			#player.arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
+			
+			print("seteo la arma a ", player.name)
+			player.arms.actualWeapon.leftArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
+			player.arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
 
 @rpc("any_peer", "call_local")
 func show_all_players():
