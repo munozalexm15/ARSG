@@ -67,7 +67,7 @@ func _ready():
 	weaponData.bulletsInMag = weaponData.magSize
 	
 	#picking only one hand reference because both hands use the same texture
-	var materialDuplicate = leftArm.get_surface_override_material(0).duplicate()
+	var materialDuplicate = leftArm.get_active_material(0).duplicate()
 	leftArm.set_surface_override_material(0, materialDuplicate)
 	rightArm.set_surface_override_material(0, materialDuplicate)
 	
