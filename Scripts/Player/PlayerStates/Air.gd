@@ -10,6 +10,8 @@ func enter(msg := {}) -> void:
 			player.player_body.animationTree.connect("animation_finished", body_animation_ended)
 		
 		player.velocity.y = player.jump_force
+	else:
+		player.player_body.animationTree.set("parameters/Movement/transition_request", "Air_Falling")
 	
 	if msg.has("climb"):
 		#(player.velocity += Vector3(0, player.jump_force * 4, 0)

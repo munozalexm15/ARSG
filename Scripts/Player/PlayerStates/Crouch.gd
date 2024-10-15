@@ -55,12 +55,6 @@ func physics_update(delta: float) -> void:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.curr_speed)
 		player.velocity.z = move_toward(player.velocity.z, 0.0, player.curr_speed)
 		player.player_body.animationTree.set("parameters/Movement/transition_request", "Crouch_Idle")
-		if int(player.rotation.y) < rotation_value:
-			rotation_value = int(player.rotation.y)
-			player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnRight")
-		elif int(player.rotation.y) > rotation_value:
-			rotation_value = int(player.rotation.y)
-			player.player_body.animationTree.set("parameters/Movement/transition_request", "Idle_TurnLeft")
 		
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")

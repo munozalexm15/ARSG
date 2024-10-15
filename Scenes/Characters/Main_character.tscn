@@ -206,7 +206,7 @@ height = 1.6958
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
 radius = 0.257403
-height = 1.2
+height = 1.32935
 
 [sub_resource type="Animation" id="Animation_3v13c"]
 length = 0.001
@@ -363,7 +363,7 @@ blend_times = [&"hard_landing", &"RESET", 0.2, &"hit", &"RESET", 0.2, &"out_ammo
 shape = SubResource("CapsuleShape3D_37yn0")
 
 [node name="Crouching_collisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.331374, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.182413, 0)
 shape = SubResource("CapsuleShape3D_rgde6")
 
 [node name="StandingRaycast" type="RayCast3D" parent="."]
