@@ -31,10 +31,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	distanceTraveled += 0.0001
-	#for collision in get_colliding_bodies():
-		#if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
-			#_on_area_3d_body_entered(collision)
-			#add_collision_exception_with(collision)
+	for collision in get_colliding_bodies():
+		if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
+			add_collision_exception_with(collision)
+			_on_area_3d_body_entered(collision)
+			
 			
 
 func spawn_decal(body : Node3D):
@@ -46,7 +47,9 @@ func spawn_decal(body : Node3D):
 
 
 func _on_area_3d_body_entered(body):
-	print("bru")
+	print(body.name)
+	linear_velocity = Vector3.ZERO
+	constant_force = Vector3.ZERO
 	mesh.visible = false
 	#spawn_decal(body)
 	if body is Target and body != self and not body.isDowned:
