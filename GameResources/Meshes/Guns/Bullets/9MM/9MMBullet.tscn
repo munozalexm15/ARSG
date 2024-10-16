@@ -106,19 +106,17 @@ albedo_texture = SubResource("GradientTexture2D_i1pfl")
 billboard_keep_scale = true
 proximity_fade_distance = 50.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_x7d3j"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_48yox"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
-margin = 0.241
-radius = 0.31743
-height = 0.63486
+radius = 0.0200624
+height = 0.0419863
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 3.59989e-21, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 133
-collision_mask = 2147483524
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 3.59989e-21, 4.37114e-08, -1, -4.37114e-08, 0.000192426, 0, -0.000368014)
+collision_layer = 0
+collision_mask = 2147483393
 gravity_scale = 0.0
-custom_integrator = true
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
@@ -152,7 +150,7 @@ draw_pass_1 = SubResource("SphereMesh_ka03k")
 
 [node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 material_override = SubResource("StandardMaterial3D_4ke14")
-mesh = SubResource("ImmediateMesh_x7d3j")
+mesh = SubResource("ImmediateMesh_48yox")
 script = ExtResource("5_aot7s")
 fromWidth = 0.06
 lifespan = 0.05
@@ -165,5 +163,5 @@ collision_mask = 133
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
 shape = SubResource("CapsuleShape3D_p247a")
 
-[connection signal="body_entered" from="." to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]

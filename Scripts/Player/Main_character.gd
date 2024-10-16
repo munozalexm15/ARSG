@@ -104,6 +104,7 @@ func _enter_tree():
 func _ready():
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
+	
 	if not is_multiplayer_authority(): 
 		arms.visible = false
 		camera.current = false

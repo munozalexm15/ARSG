@@ -209,16 +209,13 @@ func spawnBullet():
 			
 			if hands.player.state_machine.state.name == "Crouch":
 				bullet.position.y -= 0.06
-				
-			#bullet.add_constant_force(muzzle.global_transform.basis.x * 20000, muzzle.global_position)
-			#bullet.add_constant_force(muzzle.global_transform.basis.z * randf_range(-160, 160), muzzle.global_position)
-			#bullet.add_constant_force(muzzle.global_transform.basis.y * randf_range(-160, 160), muzzle.global_position)
+	
 			bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 			
 			bullet.damage = weaponData.damage
-			bullet.trail.fromWidth = 0.06
+			
 	else:
 		var bullet : Bullet = bullet_type.instantiate()
 		bullet.instigator = hands.player
@@ -234,18 +231,14 @@ func spawnBullet():
 		if hands.player.state_machine.state.name == "Crouch":
 			bullet.position.y -= 0.06
 		
-		#bullet.add_constant_central_force(muzzle.global_transform.basis.x * 4000)
-		bullet.add_constant_force(muzzle.global_transform.basis.x * 20000, muzzle.global_position)
 		bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 		if weaponData.weaponType == "Sniper" and not Input.is_action_pressed("ADS"):
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
-			
-		#bullet.apply_impulse(Vector3(100,10,0),  muzzle.global_position)
-		#bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
+		
+		
 		bullet.damage = weaponData.damage
 		bullet.linear_damp = 0
-		bullet.trail.fromWidth = 0.03
 		
 	show_muzzleFlash()
 

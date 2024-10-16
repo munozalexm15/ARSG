@@ -29,12 +29,12 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _physics_process(delta: float) -> void:
 	distanceTraveled += 0.0001
-	for collision in get_colliding_bodies():
-		if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
-			_on_area_3d_body_entered(collision)
-			add_collision_exception_with(collision)
+	#for collision in get_colliding_bodies():
+		#if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
+			#_on_area_3d_body_entered(collision)
+			#add_collision_exception_with(collision)
 			
 
 func spawn_decal(body : Node3D):
@@ -46,11 +46,8 @@ func spawn_decal(body : Node3D):
 
 
 func _on_area_3d_body_entered(body):
-	linear_velocity = Vector3.ZERO
-	constant_force = Vector3.ZERO
+	print("bru")
 	mesh.visible = false
-	if body is Bullet:
-		return
 	#spawn_decal(body)
 	if body is Target and body != self and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
@@ -58,6 +55,8 @@ func _on_area_3d_body_entered(body):
 		if instigator.hud.animationPlayer.is_playing():
 			instigator.hud.animationPlayer.play("RESET")
 		instigator.hud.animationPlayer.play("hitmarker")
+		
+		queue_free()
 	
 	if body is Player and body != instigator:
 		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
@@ -73,9 +72,18 @@ func _on_area_3d_body_entered(body):
 			instigator.hud.killPointsAnimPlayer.play("killNotification")
 			body.die_respawn.rpc(body.name.to_int(), instigator.name.to_int())
 	
+		queue_free()
+	
 	#var fade_tween: Tween = get_tree().create_tween()
 	#fade_tween.tween_interval(2.0)
 	#fade_tween.tween_property(decal_instance, "modulate:a", 0, 1.5)
 	#await fade_tween.finished
 	#decal_instance.queue_free()
 	queue_free()
+
+
+func _on_area_3d_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index: int, local_shape_index: int) -> void:
+	if body.is_class("Bullet"):
+		return
+	else:
+		_on_area_3d_body_entered(body)
