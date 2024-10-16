@@ -46,6 +46,8 @@ func spawn_decal(body : Node3D):
 
 
 func _on_area_3d_body_entered(body):
+	linear_velocity = Vector3.ZERO
+	constant_force = Vector3.ZERO
 	mesh.visible = false
 	if body is Bullet:
 		return

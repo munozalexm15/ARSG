@@ -236,8 +236,8 @@ func spawnBullet():
 		
 		#bullet.add_constant_central_force(muzzle.global_transform.basis.x * 4000)
 		bullet.add_constant_force(muzzle.global_transform.basis.x * 20000, muzzle.global_position)
+		bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 		if weaponData.weaponType == "Sniper" and not Input.is_action_pressed("ADS"):
-			bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 			

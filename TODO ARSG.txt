@@ -1,6 +1,6 @@
 Proxima update de calidad de vida
 - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
-- Bloquear movimiento cuando spawneas en el mundo (mientras eliges arma no debes de poder moverte)
+- Volver a cambiar el filtro de busqueda de lobbies de "ARSGameTest" a "ARSG"
 
 DONE (v.0.1 to v.0.1.1)
 - Fixed bug where bullets wouldn't collide with other players because beign too fast
