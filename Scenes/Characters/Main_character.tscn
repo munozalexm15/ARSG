@@ -201,7 +201,8 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p3yc6"]
-radius = 0.326627
+radius = 0.352695
+height = 2.017
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
 radius = 0.323905
@@ -363,8 +364,9 @@ next/soft_landing = &"RESET"
 blend_times = [&"hard_landing", &"RESET", 0.2, &"hit", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2]
 
 [node name="BulletHitbox" type="StaticBody3D" parent="." groups=["PlayerBulletHitbox"]]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 4
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletHitbox"]
 shape = SubResource("CapsuleShape3D_p3yc6")
