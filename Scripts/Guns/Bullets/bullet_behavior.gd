@@ -10,6 +10,7 @@ signal kill(points)
 @onready var collider : CollisionShape3D = $CollisionShape3D
 @export var meshNode := NodePath()
 @onready var mesh : MeshInstance3D = get_node(meshNode) 
+@onready var trail : Trail3D = $Trail3D2
 
 var instigator: Player
 
@@ -22,6 +23,7 @@ var decal_instance : Decal
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(5).timeout
+	add_collision_exception_with(instigator)
 	queue_free()
 	#disable trail effect for players, it is intended to be only seen from enemies who shoot at you
 	
@@ -29,10 +31,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	distanceTraveled += 0.0001
-	pass
-
-func _on_visibility_notifier_screen_exited():
-	queue_free()
+	for collision in get_colliding_bodies():
+		if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
+			_on_area_3d_body_entered(collision)
+			add_collision_exception_with(collision)
+			
 
 func spawn_decal(body : Node3D):
 	decal_instance = decal.instantiate()
@@ -44,17 +47,23 @@ func spawn_decal(body : Node3D):
 
 func _on_area_3d_body_entered(body):
 	mesh.visible = false
-	
+	if body is Bullet:
+		return
 	#spawn_decal(body)
 	if body is Target and body != self and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled
 		impactParticle.emitting = true
+		if instigator.hud.animationPlayer.is_playing():
+			instigator.hud.animationPlayer.play("RESET")
+		instigator.hud.animationPlayer.play("hitmarker")
 	
 	if body is Player and body != instigator:
 		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
 		SFXHandler.play_sfx(audioSteam, instigator, "Effects")
 		body.health -= damage - distanceTraveled
 		playerDamaged.emit()
+		if instigator.hud.animationPlayer.is_playing():
+			instigator.hud.animationPlayer.play("RESET")
 		instigator.hud.animationPlayer.play("hitmarker")
 		
 		body.assign_enemy_to_player_hit.rpc_id(body.name.to_int(), instigator.name.to_int(), body.name.to_int())

@@ -124,6 +124,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	selectionInstance.name = str(newId) + "weaponSelection"
 	
 	playerInstance.global_position = random_spawn()
+	playerInstance.state_machine.process_mode = PROCESS_MODE_DISABLED
 	
 	playerInstance.pauseMenu = menuInstance
 	menuInstance.player = playerInstance

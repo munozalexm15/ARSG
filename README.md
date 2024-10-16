@@ -1,7 +1,5 @@
 # ARSG
 
-![ARSG_LOGO](./arsg_logotitle.png)
-
 ## What is ARSG?
 ARSG is a multiplayer 1v1 FPS/TPS made in Godot with Steamworks support (thanks to GodotSteam). It started as a school project and after the 
 course ended I kept developing and adding new features across a few months (it has been in development for exactly six months now), giving birth to this game. Unfortunately, at the moment 
@@ -20,7 +18,7 @@ To finish, I just want to say thanks to everyone who has kept me / keeps me moti
 As said before, thanks to [GodotSteam](https://godotsteam.com/) I can use steamworks to facilitate the networking part. To play the game, you need to have an account and steam opened to play with other people. 
 
 ### Multiplayer
-Players can face against a friend or a person in a 1v1 scenario.
+Players can face against a friend or a person in a 1v1 scenario. If you join later it's not a problem, the game allows to join in the middle of the match and sync all the data!
 
 ### Complete control of a character
 Users will be able to jump, sprint, crouch, walk, aim and shot, with a movement like the 2000 games era.
@@ -49,7 +47,9 @@ The main idea was to make a game with ranks / levels system and unlockables, but
 cheat and unlock everything (can't afford a server to save all the data), so I gave it some though and came to the conclusion to make a game that doesn't has progression, but only in the match.
 So, the main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
 (more health, invisibility for a certain time, etc.)
-Basically, the idea is to make every match completely different. This way, I can give players a different approach to the game and prevent people cheat (Outside of the lobbies).
+Basically, the idea was to make every match completely different. This way, I can give players a different approach to the game and prevent people cheat (Outside of the lobbies).
+
+(But to be honest, the game is P2P and a lot of people will end up cheating, so if I keep developing the game it will shift into creating more of a PVE content instead of PVP, this way it's less damaging for the players.)
 
 Furthermore, there are a few more things that would be going to be done. These are: More maps, weapons, bullet decals, blood decals, improve player model, etc.
 
@@ -64,7 +64,7 @@ I would love to optimize the game (as I haven't touched anything related to that
 I know there are some noticeable bugs that can affect players outside of the visual ones. The ones that are on my sight are, in order of more important to least:
 
 - **RPC calls when joining a game sometimes fail**: I think it's a sync problem of the player who is connecting. I haven't looked at it deeply because it rarely occurs, but it can happen often if your performance is VERY, very bad.
-> This bug can cause the game to be in an infinite black screen (because it's waiting for the RPC call) or take authority of a player's camera and see their POV. The only way of exiting is forcing the game to close at the moment.
+> This bug can cause the game to get stuck waiting when the connection is made. The only solution right now is to exit the lobby (using the button or forcing to close the game).
 
 - **Bullet collisions**: Maybe you feel like your bullets aren't hitting. Thats because maybe they aren't. As bullets are not raycasted, I have to constantly check for colliding bodies which sometimes cannot detect if the collision box is to small. 
 > This one is serious, but playi- *testing*, I mean testing, with my friends, I've seen that it's not something very noticeable. You can notice this in the firing range map.
@@ -88,13 +88,6 @@ conditions to make spawning safer for players.
 
 - **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
 
-## Images
-![Soldier in firing Range](./Images/ARSG_Photo1.PNG)
-![Ambush](./Images/ARSG_Photo2.PNG)
-![The silence of the night](./Images/ARSG_Photo3FPS.PNG)
-![It's you or I](./Images/ARSG_Photo4FPS.PNG)
-![I win!](./Images/ARSG_Photo5FPS.png)
-
 ## Credits / Commercial Use
 
  - Weapon assets by [Doctor_Sci3nce](https://doctor-sci3nce.itch.io/) on Itch
@@ -112,8 +105,9 @@ conditions to make spawning safer for players.
  - Font by [CGBotNet](https://ggbot.itch.io/fortzilla-font) on Itch 
  - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay 
  - Muzzle flash images by [FootageCrate](https://footagecrate.com/video-effects/footagecrate-muzzleflash-5starquarter) 
- - Motion trail used for bullets in [Github] (https://github.com/metanoia83/Godot-4.0-Motion-Trail?tab=MIT-1-ov-file)
- - Godot psx shaders from [AnalogFeelings] (https://github.com/AnalogFeelings/godot-psx?tab=readme-ov-file) 
+ - Motion trail used for bullets on [Github](https://github.com/metanoia83/Godot-4.0-Motion-Trail?tab=MIT-1-ov-file)
+ - Godot psx shaders from [AnalogFeelings](https://github.com/AnalogFeelings/godot-psx?tab=readme-ov-file) 
+ - Stylized sky shader from [CrowGames](https://www.youtube.com/watch?v=bR0v-yoZYZA&ab_channel=CrowGames) on YouTube
  
  
 Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so it is fair to give them proper credit.

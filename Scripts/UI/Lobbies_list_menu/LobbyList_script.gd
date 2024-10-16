@@ -23,7 +23,8 @@ func _ready():
 
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSG", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGameTest", Steam.LOBBY_COMPARISON_EQUAL)
+	#Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSG", Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
 	
 func on_lobby_mach_list(lobbies : Array):

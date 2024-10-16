@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Scripts/Mechanics/Trail3D.gd" id="5_aot7s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rtfty"]
-radius = 0.303382
-height = 0.606763
+radius = 0.02
+height = 0.04
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
 resource_name = "Material.001"
@@ -89,13 +89,12 @@ height = 0.1
 is_hemisphere = true
 
 [sub_resource type="Gradient" id="Gradient_103ax"]
-offsets = PackedFloat32Array(0.0985916, 0.147887, 0.996479)
-colors = PackedColorArray(1, 1, 1, 0, 1, 0.866667, 0.34902, 0.396078, 0.759344, 0.417777, 0, 1)
+offsets = PackedFloat32Array(0.0985916, 0.996479)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_i1pfl"]
 gradient = SubResource("Gradient_103ax")
-fill_from = Vector2(0.0042735, 0.017094)
-fill_to = Vector2(1, 0.0042735)
+fill_to = Vector2(0.991453, 0.017094)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ke14"]
 transparency = 1
@@ -104,8 +103,10 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 albedo_texture = SubResource("GradientTexture2D_i1pfl")
+billboard_keep_scale = true
+proximity_fade_distance = 50.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_dxih1"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_x7d3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p247a"]
 margin = 0.241
@@ -113,13 +114,13 @@ radius = 0.31743
 height = 0.63486
 
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
-collision_layer = 0
-collision_mask = 2147483392
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 3.59989e-21, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
+collision_layer = 133
+collision_mask = 2147483524
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true
-max_contacts_reported = 3
+max_contacts_reported = 4
 script = ExtResource("1_jb3pr")
 meshNode = NodePath("9MM_001")
 decal = ExtResource("2_wvaat")
@@ -130,6 +131,7 @@ shape = SubResource("CapsuleShape3D_rtfty")
 
 [node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
+visible = false
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_58l50")
 skeleton = NodePath("")
@@ -148,18 +150,15 @@ process_material = SubResource("ParticleProcessMaterial_roi0e")
 draw_pass_1 = SubResource("SphereMesh_ka03k")
 
 [node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_4ke14")
-mesh = SubResource("ImmediateMesh_dxih1")
+mesh = SubResource("ImmediateMesh_x7d3j")
 script = ExtResource("5_aot7s")
-fromWidth = 0.1
-scaleAcceleration = 0.5
+fromWidth = 0.06
 lifespan = 0.05
 
 [node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 collision_layer = 133
 collision_mask = 133
-collision_priority = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 2.27374e-13, 0, -2.27374e-13, 1, 0.00306476, 0.00838715, -0.00751724)
@@ -167,4 +166,3 @@ shape = SubResource("CapsuleShape3D_p247a")
 
 [connection signal="body_entered" from="." to="." method="_on_area_3d_body_entered"]
 [connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

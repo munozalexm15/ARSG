@@ -50,7 +50,7 @@ func _on_create_room_button_pressed():
 	"time" : matchTime, 
 	"goal": objectiveGoal,
 	"perspective": perspectiveSelector.text,
-	"obviousNotSpacewarButGameName": "ARSG"}
+	"obviousNotSpacewarButGameName": "ARSGameTest"}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC

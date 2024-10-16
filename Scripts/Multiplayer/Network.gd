@@ -13,6 +13,7 @@ func _ready():
 	OS.set_environment("SteamGameID", str(480))
 	Steam.steamInitEx()
 	Steam.initAuthentication()
+	Steam.initRelayNetworkAccess()
 	
 	#Steam.lobby_joined.connect(_on_lobby_joined)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
@@ -50,7 +51,7 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
 		Steam.setLobbyData(lobby_id, "goal", str(gameData["goal"]) )
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
-		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSG")
+		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSGameTest")
 		Steam.setLobbyData(lobby_id, "mapImage", gameData["mapImage"])
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		LoadScreenHandler.next_scene = gameData["mapPath"]

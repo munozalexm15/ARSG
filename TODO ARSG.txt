@@ -1,3 +1,14 @@
+Proxima update de calidad de vida
+- Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
+- Bloquear movimiento cuando spawneas en el mundo (mientras eliges arma no debes de poder moverte)
+
+DONE (v.0.1 to v.0.1.1)
+- Fixed bug where bullets wouldn't collide with other players because beign too fast
+- Fixed bug where players that just joined the game could move even without selecting the starting weapon
+- Changed bullet trail from yellow-ish to white (looks better)
+- Modified sniper accuracity, making it harder to hit an enemy without aiming
+- Modified PUMP damage from 12.5 to 15
+- Modified PARV-15 damage from 10 to 16
 
 UPDATE FUTURA TOCHA TO-DO:
 
