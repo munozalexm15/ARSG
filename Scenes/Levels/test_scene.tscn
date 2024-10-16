@@ -1,4 +1,4 @@
-[gd_scene load_steps=289 format=4 uid="uid://cqsfxxgijmr2e"]
+[gd_scene load_steps=290 format=4 uid="uid://cqsfxxgijmr2e"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
@@ -79,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://kdcm8k7t3hdj" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="62_gj30r"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="78_7uvh2"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="79_nusxg"]
+[ext_resource type="PackedScene" uid="uid://cdnnstwhp6bha" path="res://Scenes/Characters/Main_character.tscn" id="80_dmv8q"]
 
 [sub_resource type="Resource" id="Resource_kp5a3"]
 script = ExtResource("5_s7a04")
@@ -2659,6 +2660,9 @@ size = Vector3(2, 2, 1.24323)
 script = ExtResource("1_vgjab")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
+
+[node name="Character" parent="." instance=ExtResource("80_dmv8q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18872, -12.205)
 
 [node name="MatchTimer" type="Timer" parent="."]
 process_mode = 3

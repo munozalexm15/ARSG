@@ -22,8 +22,9 @@ var decal_instance : Decal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#add_collision_exception_with(instigator)
 	await get_tree().create_timer(5).timeout
-	add_collision_exception_with(instigator)
+	
 	queue_free()
 	#disable trail effect for players, it is intended to be only seen from enemies who shoot at you
 	
@@ -32,11 +33,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	distanceTraveled += 0.0001
 	for collision in get_colliding_bodies():
-		if collision.is_class("Target") or collision.is_class("Player") and collision != instigator:
+		if collision.is_class("Target") or collision.is_in_group("PlayerBulletHitbox") and collision != instigator:
 			add_collision_exception_with(collision)
 			_on_area_3d_body_entered(collision)
-			
-			
 
 func spawn_decal(body : Node3D):
 	decal_instance = decal.instantiate()
@@ -46,8 +45,7 @@ func spawn_decal(body : Node3D):
 		decal_instance.rotate_object_local(Vector3(1,0,0), 90)
 
 
-func _on_area_3d_body_entered(body):
-	print(body.name)
+func _on_area_3d_body_entered(body : Node3D):
 	linear_velocity = Vector3.ZERO
 	constant_force = Vector3.ZERO
 	mesh.visible = false
@@ -61,19 +59,20 @@ func _on_area_3d_body_entered(body):
 		
 		queue_free()
 	
-	if body is Player and body != instigator:
+	if body.is_in_group("PlayerBulletHitbox") and body != instigator:
+		var playerHit : Player = body.get_parent()
 		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
 		SFXHandler.play_sfx(audioSteam, instigator, "Effects")
-		body.health -= damage - distanceTraveled
+		playerHit.health -= damage - distanceTraveled
 		playerDamaged.emit()
 		if instigator.hud.animationPlayer.is_playing():
 			instigator.hud.animationPlayer.play("RESET")
 		instigator.hud.animationPlayer.play("hitmarker")
 		
-		body.assign_enemy_to_player_hit.rpc_id(body.name.to_int(), instigator.name.to_int(), body.name.to_int())
-		if body.health <= 0 and body.visible == true:
+		playerHit.assign_enemy_to_player_hit.rpc_id(playerHit.name.to_int(), instigator.name.to_int(), playerHit.name.to_int())
+		if playerHit.health <= 0 and playerHit.visible == true:
 			instigator.hud.killPointsAnimPlayer.play("killNotification")
-			body.die_respawn.rpc(body.name.to_int(), instigator.name.to_int())
+			playerHit.die_respawn.rpc(playerHit.name.to_int(), instigator.name.to_int())
 	
 		queue_free()
 	

@@ -236,7 +236,6 @@ func spawnBullet():
 			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
 			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 		
-		
 		bullet.damage = weaponData.damage
 		bullet.linear_damp = 0
 		
