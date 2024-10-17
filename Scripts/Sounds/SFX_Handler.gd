@@ -28,7 +28,11 @@ func play_sfx_3d(soundPath: String, parentId: String, busLayout : String, maxDis
 	
 	stream.max_distance = maxDistance
 	stream.bus = busLayout
-	stream.connect("finished", Callable(stream, "queue_free"))
+	stream.connect("finished",
+					func(): 
+						stream.queue_free()
+						player_ref.groundCheck_Raycast.playAudio = true
+						)
 	if player_ref != null:
 		#for shooting sounds which don't have to be removed if switching weapon
 		if busLayout == "Weapons" and maxDistance > 50:

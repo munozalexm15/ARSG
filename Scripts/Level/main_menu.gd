@@ -301,3 +301,17 @@ func on_config_changed():
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	var soundValue = GlobalData.configData.get_value("Audio", "WeaponSliderValue", 1)
+	var bus_index = AudioServer.get_bus_index("Weapons")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(soundValue))
+	
+	soundValue = GlobalData.configData.get_value("Audio", "EnvironmentSliderValue", 1)
+	bus_index = AudioServer.get_bus_index("Environment")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(soundValue))
+	
+	soundValue = GlobalData.configData.get_value("Audio", "EffectsSliderValue", 1)
+	bus_index = AudioServer.get_bus_index("Effects")
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(soundValue))
+	
+	

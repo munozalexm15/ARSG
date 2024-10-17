@@ -61,3 +61,4 @@ func _on_area_3d_body_entered(body : Node3D):
 	#fade_tween.tween_property(decal_instance, "modulate:a", 0, 1.5)
 	#await fade_tween.finished
 	#decal_instance.queue_free()
+	queue_free()

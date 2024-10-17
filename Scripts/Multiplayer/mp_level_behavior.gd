@@ -42,6 +42,8 @@ var matchTimeLeft = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
 	playerSpawner.spawn_function = Callable(self, "init_player")
