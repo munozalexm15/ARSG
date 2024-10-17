@@ -22,7 +22,6 @@ var decal_instance : Decal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#add_collision_exception_with(instigator.hitbox)
 	await get_tree().create_timer(5).timeout
 	
 	queue_free()
@@ -33,8 +32,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	distanceTraveled += 0.0001
 	for collision in get_colliding_bodies():
-		if collision.is_class("Target") or (collision.is_in_group("PlayerBulletHitbox") and collision != instigator.hitbox):
-			print("colision detectada, plicando dano")
+		if collision.is_class("Target") or (collision.is_class("Player") and collision != instigator):
 			_on_area_3d_body_entered(collision)
 
 func spawn_decal(body : Node3D):
@@ -58,7 +56,7 @@ func _on_area_3d_body_entered(body : Node3D):
 		
 		queue_free()
 	
-	if body.is_in_group("PlayerBulletHitbox"): #and body != instigator.hitbox:
+	if body.is_class("Player"): #and body != instigator:
 		var playerHit : Player = body.get_parent()
 		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
 		SFXHandler.play_sfx(audioSteam, instigator, "Effects")

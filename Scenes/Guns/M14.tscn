@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_krcch"]
 [ext_resource type="ArrayMesh" uid="uid://b6fbka4hyo5se" path="res://GameResources/Meshes/Guns/Bullets/7,62MM/7-62Shell.tres" id="1_xcyaf"]
 [ext_resource type="Resource" uid="uid://b5k0vb48uadrv" path="res://Scripts/Guns/Resources/M14_Resource.tres" id="2_esjv3"]
-[ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_mae6q"]
+[ext_resource type="PackedScene" uid="uid://7evxytscrllj" path="res://Scenes/Bullets/Bullet.tscn" id="3_ex2f8"]
 [ext_resource type="Curve" uid="uid://cl0o76t4ei4cx" path="res://GameResources/Curves/M14/M14_RecoilRotation_X.tres" id="4_b1x5c"]
 [ext_resource type="Curve" uid="uid://b51mua5a4bbot" path="res://GameResources/Curves/M14/M14_RecoilRotation_Z.tres" id="5_gm6px"]
 [ext_resource type="Curve" uid="uid://juwb2jsv7aw5" path="res://GameResources/Curves/M14/M14_RecoilPosition_Z.tres" id="6_p6h6b"]
@@ -2074,7 +2074,7 @@ _data = {
 [node name="M14" type="Node3D"]
 script = ExtResource("1_krcch")
 weaponData = ExtResource("2_esjv3")
-bullet_type = ExtResource("3_mae6q")
+bullet_type = ExtResource("3_ex2f8")
 recoil_rotation_x = ExtResource("4_b1x5c")
 recoil_rotation_z = ExtResource("5_gm6px")
 recoil_position_z = ExtResource("6_p6h6b")
@@ -2082,7 +2082,7 @@ recoil_amplitude = Vector3(-1, 0.1, 1.3)
 lerp_speed = 19.0
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 7.53117, 1.99273, -0.0707574)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.53117, 1.99273, -0.0707574)
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)

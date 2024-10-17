@@ -127,8 +127,6 @@ func _physics_process(delta):
 			time_to_shoot = weaponData.cadency * delta
 	
 		if Input.is_action_just_pressed("Fire") and weaponData.bulletsInMag <= 0 and weaponData.reserveAmmo <= 0:
-			if not hands.player.animationPlayer.is_playing():
-				hands.player.animationPlayer.play("out_ammo")
 				no_ammo_sound.play()
 	
 	if time_to_shoot > 0:
@@ -195,9 +193,9 @@ func spawnBullet():
 	var _level_root = Network.game
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
-			var bullet : Bullet = bullet_type.instantiate()
+			var bullet : Node3D = bullet_type.instantiate()
 			bullet.instigator = hands.player
-			
+			bullet.SPEED = 10.0
 			#if player gets damaged
 			bullet.playerDamaged.connect(update_health)
 			#Hitmarker in hud
@@ -206,18 +204,20 @@ func spawnBullet():
 			
 			Network.game.bullets_node.add_child(bullet)
 			bullet.transform = muzzle.global_transform
-			
+			#bullet.rotation.z += randf_range(-0.1, 0.1)
+			bullet.rotation.y += randf_range(-0.06, 0.06)
+			bullet.rotation.x += randf_range(-0.06, 0.06)
 			if hands.player.state_machine.state.name == "Crouch":
 				bullet.position.y -= 0.06
 	
-			bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
-			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
-			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
+			#bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
+			#bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
+			#bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
 			
 			bullet.damage = weaponData.damage
 			
 	else:
-		var bullet : Bullet = bullet_type.instantiate()
+		var bullet = bullet_type.instantiate()
 		bullet.instigator = hands.player
 		#if player gets damaged
 		bullet.playerDamaged.connect(update_health)
@@ -226,18 +226,21 @@ func spawnBullet():
 		#For when player kills somebody (atm just for update hud points)
 		
 		Network.game.bullets_node.add_child(bullet)
-		bullet.transform = muzzle.global_transform
+		bullet.position = muzzle.global_position
+		bullet.transform.basis = muzzle.global_transform.basis
 		
 		if hands.player.state_machine.state.name == "Crouch":
 			bullet.position.y -= 0.06
 		
-		bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
-		if weaponData.weaponType == "Sniper" and not Input.is_action_pressed("ADS"):
-			bullet.linear_velocity += muzzle.global_transform.basis.z * randf_range(-160, 160)
-			bullet.linear_velocity += muzzle.global_transform.basis.y * randf_range(-160, 160)
+		#bullet.linear_velocity = muzzle.global_transform.basis.x * 2000
+		if weaponData.weaponType == "Sniper":
+			bullet.SPEED = 15.0
+			if not Input.is_action_pressed("ADS"):
+				bullet.rotation.y += randf_range(-0.1, 0.1)
+				bullet.rotation.x += randf_range(-0.1, 0.1)
 		
 		bullet.damage = weaponData.damage
-		bullet.linear_damp = 0
+		#bullet.linear_damp = 0
 		
 	show_muzzleFlash()
 

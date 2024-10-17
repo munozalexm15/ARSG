@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=4 uid="uid://7evxytscrllj"]
+
+[ext_resource type="Script" path="res://Scripts/Guns/Bullets/shell_behavior.gd" id="1_daq1i"]
+[ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_v6uc0"]
+[ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_4pcjl"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/Trail3D.gd" id="4_h5wdu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6m3gs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("2_v6uc0")
+roughness = 0.5
+emission = Color(0.670588, 0.419608, 0, 1)
+emission_energy_multiplier = 5.15
+emission_texture = ExtResource("3_4pcjl")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ye3jn"]
+_surfaces = [{
+"aabb": AABB(0.377025, -0.0452761, -1.26593, 0.090552, 0.090562, 0.087558),
+"format": 34896613377,
+"index_count": 60,
+"index_data": PackedByteArray("BAABAAUABAAAAAEAAAAJAAIAAAAEAAkAAAADAAEAAAACAAMAAQAIAAUAAQAGAAgAAwAGAAEAAwAHAAYABAAKAAkABAAFAAoACQADAAIACQAKAAMACgAIAAsACgAFAAgAAwALAAcAAwAKAAsABwAIAAYABwALAAgA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/3/3/6j/AAD/f/f///8AAAAA+3+o/wAAAAD7f///AAD///t/qP8AAP//+3///wAA/38AxwAAAABKNft/AAAAALPK+38AAAAA/38AAKj/AAD/fwAA//8AAP9/9jgAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_42wap"]
+resource_name = "bullet_9MM_001"
+_surfaces = [{
+"aabb": AABB(0.377025, -0.0452761, -1.26593, 0.090552, 0.090562, 0.087558),
+"attribute_data": PackedByteArray("bCrVko5wZMaOcGTG7HCTUo5we23scJNSjnB7bVUQK6pqWmTGalpkxmpae21qWnttKGGTUihhk1IOQ82tsoZkxrKGZMaVhNBSlYTQUrKGe22yhnttumkRQOxwFjTscBY0ZW2RNLhnFjS4ZxY0RXbJQx96FjQfehY0ACnDxI5wZMaOcGTG7HCTUo5we23scJNSjnB7bbl5/jfscBY07HAWNA=="),
+"format": 34896613399,
+"index_count": 60,
+"index_data": PackedByteArray("EAAGABQAEAACAAYAAAAeAAcAAAAOAB4AAQALAAQAAQAJAAsAAwAcABEAAwAWABwADAAXAAUADAAZABcADwAkACAADwATACQAHwAKAAgAHwAiAAoAIQAdACYAIQASAB0ADQAnABoADQAjACcAGAAbABUAGAAlABsA"),
+"material": SubResource("StandardMaterial3D_0erg7"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 40,
+"vertex_data": PackedByteArray("/3/3/6j/9IL/f/f/qP/3xf9/9/+o//rF/3/3////Tsv/f/f////3xf9/9////2jL/3/3////+sUAAPt/qP+mggAA+3+o///FAAD7f6j/98UAAPt/////xQAA+3////fFAAD7f///ZcsAAPt///9ly///+3+o/0GD///7f6j//8X///t/qP/6xf//+3///0LL///7f///Qsv///t/////xf//+3////rF/38AxwAA////fwDHAABxy/9/AMcAAHHLSjX7fwAA//9KNft/AABsy0o1+38AAGzLs8r7fwAA//+zyvt/AABfy7PK+38AAF/L/38AAKj/9IL/fwAAqP//xf9/AACo///F/38AAP//Tsv/fwAA////xf9/AAD//2jL/38AAP///8X/f/Y4AAD///9/9jgAAHHL/3/2OAAAccv//////BwCRgE6/py2yOhh/BwCRjfiNLcBOv6c/////wXGAWP8HAJGBcYBY/wcAkYt4je3NzfQnf/////+4v65ATr+nK3Iw2E8Hq1I/uL+uQE6/pwe0B9Q0MhVYlTiLbel0KVQReIxtzE3uJ2l0KVQwsgcYuMdw0j/////BcYBY/7i/rkXHrZIBcYBYzU3xp3+4v65LNEsUaod0UguN6md")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ye3jn")
+
+[sub_resource type="Gradient" id="Gradient_se4o4"]
+offsets = PackedFloat32Array(0.0985916, 0.996479)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1pfl"]
+gradient = SubResource("Gradient_se4o4")
+fill_to = Vector2(0.991453, 0.017094)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_padnw"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+albedo_texture = SubResource("GradientTexture2D_i1pfl")
+billboard_keep_scale = true
+proximity_fade_distance = 50.0
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_5auix"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_daq1i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.28022, 0, 0, 0, 1.04617, 0, 0, 0, 1.15033, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_6m3gs")
+
+[node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
+transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
+visible = false
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_42wap")
+skeleton = NodePath("")
+
+[node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
+material_override = SubResource("StandardMaterial3D_padnw")
+mesh = SubResource("ImmediateMesh_5auix")
+script = ExtResource("4_h5wdu")
+fromWidth = 0.2
+lifespan = 0.05
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -20)
+collision_mask = 7
+hit_from_inside = true
+debug_shape_custom_color = Color(0.758277, 0.51391, 9.62615e-07, 1)

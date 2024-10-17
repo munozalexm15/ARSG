@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_p6qro"]
 [ext_resource type="Resource" uid="uid://djpuiinpxuhnt" path="res://Scripts/Guns/Resources/remington_870_Resource.tres" id="2_u3ci8"]
-[ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_mlnjr"]
+[ext_resource type="PackedScene" uid="uid://7evxytscrllj" path="res://Scenes/Bullets/Bullet.tscn" id="3_3rhde"]
 [ext_resource type="Curve" uid="uid://djm48utct3gd5" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_X.tres" id="4_lps0n"]
 [ext_resource type="Curve" uid="uid://b7bacf7vjxpa6" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_Z.tres" id="5_orud4"]
 [ext_resource type="Curve" uid="uid://de35cm0ulsia4" path="res://GameResources/Curves/Remington870/R870_RecoilPosition_Z.tres" id="6_au2cj"]
@@ -2593,7 +2593,7 @@ shadow_mesh = SubResource("ArrayMesh_w1pko")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01973, 0, 0)
 script = ExtResource("1_p6qro")
 weaponData = ExtResource("2_u3ci8")
-bullet_type = ExtResource("3_mlnjr")
+bullet_type = ExtResource("3_3rhde")
 recoil_rotation_x = ExtResource("4_lps0n")
 recoil_rotation_z = ExtResource("5_orud4")
 recoil_position_z = ExtResource("6_au2cj")
@@ -2950,7 +2950,7 @@ mesh = SubResource("ArrayMesh_vj7qq")
 skeleton = NodePath("")
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10.7823, 0.536058, 0.309935)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.7823, 0.536058, 0.309935)
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
 transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0.10217, 0)
