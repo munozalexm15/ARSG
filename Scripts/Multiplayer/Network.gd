@@ -51,8 +51,9 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
 		Steam.setLobbyData(lobby_id, "goal", str(gameData["goal"]) )
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
-		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSGameTest")
+		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSGame")
 		Steam.setLobbyData(lobby_id, "mapImage", gameData["mapImage"])
+		Steam.setLobbyData(lobby_id, "version", gameData["version"])
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
 		LoadScreenHandler.next_scene = gameData["mapPath"]
 		Steam.setLobbyJoinable(Network.lobby_id, false)

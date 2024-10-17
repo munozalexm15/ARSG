@@ -1,6 +1,6 @@
 Proxima update de calidad de vida
 - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
-- Volver a cambiar el filtro de busqueda de lobbies de "ARSGameTest" a "ARSG"
+- Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
 
 DONE (v.0.1 to v.0.1.1)
 - Fixed bug where bullets wouldn't collide with other players because beign too fast (might still fail if players are too close to each other, but it's greatly improved in comparison to the last version. Still, will look into it.)
@@ -14,6 +14,8 @@ DONE (v.0.1 to v.0.1.1)
 - Modified PUMP bullet spread from 0.3 to 0.1
 - Modified PARV-15 damage from 10 to 16
 - Changed bullet trail from yellow-ish to white (looks better)
+
+- Lobby menu now filters by the game version. You will not be able to see lobbies from previous versions or future ones.
 
 UPDATE FUTURA TOCHA TO-DO:
 
