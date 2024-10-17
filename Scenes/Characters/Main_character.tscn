@@ -201,11 +201,11 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
-radius = 0.0604604
+radius = 0.27633
 height = 1.6958
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
-radius = 0.05085
+radius = 0.274864
 height = 1.32935
 
 [sub_resource type="Animation" id="Animation_3v13c"]

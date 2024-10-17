@@ -15,17 +15,21 @@ var instigator : Player
 var damage : float
 var distanceTraveled: float = 0
 var decal_instance : Decal
+var ready_to_move = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await get_tree().process_frame
+	ready_to_move = true
 	await get_tree().create_timer(5).timeout
 	queue_free()
 
 func _physics_process(delta: float) -> void:
 	distanceTraveled += 0.0001
-	position += transform.basis * Vector3(0,0,-SPEED)
-	if ray.is_colliding():
-		_on_area_3d_body_entered(ray.get_collider())
+	if ready_to_move:
+		position += transform.basis * Vector3(0,0,-SPEED)
+		if ray.is_colliding():
+			_on_area_3d_body_entered(ray.get_collider())
 
 func _on_area_3d_body_entered(body : Node3D):
 	print(body.name)
