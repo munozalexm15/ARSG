@@ -114,7 +114,7 @@ height = 1.0
 [node name="RigidBody3D" type="RigidBody3D" groups=["WeaponCollisionException"]]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 3.59989e-21, 4.37114e-08, -1, -4.37114e-08, 0.000192426, 0, -0.000368014)
 collision_layer = 4
-collision_mask = 2147483392
+collision_mask = 2147483396
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true

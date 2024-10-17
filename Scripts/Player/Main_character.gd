@@ -104,6 +104,8 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
+	hitbox.add_collision_exception_with(self)
+
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	
