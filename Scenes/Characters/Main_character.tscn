@@ -205,11 +205,11 @@ radius = 0.352695
 height = 2.017
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_37yn0"]
-radius = 0.323905
+radius = 0.0604604
 height = 1.6958
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rgde6"]
-radius = 0.323236
+radius = 0.05085
 height = 1.32935
 
 [sub_resource type="Animation" id="Animation_3v13c"]
@@ -364,9 +364,16 @@ next/soft_landing = &"RESET"
 blend_times = [&"hard_landing", &"RESET", 0.2, &"hit", &"RESET", 0.2, &"out_ammo", &"RESET", 0.2, &"soft_landing", &"RESET", 0.2, &"soft_landing", &"out_ammo", 0.2]
 
 [node name="BulletHitbox" type="StaticBody3D" parent="." groups=["PlayerBulletHitbox"]]
-collision_layer = 4
-collision_mask = 4
+disable_mode = 1
+collision_layer = 7
+collision_mask = 7
 input_ray_pickable = false
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 constant_linear_velocity = Vector3(0, -100, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletHitbox"]
