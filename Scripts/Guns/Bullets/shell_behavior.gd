@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 		_on_area_3d_body_entered(ray.get_collider())
 
 func _on_area_3d_body_entered(body : Node3D):
-	print(body.name)
 	#spawn_decal(body)
 	if body is Target and body != self and not body.isDowned:
 		body.targetData.actualHealth -= damage - distanceTraveled

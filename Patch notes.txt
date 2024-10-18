@@ -1,0 +1,14 @@
+v.0.1 to v.0.1.1
+- Fixed bug where bullets wouldn't collide with other players because beign too fast (might still fail if players are too close to each other, but it's greatly improved in comparison to the last version. Still, will look into it.)
+- Fixed bug where the footsteps sound would play a lot when dying
+- Fixed bug where footsteps would play twice when aiming
+- Fixed bug that didn't apply volume settings when joining a match
+- Fixed bug where players that just joined the game could move even without selecting the starting weapon
+
+- Modified sniper accuracity, making it harder to hit an enemy without aiming
+- Modified PUMP damage from 12.5 to 15
+- Modified PUMP bullet spread from 0.3 to 0.1
+- Modified PARV-15 damage from 10 to 16
+- Changed bullet trail from yellow-ish to white (looks better)
+
+- Lobby menu now filters by the game version. You will not be able to see lobbies from previous versions or future ones.
