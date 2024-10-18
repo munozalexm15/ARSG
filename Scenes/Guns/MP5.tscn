@@ -1922,6 +1922,7 @@ _data = {
 }
 
 [node name="MP5" type="Node3D"]
+transform = Transform3D(0.999962, -0.00530894, -0.00698088, 0.00523568, 0.999932, -0.0104718, 0.00703599, 0.0104348, 0.999921, 0, 0, 0)
 script = ExtResource("1_q6gp1")
 weaponData = ExtResource("2_65qhb")
 bullet_type = ExtResource("3_2ngtj")

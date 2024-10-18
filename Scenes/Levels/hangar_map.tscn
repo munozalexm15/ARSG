@@ -1,4 +1,4 @@
-[gd_scene load_steps=760 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=763 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -128,11 +128,16 @@
 [ext_resource type="AudioStream" uid="uid://bj10div0j13p5" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-009.ogg" id="105_gb0sa"]
 [ext_resource type="AudioStream" uid="uid://ccrkscqgwbp1q" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-010.ogg" id="106_650xn"]
 [ext_resource type="Texture2D" uid="uid://tvbkhxjjaytf" path="res://GameResources/Textures/ShootingRange/Targets.png" id="106_g7aia"]
+[ext_resource type="AudioStream" uid="uid://clda081piaqv4" path="res://GameResources/Sounds/Ground/Metal/metal_01_a.ogg" id="107_4u7bw"]
 [ext_resource type="AudioStream" uid="uid://ber3ckggu122o" path="res://GameResources/Sounds/Ground/Wood/Steps_wood-011.ogg" id="107_idgql"]
 [ext_resource type="Texture2D" uid="uid://ddte4g2vsgw2d" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Red.png" id="107_j448e"]
 [ext_resource type="Texture2D" uid="uid://dore47wv1vxys" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Green.png" id="108_6nb8d"]
+[ext_resource type="AudioStream" uid="uid://fftw540hthxs" path="res://GameResources/Sounds/Ground/Metal/metal_01_b.ogg" id="108_8wfmg"]
 [ext_resource type="Texture2D" uid="uid://dq7ndsljf8sh" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Yellow.png" id="109_8o4rg"]
+[ext_resource type="AudioStream" uid="uid://cos3yvkgt4bxt" path="res://GameResources/Sounds/Ground/Metal/metal_01_c.ogg" id="109_vest0"]
 [ext_resource type="Texture2D" uid="uid://d1ela7mv7g6ia" path="res://GameResources/Textures/ShootingRange/ShippingContainer_Blue.png" id="110_5s3rr"]
+[ext_resource type="AudioStream" uid="uid://thusn1ivt02c" path="res://GameResources/Sounds/Ground/Metal/metal_01_d.ogg" id="110_koqfr"]
+[ext_resource type="AudioStream" uid="uid://xthb55al2a22" path="res://GameResources/Sounds/Ground/Metal/metal_01_e.ogg" id="111_lp6m0"]
 [ext_resource type="PackedScene" uid="uid://ba4fu4wjgsh0y" path="res://GameResources/Meshes/PSXModels/meshes/tools/Axe01.blend" id="111_mcqxs"]
 [ext_resource type="PackedScene" uid="uid://dpnc0y3b1klat" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag01.blend" id="112_fo51s"]
 [ext_resource type="PackedScene" uid="uid://ih5f3pjdhpk8" path="res://GameResources/Meshes/PSXModels/meshes/debris/Trashbag03.blend" id="113_fhfef"]
@@ -154,15 +159,10 @@
 [ext_resource type="Texture2D" uid="uid://becul4ri6axqc" path="res://GameResources/Textures/Environment/Rock01c_a.png" id="125_1tcqa"]
 [ext_resource type="AudioStream" uid="uid://djxipi880gaq6" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-016.ogg" id="125_365q7"]
 [ext_resource type="Texture2D" uid="uid://bmng4534v7dat" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/PineTree01_a.png" id="126_g5ggm"]
-[ext_resource type="AudioStream" uid="uid://c3qhlinnb72s7" path="res://GameResources/Sounds/Ground/Metal/metal_01_a.wav" id="126_roys3"]
 [ext_resource type="AudioStream" uid="uid://denk3t1lwdh11" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-015.ogg" id="126_txj7o"]
-[ext_resource type="AudioStream" uid="uid://dh0hbtk4f6bcy" path="res://GameResources/Sounds/Ground/Metal/metal_01_b.wav" id="127_4isdv"]
 [ext_resource type="Texture2D" uid="uid://fga6nwn14xpa" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01b_a.png" id="127_g8vrm"]
-[ext_resource type="AudioStream" uid="uid://bt06qhyc3hfgu" path="res://GameResources/Sounds/Ground/Metal/metal_01_c.wav" id="128_gmcyd"]
 [ext_resource type="Texture2D" uid="uid://33n1ud676441" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01c_a.png" id="128_lkbnt"]
 [ext_resource type="PackedScene" uid="uid://cy5qwy54hn6cc" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log02.blend" id="129_iotqh"]
-[ext_resource type="AudioStream" uid="uid://4jjouubnykfu" path="res://GameResources/Sounds/Ground/Metal/metal_01_d.wav" id="129_liahb"]
-[ext_resource type="AudioStream" uid="uid://ntuus7hd7bl1" path="res://GameResources/Sounds/Ground/Metal/metal_01_e.wav" id="130_35b77"]
 [ext_resource type="PackedScene" uid="uid://be7pi4mww0ssu" path="res://GameResources/Meshes/PSXModels/meshes/foliage/Log01.blend" id="130_v28ch"]
 [ext_resource type="Texture2D" uid="uid://dl5wjc62lfwaj" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/StreetLight01On_a.png" id="131_traxc"]
 [ext_resource type="Texture2D" uid="uid://dmkwqurrjw73r" path="res://GameResources/Meshes/PSXModels/textures/meshes/traffic/RoadGate01_a.jpg" id="132_63sem"]
@@ -2456,7 +2456,7 @@ shadow_mesh = SubResource("ArrayMesh_luafh")
 
 [sub_resource type="Resource" id="Resource_8fjbg"]
 script = ExtResource("21_426mr")
-walk_sound = Array[AudioStream]([ExtResource("126_roys3"), ExtResource("127_4isdv"), ExtResource("128_gmcyd"), ExtResource("129_liahb"), ExtResource("130_35b77")])
+walk_sound = Array[AudioStream]([ExtResource("107_4u7bw"), ExtResource("108_8wfmg"), ExtResource("109_vest0"), ExtResource("110_koqfr"), ExtResource("111_lp6m0")])
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qq5jh"]
 data = PackedVector3Array(0, 3, -0.0375, -1.5, 3, 0.0375, -1.5, 3, -0.0375, 0, 3, -0.0375, 0, 3, 0.0375, -1.5, 3, 0.0375, 0, 0, 0.0375, -1.5, 3, 0.0375, 0, 3, 0.0375, 0, 0, 0.0375, -1.5, 0, 0.0375, -1.5, 3, 0.0375, -1.5, 0, 0.0375, -1.5, 3, -0.0375, -1.5, 3, 0.0375, -1.5, 0, 0.0375, -1.5, 0, -0.0375, -1.5, 3, -0.0375, -1.5, 0, -0.0375, 0, 0, 0.0375, 0, 0, -0.0375, -1.5, 0, -0.0375, -1.5, 0, 0.0375, 0, 0, 0.0375, 0, 0, -0.0375, 0, 3, 0.0375, 0, 3, -0.0375, 0, 0, -0.0375, 0, 0, 0.0375, 0, 3, 0.0375, -1.5, 0, -0.0375, 0, 3, -0.0375, -1.5, 3, -0.0375, -1.5, 0, -0.0375, 0, 0, -0.0375, 0, 3, -0.0375, -1.4693, 1.3742, 0.0626, -1.4693, 1.7498, -0.0626, -1.4693, 1.7498, 0.0626, -1.4693, 1.3742, 0.0626, -1.4693, 1.3742, -0.0626, -1.4693, 1.7498, -0.0626, -1.4693, 1.3742, -0.0626, -1.3441, 1.7498, -0.0626, -1.4693, 1.7498, -0.0626, -1.4693, 1.3742, -0.0626, -1.3441, 1.3742, -0.0626, -1.3441, 1.7498, -0.0626, -1.3441, 1.3742, -0.0626, -1.3441, 1.7498, 0.0626, -1.3441, 1.7498, -0.0626, -1.3441, 1.3742, -0.0626, -1.3441, 1.3742, 0.0626, -1.3441, 1.7498, 0.0626, -1.3441, 1.3742, 0.0626, -1.4693, 1.7498, 0.0626, -1.3441, 1.7498, 0.0626, -1.3441, 1.3742, 0.0626, -1.4693, 1.3742, 0.0626, -1.4693, 1.7498, 0.0626, -1.4693, 1.3742, -0.0626, -1.3441, 1.3742, 0.0626, -1.3441, 1.3742, -0.0626, -1.4693, 1.3742, -0.0626, -1.4693, 1.3742, 0.0626, -1.3441, 1.3742, 0.0626, -1.3441, 1.7498, -0.0626, -1.4693, 1.7498, 0.0626, -1.4693, 1.7498, -0.0626, -1.3441, 1.7498, -0.0626, -1.3441, 1.7498, 0.0626, -1.4693, 1.7498, 0.0626, -1.4994, 1.5562, 0.0891, -1.4994, 1.7082, 0.0626, -1.4994, 1.7082, 0.0891, -1.4994, 1.5562, 0.0891, -1.4994, 1.5562, 0.0626, -1.4994, 1.7082, 0.0626, -1.4994, 1.5562, 0.0626, -1.3441, 1.7082, 0.0626, -1.4994, 1.7082, 0.0626, -1.4994, 1.5562, 0.0626, -1.3441, 1.5562, 0.0626, -1.3441, 1.7082, 0.0626, -1.3441, 1.5562, 0.0626, -1.3441, 1.7082, 0.0891, -1.3441, 1.7082, 0.0626, -1.3441, 1.5562, 0.0626, -1.3441, 1.5562, 0.0891, -1.3441, 1.7082, 0.0891, -1.3441, 1.5562, 0.0891, -1.4994, 1.7082, 0.0891, -1.3441, 1.7082, 0.0891, -1.3441, 1.5562, 0.0891, -1.4994, 1.5562, 0.0891, -1.4994, 1.7082, 0.0891, -1.4994, 1.5562, 0.0626, -1.3441, 1.5562, 0.0891, -1.3441, 1.5562, 0.0626, -1.4994, 1.5562, 0.0626, -1.4994, 1.5562, 0.0891, -1.3441, 1.5562, 0.0891, -1.3441, 1.7082, 0.0626, -1.4994, 1.7082, 0.0891, -1.4994, 1.7082, 0.0626, -1.3441, 1.7082, 0.0626, -1.3441, 1.7082, 0.0891, -1.4994, 1.7082, 0.0891, -1.4994, 1.5562, -0.0626, -1.4994, 1.7082, -0.0891, -1.4994, 1.7082, -0.0626, -1.4994, 1.5562, -0.0626, -1.4994, 1.5562, -0.0891, -1.4994, 1.7082, -0.0891, -1.4994, 1.5562, -0.0891, -1.3441, 1.7082, -0.0891, -1.4994, 1.7082, -0.0891, -1.4994, 1.5562, -0.0891, -1.3441, 1.5562, -0.0891, -1.3441, 1.7082, -0.0891, -1.3441, 1.5562, -0.0626, -1.4994, 1.7082, -0.0626, -1.3441, 1.7082, -0.0626, -1.3441, 1.5562, -0.0626, -1.4994, 1.5562, -0.0626, -1.4994, 1.7082, -0.0626, -1.4994, 1.5562, -0.0891, -1.3441, 1.5562, -0.0626, -1.3441, 1.5562, -0.0891, -1.4994, 1.5562, -0.0891, -1.4994, 1.5562, -0.0626, -1.3441, 1.5562, -0.0626, -1.3441, 1.7082, -0.0891, -1.4994, 1.7082, -0.0626, -1.4994, 1.7082, -0.0891, -1.3441, 1.7082, -0.0891, -1.3441, 1.7082, -0.0626, -1.4994, 1.7082, -0.0626, -1.3441, 1.5562, -0.0891, -1.3441, 1.7082, -0.0626, -1.3441, 1.7082, -0.0891, -1.3441, 1.5562, -0.0891, -1.3441, 1.5562, -0.0626, -1.3441, 1.7082, -0.0626)
@@ -3564,6 +3564,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8dq1m")
+
+[sub_resource type="Resource" id="Resource_qh5wr"]
+script = ExtResource("21_426mr")
+walk_sound = Array[AudioStream]([ExtResource("107_4u7bw"), ExtResource("108_8wfmg"), ExtResource("109_vest0"), ExtResource("110_koqfr"), ExtResource("111_lp6m0")])
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0aqdo"]
 points = PackedVector3Array(0.0848287, 5.63087, -7.11082, -0.168279, 3.35335, -6.85791, -0.168279, 3.60663, -7.11082, -0.168279, 3.60663, -4.32683, 0.337937, 3.35335, -5.33926, -0.168279, 5.63087, -8.37655, 0.0848287, 5.12453, -8.37655, 0.337937, 3.60663, -4.32683, -0.168279, 5.37759, -6.6042, 0.0848287, 3.35335, -6.85791, 0.337937, 4.11275, -5.59256, -0.168279, 3.35335, -4.32683, 0.0848287, 5.63087, -8.37655, -0.168279, 5.12453, -8.37655, 0.337937, 3.35335, -4.32683, -0.168279, 5.63087, -7.11082, 0.0848287, 5.37759, -6.6042, 0.337937, 4.11275, -5.08635, 0.337937, 3.60663, -5.59256, 0.0848287, 3.60663, -7.11082)
@@ -5920,6 +5924,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lb3qx")
 
+[sub_resource type="Resource" id="Resource_i5mix"]
+script = ExtResource("21_426mr")
+walk_sound = Array[AudioStream]([ExtResource("107_4u7bw"), ExtResource("108_8wfmg"), ExtResource("109_vest0"), ExtResource("110_koqfr"), ExtResource("111_lp6m0")])
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2v4o1"]
 resource_name = "ShippingContainer"
 transparency = 4
@@ -5994,6 +6002,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lb3qx")
+
+[sub_resource type="Resource" id="Resource_lhlbc"]
+script = ExtResource("21_426mr")
+walk_sound = Array[AudioStream]([ExtResource("107_4u7bw"), ExtResource("108_8wfmg"), ExtResource("109_vest0"), ExtResource("110_koqfr"), ExtResource("111_lp6m0")])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkqbc"]
 resource_name = "ShippingContainer"
@@ -11580,7 +11592,7 @@ skeleton = NodePath("")
 collision_layer = 65
 collision_mask = 65
 script = ExtResource("20_mikd0")
-groundData = SubResource("Resource_8fjbg")
+groundData = SubResource("Resource_qh5wr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Inside/EFT/EFT_Chassis/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_0aqdo")
@@ -12758,7 +12770,7 @@ shape = SubResource("ConcavePolygonShape3D_le0gd")
 collision_layer = 65
 collision_mask = 65
 script = ExtResource("20_mikd0")
-groundData = SubResource("Resource_8fjbg")
+groundData = SubResource("Resource_i5mix")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Inside/shootingrange/Prop_ShippingContainer3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3s462")
@@ -12792,7 +12804,7 @@ shape = SubResource("ConcavePolygonShape3D_1q6bh")
 collision_layer = 65
 collision_mask = 65
 script = ExtResource("20_mikd0")
-groundData = SubResource("Resource_8fjbg")
+groundData = SubResource("Resource_lhlbc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Inside/shootingrange/Prop_ShippingContainer4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_3s462")

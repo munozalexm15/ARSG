@@ -2,17 +2,26 @@ PROXIMA UPDATE:
 - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 - Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
-- Recortar audios de caminar en metal (Tarda mucho en reproducirse el siguiente por eso)
-- Fixear recoil de las armas apuntando
 - Fixear bug modelo de las manos / cuerpo del player que se une
+- Fixear colisiones backface de algunas cosas (en el mapa de domingo por la tarde -> el tren)
+
+DONE (v.0.1.1 -> v0.1.2)
+- Fixed bug where metal footstep sound wouldn't play if you were sprinting
+- Improved PARV-15 (SMG) recoil behavior, making ADS better.
+- Improved ALBR-1983 (AR) recoil behavior, making ADS better.
+- Made PARV-15 ADS Position closer to camera.
+- Made ALBR-1983 (AR) ADS Position a little more far to the camera.
+- Made SLBR-4 (Combat rifle) ADS Position closer to camera.
+
+
 
 UPDATE FUTURA TOCHA TO-DO:
 
  - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
  - Fixear bugs al conectarse a la sala
- - Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
+ / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Hacer mejores spawns con comprobaciones de distancia
- - Mejorar colisiones de las balas (funcionan pero si la colisión está muy cerca no lo detecta de primeras)
+ / Mejorar colisiones de las balas (funcionan pero si la colisión está muy cerca no lo detecta de primeras)
  - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
  - Impactos de bala
  - Hacer que al mapear controles sea persistente (config básicamente)
@@ -21,8 +30,6 @@ UPDATE FUTURA TOCHA TO-DO:
  - Añadir invitación por steam (WIP)
  - Añadir más sonidos en el UI (1h)
  - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
- - Reposicionar modelos de las armas en pov outside
- - Fixear que boton de salir del juego del menu de pausa peta el scoreboard (mirar el de exit match que si funciona para ver en que diferencian)
  - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
  - Fixear si se une alguien y el host todavia no ha elegido arma que no sea visible (ahora lo es)
 

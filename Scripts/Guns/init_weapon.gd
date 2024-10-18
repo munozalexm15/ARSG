@@ -39,6 +39,7 @@ var time_to_shoot = 0
 
 #WeaponRecoil
 var initial_recoil_amplitude: Vector3 
+var initial_rotation_values : Vector3
 
 var target_rot: Vector3
 var target_pos: Vector3
@@ -58,7 +59,7 @@ func _ready():
 	if not is_multiplayer_authority():
 		return
 	initial_recoil_amplitude = recoil_amplitude
-
+	initial_rotation_values = rotation
 	weaponData = weaponData.duplicate()
 	
 	weaponData.selectedFireMode = weaponData.fireModes[0]
@@ -140,7 +141,7 @@ func _physics_process(delta):
 
 @rpc("any_peer", "call_local", "reliable")
 func apply_recoil(delta):
-	if current_time < 1:
+	if current_time < 0.5:
 		current_time += delta
 		
 		position.z = lerp(position.z, target_pos.z, lerp_speed * delta)
@@ -150,6 +151,10 @@ func apply_recoil(delta):
 		target_rot.z = recoil_rotation_z.sample(current_time) * recoil_amplitude.y
 		target_rot.x = recoil_rotation_x.sample(current_time) * -recoil_amplitude.x
 		target_pos.z = recoil_position_z.sample(current_time) * recoil_amplitude.z
+	
+	#este else es para cuando no dispara, por lo cual restaurar rotacion de y del modelo
+	else:
+		rotation.z = lerp(rotation.z, initial_rotation_values.z, delta * 20)
 
 
 @rpc("authority", "call_local", "reliable")

@@ -26,4 +26,4 @@ weaponPickupScene = "res://Scenes/Guns/Pickups/M14_Pickup.tscn"
 weaponSpawnPosition = Vector3(1.42224, -0.812206, 1.27714)
 weaponImage = ExtResource("2_u2a02")
 weaponExternalScene = ExtResource("2_artkv")
-cameraADSPosition = Vector3(-0.9, -0.6, -1.26)
+cameraADSPosition = Vector3(-1.3, -0.6, -1.26)
