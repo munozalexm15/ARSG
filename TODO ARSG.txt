@@ -1,37 +1,41 @@
 PROXIMA UPDATE:
-- Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 - Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
+
 - Fixear bug modelo de las manos / cuerpo del player que se une
-- Fixear colisiones backface de algunas cosas (en el mapa de domingo por la tarde -> el tren)
+- Fixear invitaciones de Steam
+
 
 DONE (v.0.1.1 -> v0.1.2)
 - Fixed bug where metal footstep sound wouldn't play if you were sprinting
-- Improved PARV-15 (SMG) recoil behavior, making ADS better.
+- Improved PARV-15 (SMG) recoil behavior, making ADS better. (Still needs improvements)
 - Improved ALBR-1983 (AR) recoil behavior, making ADS better.
 - Made PARV-15 ADS Position closer to camera.
 - Made ALBR-1983 (AR) ADS Position a little more far to the camera.
 - Made SLBR-4 (Combat rifle) ADS Position closer to camera.
-
-
+- Controls now can be changed and persist even if you close the game.
+- Fixed visual bug that made crouching with the gun funny but weird. 
+- Fixed visual bug where the PUMP muzzle flash light would remain visible after shooting while in third person.
+- Fixed visual bug for the PUMP and the Hunting Rifle that showed the muzzle flash sprite when pressing down "Fire" button while in third person.
+- Fixed bug that made game chat in a upper layer than the pause menu.
+- Chat placeholder text updates when sending a message depending of the assigned key for opening the chat.
 
 UPDATE FUTURA TOCHA TO-DO:
 
+ - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
  - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
- - Fixear bugs al conectarse a la sala
+ - Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Hacer mejores spawns con comprobaciones de distancia
  / Mejorar colisiones de las balas (funcionan pero si la colisión está muy cerca no lo detecta de primeras)
  - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
  - Impactos de bala
- - Hacer que al mapear controles sea persistente (config básicamente)
- - La textura del body del otro jugador (en local funciona, debe ser que sea un rpc para setear los materiales. Habrá que hacer tambien otra funcion que loopee los jugadores y setee una skin al azar para cada uno)
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
- - Añadir invitación por steam (WIP)
- - Añadir más sonidos en el UI (1h)
  - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
  - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
  - Fixear si se une alguien y el host todavia no ha elegido arma que no sea visible (ahora lo es)
+ - Añadir piernas para el personaje (quitar el mesh del pecho?)
+ - Añadir más sonidos en el UI (1h)
 
 Decorar github / gitlab de otros proyectos
 Hacer trailer ARSG

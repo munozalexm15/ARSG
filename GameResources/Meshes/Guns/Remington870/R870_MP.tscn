@@ -203,3 +203,5 @@ light_specular = 0.25
 distance_fade_begin = 2.0
 distance_fade_length = 2.0
 omni_range = 1.0
+
+[connection signal="finished" from="MuzzleFlash" to="." method="_on_muzzle_flash_finished"]

@@ -71,6 +71,7 @@ func accept_invite_from_friend(lobby: int, _friend_id : int):
 	if Steam.getNumLobbyMembers(lobby) >= Steam.getLobbyMemberLimit(lobby):
 		return
 		
+	print("steam invite accepted, joining")
 	lobby_id = lobby
 	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
 	get_tree().change_scene_to_packed(LoadScreenHandler.loading_screen)

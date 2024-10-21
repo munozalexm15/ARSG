@@ -145,13 +145,13 @@ script = ExtResource("43_ag4ww")
 walk_sound = Array[AudioStream]([ExtResource("44_3nrx2"), ExtResource("45_31cjs"), ExtResource("46_yyqle"), ExtResource("47_ibd1r"), ExtResource("48_dutlt"), ExtResource("27_p3on3"), ExtResource("28_vw44f"), ExtResource("29_njac7"), ExtResource("30_m1ivg"), ExtResource("31_8sks2"), ExtResource("32_ny45s")])
 jump_sound = ExtResource("20_6xuyj")
 
-[sub_resource type="LabelSettings" id="LabelSettings_mtj4r"]
-font = ExtResource("34_q4ltw")
-font_size = 18
-
 [sub_resource type="LabelSettings" id="LabelSettings_ymn7n"]
 font = ExtResource("34_q4ltw")
 font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_mtj4r"]
+font = ExtResource("34_q4ltw")
+font_size = 18
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qjc7"]
 resource_name = "Material"
@@ -2726,6 +2726,47 @@ groundData = SubResource("Resource_778yg")
 [node name="mMetalCatwalkOneSS01" type="Node3D" parent="CSGBox3D"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -20.6316, 4.02959, 11.8761)
 
+[node name="ChatDisplay" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.984
+anchor_top = 0.971
+anchor_right = 0.984
+anchor_bottom = 0.971
+offset_left = -349.568
+offset_top = -68.2081
+offset_right = 0.432007
+offset_bottom = -0.20813
+focus_mode = 2
+theme = ExtResource("33_qlraq")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ChatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.265
+anchor_right = 1.0
+anchor_bottom = 0.706
+offset_top = -0.0200005
+offset_bottom = 0.991997
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChatDisplay/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ChatDisplay/VBoxContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "BlueHalp: Por la puta cara abe ennove tio esque es pa flipar esto"
+label_settings = SubResource("LabelSettings_ymn7n")
+autowrap_mode = 1
+
+[node name="ChatText" type="LineEdit" parent="ChatDisplay/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("33_qlraq")
+placeholder_text = "Press 'T' to chat..."
+max_length = 60
+
 [node name="PauseMenusNode" type="Node3D" parent="."]
 
 [node name="weaponSelectionNode" type="Node3D" parent="."]
@@ -2822,47 +2863,6 @@ offset_top = 22.475
 offset_bottom = 0.0149994
 grow_vertical = 0
 theme = ExtResource("33_qlraq")
-
-[node name="ChatDisplay" type="Control" parent="."]
-layout_mode = 3
-anchor_left = 0.984
-anchor_top = 0.971
-anchor_right = 0.984
-anchor_bottom = 0.971
-offset_left = -349.568
-offset_top = -68.2081
-offset_right = 0.432007
-offset_bottom = -0.208069
-focus_mode = 2
-theme = ExtResource("33_qlraq")
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="ChatDisplay"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.265
-anchor_right = 1.0
-anchor_bottom = 0.706
-offset_top = -0.0200005
-offset_bottom = 0.991997
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ChatDisplay/VBoxContainer2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ChatDisplay/VBoxContainer2/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "BlueHalp: Por la puta cara abe ennove tio esque es pa flipar esto"
-label_settings = SubResource("LabelSettings_ymn7n")
-autowrap_mode = 1
-
-[node name="ChatText" type="LineEdit" parent="ChatDisplay/VBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("33_qlraq")
-placeholder_text = "Press 'T' to chat..."
-max_length = 60
 
 [node name="DashboardMatch" parent="." instance=ExtResource("35_sg0yo")]
 visible = false

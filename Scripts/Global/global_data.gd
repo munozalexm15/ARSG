@@ -7,6 +7,28 @@ var isOnlineMatch : bool
 
 signal configurationUpdated
 
+var allowed_input_actions = {
+	"Forward" : KEY_W,
+	"Backwards" : KEY_S,
+	"Left" : KEY_A,
+	"Right" : KEY_D,
+	"Jump" : KEY_SPACE,
+	"Sprint" : KEY_SHIFT,
+	"Crouch" : KEY_CTRL,
+	"Next Weapon" : MOUSE_BUTTON_WHEEL_UP,
+	"Previous Weapon" : MOUSE_BUTTON_WHEEL_DOWN,
+	"Fire" : MOUSE_BUTTON_LEFT,
+	"ADS": MOUSE_BUTTON_RIGHT,
+	"Reload": KEY_R,
+	"Interact" : KEY_F,
+	"FireSelection": KEY_X,
+	"Perspective" : KEY_H,
+	"Scoreboard" : KEY_TAB,
+	"Open Chat" : KEY_T,
+	"Send Message" : KEY_ENTER
+}
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	isOnlineMatch = false
@@ -31,8 +53,31 @@ func _ready():
 		configData.set_value("Audio", "Effects", 1)
 		configData.set_value("Audio", "EffectsSliderValue", 1)
 		
-		configData.set_value("Controls", "MouseSensibility", 1)
-		configData.set_value("Controls", "AimMouseSensibility", 1)
+		for key in allowed_input_actions:
+			configData.set_value("Controls", key, allowed_input_actions.get(key))
+		
+		
+		#configData.set_value("Controls", "AimMouseSensibility", 1)
+		#configData.set_value("Controls", "Forward", "W (Physical)")
+		#configData.set_value("Controls", "Backwards", "S (Physical)")
+		#configData.set_value("Controls", "Left", "A (Physical)")
+		#configData.set_value("Controls", "Right", "D (Physical)")
+		#configData.set_value("Controls", "Jump", "Space (Physical)")
+		#configData.set_value("Controls", "Sprint", "Shift (Physical)")
+		#configData.set_value("Controls", "Crouch", "Ctrl (Physical)")
+		#configData.set_value("Controls", "Next Weapon", "Mouse Wheel Up - All Devices")
+		#configData.set_value("Controls", "Previous Weapon", "Mouse Wheel Down - All Devices")
+		#configData.set_value("Controls", "Primary weapon", "1 (Physical)")
+		#configData.set_value("Controls", "Secondary weapon", "2 (Physical)")
+		#configData.set_value("Controls", "Fire", "Left Mouse Button - All Devices")
+		#configData.set_value("Controls", "Reload", "R (Physical)")
+		#configData.set_value("Controls", "ADS", "Right Mouse Button - All Devices")
+		#configData.set_value("Controls", "Interact", "F (Physical)")
+		#configData.set_value("Controls", "FireSelection", "X (Physical)")
+		#configData.set_value("Controls", "Perspective", "H (Physical)")
+		#configData.set_value("Controls", "Scoreboard", "Tab (Physical)")
+		#configData.set_value("Controls", "Open Chat", "T (Physical)")
+		#configData.set_value("Controls", "Send Message", "Enter (Physical)")
 		
 		configData.save("res://GameSettings.cfg")
 
@@ -45,6 +90,17 @@ func loadGameSettings():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
 	get_window().size = configData.get_value("Video", "Resolution", Vector2i(1024, 768))
+	
+	for key in allowed_input_actions:
+		var input : InputEventKey = InputEventKey.new()
+		input.keycode = allowed_input_actions.get(key)
+		InputMap.action_erase_events(key)
+		InputMap.action_add_event(key, input)
+		if input.keycode < 10:
+			var inputMouse : InputEventMouseButton = InputEventMouseButton.new()
+			inputMouse.button_index = allowed_input_actions.get(key)
+			InputMap.action_erase_events(key)
+			InputMap.action_add_event(key, inputMouse)
 	
 	#DITHERING---------------------------------------------------------------------
 	

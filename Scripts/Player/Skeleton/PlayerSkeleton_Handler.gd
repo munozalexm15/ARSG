@@ -56,6 +56,14 @@ func _ready():
 	rightArmIKSkeleton.start()
 	chestIKSkeleton.start()
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Crouch"):
+		leftArmShoulder.position.y -= 0.75
+		rightArmShoulder.position.y -= 0.75
+	if Input.is_action_just_released("Crouch"):
+		leftArmShoulder.position.y += 0.75
+		rightArmShoulder.position.y += 0.75
+
 func _process(_delta):
 	headTarget.rotation.x = -arms.player.eyes.rotation.x * 2
 	

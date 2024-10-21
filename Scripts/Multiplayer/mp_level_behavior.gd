@@ -42,14 +42,15 @@ var matchTimeLeft = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	
+	var chatAction = InputEventKey.new()
+	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
+	chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
 	playerSpawner.spawn_function = Callable(self, "init_player")
 	
 	Network.game = self
-	
+	GlobalData.configurationUpdated.connect(set_new_chat_subtext)
 	#multiplayer.connected_to_server.connect(loadGame)
 	
 	if Network.role == "Host":
@@ -179,6 +180,9 @@ func  _input(_event: InputEvent) -> void:
 			
 		Network._on_send_chat_pressed(Steam.getFriendPersonaName(Steam.getSteamID()) + " : " + chatText.text)
 		chatText.text = ""
+		var chatAction = InputEventKey.new()
+		chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
+		chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
 	
 	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
 		return
@@ -327,3 +331,9 @@ func _on_foce_exit_button_pressed() -> void:
 func _on_chat_text_gutter_added() -> void:
 	if chatText.text.length() > 5:
 		chatText.text = chatText.text.substr(0, 5)
+
+func set_new_chat_subtext():
+	var chatAction = InputEventKey.new()
+	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
+	print(chatAction.as_text_keycode())
+	chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."

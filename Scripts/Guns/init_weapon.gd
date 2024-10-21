@@ -186,7 +186,9 @@ func shoot():
 		
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
-	
+	var weapon : WeaponSkeleton = hands.player.player_body.LeftHandB_Attachment.get_child(0)
+	weapon.muzzleFlash.restart()
+	weapon.muzzleFlashLight.visible = true
 	spawnBullet.rpc()
 	
 

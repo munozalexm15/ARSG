@@ -75,10 +75,6 @@ func recoilFire(identifier, isAiming : bool):
 		targetRotation += Vector3(aimRecoil.x, randf_range(-aimRecoil.y, aimRecoil.y), randf_range(-aimRecoil.z, aimRecoil.z))
 	else:
 		targetRotation += Vector3(recoil.x , randf_range(-recoil.y, recoil.y), randf_range(-recoil.z - 0.01, -recoil.z))
-		
-	var weapon : WeaponSkeleton = player.player_body.LeftHandB_Attachment.get_child(0)
-	weapon.muzzleFlash.restart()
-	weapon.muzzleFlashLight.visible = true
 
 func setRecoil(newRecoil : Vector3):
 	recoil = newRecoil

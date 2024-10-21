@@ -116,7 +116,12 @@ func _input(event):
 			InputMap.action_erase_events(action_to_remap)
 			InputMap.action_add_event(action_to_remap, event)
 			remapping_button.find_child("InputLabel").text = event.as_text().trim_suffix(" (Physical)")
+			if event is InputEventKey:
+				GlobalData.configData.set_value("Controls", action_to_remap, event.keycode)
+			elif event is InputEventMouseButton:
+				GlobalData.configData.set_value("Controls", action_to_remap, event.button_index)
 			
+			GlobalData.configData.save("res://GameSettings.cfg")
 			is_remmaping = false
 			action_to_remap = null
 			remapping_button = null
@@ -232,11 +237,11 @@ func _on_controls_button_pressed():
 	controlsOptionContainer.show()
 
 func create_action_list():
-	InputMap.load_from_project_settings()
+	#InputMap.load_from_project_settings()
 	for item in actionList.get_children():
 		item.queue_free()
 	
-	for action in allowed_input_actions:
+	for action in GlobalData.allowed_input_actions:
 		var button : Button = mapping_button_scene.instantiate()
 		var actionLabel : Label = button.find_child("LabelAction")
 		var inputLabel : Label = button.find_child("InputLabel")
@@ -244,13 +249,29 @@ func create_action_list():
 		actionLabel.text = allowed_input_actions[action]
 		
 		var events = InputMap.action_get_events(action)
+		
 		if events.size() > 0:
-			inputLabel.text = events[0].as_text().trim_suffix(" (Physical)")
+			var inputAction : InputEventKey = InputEventKey.new()
+			inputAction.keycode = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
+			inputLabel.text = inputAction.as_text_keycode()
+
+			InputMap.action_erase_events(action)
+			InputMap.action_add_event(action, inputAction)
+			#inputLabel.text = events[0].as_text().trim_suffix(" (Physical)")
+			
+			if inputAction.keycode < 10:
+				var inputMouse : InputEventMouseButton = InputEventMouseButton.new()
+				inputMouse.button_index = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
+				InputMap.action_erase_events(action)
+				InputMap.action_add_event(action, inputMouse)
+				inputLabel.text = inputMouse.as_text()
+			#print(inputLabel.text, " ", inputAction.keycode)
 		else:
 			inputLabel.text = ""
 		
 		actionList.add_child(button)
 		button.pressed.connect(_on_input_button_pressed.bind(button, action))
+		
 	
 func _on_input_button_pressed(button : Button, action):
 	if !is_remmaping:

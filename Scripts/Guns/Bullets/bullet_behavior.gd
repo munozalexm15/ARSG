@@ -44,7 +44,6 @@ func spawn_decal(body : Node3D):
 
 
 func _on_area_3d_body_entered(body : Node3D):
-	print("cuerpo detectado")
 	mesh.visible = false
 	#spawn_decal(body)
 	if body is Target and body != self and not body.isDowned:
