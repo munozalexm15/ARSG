@@ -84,30 +84,8 @@ func generatePlayer(id):
 	pauseMenuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
-
-	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
-	if Network.gameData["gameMode"] == "FACE OFF":
-		#var team : int = randi_range(0, 1)
-		var skin : PlayerSkin = null
-		if multiplayer.get_unique_id() == 1:
-			skin = team1SkinsResources.pick_random()
-		else:
-			print("jeje")
-			skin = team2SkinsResources.pick_random()
-		
-	#esto se tiene que pasar a un rpc con el identifier del player y deberia de estar ya hecho
-		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
-		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
-		#
-		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
-		
-		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-
+	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 
 @rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
@@ -146,16 +124,17 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 		else:
 			skin = team2SkinsResources.pick_random()
 		
+	#esto se tiene que pasar a un rpc con el identifier del player y deberia de estar ya hecho
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
 		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
-		
-		#var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		#playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		#var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		#playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
 		#
-		#playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		#playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		
+		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 	
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()
@@ -202,6 +181,7 @@ func init_player(peer_id):
 	#player.set_multiplayer_authority(peer_id)
 	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
 	players.append(dict_data)
+	
 	return player
 
 func set_player_pause_menu(peer_id):

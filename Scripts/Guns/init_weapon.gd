@@ -186,9 +186,6 @@ func shoot():
 		
 	handsAnimPlayer.play("RESET")
 	handsAnimPlayer.play(weaponData.name + "_Shot")
-	var weapon : WeaponSkeleton = hands.player.player_body.LeftHandB_Attachment.get_child(0)
-	weapon.muzzleFlash.restart()
-	weapon.muzzleFlashLight.visible = true
 	spawnBullet.rpc()
 	
 
@@ -198,6 +195,9 @@ func spawnBullet():
 		SFXHandler.play_sfx_3d(fire_sound.stream.resource_path, hands.player.name, "Weapons", 100.0)
 	
 	var _level_root = Network.game
+	var weapon : WeaponSkeleton = hands.player.player_body.LeftHandB_Attachment.get_child(0)
+	weapon.muzzleFlash.restart()
+	weapon.muzzleFlashLight.visible = true
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Node3D = bullet_type.instantiate()
