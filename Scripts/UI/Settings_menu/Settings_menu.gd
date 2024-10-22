@@ -265,7 +265,6 @@ func create_action_list():
 				InputMap.action_erase_events(action)
 				InputMap.action_add_event(action, inputMouse)
 				inputLabel.text = inputMouse.as_text()
-			#print(inputLabel.text, " ", inputAction.keycode)
 		else:
 			inputLabel.text = ""
 		

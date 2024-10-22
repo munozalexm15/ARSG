@@ -85,27 +85,28 @@ func generatePlayer(id):
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
 
-
 	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 	
 	if Network.gameData["gameMode"] == "FACE OFF":
 		#var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
-		if players.size() == 1:
+		if multiplayer.get_unique_id() == 1:
 			skin = team1SkinsResources.pick_random()
 		else:
+			print("jeje")
 			skin = team2SkinsResources.pick_random()
 		
 	#esto se tiene que pasar a un rpc con el identifier del player y deberia de estar ya hecho
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
 		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
-		
-		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		#
+		#var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		#playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		#var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		#playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		#
+		#playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		#playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
 
 @rpc("any_peer", "call_local")
@@ -140,7 +141,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	if Network.gameData["gameMode"] == "FACE OFF":
 		#var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
-		if players.size() == 1:
+		if multiplayer.get_unique_id() == 1:
 			skin = team1SkinsResources.pick_random()
 		else:
 			skin = team2SkinsResources.pick_random()
@@ -148,12 +149,13 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
 		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
 		
-		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
-		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		#var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		#playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		#var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		#playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		#
+		#playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		#playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 	
 	if multiplayer.get_unique_id() != 1:
 		matchTimer.start()
@@ -335,5 +337,4 @@ func _on_chat_text_gutter_added() -> void:
 func set_new_chat_subtext():
 	var chatAction = InputEventKey.new()
 	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
-	print(chatAction.as_text_keycode())
 	chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
