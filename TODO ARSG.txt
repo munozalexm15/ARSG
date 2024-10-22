@@ -3,7 +3,6 @@ PROXIMA UPDATE:
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
 
 - Fixear bug modelo de las manos / cuerpo del player que se une
-- Si se va el que iba ganando, setear la barra de progreso de la partida al que iba segundo
 
 
 DONE (v.0.1.1 -> v0.1.2)
@@ -22,6 +21,7 @@ DONE (v.0.1.1 -> v0.1.2)
 - Fixed bug that made game chat in a upper layer than the pause menu.
 - Fixed bug that showed the lobby list refresh button if swapping quick or exiting the play menu too fast.
 - Chat placeholder text updates when sending a message depending of the assigned key for opening the chat.
+- Fixed bug that kept the progress of a player who left the match
 
 UPDATE FUTURA TOCHA TO-DO:
 

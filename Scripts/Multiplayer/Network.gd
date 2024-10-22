@@ -157,6 +157,10 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 		
 		if game.matchGoal == game.team1GoalProgress or game.matchGoal == game.team2GoalProgress:
 			return
+		
+		if game.players.size() == 1:
+			game.team2GoalProgress = 0
+			
 		game.dashboardMatch.get_lobby_data()
 	# Else if a player has been kicked
 	elif chat_state == Steam.CHAT_MEMBER_STATE_CHANGE_KICKED:
