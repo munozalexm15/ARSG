@@ -28,6 +28,7 @@ func _ready():
 
 func _process(_delta):
 	Steam.run_callbacks()
+	
 
 # --------------------------------------- STEAM MULTIPLAYER PEER AND STEAM HOST / CLIENT WORKFLOW ----------------
 
@@ -171,7 +172,13 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 	# Else there was some unknown change
 	else:
 		print("%s did... something." % changer_name)
-		
+	
+func open_lobby_list():
+	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
+	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
+	
+	Steam.requestLobbyList()
 
 #--------------------------------------------------- GAME MECHANICS (ADDING PLAYER, ETC.)--------------------------------
 

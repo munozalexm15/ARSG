@@ -3,7 +3,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 
 var firingRange = preload("res://Scenes/Levels/test_scene.tscn").instantiate()
-var level = preload("res://Scenes/Levels/initial_level.tscn")
+#var level = preload("res://Scenes/Levels/initial_level.tscn")
 
 @export var button_hover_SFX : AudioStreamOggVorbis
 @export var button_press_SFX : AudioStreamOggVorbis

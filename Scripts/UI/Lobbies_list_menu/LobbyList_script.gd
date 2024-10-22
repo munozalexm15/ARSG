@@ -84,7 +84,7 @@ func show_lobby_data(lobby):
 
 func _on_visibility_changed():
 	if visible:
-		open_lobby_list()
+		Network.open_lobby_list()
 	else:
 		visible = false
 		if refreshListButton:
@@ -102,7 +102,7 @@ func load_map_and_get_lobby(lobby):
 
 
 func _on_refresh_list_button_pressed() -> void:
-	open_lobby_list()
+	Network.open_lobby_list()
 	refreshListButton.focus_mode = Control.FOCUS_NONE
 
 

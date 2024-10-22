@@ -56,7 +56,7 @@ func _ready():
 	on_config_changed()
 	Steam.lobby_match_list.connect(on_lobby_match_list)
 	GlobalData.configurationUpdated.connect(on_config_changed)
-	lobbiesListUI.open_lobby_list()
+	Network.open_lobby_list()
 	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
@@ -100,6 +100,14 @@ func _input(_event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#made because this way players can join new lobbies if a friend invites them from steam
+	if selectedSection != "play" or (selectedSection == "play" and playSection == "hostLobby"):
+		Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
+		Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
+		Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
+		
+		Steam.requestLobbyList()
+		
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		
@@ -230,7 +238,7 @@ func _on_keyboard_laptop_input_event(_camera, _event, _position, _normal, _shape
 				return
 				
 			if listingLobbies:
-				lobbiesListUI.open_lobby_list()
+				Network.open_lobby_list()
 			else:
 				hostUI.visible = true
 

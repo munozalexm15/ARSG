@@ -10727,14 +10727,14 @@ spot_range = 12.5475
 spot_angle = 29.8458
 
 [node name="OldFlashlight012" parent="Map/Props" instance=ExtResource("43_j67j4")]
-transform = Transform3D(0.656704, 0, 0.754148, 0, 1, 0, -0.754148, 0, 0.656704, 12.528, 0.821661, 18.3378)
+transform = Transform3D(0.592395, -0.431582, 0.680297, 0.470814, 0.870669, 0.142374, -0.653759, 0.235952, 0.718975, 12.2097, 0.632863, 18.3381)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Map/Props/OldFlashlight012"]
-transform = Transform3D(-0.0434452, 0, -0.999056, 0, 1, 0, 0.999056, 0, -0.0434452, 0, 0, 0)
+transform = Transform3D(-0.0434453, 0, -0.999056, 0, 1, 0, 0.999056, 0, -0.0434453, 0, 0.16963, 0)
 light_energy = 5.257
 shadow_enabled = true
 spot_range = 7.51258
-spot_angle = 66.87
+spot_angle = 87.795
 
 [node name="FenceWoodPlanks03" type="Node3D" parent="Map/Props"]
 transform = Transform3D(1, 0, 0, 0, -0.00385717, -0.999993, 0, 0.999993, -0.00385717, 11.818, 3.30975, 9.71299)
@@ -11150,6 +11150,7 @@ shape = SubResource("ConvexPolygonShape3D_uwexg")
 transform = Transform3D(0.816571, 0, 0.577245, 0, 1, 0, -0.577245, 0, 0.816571, -3.62766, 0.621001, 18.3344)
 
 [node name="Toolbox01" type="MeshInstance3D" parent="Map/Inside/Toolbox012"]
+transform = Transform3D(0.98245, 0, -0.186524, 0, 1, 0, 0.186524, 0, 0.98245, -0.190196, 0, -0.0104609)
 mesh = SubResource("ArrayMesh_ldlak")
 skeleton = NodePath("")
 

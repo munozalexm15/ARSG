@@ -70,7 +70,14 @@ func _ready():
 		#init_player.rpc(multiplayer.get_unique_id())
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
+
+func _process(delta: float) -> void:
+	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
+	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
 	
+	Steam.requestLobbyList()
+
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
 	var pauseMenuInstance = pauseMenuSpawner.spawn(id)
@@ -159,9 +166,6 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
-
-func _process(_delta):
-	pass
 
 func  _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Open Chat") and not chatText.has_focus():
