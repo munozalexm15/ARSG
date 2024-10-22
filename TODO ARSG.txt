@@ -1,13 +1,17 @@
 PROXIMA UPDATE:
-- Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
+
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
-- Fixed bug that made the joining player see others players that haven't selected a starting weapon yet.
+- Añadir más sonidos en el UI (1h)
+
+
+ - Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
 
 DONE (v.0.1.1 -> v0.1.2)
 - Functional Steam invitations / join lobby from Steam friend chat
 - Fixed bug where metal footstep sound wouldn't play if you were sprinting
 - Improved PARV-15 (SMG) recoil behavior, making ADS better. (Still needs improvements)
 - Improved ALBR-1983 (AR) recoil behavior, making ADS better.
+- Improved bullet collisions
 - Made PARV-15 ADS Position closer to camera.
 - Made ALBR-1983 (AR) ADS Position a little more far to the camera.
 - Made SLBR-4 (Combat rifle) ADS Position closer to camera.
@@ -17,9 +21,11 @@ DONE (v.0.1.1 -> v0.1.2)
 - Fixed visual bug for the PUMP and the Hunting Rifle that showed the muzzle flash sprite when pressing down "Fire" button while in third person.
 - Fixed bug that made game chat in a upper layer than the pause menu.
 - Fixed bug that showed the lobby list refresh button if swapping quick or exiting the play menu too fast.
-- Chat placeholder text updates when sending a message depending of the assigned key for opening the chat.
+- Chat placeholder text updates after sending a message depending of the assigned key for opening the chat.
 - Fixed bug that kept the progress of a player who left the match.
 - Fixed bug that made the joining player skin not the correct one.
+- Fixed bug that made the joining player see others players that haven't selected a starting weapon yet.
+- Fixed bug that only showed player hands and weapon shadow and not player body
 
 
 UPDATE FUTURA TOCHA TO-DO:
@@ -29,15 +35,14 @@ UPDATE FUTURA TOCHA TO-DO:
  - Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Hacer mejores spawns con comprobaciones de distancia
- / Mejorar colisiones de las balas (funcionan pero si la colisión está muy cerca no lo detecta de primeras)
+
  - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
  - Impactos de bala
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
  - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
  - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
  
- - Añadir piernas para el personaje (quitar el mesh del pecho?)
- - Añadir más sonidos en el UI (1h)
+
 
 Decorar github / gitlab de otros proyectos
 

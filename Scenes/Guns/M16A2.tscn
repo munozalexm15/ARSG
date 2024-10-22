@@ -1965,11 +1965,13 @@ initial_velocity_max = 20.0
 transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, -0.378654, -0.0945971, 0)
 
 [node name="M16" type="MeshInstance3D" parent="Weapon"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_kewbx")
 skeleton = NodePath("")
 
 [node name="M16_Mag" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_d42vw")
 skeleton = NodePath("")
 
@@ -2296,10 +2298,12 @@ bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
 transform = Transform3D(1, -2.91038e-11, 0, 2.91038e-11, 1, -1.74714e-09, 9.31323e-10, 1.97906e-09, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_7ym66")
 skin = SubResource("Skin_4ef0c")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_aneya")
 skin = SubResource("Skin_4ef0c")
 

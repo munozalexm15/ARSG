@@ -10,6 +10,7 @@ extends Node3D
 
 @onready var muzzleFlash : GPUParticles3D = $MuzzleFlash
 @onready var muzzleFlashLight : OmniLight3D = $MuzzleFlashLight
+@onready var weaponMeshParent : Node3D = $WeaponParent
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass

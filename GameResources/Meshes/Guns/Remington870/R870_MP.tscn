@@ -163,18 +163,21 @@ transform = Transform3D(0.0399418, -0.168501, -0.10006, 0.0460524, -0.0911866, 0
 script = ExtResource("1_yuo1l")
 weaponSkeletonData = SubResource("Resource_2wbqv")
 
-[node name="PABody&Barrel" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -7.15256e-07, -2, 0, 2, -7.15256e-07, 5.10955, 0.21156, 0.403003)
+[node name="WeaponParent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, -5.21541e-08, 8.9407e-08, 1, 8.00937e-08, 0, 8.3819e-08, 1, 0, 0, 0)
+
+[node name="PABody&Barrel" type="MeshInstance3D" parent="WeaponParent"]
+transform = Transform3D(2, 7.45058e-08, -5.96046e-08, -5.96046e-08, -1.00955e-06, -2, -1.49012e-08, 2, -4.35859e-07, 5.10955, 0.21156, 0.403003)
 mesh = SubResource("ArrayMesh_35gum")
 skeleton = NodePath("")
 
-[node name="Pump_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -7.15256e-07, -2, 0, 2, -7.15256e-07, 7.03674, 0.289502, 0.396425)
+[node name="Pump_001" type="MeshInstance3D" parent="WeaponParent"]
+transform = Transform3D(2, 7.45058e-08, -5.96046e-08, -5.96046e-08, -1.00955e-06, -2, -1.49012e-08, 2, -4.35859e-07, 7.03674, 0.289502, 0.396425)
 mesh = SubResource("ArrayMesh_0w5ay")
 skeleton = NodePath("")
 
-[node name="Trigger" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -7.15256e-07, -2, 0, 2, -7.15256e-07, 4.45533, 0.11799, 0.403003)
+[node name="Trigger" type="MeshInstance3D" parent="WeaponParent"]
+transform = Transform3D(2, 7.45058e-08, -5.96046e-08, -5.96046e-08, -1.00955e-06, -2, -1.49012e-08, 2, -4.35859e-07, 4.45533, 0.11799, 0.403003)
 mesh = SubResource("ArrayMesh_c4lbc")
 skeleton = NodePath("")
 

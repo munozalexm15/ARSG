@@ -1951,11 +1951,10 @@ draw_pass_1 = SubResource("QuadMesh_7wysp")
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
 visible = false
 light_color = Color(0.721569, 0.321569, 0, 1)
-light_energy = 0.5
 light_specular = 0.25
 distance_fade_begin = 2.0
 distance_fade_length = 2.0
-omni_range = 1.0
+omni_range = 1.1627
 
 [node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.898335, -0.439312, 0, 0.439312, 0.898335, -0.73976, 2.15795, 0.626036)
@@ -1977,23 +1976,28 @@ initial_velocity_max = 20.0
 
 [node name="MP5BodyFull" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.00001, 0, 0, 0, -3.61999e-06, -1, 0, 0.999999, -3.61999e-06, 0, -6.86563, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_qnlie")
 
 [node name="MP5Bolt" type="MeshInstance3D" parent="MP5BodyFull"]
 transform = Transform3D(-0.999694, -0.00083052, -0.0245643, -0.000780956, -0.997852, 0.0655201, -0.0245658, 0.0655196, 0.997549, 3.24961, 0.55027, 0.0822692)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_m8yiq")
 skeleton = NodePath("")
 
 [node name="MP5Magazene" type="MeshInstance3D" parent="MP5BodyFull"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_oypem")
 skeleton = NodePath("")
 
 [node name="Trigger_002" type="MeshInstance3D" parent="MP5BodyFull"]
 transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_u7xm0")
 skeleton = NodePath("")
 
 [node name="MP5FullStock" type="MeshInstance3D" parent="MP5BodyFull"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_5lenx")
 skeleton = NodePath("")
 
@@ -2314,10 +2318,12 @@ bones/43/rotation = Quaternion(-0.167817, 0.0292973, 0.0152039, 0.985265)
 bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_8rk56")
 skin = SubResource("Skin_vnh3t")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_fi8e8")
 skin = SubResource("Skin_vnh3t")
 

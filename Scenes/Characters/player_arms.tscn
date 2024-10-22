@@ -221,7 +221,11 @@ _data = {
 [node name="arms" type="Node3D"]
 script = ExtResource("1_fm3lv")
 animationNode = NodePath("AnimationPlayer")
+rayNode = null
+cameraNode = null
+playerNode = null
 initial_position = Vector3(0, -1.166, 0)
+ads_position = null
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../AnimationPlayer")

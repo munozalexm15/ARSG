@@ -22,6 +22,7 @@ func _ready():
 	queue_free()
 
 func _physics_process(delta: float) -> void:
+
 	distanceTraveled += 0.0001
 	position += transform.basis * Vector3(0,0,-SPEED)
 	if ray.is_colliding():

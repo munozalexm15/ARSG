@@ -2918,10 +2918,12 @@ bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
 transform = Transform3D(1, 0, 4.54747e-13, 0, 1, 0, -4.54747e-13, 0, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_us444")
 skin = SubResource("Skin_mtpij")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_j0hl0")
 skin = SubResource("Skin_mtpij")
 
@@ -2936,16 +2938,19 @@ transform = Transform3D(2, 0, 0, 0, -7.23998e-06, -2, 0, 2, -7.23998e-06, 5.11, 
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, -5.96047e-08, 7.45058e-08, 5.96046e-08, 1, 1.77636e-15, -7.45058e-08, 2.66454e-15, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_xroja")
 skeleton = NodePath("")
 
 [node name="Pump_001" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(0.999999, -7.45056e-09, -4.09781e-08, 7.45057e-09, 0.999998, 1.49012e-08, 4.09782e-08, -1.49012e-08, 0.999998, 1.01805, -0.000115648, -0.0724883)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_7lep4")
 skeleton = NodePath("")
 
 [node name="Trigger" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32711, 2.98023e-08, 0.046785)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_vj7qq")
 skeleton = NodePath("")
 

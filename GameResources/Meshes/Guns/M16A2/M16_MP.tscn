@@ -123,13 +123,16 @@ transform = Transform3D(0.022771, -0.195071, -0.0377954, 0.111588, -0.0189226, 0
 script = ExtResource("1_nwncj")
 weaponSkeletonData = SubResource("Resource_vqhod")
 
-[node name="M16" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.378654, -0.0945971, 0)
+[node name="WeaponParent" type="Node3D" parent="."]
+transform = Transform3D(1, 1.49012e-08, -2.98023e-08, 1.49012e-08, 1, -7.45058e-09, 2.98023e-08, -7.45058e-09, 1, 0, 0, 0)
+
+[node name="M16" type="MeshInstance3D" parent="WeaponParent"]
+transform = Transform3D(2, 1.19209e-07, 2.98023e-08, -5.96046e-08, -2.98023e-08, -2, -1.19209e-07, 2, -1.19209e-07, -0.378654, -0.0945971, 0)
 mesh = SubResource("ArrayMesh_e5v2u")
 skeleton = NodePath("")
 
-[node name="M16_Mag" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.378654, -0.0945971, 0)
+[node name="M16_Mag" type="MeshInstance3D" parent="WeaponParent"]
+transform = Transform3D(2, 1.19209e-07, 2.98023e-08, -5.96046e-08, -2.98023e-08, -2, -1.19209e-07, 2, -1.19209e-07, -0.378654, -0.0945971, 0)
 mesh = SubResource("ArrayMesh_guq61")
 skeleton = NodePath("")
 

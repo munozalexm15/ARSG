@@ -2128,21 +2128,25 @@ angle_max = 720.0
 
 [node name="Tac_M14_Body" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(2.23904, 0, 0, 0, 2.23904, 0, 0, 0, 2.23904, 1.34806, 1.65617, -0.0462548)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_7y7as")
 
 [node name="Tac_M14_Magazene" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(2.23906, 0, 0, 0, -8.10537e-06, -2.23906, 0, 2.23906, -8.10537e-06, 1.17403, 1.29564, -0.0480434)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_23c8q")
 skeleton = NodePath("")
 
 [node name="Tac_M14_Slide" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(2.23904, 0, 0, 0, 2.23903, 0, 0, 0, 2.23904, 1.34766, 1.65617, -0.0462548)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_pmd4p")
 skeleton = NodePath("")
 
 [node name="Tac_M14_Trigger" type="MeshInstance3D" parent="Weapon"]
 transform = Transform3D(0.0695651, 0, -0.0185072, -0.0185072, -8.58126e-09, -0.0695651, -1.07266e-09, 0.0719848, -8.58126e-09, -0.105399, 1.39242, -0.0163241)
 material_override = SubResource("ShaderMaterial_70uju")
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_46khm")
 skeleton = NodePath("")
 
@@ -2470,10 +2474,12 @@ bones/43/rotation = Quaternion(-0.280494, 0.040375, -0.0393068, 0.9582)
 bones/43/scale = Vector3(1, 1, 1)
 
 [node name="Cube_001" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_v2vmb")
 skin = SubResource("Skin_jqkx8")
 
 [node name="Cube_002" type="MeshInstance3D" parent="Player_Arms/Armature_001/Skeleton3D"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_4pwg3")
 skin = SubResource("Skin_jqkx8")
 
