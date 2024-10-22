@@ -100,6 +100,8 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	playerInstance.global_position = random_spawn()
 	playerInstance.set_multiplayer_authority(newId, true)
 	playerInstance.visible = false
+	playerInstance.hide_thirdPerson_model.rpc_id(newId)
+	
 	playerInstance.name = str(newId)
 	menuInstance.set_multiplayer_authority(newId, true)
 	menuInstance.name = str(newId) + "pauseMenu"

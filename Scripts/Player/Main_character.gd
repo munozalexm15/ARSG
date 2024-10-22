@@ -112,8 +112,7 @@ func _ready():
 		camera.current = false
 		thirdPersonCam.current = false
 		return
-	
-	hide_thirdPerson_model()
+
 	initialHead_pos = eyes.position.y
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
@@ -184,14 +183,14 @@ func _input(event : InputEvent):
 			camera.current = true
 			thirdPersonCam.current = false
 			arms.weaponHolder.visible = true
-			hide_thirdPerson_model()
+			hide_thirdPerson_model.rpc_id(name.to_int())
 			thirdPersonEnabled = false
 	
 	if Input.is_action_just_pressed("ADS") and camera.current == false:
 		camera.current = true
 		thirdPersonCam.current = false
 		arms.weaponHolder.visible = true
-		hide_thirdPerson_model()
+		hide_thirdPerson_model.rpc_id(name.to_int())
 		thirdPersonEnabled = true
 	
 	if Input.is_action_just_released("ADS") and thirdPersonEnabled:
@@ -476,7 +475,7 @@ func make_player_visible(player_id):
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			p.visible = true
-
+@rpc("any_peer", "call_local")
 func hide_thirdPerson_model():
 	player_body.playerMesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
 	if player_body.LeftHandB_Attachment.get_child_count() > 0:
