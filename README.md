@@ -67,24 +67,14 @@ I know there are some noticeable bugs that can affect players outside of the vis
 > This bug can cause the game to get stuck waiting when the connection is made. The only solution right now is to exit the lobby (using the button or forcing to close the game).
 
 - **Bullet collisions**: Maybe you feel like your bullets aren't hitting. Thats because maybe they aren't. As bullets are not raycasted, I have to constantly check for colliding bodies which sometimes cannot detect if the collision box is to small. 
-> This one is serious, but playi- *testing*, I mean testing, with my friends, I've seen that it's not something very noticeable. You can notice this in the firing range map.
-
-- **Steam invitations**: A friend can invite you and you can join the match, but it doesn't mostly work. I'll look more into it because, if I don't, then you can't make lobbies only for friends.
-
-- **Controls mapped are not persistent (Not saving if you close the game / exit the match)**: 
- > This one is a missing feature it needs to be added. I don't find it important because the controls are the standard for a first person game and you can always change it in-game and stay like that.
+> This one is serious, but playi- *testing*, I mean testing, with my friends, I've seen that it's not something very noticeable. You can test this in the firing range map and getting close to a target.
 
 - **Better respawns**: As the lobbies only allow 2 players and the map itself has a lot of spawnpoints, the chances of spawning in front of the enemy are low, but that doesn't mean it can't happen. I have to rework some 
 conditions to make spawning safer for players.
 
-- **Footsteps bugs**: Have to fix a bug where if you die in a certain moment, the footsteps sounds bug and play a lot. It happens while you're dead, when you respawn it works as normal. Another one is it seems that if you're aiming and walking, footsteps play twice.
-
 - **Hitmarker sound**: You might have noticed that when you shot an enemy, an audio plays to indicate you're hitting the enemy, and when they hit you the same one plays. It's not a bug, but maybe I will change the sound when they hit you.
 
 - **Ammo bug**: If you pickup a weapon, the ammo in this one restores to the default, instead of having the ammo of the previous player had in it.
-
-- **Player Skeleton bugs**: You may sometimes notice bugs with the player skeleton. That's because GODOT has at the time (or I think it has) some limitations when trying to animate or use Inverse Kinematics with a Skeleton.
-> I find it goofy and funny, but I understand people can see it as a bug. With time, I will update animations and rework the logic behind.
 
 - **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
 
