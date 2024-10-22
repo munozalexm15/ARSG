@@ -1,4 +1,6 @@
 extends Control
+##ANTIGUO MAIN_MENU SCRIPT PARA EL VIEJO MENU, DEPRECATED
+
 
 # Called when the node enters the scene tree for the first time.
 

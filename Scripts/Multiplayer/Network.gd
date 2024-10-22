@@ -44,6 +44,7 @@ func host_server(roomData : Dictionary):
 
 func on_lobby_created(connection, id):
 	if connection:
+		print(lobby_id)
 		lobby_id = id
 		role = "Host"
 		Steam.setLobbyData(lobby_id, "name", gameData["lobbyName"])
@@ -69,13 +70,12 @@ func join_server(id):
 	lobby_id = id
 
 func accept_invite_from_friend(lobby: int, _friend_id : int):
-	if Steam.getNumLobbyMembers(lobby) >= Steam.getLobbyMemberLimit(lobby):
+	Steam.requestLobbyData(lobby)
+	await Steam.lobby_data_update
+	if Steam.getLobbyData(lobby, "name") == "":
 		return
-	
 	if Network.game != null:
 		Network.leave_lobby()
-	
-	print("steam invite accepted, joining")
 	
 	lobby_id = lobby
 	LoadScreenHandler.next_scene = Steam.getLobbyData(lobby, "mapPath")
@@ -89,7 +89,7 @@ func _on_lobby_joined(_id : int, _permissions: int, _locked : bool, response : i
 			Steam.CHAT_ROOM_ENTER_RESPONSE_NOT_ALLOWED: fail_reason = "ERROR: You don't have permission to join this lobby. Returning to menu."
 			Steam.CHAT_ROOM_ENTER_RESPONSE_FULL: fail_reason = "The lobby is now full. Returning to menu."
 			Steam.CHAT_ROOM_ENTER_RESPONSE_ERROR: fail_reason = "Uh... something unexpected happened! Returning to menu."
-			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby. Sorry. Returning to menu."
+			Steam.CHAT_ROOM_ENTER_RESPONSE_BANNED: fail_reason = "You are banned from this lobby (Sorry). Returning to menu."
 			Steam.CHAT_ROOM_ENTER_RESPONSE_LIMITED: fail_reason = "You cannot join due to having a limited account. Returning to menu."
 			Steam.CHAT_ROOM_ENTER_RESPONSE_CLAN_DISABLED: fail_reason = "This lobby is locked or disabled. Returning to menu."
 			Steam.CHAT_ROOM_ENTER_RESPONSE_COMMUNITY_BAN: fail_reason = "This lobby is community locked. Returning to menu."
@@ -309,6 +309,8 @@ func show_all_players():
 	for player : Player in game.players_node.get_children():
 		if player.arms.weaponHolder.get_child_count() > 0:
 			player.visible = true
+		else:
+			player.visible = false
 
 
 # ------------------------------------------ EXIT LOBBY ---------------------------------------------------

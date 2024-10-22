@@ -71,9 +71,6 @@ func _ready():
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 
-func _process(delta: float) -> void:
-	Network.open_lobby_list()
-
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
 	var pauseMenuInstance = pauseMenuSpawner.spawn(id)

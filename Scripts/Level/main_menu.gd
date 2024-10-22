@@ -56,7 +56,6 @@ func _ready():
 	on_config_changed()
 	Steam.lobby_match_list.connect(on_lobby_match_list)
 	GlobalData.configurationUpdated.connect(on_config_changed)
-	Network.open_lobby_list()
 	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
@@ -101,9 +100,6 @@ func _input(_event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#made because this way players can join new lobbies if a friend invites them from steam
-	if selectedSection != "play":
-		Network.open_lobby_list()
-		
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		
