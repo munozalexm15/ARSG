@@ -100,13 +100,13 @@ func generatePlayer(id):
 		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
 		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
 		#
-		#var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		#playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		#var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		#playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
-		#
-		#playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		#playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
+		
+		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 
 
 @rpc("any_peer", "call_local")
