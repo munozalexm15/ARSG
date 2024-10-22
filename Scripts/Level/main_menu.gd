@@ -101,12 +101,8 @@ func _input(_event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#made because this way players can join new lobbies if a friend invites them from steam
-	if selectedSection != "play" or (selectedSection == "play" and playSection == "hostLobby"):
-		Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-		Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
-		Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
-		
-		Steam.requestLobbyList()
+	if selectedSection != "play":
+		Network.open_lobby_list()
 		
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)

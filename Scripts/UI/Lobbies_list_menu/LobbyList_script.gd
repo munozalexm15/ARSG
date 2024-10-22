@@ -19,14 +19,6 @@ var selectedLobby = -1
 func _ready():
 	refreshListButton.visible = false
 	#Steam.lobby_match_list.connect(on_lobby_mach_list)
-
-
-func open_lobby_list():
-	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
-	Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
-	
-	Steam.requestLobbyList()
 	
 func on_lobby_mach_list(lobbies : Array):
 	joinLobbyMenu.visible = false

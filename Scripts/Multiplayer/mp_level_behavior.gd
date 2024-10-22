@@ -72,11 +72,7 @@ func _ready():
 		Steam.setLobbyJoinable(Network.lobby_id, true)
 
 func _process(delta: float) -> void:
-	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
-	Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
-	
-	Steam.requestLobbyList()
+	Network.open_lobby_list()
 
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
