@@ -89,6 +89,7 @@ func generatePlayer(id):
 
 @rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
+	print("seteando auth, mi peer id es")
 	var playerInstance = players_node.get_node("./" + playernode_Name)
 	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
@@ -119,7 +120,7 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	if Network.gameData["gameMode"] == "FACE OFF":
 		#var team : int = randi_range(0, 1)
 		var skin : PlayerSkin = null
-		if multiplayer.get_unique_id() == 1:
+		if newId == 1:
 			skin = team1SkinsResources.pick_random()
 		else:
 			skin = team2SkinsResources.pick_random()
