@@ -54,7 +54,9 @@ var playSection = "findLobby"
 
 func _ready():
 	on_config_changed()
+	Steam.lobby_match_list.connect(on_lobby_match_list)
 	GlobalData.configurationUpdated.connect(on_config_changed)
+	lobbiesListUI.open_lobby_list()
 	
 	playLabel.modulate.a = 0.05
 	quitLabel.modulate.a = 0.05
@@ -253,9 +255,10 @@ func _on_lobby_list_finder_r_body_input_event(_camera, _event, _position, _norma
 			hostUI.visible = false
 			lobbiesListUI.visible = true
 
-
 func _on_host_match_r_body_input_event(_camera, _event, _position, _normal, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
+		if lobbiesListUI.animPlayer.is_playing():
+			lobbiesListUI.animPlayer.stop()
 		if _event.button_index == MOUSE_BUTTON_LEFT and selectedSection == "play":
 			playSection = "hostLobby"
 			screenMaterial.albedo_texture = hostMatchTexture
@@ -273,6 +276,35 @@ func showCreateLobby(anim_name):
 		lobbiesListUI.visible = false
 		for x in lobbiesListUI.lobbiesList.get_children():
 			lobbiesListUI.lobbiesList.remove_child(x)
+
+func on_lobby_match_list(lobbies : Array):
+	if playSection == "hostLobby" or cameraAnimPlayer.is_playing() or selectedSection == "":
+		return
+	lobbiesListUI.joinLobbyMenu.visible = false
+	lobbiesListUI.animPlayer.play("open_list")
+	lobbiesListUI.visible = true
+	if lobbiesListUI.lobbiesList.get_child_count() > 0:
+		for lobbyButton in lobbiesListUI.lobbiesList.get_children():
+			lobbyButton.queue_free()
+		
+	if lobbies.size() > 0:
+		lobbiesListUI.noLobbiesMSG.visible = false
+	
+	if lobbies.size() == 0:
+		lobbiesListUI.noLobbiesMSG.visible = true
+		
+	for lobby in lobbies:
+		var lobby_name = Steam.getLobbyData(lobby, "name")
+		var user_count = Steam.getNumLobbyMembers(lobby)
+			
+		if lobby_name.length() > 10:
+			lobby_name = lobby_name.substr(0, 5) + "..."
+		
+		var button: Button = Button.new()
+		button.set_text(str(lobby_name + " (" + str(user_count) + " / " + str(Steam.getLobbyMemberLimit(lobby) ) + ")"))
+		button.set_size(Vector2(100,5))
+		button.connect("pressed", Callable(lobbiesListUI, "show_lobby_data").bind(lobby))
+		lobbiesListUI.lobbiesList.add_child(button)
 
 #---------------Customize weapons part (WIP)---------------------------
 func _on_mp_5_input_event(_camera, _event, _position, _normal, _shape_idx):

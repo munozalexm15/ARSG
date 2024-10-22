@@ -456,9 +456,9 @@ text = "aadwdwdwadw"
 
 [node name="LobbyDetailsControl" parent="." instance=ExtResource("3_65ar1")]
 layout_mode = 1
-offset_left = 589.635
+offset_left = 547.0
 offset_top = 17.0
-offset_right = -63.365
+offset_right = -106.0
 offset_bottom = -1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

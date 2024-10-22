@@ -18,7 +18,7 @@ var selectedLobby = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	refreshListButton.visible = false
-	Steam.lobby_match_list.connect(on_lobby_mach_list)
+	#Steam.lobby_match_list.connect(on_lobby_mach_list)
 
 
 func open_lobby_list():

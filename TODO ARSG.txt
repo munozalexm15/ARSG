@@ -3,10 +3,12 @@ PROXIMA UPDATE:
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
 
 - Fixear bug modelo de las manos / cuerpo del player que se une
-- Fixear invitaciones de Steam
+- Si se va el que iba ganando, setear la barra de progreso de la partida al que iba segundo
 
 
 DONE (v.0.1.1 -> v0.1.2)
+- Functional Steam invitations / join lobby from Steam friend chat (Only works if you're in a match and you want to connect to a friend's match or in the PLAY section of the main menu (Maybe you have to refresh the lobby list to allow you to join your friend lobby))
+ MIRAR MAÑANA, DEBERIA DE FUNCIONAR SI UN JUGADOR ABRE EL JUEGO Y EL OTRO YA TIENE LA SALA CREADA
 - Fixed bug where metal footstep sound wouldn't play if you were sprinting
 - Improved PARV-15 (SMG) recoil behavior, making ADS better. (Still needs improvements)
 - Improved ALBR-1983 (AR) recoil behavior, making ADS better.
@@ -18,6 +20,7 @@ DONE (v.0.1.1 -> v0.1.2)
 - Fixed visual bug where the PUMP muzzle flash light would remain visible after shooting while in third person.
 - Fixed visual bug for the PUMP and the Hunting Rifle that showed the muzzle flash sprite when pressing down "Fire" button while in third person.
 - Fixed bug that made game chat in a upper layer than the pause menu.
+- Fixed bug that showed the lobby list refresh button if swapping quick or exiting the play menu too fast.
 - Chat placeholder text updates when sending a message depending of the assigned key for opening the chat.
 
 UPDATE FUTURA TOCHA TO-DO:
@@ -38,7 +41,5 @@ UPDATE FUTURA TOCHA TO-DO:
  - Añadir más sonidos en el UI (1h)
 
 Decorar github / gitlab de otros proyectos
-Hacer trailer ARSG
-
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
