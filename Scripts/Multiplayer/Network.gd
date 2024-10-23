@@ -53,7 +53,7 @@ func on_lobby_created(connection, id):
 		Steam.setLobbyData(lobby_id, "mapPath", gameData["mapPath"])
 		Steam.setLobbyData(lobby_id, "goal", str(gameData["goal"]) )
 		Steam.setLobbyData(lobby_id, "time", str(gameData["time"]) )
-		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSGame")
+		Steam.setLobbyData(lobby_id, "obviousNotSpacewarButGameName", "ARSG")
 		Steam.setLobbyData(lobby_id, "mapImage", gameData["mapImage"])
 		Steam.setLobbyData(lobby_id, "version", gameData["version"])
 		print("Player has started a server with id: ", multiplayer.get_unique_id())
@@ -175,8 +175,8 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 	
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
-	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSGame", Steam.LOBBY_COMPARISON_EQUAL)
-	Steam.addRequestLobbyListStringFilter("version", "0.1.1", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSG", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("version", "0.1.2", Steam.LOBBY_COMPARISON_EQUAL)
 	
 	Steam.requestLobbyList()
 

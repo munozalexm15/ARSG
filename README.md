@@ -66,9 +66,6 @@ I know there are some noticeable bugs that can affect players outside of the vis
 - **RPC calls when joining a game sometimes fail**: I think it's a sync problem of the player who is connecting. I haven't looked at it deeply because it rarely occurs, but it can happen often if your performance is VERY, very bad.
 > This bug can cause the game to get stuck waiting when the connection is made. The only solution right now is to exit the lobby (using the button or forcing to close the game).
 
-- **Bullet collisions**: Maybe you feel like your bullets aren't hitting. Thats because maybe they aren't. As bullets are not raycasted, I have to constantly check for colliding bodies which sometimes cannot detect if the collision box is to small. 
-> This one is serious, but playi- *testing*, I mean testing, with my friends, I've seen that it's not something very noticeable. You can test this in the firing range map and getting close to a target.
-
 - **Better respawns**: As the lobbies only allow 2 players and the map itself has a lot of spawnpoints, the chances of spawning in front of the enemy are low, but that doesn't mean it can't happen. I have to rework some 
 conditions to make spawning safer for players.
 

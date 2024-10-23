@@ -83,8 +83,6 @@ func _process(_delta):
 	#Get main_Character "arms Holder" node -- Make it a signal for better performance
 	if (LeftHandB_Attachment.get_child_count() > 0):
 		rightArmIKSkeleton.target_node = LeftHandB_Attachment.get_child(0).rHand_grip.get_path()
-		if arms.player.camera.current:
-			LeftHandB_Attachment.get_child(0).visible = false
 
 func _on_arms_player_swapping_weapons():
 	if not is_multiplayer_authority():

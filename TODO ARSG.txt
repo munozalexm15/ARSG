@@ -3,9 +3,6 @@ PROXIMA UPDATE:
 - Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
 - Añadir más sonidos en el UI (1h)
 
-
- - Volver a cambiar el filtro de busqueda de lobbies de "ARSGame" a "ARSG"
-
 DONE (v.0.1.1 -> v0.1.2)
 - Functional Steam invitations / join lobby from Steam friend chat
 - Fixed bug where metal footstep sound wouldn't play if you were sprinting
@@ -25,7 +22,7 @@ DONE (v.0.1.1 -> v0.1.2)
 - Fixed bug that kept the progress of a player who left the match.
 - Fixed bug that made the joining player skin not the correct one.
 - Fixed bug that made the joining player see others players that haven't selected a starting weapon yet.
-- Fixed bug that only showed player hands and weapon shadow and not player body
+
 
 
 UPDATE FUTURA TOCHA TO-DO:
@@ -35,7 +32,7 @@ UPDATE FUTURA TOCHA TO-DO:
  - Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Hacer mejores spawns con comprobaciones de distancia
-
+ - Fix bug that only showed player hands and weapon shadow and not player body
  - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
  - Impactos de bala
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
