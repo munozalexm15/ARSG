@@ -9,5 +9,5 @@ extends RigidBody3D
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _on_detonation_time_timeout() -> void:
+func _on_detonation_tigme_timeout() -> void:
 	print("bum")

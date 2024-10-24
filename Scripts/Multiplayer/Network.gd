@@ -411,3 +411,10 @@ func client_connection_failed_handler(steam_id: int, session_error: int) -> void
 	# Else no known error
 	else:
 		print("WARNING: Session failure with %s: unknown error %s" % [steam_id, session_error])
+
+
+func findPlayer(id) -> Player:
+	for p : Player in game.players_node.get_children():
+		if str(id) == p.name:
+			return p
+	return null

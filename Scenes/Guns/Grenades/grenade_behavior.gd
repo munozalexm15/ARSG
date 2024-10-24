@@ -24,14 +24,19 @@ func _on_sphere_visibility_changed() -> void:
 	if sphereMesh.visible:
 		return
 	if not sphereMesh.visible and arms.readyToThrow:
-		arms.player.player_body.RightHandB_Attachment.get_child(0).visible = false
-		grenadeThrown.mass = 1
-		remove_child(grenadeThrown)
-		Network.game.add_child(grenadeThrown)
-		grenadeThrown.global_position = grenadeParent.global_position
-		#forward
-		grenadeThrown.apply_central_impulse(-arms.player.global_transform.basis.z * 20)
-		#camera y rotation impulseg
-		grenadeThrown.apply_impulse(arms.player.global_transform.basis.y * arms.player.eyes.rotation.x * 30)
-		await get_tree().create_timer(0.1).timeout
-		grenadeThrown.visible = true
+		throw_grenade.rpc(arms.player.name)
+
+@rpc("any_peer", "call_local", "reliable")
+func throw_grenade(pID):
+	var p : Player = Network.findPlayer(pID)
+	p.player_body.RightHandB_Attachment.get_child(0).visible = false
+	p.arms.grenade.grenadeThrown.mass = 1
+	p.arms.grenade.remove_child(grenadeThrown)
+	Network.game.add_child(grenadeThrown)
+	p.arms.grenade.grenadeThrown.global_position = grenadeParent.global_position
+	#forward
+	p.arms.grenade.grenadeThrown.apply_central_impulse(-p.global_transform.basis.z * 20)
+	#camera y rotation impulseg
+	p.arms.grenade.grenadeThrown.apply_impulse(p.global_transform.basis.y * arms.player.eyes.rotation.x * 30)
+	await get_tree().create_timer(0.1).timeout
+	p.arms.grenade.grenadeThrown.visible = true
