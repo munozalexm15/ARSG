@@ -86,8 +86,7 @@ func generatePlayer(id):
 
 @rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
-	print("seteando auth, mi peer id es")
-	var playerInstance = players_node.get_node("./" + playernode_Name)
+	var playerInstance : Player = players_node.get_node("./" + playernode_Name)
 	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
 	

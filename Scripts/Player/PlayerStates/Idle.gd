@@ -9,7 +9,10 @@ var rotation_value = 0
 func enter(_msg := {}):
 	if not is_multiplayer_authority():
 		return
-	
+		
+	if player.state_machine.old_state == null:
+		return
+		
 	if player.state_machine.old_state.name == "Air":
 		player.player_body.animationTree.set("parameters/Movement/transition_request", "Air_Land")
 	else:

@@ -31,6 +31,10 @@ var actualWeapon : Weapon
 var actual_animation = ""
 var meleeAttack = false
 
+#GRENADE
+@onready var grenade : Grenade = $GrenadeHands
+var readyToThrow = false
+
 var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01
 var weapon_sway_amount : float = 5
@@ -60,8 +64,6 @@ func _input(event):
 		
 	if event is InputEventMouseMotion:
 		mouse_input = event.relative
-		
-	
 	
 func _physics_process(delta):
 	if not is_multiplayer_authority():
@@ -81,6 +83,10 @@ func _physics_process(delta):
 	
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
+	
+	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade":
+		state_machine.transition_to("Grenade")
+		
 	
 	if Input.is_action_pressed("ADS") and state_machine.state.name != "Reload":
 		if actualWeapon.weaponData.weaponType == "Sniper":

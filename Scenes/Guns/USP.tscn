@@ -1,15 +1,14 @@
-[gd_scene load_steps=51 format=4 uid="uid://dldfeavhyt2ys"]
+[gd_scene load_steps=47 format=4 uid="uid://dldfeavhyt2ys"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_koqv4"]
 [ext_resource type="Resource" uid="uid://cvsyripni1r7v" path="res://Scripts/Guns/Resources/USP_Resource.tres" id="2_qxifq"]
-[ext_resource type="PackedScene" uid="uid://deq0ph2t36sew" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMBullet.tscn" id="3_23sfq"]
+[ext_resource type="PackedScene" uid="uid://7evxytscrllj" path="res://Scenes/Bullets/Bullet.tscn" id="3_7ytns"]
 [ext_resource type="Texture2D" uid="uid://ci7shwalilgfw" path="res://GameResources/Textures/Guns/USP/USP_Text.jpg" id="3_ud7w0"]
 [ext_resource type="Curve" uid="uid://dqr20yxebt2j1" path="res://GameResources/Curves/USP/USP_RecoilRotation_X.tres" id="4_1cihk"]
 [ext_resource type="Curve" uid="uid://c7qboenm3mpv2" path="res://GameResources/Curves/USP/USP_RecoilPosition_Z.tres" id="4_neg51"]
 [ext_resource type="Texture2D" uid="uid://euxa0y6g15rq" path="res://GameResources/Textures/Guns/USP/USP_mag_Text.jpg" id="5_ercxw"]
 [ext_resource type="Curve" uid="uid://fwdnoc44jwlo" path="res://GameResources/Curves/USP/USP_RecoilRotation_Z.tres" id="5_u081t"]
-[ext_resource type="Script" path="res://Scripts/Guns/weapon_smoke_trail.gd" id="7_o26y3"]
-[ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="7_xc76o"]
+[ext_resource type="Texture2D" uid="uid://bsmd3gsn2r3wo" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash4.png" id="7_0tnkt"]
 [ext_resource type="ArrayMesh" uid="uid://cgs4amjoorek2" path="res://GameResources/Meshes/Guns/Bullets/9MM/9MMCase.tres" id="8_wl0c4"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="10_tn824"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="11_opi1n"]
@@ -18,27 +17,16 @@
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="15_uvv5f"]
 [ext_resource type="AudioStream" uid="uid://dawuslj4il1wi" path="res://GameResources/Sounds/Weapons/USP/usp_reload.mp3" id="16_82a28"]
 
-[sub_resource type="Gradient" id="Gradient_7262n"]
-colors = PackedColorArray(0, 0, 0, 0, 0.145098, 0.160784, 0.164706, 0.823529)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_huk7y"]
+angle_min = -28.8
+angle_max = 14.4
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3m2y2"]
-gradient = SubResource("Gradient_7262n")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnhlw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phyb4"]
 transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = SubResource("GradientTexture1D_3m2y2")
-
-[sub_resource type="Curve" id="Curve_xid4k"]
-_data = [Vector2(0, 0.0366615), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1ttx"]
-transparency = 1
-albedo_texture = ExtResource("7_xc76o")
+albedo_texture = ExtResource("7_0tnkt")
 emission_enabled = true
 emission = Color(0.901961, 0.482353, 0, 1)
 emission_energy_multiplier = 16.0
@@ -49,8 +37,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 proximity_fade_distance = 28.45
 
-[sub_resource type="QuadMesh" id="QuadMesh_ehmb7"]
-material = SubResource("StandardMaterial3D_e1ttx")
+[sub_resource type="QuadMesh" id="QuadMesh_cbna5"]
+material = SubResource("StandardMaterial3D_phyb4")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_shq4s"]
@@ -2012,40 +2000,27 @@ _data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.19812, 0, 0)
 script = ExtResource("1_koqv4")
 weaponData = ExtResource("2_qxifq")
-bullet_type = ExtResource("3_23sfq")
+bullet_type = ExtResource("3_7ytns")
 recoil_rotation_x = ExtResource("4_1cihk")
 recoil_rotation_z = ExtResource("5_u081t")
 recoil_position_z = ExtResource("4_neg51")
 lerp_speed = 10.0
 
 [node name="Muzzle" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.51239, 1.11783, 0.994658)
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 4.51239, 1.11783, 0.994658)
 
-[node name="MuzzleSmoke" type="MeshInstance3D" parent="Muzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.08786, 0.0707574, 1.86323)
-material_override = SubResource("StandardMaterial3D_bnhlw")
-script = ExtResource("7_o26y3")
-lifetime = 0.4
-width_profile = SubResource("Curve_xid4k")
-smoothing_iterations = 3
-axis = 2
-
-[node name="MuzzleFlash" type="CPUParticles3D" parent="Muzzle"]
-transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
+transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.053277, 0.0491189)
 emitting = false
 amount = 1
 lifetime = 0.05
 one_shot = true
 randomness = 1.0
+fixed_fps = 0
 local_coords = true
 draw_order = 1
-mesh = SubResource("QuadMesh_ehmb7")
-emission_colors = PackedColorArray(0.984314, 0.580392, 0, 1)
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-angle_min = -28.8
-angle_max = 14.4
+process_material = SubResource("ParticleProcessMaterial_huk7y")
+draw_pass_1 = SubResource("QuadMesh_cbna5")
 
 [node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0247701, 0, 0)

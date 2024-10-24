@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_8hwxf")
-LeftHandPosition = Vector3(-0.116, -0.244, -0.187)
-LeftHandRotation = Vector3(0.427, 1.935, -2.46)
-RightHandPosition = Vector3(0.001, -0.2, 0.804)
+LeftHandPosition = Vector3(-0.116, 0.561798, -0.0367143)
+LeftHandRotation = Vector3(-0.233202, 1.15128, 0.446494)
+RightHandPosition = Vector3(-0.229957, -0.0745656, 0.418967)
 RightHandRotation = Vector3(1.733, 0, 0)
 weaponType = "Pistol"

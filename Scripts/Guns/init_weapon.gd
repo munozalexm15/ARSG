@@ -96,6 +96,9 @@ func _physics_process(delta):
 	if hands.player.isPauseMenuOpened or Network.game.chatText.has_focus():
 		return
 	
+	if hands.state_machine.state.name == "Grenade":
+		return
+	
 	if Input.is_action_just_pressed("FireSelection") and weaponData.allowsFireSelection and hands.state_machine.state.name != "Reload":
 		fire_selection_sound.play()
 		if weaponData.selectedFireModeIndex +1 == weaponData.fireModes.size():

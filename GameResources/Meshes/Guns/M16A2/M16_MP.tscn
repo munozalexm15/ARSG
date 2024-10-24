@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Guns/Resources/WeaponSkeletonData.gd" id="2_fv4o0"]
 [ext_resource type="Texture2D" uid="uid://crofsnbiubec5" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash.png" id="4_q3mah"]
 
-[sub_resource type="Resource" id="Resource_vqhod"]
+[sub_resource type="Resource" id="Resource_joqjw"]
 script = ExtResource("2_fv4o0")
 LeftHandPosition = Vector3(-0.331273, 0.0973575, 0.663003)
 LeftHandRotation = Vector3(0.190954, -2.41788, -1.60017)
@@ -100,7 +100,7 @@ direction = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafp2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2vkj"]
 transparency = 1
 albedo_texture = ExtResource("4_q3mah")
 emission_enabled = true
@@ -115,13 +115,13 @@ particles_anim_loop = false
 proximity_fade_distance = 28.45
 
 [sub_resource type="QuadMesh" id="QuadMesh_h5wly"]
-material = SubResource("StandardMaterial3D_qafp2")
+material = SubResource("StandardMaterial3D_y2vkj")
 size = Vector2(0.2, 0.2)
 
 [node name="M16_MP" type="Node3D"]
 transform = Transform3D(0.022771, -0.195071, -0.0377954, 0.111588, -0.0189226, 0.164893, -0.164407, -0.0398616, 0.106684, 0.292, -0.130085, 0.22)
 script = ExtResource("1_nwncj")
-weaponSkeletonData = SubResource("Resource_vqhod")
+weaponSkeletonData = SubResource("Resource_joqjw")
 
 [node name="WeaponParent" type="Node3D" parent="."]
 transform = Transform3D(1, 1.49012e-08, -2.98023e-08, 1.49012e-08, 1, -7.45058e-09, 2.98023e-08, -7.45058e-09, 1, 0, 0, 0)

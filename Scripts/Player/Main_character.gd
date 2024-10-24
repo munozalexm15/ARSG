@@ -178,23 +178,32 @@ func _input(event : InputEvent):
 			camera.current = false
 			thirdPersonCam.current = true
 			arms.weaponHolder.visible = false
+			arms.grenade.visible = false
 			player_body.visible = true
 			thirdPersonEnabled = true
+			
 		elif thirdPersonCam.current:
+			
 			camera.current = true
 			thirdPersonCam.current = false
-			arms.weaponHolder.visible = true
+			if not arms.grenade.animPlayer.is_playing():
+				arms.weaponHolder.visible = true
 			player_body.visible = false
 			thirdPersonEnabled = false
+			arms.grenade.visible = true
 	
 	if Input.is_action_just_pressed("ADS") and camera.current == false:
 		camera.current = true
 		thirdPersonCam.current = false
-		arms.weaponHolder.visible = true
+		if not arms.grenade.animPlayer.is_playing():
+			arms.weaponHolder.visible = true
+		arms.grenade.visible = true
 		player_body.visible = false
 		thirdPersonEnabled = true
+		
 	
 	if Input.is_action_just_released("ADS") and thirdPersonEnabled:
+		arms.grenade.visible = false
 		camera.current = false
 		thirdPersonCam.current = true
 		arms.weaponHolder.visible = false

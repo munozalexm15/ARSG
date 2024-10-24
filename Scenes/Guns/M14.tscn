@@ -23,7 +23,7 @@ direction = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phyb4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wgi8"]
 transparency = 1
 albedo_texture = ExtResource("7_4k1d0")
 emission_enabled = true
@@ -37,7 +37,7 @@ particles_anim_loop = false
 proximity_fade_distance = 28.45
 
 [sub_resource type="QuadMesh" id="QuadMesh_130cd"]
-material = SubResource("StandardMaterial3D_phyb4")
+material = SubResource("StandardMaterial3D_2wgi8")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]

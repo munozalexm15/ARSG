@@ -81,6 +81,7 @@ conditions to make spawning safer for players.
  - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch 
  - First person hands model by [CemCkrc](https://cemckrc.itch.io/fps-arms-psx-style) on Itch 
  - Shooting range assets by [Comp-3 Interactive](https://comp3interactive.itch.io/modular-psx-shooting-range-kit) on Itch 
+ - Metro asset pack by [elbolilloduro](https://elbolilloduro.itch.io/metro) on Itch
  - PSXPack assets by [orange rice](https://orange-rice.itch.io/psxpack) on Itch 
  - Additional textures (from the PSXPack): [Textures.com](https://www.textures.com/) , [Pexels.com](https://www.pexels.com/es-es/) , [FreeSound](https://freesound.org/) , [FreeStockTextures](https://freestocktextures.com/)
  - Retro FPS Kit by [Pizza Doggy](https://pizzadoggy.itch.io/modular-retro-fps-kit) on Itch 

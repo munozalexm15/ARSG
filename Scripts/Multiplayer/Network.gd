@@ -302,6 +302,8 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			
 			player.arms.actualWeapon.leftArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
 			player.arms.actualWeapon.rightArm.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
+			player.arms.grenade.leftHand.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
+			player.arms.grenade.rightHand.get_active_material(0).albedo_texture= player.arms.handsAssignedTexture
 			
 @rpc("any_peer", "call_local")
 func show_all_players():

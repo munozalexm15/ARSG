@@ -1,7 +1,20 @@
-PROXIMA UPDATE:
+PROXIMA UPDATE TOCHA:
 
-- Cuando spawnea un jugador al poner la maquina de estados en pausa, al reanudarla a veces se queda el estado pillado en Air (cuando saltas y tal se soluciona solo, pero se deberia de añadir una comprobacion al estado) (but state machine is in falling?)
+- Granadas
+- Cuchillo
+- Pickups especiales (granadas)
+- Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
+- Hacer mejores spawns con comprobaciones de distancia
+- Impactos de bala
 - Añadir más sonidos en el UI (1h)
+- Pensar si reworkear el tema de las salas, de manera que si tira del cable alguien se termine la partida (ver si solo hacemos 1vs1 primero o FFA y otros modos)
+- Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
+- Añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano) -> En vez de rotar los brazos, mirar de setear unas coordenadas para los brazos que estén estirados (aunque sea una mano) y rotar unicamente los hombros
+
+DONE (v.0.1.2 -> v0.1.3)
+ - Fixed bug that made joining players see other player in a falling animation until they move
+
+
 
 DONE (v.0.1.1 -> v0.1.2)
 - Functional Steam invitations / join lobby from Steam friend chat
@@ -27,14 +40,9 @@ DONE (v.0.1.1 -> v0.1.2)
 
 UPDATE FUTURA TOCHA TO-DO:
 
- - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
+ 
  - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
- - Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
- - Hacer mejores spawns con comprobaciones de distancia
- - Fix bug that only showed player hands and weapon shadow and not player body
- - Clases / añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano)
- - Impactos de bala
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
  - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
  - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
