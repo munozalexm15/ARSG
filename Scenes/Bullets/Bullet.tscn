@@ -66,7 +66,7 @@ albedo_texture = SubResource("GradientTexture2D_i1pfl")
 billboard_keep_scale = true
 proximity_fade_distance = 50.0
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_o4vyw"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_di4uh"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_daq1i")
@@ -86,7 +86,7 @@ skeleton = NodePath("")
 [node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_padnw")
-mesh = SubResource("ImmediateMesh_o4vyw")
+mesh = SubResource("ImmediateMesh_di4uh")
 script = ExtResource("4_h5wdu")
 fromWidth = 0.3
 lifespan = 0.05

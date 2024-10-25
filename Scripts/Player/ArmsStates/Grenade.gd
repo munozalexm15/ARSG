@@ -9,6 +9,7 @@ func enter(_msg := {}):
 	if arms.player.camera.current:
 		arms.grenade.visible = true
 	arms.grenade.animPlayer.play("Grenade_Prepare")
+	arms.grenade.throwSound.play()
 	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", "Grenade_Prepare")
 	arms.weaponHolder.visible = false
 	arms.player.player_body.leftArmIKSkeleton.interpolation = 0
@@ -44,7 +45,6 @@ func thirdPersonGrenadeFlow(pID):
 	p.arms.animationPlayer.play("Reload", -1, -1, true)
 	if p.arms.player.camera.current:
 		p.arms.weaponHolder.visible = true
-	print("done!")
 	p.arms.state_machine.transition_to("Idle")
 	p.arms.player.player_body.leftArmIKSkeleton.interpolation = 0.5
 	p.arms.player.player_body.rightArmIKSkeleton.interpolation = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://brc6aet1f2h2b"]
+[gd_scene load_steps=38 format=4 uid="uid://brc6aet1f2h2b"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Hand_Animations_Character.gd" id="1_fm3lv"]
 [ext_resource type="Script" path="res://Scenes/Guns/Grenades/grenade_behavior.gd" id="2_66s6v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://be1jjcfhbiig7" path="res://Scenes/Guns/Knife.tscn" id="2_woo6u"]
 [ext_resource type="Texture2D" uid="uid://bey4oppscqukq" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Police.png" id="3_2cr23"]
 [ext_resource type="Texture2D" uid="uid://dhwmwxh1jsuoc" path="res://GameResources/Textures/Grenades/metal_text.jpg" id="3_5wohp"]
+[ext_resource type="AudioStream" uid="uid://b7t52pwxakwgr" path="res://GameResources/Sounds/Grenade/grenade_throw.ogg" id="3_e34ef"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Reload.gd" id="5_3e6c2"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Idle.gd" id="6_fugjo"]
 [ext_resource type="Script" path="res://Scripts/Player/ArmsStates/Melee.gd" id="7_mq3cw"]
@@ -44,6 +45,9 @@ properties/8/replication_mode = 1
 properties/9/path = NodePath("../ReloadTimer:wait_time")
 properties/9/spawn = true
 properties/9/replication_mode = 1
+properties/10/path = NodePath("../GrenadeHands/AudioStreamPlayer3D:playing")
+properties/10/spawn = true
+properties/10/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gted7"]
 resource_name = "HandMaterial"
@@ -1440,6 +1444,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.837911, -0.620924, 0)
 visible = false
 script = ExtResource("2_66s6v")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GrenadeHands"]
+stream = ExtResource("3_e34ef")
+
 [node name="Player_Arms" type="Node3D" parent="GrenadeHands"]
 
 [node name="Armature_001" type="Node3D" parent="GrenadeHands/Player_Arms"]
@@ -1769,10 +1776,10 @@ libraries = {
 }
 
 [node name="GrenadeParent" type="Node3D" parent="GrenadeHands/Player_Arms"]
-transform = Transform3D(0.867305, 0.296661, -0.399717, 0.212273, 0.505906, 0.836062, 0.450246, -0.80997, 0.375801, 3.05202, -2.04405, 0.905941)
+transform = Transform3D(0.867305, 0.296662, -0.399716, 0.212273, 0.505906, 0.836062, 0.450246, -0.80997, 0.375801, 3.05202, -2.04405, 0.905941)
 
 [node name="Torus" type="MeshInstance3D" parent="GrenadeHands/Player_Arms/GrenadeParent"]
-transform = Transform3D(0.0379673, -0.0638762, -0.0564184, 0.00747735, 0.0640225, -0.0674533, 0.0848957, 0.022928, 0.0311727, -0.0235696, 0.417264, 0.190863)
+transform = Transform3D(0.0379669, -0.0638763, -0.0564186, 0.00747735, 0.0640225, -0.0674532, 0.0848959, 0.0229277, 0.0311724, -0.0235696, 0.417264, 0.190863)
 mesh = SubResource("ArrayMesh_bp6b5")
 skeleton = NodePath("")
 

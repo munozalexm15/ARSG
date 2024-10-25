@@ -99,7 +99,6 @@ func _input(_event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#made because this way players can join new lobbies if a friend invites them from steam
 	if camera.shakeStrength >0:
 		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
 		

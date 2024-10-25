@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cdnnstwhp6bha"]
+[gd_scene load_steps=30 format=3 uid="uid://cdnnstwhp6bha"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Main_character.gd" id="1_yciub"]
 [ext_resource type="Script" path="res://Scripts/Player/StateMachine/FiniteStateMachine.gd" id="2_p6bay"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Idle.gd" id="3_0ggrl"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/Interaction_Handler.gd" id="3_1c2ms"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/InformationRay_Handler.gd" id="3_lt84g"]
+[ext_resource type="Script" path="res://Scripts/Mechanics/CameraShake_Handler.gd" id="4_6cicf"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Walk.gd" id="4_c7knn"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Air.gd" id="5_xejyo"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerStates/Run.gd" id="6_an03r"]
@@ -288,6 +289,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
 cull_mask = 1
 size = 11.029
 near = 0.01
+script = ExtResource("4_6cicf")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Head/eyesHolder/armsHolder"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.02, -0.38473)

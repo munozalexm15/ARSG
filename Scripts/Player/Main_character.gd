@@ -209,6 +209,14 @@ func _input(event : InputEvent):
 		arms.weaponHolder.visible = false
 		player_body.visible = true
 
+func _process(delta: float) -> void:
+	if camera.shakeStrength >0:
+		camera.shakeStrength = lerpf(camera.shakeStrength, 0, camera.shakeFade * delta)
+		
+		var shakeOffset : Vector2 = camera.randomizeCamOffset()
+		camera.h_offset = shakeOffset.x
+		camera.v_offset = shakeOffset.y
+
 func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
@@ -384,7 +392,7 @@ func updateHealth(identifier):
 
 #hacer RPC al jugador que va a morir para transicionarlo a muerto y luego otro rpc para transicionarlo a vivo (la state machine)
 @rpc("any_peer", "call_local", "reliable")
-func die_respawn(player_id, instigator_id):
+func die_respawn(player_id, instigator_id, deathType = "weapon"):
 	var killerName = ""
 	var deadName = ""
 	var killerWeaponImage : CompressedTexture2D
@@ -397,14 +405,24 @@ func die_respawn(player_id, instigator_id):
 	for index in Network.game.players.size():
 		var playerDict = Network.game.players[index]
 		if playerDict["id"] == str(instigator_id):
-			playerDict["score"] += 100
-			playerDict["kills"] += 1
-			killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
-			killerWeaponImage = Network.game.players_node.get_child(index).arms.actualWeapon.weaponData.weaponImage
+			if instigator_id != player_id:
+				playerDict["score"] += 100
+				playerDict["kills"] += 1
+			
+			if deathType == "weapon":
+				killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				killerWeaponImage = Network.game.players_node.get_child(index).arms.actualWeapon.weaponData.weaponImage
+			elif deathType == "grenade":
+				killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				var nadeTexture : CompressedTexture2D = CompressedTexture2D.new()
+				nadeTexture = load("res://GameResources/Textures/Grenades/grenade_icon.png")
+				killerWeaponImage = nadeTexture
+		
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
-			deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
-			
+			if deathType != "grenade":
+				deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				
 	Network.game.dashboardMatch.get_lobby_data()
 	Network.game.add_kill_to_killFeed(killerName, killerWeaponImage, deadName)
 	visible = false

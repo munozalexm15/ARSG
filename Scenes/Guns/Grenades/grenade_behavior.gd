@@ -13,6 +13,8 @@ extends Node3D
 var grenadeScene : PackedScene = preload("res://Scenes/Guns/Grenades/Grenade.tscn")
 var grenadeThrown : GrenadeThrown = null
 
+@onready var throwSound : AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 @onready var sphereMesh : MeshInstance3D = $Player_Arms/GrenadeParent/Sphere
 
 func _ready() -> void:
