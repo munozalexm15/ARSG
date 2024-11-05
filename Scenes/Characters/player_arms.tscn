@@ -1446,6 +1446,8 @@ script = ExtResource("2_66s6v")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GrenadeHands"]
 stream = ExtResource("3_e34ef")
+max_distance = 25.0
+bus = &"Weapons"
 
 [node name="Player_Arms" type="Node3D" parent="GrenadeHands"]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5rnob2cwlyeq"
-path.s3tc="res://.godot/imported/grenade_icon.png-52d96c52c73b2aa5d77a7f5e358d7f14.s3tc.ctex"
+uid="uid://nxf33fbwpmy6"
+path.s3tc="res://.godot/imported/pouch_1.jpg-777c13ddeb845cc6f26e7443b9021c11.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Textures/Grenades/grenade_icon.png"
-dest_files=["res://.godot/imported/grenade_icon.png-52d96c52c73b2aa5d77a7f5e358d7f14.s3tc.ctex"]
+source_file="res://GameResources/Textures/Pickups/Health Pouch/pouch_1.jpg"
+dest_files=["res://.godot/imported/pouch_1.jpg-777c13ddeb845cc6f26e7443b9021c11.s3tc.ctex"]
 
 [params]
 

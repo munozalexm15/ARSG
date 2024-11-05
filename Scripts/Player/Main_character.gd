@@ -103,7 +103,6 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
 	
@@ -118,6 +117,7 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
+	hud.grenadeCountLabel.text = str(arms.grenadeQuantity)
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():

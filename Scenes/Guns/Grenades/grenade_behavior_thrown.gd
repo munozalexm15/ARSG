@@ -8,6 +8,7 @@ extends RigidBody3D
 @onready var explosionParticleParent : Node3D = $ParticlesGrenade
 @onready var hit_decal : Decal = $Decal
 @onready var bounceAudio : AudioStreamPlayer3D = $BounceAudio3D
+@onready var explodeAudio : AudioStreamPlayer3D = $ExplosionAudio3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,6 +26,8 @@ func _on_detonation_time_timeout() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func checkExplosionEffect():
+	explodeAudio.play()
+	
 	lock_rotation = true
 	rotation = Vector3.ZERO
 	var bodies = explosionArea.get_overlapping_bodies()

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5rnob2cwlyeq"
-path.s3tc="res://.godot/imported/grenade_icon.png-52d96c52c73b2aa5d77a7f5e358d7f14.s3tc.ctex"
+uid="uid://3spkugfh2j2c"
+path.s3tc="res://.godot/imported/large_ammo-box_240.png-c8efdcc21475c3fd9cda88e81ea27a1e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Textures/Grenades/grenade_icon.png"
-dest_files=["res://.godot/imported/grenade_icon.png-52d96c52c73b2aa5d77a7f5e358d7f14.s3tc.ctex"]
+source_file="res://GameResources/Textures/Pickups/Ammo Box/large_ammo-box_240.png"
+dest_files=["res://.godot/imported/large_ammo-box_240.png-c8efdcc21475c3fd9cda88e81ea27a1e.s3tc.ctex"]
 
 [params]
 

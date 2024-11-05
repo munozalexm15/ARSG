@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=52 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_a84a5"]
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfdgxy422e8r8" path="res://GameResources/Textures/Other/Bullet.png" id="2_rrjfu"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="3_o1pwj"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
+[ext_resource type="Texture2D" uid="uid://5rnob2cwlyeq" path="res://GameResources/Textures/Grenades/grenade_icon.png" id="4_bpdig"]
 [ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader" id="7_m5vmm"]
 
@@ -645,8 +646,20 @@ theme_override_font_sizes/font_size = 30
 text = "31/180
 "
 label_settings = SubResource("LabelSettings_c7qgx")
-horizontal_alignment = 2
 uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="GrenadeCount" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "x1"
+
+[node name="GrenadeIcon" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_bpdig")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2

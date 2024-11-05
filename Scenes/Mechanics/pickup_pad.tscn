@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://d083dw8cl2qrd"]
+
+[ext_resource type="Script" path="res://Scripts/Mechanics/pickup_pad.gd" id="1_3f6do"]
+[ext_resource type="Texture2D" uid="uid://by016raidx57h" path="res://GameResources/Textures/Mines/metal_painted.jpg" id="1_13k77"]
+[ext_resource type="ArrayMesh" uid="uid://dnvmdkdnyw8ng" path="res://GameResources/Meshes/Pickups/ammo_box.tres" id="3_yt558"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fiuc"]
+albedo_texture = ExtResource("1_13k77")
+emission_enabled = true
+emission = Color(0.441648, 0.322699, 0, 1)
+emission_energy_multiplier = 6.0
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbpq0"]
+material = SubResource("StandardMaterial3D_6fiuc")
+
+[sub_resource type="Animation" id="Animation_q8rr2"]
+resource_name = "Idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("grenade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5, 7.53333, 10),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2),
+"update": 0,
+"values": [Vector3(0, 1.34971, 0), Vector3(0, 1.15531, 0), Vector3(0, 1.34971, 0), Vector3(0, 1.15531, 0), Vector3(0, 1.34971, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("grenade:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14103, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bhwl7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("grenade:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.34971, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("grenade:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gu8sr"]
+_data = {
+"Idle": SubResource("Animation_q8rr2"),
+"RESET": SubResource("Animation_bhwl7")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uf5y5"]
+transparency = 1
+albedo_color = Color(4.81307e-07, 0.431161, 0.493078, 0.5)
+emission = Color(0.263228, 0.386183, 0, 1)
+emission_energy_multiplier = 0.0
+clearcoat_enabled = true
+clearcoat_roughness = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_js0u1"]
+material = SubResource("StandardMaterial3D_uf5y5")
+height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfhch"]
+size = Vector3(1.5, 1.98178, 1.5)
+
+[node name="GrenadeBubble" type="Node3D"]
+script = ExtResource("1_3f6do")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0255403, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_sbpq0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gu8sr")
+}
+
+[node name="grenade" type="Node3D" parent="."]
+transform = Transform3D(0.141612, 0, 0, 0, 0.141612, 0, 0, 0, 0.141612, 0, 1.34971, 0)
+
+[node name="Bubble" type="MeshInstance3D" parent="grenade"]
+transform = Transform3D(7.06155, 0, -4.76837e-07, 0, 7.06155, 0, 4.76837e-07, 0, 7.06155, 0, -0.0639715, 0)
+mesh = SubResource("CapsuleMesh_js0u1")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshDisplay" type="MeshInstance3D" parent="grenade"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = ExtResource("3_yt558")
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.908333, 0)
+shape = SubResource("BoxShape3D_nfhch")

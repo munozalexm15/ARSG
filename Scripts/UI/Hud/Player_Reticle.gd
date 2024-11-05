@@ -17,6 +17,8 @@ extends Control
 @onready var primaryWeaponIcon : TextureRect = $VBoxContainer/PrimaryWeaponImage
 @onready var secondaryWeaponIcon : TextureRect= $VBoxContainer/SecondaryWeaponImage
 
+@onready var grenadeCountLabel : Label = $PanelContainer/HBoxContainer/VBoxContainer2/HBoxContainer/GrenadeCount
+
 @onready var pickupAmmoContainer : VBoxContainer = $CenterContainer2/HBoxContainer/PickupAmmoContainer2
 @onready var marginContainer : MarginContainer = $CenterContainer2/HBoxContainer/MarginContainer
 @onready var pickupWeaponContainer : VBoxContainer = $CenterContainer2/HBoxContainer/PickupWeaponContainer
@@ -51,7 +53,7 @@ func _ready():
 	if not is_multiplayer_authority():
 		visible = false
 		return
-		
+	
 	crosshair.queue_redraw()
 	healthBar.value = player_controller.health 
 	NPCNameLabel.visible = false

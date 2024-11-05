@@ -34,6 +34,7 @@ var meleeAttack = false
 #GRENADE
 @onready var grenade : Grenade = $GrenadeHands
 var readyToThrow = false
+var grenadeQuantity : int = 1
 
 var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01
@@ -84,7 +85,7 @@ func _physics_process(delta):
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
-	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade":
+	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade" and grenadeQuantity > 0:
 		state_machine.transition_to("Grenade")
 		
 	

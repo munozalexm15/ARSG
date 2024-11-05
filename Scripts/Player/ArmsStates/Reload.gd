@@ -45,7 +45,7 @@ func enter(_msg := {}):
 		arms.reloadTimer.start()
 
 func handle_input(_event : InputEvent) -> void:
-	if Input.is_action_just_pressed("Grenade") and arms.readyToThrow == false:
+	if Input.is_action_just_pressed("Grenade") and arms.readyToThrow == false and arms.grenadeQuantity > 0:
 		arms.actualWeapon.handsAnimPlayer.play("RESET")
 		for audio in arms.player.player_sounds.get_children():
 			arms.player.player_sounds.remove_child(audio)

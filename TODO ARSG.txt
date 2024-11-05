@@ -11,6 +11,24 @@ PROXIMA UPDATE TOCHA:
 - Añadir estado "Waiting for players..." cuando hosteas la sala: No baja el tiempo hasta que se una un jugador.
 - Añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano) -> En vez de rotar los brazos, mirar de setear unas coordenadas para los brazos que estén estirados (aunque sea una mano) y rotar unicamente los hombros
 
+--------------------------------------------------------------------------------------------------------
+MARTES:
+- Granadas (chequear que va RPC, limite de granadas (máx 4, 2 por cada pickup)
+- Pickup mecanica (Granadas, balas y salud)
+
+MIERCOLES:
+- Cuchillo (RPC, ANIMACION 3ª PERS)
+
+JUEVES:
+- Hacer mejores spawns con comprobaciones de distancia
+- Impactos de bala /  feedback de impacto en los enemigos
+- Añadir más sonidos en el UI (1h)
+
+VIERNES:
+- Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
+
+---------------------------------------------------------------------------------------------------------------------------------
+
 DONE (v.0.1.2 -> v0.1.3)
  - Fixed bug that made joining players see other player in a falling animation until they move
 
