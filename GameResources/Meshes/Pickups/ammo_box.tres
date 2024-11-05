@@ -1,12 +1,14 @@
 [gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://dnvmdkdnyw8ng"]
 
-[ext_resource type="Texture2D" uid="uid://3spkugfh2j2c" path="res://GameResources/Textures/Pickups/Ammo Box/large_ammo-box_240.png" id="1_2nljj"]
+[ext_resource type="Texture2D" uid="uid://p55xakjnqo5k" path="res://GameResources/Textures/Pickups/Ammo Box/large_ammo-box.png" id="1_s034q"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24w7d"]
-resource_name = "Material.010"
-transparency = 4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5aosj"]
+resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = ExtResource("1_2nljj")
+albedo_texture = ExtResource("1_s034q")
+emission = Color(0.092387, 0.126791, 4.81308e-08, 1)
+texture_filter = 0
+proximity_fade_distance = 5.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_720un"]
 _surfaces = [{
@@ -30,7 +32,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 234,
 "index_data": PackedByteArray("BAAFAAEABAAHAAUADABYAFUAWAAPAAoAWAAMAA8AEAARABMAEAANABEAYAAcAGUAYAAXABwAFAAbABYAFAAYABsAcgA1ACkAcgB+ADUAkABKAEcAkACTAEoAIQAnACMAIQAmACcAIAAzACIAIAAyADMAHgA6ADEAHgAuADoAJAA4ADAAJAA/ADgAHwBBACUAHwAvAEEALQAqAEAALQA9ACoALAA3ADkALAA8ADcAPwA0ADgAPwAoADQAhwArAD4AhwB0ACsAhAA2ADsAhAB/ADYAjgBLAEUAjgCUAEsAQgBJAEQAQgBGAEkASACMAJEASABDAIwATgBQAFIATgBMAFAAYwAdABoAYwBmAB0AWQBaAFYAWQBcAFoAXQBkAGEAXQBfAGQAagBwAG8AagBsAHAAaQB8AHsAaQBrAHwAZwCDAHcAZwB6AIMAbQCBAIgAbQB5AIEAaACKAHgAaABuAIoAdgBzAIYAdgCJAHMAdQCAAIUAdQCCAIAAiAB9AHEAiACBAH0AiwCSAI8AiwCNAJIAUQAIAFMACAALAAYACABRAAsAAwBMAE8AAwAAAEwAVAACAE0AVAAJAAIAGQBeAGIAGQAVAF4AWwAOAFcAWwASAA4A"),
-"material": SubResource("StandardMaterial3D_24w7d"),
+"material": SubResource("StandardMaterial3D_5aosj"),
 "name": "Material.010",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

@@ -3,7 +3,7 @@ extends ArmsState
 # Called when the node enters the scene tree for the first time.
 func enter(_msg := {}):
 	arms.grenadeQuantity -= 1
-	arms.player.hud.grenadeCountLabel.text = str(arms.grenadeQuantity)
+	arms.player.hud.grenadeCountLabel.text = str("x" , arms.grenadeQuantity)
 	
 	arms.animationPlayer.play("Reload")
 	await arms.animationPlayer.animation_finished

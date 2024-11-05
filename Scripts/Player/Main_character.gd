@@ -117,7 +117,7 @@ func _ready():
 	initialHands_pos = arms.position.y
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
-	hud.grenadeCountLabel.text = str(arms.grenadeQuantity)
+	hud.grenadeCountLabel.text = str("x" , arms.grenadeQuantity)
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():
@@ -306,7 +306,8 @@ func _checkCollisionWithWall():
 	else:
 		isColliding = false
 		if lerpHandsPosition > 0:
-			lerpHandsPosition -= 0.05
+			lerpHandsPosition = 0
+			
 
 	arms.rotation.z = lerp_angle(
 	deg_to_rad(0),

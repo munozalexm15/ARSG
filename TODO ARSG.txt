@@ -14,7 +14,7 @@ PROXIMA UPDATE TOCHA:
 --------------------------------------------------------------------------------------------------------
 MARTES:
 - Granadas (chequear que va RPC, limite de granadas (máx 4, 2 por cada pickup)
-- Pickup mecanica (Granadas, balas y salud)
+
 
 MIERCOLES:
 - Cuchillo (RPC, ANIMACION 3ª PERS)
@@ -27,10 +27,17 @@ JUEVES:
 VIERNES:
 - Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 
+SABADO:
+- Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
+- Añadir sonidos / animaciones de spawn de los pickups
 ---------------------------------------------------------------------------------------------------------------------------------
 
 DONE (v.0.1.2 -> v0.1.3)
- - Fixed bug that made joining players see other player in a falling animation until they move
+ - Added grenades
+ - Added melee (knife that insta-kills)
+ - Fixed bug that made joining players see other player in a falling animation until they move.
+ - Fixed bug that made colliding with walls modify ADS weapon rotation
+ - All weapons starting reserve ammo halved.
 
 
 

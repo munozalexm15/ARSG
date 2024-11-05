@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://hhvs07rna2gs"]
+[gd_resource type="ArrayMesh" load_steps=6 format=4 uid="uid://bodd4ptx6pauh"]
 
 [ext_resource type="Texture2D" uid="uid://dptrw3rcfuwlx" path="res://GameResources/Textures/Grenades/nade_text.jpg" id="1_n8cye"]
 [ext_resource type="Texture2D" uid="uid://dhwmwxh1jsuoc" path="res://GameResources/Textures/Grenades/metal_text.jpg" id="2_hkllx"]
