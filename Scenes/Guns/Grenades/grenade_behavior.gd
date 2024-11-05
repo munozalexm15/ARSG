@@ -33,6 +33,7 @@ func throw_grenade(pID):
 	var p : Player = Network.findPlayer(pID)
 	p.player_body.RightHandB_Attachment.get_child(0).visible = false
 	p.arms.grenade.grenadeThrown.mass = 1
+	p.arms.grenade.grenadeThrown.instigator_id = p.name.to_int()
 	p.arms.grenade.remove_child(grenadeThrown)
 	Network.game.add_child(grenadeThrown)
 	p.arms.grenade.grenadeThrown.global_position = grenadeParent.global_position

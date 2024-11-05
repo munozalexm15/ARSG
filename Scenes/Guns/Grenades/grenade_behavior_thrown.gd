@@ -9,6 +9,7 @@ extends RigidBody3D
 @onready var hit_decal : Decal = $Decal
 @onready var bounceAudio : AudioStreamPlayer3D = $BounceAudio3D
 @onready var explodeAudio : AudioStreamPlayer3D = $ExplosionAudio3D
+var instigator_id = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -70,8 +71,7 @@ func checkExplosionEffect():
 				collision.collider.health -= distanceStrength * 20
 			
 			if body.health <= 0 and body.visible == true:
-				print("me mour")
-				collision.collider.die_respawn.rpc(collision.collider.name.to_int(), collision.collider.name.to_int(), "grenade")
+				collision.collider.die_respawn.rpc(collision.collider.name.to_int(), instigator_id, "grenade")
 	
 	for child : GPUParticles3D in explosionParticleParent.get_children():
 		child.emitting = true

@@ -12,7 +12,6 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	animPlayer.play("popUp")
 	var randIndex : int = randi_range(0, padResourcesArray.size() -1)
 	#when someone joins, will randomize everything again. It is intended to prevent people camping weapons / buffs
 	randomize_pad_resource.rpc(randIndex)
@@ -32,6 +31,9 @@ func randomize_pad_resource(arrayIndex : int):
 	pickupMesh.position = pad_resource.meshPosition
 	
 	bubbleMesh.get_active_material(0).albedo_color = pad_resource.bubbleColor
+	
+	visible = true
+	animPlayer.play("popUp")
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not body.is_class("CharacterBody3D") or !visible:
@@ -70,8 +72,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_cooldown_timer_timeout() -> void:
 	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
 	randomize_pad_resource.rpc(randIndex)
-	visible = true
-	animPlayer.play("popUp")
+	
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
