@@ -87,7 +87,7 @@ func _physics_process(delta):
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
 	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade" and grenadeQuantity > 0:
-		on_grenade_throw.rpc()
+		on_grenade_throw.rpc(multiplayer.get_unique_id())
 	
 	if Input.is_action_pressed("ADS") and state_machine.state.name != "Reload":
 		if actualWeapon.weaponData.weaponType == "Sniper":
@@ -135,8 +135,8 @@ func _on_interact_ray_swap_weapon(actualWeaponName, pickupWeaponScene : String, 
 	drop_weapon.rpc(actualWeaponName, pickupWeaponScene, isSwapping)
 
 @rpc("any_peer", "call_local", "reliable")
-func on_grenade_throw():
-	var p : Player = Network.findPlayer(multiplayer.get_unique_id())
+func on_grenade_throw(pID):
+	var p : Player = Network.findPlayer(pID)
 	if p == null:
 		return
 	
