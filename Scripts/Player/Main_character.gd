@@ -421,7 +421,7 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 		
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
-			if deathType != "grenade":
+			if instigator_id != player_id:
 				deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
 				
 	Network.game.dashboardMatch.get_lobby_data()

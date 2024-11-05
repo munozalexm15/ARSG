@@ -32,13 +32,26 @@ func randomize_pad_resource(arrayIndex : int):
 	
 	bubbleMesh.get_active_material(0).albedo_color = pad_resource.bubbleColor
 	
+	#if someone has joined the room and a player before picked up a buff, stop the timer so it doesn't desync with the others players
+	if not cooldownTimer.is_stopped():
+		cooldownTimer.stop()
+		
 	visible = true
 	animPlayer.play("popUp")
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not body.is_class("CharacterBody3D") or !visible:
 		return
-		
+	
+	pickup_interacted.rpc(body.name)
+
+@rpc("any_peer", "call_local", "reliable")
+func pickup_interacted(pID):
+	var body : Player = Network.findPlayer(pID)
+	if body == null:
+		return
+	
 	if pad_resource.resourceType == "Ammo":
 		for weapon : Weapon in body.arms.weaponHolder.get_children():
 			if weapon.weaponData.reserveAmmo >= weapon.weaponData.defaultReserveAmmo * 2:
@@ -72,8 +85,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_cooldown_timer_timeout() -> void:
 	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
 	randomize_pad_resource.rpc(randIndex)
-	
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popUp":
