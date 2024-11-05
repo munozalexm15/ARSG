@@ -30,6 +30,7 @@ func _on_sphere_visibility_changed() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func throw_grenade(pID):
+	print("lanzo nade")
 	var p : Player = Network.findPlayer(pID)
 	p.player_body.RightHandB_Attachment.get_child(0).visible = false
 	p.arms.grenade.grenadeThrown.mass = 1

@@ -12,9 +12,6 @@ PROXIMA UPDATE TOCHA:
 - Añadir pistolas y que sean compatibles con IK (aunque sea, hacer que se usen a una mano) -> En vez de rotar los brazos, mirar de setear unas coordenadas para los brazos que estén estirados (aunque sea una mano) y rotar unicamente los hombros
 
 --------------------------------------------------------------------------------------------------------
-MARTES:
-- Granadas (chequear que va RPC, limite de granadas (máx 4, 2 por cada pickup)
-
 
 MIERCOLES:
 - Cuchillo (RPC, ANIMACION 3ª PERS)
@@ -30,6 +27,12 @@ VIERNES:
 SABADO:
 - Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
 - Añadir sonidos / animaciones de spawn de los pickups
+
+DOMINGO (BUGS):
+- Setear skin en mano granada (al jugador 2 le salen en blanco) -> el cliente que se conecta
+
+- (check?) Animacion lanzar granada no oculta el arma desde el pov de otro jugador, y no vuelve a setear los huesos con el target después de lanzarla
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 DONE (v.0.1.2 -> v0.1.3)
