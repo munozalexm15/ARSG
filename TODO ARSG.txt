@@ -1,8 +1,5 @@
 PROXIMA UPDATE TOCHA:
 
-- Granadas
-- Cuchillo
-- Pickups especiales (granadas)
 - Si sigue dando error, fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 - Hacer mejores spawns con comprobaciones de distancia
 - Impactos de bala
@@ -14,7 +11,7 @@ PROXIMA UPDATE TOCHA:
 --------------------------------------------------------------------------------------------------------
 
 MIERCOLES:
-- Cuchillo (RPC, ANIMACION 3ª PERS)
+- Setear skin en mano granada (al jugador 2 le salen en blanco) -> el cliente que se conecta
 
 JUEVES:
 - Hacer mejores spawns con comprobaciones de distancia
@@ -27,11 +24,6 @@ VIERNES:
 SABADO:
 - Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
 - Añadir sonidos / animaciones de spawn de los pickups
-
-DOMINGO (BUGS):
-- Setear skin en mano granada (al jugador 2 le salen en blanco) -> el cliente que se conecta
-
-- (check?) Animacion lanzar granada no oculta el arma desde el pov de otro jugador, y no vuelve a setear los huesos con el target después de lanzarla
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,6 +66,7 @@ UPDATE FUTURA TOCHA TO-DO:
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
  - Ajustar valores del sonido (hay que poner la barra muy abajo para que funcione) (??)
  - Fixear que cuando te disparan suena el sonido de hitmarker (cambiar el sonido o quitarlo directamente)
+ - Cuchillo
  
 
 

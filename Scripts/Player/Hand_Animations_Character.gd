@@ -24,7 +24,7 @@ var fovList = {"Default": 75.0, "ADS": 50.0, "Sniper": 25.0}
 @onready var reloadTimer : Timer = $ReloadTimer
 @onready var state_machine: StateMachine = $StateMachine
 @onready var flashlight : SpotLight3D = $Flashlight
-@onready var knife : Node3D = $Knife
+@onready var knife : Knife = $Knife
 
 var actual_weapon_index = 0
 var actualWeapon : Weapon
@@ -55,7 +55,8 @@ func _ready():
 		grenade.visible = false
 		return 
 		
-	knife.set_process(false)
+	knife.set_process(false) 
+	knife.knifeRigidBody.add_collision_exception_with(player)
 	interactorRay.add_exception(owner)
 	default_weaponHolder_pos = weaponHolder.position
 	playerSwappingWeapons.emit()
@@ -87,6 +88,8 @@ func _physics_process(delta):
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
 	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade" and grenadeQuantity > 0:
+		grenade.leftHand.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
+		grenade.rightHand.get_active_material(0).albedo_texture= player.arms.handsAssignedTexture
 		state_machine.transition_to("Grenade")
 	
 	if Input.is_action_pressed("ADS") and state_machine.state.name != "Reload":
@@ -107,7 +110,7 @@ func _physics_process(delta):
 			player.hud.aimAnimationPlayer.play("Aim", -1, -1, true)
 
 #MELEE MECHANIC ------------ WIP
-	#if Input.is_action_just_pressed("Melee") and state_machine.state.name != "Melee":
+	#if Input.is_action_just_pressed("Melee") and (state_machine.state.name != "Melee" or state_machine.state.name != "Grende"):
 		#knife.set_process(true)
 		#animationPlayer.play("ShowKnife")
 		#state_machine.transition_to("Melee")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=771 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=764 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -44,12 +44,8 @@
 [ext_resource type="Texture2D" uid="uid://bsoe30mdhnja3" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/GDWolf_a.jpg" id="36_10rey"]
 [ext_resource type="PackedScene" uid="uid://d083dw8cl2qrd" path="res://Scenes/Mechanics/pickup_pad.tscn" id="37_2ij2j"]
 [ext_resource type="Texture2D" uid="uid://buoawp50tgvpp" path="res://GameResources/Meshes/PSXModels/textures/meshes/vehicles/TPzFuchs_a.jpg" id="37_5ivjv"]
-[ext_resource type="ArrayMesh" uid="uid://bodd4ptx6pauh" path="res://GameResources/Meshes/Pickups/grenade_mesh.tres" id="38_56lam"]
 [ext_resource type="Texture2D" uid="uid://bl5tto3q7xvbf" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_a.png" id="38_p1pe1"]
 [ext_resource type="Texture2D" uid="uid://c7kfb0unbqh87" path="res://GameResources/Meshes/PSXModels/textures/meshes/electronics/LightIndustrial01_e.png" id="39_l5i7v"]
-[ext_resource type="Script" path="res://Scripts/Mechanics/pickup_pad_Resources/pickup_pad_resource.gd" id="39_lik8u"]
-[ext_resource type="ArrayMesh" uid="uid://rl6qinod2vuu" path="res://GameResources/Meshes/Pickups/health_pouch.tres" id="40_0ptij"]
-[ext_resource type="ArrayMesh" uid="uid://dnvmdkdnyw8ng" path="res://GameResources/Meshes/Pickups/ammo_box.tres" id="40_pegem"]
 [ext_resource type="Material" uid="uid://bgxl20tul4qvo" path="res://GameResources/Materials/Retro-LightCone.tres" id="40_piigm"]
 [ext_resource type="Texture2D" uid="uid://dib4jq0bym55e" path="res://GameResources/Textures/ShootingRange/WallLight_Base.png" id="41_5dy1n"]
 [ext_resource type="Texture2D" uid="uid://ddcin4f8sb6uw" path="res://GameResources/Textures/ShootingRange/WallLight_E_Amber.png" id="42_oajkw"]
@@ -238,36 +234,6 @@ font_size = 12
 [sub_resource type="LabelSettings" id="LabelSettings_owvs4"]
 font = ExtResource("35_4kgcg")
 font_size = 18
-
-[sub_resource type="Resource" id="Resource_xgdat"]
-script = ExtResource("39_lik8u")
-resourceType = "Ammo"
-quantity = 2
-displayMesh = ExtResource("40_pegem")
-meshScale = Vector3(3, 3, 3)
-meshPosition = Vector3(0, 0, 0)
-meshRotation = Vector3(0, 0, 0)
-bubbleColor = Color(0.272, 0.453, 0, 0.5)
-
-[sub_resource type="Resource" id="Resource_s6l6a"]
-script = ExtResource("39_lik8u")
-resourceType = "Grenade"
-quantity = 2
-displayMesh = ExtResource("38_56lam")
-meshScale = Vector3(1, 1, 1)
-meshPosition = Vector3(0, 0, 0)
-meshRotation = Vector3(0, 0, 0)
-bubbleColor = Color(0, 0.385, 0.544, 0.5)
-
-[sub_resource type="Resource" id="Resource_a8r4b"]
-script = ExtResource("39_lik8u")
-resourceType = "Health"
-quantity = 50
-displayMesh = ExtResource("40_0ptij")
-meshScale = Vector3(1, 1, 1)
-meshPosition = Vector3(1.18285, -0.660177, 0.0323036)
-meshRotation = Vector3(1.5708, -1.76281, 0)
-bubbleColor = Color(0.741, 0.081, 0, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
 size = Vector3(8.3268, 4.91049, 0.652865)
@@ -6951,6 +6917,14 @@ shader_params/u_tile_reduction = Vector4(0.39, 1.115, 0.515, 0.985)
 process_mode = 3
 one_shot = true
 
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="GrenadeBubble" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.703115, -3.48538)
+
+[node name="GrenadeBubble2" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.707867, -7.13387)
+
 [node name="SpawnPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 
@@ -7176,20 +7150,6 @@ visible = false
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
-
-[node name="Pickups" type="Node3D" parent="Map"]
-
-[node name="GrenadeBubble3" parent="Map/Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.621938, -6.84691)
-pad_resource = SubResource("Resource_xgdat")
-
-[node name="GrenadeBubble" parent="Map/Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662729, 0)
-pad_resource = SubResource("Resource_s6l6a")
-
-[node name="GrenadeBubble2" parent="Map/Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.642334, -3.42345)
-pad_resource = SubResource("Resource_a8r4b")
 
 [node name="MapLimits" type="Node3D" parent="Map"]
 

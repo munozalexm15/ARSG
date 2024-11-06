@@ -24,7 +24,8 @@ func _process(delta: float) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func randomize_pad_resource(arrayIndex : int):
 	pad_resource = padResourcesArray[arrayIndex]
-	bubbleMesh.set_surface_override_material(0, bubbleMesh.get_active_material(0).duplicate())
+	var mat = bubbleMesh.get_active_material(0).duplicate()
+	bubbleMesh.set_surface_override_material(0, mat)
 	pickupMesh.mesh = pad_resource.displayMesh
 	pickupMesh.rotation = pad_resource.meshRotation
 	pickupMesh.scale = pad_resource.meshScale
@@ -43,15 +44,32 @@ func randomize_pad_resource(arrayIndex : int):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not body.is_class("CharacterBody3D") or !visible:
 		return
-	
+		
 	pickup_interacted.rpc(body.name)
 
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
 	var body : Player = Network.findPlayer(pID)
+	
 	if body == null:
 		return
 	
+	#This is done to replicate in every computer
+	if pad_resource.resourceType == "Health":
+		if body.health >= 100:
+			return
+		
+		body.health += pad_resource.quantity
+		if body.health > 100:
+			body.health = 100
+	
+		visible = false
+		cooldownTimer.start()
+	
+	if pID.to_int() != multiplayer.get_unique_id():
+		return
+	
+	#this part only is handled in client. I know this is an exploit for cheaters atm.
 	if pad_resource.resourceType == "Ammo":
 		for weapon : Weapon in body.arms.weaponHolder.get_children():
 			if weapon.weaponData.reserveAmmo >= weapon.weaponData.defaultReserveAmmo * 2:
@@ -70,14 +88,6 @@ func pickup_interacted(pID):
 			body.arms.grenadeQuantity += 2
 		
 		body.hud.grenadeCountLabel.text = str("x" , body.arms.grenadeQuantity)
-	
-	if pad_resource.resourceType == "Health":
-		if body.health >= 100:
-			return
-		
-		body.health += pad_resource.quantity
-		if body.health > 100:
-			body.health = 100
 	
 	visible = false
 	cooldownTimer.start()
