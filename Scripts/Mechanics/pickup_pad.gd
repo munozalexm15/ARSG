@@ -49,6 +49,18 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
+	pickup_behavior_locally.rpc_id(pID.to_int())
+
+func _on_cooldown_timer_timeout() -> void:
+	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
+	randomize_pad_resource.rpc(randIndex)
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "popUp":
+		animPlayer.play("Idle")
+
+@rpc("any_peer", "call_local")
+func pickup_behavior_locally(pID):
 	var body : Player = Network.findPlayer(pID)
 	
 	if body == null:
@@ -65,10 +77,6 @@ func pickup_interacted(pID):
 	
 		visible = false
 		cooldownTimer.start()
-	
-	print(pID.to_int() != multiplayer.get_unique_id())
-	if pID.to_int() != multiplayer.get_unique_id():
-		return
 		
 	#this part only is handled in client. I know this is an exploit for cheaters atm.
 	if pad_resource.resourceType == "Ammo":
@@ -92,11 +100,3 @@ func pickup_interacted(pID):
 	
 	visible = false
 	cooldownTimer.start()
-
-func _on_cooldown_timer_timeout() -> void:
-	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
-	randomize_pad_resource.rpc(randIndex)
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "popUp":
-		animPlayer.play("Idle")
