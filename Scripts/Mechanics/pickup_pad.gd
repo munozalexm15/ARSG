@@ -66,9 +66,10 @@ func pickup_interacted(pID):
 		visible = false
 		cooldownTimer.start()
 	
+	print(pID.to_int() != multiplayer.get_unique_id())
 	if pID.to_int() != multiplayer.get_unique_id():
 		return
-	
+		
 	#this part only is handled in client. I know this is an exploit for cheaters atm.
 	if pad_resource.resourceType == "Ammo":
 		for weapon : Weapon in body.arms.weaponHolder.get_children():

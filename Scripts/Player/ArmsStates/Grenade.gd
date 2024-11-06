@@ -17,7 +17,11 @@ func enter(_msg := {}):
 	arms.weaponHolder.visible = false
 	arms.player.player_body.leftArmIKSkeleton.interpolation = 0
 	arms.player.player_body.rightArmIKSkeleton.interpolation = 0
-		
+
+func update(delta: float) -> void:
+	if arms.player.health <= 0:
+		state_machine.transition_to("Idle")
+
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Grenade_Prepare":
 		prepare_grenade.rpc(arms.player.name)

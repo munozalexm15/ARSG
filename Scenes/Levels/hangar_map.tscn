@@ -6922,6 +6922,15 @@ one_shot = true
 [node name="GrenadeBubble" parent="Pickups" instance=ExtResource("37_2ij2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.703115, -3.48538)
 
+[node name="GrenadeBubble3" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29224, -0.703115, -7.11399)
+
+[node name="GrenadeBubble4" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29224, -0.703115, -3.54108)
+
+[node name="GrenadeBubble5" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1611, -0.703115, -3.54108)
+
 [node name="GrenadeBubble2" parent="Pickups" instance=ExtResource("37_2ij2j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.707867, -7.13387)
 

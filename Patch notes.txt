@@ -1,3 +1,24 @@
+v.0.1.1 -> v0.1.2
+- Functional Steam invitations / join lobby from Steam friend chat
+- Fixed bug where metal footstep sound wouldn't play if you were sprinting
+- Improved PARV-15 (SMG) recoil behavior, making ADS better. (Still needs improvements)
+- Improved ALBR-1983 (AR) recoil behavior, making ADS better.
+- Improved bullet collisions
+- Made PARV-15 ADS Position closer to camera.
+- Made ALBR-1983 (AR) ADS Position a little more far to the camera.
+- Made SLBR-4 (Combat rifle) ADS Position closer to camera.
+- Controls now can be changed and persist even if you close the game.
+- Fixed visual bug that made crouching with the gun funny but weird. 
+- Fixed visual bug where the PUMP muzzle flash light would remain visible after shooting while in third person.
+- Fixed visual bug for the PUMP and the Hunting Rifle that showed the muzzle flash sprite when pressing down "Fire" button while in third person.
+- Fixed bug that made game chat in a upper layer than the pause menu.
+- Fixed bug that showed the lobby list refresh button if swapping quick or exiting the play menu too fast.
+- Chat placeholder text updates after sending a message depending of the assigned key for opening the chat.
+- Fixed bug that kept the progress of a player who left the match.
+- Fixed bug that made the joining player skin not the correct one.
+- Fixed bug that made the joining player see others players that haven't selected a starting weapon yet.
+
+
 v.0.1 to v.0.1.1
 - Fixed bug where bullets wouldn't collide with other players because beign too fast (might still fail if players are too close to each other, but it's greatly improved in comparison to the last version. Still, will look into it.)
 - Fixed bug where the footsteps sound would play a lot when dying
