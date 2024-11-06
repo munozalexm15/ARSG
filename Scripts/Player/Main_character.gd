@@ -485,6 +485,8 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 		hud.animationPlayer.play("swap_gun")
 		camera.current = true
 		arms.visible = true
+		arms.grenadeQuantity = 1
+		hud.grenadeCountLabel.text = "x1"
 		arms.state_machine.transition_to("Idle")
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
 		

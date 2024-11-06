@@ -44,59 +44,75 @@ func randomize_pad_resource(arrayIndex : int):
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not body.is_class("CharacterBody3D") or !visible:
 		return
-		
+	
+	
 	pickup_interacted.rpc(body.name)
-	if not visible:
+	if not cooldownTimer.paused:
 		await cooldownTimer.timeout
 		var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
 		randomize_pad_resource.rpc(randIndex)
 
+
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
-	pickup_behavior_locally.rpc_id(multiplayer.get_unique_id(), pID)
+	var used = pickup_behavior_locally(pID)
+	if not used:
+		return
+	
+	visible = false
+	cooldownTimer.start()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popUp":
 		animPlayer.play("Idle")
 
-@rpc("any_peer", "call_local")
-func pickup_behavior_locally(pID):
+func pickup_behavior_locally(pID) -> bool:
 	var body : Player = Network.findPlayer(pID)
 	
 	if body == null:
-		return
+		return false
 	
 	#This is done to replicate in every computer
 	if pad_resource.resourceType == "Health":
-		if body.health >= 100:
-			return
-		
-		body.health += pad_resource.quantity
-		if body.health > 100:
-			body.health = 100
-	
-		visible = false
-		cooldownTimer.start()
+		return handle_health(body)
 		
 	#this part only is handled in client. I know this is an exploit for cheaters atm.
 	if pad_resource.resourceType == "Ammo":
-		for weapon : Weapon in body.arms.weaponHolder.get_children():
-			if weapon.weaponData.reserveAmmo >= weapon.weaponData.defaultReserveAmmo * 2:
-				return
-			
-			weapon.weaponData.reserveAmmo += weapon.weaponData.magSize * pad_resource.quantity
+		return handle_ammo(body)
 	
 	if pad_resource.resourceType == "Grenade":
-		if body.arms.grenadeQuantity == 4:
-			return
-		
-		if body.arms.grenadeQuantity >= 2:
-			body.arms.grenadeQuantity = 4
-		
-		else:
-			body.arms.grenadeQuantity += 2
-		
-		body.hud.grenadeCountLabel.text = str("x" , body.arms.grenadeQuantity)
+		return handle_grenades(body)
 	
-	visible = false
-	cooldownTimer.start()
+	return false
+
+
+func handle_health(body):
+	if body.health >= 100:
+		return false
+		
+	body.health += pad_resource.quantity
+	if body.health > 100:
+		body.health = 100
+	
+	return true
+
+func handle_ammo(body):
+	if body.arms.actualWeapon.weaponData.reserveAmmo >= body.arms.actualWeapon.weaponData.defaultReserveAmmo * 2:
+		return false
+	
+	body.arms.actualWeapon.weaponData.reserveAmmo += body.arms.actualWeapon.weaponData.defaultReserveAmmo
+	
+	return true
+	
+func handle_grenades(body):
+	if body.arms.grenadeQuantity == 4:
+		return false
+	
+	if body.arms.grenadeQuantity >= 2:
+		body.arms.grenadeQuantity = 4
+	else:
+		body.arms.grenadeQuantity += 2
+	
+	body.hud.grenadeCountLabel.text = str("x" , body.arms.grenadeQuantity)
+	
+	return true

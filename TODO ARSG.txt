@@ -12,7 +12,7 @@ PROXIMA UPDATE TOCHA:
 
 MIERCOLES:
 - Solucionar camara sigue moviendose hacia arriba si al morir estabamos presionando un input de direccion
-- Solucionar / quitar animacion en tercera persona lanzar granada (rompe los targets de los huesos)
+
 
 JUEVES:
 - Hacer mejores spawns con comprobaciones de distancia
@@ -33,6 +33,7 @@ DONE (v.0.1.2 -> v0.1.3)
  - Fixed bug that made joining players see other player in a falling animation until they move.
  - Fixed bug that made colliding with walls modify ADS weapon rotation
  - Fixed bug that allowed dead players to keep shoting
+ - Fixed bug where camera will keep moving while playing the dead animation
  - All weapons starting reserve ammo halved, this is because the core game loop is meant to make players swap weapons and adapt with the resources they have.
 
 
