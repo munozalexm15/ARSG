@@ -49,7 +49,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
-	pickup_behavior_locally.rpc_id(pID.to_int())
+	pickup_behavior_locally.rpc_id(multiplayer.get_unique_id(), pID)
 
 func _on_cooldown_timer_timeout() -> void:
 	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
