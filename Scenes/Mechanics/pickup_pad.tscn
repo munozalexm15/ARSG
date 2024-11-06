@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d083dw8cl2qrd"]
+[gd_scene load_steps=18 format=3 uid="uid://d083dw8cl2qrd"]
 
 [ext_resource type="Script" path="res://Scripts/Mechanics/pickup_pad.gd" id="1_3f6do"]
 [ext_resource type="Script" path="res://Scripts/Mechanics/pickup_pad_Resources/pickup_pad_resource.gd" id="3_vnhai"]
@@ -154,6 +154,14 @@ rings = 4
 [sub_resource type="BoxShape3D" id="BoxShape3D_nfhch"]
 size = Vector3(1.05273, 1.00847, 1.01599)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gb5ki"]
+properties/0/path = NodePath(".:visible")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CooldownTimer:wait_time")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="GrenadeBubble" type="Node3D"]
 script = ExtResource("1_3f6do")
 pad_resource = SubResource("Resource_dtnyv")
@@ -189,6 +197,10 @@ shape = SubResource("BoxShape3D_nfhch")
 wait_time = 10.0
 one_shot = true
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_gb5ki")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
