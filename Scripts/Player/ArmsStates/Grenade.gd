@@ -6,17 +6,15 @@ func enter(_msg := {}):
 	arms.player.hud.grenadeCountLabel.text = str("x" , arms.grenadeQuantity)
 	
 	arms.animationPlayer.play("Reload")
+	start_grenade.rpc(multiplayer.get_unique_id())
 	await arms.animationPlayer.animation_finished
-	arms.player.player_body.LeftHandB_Attachment.get_child(0).visible = false
-	arms.player.player_body.RightHandB_Attachment.get_child(0).visible = true
 	if arms.player.camera.current:
 		arms.grenade.visible = true
+	
 	arms.grenade.animPlayer.play("Grenade_Prepare")
 	arms.grenade.throwSound.play()
 	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", "Grenade_Prepare")
 	arms.weaponHolder.visible = false
-	arms.player.player_body.leftArmIKSkeleton.interpolation = 0
-	arms.player.player_body.rightArmIKSkeleton.interpolation = 0
 
 func update(delta: float) -> void:
 	if arms.player.health <= 0:
@@ -32,6 +30,13 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Grenade_Throw":
 		thirdPersonGrenadeFlow.rpc(arms.player.name)
 
+@rpc("any_peer", "call_local", "reliable")
+func start_grenade(pID):
+	var p : Player = Network.findPlayer(pID)
+	p.arms.player.player_body.LeftHandB_Attachment.get_child(0).visible = false
+	p.arms.player.player_body.RightHandB_Attachment.get_child(0).visible = true
+	p.arms.player.player_body.leftArmIKSkeleton.interpolation = 0
+	p.arms.player.player_body.rightArmIKSkeleton.interpolation = 0
 
 @rpc("any_peer", "call_local")
 func prepare_grenade(pID):
@@ -48,6 +53,7 @@ func prepare_grenade(pID):
 func thirdPersonGrenadeFlow(pID):
 	var p : Player = Network.findPlayer(pID)
 	p.arms.player.player_body.LeftHandB_Attachment.get_child(0).visible = true
+	p.arms.player.player_body.RightHandB_Attachment.get_child(0).visible = false
 	p.arms.readyToThrow = false
 	p.arms.animationPlayer.play("Reload", -1, -1, true)
 	if p.arms.player.camera.current:
