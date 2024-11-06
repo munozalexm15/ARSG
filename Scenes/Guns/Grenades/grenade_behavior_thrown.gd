@@ -83,4 +83,8 @@ func _on_s_moke_finished() -> void:
 	fade_tween.tween_interval(1.0)
 	fade_tween.tween_property(hit_decal, "modulate:a", 0, 1.5)
 	await fade_tween.finished
+	remove_nade.rpc()
+	
+@rpc("any_peer", "call_local")
+func remove_nade():
 	queue_free()

@@ -51,7 +51,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
 		randomize_pad_resource.rpc(randIndex)
 
-
 #4
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
@@ -121,13 +120,6 @@ func handle_grenades(body):
 	body.hud.grenadeCountLabel.text = str("x" , body.arms.grenadeQuantity)
 	
 	return true
-
-#6
-func _on_visibility_changed() -> void:
-	if visible == false:
-		var randIndex : int = randi_range(0, padResourcesArray.size() -1)
-		randomize_pad_resource.rpc(randIndex)
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popUp":
