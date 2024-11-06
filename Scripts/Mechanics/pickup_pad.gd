@@ -126,7 +126,7 @@ func handle_grenades(body):
 func _on_visibility_changed() -> void:
 	if visible == false:
 		var randIndex : int = randi_range(0, padResourcesArray.size() -1)
-		randomize_pad_resource.rpc()
+		randomize_pad_resource.rpc(randIndex)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
