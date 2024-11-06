@@ -46,6 +46,10 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		return
 		
 	pickup_interacted.rpc(body.name)
+	if not visible:
+		await cooldownTimer.timeout
+		var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
+		randomize_pad_resource.rpc(randIndex)
 
 @rpc("any_peer", "call_local", "reliable")
 func pickup_interacted(pID):
@@ -96,7 +100,3 @@ func pickup_behavior_locally(pID):
 	
 	visible = false
 	cooldownTimer.start()
-	
-	await cooldownTimer.timeout
-	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
-	randomize_pad_resource.rpc(randIndex)
