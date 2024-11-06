@@ -51,10 +51,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func pickup_interacted(pID):
 	pickup_behavior_locally.rpc_id(multiplayer.get_unique_id(), pID)
 
-func _on_cooldown_timer_timeout() -> void:
-	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
-	randomize_pad_resource.rpc(randIndex)
-
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "popUp":
 		animPlayer.play("Idle")
@@ -100,3 +96,7 @@ func pickup_behavior_locally(pID):
 	
 	visible = false
 	cooldownTimer.start()
+	
+	await cooldownTimer.timeout
+	var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
+	randomize_pad_resource.rpc(randIndex)

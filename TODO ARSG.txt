@@ -12,6 +12,8 @@ PROXIMA UPDATE TOCHA:
 
 MIERCOLES:
 - Solucionar replica 2 veces los buffos del pickup -> hacer despues de eliminar rpc-id al que hace el pickup y aplicar los cambios
+- Solucionar camara sigue moviendose hacia arriba si al morir estabamos presionando un input de direccion
+- Solucionar / quitar animacion en tercera persona lanzar granada (rompe los targets de los huesos)
 
 JUEVES:
 - Hacer mejores spawns con comprobaciones de distancia
