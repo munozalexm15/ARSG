@@ -42,6 +42,8 @@ func randomize_pad_resource(arrayIndex : int):
 
 #3
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	await get_tree().create_timer(0.2).timeout
+	
 	if not body.is_class("CharacterBody3D") or !visible:
 		return
 	
