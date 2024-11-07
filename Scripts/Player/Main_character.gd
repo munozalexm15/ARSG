@@ -224,7 +224,7 @@ func _physics_process(delta):
 	if health < 0:
 		velocity = Vector3.ZERO
 	
-	if health < 35:
+	if health < 35 and not is_dead:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
 	else:
 		hud.HurtScreenAnimationPlayer.stop()
@@ -483,16 +483,17 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 	#hay que hacer que el que ha muerto sincronice y le diga al resto que sea visible el player, porque si no al resto les saldrá visible antes
 	if player_id == multiplayer.get_unique_id():
 		global_position = Network.game.random_spawn()
-		await get_tree().create_timer(1).timeout
-		hud.visible = true
-		hud.animationPlayer.play("swap_gun")
 		camera.current = true
+		
+		await get_tree().create_timer(0.1).timeout
+		
+		hud.animationPlayer.play("swap_gun")
+		hud.visible = true
 		arms.visible = true
 		arms.grenadeQuantity = 1
 		hud.grenadeCountLabel.text = "x1"
 		arms.state_machine.transition_to("Idle")
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
-		
 		
 		for index in Network.game.players.size():
 			if Network.game.players[index]["id"] == player.name:
