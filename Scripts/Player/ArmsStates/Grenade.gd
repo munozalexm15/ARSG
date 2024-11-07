@@ -12,7 +12,7 @@ func enter(_msg := {}):
 		arms.grenade.visible = true
 	
 	arms.grenade.animPlayer.play("Grenade_Prepare")
-	arms.grenade.throwSound.play()
+	SFXHandler.play_sfx_3d.rpc(arms.grenade.throwSound.stream.resource_path, arms.player.name, "Weapons", 30.0)
 	arms.player.player_body.animationTree.set("parameters/Reloads/transition_request", "Grenade_Prepare")
 	arms.weaponHolder.visible = false
 
