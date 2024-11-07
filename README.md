@@ -94,8 +94,9 @@ conditions to make spawning safer for players.
  - Background war sounds by [DennisH18](https://pixabay.com/es/sound-effects/modern-war-129016/) on Pixabay 
  - Muzzle flash images by [FootageCrate](https://footagecrate.com/video-effects/footagecrate-muzzleflash-5starquarter) 
  - Motion trail used for bullets on [Github](https://github.com/metanoia83/Godot-4.0-Motion-Trail?tab=MIT-1-ov-file)
- - Godot psx shaders from [AnalogFeelings](https://github.com/AnalogFeelings/godot-psx?tab=readme-ov-file) 
+ - Godot psx shaders from [AnalogFeelings](https://github.com/AnalogFeelings/godot-psx?tab=readme-ov-file) on Github
  - Stylized sky shader from [CrowGames](https://www.youtube.com/watch?v=bR0v-yoZYZA&ab_channel=CrowGames) on YouTube
+ - 3D Item Highlighter from [Rendoog] https://godotshaders.com/shader/3d-item-highlighter-with-angle-adjustment/ on GodotShaders
  
  
 Some of them don't require to give attribution, but if it wasn't for them I wouldn't be able to mix everything and obtain the aesthetics I wanted for ARSG, so it is fair to give them proper credit.

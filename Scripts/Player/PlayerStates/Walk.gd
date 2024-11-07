@@ -48,7 +48,7 @@ func physics_update(delta: float) -> void:
 			return
 		state_machine.transition_to("Air", {jump = true})
 	
-	if player.arms.state_machine.state.name != "Melee":
+	if player.arms.state_machine.state.name != "Reload":
 		if player.input_direction.y <= -0.7 and player.is_on_floor() and Input.is_action_just_pressed("Sprint") and not Input.is_action_pressed("ADS") :
 			state_machine.transition_to("Run")
 	

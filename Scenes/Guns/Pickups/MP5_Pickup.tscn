@@ -5,15 +5,20 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_4irdv"]
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="9_yav0t"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ayme"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp7t4"]
 render_priority = 0
 shader = ExtResource("4_4irdv")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6xbv"]
 resource_name = "Material.039"
-next_pass = SubResource("ShaderMaterial_3ayme")
+next_pass = SubResource("ShaderMaterial_vp7t4")
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
@@ -51,15 +56,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_igqvi")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_loth7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa0wd"]
 render_priority = 0
 shader = ExtResource("4_4irdv")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmx3b"]
 resource_name = "Material.037"
-next_pass = SubResource("ShaderMaterial_loth7")
+next_pass = SubResource("ShaderMaterial_qa0wd")
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
@@ -99,15 +109,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c8a3w")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcyj5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xt6tw"]
 render_priority = 0
 shader = ExtResource("4_4irdv")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p70te"]
 resource_name = "Material.036"
-next_pass = SubResource("ShaderMaterial_bcyj5")
+next_pass = SubResource("ShaderMaterial_xt6tw")
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
@@ -147,15 +162,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_44k66")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdufk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w72s0"]
 render_priority = 0
 shader = ExtResource("4_4irdv")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lljo6"]
 resource_name = "Material.035"
-next_pass = SubResource("ShaderMaterial_pdufk")
+next_pass = SubResource("ShaderMaterial_w72s0")
 cull_mode = 2
 albedo_texture = ExtResource("9_yav0t")
 roughness = 0.5
@@ -218,7 +238,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dys0e")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s0xwa"]
-size = Vector3(5.75226, 0.74011, 2.22568)
+size = Vector3(5.75226, 1.7222, 2.61284)
 
 [node name="MP5" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.163244)
@@ -251,5 +271,5 @@ mesh = SubResource("ArrayMesh_4y7hn")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0449838, 0.0319688, -0.157212)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, -0.0449838, 0.0513268, -0.158153)
 shape = SubResource("BoxShape3D_s0xwa")

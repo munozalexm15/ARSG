@@ -25,6 +25,7 @@ SFXHandler="*res://Scripts/Sounds/SFX_Handler.gd"
 LoadScreenHandler="*res://Scripts/LoadingScreen/loading_screen_singletons.gd"
 GlobalData="*res://Scripts/Global/global_data.gd"
 Network="*res://Scripts/Multiplayer/Network.gd"
+BulletDecalHandler="*res://Scripts/Mechanics/BulletDecal_Handler.gd"
 
 [display]
 

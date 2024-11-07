@@ -1,11 +1,74 @@
-[gd_scene load_steps=13 format=4 uid="uid://7evxytscrllj"]
+[gd_scene load_steps=18 format=4 uid="uid://7evxytscrllj"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/shell_behavior.gd" id="1_daq1i"]
 [ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_v6uc0"]
 [ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_4pcjl"]
-[ext_resource type="Script" path="res://Scripts/Mechanics/Trail3D.gd" id="4_h5wdu"]
+[ext_resource type="PackedScene" uid="uid://vp5pniog0dir" path="res://Scenes/Mechanics/bullet_decal.tscn" id="4_s7riv"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_6m3gs"]
+[sub_resource type="Gradient" id="Gradient_feww4"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cbybl"]
+gradient = SubResource("Gradient_feww4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vyo6v"]
+angle_min = -581.1
+angle_max = -366.3
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+angular_velocity_min = -6.53002
+angular_velocity_max = 4.84998
+gravity = Vector3(0, 0, 0.62)
+tangential_accel_min = -100.0
+tangential_accel_max = -100.0
+damping_min = 93.84
+damping_max = 102.42
+scale_over_velocity_max = 2.75
+color_ramp = SubResource("GradientTexture1D_cbybl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf6i6"]
+emission = Color(0.988235, 0.917647, 0.741176, 1)
+emission_energy_multiplier = 8.85
+refraction_scale = -1.0
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="SphereMesh" id="SphereMesh_xtowg"]
+material = SubResource("StandardMaterial3D_vf6i6")
+radius = 0.005
+height = 0.1
+is_hemisphere = true
+
+[sub_resource type="Curve" id="Curve_pci3k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.549858, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_2vyil"]
+offsets = PackedFloat32Array(0, 0.020339, 0.776271, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.5, 0.536, 0.549, 0.542, 0.5, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u00vx"]
+gradient = SubResource("Gradient_2vyil")
+width = 100
+height = 100
+fill_from = Vector2(0, 0.5)
+fill_to = Vector2(0.9, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg67m"]
+transparency = 1
+cull_mode = 2
+albedo_texture = SubResource("GradientTexture2D_u00vx")
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_c3mu5"]
+material = SubResource("StandardMaterial3D_eg67m")
+shape = 0
+size = 6.0
+sections = 2
+section_segments = 1
+curve = SubResource("Curve_pci3k")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
 resource_name = "Material.001"
@@ -48,48 +111,31 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ye3jn")
 
-[sub_resource type="Gradient" id="Gradient_se4o4"]
-offsets = PackedFloat32Array(0.0985916, 0.996479)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_i1pfl"]
-gradient = SubResource("Gradient_se4o4")
-fill_to = Vector2(0.991453, 0.017094)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_padnw"]
-transparency = 1
-cull_mode = 2
-shading_mode = 0
-disable_ambient_light = true
-disable_fog = true
-albedo_texture = SubResource("GradientTexture2D_i1pfl")
-billboard_keep_scale = true
-proximity_fade_distance = 50.0
-
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_rjqbd"]
-
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_daq1i")
 
+[node name="CPUParticles3D" type="GPUParticles3D" parent="." groups=["WeaponCollisionException"]]
+transform = Transform3D(5, 0, 7.41155e-21, 0, 5, 0, -7.41155e-21, 0, 5, 2.11895e-05, 9.52866e-13, 1.55477e-22)
+emitting = false
+lifetime = 0.1
+one_shot = true
+speed_scale = 0.5
+explosiveness = 0.22
+fixed_fps = 0
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_vyo6v")
+draw_pass_1 = SubResource("SphereMesh_xtowg")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.28022, 0, 0, 0, 1.04617, 0, 0, 0, 1.15033, 0, 0, 0)
-visible = false
-mesh = SubResource("BoxMesh_6m3gs")
+transform = Transform3D(-5.59602e-08, 1.04617, 5.02825e-08, 0, -4.57295e-08, 1.15033, 1.28022, 4.57295e-08, 2.19792e-15, 0, 0, -3.8868)
+mesh = SubResource("RibbonTrailMesh_c3mu5")
 
 [node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
-visible = false
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_42wap")
 skeleton = NodePath("")
-
-[node name="Trail3D2" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_padnw")
-mesh = SubResource("ImmediateMesh_rjqbd")
-script = ExtResource("4_h5wdu")
-fromWidth = 0.3
-lifespan = 0.05
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.583)
@@ -97,3 +143,5 @@ target_position = Vector3(0, 0, -30)
 collision_mask = 7
 hit_from_inside = true
 debug_shape_custom_color = Color(0.34658, 0.00116053, 0.815305, 1)
+
+[node name="Decal" parent="." instance=ExtResource("4_s7riv")]

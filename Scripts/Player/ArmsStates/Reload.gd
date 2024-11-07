@@ -10,6 +10,10 @@ func enter(_msg := {}):
 		state_machine.transition_to("Idle")
 		return
 	
+	if arms.player.state_machine.state.name == "Run":
+		arms.animationPlayer.play("Idle")
+		arms.player.state_machine.transition_to("Walk")
+	
 	wantsToShoot = false
 	
 	#Shotguns / Snipers (bullet by bullet reloads)
@@ -53,11 +57,6 @@ func handle_input(_event : InputEvent) -> void:
 		#arms.actualWeapon.reload_sound.stop()
 		#arms.actualWeapon.full_reload_sound.stop()
 		arms.reloadTimer.stop()
-	
-	if Input.is_action_pressed("Sprint") and arms.player.input_direction != Vector2.ZERO:
-		arms.animationPlayer.play("Run")
-	else:
-		arms.animationPlayer.play("Idle")
 
 func physics_update(_delta):
 	mouse_swap_weapon_logic()

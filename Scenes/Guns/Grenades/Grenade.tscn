@@ -381,6 +381,7 @@ bus = &"Weapons"
 
 [node name="ExplosionAudio3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_e6esq")
+unit_size = 30.0
 max_distance = 100.0
 bus = &"Weapons"
 

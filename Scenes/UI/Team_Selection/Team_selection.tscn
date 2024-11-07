@@ -1,6 +1,5 @@
-[gd_scene load_steps=90 format=4 uid="uid://cnj615pjmxyub"]
+[gd_scene load_steps=88 format=4 uid="uid://cnj615pjmxyub"]
 
-[ext_resource type="Shader" path="res://GameResources/Shaders/vhs_shader.gdshader" id="1_q83w7"]
 [ext_resource type="Script" path="res://Scripts/UI/Team_Selection/Team_selection.gd" id="1_shxy7"]
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_ytfr1"]
 [ext_resource type="Texture2D" uid="uid://c2vlaj60masok" path="res://GameResources/Textures/GunsIcons/MP5_Icon.png" id="4_p0pkq"]
@@ -20,10 +19,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw2qn"]
 bg_color = Color(0, 0, 0, 0.745098)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ox1b3"]
-shader = ExtResource("1_q83w7")
-shader_parameter/speed = 8.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_7i764"]
 font_size = 48
@@ -959,15 +954,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sw2qn")
-
-[node name="PanelContainer4" type="PanelContainer" parent="."]
-material = SubResource("ShaderMaterial_ox1b3")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="WeaponName" type="Label" parent="."]
 visible = false

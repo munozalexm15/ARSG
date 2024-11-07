@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cpexpuinj1378"]
+[gd_scene load_steps=21 format=4 uid="uid://cpexpuinj1378"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_548rg"]
 [ext_resource type="Resource" uid="uid://o43pyk7ph22q" path="res://Scripts/Guns/Resources/remington_700.tres" id="2_pbwcl"]
@@ -7,18 +7,22 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_sn1u0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(9.0783, 0.850087, 1.73178)
+size = Vector3(9.0783, 1.59979, 1.73178)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k73h0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_264v6"]
 render_priority = 0
 shader = ExtResource("4_sn1u0")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3mdo"]
 resource_name = "Material.065"
-next_pass = SubResource("ShaderMaterial_k73h0")
-transparency = 4
+next_pass = SubResource("ShaderMaterial_264v6")
 cull_mode = 2
 albedo_texture = ExtResource("3_rt4kx")
 roughness = 0.5
@@ -58,9 +62,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e56bm")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1mx0m"]
+render_priority = 0
+shader = ExtResource("4_sn1u0")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f6yr"]
 resource_name = "Material.066"
-transparency = 4
+next_pass = SubResource("ShaderMaterial_1mx0m")
 cull_mode = 2
 albedo_texture = ExtResource("3_rt4kx")
 roughness = 0.5
@@ -132,15 +147,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8gdye")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3h5d8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbj28"]
 render_priority = 0
 shader = ExtResource("4_sn1u0")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rckin"]
 resource_name = "Material.067"
-next_pass = SubResource("ShaderMaterial_3h5d8")
+next_pass = SubResource("ShaderMaterial_fbj28")
 cull_mode = 2
 albedo_texture = ExtResource("4_miffu")
 roughness = 0.5
@@ -186,7 +206,7 @@ script = ExtResource("1_548rg")
 weaponData = ExtResource("2_pbwcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.000919193, 0.0800052, -0.1524)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.000919193, 0.0800052, -0.158744)
 shape = SubResource("BoxShape3D_r5oi5")
 
 [node name="BARilfeBody&Barrel" type="MeshInstance3D" parent="."]

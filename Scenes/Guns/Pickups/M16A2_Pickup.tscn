@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bdjqvf0cs5dl2"]
+[gd_scene load_steps=13 format=4 uid="uid://bdjqvf0cs5dl2"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_p15ln"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="2_hlcsh"]
@@ -6,18 +6,22 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_v5g3p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tg2na"]
-size = Vector3(8.82239, 1.24764, 2.29102)
+size = Vector3(8.82239, 2.25039, 2.29102)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjcrw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xpwb"]
 render_priority = 0
 shader = ExtResource("4_v5g3p")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.0
+shader_parameter/shine_speed = 1.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 90.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = -90.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3x50"]
 resource_name = "Material.005"
-next_pass = SubResource("ShaderMaterial_yjcrw")
-transparency = 4
+next_pass = SubResource("ShaderMaterial_7xpwb")
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")
 roughness = 0.5
@@ -57,16 +61,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b51de")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_alcjb"]
-render_priority = 0
-shader = ExtResource("4_v5g3p")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 4.915
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rdwyj"]
 resource_name = "Material.006"
-next_pass = SubResource("ShaderMaterial_alcjb")
-transparency = 4
+next_pass = SubResource("ShaderMaterial_7xpwb")
 cull_mode = 2
 albedo_texture = ExtResource("3_fxvtr")
 roughness = 0.5
@@ -113,7 +110,7 @@ script = ExtResource("1_p15ln")
 weaponData = ExtResource("2_hlcsh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00245794, 0.0721568, -0.159927)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00245794, 0.0721568, -0.16522)
 shape = SubResource("BoxShape3D_tg2na")
 
 [node name="M16" type="MeshInstance3D" parent="."]

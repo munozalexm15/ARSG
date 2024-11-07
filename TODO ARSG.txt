@@ -10,12 +10,6 @@ PROXIMA UPDATE TOCHA:
 
 --------------------------------------------------------------------------------------------------------
 
-JUEVES:
-- Impactos de bala /  feedback de impacto en los enemigos
-- Añadir más sonidos en el UI (1h)
-- Añadir sonidos pickup
-- Poner sonido quitar anilla de la granada en rpc 3d con soundHandler
-
 VIERNES:
 - Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 
@@ -24,25 +18,29 @@ SABADO:
 
 DOMINGO: 
 - Pulir si te apetece, testear todo -> Subir a itch (y se acabo.)
+- Añadir más sonidos en el UI (1h)
+- Añadir sonidos pickup + sonido recoger municion de armas del suelo
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
 DONE (v.0.1.2 -> v0.1.3)
  - Added grenades
- - Added map pickups (they change when a player join to prevent having the upper hand from the startww)
+ - Added map pickups (they change when a player join to prevent having the upper hand from the start)
+ - Added bullet holes / impact decals (WIP / Placeholder texture)
  - Improved spawn points
  - Fixed bug that made joining players see other player in a falling animation until they move.
  - Fixed bug that showed the player before respawning for a short interval of time
  - Fixed bug that made colliding with walls modify ADS weapon rotation
  - Fixed bug that allowed dead players to keep shoting
  - Fixed bug where camera will keep moving while playing the dead animation
+ - Changed pickup weapons highlight material for a new one that makes it easier to identify the weapon.
+ - Players can no longer reload while sprinting. In future updates (if the game gets more) there will be more map pickups that grant movement abilities like double jump, dash, reload while sprinting, sliding, etc.
  - All weapons starting reserve ammo halved, this is because the core game loop is meant to make players swap weapons and adapt with the resources they have.
 
 
 
 UPDATE FUTURA TOCHA TO-DO:
 
- 
  - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)
