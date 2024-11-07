@@ -54,7 +54,7 @@ func handle_input(_event : InputEvent) -> void:
 		#arms.actualWeapon.full_reload_sound.stop()
 		arms.reloadTimer.stop()
 	
-	if Input.is_action_pressed("Sprint"):
+	if Input.is_action_pressed("Sprint") and arms.player.input_direction != Vector2.ZERO:
 		arms.animationPlayer.play("Run")
 	else:
 		arms.animationPlayer.play("Idle")

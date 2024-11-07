@@ -11,7 +11,7 @@ PROXIMA UPDATE TOCHA:
 --------------------------------------------------------------------------------------------------------
 
 JUEVES:
-- Testear mejores spawns con comprobaciones de distancia
+- Fixear visibilidad enemigos despues de morir (cuando respawnean hay una franja que son visibles)
 - Impactos de bala /  feedback de impacto en los enemigos
 - Añadir más sonidos en el UI (1h)
 - Añadir sonidos pickup
