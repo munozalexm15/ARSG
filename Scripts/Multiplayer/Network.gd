@@ -266,7 +266,6 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
 		if str(identifier) == str(player.name):
-			#player.visible = true
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()
@@ -305,6 +304,8 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 			player.arms.grenade.leftHand.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
 			player.arms.grenade.rightHand.get_active_material(0).albedo_texture= player.arms.handsAssignedTexture
 			
+			await get_tree().create_timer(0.2).timeout
+			player.visible = true
 @rpc("any_peer", "call_local")
 func show_all_players():
 	for player : Player in game.players_node.get_children():

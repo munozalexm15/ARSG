@@ -500,7 +500,7 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 				playerData.erase("secondaryWeaponPath")
 				Network.updatePlayerWeapon.rpc(Network.game.players[index]["id"], Network.game.players[index]["classSelectedPath"])
 				
-		#make_player_visible.rpc(player_id)
+		make_player_visible.rpc(player_id)
 
 
 @rpc("any_peer", "call_local", "reliable")
