@@ -500,12 +500,13 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 				playerData.erase("secondaryWeaponPath")
 				Network.updatePlayerWeapon.rpc(Network.game.players[index]["id"], Network.game.players[index]["classSelectedPath"])
 				
-		await get_tree().process_frame
+		await get_tree().create_timer(0.2).timeout
 		make_player_visible.rpc(player_id)
 
 
 @rpc("any_peer", "call_local", "reliable")
 func make_player_visible(player_id):
+	
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
 			p.visible = true
