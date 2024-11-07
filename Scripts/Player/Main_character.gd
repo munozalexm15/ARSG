@@ -482,8 +482,8 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 	
 	#hay que hacer que el que ha muerto sincronice y le diga al resto que sea visible el player, porque si no al resto les saldrá visible antes
 	if player_id == multiplayer.get_unique_id():
-		global_position = Network.game.random_spawn()
 		set_process(true)
+		global_position = Network.game.random_spawn()
 		hud.visible = true
 		hud.animationPlayer.play("swap_gun")
 		camera.current = true
