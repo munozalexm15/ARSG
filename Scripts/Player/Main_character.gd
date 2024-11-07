@@ -221,6 +221,9 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
+	if health < 0:
+		velocity = Vector3.ZERO
+	
 	if health < 35:
 		hud.HurtScreenAnimationPlayer.play("low_hp")
 	else:

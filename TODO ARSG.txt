@@ -10,27 +10,27 @@ PROXIMA UPDATE TOCHA:
 
 --------------------------------------------------------------------------------------------------------
 
-MIERCOLES:
-- Solucionar camara sigue moviendose hacia arriba si al morir estabamos presionando un input de direccion
-
-
 JUEVES:
-- Hacer mejores spawns con comprobaciones de distancia
+- Testear mejores spawns con comprobaciones de distancia
 - Impactos de bala /  feedback de impacto en los enemigos
 - Añadir más sonidos en el UI (1h)
+- Añadir sonidos pickup
 
 VIERNES:
 - Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 
 SABADO:
 - Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
-- Añadir sonidos / animaciones de spawn de los pickups
+
+DOMINGO: 
+- Pulir si te apetece, testear todo -> Subir a itch (y se acabo.)
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
 DONE (v.0.1.2 -> v0.1.3)
  - Added grenades
- - Added map pickups (they change when a player join to prevent having the upper hand from the start)
+ - Added map pickups (they change when a player join to prevent having the upper hand from the startww)
+ - Improved spawn points
  - Fixed bug that made joining players see other player in a falling animation until they move.
  - Fixed bug that made colliding with walls modify ADS weapon rotation
  - Fixed bug that allowed dead players to keep shoting

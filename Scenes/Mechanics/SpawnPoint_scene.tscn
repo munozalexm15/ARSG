@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdijdhgi1d45y"]
+
+[ext_resource type="Script" path="res://Scripts/Mechanics/SpawnPoint_behavior.gd" id="1_3nhcj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olv3n"]
+size = Vector3(20, 10.69, 20)
+
+[node name="SpawnPointNode" type="Node3D"]
+script = ExtResource("1_3nhcj")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.906485, -0.951982, -1.8549, 1.81297, 1.90396, 3.7098)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="." groups=["WeaponCollisionException"]]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92891, 0)
+shape = SubResource("BoxShape3D_olv3n")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

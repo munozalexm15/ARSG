@@ -242,8 +242,23 @@ func replace_weapon_content(weapon : Node3D):
 		child.queue_free()
 
 func random_spawn():
-	var randomValue = randi_range(0, spawnPoints_node.get_child_count() -1)
-	var spawnPoint = spawnPoints_node.get_child(randomValue)
+	var safeSpawnPoints = []
+	var spawnPointFar = null
+	
+	#FIRST LOOP: Check if there are spawnPoints that are not being seen by player and there is anyone inside their safe area
+	for sp: SpawnPoint in spawnPoints_node.get_children():
+		#if not in the area3D and is not visible
+		if sp.canPlayerSpawn == true and sp.playersInArea3D.size() == 0:
+			safeSpawnPoints.append(sp)
+	
+	#SECOND LOOP: In case the other conditions fail, make a new loop more flexible that only checks if there are not players in the safe area
+	if safeSpawnPoints.size() == 0:
+		for sp: SpawnPoint in spawnPoints_node.get_children():
+			#if not in the area3D and is not visible
+			if sp.playersInArea3D.size() == 0:
+				safeSpawnPoints.append(sp)
+		
+	var spawnPoint = safeSpawnPoints.pick_random()
 	return spawnPoint.position
 
 #load client data from the other players already in the match.

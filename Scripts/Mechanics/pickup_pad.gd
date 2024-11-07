@@ -89,7 +89,6 @@ func pickup_behavior_locally(pID) -> bool:
 
 func handle_health(body):
 	if body.health >= 100:
-		print("no cumple requisito salud")
 		return false
 		
 		
@@ -101,17 +100,13 @@ func handle_health(body):
 
 func handle_ammo(body):
 	if body.arms.actualWeapon.weaponData.reserveAmmo >= body.arms.actualWeapon.weaponData.defaultReserveAmmo * 2:
-		print("no cumple requisito municion")
 		return false
 	
 	body.arms.actualWeapon.weaponData.reserveAmmo += body.arms.actualWeapon.weaponData.defaultReserveAmmo
-	print("cumple requisito balas")
 	return true
 	
 func handle_grenades(body):
-	print(body.arms.grenadeQuantity)
 	if body.arms.grenadeQuantity == 4:
-		print("no cumple requisito granadas")
 		return false
 	
 	if body.arms.grenadeQuantity >= 2:

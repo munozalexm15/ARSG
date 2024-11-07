@@ -38,6 +38,10 @@ enabled=PackedStringArray("res://addons/zylann.hterrain/plugin.cfg")
 
 import/fbx/enabled=false
 
+[global_group]
+
+WeaponCollisionException=""
+
 [input]
 
 Forward={

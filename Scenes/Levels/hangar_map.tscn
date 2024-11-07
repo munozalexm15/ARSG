@@ -1,4 +1,4 @@
-[gd_scene load_steps=764 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=765 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dhtfqevq7obv2" path="res://GameResources/Meshes/PSXModels/textures/ground/Dirt01_a.jpg" id="14_gse8o"]
 [ext_resource type="Texture2D" uid="uid://co6rjg77rpdom" path="res://GameResources/Meshes/PSXModels/textures/metal/BlackPlain01_a.png" id="15_v48kp"]
 [ext_resource type="Environment" uid="uid://bot81jgdsr0ay" path="res://Scenes/Environment/NIGHT_ENVIRONMENT.tres" id="16_ccowq"]
+[ext_resource type="PackedScene" uid="uid://bdijdhgi1d45y" path="res://Scenes/Mechanics/SpawnPoint_scene.tscn" id="17_344bu"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_fade.gdshader" id="17_jqwhl"]
 [ext_resource type="Material" uid="uid://dfldw6o1mhiuj" path="res://GameResources/Materials/Dithering_Shader_Material.tres" id="18_aargq"]
 [ext_resource type="Texture2D" uid="uid://bxlhimkret2q4" path="res://GameResources/Textures/ShootingRange/Floor_02.png" id="19_kolhr"]
@@ -6937,29 +6938,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.707867, -7.13387)
 [node name="SpawnPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 
-[node name="Node3D4" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.91877, 1, -7.87736)
+[node name="Node3D4" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.41341, -8)
 
-[node name="Node3D5" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, 13.5076, 1, -2.29642)
+[node name="Node3D5" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5076, 1, -2.29642)
 
-[node name="Node3D6" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, 13.5076, 1, 9.20561)
+[node name="Node3D6" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5076, 1, 9.20561)
 
-[node name="Node3D8" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.632989, 0, 0.774161, 0, 1, 0, -0.774161, 0, 0.632989, -6.42059, 1, 13.2369)
+[node name="Node3D8" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8273, 1, 8.38947)
 
-[node name="Node3D7" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.127394, 0, -0.991852, 0, 1, 0, 0.991852, 0, 0.127394, 16.8273, 1, 8.38947)
+[node name="Node3D10" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.42059, 1, 13.2369)
 
-[node name="Node3D2" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -27.1754, 1, 15.5928)
+[node name="Node3D7" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1754, 1, 15.5928)
 
-[node name="Node3D3" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -20.6805, 1, 8.37565)
+[node name="Node3D11" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.61308, 1, -10.074)
 
-[node name="Node3D9" type="Node3D" parent="SpawnPoints"]
-transform = Transform3D(0.977475, 0, 0.211052, 0, 1, 0, -0.211052, 0, 0.977475, -9.61308, 1, -10.074)
+[node name="Node3D9" parent="SpawnPoints" instance=ExtResource("17_344bu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6805, 1, 8.37565)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
