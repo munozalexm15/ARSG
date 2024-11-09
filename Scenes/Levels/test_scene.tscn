@@ -1,4 +1,4 @@
-[gd_scene load_steps=289 format=4 uid="uid://cqsfxxgijmr2e"]
+[gd_scene load_steps=290 format=4 uid="uid://cqsfxxgijmr2e"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://peidbjqfijnf" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Police.jpg" id="7_rxp8l"]
 [ext_resource type="Texture2D" uid="uid://bey4oppscqukq" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Police.png" id="8_eguqk"]
 [ext_resource type="Texture2D" uid="uid://tvbkhxjjaytf" path="res://GameResources/Textures/ShootingRange/Targets.png" id="8_kxsbj"]
+[ext_resource type="PackedScene" uid="uid://bdijdhgi1d45y" path="res://Scenes/Mechanics/SpawnPoint_scene.tscn" id="9_dcxxa"]
 [ext_resource type="Texture2D" uid="uid://cdrejnfeyg7om" path="res://GameResources/Textures/ShootingRange/Barrel01.png" id="9_x1qi5"]
 [ext_resource type="Texture2D" uid="uid://ot3gxcoi0b3y" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/wall_7.png" id="10_2yvli"]
 [ext_resource type="Texture2D" uid="uid://dib4jq0bym55e" path="res://GameResources/Textures/ShootingRange/WallLight_Base.png" id="10_k8kdh"]
@@ -2249,8 +2250,13 @@ size = Vector3(9.0783, 0.850087, 1.5993)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oeqpj"]
 render_priority = 0
 shader = ExtResource("58_axou5")
-shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_width = 0.0
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 2.5
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 5.0
+shader_parameter/shine_angle_x = 0.0
+shader_parameter/shine_angle_y = 0.0
+shader_parameter/shine_angle_z = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0a3lc"]
 resource_name = "Material.065"
@@ -2667,7 +2673,7 @@ one_shot = true
 [node name="SpawnPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
 
-[node name="Node3D4" type="Node3D" parent="SpawnPoints"]
+[node name="Node3D5" parent="SpawnPoints" instance=ExtResource("9_dcxxa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145, 0.681437, -1.239)
 
 [node name="Environment" type="Node3D" parent="."]
@@ -2970,7 +2976,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.37096, 0.625636, -2.36582)
 
 [node name="submachine_gun_ammo_pickup" parent="Map/Ammo" instance=ExtResource("11_81jrp")]
-transform = Transform3D(0.950451, 0, -0.310876, 0, 1, 0, 0.310876, 0, 0.950451, -1.70136, 0.405316, -6.52082)
+transform = Transform3D(0.949874, 0, -0.312634, 0, 1, 0, 0.312634, 0, 0.949874, -1.70136, 0.405316, -6.52082)
 
 [node name="assault_rifle_ammo_pickup" parent="Map/Ammo" instance=ExtResource("41_nllwm")]
 transform = Transform3D(0.987086, 0, -0.160191, 0, 1, 0, 0.160191, 0, 0.987086, -2.08721, 0.405316, -6.47978)
@@ -2978,7 +2984,7 @@ transform = Transform3D(0.987086, 0, -0.160191, 0, 1, 0, 0.160191, 0, 0.987086, 
 [node name="Pistol_Ammo" parent="Map/Ammo" instance=ExtResource("12_6ivfo")]
 
 [node name="sniper_Ammo_Pickup" parent="Map/Ammo" instance=ExtResource("12_y5r7t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.48105, 0.391366, -6.60068)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4802, 0.391366, -6.60068)
 
 [node name="shotgun_ammo_pickup" parent="Map/Ammo" instance=ExtResource("14_0da68")]
 transform = Transform3D(0.985633, 0, 0.168902, 0, 1, 0, -0.168902, 0, 0.985633, -3.51348, 0.400967, -6.62789)

@@ -7,4 +7,4 @@ script = ExtResource("1_s148l")
 ammoType = "AR"
 caliberTypes = []
 resupplyQuantity = 30
-numberUses = 1
+numberUses = 100

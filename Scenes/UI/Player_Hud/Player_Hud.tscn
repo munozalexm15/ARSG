@@ -15,18 +15,6 @@ bg_color = Color(0.995287, 0.000985044, 0.093398, 1)
 
 [sub_resource type="Animation" id="Animation_t0uba"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("HurtScreenIndicator:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_ca002"]
 resource_name = "low_hp"

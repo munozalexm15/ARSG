@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var pad_resource : pickupPadResource
+var pad_resource : pickupPadResource
 @onready var animPlayer : AnimationPlayer = $AnimationPlayer
 
 @onready var pickupMesh : MeshInstance3D = $grenade/MeshDisplay
@@ -10,11 +10,16 @@ extends Node3D
 
 @export var padResourcesArray : Array
 
+
+@export var weaponResourcesArray : Array
+var weaponDataSelected: WeaponData
+
 # 1
 func _ready() -> void:
 	var randIndex : int = randi_range(0, padResourcesArray.size() -1)
+	weaponDataSelected = weaponResourcesArray.pick_random()
 	#when someone joins, will randomize everything again. It is intended to prevent people camping weapons / buffs
-	randomize_pad_resource.rpc(randIndex)
+	randomize_pad_resource.rpc(randIndex, weaponDataSelected)
 
 
 func _process(delta: float) -> void:
@@ -22,7 +27,7 @@ func _process(delta: float) -> void:
 
 #2 / 7
 @rpc("any_peer", "call_local", "reliable")
-func randomize_pad_resource(arrayIndex : int):
+func randomize_pad_resource(arrayIndex : int, weaponData : WeaponData):
 	pad_resource = padResourcesArray[arrayIndex]
 	var mat = bubbleMesh.get_active_material(0).duplicate()
 	bubbleMesh.set_surface_override_material(0, mat)
@@ -30,7 +35,7 @@ func randomize_pad_resource(arrayIndex : int):
 	pickupMesh.rotation = pad_resource.meshRotation
 	pickupMesh.scale = pad_resource.meshScale
 	pickupMesh.position = pad_resource.meshPosition
-	
+	weaponDataSelected = weaponData
 	bubbleMesh.get_active_material(0).albedo_color = pad_resource.bubbleColor
 	
 	#if someone has joined the room and a player before picked up a buff, stop the timer so it doesn't desync with the others players
@@ -51,7 +56,8 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not cooldownTimer.paused:
 		await cooldownTimer.timeout
 		var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
-		randomize_pad_resource.rpc(randIndex)
+		weaponDataSelected = weaponResourcesArray.pick_random()
+		randomize_pad_resource.rpc(randIndex, weaponDataSelected)
 
 #4
 @rpc("any_peer", "call_local", "reliable")
@@ -84,6 +90,21 @@ func pickup_behavior_locally(pID) -> bool:
 	if pad_resource.resourceType == "Grenade":
 		return handle_grenades(body)
 	
+	if pad_resource.resourceType == "Weapon":
+		var isInHolder = false
+		for weapon : Weapon in body.arms.weaponHolder.get_children():
+			if weapon.weaponData.name == weaponDataSelected.name:
+				weapon.weaponData.reserveAmmo += weapon.weaponData.defaultReserveAmmo
+				isInHolder = true
+				SFXHandler.play_sfx_3d("res://GameResources/Sounds/Misc/Ammo-pickup.ogg", body.name, "Environment", 10.0)
+		
+		if body.arms.weaponHolder.get_child_count() < 2 and isInHolder == false:
+			body.arms._on_interact_ray_swap_weapon(body.arms.actualWeapon.weaponData.name, weaponDataSelected.weaponScene, isInHolder)
+		if body.arms.weaponHolder.get_child_count() >= 2 and isInHolder == false:
+			body.arms._on_interact_ray_swap_weapon(body.arms.actualWeapon.weaponData.name, weaponDataSelected.weaponScene, isInHolder)
+		
+		return true
+		
 	return false
 
 
@@ -103,6 +124,7 @@ func handle_ammo(body):
 		return false
 	
 	body.arms.actualWeapon.weaponData.reserveAmmo += body.arms.actualWeapon.weaponData.defaultReserveAmmo
+	SFXHandler.play_sfx_3d("res://GameResources/Sounds/Misc/Ammo-pickup.ogg", body.name, "Effects", 10.0)
 	return true
 	
 func handle_grenades(body):

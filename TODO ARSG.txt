@@ -10,16 +10,10 @@ PROXIMA UPDATE TOCHA:
 
 --------------------------------------------------------------------------------------------------------
 
-VIERNES:
-- Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
-
-SABADO:
-- Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
-
 DOMINGO: 
+- Fixear el tema de que se queda atascado en la pantalla de sincronizando datos de la sala
 - Pulir si te apetece, testear todo -> Subir a itch (y se acabo.)
-- Añadir más sonidos en el UI (1h)
-- Añadir sonidos pickup + sonido recoger municion de armas del suelo
+
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,6 +35,7 @@ DONE (v.0.1.2 -> v0.1.3)
 
 UPDATE FUTURA TOCHA TO-DO:
 
+ - Añadir pickup de randomizar armas y alguno más gracioso (más velocidad, doble salto, invisibilidad / translucido, etc.)
  - Free for all (básicamente solucionar problemas de rpc para sincronizar todo bien y añadir nuevo gamemode).
  / Añadir sala de espera (Que el firing range lo sea, cuando se una alguien se empieza la partida y el resto es igual a como ya está.)
  - Añadir en tercera persona que no se clipee el arma (lo mismo que el metodo en primera persona pero moviendo los targets de los hombros y brazos hacia atrás. HACER LO ULTIMO POR SI ES MUY FUMADON)

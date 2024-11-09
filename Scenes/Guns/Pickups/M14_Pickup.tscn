@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=4 uid="uid://cskqdhschvvf8"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/weapon_pickup.gd" id="1_pm5w7"]
-[ext_resource type="Resource" uid="uid://dut7j1qco7vmk" path="res://Scripts/Guns/Resources/M14_Pickup.tres" id="2_m37c8"]
+[ext_resource type="Resource" uid="uid://b5k0vb48uadrv" path="res://Scripts/Guns/Resources/M14_Resource.tres" id="2_suy5t"]
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="3_iloig"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="4_xwkek"]
 
@@ -211,7 +211,7 @@ collision_mask = 9
 mass = 15.0
 gravity_scale = 2.0
 script = ExtResource("1_pm5w7")
-weaponData = ExtResource("2_m37c8")
+weaponData = ExtResource("2_suy5t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.00667555, 0.0862846, -0.160866)

@@ -21,13 +21,17 @@ func _ready():
 	queue_free()
 
 func _physics_process(delta: float) -> void:
-
+	if not ray.enabled:
+		return
+	
 	distanceTraveled += 0.0001
 	position += transform.basis * Vector3(0,0,-SPEED)
 	if ray.is_colliding():
+		ray.enabled = false
 		_on_area_3d_body_entered(ray.get_collider())
 
 func _on_area_3d_body_entered(body : Node3D):
+	
 	#spawn_decal(body)
 	$MeshInstance3D.visible = false
 	
@@ -63,3 +67,6 @@ func _on_area_3d_body_entered(body : Node3D):
 		fade_tween.tween_interval(2.0)
 		fade_tween.tween_property(decal, "modulate:a", 0, 1.5)
 		await fade_tween.finished
+	
+	$MeshInstance3D.visible = false
+	

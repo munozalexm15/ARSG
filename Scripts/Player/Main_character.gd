@@ -346,35 +346,43 @@ func update_hitPosition():
 		#hit_indicator.indicator_node.rotation = -$Damage_indicator_lookAt.rotation.y
 
 @rpc("any_peer", "reliable", "call_local")
-func assign_enemy_to_player_hit(instigator_player_id, affected_player_id):
+func assign_enemy_to_player_hit(instigator_player_id, affected_player_id, damageType = "Bullet"):
 	can_heal = false
 	if animationPlayer.is_playing():
 		animationPlayer.play("RESET")
 	animationPlayer.play("hit")
 	
-	var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
-	hit_indicator.connect("finished", updateIndicatorsArray)
+	if damageType == "Grenade":
+		hud.HurtScreenAnimationPlayer.play("low_hp", -1, 2.0, false)
+		
+		await get_tree().create_timer(2).timeout
+		if health > 0:
+			can_heal = true
 	
-	for p : Player in Network.game.players_node.get_children():
-		if p.name.to_int() == instigator_player_id:
-			hit_indicator.instigator = p
-			hit_indicator_array.append(hit_indicator)
-	
-	for p : Player in Network.game.players_node.get_children():
-		if p.name.to_int() == affected_player_id:
-			
-			p.add_child(hit_indicator)
-			hit_indicator.animationPlayer.play("hit_anim")
-			
-			var look_at_node = Node3D.new()
-			p.add_child(look_at_node)
-			look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
-			hit_indicator.indicator_node.rotation = -look_at_node.rotation.y
-			look_at_hit_indicator_array.append(look_at_node)
-	
-			await get_tree().create_timer(2).timeout
-			if health > 0:
-				can_heal = true
+	if damageType != "Grenade":
+		var hit_indicator : HitIndicator = hit_indicator_scene.instantiate()
+		hit_indicator.connect("finished", updateIndicatorsArray)
+		
+		for p : Player in Network.game.players_node.get_children():
+			if p.name.to_int() == instigator_player_id:
+				hit_indicator.instigator = p
+				hit_indicator_array.append(hit_indicator)
+		
+		for p : Player in Network.game.players_node.get_children():
+			if p.name.to_int() == affected_player_id:
+				
+				p.add_child(hit_indicator)
+				hit_indicator.animationPlayer.play("hit_anim")
+				
+				var look_at_node = Node3D.new()
+				p.add_child(look_at_node)
+				look_at_node.look_at(hit_indicator.instigator.global_transform.origin, Vector3.UP)
+				hit_indicator.indicator_node.rotation = -look_at_node.rotation.y
+				look_at_hit_indicator_array.append(look_at_node)
+		
+				await get_tree().create_timer(2).timeout
+				if health > 0:
+					can_heal = true
 
 func updateIndicatorsArray(node):
 	for index in range(hit_indicator_array.size() -1, -1, -1):

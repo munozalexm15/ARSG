@@ -63,7 +63,7 @@ func checkExplosionEffect():
 		var collision = space.intersect_ray(a)
 		 
 		if collision.collider is Player:
-			collision.collider.assign_enemy_to_player_hit.rpc_id(collision.collider.name.to_int(), collision.collider.name.to_int(), collision.collider.name.to_int())
+			collision.collider.assign_enemy_to_player_hit.rpc_id(collision.collider.name.to_int(), collision.collider.name.to_int(), collision.collider.name.to_int(), "Grenade")
 			var distanceStrength = a.to.distance_to(global_transform.origin)
 			if distanceStrength <= 2:
 				collision.collider.health -= distanceStrength * 120

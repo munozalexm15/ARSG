@@ -2019,6 +2019,7 @@ points = PackedVector3Array(0.5, 0.125184, 0.437451, -0.5, 9.87612e-05, -0.5, -0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ih08q"]
 data = PackedVector3Array(-0.9375, 0.485, -0.3125, -0.9375, 0.0475, 0.3125, -0.9375, 0.485, 0.3125, -0.9375, 0.485, -0.3125, -0.9375, 0.0475, -0.3125, -0.9375, 0.0475, 0.3125, 1, -0.015, 0.375, -1, 0.485, 0.375, 1, 0.485, 0.375, 1, -0.015, 0.375, -1, -0.015, 0.375, -1, 0.485, 0.375, -1, -0.015, 0.375, -1, 0.485, -0.375, -1, 0.485, 0.375, -1, -0.015, 0.375, -1, -0.015, -0.375, -1, 0.485, -0.375, -1, -0.015, -0.375, 1, -0.015, 0.375, 1, -0.015, -0.375, -1, -0.015, -0.375, -1, -0.015, 0.375, 1, -0.015, 0.375, 1, -0.015, -0.375, 1, 0.485, 0.375, 1, 0.485, -0.375, 1, -0.015, -0.375, 1, -0.015, 0.375, 1, 0.485, 0.375, -1, -0.015, -0.375, 1, 0.485, -0.375, -1, 0.485, -0.375, -1, -0.015, -0.375, 1, -0.015, -0.375, 1, 0.485, -0.375, 0.9375, 0.485, 0.3125, -1, 0.485, 0.375, -0.9375, 0.485, 0.3125, 0.9375, 0.485, 0.3125, 1, 0.485, 0.375, -1, 0.485, 0.375, 0.9375, 0.485, -0.3125, 1, 0.485, 0.375, 0.9375, 0.485, 0.3125, 0.9375, 0.485, -0.3125, 1, 0.485, -0.375, 1, 0.485, 0.375, -0.9375, 0.485, 0.3125, -1, 0.485, -0.375, -0.9375, 0.485, -0.3125, -0.9375, 0.485, 0.3125, -1, 0.485, 0.375, -1, 0.485, -0.375, -0.9375, 0.485, -0.3125, 1, 0.485, -0.375, 0.9375, 0.485, -0.3125, -0.9375, 0.485, -0.3125, -1, 0.485, -0.375, 1, 0.485, -0.375, 0.9375, 0.0475, -0.3125, -0.9375, 0.0475, 0.3125, -0.9375, 0.0475, -0.3125, 0.9375, 0.0475, -0.3125, 0.9375, 0.0475, 0.3125, -0.9375, 0.0475, 0.3125, -0.9375, 0.485, 0.3125, 0.9375, 0.0475, 0.3125, 0.9375, 0.485, 0.3125, -0.9375, 0.485, 0.3125, -0.9375, 0.0475, 0.3125, 0.9375, 0.0475, 0.3125, 0.9375, 0.485, -0.3125, -0.9375, 0.0475, -0.3125, -0.9375, 0.485, -0.3125, 0.9375, 0.485, -0.3125, 0.9375, 0.0475, -0.3125, -0.9375, 0.0475, -0.3125, 0.9375, 0.485, 0.3125, 0.9375, 0.0475, -0.3125, 0.9375, 0.485, -0.3125, 0.9375, 0.485, 0.3125, 0.9375, 0.0475, 0.3125, 0.9375, 0.0475, -0.3125)
+backface_collision = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3p5o5"]
 resource_name = "Material"
@@ -6921,19 +6922,25 @@ one_shot = true
 [node name="Pickups" type="Node3D" parent="."]
 
 [node name="GrenadeBubble" parent="Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.703115, -3.48538)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.26712, -0.703115, -6.76695)
+
+[node name="GrenadeBubble7" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7907, -0.687351, 13.6248)
 
 [node name="GrenadeBubble3" parent="Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29224, -0.703115, -7.11399)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.1556, -0.703115, 0.586262)
+
+[node name="GrenadeBubble6" parent="Pickups" instance=ExtResource("37_2ij2j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0228, -0.703115, 18.3848)
 
 [node name="GrenadeBubble4" parent="Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29224, -0.703115, -3.54108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.48695, 1.59296, 13.6453)
 
 [node name="GrenadeBubble5" parent="Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1611, -0.703115, -3.54108)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6129, 5.03922, 2.15052)
 
 [node name="GrenadeBubble2" parent="Pickups" instance=ExtResource("37_2ij2j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.707867, -7.13387)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9719, 1.83801, 3.74268)
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
@@ -12784,7 +12791,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_61mhy")
 
 [node name="Prop_ShippingContainer_Door_R2" type="MeshInstance3D" parent="Map/Inside/shootingrange/Prop_ShippingContainer3"]
-transform = Transform3D(0.369325, -0.929301, 4.0621e-08, 0.929301, 0.369325, 2.75677e-08, -4.0621e-08, 2.75677e-08, 1, 125, -253.526, -125)
+transform = Transform3D(0.369325, -0.929301, 4.0621e-08, 0.929301, 0.369325, 2.75677e-08, -4.0621e-08, 2.75677e-08, 1, 126.004, -251.375, -125)
 mesh = SubResource("ArrayMesh_w4ogx")
 skeleton = NodePath("")
 
@@ -13227,8 +13234,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.999992, -0.00163365, -0.00366876, -0.00163884, -0.999998, -0.00141359, -0.00366645, 0.00141959, -0.999992, -9.35868, 0.577271, -7.18593)
 size = Vector3(7.46509, 1, 5.53006)
 texture_albedo = ExtResource("135_u40ie")
-upper_fade = 1e-05
-lower_fade = 1e-05
 
 [connection signal="timeout" from="MatchTimer" to="." method="_on_match_timer_timeout"]
 [connection signal="pressed" from="WaitingCameraAndInfo/HBoxContainer/FoceExitButton" to="." method="_on_foce_exit_button_pressed"]

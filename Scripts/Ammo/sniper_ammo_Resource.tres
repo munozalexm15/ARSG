@@ -7,4 +7,4 @@ script = ExtResource("1_dlxi0")
 ammoType = "Sniper"
 caliberTypes = []
 resupplyQuantity = 12
-numberUses = 1
+numberUses = 100
