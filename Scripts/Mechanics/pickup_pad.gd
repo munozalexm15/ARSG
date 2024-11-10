@@ -17,9 +17,9 @@ var weaponDataSelected: WeaponData
 # 1
 func _ready() -> void:
 	var randIndex : int = randi_range(0, padResourcesArray.size() -1)
-	weaponDataSelected = weaponResourcesArray.pick_random()
+	var weaponDataSelectedIndex = randi_range(0, weaponResourcesArray.size() -1)
 	#when someone joins, will randomize everything again. It is intended to prevent people camping weapons / buffs
-	randomize_pad_resource.rpc(randIndex, weaponDataSelected)
+	randomize_pad_resource.rpc(randIndex, weaponDataSelectedIndex)
 
 
 func _process(delta: float) -> void:
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 
 #2 / 7
 @rpc("any_peer", "call_local", "reliable")
-func randomize_pad_resource(arrayIndex : int, weaponData : WeaponData):
+func randomize_pad_resource(arrayIndex : int, weaponDataIndex : int):
 	pad_resource = padResourcesArray[arrayIndex]
 	var mat = bubbleMesh.get_active_material(0).duplicate()
 	bubbleMesh.set_surface_override_material(0, mat)
@@ -35,7 +35,7 @@ func randomize_pad_resource(arrayIndex : int, weaponData : WeaponData):
 	pickupMesh.rotation = pad_resource.meshRotation
 	pickupMesh.scale = pad_resource.meshScale
 	pickupMesh.position = pad_resource.meshPosition
-	weaponDataSelected = weaponData
+	weaponDataSelected = weaponResourcesArray[weaponDataIndex]
 	bubbleMesh.get_active_material(0).albedo_color = pad_resource.bubbleColor
 	
 	#if someone has joined the room and a player before picked up a buff, stop the timer so it doesn't desync with the others players
@@ -56,8 +56,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not cooldownTimer.paused:
 		await cooldownTimer.timeout
 		var randIndex : int = randi_range(0, padResourcesArray.size() - 1)
-		weaponDataSelected = weaponResourcesArray.pick_random()
-		randomize_pad_resource.rpc(randIndex, weaponDataSelected)
+		var weaponDataSelectedIndex = randi_range(0, weaponResourcesArray.size() -1)
+		#when someone joins, will randomize everything again. It is intended to prevent people camping weapons / buffs
+		randomize_pad_resource.rpc(randIndex, weaponDataSelectedIndex)
 
 #4
 @rpc("any_peer", "call_local", "reliable")
