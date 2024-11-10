@@ -498,6 +498,9 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 		hud.animationPlayer.play("swap_gun")
 		hud.visible = true
 		arms.visible = true
+		player_body.visible = false
+		thirdPersonEnabled = false
+		arms.weaponHolder.visible = true
 		arms.grenadeQuantity = 1
 		hud.grenadeCountLabel.text = "x1"
 		arms.state_machine.transition_to("Idle")
@@ -511,8 +514,6 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 				Network.updatePlayerWeapon.rpc(Network.game.players[index]["id"], Network.game.players[index]["classSelectedPath"])
 				
 		#make_player_visible.rpc(player_id)
-		
-		
 
 
 @rpc("any_peer", "call_local", "reliable")

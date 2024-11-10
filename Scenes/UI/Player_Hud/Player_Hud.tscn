@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=50 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_a84a5"]
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
@@ -8,7 +8,6 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/hud_weapon_color.gdshader" id="4_4onwq"]
 [ext_resource type="Texture2D" uid="uid://5rnob2cwlyeq" path="res://GameResources/Textures/Grenades/grenade_icon.png" id="4_bpdig"]
 [ext_resource type="Texture2D" uid="uid://dwaskfa5ph23f" path="res://GameResources/Textures/Other/SniperShadow.png" id="6_0y6oq"]
-[ext_resource type="Shader" path="res://GameResources/Shaders/weapon_UI_ReloadShader.gdshader" id="7_m5vmm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyhua"]
 bg_color = Color(0.995287, 0.000985044, 0.093398, 1)
@@ -336,10 +335,6 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jnugk"]
 shader = ExtResource("4_4onwq")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rym5"]
-shader = ExtResource("7_m5vmm")
-shader_parameter/percentage = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_mp7e6"]
 outline_size = 3
@@ -801,10 +796,10 @@ stretch_mode = 4
 
 [node name="SecondaryWeaponImage" type="TextureRect" parent="VBoxContainer"]
 texture_filter = 1
-material = SubResource("ShaderMaterial_7rym5")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture = ExtResource("3_o1pwj")
 expand_mode = 1
 stretch_mode = 4
 

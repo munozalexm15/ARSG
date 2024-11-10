@@ -100,7 +100,7 @@ func pickup_behavior_locally(pID) -> bool:
 		
 		if body.arms.weaponHolder.get_child_count() < 2 and isInHolder == false:
 			body.arms._on_interact_ray_swap_weapon(body.arms.actualWeapon.weaponData.name, weaponDataSelected.weaponScene, isInHolder)
-		if body.arms.weaponHolder.get_child_count() >= 2 and isInHolder == false:
+		elif body.arms.weaponHolder.get_child_count() >= 2 and isInHolder == false:
 			body.arms._on_interact_ray_swap_weapon(body.arms.actualWeapon.weaponData.name, weaponDataSelected.weaponScene, isInHolder)
 		
 		return true
