@@ -66,16 +66,11 @@ I know there are some noticeable bugs that can affect players outside of the vis
 - **RPC calls when joining a game sometimes fail**: I think it's a sync problem of the player who is connecting. I haven't looked at it deeply because it rarely occurs, but it can happen often if your performance is VERY, very bad.
 > This bug can cause the game to get stuck waiting when the connection is made. The only solution right now is to exit the lobby (using the button or forcing to close the game).
 
-- **Better respawns**: As the lobbies only allow 2 players and the map itself has a lot of spawnpoints, the chances of spawning in front of the enemy are low, but that doesn't mean it can't happen. I have to rework some 
-conditions to make spawning safer for players.
-
 - **Hitmarker sound**: You might have noticed that when you shot an enemy, an audio plays to indicate you're hitting the enemy, and when they hit you the same one plays. It's not a bug, but maybe I will change the sound when they hit you.
-
-- **Ammo bug**: If you pickup a weapon, the ammo in this one restores to the default, instead of having the ammo of the previous player had in it.
 
 - **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
 
-## Credits / Commercial Use
+## Credits
 
  - Weapon assets by [Doctor_Sci3nce](https://doctor-sci3nce.itch.io/) on Itch
  - Character model by [stephanrobertgames](https://stephrobertgames.itch.io/german-police-officer-set) on Itch 

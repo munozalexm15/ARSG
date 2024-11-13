@@ -21,6 +21,7 @@ var allowed_input_actions = {
 	"ADS": MOUSE_BUTTON_RIGHT,
 	"Reload": KEY_R,
 	"Interact" : KEY_F,
+	"Grenade" : KEY_G,
 	"FireSelection": KEY_X,
 	"Perspective" : KEY_H,
 	"Scoreboard" : KEY_TAB,
@@ -44,7 +45,7 @@ func _ready():
 		configData.set_value("Video", "hasDithering", true)
 		configData.set_value("Video", "V-Sync", true)
 		configData.set_value("Video", "ColorDepth", 5)
-		configData.set_value("Video", "ResolutionScale", 2)
+		configData.set_value("Video", "ResolutionScale", 1)
 		
 		configData.set_value("Audio", "Weapons", 1)
 		configData.set_value("Audio", "WeaponSliderValue", 1)

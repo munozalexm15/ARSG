@@ -60,6 +60,7 @@ var allowed_input_actions = {
 	"Reload": "Reload",
 	"ADS": "ADS",
 	"Interact" : "Interact",
+	"Grenade": "Grenade",
 	"FireSelection": "Fire Selection",
 	"Perspective" : "Perspective",
 	"Scoreboard" : "Scoreboard",

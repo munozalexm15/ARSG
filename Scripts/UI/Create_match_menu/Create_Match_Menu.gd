@@ -51,7 +51,7 @@ func _on_create_room_button_pressed():
 	"goal": objectiveGoal,
 	"perspective": perspectiveSelector.text,
 	"obviousNotSpacewarButGameName": "ARSG",
-	"version" : "0.1.2"}
+	"version" : "0.1.3"}
 	
 	if privacityOption.text == "PUBLIC":
 		roomDict["lobbyType"] = SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC

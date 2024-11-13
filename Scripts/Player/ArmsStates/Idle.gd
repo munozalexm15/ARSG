@@ -41,6 +41,9 @@ func handle_input(_event : InputEvent):
 		state_machine.transition_to("Reload")
 
 func physics_update(_delta):
+	if arms.player.isPauseMenuOpened:
+		return
+	
 	if arms.animationPlayer.assigned_animation == "Run" and !Input.is_action_pressed("Sprint") and state_machine.old_state.name == "Reload" and !arms.player.is_on_floor():
 		state_machine.transition_to("Idle")
 	
