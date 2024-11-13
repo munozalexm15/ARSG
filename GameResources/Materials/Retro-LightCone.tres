@@ -1,13 +1,13 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bgxl20tul4qvo"]
 
-[ext_resource type="Texture2D" uid="uid://ca48d8hpvnmba" path="res://GameResources/Textures/Environment/cone-texture.png" id="1_4i4xn"]
+[ext_resource type="Texture2D" uid="uid://ca48d8hpvnmba" path="res://GameResources/Textures/Other/cone-texture.png" id="1_rapyp"]
 
 [resource]
 resource_name = "Material.001"
 transparency = 1
 blend_mode = 1
 cull_mode = 2
-albedo_texture = ExtResource("1_4i4xn")
+albedo_texture = ExtResource("1_rapyp")
 metallic = 1.0
 emission_energy_multiplier = 0.0
 normal_scale = -16.0

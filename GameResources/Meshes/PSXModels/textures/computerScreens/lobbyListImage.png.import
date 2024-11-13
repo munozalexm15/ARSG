@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bru1rq20opvqx"
-path.s3tc="res://.godot/imported/Grass_25-128x128.png-360eb6a345797b8634287899787ed227.s3tc.ctex"
+uid="uid://62j2govkjjr0"
+path.s3tc="res://.godot/imported/lobbyListImage.png-b3ef5ee4ded2be6572970800c381ec2d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Textures/Map/Grass_25-128x128.png"
-dest_files=["res://.godot/imported/Grass_25-128x128.png-360eb6a345797b8634287899787ed227.s3tc.ctex"]
+source_file="res://GameResources/Meshes/PSXModels/textures/computerScreens/lobbyListImage.png"
+dest_files=["res://.godot/imported/lobbyListImage.png-b3ef5ee4ded2be6572970800c381ec2d.s3tc.ctex"]
 
 [params]
 
