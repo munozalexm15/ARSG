@@ -4,6 +4,9 @@ extends Node3D
 
 var player_ref : Player = null
 
+
+@export var noisesArray : Array
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("Float")
@@ -16,12 +19,8 @@ func _process(delta: float) -> void:
 		rotation.x = 0
 		rotation.z = 0
 
-
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
-	print("jeje")
 	player_ref = body
 
-
 func _on_area_3d_2_body_exited(body: Node3D) -> void:
-	print("no jeje")
 	player_ref = null

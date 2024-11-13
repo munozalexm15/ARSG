@@ -1,12 +1,18 @@
-[gd_scene load_steps=24 format=4 uid="uid://b888nq01mf3v5"]
+[gd_scene load_steps=30 format=4 uid="uid://b888nq01mf3v5"]
 
 [ext_resource type="Script" path="res://Scripts/Player/FloatingHead_behavior/FloatingHead_Behavior.gd" id="1_rw2a7"]
+[ext_resource type="AudioStream" uid="uid://be5iiql168l88" path="res://GameResources/Sounds/Player/FloatingHead/COUGHING3-ALEJANDRO.ogg" id="2_blesa"]
 [ext_resource type="Texture2D" uid="uid://bv54aeaug2kn1" path="res://GameResources/Meshes/Characters/lxndrw/textures/red.png" id="2_gmy1p"]
+[ext_resource type="AudioStream" uid="uid://by6qo1qo5mnj4" path="res://GameResources/Sounds/Player/FloatingHead/COUGHING_ALEJANDRO.ogg" id="3_p2bun"]
+[ext_resource type="AudioStream" uid="uid://bcpaxjo0nj5gi" path="res://GameResources/Sounds/Player/FloatingHead/UH2-ALEJANDRO.ogg" id="4_qrqcq"]
+[ext_resource type="AudioStream" uid="uid://cg3eo3o67n1w3" path="res://GameResources/Sounds/Player/FloatingHead/UH2_2-ALEJANDRO.ogg" id="5_ivvkc"]
 [ext_resource type="Texture2D" uid="uid://bbalo2l4fmal3" path="res://GameResources/Meshes/Characters/lxndrw/textures/mario_logo_edit.png" id="5_x8rqj"]
+[ext_resource type="AudioStream" uid="uid://slnpub02bwmy" path="res://GameResources/Sounds/Player/FloatingHead/UH-ALEJANDRO.ogg" id="6_2to01"]
 [ext_resource type="Texture2D" uid="uid://cw36mk1gqbryc" path="res://GameResources/Meshes/Characters/lxndrw/textures/mario_eyes_center_edit.png" id="6_q5rp0"]
 [ext_resource type="Texture2D" uid="uid://cwuxpkythqsor" path="res://GameResources/Meshes/Characters/lxndrw/textures/mario_sideburn_edit.png" id="7_1sfv1"]
 [ext_resource type="Texture2D" uid="uid://gxbdqpnso5qc" path="res://GameResources/Meshes/Characters/lxndrw/textures/mario_mustache_edit.png" id="8_gfbj3"]
 [ext_resource type="Texture2D" uid="uid://c05gol40am5o8" path="res://GameResources/Meshes/Characters/lxndrw/textures/skin.png" id="9_5022x"]
+[ext_resource type="AudioStream" uid="uid://ctw1ae4lrkeew" path="res://GameResources/Sounds/Misc/hover_head_effect_calm.mp3" id="9_ipq6f"]
 [ext_resource type="Texture2D" uid="uid://ol73pwr481v1" path="res://GameResources/Meshes/Characters/lxndrw/textures/hair.png" id="10_map84"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wa6j8"]
@@ -401,8 +407,9 @@ _data = {
 
 [node name="lxndrw_TPOSE" type="Node3D"]
 script = ExtResource("1_rw2a7")
+noisesArray = [ExtResource("2_blesa"), ExtResource("3_p2bun"), ExtResource("4_qrqcq"), ExtResource("5_ivvkc"), ExtResource("6_2to01")]
 
-[node name="Area3D2" type="Area3D" parent="."]
+[node name="Area3D2" type="Area3D" parent="." groups=["WeaponCollisionException"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11338, 0)
 collision_layer = 128
 collision_mask = 128
@@ -416,17 +423,25 @@ mesh = SubResource("ArrayMesh_xda0j")
 skin = SubResource("Skin_2d25x")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="mario_cap_on"]
+[node name="FloatingHead" type="StaticBody3D" parent="mario_cap_on"]
 collision_layer = 11
 collision_mask = 11
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="mario_cap_on/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mario_cap_on/FloatingHead"]
 shape = SubResource("ConvexPolygonShape3D_bypxx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2aatl")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_ipq6f")
+unit_size = 3.0
+autoplay = true
+max_distance = 4.0
+bus = &"Effects"
+parameters/looping = true
 
 [connection signal="body_entered" from="Area3D2" to="." method="_on_area_3d_2_body_entered"]
 [connection signal="body_exited" from="Area3D2" to="." method="_on_area_3d_2_body_exited"]

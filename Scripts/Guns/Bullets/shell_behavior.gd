@@ -34,6 +34,10 @@ func _on_area_3d_body_entered(body : Node3D):
 	
 	#spawn_decal(body)
 	$MeshInstance3D.visible = false
+
+	if body.get_parent().get_parent() is FloatingHead:
+		var floatingHead : FloatingHead = body.get_parent().get_parent()
+		SFXHandler.play_sfx(floatingHead.noisesArray.pick_random(), floatingHead, "Effects")
 	
 	
 	if body is Target and body != self and not body.isDowned:
