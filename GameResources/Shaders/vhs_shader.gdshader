@@ -60,7 +60,7 @@ void fragment(){
   float snPhase = smoothstep( 0.03, 0.0, uvn.y );
   uvn.y += snPhase * 0.3;
   uvn.x += snPhase * ( ( noise( vec2( uv.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.2 );
-    
+
   col = tex2D( iChannel0, vec2(uvn.x, uvn.y) );
   col *= 1.0 - tcPhase;
   col = mix(

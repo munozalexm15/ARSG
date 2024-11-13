@@ -1,4 +1,4 @@
-[gd_scene load_steps=765 format=4 uid="uid://de5edi5jwb8q2"]
+[gd_scene load_steps=758 format=4 uid="uid://de5edi5jwb8q2"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_b8yep"]
 [ext_resource type="Texture2D" uid="uid://chg3mf8uw2gfo" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Militia.png" id="2_0djyb"]
@@ -8,12 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://dv0mvhd5mb2mv" path="res://GameResources/Textures/CharacterTextures/Faces/GermanPoliceOfficer_Face128.jpg" id="6_wuu4h"]
 [ext_resource type="Texture2D" uid="uid://peidbjqfijnf" path="res://GameResources/Textures/CharacterTextures/Bodies/GermanPoliceOfficer_Body256_Police.jpg" id="7_dulh6"]
 [ext_resource type="Texture2D" uid="uid://bey4oppscqukq" path="res://GameResources/Textures/CharacterTextures/Arms/PlayerArms_Police.png" id="8_hsusr"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="9_dmlld"]
-[ext_resource type="Resource" path="res://GameResources/TerrainData/hangar/data.hterrain" id="10_nex4x"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="11_0eejc"]
-[ext_resource type="Texture2D" uid="uid://di2li8p4w2dqo" path="res://GameResources/Meshes/PSXModels/textures/ground/Grass01_a.jpg" id="12_qrngs"]
-[ext_resource type="Texture2D" uid="uid://b2nnjrt24urqi" path="res://GameResources/Meshes/PSXModels/textures/ground/Sand01_a.jpg" id="13_yr248"]
-[ext_resource type="Texture2D" uid="uid://dhtfqevq7obv2" path="res://GameResources/Meshes/PSXModels/textures/ground/Dirt01_a.jpg" id="14_gse8o"]
 [ext_resource type="Texture2D" uid="uid://co6rjg77rpdom" path="res://GameResources/Meshes/PSXModels/textures/metal/BlackPlain01_a.png" id="15_v48kp"]
 [ext_resource type="Environment" uid="uid://bot81jgdsr0ay" path="res://Scenes/Environment/NIGHT_ENVIRONMENT.tres" id="16_ccowq"]
 [ext_resource type="PackedScene" uid="uid://bdijdhgi1d45y" path="res://Scenes/Mechanics/SpawnPoint_scene.tscn" id="17_344bu"]
@@ -158,7 +152,6 @@
 [ext_resource type="PackedScene" uid="uid://dt0prdvs35ac2" path="res://Scenes/Guns/Pickups/MP5SD_Pickup.tscn" id="123_c5het"]
 [ext_resource type="Texture2D" uid="uid://ckx88gvgfex0q" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/Rock01a_a.png" id="124_ip2ju"]
 [ext_resource type="AudioStream" uid="uid://5jrud1odo5lr" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-017.ogg" id="124_joxb6"]
-[ext_resource type="Texture2D" uid="uid://becul4ri6axqc" path="res://GameResources/Textures/Environment/Rock01c_a.png" id="125_1tcqa"]
 [ext_resource type="AudioStream" uid="uid://djxipi880gaq6" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-016.ogg" id="125_365q7"]
 [ext_resource type="Texture2D" uid="uid://bmng4534v7dat" path="res://GameResources/Meshes/PSXModels/textures/meshes/foliage/PineTree01_a.png" id="126_g5ggm"]
 [ext_resource type="AudioStream" uid="uid://denk3t1lwdh11" path="res://GameResources/Sounds/Ground/Gravel/Steps_gravel-015.ogg" id="126_txj7o"]
@@ -178,6 +171,8 @@
 [ext_resource type="AudioStream" uid="uid://dfnyp78xobwb3" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-017.ogg" id="141_c4r6w"]
 [ext_resource type="AudioStream" uid="uid://b42tqy1ablq20" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-015.ogg" id="142_b4kr5"]
 [ext_resource type="AudioStream" uid="uid://c74e723tbsxgr" path="res://GameResources/Sounds/Ground/Carpet/Steps_carpet-016.ogg" id="143_mm6er"]
+[ext_resource type="Texture2D" uid="uid://bru1rq20opvqx" path="res://GameResources/Textures/Map/Grass_25-128x128.png" id="172_41bay"]
+[ext_resource type="PackedScene" uid="uid://d1no24tn3r1m6" path="res://GameResources/Meshes/PSXModels/meshes/buildings/modular/mWallRampConcrete02.blend" id="174_0ak3f"]
 
 [sub_resource type="Resource" id="Resource_kp5a3"]
 script = ExtResource("5_qnagl")
@@ -207,11 +202,6 @@ BodySkin = ExtResource("7_dulh6")
 leftHandSkin = ExtResource("8_hsusr")
 rightHandSkin = ExtResource("8_hsusr")
 
-[sub_resource type="Resource" id="Resource_d282g"]
-script = ExtResource("11_0eejc")
-mode = 0
-textures = [[ExtResource("12_qrngs"), ExtResource("13_yr248"), ExtResource("14_gse8o"), ExtResource("15_v48kp")], [null, null, null, null]]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_prhnf"]
 shader = ExtResource("17_jqwhl")
 shader_parameter/alpha = 7
@@ -235,6 +225,15 @@ font_size = 12
 [sub_resource type="LabelSettings" id="LabelSettings_owvs4"]
 font = ExtResource("35_4kgcg")
 font_size = 18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14d38"]
+albedo_texture = ExtResource("172_41bay")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_6bqhy"]
+material = SubResource("StandardMaterial3D_14d38")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wdgdh"]
 size = Vector3(8.3268, 4.91049, 0.652865)
@@ -6254,46 +6253,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gs0e2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8mqy"]
-resource_name = "Rock01a"
-cull_mode = 2
-albedo_texture = ExtResource("125_1tcqa")
-texture_filter = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_k3h57"]
-_surfaces = [{
-"aabb": AABB(-0.712318, -0.0858997, -1.18196, 1.44864, 1.30767, 2.04869),
-"format": 34359742465,
-"index_count": 168,
-"index_data": PackedByteArray("FAAPABIAFAAaAA8AGgADAA8AGgAWAAMAFwADABYAFwAEAAMAEQALABIAEQANAAsADQACAAsADQAHAAIAGQAQAAYAGQAbABAAGwAJABAAGwAXAAkABgAKAAUABgAQAAoAEAABAAoAEAAJAAEAFQAAABgAFQAIAAAACAAOAAAACAAMAA4ADAAFAA4ADAAGAAUAFQAMAAgAFQAcAAwAHAAGAAwAHAAZAAYABAAPAAMABAATAA8AEwASAA8AEwARABIAGAALAAIAGAAdAAsAHQASAAsAHQAUABIADgAUAB0ADgAFABQAAAAdABgAAAAOAB0ADQAZABwADQARABkABwAcABUABwANABwABwAYAAIABwAVABgAEwAXABsAEwAEABcAEQAbABkAEQATABsACQAWAAEACQAXABYACgAWABoACgABABYABQAaABQABQAKABoA"),
-"lods": [0.187667, PackedByteArray("BQAPABIABQADAA8ABQASAAsABQAWAAMACgAWAAUACgABABYAGAAFAAsAAAAFABgAGAALAAIAFwADABYAFwAEAAMABAAPAAMABAATAA8AEwASAA8AEwARABIAEQALABIAEQACAAsAEQAHAAIABwAVABgABwAYAAIAEQAQAAYAEQAGAAwAEQAXABAAFwAJABAAEQATABcAEwAEABcAFQARAAwABwARABUAFQAMAAgABgAKAAUABgAQAAoADAAGAAUAEAABAAoACAAMAAUAEAAJAAEACQAWAAEACQAXABYACAAFAAAAFQAIAAAAFQAAABgA"), 0.571071, PackedByteArray("FgADAAsAAQAWAAsAGAABAAsAGAALAAIAFwADABYAFwAEAAMAEQACAAsAEQAHAAIABAARAAsABAALAAMABwAVABgABwAYAAIAEQAXAAYAEQAEABcAFQARAAYABwARABUAFQABABgAFQAGAAEABgAWAAEABgAXABYA")],
-"name": "Rock01a",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 30,
-"vertex_data": PackedByteArray("aPjKPS5Scj/jQIW/bANiPuJSkT/BhjI/Yf74vrxChj+xuWS/xr36vtNdjD8vSk8/hKDDvuhW2j3WCxE/StAKP+71jz8kPiu9oX88P8BPrDyF+tu98pDCvjw/oz3Gooe/01XlPliFjz3Hooe/Kn/DPrRnyj3WCxE/3Fu0PllIkT/Zacw+V8odv7fAhz81ziK/blIyPwAAAAChZiu/cof+vgAAAAChZiu/nwvgPmo7iz880f++dlo2v0ooiz/Zacw+YScrPxD9dj0b3Lo+cvcMvwAAAACgExW+c2ovv4H3hD8sPiu9l5X9vi61vT2p4Kw+Yr2NvR1jnD8MFBq9SIGIu1A5FT3Gnpa/C7UEvajTjz+64V0/5DgwvQiWiz1yai0/nYBXvjifgD9zSpe/4MqnvLBqF72WA+e9PDmDvQ4BmD/vM+4+un9KvUiPHD2HKd0+liSkvTLsr71hehi/i4WPvbmgmD/5Cze/")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_v0q1y"]
-resource_name = "Rock02a_Cube"
-_surfaces = [{
-"aabb": AABB(-0.712318, -0.0858997, -1.18196, 1.44864, 1.30767, 2.04869),
-"attribute_data": PackedByteArray("gEuTPmxDxj6EQx4/8gWAPoBLkz5sQ8Y+wwWAPnufKD9gJxo/ItM7P2AnGj8i0zs/Dv0/PyI9uD4xA9k+YqScPloXzz680IY+xJ2mPhb9Pz9s4TY/FEAmP2xhQz8UQB8/AP0/P/0BGj+UQCA/9wwyP5RAID/3DDI/KpKrPhDA2z4qkqs+EMDbPmis9D5jcw4/aKz0PmNzDj9issc+aFYqP2Kyxz5oVio/nqIdP5Az8T6eoh0/kDPxPhpa1z4SBoA+op2VPsAV1z6inZU+wBXXPuAFgD4QStI+5wHaPvAhnT7nAdo+8CGdPjVaFz8I/T8/ql81P2BbIz+qXzU/YFsjPylTkz5qtBE/KVOTPmq0ET8UNA0/OXQsPxQ0DT85dCw/JtkxP2x3/j4m2TE/bHf+PkIkAD/se6w+QiQAP+x7rD4G8pU+DMYHPwbylT4Mxgc/VkAEP3Q3vD5WQAQ/dDe8Pur/CT+qUpk+6v8JP6pSmT7Vgro+yML5PtWCuj7Iwvk+ZXLrPkDLlz5lcus+QMuXPuPuvj7Qy+4+4+6+PtDL7j68z+U+sCM0P7zP5T6wIzQ/Vjk3PzpLBj9WOTc/OksGP5m0Aj8YLz4/mbQCPxgvPj92BjA/Q08SP3YGMD9DTxI/vNApP4iQyT680Ck/iJDJPpjO8D5iYxE/mM7wPmJjET94ihU/4X4kP3iKFT/hfiQ/yyggPxgE0z7LKCA/GATTPhT2Pj9uawM/FPY+P25rAz++lxA/73EmP76XED/vcSY/ptHsPp7MCT+m0ew+nswJP6bR7D6ezAk/ptHsPp7MCT9QjZ8+fJKdPjburT4yBIA+UI2fPnySnT6ACFI+oBq4PnDgkj6NEjg/plUfP+l9ST9w4JI+jRI4PyT2XD9IAjc/og4xP+j0Mj+Q4z4/Z0s6P6IOMT/o9DI/ZxE1P9b9Pz9ACFw+uN+4PgrGNT8+opE+CsY1Pz6ikT76y7M+SAlkPhtDBz8PZAg/G0MHPw9kCD8bQwc/D2QIPxtDBz8PZAg/f926PhxJJj9/3bo+HEkmP3/duj4cSSY/f926PhxJJj9esCQ/+CQlP16wJD/4JCU/XrAkP/gkJT9esCQ/+CQlP5Qxzj7gUc4+lDHOPuBRzj6UMc4+4FHOPpQxzj7gUc4+EDoXP6iryD4QOhc/qKvIPhA6Fz+oq8g+EDoXP6iryD5gJxo/ItM7P2AnGj8i0zs/lEAgP/cMMj+eoh0/kDPxPp6iHT+QM/E+Nu6tPjIEgD5ACFw+uN+4PgrGNT8+opE+YCcaPyLTOz+UQCA/9wwyP2is9D5jcw4/5wHaPvAhnT4KxjU/PqKRPg=="),
-"format": 34359742487,
-"index_count": 168,
-"index_data": PackedByteArray("SgA1AEAASgBjADUAYgAJADQAYgBSAAkAVwAKAFMAVwANAAoAPwAnAEMAPwAvACcALgAIACYALgAZAAgAXAA4ABMAXABkADgAZQAdADkAZQBUAB0AFQAjABEAFQA7ACMAOgAFACIAOgAfAAUATQAAAFgATQAbAAAAHAAyAAIAHAAqADIAKwASADMAKwAWABIATAApABoATABpACkAaAAUACgAaABdABQADgA2AAsADgBGADYARwBCADcARwA+AEIAWgAkAAYAWgBuACQAbwBBACUAbwBLAEEAMABJAGwAMAAQAEkAAQBtAFkAAQAxAG0ALABfAGoALAA9AF8AFwBrAE4AFwAtAGsAGABbAAcAGABPAFsARQBWAGcARQAMAFYAPABmAF4APABEAGYAHgBRAAQAHgBVAFEAIABQAGAAIAADAFAADwBhAEgADwAhAGEA"),
-"lods": [0.187667, PackedByteArray("DwA0AEAADwAJADQADwBAACQADwBQAAkAIABQAA8AIAADAFAAfAAPACQAAQAPAHwAfAAkAAYAVwAKAFMAVwB5AAoAeQA2AAsAeQBGADYARgBCADYARgA+AEIAPgAmAEIAPgAIACYAPgAYAAgAGABPAFsAGABbAAcAPAA4ABMAPAATACgAPABUADgAVAAdADgAPABEAFQARAAMAFQATAA8ACgAFwA8AEwATAAoABoAFQAiAHoAFQA6ACIAKgAVAHoAOgB4ACIAewAqAHoAOgAeAHgAHgBRAHgAHgBVAFEAewB6AAAATQB7AAAATQAAAFgA"), 0.571071, PackedByteArray("UAAJACQAAwBQACQAdwADACQAdwAkAAYAVwAKAFMAVwANAAoAPgAIACYAPgAYAAgAcgA+ACYAcgAmAAsAGABPAFsAGABbAAcAPABUABMAPAAMAFQATAA8ABMAFwA8AEwAdQBwAHYAdQBzAHAAdABRAHEAdABVAFEA")],
-"material": SubResource("StandardMaterial3D_y8mqy"),
-"name": "Rock01a",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 125,
-"vertex_data": PackedByteArray("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")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_k3h57")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mxh3"]
 resource_name = "Material"
 transparency = 1
@@ -6895,26 +6854,6 @@ script = ExtResource("1_b8yep")
 team1SkinsResources = [SubResource("Resource_kp5a3"), SubResource("Resource_576ic")]
 team2SkinsResources = [SubResource("Resource_aia0x"), SubResource("Resource_po85s")]
 
-[node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("9_dmlld")
-ambient_wind = 0.1
-centered = true
-_terrain_data = ExtResource("10_nex4x")
-chunk_size = 16
-collision_enabled = false
-collision_layer = 67
-collision_mask = 67
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_d282g")
-render_layers = 1
-cast_shadow = 1
-shader_params/u_ground_uv_scale = 2.0
-shader_params/u_depth_blending = false
-shader_params/u_triplanar = true
-shader_params/u_tile_reduction = Vector4(0.39, 1.115, 0.515, 0.985)
-
 [node name="MatchTimer" type="Timer" parent="."]
 process_mode = 3
 one_shot = true
@@ -7167,6 +7106,11 @@ visible = false
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(150, 0, 0, 0, -6.55671e-06, 150, 0, -150, -6.55671e-06, -83.6672, 0.611, 0)
+mesh = SubResource("QuadMesh_6bqhy")
+skeleton = NodePath("../..")
 
 [node name="MapLimits" type="Node3D" parent="Map"]
 
@@ -12917,6 +12861,66 @@ shape = SubResource("ConcavePolygonShape3D_ci1ot")
 [node name="Outside" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.702, 0.540683, -9.71228)
 
+[node name="mWallRampConcrete02" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, 16.8878)
+
+[node name="mWallRampConcrete03" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, 20.8723)
+
+[node name="mWallRampConcrete04" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, 24.8489)
+
+[node name="mWallRampConcrete05" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, 28.8197)
+
+[node name="mWallRampConcrete06" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, 32.8042)
+
+[node name="mWallRampConcrete12" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -22.1784, 0.070317, 34.0915)
+
+[node name="mWallRampConcrete13" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -18.1942, 0.070317, 34.0461)
+
+[node name="mWallRampConcrete14" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -14.2178, 0.070317, 34.0008)
+
+[node name="mWallRampConcrete15" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -10.2473, 0.070317, 33.9555)
+
+[node name="mWallRampConcrete16" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -6.2631, 0.070317, 33.9101)
+
+[node name="mWallRampConcrete17" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -22.1784, 0.070317, -15.8821)
+
+[node name="mWallRampConcrete18" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -18.1942, 0.070317, -15.9275)
+
+[node name="mWallRampConcrete19" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -14.2178, 0.070317, -15.9728)
+
+[node name="mWallRampConcrete20" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -10.2473, 0.070317, -16.0181)
+
+[node name="mWallRampConcrete21" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(-0.0113968, 0, 0.999935, 0, 1, 0, -0.999935, 0, -0.0113968, -6.2631, 0.070317, -16.0635)
+
+[node name="mWallRampConcrete07" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, -16.2058)
+
+[node name="mWallRampConcrete08" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, -12.2214)
+
+[node name="mWallRampConcrete09" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, -8.24482)
+
+[node name="mWallRampConcrete10" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, -4.27392)
+
+[node name="mWallRampConcrete11" parent="Map/Outside" instance=ExtResource("174_0ak3f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.1317, 0.070317, -0.289519)
+
 [node name="Axe012" parent="Map/Outside" instance=ExtResource("111_mcqxs")]
 transform = Transform3D(-0.114001, 0.95322, 0.279956, 0.963208, 0.175081, -0.203906, -0.243383, 0.24641, -0.938108, -11.5184, 1.0477, -4.53995)
 
@@ -12979,10 +12983,6 @@ skeleton = NodePath("")
 
 [node name="Rock02a3" type="Node3D" parent="Map/Outside"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3744, 0.0703169, -5.69356)
-
-[node name="Rock02" type="MeshInstance3D" parent="Map/Outside/Rock02a3"]
-mesh = SubResource("ArrayMesh_v0q1y")
-skeleton = NodePath("")
 
 [node name="PineTree012" type="Node3D" parent="Map/Outside"]
 
@@ -13123,6 +13123,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.9317)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4022, 0, -17.8884)
 
 [node name="PineTree01" type="MeshInstance3D" parent="Map/Outside/Trees/PineTree012"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32767, 0, 0)
 mesh = SubResource("ArrayMesh_ckff0")
 skeleton = NodePath("")
 

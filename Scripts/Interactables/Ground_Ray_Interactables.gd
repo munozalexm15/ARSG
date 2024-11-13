@@ -30,8 +30,8 @@ func _process(_delta):
 		
 @rpc("any_peer", "call_local", "reliable")
 func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeaponId : int):
-	SFXHandler.play_sfx_3d("res://GameResources/Sounds/Misc/Ammo-pickup.ogg", str(player_id), "Effects", 10.0)
-	var pickupWeapon = null
+	
+	var pickupWeapon : WeaponInteractable = null
 	#search the dropped weapon in the map
 	for index in Network.game.interactables_node.get_child_count():
 		var interactable = Network.game.interactables_node.get_child(index)
@@ -41,6 +41,8 @@ func get_weapon_ammo(player_id : int, weaponHolder_child_pos : int, pickupWeapon
 	if pickupWeapon == null:
 		return
 	
+	if pickupWeapon.weaponData.reserveAmmo > 0:
+		SFXHandler.play_sfx_3d("res://GameResources/Sounds/Misc/Ammo-pickup.ogg", str(player_id), "Effects", 10.0)
 	 #search the player and the weapon it is using
 	for p : Player in Network.game.players_node.get_children():
 		if p.name.to_int() == player_id:
