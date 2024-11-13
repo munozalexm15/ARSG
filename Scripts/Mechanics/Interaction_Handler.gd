@@ -87,13 +87,6 @@ func _process(_delta):
 				hud.pickupAmmoContainer.visible = true
 				if Input.is_action_just_pressed("Interact"):
 					pickup_ammo.emit(interactable)
-		
-		if interactable is ChestInteractable and Input.is_action_just_pressed("Interact"):
-			if interactable.opened:
-				return
-			interactable.selectedWeapon = interactable.WeaponList.pick_random()
-			interactable.spawn_weapon.rpc(interactable.selectedWeapon)
-
 
 func on_pickup_weapon(actualWeaponName, newWeaponStringScene : String, isInHolder : bool):
 	arms._on_interact_ray_swap_weapon(actualWeaponName, newWeaponStringScene, isInHolder)

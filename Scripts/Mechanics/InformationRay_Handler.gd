@@ -5,8 +5,6 @@ extends RayCast3D
 
 @onready var player : Player = $"../../../.."
 
-var npcData : NPCData
-
 var lastEnemy: Player
 
 # Called when the node enters the scene tree for the first time.
@@ -21,20 +19,7 @@ func _process(_delta):
 		
 	if is_colliding():
 		var collision = get_collider()
-		#if collision is Player:
-			#hud.ally_indicator(Color.LAWN_GREEN)
-			#player.seeing_ally = true
-			#
-			#hud.NPCNameLabel.text = collision.name
-			#hud.NPCRoleLabel.text = "Health: " + str(collision.health)
-			#
-			#hud.NPCNameLabel.visible = true
-			#hud.NPCRoleLabel.visible = true
-		#else:
-			#hud.NPCNameLabel.visible = false
-			#hud.NPCRoleLabel.visible = false
-			#player.seeing_ally = false
-			#hud.ally_indicator(Color.WHITE)
+		
 		if collision == Ammo or collision == null:
 			return
 		if collision != Player and collision.get_class() != "CharacterBody3D" and collision != Bullet:
