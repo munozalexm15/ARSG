@@ -87,7 +87,7 @@ func _physics_process(delta):
 	player.hud.weaponCaliber.text = actualWeapon.weaponData.weaponCaliber
 	player.hud.ammoCounter.text = str(actualWeapon.weaponData.bulletsInMag) + " / " + str(actualWeapon.weaponData.reserveAmmo)
 	
-	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade" and grenadeQuantity > 0 and player.health > 0:
+	if Input.is_action_pressed("Grenade") and readyToThrow == false and state_machine.state.name != "Grenade" and grenadeQuantity > 0 and player.health > 0 and not player.isPauseMenuOpened:
 		grenade.leftHand.get_active_material(0).albedo_texture = player.arms.handsAssignedTexture
 		grenade.rightHand.get_active_material(0).albedo_texture= player.arms.handsAssignedTexture
 		state_machine.transition_to("Grenade")

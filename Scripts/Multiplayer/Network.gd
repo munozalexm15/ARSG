@@ -176,7 +176,7 @@ func _on_lobby_chat_update(_this_lobby_id: int, change_id: int, _making_change_i
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
 	Steam.addRequestLobbyListStringFilter("obviousNotSpacewarButGameName", "ARSG", Steam.LOBBY_COMPARISON_EQUAL)
-	Steam.addRequestLobbyListStringFilter("version", "0.1.2", Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("version", "0.1.3", Steam.LOBBY_COMPARISON_EQUAL)
 	
 	Steam.requestLobbyList()
 

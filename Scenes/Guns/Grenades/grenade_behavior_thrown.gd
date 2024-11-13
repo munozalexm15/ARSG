@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	var collisions : Array = get_colliding_bodies()
-	if collisions.size() > 0 and not bounceAudio.playing and linear_velocity.length() >= 1:
+	if collisions.size() > 0 and not bounceAudio.playing and linear_velocity.length() >= 1 and not detonationTimer.is_stopped():
 		bounceAudio.play()
 		
 #debe ser algo con un rpc
