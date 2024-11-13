@@ -1,4 +1,4 @@
-[gd_scene load_steps=290 format=4 uid="uid://cqsfxxgijmr2e"]
+[gd_scene load_steps=289 format=4 uid="uid://cqsfxxgijmr2e"]
 
 [ext_resource type="Script" path="res://Scripts/Multiplayer/mp_level_behavior.gd" id="1_vgjab"]
 [ext_resource type="Texture2D" uid="uid://c74m6ev6xuiyr" path="res://GameResources/Meshes/LinearRetroFPSPack/textures/floor_2.png" id="2_2umy5"]
@@ -58,7 +58,6 @@
 [ext_resource type="AudioStream" uid="uid://b6b2uaccqe2xw" path="res://GameResources/Sounds/Ground/Floor/Steps_floor-020.ogg" id="32_ny45s"]
 [ext_resource type="PackedScene" uid="uid://clkowbb2gf8i1" path="res://Scenes/Enemies/human_target.tscn" id="33_ql7xd"]
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="33_qlraq"]
-[ext_resource type="PackedScene" uid="uid://d4i3ia1imwtgj" path="res://Scenes/Characters/Shooting_range_npc.tscn" id="34_fcn2x"]
 [ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="34_q4ltw"]
 [ext_resource type="PackedScene" uid="uid://cws836aheogns" path="res://Scenes/UI/Dashboard_Menu/Dashboard_Menu.tscn" id="35_sg0yo"]
 [ext_resource type="PackedScene" uid="uid://bcepmrcqbhkaf" path="res://Scenes/Ammo/assault_rifle_ammo_pickup.tscn" id="41_nllwm"]
@@ -4070,9 +4069,6 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Firing Range/crate_1/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.251221)
 shape = SubResource("BoxShape3D_nn0kg")
-
-[node name="Character" parent="Map/Firing Range" instance=ExtResource("34_fcn2x")]
-transform = Transform3D(-0.47738, 0, -0.148687, 0, 0.5, 0, 0.148687, 0, -0.47738, 1.9809, 3.03332, -5.56589)
 
 [node name="Outside" type="Node3D" parent="Map"]
 transform = Transform3D(0, 1, 7.27834e-08, -5.96046e-08, 0, -1.2211, -1, 5.96046e-08, 0, 0.0237119, 0, -1.28569)
