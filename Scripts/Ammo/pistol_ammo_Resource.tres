@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_yydw7")
-ammoType = "Pistol"
-caliberTypes = [".45 ACP"]
-resupplyQuantity = 30
-numberUses = 1
+ammoType = "Rifle"
+caliberTypes = []
+resupplyQuantity = 8
+numberUses = 100

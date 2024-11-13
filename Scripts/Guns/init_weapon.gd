@@ -93,7 +93,7 @@ func _physics_process(delta):
 	if not being_used:
 		return
 	
-	if hands.player.isPauseMenuOpened or Network.game.chatText.has_focus():
+	if hands.player.isPauseMenuOpened:
 		return
 	
 	if hands.state_machine.state.name == "Grenade":

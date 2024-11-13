@@ -36,8 +36,6 @@ func handle_input(_event : InputEvent):
 		if arms.actualWeapon.isBoltReloaded:
 			return
 		
-		if Network.game.chatText.has_focus():
-			return
 		state_machine.transition_to("Reload")
 
 func physics_update(_delta):

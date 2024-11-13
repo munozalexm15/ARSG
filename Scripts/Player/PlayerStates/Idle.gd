@@ -43,7 +43,7 @@ func update(_delta: float):
 		state_machine.transition_to("Air")
 		
 	if Input.is_action_just_pressed("Jump"):
-		if player.isPauseMenuOpened or Network.game.chatText.has_focus():
+		if player.isPauseMenuOpened:
 			return
 		state_machine.transition_to("Air", {"jump" = true})
 

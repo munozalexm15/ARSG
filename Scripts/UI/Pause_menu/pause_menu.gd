@@ -77,22 +77,7 @@ func _on_exit_button_mouse_entered():
 
 
 func _on_exit_match_button_pressed():
-	if get_tree().paused:
-		get_tree().paused = false
-	
-	#CLIENT LEAVING MATCH
-	if multiplayer.get_unique_id() != 1:
-		Network.player_left.rpc(multiplayer.get_unique_id())
-		Network.leave_lobby()
-		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
-	#HOST CLOSING MATCH
-	else:
-		Network.endGame.rpc("HOST ENDED THE MATCH")
-		await get_tree().create_timer(5).timeout
-		Network.endGame.rpc("HOST ENDED THE MATCH") 
-		if multiplayer.get_unique_id() == 1:
-			Network.close_match()
-			get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
+	pass
 
 
 func _on_change_weapon_button_pressed() -> void:

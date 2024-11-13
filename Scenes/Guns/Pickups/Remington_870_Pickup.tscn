@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://GameResources/Shaders/Interactable_rarity.gdshader" id="3_eeshj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r5oi5"]
-size = Vector3(9.0783, 1.35547, 1.5993)
+size = Vector3(9.0783, 0.453186, 1.5993)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_adubl"]
 render_priority = 0
@@ -171,7 +171,7 @@ script = ExtResource("1_xrrxs")
 weaponData = ExtResource("2_h2pk0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.0157597, 0.0604266, -0.162678)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0.0157597, 0.0604266, -0.140135)
 shape = SubResource("BoxShape3D_r5oi5")
 
 [node name="PABody&Barrel" type="MeshInstance3D" parent="."]

@@ -1,0 +1,72 @@
+# Blender 4.1.0 MTL File: 'Lxndrw.blend'
+# www.blender.org
+
+newmtl mario_cap
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/red.png
+
+newmtl mario_eyes
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/mario_eyes_center_edit.png
+
+newmtl mario_face
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/skin.png
+
+newmtl mario_hair
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/hair.png
+
+newmtl mario_hair_sideburn
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/mario_sideburn_edit.png
+
+newmtl mario_m_logo
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/mario_logo_edit.png
+
+newmtl mario_mustache
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd F:/Descargas/MarioModelBased/mario_mustache_edit.png

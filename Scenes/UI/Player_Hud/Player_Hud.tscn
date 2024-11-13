@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=45 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_a84a5"]
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
@@ -411,24 +411,6 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_01alm")
 }
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otfsy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gthtq"]
-bg_color = Color(0.6, 0.6, 0.6, 0.235294)
-skew = Vector2(1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ajhln"]
-bg_color = Color(0, 0.230642, 0.512831, 1)
-skew = Vector2(1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_saeop"]
-bg_color = Color(0.6, 0.6, 0.6, 0.235294)
-skew = Vector2(1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63t0w"]
-bg_color = Color(0.443137, 0.113725, 0, 1)
-skew = Vector2(1, 0)
 
 [sub_resource type="Animation" id="Animation_awfgl"]
 length = 0.001
@@ -886,54 +868,6 @@ autowrap_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_4hn1e")
 }
-
-[node name="PanelContainer3" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.032
-anchor_top = 0.832
-anchor_right = 0.277
-anchor_bottom = 0.917
-offset_left = 0.135998
-offset_top = -0.135986
-offset_right = -0.104004
-offset_bottom = -0.216064
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_otfsy")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer3/VBoxContainer"]
-layout_mode = 2
-
-[node name="GamemodeName" type="Label" parent="PanelContainer3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "FREE FOR ALL"
-
-[node name="MatchTimeIndicator" type="Label" parent="PanelContainer3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "0:00"
-horizontal_alignment = 2
-
-[node name="MatchTimer" type="Timer" parent="PanelContainer3/VBoxContainer"]
-one_shot = true
-
-[node name="TEAM1-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_gthtq")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ajhln")
-step = 1.0
-show_percentage = false
-
-[node name="TEAM2-ProgressBar" type="ProgressBar" parent="PanelContainer3/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_saeop")
-theme_override_styles/fill = SubResource("StyleBoxFlat_63t0w")
-show_percentage = false
 
 [node name="KillPointsHUDContainer" type="CenterContainer" parent="."]
 visible = false

@@ -19,14 +19,7 @@ var death_count = 0
 
 @onready var interactables_node : Node3D = $InteractablesParent
 @onready var spawnPoints_node : Node3D= $SpawnPoints
-
-@onready var dashboardMatch : Control = $DashboardMatch
-
-@onready var matchTimer : Timer = $MatchTimer
-
 @onready var killFeedVBox = $KillFeed/KillFeedHistory
-@onready var ChatMessagesDisplay : VBoxContainer = $ChatDisplay/VBoxContainer2/VBoxContainer
-@onready var chatText : LineEdit = $ChatDisplay/VBoxContainer2/ChatText
 
 @onready var pauseMenuSpawner : MultiplayerSpawner = $pauseMenuSpawner
 @onready var playerSpawner : MultiplayerSpawner = $PlayerSpawner
@@ -34,42 +27,59 @@ var death_count = 0
 
 @onready var waitingDataInfo : Control = $WaitingCameraAndInfo
 
+@export var lightArray : Array
+
+
 var matchGoal = 0
 var team1GoalProgress = 0
 var team2GoalProgress = 0
 var matchTime = 0
 var matchTimeLeft = 0
 
+@onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var chatAction = InputEventKey.new()
 	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
-	chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
 	playerSpawner.spawn_function = Callable(self, "init_player")
 	
 	Network.game = self
+	Network.role = "Host"
 	GlobalData.configurationUpdated.connect(set_new_chat_subtext)
 	#multiplayer.connected_to_server.connect(loadGame)
 	
 	if Network.role == "Host":
 		generatePlayer(multiplayer.get_unique_id())
-		matchGoal = Network.gameData["goal"]
-		matchTime = Network.gameData["time"]
-		team1GoalProgress = 0
-		team2GoalProgress = 0
-		waitingDataInfo.queue_free()
 		
-		matchTimer.wait_time = matchTime
-		matchTimer.start()
-		dashboardMatch.get_lobby_data()
+	
+		waitingDataInfo.queue_free()
 		
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
 		Steam.setLobbyJoinable(Network.lobby_id, true)
+
+	lightError()
+	
+func lightError():
+	var randomTime = randi_range(10, 25)
+	await get_tree().create_timer(randomTime).timeout
+	players_node.get_child(0).camera.shakeStrength = randf_range(0.01, 0.02)
+	mortarSound.play()
+	
+	for i in range(3):
+		var randomLightOutTime = randf_range(0, 0.5)
+		var random_index = randi_range(0, lightArray.size() -1)
+		var lightNode = get_node(lightArray[random_index])
+		lightNode.visible = false
+		await get_tree().create_timer(randomLightOutTime).timeout
+		lightNode.visible = true
+	
+	lightError()
 
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
@@ -113,62 +123,29 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	menuInstance.player = playerInstance
 	playerInstance.weaponSelectionMenu = selectionInstance
 	selectionInstance.player = playerInstance
+	#var team : int = randi_range(0, 1)
+	var skin : PlayerSkin = null
 	
-	if Network.gameData["gameMode"] == "FACE OFF":
-		#var team : int = randi_range(0, 1)
-		var skin : PlayerSkin = null
-		if newId == 1:
-			skin = team1SkinsResources.pick_random()
-		else:
-			skin = team2SkinsResources.pick_random()
+	skin = team1SkinsResources.pick_random()
+
 		
 	#esto se tiene que pasar a un rpc con el identifier del player y deberia de estar ya hecho
-		playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
-		playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
-		#
-		var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
-		var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
-		playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
-		
-		playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
-		playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
+	playerInstance.arms.handsAssignedTexture = skin.rightHandSkin
+	playerInstance.arms.handsAssignedTexture = playerInstance.arms.handsAssignedTexture.duplicate()
+	#
+	var headMaterialDuplicate = playerInstance.player_body.playerMesh.get_active_material(0).duplicate()
+	playerInstance.player_body.playerMesh.set_surface_override_material(0, headMaterialDuplicate)
+	var bodyMaterialDuplicte =  playerInstance.player_body.playerMesh.get_active_material(1).duplicate()
+	playerInstance.player_body.playerMesh.set_surface_override_material(1, bodyMaterialDuplicte)
 	
-	if multiplayer.get_unique_id() != 1:
-		matchTimer.start()
-		dashboardMatch.get_lobby_data()
-		waitingDataInfo.queue_free()
+	playerInstance.player_body.playerMesh.get_active_material(0).set_shader_parameter("albedo", skin.BodySkin)
+	playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 	
 func loadGame():
 	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
 
 func  _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Open Chat") and not chatText.has_focus():
-		chatText.grab_focus()
-		ChatMessagesDisplay.modulate = Color(1,1,1,1)
-		chatText.accept_event()
-	
-	if Input.is_action_just_pressed("Send Message") and chatText.has_focus():
-		chatText.release_focus()
-		chatText.text.replace("\n", "")
-		if chatText.text.length() == 0:
-			var fade_tween: Tween = get_tree().create_tween()
-			fade_tween.tween_interval(2.0)
-			fade_tween.tween_property(ChatMessagesDisplay, "modulate:a", 0.5, 10.0)
-			return
-			
-		Network._on_send_chat_pressed(Steam.getFriendPersonaName(Steam.getSteamID()) + " : " + chatText.text)
-		chatText.text = ""
-		var chatAction = InputEventKey.new()
-		chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
-		chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
-	
-	if (matchGoal == team1GoalProgress or matchGoal == team2GoalProgress) or matchTimer.time_left == 0:
-		return
-	if Input.is_action_pressed("Scoreboard"):
-		dashboardMatch.visible = true
-	if Input.is_action_just_released("Scoreboard"):
-		dashboardMatch.visible = false
+	pass
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -245,20 +222,7 @@ func random_spawn():
 	var safeSpawnPoints = []
 	var spawnPointFar = null
 	
-	#FIRST LOOP: Check if there are spawnPoints that are not being seen by player and there is anyone inside their safe area
-	for sp: SpawnPoint in spawnPoints_node.get_children():
-		#if not in the area3D and is not visible
-		if sp.canPlayerSpawn == true and sp.playersInArea3D.size() == 0:
-			safeSpawnPoints.append(sp)
-	
-	#SECOND LOOP: In case the other conditions fail, make a new loop more flexible that only checks if there are not players in the safe area
-	if safeSpawnPoints.size() == 0:
-		for sp: SpawnPoint in spawnPoints_node.get_children():
-			#if not in the area3D and is not visible
-			if sp.playersInArea3D.size() == 0:
-				safeSpawnPoints.append(sp)
-		
-	var spawnPoint = safeSpawnPoints.pick_random()
+	var spawnPoint = spawnPoints_node.get_child(0)
 	return spawnPoint.position
 
 #load client data from the other players already in the match.
@@ -324,10 +288,7 @@ func _on_foce_exit_button_pressed() -> void:
 
 
 func _on_chat_text_gutter_added() -> void:
-	if chatText.text.length() > 5:
-		chatText.text = chatText.text.substr(0, 5)
+	pass
 
 func set_new_chat_subtext():
-	var chatAction = InputEventKey.new()
-	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
-	chatText.placeholder_text = "Press '" + chatAction.as_text_keycode() + "' to chat."
+	pass

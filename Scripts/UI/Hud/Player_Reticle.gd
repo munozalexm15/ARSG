@@ -39,13 +39,6 @@ extends Control
 @onready var HurtScreenContainer : PanelContainer = $HurtScreenContainer
 @onready var HurtScreenAnimationPlayer : AnimationPlayer = $HurtScreenContainer/AnimationPlayer
 
-
-@onready var TimerIndicator = $PanelContainer3/VBoxContainer/HBoxContainer/MatchTimeIndicator
-@onready var matchTimer = $PanelContainer3/VBoxContainer/MatchTimer
-@onready var gamemodeLabel = $PanelContainer3/VBoxContainer/HBoxContainer/GamemodeName
-@onready var Team1ProgressBar = $"PanelContainer3/VBoxContainer/TEAM1-ProgressBar"
-@onready var Team2ProgressBar = $"PanelContainer3/VBoxContainer/TEAM2-ProgressBar"
-
 @onready var killPointsAnimPlayer : AnimationPlayer = $KillPointsHUDContainer/AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -55,11 +48,9 @@ func _ready():
 		return
 	
 	crosshair.queue_redraw()
-	healthBar.value = player_controller.health 
+	
 	NPCNameLabel.visible = false
 	NPCRoleLabel.visible = false
-	
-	gamemodeLabel.text = Network.gameData.get("gameMode")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -77,16 +68,6 @@ func _process(_delta):
 		adjust_reticle_size()
 	
 	healthBar.value = player_controller.health
-	
-	var seconds =  int(Network.game.matchTimer.time_left) % 60
-
-	@warning_ignore("integer_division")
-	var minutes = (int(Network.game.matchTimer.time_left) / 60) % 60
-	TimerIndicator.text = "%02d:%02d" % [minutes, seconds]
-	Team1ProgressBar.value = Network.game.team1GoalProgress
-	Team2ProgressBar.value = Network.game.team2GoalProgress
-	Team1ProgressBar.max_value = int(Network.game.matchGoal)
-	Team2ProgressBar.max_value = int(Network.game.matchGoal)
 	
 func adjust_reticle_size():
 	if not is_multiplayer_authority():

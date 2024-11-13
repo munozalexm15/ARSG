@@ -29,13 +29,12 @@ func physics_update(delta: float) -> void:
 			player.headBobbing_index += player.hb_speeds.get("crouch_speed") * delta
 	
 	if not player.isPauseMenuOpened:
-		if not Network.game.chatText.has_focus():
-			if player.direction != Vector3.ZERO:
-				player.velocity.x = player.direction.x * player.curr_speed
-				player.velocity.z = player.direction.z * player.curr_speed
-			else:
-				player.velocity.x = move_toward(player.velocity.x, 0, player.curr_speed)
-				player.velocity.z = move_toward(player.velocity.z, 0, player.curr_speed)
+		if player.direction != Vector3.ZERO:
+			player.velocity.x = player.direction.x * player.curr_speed
+			player.velocity.z = player.direction.z * player.curr_speed
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.curr_speed)
+			player.velocity.z = move_toward(player.velocity.z, 0, player.curr_speed)
 		
 	if player.input_direction == Vector2.ZERO:
 		state_machine.transition_to("Idle")
@@ -44,7 +43,7 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Air")
 	
 	if Input.is_action_just_pressed("Jump"):
-		if player.isPauseMenuOpened or Network.game.chatText.has_focus():
+		if player.isPauseMenuOpened:
 			return
 		state_machine.transition_to("Air", {jump = true})
 	

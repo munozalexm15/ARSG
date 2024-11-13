@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=4 uid="uid://d4bsynqtkdqge"]
+
+[ext_resource type="Script" path="res://Scenes/Ammo/ammo_pistol_resource.gd" id="1_t4clt"]
+[ext_resource type="Resource" uid="uid://brdwti5jl1elq" path="res://Scripts/Ammo/assault-rifle_ammo_Resource.tres" id="2_ps0ua"]
+[ext_resource type="Texture2D" uid="uid://ssr8v72fckql" path="res://GameResources/Textures/ShootingRange/AmmoSheet.png" id="3_a530a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_620nl"]
+size = Vector3(0.203873, 0.0852051, 0.166183)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8421u"]
+resource_name = "Ammo_Pistol"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("3_a530a")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_usp2p"]
+_surfaces = [{
+"aabb": AABB(-10, -6.9187, -8.80981, 20, 13.8374, 8.80982),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAHAAMAAgAGAAcABgAFAAcABgAEAAUABAABAAUABAAAAAEAAgAEAAYAAgAAAAQABwABAAMABwAFAAEA"),
+"name": "Ammo_Pistol",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/v8AAP7/AAD+/wAAAAAAAP7//v/+/wAA/v/+/wAAAAAAAAAA/v8AAAAAAAAAAAAAAAD///7/AAAAAP//AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_74dgn"]
+resource_name = "shootingrange_Cube_092"
+_surfaces = [{
+"aabb": AABB(-10, -6.9187, -8.80981, 20, 13.8374, 8.80982),
+"attribute_data": PackedByteArray("Pj1lqT49mVZYTbRmPj20Zj49tGY+PbRmPj0akD49GpBYTf9/Pj3/fz49/38+Pf9/rxhlqa8YmVaUCLRmrxi0Zq8YtGavGLRmrxgakK8YGpCUCP9/rxj/f68Y/3+vGP9/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AgALAAUAAgAIAAsABwAWAAoABwATABYAFAARABcAFAAOABEADQAEABAADQABAAQABgAMABIABgAAAAwAFQADAAkAFQAPAAMA"),
+"material": SubResource("StandardMaterial3D_8421u"),
+"name": "Ammo_Pistol",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/v8AAP7//3/+/wAA/v//v/7/AAD+/////v8AAAAA///+/wAAAAD/v/7/AAAAAP///v/+//7//3/+//7//v//v/7//v/+/////v/+/wAA///+//7/AAD/v/7//v8AAP//AAAAAP7//38AAAAA/v//vwAAAAD+////AAAAAAAA//8AAAAAAAD/vwAAAAAAAP//AAD///7//38AAP///v//vwAA///+////AAD//wAA//8AAP//AAD/vwAA//8AAP///3///wAA/3//v/9/////fwAA/3//v/9//3///////3//v/9/////f////3//v/9//3///wAA/3//P/9/////fwAA/3//P/9//3///////3//P/9/////f////3//P/9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_usp2p")
+
+[sub_resource type="Animation" id="Animation_hk4m7"]
+resource_name = "Pickup_anim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prop_Ammo_Rifle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(0.02, 0.02, 0.02), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7y2gr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prop_Ammo_Rifle:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8qdp"]
+_data = {
+"Pickup_anim": SubResource("Animation_hk4m7"),
+"RESET": SubResource("Animation_7y2gr")
+}
+
+[node name="assault_rifle_ammo_pickup" type="RigidBody3D"]
+script = ExtResource("1_t4clt")
+ammoData = ExtResource("2_ps0ua")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00128937, 0.0447998, -0.00385284)
+shape = SubResource("BoxShape3D_620nl")
+
+[node name="Prop_Ammo_Rifle" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
+mesh = SubResource("ArrayMesh_74dgn")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w8qdp")
+}

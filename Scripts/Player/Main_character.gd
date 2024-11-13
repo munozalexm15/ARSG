@@ -251,9 +251,6 @@ func _physics_process(delta):
 		eyes.position.y = lerp(eyes.position.y, initialHead_pos, delta * lerp_speed)
 		arms.position.y = lerp(arms.position.y, initialHands_pos, delta * lerp_speed)
 	
-	if Network.game.chatText.has_focus() or isPauseMenuOpened:
-		input_direction = Vector2.ZERO
-	
 	if is_on_floor() and input_direction != Vector2.ZERO:
 		direction = lerp(direction, transform.basis * Vector3(input_direction.x, 0, input_direction.y).normalized(), delta * lerp_speed)
 		headBobbing_vector.y =  sin(headBobbing_index)
@@ -422,10 +419,10 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 				playerDict["kills"] += 1
 			
 			if deathType == "weapon":
-				killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				killerName = "YOU"
 				killerWeaponImage = Network.game.players_node.get_child(index).arms.actualWeapon.weaponData.weaponImage
 			elif deathType == "grenade":
-				killerName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				killerName = "YOU"
 				var nadeTexture : CompressedTexture2D = CompressedTexture2D.new()
 				nadeTexture = load("res://GameResources/Textures/Grenades/grenade_icon.png")
 				killerWeaponImage = nadeTexture
@@ -435,7 +432,6 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 			if instigator_id != player_id:
 				deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
 				
-	Network.game.dashboardMatch.get_lobby_data()
 	Network.game.add_kill_to_killFeed(killerName, killerWeaponImage, deadName)
 	visible = false
 	if player_id == multiplayer.get_unique_id():

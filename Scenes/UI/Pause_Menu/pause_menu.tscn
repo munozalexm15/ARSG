@@ -855,6 +855,7 @@ flat = true
 alignment = 0
 
 [node name="ChangeWeaponBUTTON" type="Button" parent="HBoxContainer2/MarginContainer/PauseMenu"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
@@ -933,6 +934,8 @@ alignment = 0
 visible = false
 layout_mode = 1
 anchors_preset = -1
+offset_left = 526.0
+offset_right = 1190.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
