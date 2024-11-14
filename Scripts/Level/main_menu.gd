@@ -54,7 +54,6 @@ var playSection = "findLobby"
 
 func _ready():
 	on_config_changed()
-	Steam.lobby_match_list.connect(on_lobby_match_list)
 	GlobalData.configurationUpdated.connect(on_config_changed)
 	
 	playLabel.modulate.a = 0.05
@@ -293,8 +292,6 @@ func on_lobby_match_list(lobbies : Array):
 		lobbiesListUI.noLobbiesMSG.visible = true
 		
 	for lobby in lobbies:
-		var lobby_name = Steam.getLobbyData(lobby, "name")
-		var user_count = Steam.getNumLobbyMembers(lobby)
 			
 		if lobby_name.length() > 10:
 			lobby_name = lobby_name.substr(0, 5) + "..."

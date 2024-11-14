@@ -143,6 +143,8 @@ func _input(event : InputEvent):
 		
 	
 	if Input.is_action_just_pressed("Pause") and isPauseMenuOpened:
+		if weaponSelectionMenu.visible:
+			return
 		if pauseMenu.optionsMainContainer.visible:
 			pauseMenu.optionsMainContainer.animationPlayer.play("OpenOptions", -1, -2, true)
 			await pauseMenu.optionsMainContainer.animationPlayer.animation_finished

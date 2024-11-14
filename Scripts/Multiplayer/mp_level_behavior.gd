@@ -115,6 +115,8 @@ func loadWeapons():
 	weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
 	weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
 	weaponSpawned.spawnBullet(true)
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".disconnect("child_entered_tree", loadWeapons)
+	weaponSpawned.queue_free()
 
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)

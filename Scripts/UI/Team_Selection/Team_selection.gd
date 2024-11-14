@@ -42,6 +42,7 @@ func _input(_event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed("Pause") and visible:
+		
 		visible = false
 		player.hud.animationPlayer.play("swap_gun", -1, 100.0, false)
 		player.isPauseMenuOpened = false
