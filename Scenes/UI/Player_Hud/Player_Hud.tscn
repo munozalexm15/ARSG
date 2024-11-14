@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dx22dqq2sepg8"]
+[gd_scene load_steps=46 format=3 uid="uid://dx22dqq2sepg8"]
 
 [ext_resource type="Theme" uid="uid://c6qxefe5j4hst" path="res://GameResources/Themes/UI_MainTheme.tres" id="1_a84a5"]
 [ext_resource type="Script" path="res://Scripts/UI/Hud/Player_Reticle.gd" id="1_tmuf1"]
@@ -521,6 +521,8 @@ _data = {
 "killNotification": SubResource("Animation_h2yi1")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_x2cy2"]
+
 [node name="UI" type="Control" node_paths=PackedStringArray("reticle_lines")]
 layout_mode = 3
 anchors_preset = 15
@@ -897,3 +899,23 @@ text = "+100 FOR ELIMINATION"
 libraries = {
 "": SubResource("AnimationLibrary_je4xd")
 }
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.173
+anchor_right = 0.326
+anchor_bottom = 0.256
+offset_left = 0.503998
+offset_top = -0.104004
+offset_right = -0.552002
+offset_bottom = 0.112
+
+[node name="Label" type="Label" parent="PanelContainer3"]
+modulate = Color(1, 1, 1, 0.75)
+layout_mode = 2
+text = "YOU CAN OPEN THE MENU WITH 
+\"ESC\" KEY AND SEE THE SETTINGS"
+label_settings = SubResource("LabelSettings_x2cy2")
+language = "en"

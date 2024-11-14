@@ -63,9 +63,6 @@ var allowed_input_actions = {
 	"Grenade": "Grenade",
 	"FireSelection": "Fire Selection",
 	"Perspective" : "Perspective",
-	"Scoreboard" : "Scoreboard",
-	"Open Chat" : "Open Chat",
-	"Send Message" : "Send Message"
 }
 
 var configData : ConfigFile
@@ -237,7 +234,7 @@ func _on_controls_button_pressed():
 	soundOptionsContainer.hide()
 	controlsOptionContainer.show()
 
-func create_action_list():
+func create_action_list(reset = false):
 	#InputMap.load_from_project_settings()
 	for item in actionList.get_children():
 		item.queue_free()
@@ -253,7 +250,11 @@ func create_action_list():
 		
 		if events.size() > 0:
 			var inputAction : InputEventKey = InputEventKey.new()
-			inputAction.keycode = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
+			if reset:
+				inputAction.keycode =  GlobalData.allowed_input_actions[action]
+				GlobalData.configData.set_value("Controls", action, GlobalData.allowed_input_actions[action])
+			else:
+				inputAction.keycode = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
 			inputLabel.text = inputAction.as_text_keycode()
 
 			InputMap.action_erase_events(action)
@@ -262,7 +263,11 @@ func create_action_list():
 			
 			if inputAction.keycode < 10:
 				var inputMouse : InputEventMouseButton = InputEventMouseButton.new()
-				inputMouse.button_index = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
+				if reset: 
+					inputMouse.button_index =  GlobalData.allowed_input_actions[action]
+					GlobalData.configData.set_value("Controls", action, GlobalData.allowed_input_actions[action])
+				else:
+					inputMouse.button_index = GlobalData.configData.get_value("Controls", action, GlobalData.allowed_input_actions.get(action))
 				InputMap.action_erase_events(action)
 				InputMap.action_add_event(action, inputMouse)
 				inputLabel.text = inputMouse.as_text()
@@ -271,7 +276,7 @@ func create_action_list():
 		
 		actionList.add_child(button)
 		button.pressed.connect(_on_input_button_pressed.bind(button, action))
-		
+		GlobalData.configData.save("res://GameSettings.cfg")
 	
 func _on_input_button_pressed(button : Button, action):
 	if !is_remmaping:
@@ -282,7 +287,7 @@ func _on_input_button_pressed(button : Button, action):
 
 
 func _on_button_2_pressed() -> void:
-	create_action_list()
+	create_action_list(true)
 
 
 func _on_mouse_sensibility_slider_value_changed(value: float) -> void:

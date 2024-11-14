@@ -4,8 +4,9 @@ extends Node3D
 
 var player_ref : Player = null
 
-
 @export var noisesArray : Array
+
+signal showText(text)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,14 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_2_body_entered(body: Node3D) -> void:
 	player_ref = body
+	player_ref.hud.crosshair.visible = false
+	player_ref.hud.weaponStatsContainer.visible = false
+	player_ref.hud.primaryWeaponIcon.modulate = Color(Color.WHITE, 0.0)
+	player_ref.hud.secondaryWeaponIcon.modulate = Color(Color.WHITE, 0.0)
 
 func _on_area_3d_2_body_exited(body: Node3D) -> void:
+	player_ref.hud.crosshair.visible = true
+	player_ref.hud.weaponStatsContainer.visible = true
+	player_ref.hud.primaryWeaponIcon.modulate = Color(Color.WHITE, 1.0)
+	player_ref.hud.secondaryWeaponIcon.modulate = Color(Color.WHITE, 1.0)
 	player_ref = null

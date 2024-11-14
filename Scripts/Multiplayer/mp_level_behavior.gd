@@ -38,6 +38,21 @@ var matchTimeLeft = 0
 
 @onready var mortarSound : AudioStreamPlayer = $ASP_MortarSound
 
+var textDisplayPos = 0
+var textDisplayArray: Array = ["¡Buenas!, Esto que ves aquí es el inicio de mi primer juego 3D en Godot.
+
+Inició como un mini proyecto para hacer un FPS con estetica retro y familiarizarme aún más con Godot (Ya que el último proyecto que hice con el fue TRACEUR y era en 2D), pero a la larga decidí no quedarme con las ganas y ser más ambicioso: Iba a hacer un juego multijugador.", 
+
+"A lo largo del desarrollo aprendí mucho de todos los aspectos que componen a un videojuego: Sonidos, animaciones, feedback al jugador, responsividad, diseño de niveles, licencias, y mucho más.
+
+El apartado online fue fácil de implementar gracias a GodotSteam, un plugin que permitia utilizar las funcionalidades de Steam / SteamWorks y así jugar con otros jugadores que también tuviesen Steam.", 
+
+"Finalmente, después de unos duros y largos 6 meses (A mediados de octubre de 2024) lancé en Itch.io 'ARSG', un juego de accion en primera persona multijugador en línea pensado para enfrentamientos 1vs1 con un amigo. 
+
+En fin, eso es todo. ¡El campo de tiro es todo tuyo! Puedes pegar unos tiros antes de volver al castillo ¿No?
+
+...¡Ah si!, Si quieres volver al castillo solo tienes que salir del campo de tiro y tomar la salida de la izquierda."]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var chatAction = InputEventKey.new()
@@ -49,6 +64,7 @@ func _ready():
 	Network.game = self
 	Network.role = "Host"
 	GlobalData.configurationUpdated.connect(set_new_chat_subtext)
+
 	#multiplayer.connected_to_server.connect(loadGame)
 	
 	if Network.role == "Host":
@@ -80,6 +96,10 @@ func lightError():
 		lightNode.visible = true
 	
 	lightError()
+	
+func _process(delta: float) -> void:
+	if $SubViewport/AnimationPlayer.is_playing() and $SubViewport/AnimationPlayer.current_animation == "TYPEWRITER_TEXT":
+		$AudioStreamPlayer3D.play()
 
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
@@ -292,3 +312,26 @@ func _on_chat_text_gutter_added() -> void:
 
 func set_new_chat_subtext():
 	pass
+
+
+func _on_lxndrw_tpose_show_text(text: Variant) -> void:
+	$SubViewport/RichTextLabel.visible = true
+	$SubViewport/AnimationPlayer.play("TYPEWRITER_TEXT")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "TYPEWRITER_TEXT":
+		if textDisplayPos == textDisplayArray.size() -1:
+			textDisplayPos = 0
+		else:
+			await get_tree().create_timer(5).timeout
+			$SubViewport/AnimationPlayer.play("TYPEWRITER_ERASE_TEXT")
+	
+	if anim_name == "TYPEWRITER_ERASE_TEXT":
+		textDisplayPos += 1
+		$SubViewport/AnimationPlayer.play("TYPEWRITER_TEXT")
+
+
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if anim_name == "TYPEWRITER_TEXT":
+		$SubViewport/RichTextLabel.text = textDisplayArray[textDisplayPos]

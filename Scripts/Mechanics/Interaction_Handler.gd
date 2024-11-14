@@ -87,6 +87,12 @@ func _process(_delta):
 				hud.pickupAmmoContainer.visible = true
 				if Input.is_action_just_pressed("Interact"):
 					pickup_ammo.emit(interactable)
+		
+		if interactable.get_parent().get_parent() is FloatingHead and interactable.get_parent().get_parent() != null:
+			hud.interactContainer.visible = true
+			var floatingHead : FloatingHead = interactable.get_parent().get_parent()
+			if Input.is_action_just_pressed("Interact"):
+				floatingHead.emit_signal("showText", "Hola a todos amigos aqui fernanfloo en un nuevo gampeplay")
 
 func on_pickup_weapon(actualWeaponName, newWeaponStringScene : String, isInHolder : bool):
 	arms._on_interact_ray_swap_weapon(actualWeaponName, newWeaponStringScene, isInHolder)

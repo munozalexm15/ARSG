@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://c6qxefe5j4hst"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://c6qxefe5j4hst"]
 
 [ext_resource type="FontFile" uid="uid://b5gyg8rlkeg23" path="res://GameResources/Fonts/Fortzilla-Regular.otf" id="1_8kx6u"]
+[ext_resource type="FontFile" uid="uid://w2kid44digjp" path="res://GameResources/Fonts/Fortzilla-Italic.otf" id="2_6i73w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ef2k"]
 bg_color = Color(0.205117, 0.205117, 0.205117, 1)
@@ -137,6 +138,8 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_aeuf6")
 ProgressBar/fonts/font = null
 ProgressBar/styles/background = SubResource("StyleBoxFlat_bum1m")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_023tk")
+RichTextLabel/fonts/italics_font = ExtResource("2_6i73w")
+RichTextLabel/fonts/normal_font = ExtResource("1_8kx6u")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_uj7i6")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ay64e")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_hk1bi")

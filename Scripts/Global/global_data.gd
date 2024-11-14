@@ -24,9 +24,6 @@ var allowed_input_actions = {
 	"Grenade" : KEY_G,
 	"FireSelection": KEY_X,
 	"Perspective" : KEY_H,
-	"Scoreboard" : KEY_TAB,
-	"Open Chat" : KEY_T,
-	"Send Message" : KEY_ENTER
 }
 
 

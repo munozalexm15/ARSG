@@ -9,6 +9,9 @@ extends Control
 @export var reticle_lines : Array[Line2D]
 @export var player_controller : Player
 
+
+@onready var weaponStatsContainer = $PanelContainer
+
 @onready var ammoCounter = $PanelContainer/HBoxContainer/VBoxContainer2/AmmoIndicator
 @onready var weaponFireMode = $PanelContainer/HBoxContainer/VBoxContainer/FireMode
 @onready var weaponCaliber = $PanelContainer/HBoxContainer/VBoxContainer/WeaponCaliber

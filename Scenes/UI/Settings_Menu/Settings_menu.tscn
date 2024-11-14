@@ -95,10 +95,10 @@ _data = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer"]
-offset_left = 227.0
-offset_top = 103.0
-offset_right = 891.0
-offset_bottom = 772.0
+offset_left = 500.0
+offset_top = 150.0
+offset_right = 1077.0
+offset_bottom = 605.0
 theme = ExtResource("1_enhrk")
 script = ExtResource("1_lgrhf")
 ditheringMaterial = ExtResource("4_a4uii")
@@ -199,6 +199,7 @@ text = "DITHERING
 label_settings = SubResource("LabelSettings_jymd7")
 
 [node name="Label4" type="Label" parent="VisualOptionsContainer/VisualOptions/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 text = "RESOLUTION SCALE
@@ -244,6 +245,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 3
 
 [node name="ResolutionScale-Slider" type="HSlider" parent="VisualOptionsContainer/VisualOptions/VBoxContainer2"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 min_value = 1.0
@@ -373,7 +375,7 @@ theme_override_font_sizes/font_size = 25
 text = "RESET TO DEFAULT"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ControlsOptionsContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 375)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ControlsOptionsContainer/VBoxContainer/ScrollContainer"]

@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://ol73pwr481v1" path="res://GameResources/Meshes/Characters/lxndrw/textures/hair.png" id="10_map84"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wa6j8"]
-radius = 4.0
+radius = 2.57315
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kk282"]
 resource_name = "mario_cap"
@@ -437,6 +437,7 @@ libraries = {
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_ipq6f")
+volume_db = -25.0
 unit_size = 3.0
 autoplay = true
 max_distance = 4.0
