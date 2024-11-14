@@ -103,6 +103,8 @@ func updatePlayerWeapon(identifier, weaponScenePath : String):
 	var weaponSpawned : Weapon = weapon.instantiate()
 	for player : Player in game.players_node.get_children():
 		if str(identifier) == str(player.name):
+			for gun : Weapon in player.arms.weaponHolder.get_children():
+				gun.queue_free()
 			weaponSpawned.set_multiplayer_authority(player.name.to_int())
 			weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
 			weaponSpawned.handsNode = player.arms.get_path()

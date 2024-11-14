@@ -17,6 +17,7 @@ var distanceTraveled: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
 
@@ -26,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	distanceTraveled += 0.0001
 	position += transform.basis * Vector3(0,0,-SPEED)
-	if ray.is_colliding():
+	if ray.is_colliding() and ray.get_collider().get_class() != "Player":
 		ray.enabled = false
 		_on_area_3d_body_entered(ray.get_collider())
 
@@ -47,22 +48,6 @@ func _on_area_3d_body_entered(body : Node3D):
 		instigator.hud.animationPlayer.play("hitmarker")
 		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
 		SFXHandler.play_sfx(audioSteam, instigator, "Effects")
-	
-	if body is Player and body != instigator:
-		var audioSteam : AudioStream = load("res://GameResources/Sounds/Misc/hitmarker_sound.wav")
-		SFXHandler.play_sfx(audioSteam, instigator, "Effects")
-		body.health -= damage - distanceTraveled
-		playerDamaged.emit()
-		if instigator.hud.animationPlayer.is_playing():
-			instigator.hud.animationPlayer.play("RESET")
-		instigator.hud.animationPlayer.play("hitmarker")
-		
-		body.assign_enemy_to_player_hit.rpc_id(body.name.to_int(), instigator.name.to_int(), body.name.to_int())
-		if body.health <= 0 and body.visible == true:
-			instigator.hud.killPointsAnimPlayer.play("killNotification")
-			body.die_respawn.rpc(body.name.to_int(), instigator.name.to_int())
-		
-
 	
 	if body is StaticBody3D or body is not Player:
 		var decal = BulletDecalPool.spawn_bullet_decal(ray.get_collision_point(), ray.get_collision_normal(), body, ray.global_basis)

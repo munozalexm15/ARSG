@@ -115,6 +115,7 @@ func _ready():
 	hud.animationPlayer.play("swap_gun")
 	camera.current = true
 	hud.grenadeCountLabel.text = str("x" , arms.grenadeQuantity)
+	
 
 func _input(event : InputEvent):
 	if not is_multiplayer_authority():
@@ -494,7 +495,7 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 		player_body.visible = false
 		thirdPersonEnabled = false
 		arms.weaponHolder.visible = true
-		arms.grenadeQuantity = 1
+		arms.grenadeQuantity = 0
 		hud.grenadeCountLabel.text = "x1"
 		arms.state_machine.transition_to("Idle")
 		state_machine.process_mode = Node.PROCESS_MODE_INHERIT

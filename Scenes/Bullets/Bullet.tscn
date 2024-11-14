@@ -1,46 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://7evxytscrllj"]
+[gd_scene load_steps=7 format=3 uid="uid://7evxytscrllj"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/Bullets/shell_behavior.gd" id="1_daq1i"]
-[ext_resource type="Texture2D" uid="uid://bwroe0jeyu7e1" path="res://GameResources/Textures/Guns/USP/9mm.jpg" id="2_v6uc0"]
-[ext_resource type="Texture2D" uid="uid://bew5yrlax5xrr" path="res://GameResources/Textures/Guns/MP5/9mm.jpg" id="3_4pcjl"]
-[ext_resource type="PackedScene" uid="uid://vp5pniog0dir" path="res://Scenes/Mechanics/bullet_decal.tscn" id="4_s7riv"]
-
-[sub_resource type="Gradient" id="Gradient_feww4"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_cbybl"]
-gradient = SubResource("Gradient_feww4")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vyo6v"]
-angle_min = -581.1
-angle_max = -366.3
-direction = Vector3(0, 0, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 4.0
-angular_velocity_min = -6.53002
-angular_velocity_max = 4.84998
-gravity = Vector3(0, 0, 0.62)
-tangential_accel_min = -100.0
-tangential_accel_max = -100.0
-damping_min = 93.84
-damping_max = 102.42
-scale_over_velocity_max = 2.75
-color_ramp = SubResource("GradientTexture1D_cbybl")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf6i6"]
-emission = Color(0.988235, 0.917647, 0.741176, 1)
-emission_energy_multiplier = 8.85
-refraction_scale = -1.0
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="SphereMesh" id="SphereMesh_xtowg"]
-material = SubResource("StandardMaterial3D_vf6i6")
-radius = 0.005
-height = 0.1
-is_hemisphere = true
 
 [sub_resource type="Curve" id="Curve_pci3k"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.549858, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -70,72 +30,12 @@ sections = 2
 section_segments = 1
 curve = SubResource("Curve_pci3k")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0erg7"]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_texture = ExtResource("2_v6uc0")
-roughness = 0.5
-emission = Color(0.670588, 0.419608, 0, 1)
-emission_energy_multiplier = 5.15
-emission_texture = ExtResource("3_4pcjl")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ye3jn"]
-_surfaces = [{
-"aabb": AABB(0.377025, -0.0452761, -1.26593, 0.090552, 0.090562, 0.087558),
-"format": 34896613377,
-"index_count": 60,
-"index_data": PackedByteArray("BAABAAUABAAAAAEAAAAJAAIAAAAEAAkAAAADAAEAAAACAAMAAQAIAAUAAQAGAAgAAwAGAAEAAwAHAAYABAAKAAkABAAFAAoACQADAAIACQAKAAMACgAIAAsACgAFAAgAAwALAAcAAwAKAAsABwAIAAYABwALAAgA"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 12,
-"vertex_data": PackedByteArray("/3/3/6j/AAD/f/f///8AAAAA+3+o/wAAAAD7f///AAD///t/qP8AAP//+3///wAA/38AxwAAAABKNft/AAAAALPK+38AAAAA/38AAKj/AAD/fwAA//8AAP9/9jgAAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_42wap"]
-resource_name = "bullet_9MM_001"
-_surfaces = [{
-"aabb": AABB(0.377025, -0.0452761, -1.26593, 0.090552, 0.090562, 0.087558),
-"attribute_data": PackedByteArray("bCrVko5wZMaOcGTG7HCTUo5we23scJNSjnB7bVUQK6pqWmTGalpkxmpae21qWnttKGGTUihhk1IOQ82tsoZkxrKGZMaVhNBSlYTQUrKGe22yhnttumkRQOxwFjTscBY0ZW2RNLhnFjS4ZxY0RXbJQx96FjQfehY0ACnDxI5wZMaOcGTG7HCTUo5we23scJNSjnB7bbl5/jfscBY07HAWNA=="),
-"format": 34896613399,
-"index_count": 60,
-"index_data": PackedByteArray("EAAGABQAEAACAAYAAAAeAAcAAAAOAB4AAQALAAQAAQAJAAsAAwAcABEAAwAWABwADAAXAAUADAAZABcADwAkACAADwATACQAHwAKAAgAHwAiAAoAIQAdACYAIQASAB0ADQAnABoADQAjACcAGAAbABUAGAAlABsA"),
-"material": SubResource("StandardMaterial3D_0erg7"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 40,
-"vertex_data": PackedByteArray("/3/3/6j/9IL/f/f/qP/3xf9/9/+o//rF/3/3////Tsv/f/f////3xf9/9////2jL/3/3////+sUAAPt/qP+mggAA+3+o///FAAD7f6j/98UAAPt/////xQAA+3////fFAAD7f///ZcsAAPt///9ly///+3+o/0GD///7f6j//8X///t/qP/6xf//+3///0LL///7f///Qsv///t/////xf//+3////rF/38AxwAA////fwDHAABxy/9/AMcAAHHLSjX7fwAA//9KNft/AABsy0o1+38AAGzLs8r7fwAA//+zyvt/AABfy7PK+38AAF/L/38AAKj/9IL/fwAAqP//xf9/AACo///F/38AAP//Tsv/fwAA////xf9/AAD//2jL/38AAP///8X/f/Y4AAD///9/9jgAAHHL/3/2OAAAccv//////BwCRgE6/py2yOhh/BwCRjfiNLcBOv6c/////wXGAWP8HAJGBcYBY/wcAkYt4je3NzfQnf/////+4v65ATr+nK3Iw2E8Hq1I/uL+uQE6/pwe0B9Q0MhVYlTiLbel0KVQReIxtzE3uJ2l0KVQwsgcYuMdw0j/////BcYBY/7i/rkXHrZIBcYBYzU3xp3+4v65LNEsUaod0UguN6md")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_ye3jn")
-
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_daq1i")
-
-[node name="CPUParticles3D" type="GPUParticles3D" parent="." groups=["WeaponCollisionException"]]
-transform = Transform3D(5, 0, 7.41155e-21, 0, 5, 0, -7.41155e-21, 0, 5, 2.11895e-05, 9.52866e-13, 1.55477e-22)
-emitting = false
-lifetime = 0.1
-one_shot = true
-speed_scale = 0.5
-explosiveness = 0.22
-fixed_fps = 0
-local_coords = true
-transform_align = 1
-process_material = SubResource("ParticleProcessMaterial_vyo6v")
-draw_pass_1 = SubResource("SphereMesh_xtowg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.59602e-08, 1.04617, 5.02825e-08, 0, -4.57295e-08, 1.15033, 1.28022, 4.57295e-08, 2.19792e-15, 0, 0, -3.8868)
 mesh = SubResource("RibbonTrailMesh_c3mu5")
-
-[node name="9MM_001" type="MeshInstance3D" parent="." groups=["WeaponCollisionException"]]
-transform = Transform3D(0.2, 2.64698e-22, -1.15703e-29, 0, -8.74228e-09, -0.2, -2.64698e-22, 0.2, -8.74228e-09, -0.0823401, -0.233329, -0.00834329)
-cast_shadow = 0
-mesh = SubResource("ArrayMesh_42wap")
-skeleton = NodePath("")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.583)
@@ -143,5 +43,3 @@ target_position = Vector3(0, 0, -30)
 collision_mask = 7
 hit_from_inside = true
 debug_shape_custom_color = Color(0.34658, 0.00116053, 0.815305, 1)
-
-[node name="Decal" parent="." instance=ExtResource("4_s7riv")]

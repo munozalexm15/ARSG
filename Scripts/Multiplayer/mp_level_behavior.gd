@@ -8,6 +8,10 @@ var death_count = 0
 @export var PauseScene = preload("res://Scenes/UI/Pause_Menu/pause_menu.tscn")
 @export var weaponSelectionScene = preload("res://Scenes/UI/Team_Selection/Team_selection.tscn")
 
+var grenade = preload("res://Scenes/Guns/Grenades/Grenade.tscn")
+var m14 = preload("res://Scenes/Guns/M14.tscn")
+var m16 = preload("res://Scenes/Guns/M16A2.tscn")
+
 @export var team1SkinsResources : Array
 @export var team2SkinsResources : Array
 
@@ -26,7 +30,6 @@ var death_count = 0
 @onready var weaponSelectionSpawner : MultiplayerSpawner = $weaponSelectionSpawner
 
 @export var lightArray : Array
-
 
 var matchGoal = 0
 var team1GoalProgress = 0
@@ -53,14 +56,19 @@ En fin, eso es todo. ¡El campo de tiro es todo tuyo! Puedes pegar unos tiros an
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Network.game = self
+	Network.role = "Host"
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".child_entered_tree.connect(loadWeapons)
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".emit_signal("child_entered_tree")
+	
 	var chatAction = InputEventKey.new()
 	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
+	var dict_data : Dictionary = {"id": str(1) ,"name": "1", "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
+	players.append(dict_data)
 	
 	
-	Network.game = self
-	Network.role = "Host"
 	GlobalData.configurationUpdated.connect(set_new_chat_subtext)
 
 	#multiplayer.connected_to_server.connect(loadGame)
@@ -93,6 +101,20 @@ func lightError():
 func _process(delta: float) -> void:
 	if $SubViewport/AnimationPlayer.is_playing() and $SubViewport/AnimationPlayer.current_animation == "TYPEWRITER_TEXT":
 		$AudioStreamPlayer3D.play()
+
+func loadWeapons():
+	var weaponSpawned : Weapon = m14.instantiate()
+	weaponSpawned.set_multiplayer_authority(1)
+	weaponSpawned.position = weaponSpawned.weaponData.weaponSpawnPosition
+	weaponSpawned.handsNode = $"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.get_path()
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.weaponHolder.add_child(weaponSpawned) 
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.actualWeapon = $"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.weaponHolder.get_child(0)
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.actual_weapon_index = 0
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.actualWeapon.being_used = true
+	$"FadeShader/SubViewport/DitheringShader/SubViewport/1".eyes.get_child(0).setRecoil($"FadeShader/SubViewport/DitheringShader/SubViewport/1".arms.actualWeapon.weaponData.recoil)
+	weaponSpawned.weaponData.reserveAmmo = weaponSpawned.weaponData.defaultReserveAmmo
+	weaponSpawned.weaponData.bulletsInMag = weaponSpawned.weaponData.magSize
+	weaponSpawned.spawnBullet(true)
 
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)

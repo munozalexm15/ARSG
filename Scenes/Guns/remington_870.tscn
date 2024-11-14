@@ -1,15 +1,13 @@
-[gd_scene load_steps=38 format=4 uid="uid://c6vbtles2oskv"]
+[gd_scene load_steps=33 format=4 uid="uid://c6vbtles2oskv"]
 
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_p6qro"]
 [ext_resource type="Resource" uid="uid://djpuiinpxuhnt" path="res://Scripts/Guns/Resources/remington_870_Resource.tres" id="2_u3ci8"]
-[ext_resource type="PackedScene" uid="uid://7evxytscrllj" path="res://Scenes/Bullets/Bullet.tscn" id="3_3rhde"]
 [ext_resource type="Curve" uid="uid://djm48utct3gd5" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_X.tres" id="4_lps0n"]
 [ext_resource type="Curve" uid="uid://b7bacf7vjxpa6" path="res://GameResources/Curves/Remington870/R870_RecoilRotation_Z.tres" id="5_orud4"]
 [ext_resource type="Curve" uid="uid://de35cm0ulsia4" path="res://GameResources/Curves/Remington870/R870_RecoilPosition_Z.tres" id="6_au2cj"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="7_6yuk2"]
 [ext_resource type="Texture2D" uid="uid://b5g115swamubr" path="res://GameResources/Textures/Guns/Remington870/shotgunShellTexture.jpg" id="7_anogj"]
 [ext_resource type="Texture2D" uid="uid://kdcm8k7t3hdj" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="7_dl3ei"]
-[ext_resource type="Texture2D" uid="uid://b1m0hb1e7sy0e" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash5.png" id="9_jiuk6"]
 [ext_resource type="AudioStream" uid="uid://dxtksqadfgny3" path="res://GameResources/Sounds/Weapons/Remington870/r870_reload.wav" id="11_gvg4c"]
 [ext_resource type="AudioStream" uid="uid://dfr2dr06t0onh" path="res://GameResources/Sounds/Weapons/Remington870/r870_shot.mp3" id="13_fubij"]
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="14_nfkrh"]
@@ -2526,31 +2524,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y42xb")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67g1l"]
-angle_min = -28.8
-angle_max = 14.4
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ygkl"]
-transparency = 1
-albedo_texture = ExtResource("9_jiuk6")
-emission_enabled = true
-emission = Color(0.901961, 0.482353, 0, 1)
-emission_energy_multiplier = 16.0
-emission_texture = ExtResource("9_jiuk6")
-backlight = Color(0.482353, 0.223529, 0, 1)
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-proximity_fade_distance = 28.45
-
-[sub_resource type="QuadMesh" id="QuadMesh_ehmb7"]
-material = SubResource("StandardMaterial3D_6ygkl")
-size = Vector2(0.2, 0.2)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnlaj"]
 resource_name = "Material.009"
 cull_mode = 2
@@ -2593,7 +2566,6 @@ shadow_mesh = SubResource("ArrayMesh_w1pko")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01973, 0, 0)
 script = ExtResource("1_p6qro")
 weaponData = ExtResource("2_u3ci8")
-bullet_type = ExtResource("3_3rhde")
 recoil_rotation_x = ExtResource("4_lps0n")
 recoil_rotation_z = ExtResource("5_orud4")
 recoil_position_z = ExtResource("6_au2cj")
@@ -2956,29 +2928,6 @@ skeleton = NodePath("")
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.7823, 0.536058, 0.309935)
-
-[node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
-transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, 0, 0.10217, 0)
-emitting = false
-amount = 1
-lifetime = 0.05
-one_shot = true
-randomness = 1.0
-fixed_fps = 0
-local_coords = true
-draw_order = 1
-process_material = SubResource("ParticleProcessMaterial_67g1l")
-draw_pass_1 = SubResource("QuadMesh_ehmb7")
-
-[node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
-visible = false
-light_color = Color(0.721569, 0.321569, 0, 1)
-light_energy = 0.5
-light_size = 0.395
-light_specular = 0.25
-distance_fade_begin = 2.0
-distance_fade_length = 2.0
-omni_range = 1.0
 
 [node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(-0.158451, 0.698174, -0.698174, -0.987367, -0.112042, 0.112042, 3.72529e-08, 0.707107, 0.707107, 4.74391, 1.10894, 0.425365)

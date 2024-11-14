@@ -22,10 +22,8 @@ var bolt_forward_sound : AudioStreamPlayer3D
 
 #Weapon parts
 @onready var muzzle = $Muzzle
-@export var bullet_type: PackedScene
+var bullet_type = preload("res://Scenes/Bullets/Bullet.tscn")
 @onready var bullet_case_particles : CPUParticles3D = $Bullet_Case_Particles
-@onready var muzzle_flash_particles : GPUParticles3D = $Muzzle/MuzzleFlash
-@onready var muzzle_flash_light : OmniLight3D = $Muzzle/MuzzleFlashLight
 @onready var fire_selection_sound : AudioStreamPlayer3D = $ASP_FireSelectionSound
 @onready var no_ammo_sound : AudioStreamPlayer3D = $ASP_NoAmmoSound
 var time_to_shoot = 0
@@ -56,6 +54,9 @@ var mouse_movement
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var bullet = preload("res://Scenes/Bullets/Bullet.tscn").instantiate()
+	Network.game.add_child(bullet)
+	
 	if not is_multiplayer_authority():
 		return
 	initial_recoil_amplitude = recoil_amplitude
@@ -91,6 +92,9 @@ func _physics_process(delta):
 		return
 	
 	if not being_used:
+		return
+	
+	if not hands:
 		return
 	
 	if hands.player.isPauseMenuOpened:
@@ -196,14 +200,12 @@ func shoot():
 	
 
 @rpc("authority", "call_local", "reliable")
-func spawnBullet():
-	if fire_sound:
+func spawnBullet(silenced = false):
+	if fire_sound and not silenced:
 		SFXHandler.play_sfx_3d(fire_sound.stream.resource_path, hands.player.name, "Weapons", 100.0)
 	
 	var _level_root = Network.game
 	var weapon : WeaponSkeleton = hands.player.player_body.LeftHandB_Attachment.get_child(0)
-	weapon.muzzleFlash.restart()
-	weapon.muzzleFlashLight.visible = true
 	if weaponData.weaponType == "Shotgun":
 		for x in range(8):
 			var bullet : Node3D = bullet_type.instantiate()
@@ -260,15 +262,6 @@ func spawnBullet():
 func show_muzzleFlash():
 	if not is_multiplayer_authority():
 		return
-	muzzle_flash_particles.emitting = true
-	muzzle_flash_light.show()
-	
-	await get_tree().create_timer(0.05).timeout
-	
-	muzzle_flash_light.hide()
-	
-	if weaponData.weaponType == "Sniper":
-		await get_tree().create_timer(0.6).timeout
 	
 	bullet_case_particles.emitting = true
 

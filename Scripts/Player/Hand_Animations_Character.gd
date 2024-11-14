@@ -34,7 +34,7 @@ var meleeAttack = false
 #GRENADE
 @onready var grenade : Grenade = $GrenadeHands
 var readyToThrow = false
-var grenadeQuantity : int = 4
+var grenadeQuantity : int = 0
 
 var cam_rotation_amount : float = 0.025
 var weapon_rotation_amount : float = 0.01

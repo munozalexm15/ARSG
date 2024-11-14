@@ -16,6 +16,19 @@ var player : Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	m16Preview.visible = true
+	r870Preview.visible = true
+	r700Preview.visible = true
+	m14Preview.visible = true
+	mp5Preview.visible = true
+	
+	await get_tree().create_timer(0.2).timeout
+	m16Preview.visible = false
+	r870Preview.visible = false
+	r700Preview.visible = false
+	m14Preview.visible = false
+	mp5Preview.visible = false
+	
 	if not is_multiplayer_authority(): 
 		visible = false
 	animPlayer.play("weapon_preview")

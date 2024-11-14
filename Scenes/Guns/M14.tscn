@@ -1,44 +1,18 @@
-[gd_scene load_steps=44 format=4 uid="uid://ny8x12admrv7"]
+[gd_scene load_steps=39 format=4 uid="uid://ny8x12admrv7"]
 
 [ext_resource type="Texture2D" uid="uid://be8rlx0dt0m0c" path="res://GameResources/Textures/Guns/M14/Tac_M14_Text.png" id="1_jw7po"]
 [ext_resource type="Script" path="res://Scripts/Guns/init_weapon.gd" id="1_krcch"]
 [ext_resource type="ArrayMesh" uid="uid://b6fbka4hyo5se" path="res://GameResources/Meshes/Guns/Bullets/7,62MM/7-62Shell.tres" id="1_xcyaf"]
 [ext_resource type="Resource" uid="uid://b5k0vb48uadrv" path="res://Scripts/Guns/Resources/M14_Resource.tres" id="2_esjv3"]
-[ext_resource type="PackedScene" uid="uid://7evxytscrllj" path="res://Scenes/Bullets/Bullet.tscn" id="3_ex2f8"]
 [ext_resource type="Curve" uid="uid://cl0o76t4ei4cx" path="res://GameResources/Curves/M14/M14_RecoilRotation_X.tres" id="4_b1x5c"]
 [ext_resource type="Curve" uid="uid://b51mua5a4bbot" path="res://GameResources/Curves/M14/M14_RecoilRotation_Z.tres" id="5_gm6px"]
 [ext_resource type="Curve" uid="uid://juwb2jsv7aw5" path="res://GameResources/Curves/M14/M14_RecoilPosition_Z.tres" id="6_p6h6b"]
-[ext_resource type="Texture2D" uid="uid://bsmd3gsn2r3wo" path="res://GameResources/Textures/MuzzleFlashes/Muzzle-Flash4.png" id="7_4k1d0"]
 [ext_resource type="Material" uid="uid://fbndaf23pxhe" path="res://GameResources/Materials/SASHands_material.tres" id="10_cli42"]
 [ext_resource type="Shader" path="res://GameResources/Shaders/psx_jitter.gdshader" id="10_ps3ks"]
 [ext_resource type="AudioStream" uid="uid://b4blekdha5jr0" path="res://GameResources/Sounds/Weapons/M14/m14_full_rel.mp3" id="12_jwejj"]
 [ext_resource type="AudioStream" uid="uid://batuuufxt1rg4" path="res://GameResources/Sounds/Weapons/M14/m14_shot.mp3" id="13_q0dt5"]
 [ext_resource type="AudioStream" uid="uid://dsbi5r86qfs4b" path="res://GameResources/Sounds/Weapons/M14/m14_rel.mp3" id="13_x4j0t"]
 [ext_resource type="AudioStream" uid="uid://c6g3inqjgmwoa" path="res://GameResources/Sounds/Misc/out_of_ammo.wav" id="14_2or4j"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5kex5"]
-angle_min = -28.8
-angle_max = 14.4
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wgi8"]
-transparency = 1
-albedo_texture = ExtResource("7_4k1d0")
-emission_enabled = true
-emission = Color(0.901961, 0.482353, 0, 1)
-emission_energy_multiplier = 16.0
-backlight = Color(0.482353, 0.223529, 0, 1)
-billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-proximity_fade_distance = 28.45
-
-[sub_resource type="QuadMesh" id="QuadMesh_130cd"]
-material = SubResource("StandardMaterial3D_2wgi8")
-size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fwhr"]
 resource_name = "Material.046"
@@ -2074,7 +2048,6 @@ _data = {
 [node name="M14" type="Node3D"]
 script = ExtResource("1_krcch")
 weaponData = ExtResource("2_esjv3")
-bullet_type = ExtResource("3_ex2f8")
 recoil_rotation_x = ExtResource("4_b1x5c")
 recoil_rotation_z = ExtResource("5_gm6px")
 recoil_position_z = ExtResource("6_p6h6b")
@@ -2083,29 +2056,6 @@ lerp_speed = 19.0
 
 [node name="Muzzle" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.53117, 1.99273, -0.0707574)
-
-[node name="MuzzleFlash" type="GPUParticles3D" parent="Muzzle"]
-transform = Transform3D(0.139173, 0, -0.990268, 0.990268, -4.37114e-08, 0.139173, -4.3286e-08, -1, -6.08345e-09, -0.0453234, 0.0532769, 0.0491189)
-emitting = false
-amount = 1
-lifetime = 0.05
-one_shot = true
-randomness = 1.0
-fixed_fps = 0
-local_coords = true
-draw_order = 1
-process_material = SubResource("ParticleProcessMaterial_5kex5")
-draw_pass_1 = SubResource("QuadMesh_130cd")
-
-[node name="MuzzleFlashLight" type="OmniLight3D" parent="Muzzle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176085, -0.257801, 0)
-visible = false
-light_color = Color(0.721569, 0.321569, 0, 1)
-light_energy = 2.36
-light_specular = 0.25
-distance_fade_begin = 2.0
-distance_fade_length = 2.0
-omni_range = 3.284
 
 [node name="Bullet_Case_Particles" type="CPUParticles3D" parent="."]
 transform = Transform3D(0.140592, 6.51351e-16, -1.99505, -1.69829, 1.04952, -0.119679, 1.04692, 1.7025, 0.0737769, 0.968752, 2.53431, -0.037005)

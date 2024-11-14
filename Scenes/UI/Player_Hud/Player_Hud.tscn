@@ -916,6 +916,6 @@ offset_bottom = 0.112
 modulate = Color(1, 1, 1, 0.75)
 layout_mode = 2
 text = "YOU CAN OPEN THE MENU WITH 
-\"ESC\" KEY AND SEE THE SETTINGS"
+\"P\" KEY AND SEE THE SETTINGS"
 label_settings = SubResource("LabelSettings_x2cy2")
 language = "en"
