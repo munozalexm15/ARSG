@@ -15,7 +15,7 @@ var weaponInteractable : WeaponInteractable
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_exception(owner)
+	add_exception(hud.player_controller)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

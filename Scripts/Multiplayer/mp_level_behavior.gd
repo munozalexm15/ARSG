@@ -25,8 +25,6 @@ var death_count = 0
 @onready var playerSpawner : MultiplayerSpawner = $PlayerSpawner
 @onready var weaponSelectionSpawner : MultiplayerSpawner = $weaponSelectionSpawner
 
-@onready var waitingDataInfo : Control = $WaitingCameraAndInfo
-
 @export var lightArray : Array
 
 
@@ -59,7 +57,7 @@ func _ready():
 	chatAction.keycode = GlobalData.configData.get_value("Controls", "Open Chat", 84)
 	weaponSelectionSpawner.spawn_function = Callable(self, "set_player_weaponSelection")
 	pauseMenuSpawner.spawn_function = Callable(self, "set_player_pause_menu")
-	playerSpawner.spawn_function = Callable(self, "init_player")
+	
 	
 	Network.game = self
 	Network.role = "Host"
@@ -69,15 +67,10 @@ func _ready():
 	
 	if Network.role == "Host":
 		generatePlayer(multiplayer.get_unique_id())
-		
-	
-		waitingDataInfo.queue_free()
-		
 		#uiSpawner.spawn_function = Callable(self, "set_player_data")
 		#uiSpawner.spawn()
 		#init_player.rpc(multiplayer.get_unique_id())
 		#set_player_data.rpc(multiplayer.get_unique_id(), multiplayer.get_unique_id())
-		Steam.setLobbyJoinable(Network.lobby_id, true)
 
 	lightError()
 	
@@ -104,7 +97,7 @@ func _process(delta: float) -> void:
 func generatePlayer(id):
 	var weaponSelectionInstance = weaponSelectionSpawner.spawn(id)
 	var pauseMenuInstance = pauseMenuSpawner.spawn(id)
-	var playerInstance = playerSpawner.spawn(id)
+	var playerInstance = $"FadeShader/SubViewport/DitheringShader/SubViewport/1"
 	playerInstance.hud.visible = false
 	
 	playerInstance.pauseMenu = pauseMenuInstance
@@ -112,18 +105,17 @@ func generatePlayer(id):
 	playerInstance.weaponSelectionMenu = weaponSelectionInstance
 	weaponSelectionInstance.player = playerInstance
 	
-	setAuthToPlayer.rpc(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
+	setAuthToPlayer(playerInstance.name, pauseMenuInstance.name, weaponSelectionInstance.name, id)
 
-@rpc("any_peer", "call_local")
 func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId):
-	var playerInstance : Player = players_node.get_node("./" + playernode_Name)
+	var playerInstance : Player = $"FadeShader/SubViewport/DitheringShader/SubViewport/1"
 	var menuInstance = menus_node.get_node("./" + pauseMenuNode_Name)
 	var selectionInstance = weaponSelections_node.get_node("./" + weaponSelectionNode_Name)
 	
 	#loop recursivo para ir esperando a que el player esté listo
 	if not playerInstance or not menuInstance or not selectionInstance:
 		await get_tree().create_timer(1).timeout
-		setAuthToPlayer.rpc(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId)
+		setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Name, newId)
 		return
 	
 	playerInstance.global_position = random_spawn()
@@ -162,22 +154,13 @@ func setAuthToPlayer(playernode_Name, pauseMenuNode_Name, weaponSelectionNode_Na
 	playerInstance.player_body.playerMesh.get_active_material(1).set_shader_parameter("albedo", skin.HeadSkin)
 	
 func loadGame():
-	Network.client_connected_to_server.rpc_id(1, multiplayer.get_unique_id())
+	Network.client_connected_to_server(multiplayer.get_unique_id())
 
 func  _input(_event: InputEvent) -> void:
 	pass
 
-
-@rpc("any_peer", "call_local", "reliable")
 func init_player(peer_id):
-	var player : Player = PlayerScene.instantiate()
-	player.set_multiplayer_authority(peer_id)
-	player.name = str(peer_id)
-	#player.set_multiplayer_authority(peer_id)
-	var dict_data : Dictionary = {"id": str(peer_id) ,"name": Steam.getPersonaName(), "score" : 0, "kills": 0, "assists" : 0, "deaths": 0}
-	players.append(dict_data)
-	
-	return player
+	pass
 
 func set_player_pause_menu(peer_id):
 	var pauseMenu : Pause_Menu = PauseScene.instantiate()
@@ -192,7 +175,6 @@ func set_player_weaponSelection(peer_id):
 	return weaponSelection
 
 ##Creating and assigning a team selection, class selection and pause menus to a player
-@rpc("any_peer", "call_local", "reliable")
 func set_player_data(peer_id, playerName):
 	var node : Node3D = Node3D.new()
 	node.name = str(playerName)
@@ -246,7 +228,6 @@ func random_spawn():
 	return spawnPoint.position
 
 #load client data from the other players already in the match.
-@rpc("any_peer", "call_local", "reliable")
 func request_game_info(player_dict : Dictionary):
 	for index in players_node.get_child_count():
 		var player : Player = players_node.get_child(index)
@@ -269,7 +250,7 @@ func request_game_info(player_dict : Dictionary):
 
 func _on_match_timer_timeout():
 	if multiplayer.get_unique_id() == 1:
-		Network.endGame.rpc(str("THE WINNER IS " , players[0]["name"]) ) 
+		Network.endGame(str("THE WINNER IS " , players[0]["name"]) ) 
 		await get_tree().create_timer(5).timeout
 		if multiplayer.get_unique_id() == 1:
 			Network.close_match()
@@ -302,7 +283,7 @@ func _on_foce_exit_button_pressed() -> void:
 	
 	#CLIENT LEAVING MATCH
 	if multiplayer.get_unique_id() != 1:
-		Network.player_left.rpc(multiplayer.get_unique_id())
+		Network.player_left(multiplayer.get_unique_id())
 		Network.leave_lobby()
 		get_tree().change_scene_to_file("res://Scenes/Menu/main_menu.tscn")
 

@@ -99,9 +99,6 @@ var team = ""
 var thirdPersonEnabled : bool = false
 @onready var thirdPersonAnimPlayer : AnimationPlayer = $ThirdPersonCameraAnim
 
-func _enter_tree():
-	set_multiplayer_authority(name.to_int())
-
 func _ready():
 	#modificar dependiendo del arma que tenga el jugador
 	#si no es el que controla al player
@@ -430,7 +427,7 @@ func die_respawn(player_id, instigator_id, deathType = "weapon"):
 		if playerDict["id"] == str(player_id):
 			playerDict["deaths"] += 1
 			if instigator_id != player_id:
-				deadName = Steam.getFriendPersonaName(Network.peer.get_steam64_from_peer_id(int(playerDict["id"])))
+				deadName = "YOU"
 				
 	Network.game.add_kill_to_killFeed(killerName, killerWeaponImage, deadName)
 	visible = false

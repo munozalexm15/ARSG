@@ -57,7 +57,7 @@ func _ready():
 		
 	knife.set_process(false) 
 	knife.knifeRigidBody.add_collision_exception_with(player)
-	interactorRay.add_exception(owner)
+	interactorRay.add_exception(player)
 	default_weaponHolder_pos = weaponHolder.position
 	playerSwappingWeapons.emit()
 
