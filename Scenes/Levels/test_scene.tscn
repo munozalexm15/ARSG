@@ -76,7 +76,7 @@
 [ext_resource type="Resource" uid="uid://de4sja81p47ur" path="res://Scripts/Guns/Resources/MP5_Pickup.tres" id="59_n7fhl"]
 [ext_resource type="Texture2D" uid="uid://udsjx6qk12bi" path="res://GameResources/Textures/Guns/MP5/MP5Texture.jpg" id="60_jtsxu"]
 [ext_resource type="Resource" uid="uid://bvygu2thysu23" path="res://Scripts/Guns/Resources/remington_870_Pickup.tres" id="61_lvmjk"]
-[ext_resource type="Texture2D" uid="uid://kdcm8k7t3hdj" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="62_gj30r"]
+[ext_resource type="Texture2D" uid="uid://4dkn1380tpfl" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="62_gj30r"]
 [ext_resource type="Resource" uid="uid://c0m78ciyutr0s" path="res://Scripts/Guns/Resources/M16A2_Resource.tres" id="78_7uvh2"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="79_nusxg"]
 

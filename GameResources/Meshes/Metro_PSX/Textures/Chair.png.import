@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbw16jm50ow5v"
-path.s3tc="res://.godot/imported/Chair.png-60dcd7d9346409bce8b35665bf4438d6.s3tc.ctex"
+path.s3tc="res://.godot/imported/Chair.png-33e58149eb8159232c354a475b623a66.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Metro_PSX/textures/Chair.png"
-dest_files=["res://.godot/imported/Chair.png-60dcd7d9346409bce8b35665bf4438d6.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Metro_PSX/Textures/Chair.png"
+dest_files=["res://.godot/imported/Chair.png-33e58149eb8159232c354a475b623a66.s3tc.ctex"]
 
 [params]
 

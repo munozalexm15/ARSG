@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://iecbmub6v1do"
-path.s3tc="res://.godot/imported/BrickSmallPainted.jpg-481f314193008c90a514de9d04586a61.s3tc.ctex"
+path.s3tc="res://.godot/imported/BrickSmallPainted.jpg-c61191b62488f1612c8bec56db1cec34.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Buildings/textures/BrickSmallPainted.jpg"
-dest_files=["res://.godot/imported/BrickSmallPainted.jpg-481f314193008c90a514de9d04586a61.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Buildings/Textures/BrickSmallPainted.jpg"
+dest_files=["res://.godot/imported/BrickSmallPainted.jpg-c61191b62488f1612c8bec56db1cec34.s3tc.ctex"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cb2tuu1ofwvot"
-path.s3tc="res://.godot/imported/Posters.png-296207fedfe5d96e717920010de68397.s3tc.ctex"
+path.s3tc="res://.godot/imported/Posters.png-25c15d3b964bff854b9541ac410cee70.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Metro_PSX/textures/Posters.png"
-dest_files=["res://.godot/imported/Posters.png-296207fedfe5d96e717920010de68397.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Metro_PSX/Textures/Posters.png"
+dest_files=["res://.godot/imported/Posters.png-25c15d3b964bff854b9541ac410cee70.s3tc.ctex"]
 
 [params]
 

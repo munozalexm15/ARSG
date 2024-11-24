@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nmg0klxx6ots"
+uid="uid://c1u5abka5pl4w"
 path.s3tc="res://.godot/imported/Metro_automatic_ticket_gate.png-45ffc6120f7b7b53e6db6edeeffb842a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "ee767bcfcf09d53d1ab72047c1bb24f8"
 }
 
 [deps]

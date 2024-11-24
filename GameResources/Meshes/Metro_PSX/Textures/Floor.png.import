@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sa7rk00s6ied"
-path.s3tc="res://.godot/imported/Floor.png-a354a02f6068c7cc7f8c4feefbaa066f.s3tc.ctex"
+path.s3tc="res://.godot/imported/Floor.png-e60ad51dd8ea34f8b16c98e63da96539.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Metro_PSX/textures/Floor.png"
-dest_files=["res://.godot/imported/Floor.png-a354a02f6068c7cc7f8c4feefbaa066f.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Metro_PSX/Textures/Floor.png"
+dest_files=["res://.godot/imported/Floor.png-e60ad51dd8ea34f8b16c98e63da96539.s3tc.ctex"]
 
 [params]
 

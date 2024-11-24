@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bc6dc0e8y2c3c"
-path.s3tc="res://.godot/imported/seats.png-437d02aecc7a52b0fe94b90b7eecc11e.s3tc.ctex"
+path.s3tc="res://.godot/imported/seats.png-24d73fbe80fafb0bc4a454ef7288d380.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Metro_PSX/textures/seats.png"
-dest_files=["res://.godot/imported/seats.png-437d02aecc7a52b0fe94b90b7eecc11e.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Metro_PSX/Textures/seats.png"
+dest_files=["res://.godot/imported/seats.png-24d73fbe80fafb0bc4a454ef7288d380.s3tc.ctex"]
 
 [params]
 

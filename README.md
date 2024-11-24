@@ -41,17 +41,14 @@ A person has joined your lobby and you want to tell them how happy you are to se
 
 ## What's next
 
-The fast answer is: I don't know. Right now i'm trying to find a job and this game was born with the sole purpose of being a proyect that I can show for my portfolio, but if for some strange reason I keep developing it, here's a few things I will try to implement / change.
-
-The main idea was to make a game with ranks / levels system and unlockables, but I figured out that if I did that, it would have to be done locally and that would allow people to
-cheat and unlock everything (can't afford a server to save all the data), so I gave it some though and came to the conclusion to make a game that doesn't has progression, but only in the match.
-So, the main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
+The main idea is to keep adding things to the game until it becomes a pseudo-roguelike where players get rewarded for killing sprees, the maps include bonuses and temporal buffs 
 (more health, invisibility for a certain time, etc.)
-Basically, the idea was to make every match completely different. This way, I can give players a different approach to the game and prevent people cheat (Outside of the lobbies).
 
-(But to be honest, the game is P2P and a lot of people will end up cheating, so if I keep developing the game it will shift into creating more of a PVE content instead of PVP, this way it's less damaging for the players.)
+That is, for the multiplayer part (that it's P2P and it's not my priority).
 
-Furthermore, there are a few more things that would be going to be done. These are: More maps, weapons, bullet decals, blood decals, improve player model, etc.
+Forward on, I'll try to add more cooperative content, basically because I would like to make an AI and more gamemodes.
+
+There are a few more things that, if I have time, will be added. These are: More maps, weapons, bullet decals, blood decals, improve player model, etc.
 
 Also, if you've opened the game, you have noticed the App ID is the 480 (Spacewar). This is because if anyone wants to upload a Game to Steam, you have to pay a one-time fee of 100$. I would, but I don't think my game at the moment has that worth.
 In a future, if the game keeps evolving and has some worth, maybe I will be willing to do such a big step.
@@ -69,6 +66,12 @@ I know there are some noticeable bugs that can affect players outside of the vis
 - **Hitmarker sound**: You might have noticed that when you shot an enemy, an audio plays to indicate you're hitting the enemy, and when they hit you the same one plays. It's not a bug, but maybe I will change the sound when they hit you.
 
 - **Scoreboard bug**: At the end of the match, it may occur that you don't se the other player in the list. It's not a big deal but it is still a bug.
+
+## Images
+![Soldier in firing Range](./Images/ARSG_Photo1.PNG)
+![Ambush](./Images/ARSG_Photo2.PNG)
+![The silence of the night](./Images/ARSG_Photo3FPS.PNG)
+![It's you or I](./Images/ARSG_Photo4FPS.PNG)
 
 ## Credits
 

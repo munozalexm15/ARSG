@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Interactables/Resources/weaponSelectionInfo_Resource.gd" id="8_0mea4"]
 [ext_resource type="Script" path="res://Scripts/Interactables/weapon_selection_info.gd" id="8_dvief"]
 [ext_resource type="Texture2D" uid="uid://d28vi6yyjpkid" path="res://GameResources/Textures/Guns/M16A2/M16_Texture_240.png" id="8_phxje"]
-[ext_resource type="Texture2D" uid="uid://kdcm8k7t3hdj" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="8_xbdg2"]
+[ext_resource type="Texture2D" uid="uid://4dkn1380tpfl" path="res://GameResources/Textures/Guns/Remington870/PAShotgunText.png" id="8_xbdg2"]
 [ext_resource type="Texture2D" uid="uid://dae3hkw8ofmjj" path="res://GameResources/Textures/GunsIcons/M14_Icon.png" id="8_y6phn"]
 [ext_resource type="Texture2D" uid="uid://cgkidwvu5px" path="res://GameResources/Textures/Guns/Remington700/HuntingRifleText.png" id="10_w7erh"]
 [ext_resource type="Texture2D" uid="uid://77e8srjpcfei" path="res://GameResources/Textures/Guns/Remington700/ScopeText.jpg" id="11_esnpw"]

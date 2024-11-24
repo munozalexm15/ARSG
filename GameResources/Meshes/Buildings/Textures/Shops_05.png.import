@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwj70q17cilxj"
-path.s3tc="res://.godot/imported/Shops_05.png-ed12f8d87dd0de19c6238a82a4c4959b.s3tc.ctex"
+path.s3tc="res://.godot/imported/Shops_05.png-54514d26188959c95c756c32e3662d8b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://GameResources/Meshes/Buildings/textures/Shops_05.png"
-dest_files=["res://.godot/imported/Shops_05.png-ed12f8d87dd0de19c6238a82a4c4959b.s3tc.ctex"]
+source_file="res://GameResources/Meshes/Buildings/Textures/Shops_05.png"
+dest_files=["res://.godot/imported/Shops_05.png-54514d26188959c95c756c32e3662d8b.s3tc.ctex"]
 
 [params]
 
