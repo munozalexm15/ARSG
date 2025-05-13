@@ -12,6 +12,8 @@ anything you haven't seen before, but it's a game you can play with a friend or 
 
 To finish, I just want to say thanks to everyone who has kept me / keeps me motivated to keep doing the game and for the guy who is reading this right now (yeah, you). Just making you notice this exists is worth it.
 
+## See the DeepWiki explanation
+You can see a more in-depth, technical readme with [DeepWiki](https://deepwiki.com/munozalexm15/ARSG). You can also ask questions about the project!
 ## Features
 
 ### Steamworks compatibility
